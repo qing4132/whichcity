@@ -28,6 +28,9 @@ interface City {
   yearlySavings: number;
   currency: string;
   description: string;
+  doctorsPer1000: number;
+  avgAQI3Y: number;
+  directDestinations: number;
   professions: Record<string, number>;
 }
 
@@ -163,6 +166,9 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     annualIncome: "Annual Income",
     annualExpense: "Annual Expense",
     annualSavings: "Annual Savings",
+    doctorsPer1000: "Doctors per 1000",
+    avgAQI3Y: "Avg AQI 3Y",
+    directDestinations: "Direct Destinations",
     costRatioKey: "Cost Ratio",
     savingsRatioKey: "Savings Ratio",
     bigMacUnit: "Big Macs",
@@ -230,6 +236,9 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     annualIncome: "年間収入",
     annualExpense: "年間支出",
     annualSavings: "年間貯蓄",
+    doctorsPer1000: "1000人あたり医師数",
+    avgAQI3Y: "過去3年の平均AQI",
+    directDestinations: "直行便目的地数",
     costRatioKey: "コスト比率",
     savingsRatioKey: "貯蓄比率",
     bigMacUnit: "個分",
@@ -297,6 +306,9 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     annualIncome: "Ingreso Anual",
     annualExpense: "Gasto Anual",
     annualSavings: "Ahorro Anual",
+    doctorsPer1000: "Doctores por 1000",
+    avgAQI3Y: "AQI promedio 3 años",
+    directDestinations: "Destinos directos",
     costRatioKey: "Proporción de costo",
     savingsRatioKey: "Proporción de ahorro",
     bigMacUnit: "Big Macs",
@@ -893,6 +905,16 @@ export default function CityComparison() {
     });
   };
 
+  const prepareHealthMobilityData = () => {
+    if (!comparisonData) return [];
+    return comparisonData.map((city) => ({
+      name: getCityLabel(city),
+      doctors: city.doctorsPer1000,
+      aqi: city.avgAQI3Y,
+      destinations: city.directDestinations,
+    }));
+  };
+
   if (loading) {
     return (
       <div
@@ -1197,7 +1219,7 @@ export default function CityComparison() {
                 </button>
               ))}
             </div>
-            {filteredCities.length > 100 && (
+            {filteredCities.length > 0 && (
               <p className={`text-xs mt-1.5 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
                 {t("showingCities", { total: filteredCities.length })}
               </p>
@@ -1412,6 +1434,31 @@ export default function CityComparison() {
               </div>
             </div>
 
+            {/* 医疗与交通对比 */}
+            <div className={`p-4 rounded-lg ${darkMode ? "bg-gray-700" : "bg-gray-50"}`}>
+              <h3 className={`text-lg font-bold mb-4 ${darkMode ? "text-white" : "text-gray-800"}`}>
+                {t("healthMobilityCompare")}
+              </h3>
+              <ResponsiveContainer width="100%" height={350}>
+                <BarChart data={prepareHealthMobilityData()}>
+                  <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
+                  <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
+                  <YAxis stroke={darkMode ? "#999" : "#666"} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: darkMode ? "#333" : "#fff",
+                      border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
+                      color: darkMode ? "#fff" : "#000",
+                    }}
+                  />
+                  <Legend />
+                  <Bar dataKey="doctors" name={t("doctorsPer1000")} fill="#38bdf8" />
+                  <Bar dataKey="aqi" name={t("avgAQI3Y")} fill="#ef4444" />
+                  <Bar dataKey="destinations" name={t("directDestinations")} fill="#f59e0b" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+
             {/* 城市卡片 */}
             <div className={`rounded-xl shadow-xl p-8 ${
               darkMode
@@ -1577,6 +1624,21 @@ export default function CityComparison() {
                             </>
                           );
                         })()}
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
+                        <div className="bg-indigo-500 bg-opacity-20 p-2 rounded-lg">
+                          <p className="text-xs text-indigo-100 mb-1">{t("doctorsPer1000")}</p>
+                          <p className="text-sm font-bold text-white">{city.doctorsPer1000.toFixed(1)}</p>
+                        </div>
+                        <div className="bg-red-500 bg-opacity-20 p-2 rounded-lg">
+                          <p className="text-xs text-red-100 mb-1">{t("avgAQI3Y")}</p>
+                          <p className="text-sm font-bold text-white">{city.avgAQI3Y}</p>
+                        </div>
+                        <div className="bg-amber-500 bg-opacity-20 p-2 rounded-lg">
+                          <p className="text-xs text-amber-100 mb-1">{t("directDestinations")}</p>
+                          <p className="text-sm font-bold text-white">{city.directDestinations}</p>
+                        </div>
                       </div>
 
                       <div className="mt-4 bg-white bg-opacity-10 p-3 rounded-lg">
