@@ -31,7 +31,7 @@ interface City {
   professions: Record<string, number>;
 }
 
-type ComparisonMode = "normal" | "ratio";
+type ComparisonMode = "normal" | "ratio" | "bigmac";
 
 interface ExchangeRates {
   rates: Record<string, number>;
@@ -66,7 +66,7 @@ export default function CityComparison() {
   const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
   const [darkMode, setDarkMode] = useState(false);
 
-  const maxComparisons = windowWidth < 768 ? 2 : windowWidth < 1024 ? 4 : 8;
+  const maxComparisons = windowWidth < 768 ? 2 : windowWidth < 1024 ? 3 : 5;
 
   useEffect(() => {
     const savedCurrency = localStorage.getItem("selectedCurrency");
@@ -202,49 +202,78 @@ export default function CityComparison() {
     return parseFloat((value / baseValue).toFixed(2));
   };
 
+  const toBigMacCount = (value: number, bigMacPrice: number): number => {
+    if (bigMacPrice <= 0) return 0;
+    return parseFloat((value / bigMacPrice).toFixed(2));
+  };
+
   const prepareChartData = () => {
     if (!comparisonData) return [];
     const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
 
-    return comparisonData.map((city) => ({
-      name: city.name,
-      income: comparisonMode === "ratio"
-        ? getRatioValue(
-            selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome,
-            selectedProfession ? baseCity.professions[selectedProfession] || 0 : baseCity.averageIncome
-          )
-        : (selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome),
-      monthlyExpense: comparisonMode === "ratio"
-        ? getRatioValue(city.costOfLiving, baseCity.costOfLiving)
-        : city.costOfLiving,
-      yearlyExpense: comparisonMode === "ratio"
-        ? getRatioValue(city.costOfLiving * 12, baseCity.costOfLiving * 12)
-        : city.costOfLiving * 12,
-      savings: comparisonMode === "ratio"
-        ? getRatioValue(
-            selectedProfession
-              ? (city.professions[selectedProfession] || 0) - city.costOfLiving * 12
-              : city.yearlySavings,
-            selectedProfession
-              ? (baseCity.professions[selectedProfession] || 0) - baseCity.costOfLiving * 12
-              : baseCity.yearlySavings
-          )
-        : (selectedProfession
-          ? (city.professions[selectedProfession] || 0) - city.costOfLiving * 12
-          : city.yearlySavings),
-    }));
+    return comparisonData.map((city) => {
+      const salary = selectedProfession
+        ? city.professions[selectedProfession] || 0
+        : city.averageIncome;
+      const baseSalary = selectedProfession
+        ? baseCity.professions[selectedProfession] || 0
+        : baseCity.averageIncome;
+
+      const salaryBigMac = toBigMacCount(salary, city.bigMacPrice);
+      const monthlyBigMac = toBigMacCount(city.costOfLiving, city.bigMacPrice);
+      const yearlyBigMac = toBigMacCount(city.costOfLiving * 12, city.bigMacPrice);
+      const savingsBigMac = toBigMacCount(salary - city.costOfLiving * 12, city.bigMacPrice);
+
+      return {
+        name: city.name,
+        income:
+          comparisonMode === "ratio"
+            ? getRatioValue(salary, baseSalary)
+            : comparisonMode === "bigmac"
+              ? salaryBigMac
+              : salary,
+        monthlyExpense:
+          comparisonMode === "ratio"
+            ? getRatioValue(city.costOfLiving, baseCity.costOfLiving)
+            : comparisonMode === "bigmac"
+              ? monthlyBigMac
+              : city.costOfLiving,
+        yearlyExpense:
+          comparisonMode === "ratio"
+            ? getRatioValue(city.costOfLiving * 12, baseCity.costOfLiving * 12)
+            : comparisonMode === "bigmac"
+              ? yearlyBigMac
+              : city.costOfLiving * 12,
+        savings:
+          comparisonMode === "ratio"
+            ? getRatioValue(
+                salary - city.costOfLiving * 12,
+                baseSalary - baseCity.costOfLiving * 12
+              )
+            : comparisonMode === "bigmac"
+              ? savingsBigMac
+              : salary - city.costOfLiving * 12,
+      };
+    });
   };
 
   const prepareProfessionChartData = () => {
     if (!comparisonData || !selectedProfession) return [];
     const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
 
-    return comparisonData.map((city) => ({
-      name: city.name,
-      salary: comparisonMode === "ratio"
-        ? getRatioValue(city.professions[selectedProfession] || 0, baseCity.professions[selectedProfession] || 0)
-        : (city.professions[selectedProfession] || 0),
-    }));
+    return comparisonData.map((city) => {
+      const salary = city.professions[selectedProfession] || 0;
+      const salaryBigMac = toBigMacCount(salary, city.bigMacPrice);
+      return {
+        name: city.name,
+        salary:
+          comparisonMode === "ratio"
+            ? getRatioValue(salary, baseCity.professions[selectedProfession] || 0)
+            : comparisonMode === "bigmac"
+              ? salaryBigMac
+              : salary,
+      };
+    });
   };
 
   const prepareCostRatioData = () => {
@@ -440,6 +469,18 @@ export default function CityComparison() {
                 >
                   相对比例
                 </button>
+                <button
+                  onClick={() => setComparisonMode("bigmac")}
+                  className={`flex-1 px-4 py-2 rounded-lg font-medium transition ${
+                    comparisonMode === "bigmac"
+                      ? "bg-amber-600 text-white"
+                      : darkMode
+                        ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  }`}
+                >
+                  以巨无霸算
+                </button>
               </div>
             </div>
           </div>
@@ -632,7 +673,11 @@ export default function CityComparison() {
                           color: darkMode ? "#fff" : "#000",
                         }}
                         formatter={(value: any) =>
-                          formatCurrency(Number(value))
+                          comparisonMode === "ratio"
+                            ? `${parseFloat(value).toFixed(2)}x`
+                            : comparisonMode === "bigmac"
+                              ? `${parseFloat(value).toFixed(2)} 个巨无霸`
+                              : formatCurrency(Number(value))
                         }
                       />
                       <Bar
@@ -716,7 +761,11 @@ export default function CityComparison() {
                           color: darkMode ? "#fff" : "#000",
                         }}
                         formatter={(value: any) =>
-                          formatCurrency(Number(value))
+                          comparisonMode === "ratio"
+                            ? `${parseFloat(value).toFixed(2)}x`
+                            : comparisonMode === "bigmac"
+                              ? `${parseFloat(value).toFixed(2)} 个巨无霸`
+                              : formatCurrency(Number(value))
                         }
                       />
                       <Legend />
@@ -820,7 +869,9 @@ export default function CityComparison() {
                         <p className="text-xl font-bold text-white">
                           {comparisonMode === "ratio"
                             ? `${getRatioValue(salary, baseSalary)}x`
-                            : formatCurrency(salary)}
+                            : comparisonMode === "bigmac"
+                              ? `${toBigMacCount(salary, city.bigMacPrice)} 个巨无霸`
+                              : formatCurrency(salary)}
                         </p>
                       </div>
 
@@ -832,7 +883,9 @@ export default function CityComparison() {
                         <p className="text-xl font-bold text-white">
                           {comparisonMode === "ratio"
                             ? `${getRatioValue(city.costOfLiving, baseCity.costOfLiving)}x`
-                            : formatCurrency(city.costOfLiving)}
+                            : comparisonMode === "bigmac"
+                              ? `${toBigMacCount(city.costOfLiving, city.bigMacPrice)} 个巨无霸`
+                              : formatCurrency(city.costOfLiving)}
                         </p>
                       </div>
 
@@ -853,7 +906,9 @@ export default function CityComparison() {
                                 salary - city.costOfLiving * 12,
                                 baseSalary - baseCity.costOfLiving * 12
                               )}x`
-                            : formatCurrency(salary - city.costOfLiving * 12)}
+                            : comparisonMode === "bigmac"
+                              ? `${toBigMacCount(salary - city.costOfLiving * 12, city.bigMacPrice)} 个巨无霸`
+                              : formatCurrency(salary - city.costOfLiving * 12)}
                         </p>
                       </div>
 
@@ -865,7 +920,9 @@ export default function CityComparison() {
                         <p className="text-lg font-bold text-white">
                           {comparisonMode === "ratio"
                             ? `${getRatioValue(city.bigMacPrice, baseCity.bigMacPrice)}x`
-                            : formatCurrency(city.bigMacPrice)}
+                            : comparisonMode === "bigmac"
+                              ? "1 个巨无霸"
+                              : formatCurrency(city.bigMacPrice)}
                         </p>
                       </div>
                     </div>
