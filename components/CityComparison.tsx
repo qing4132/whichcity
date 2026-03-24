@@ -569,17 +569,18 @@ export default function CityComparison() {
   };
 
   const formatCurrency = (amount: number): string => {
-    if (!exchangeRates) return `$${amount.toLocaleString()}`;
+    if (!exchangeRates) return `$${Math.round(amount).toLocaleString()}`;
 
     const symbol = exchangeRates.symbols[selectedCurrency] || selectedCurrency;
     const converted = convertAmount(amount);
+    const rounded = Math.round(converted);
 
     if (selectedCurrency === "JPY" || selectedCurrency === "VND") {
-      return `${symbol}${Math.round(converted).toLocaleString()}`;
+      return `${symbol}${rounded.toLocaleString()}`;
     } else if (selectedCurrency === "INR" || selectedCurrency === "PKR") {
-      return `${symbol}${converted.toLocaleString("en-IN")}`;
+      return `${symbol}${rounded.toLocaleString("en-IN")}`;
     } else {
-      return `${symbol}${converted.toLocaleString()}`;
+      return `${symbol}${rounded.toLocaleString()}`;
     }
   };
 
