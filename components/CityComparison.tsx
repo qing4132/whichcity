@@ -59,6 +59,9 @@ interface CityInfraInfo {
   doctorsPerThousand: number;
   avgAqi3y: number;
   directDestinations: number;
+  housingPrice: number;
+  savingsToHouseRatio: number;
+  indieBookstores: number;
 }
 
 const TRANSLATIONS: Record<Locale, Record<string, string>> = {
@@ -129,8 +132,12 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     doctorsPerThousand: "每千人医生数",
     avgAqi3y: "近三年平均AQI",
     directDestinations: "机场直飞目的地",
+    housingPrice: "房价",
+    savingsHouseRatio: "年储蓄/房价",
+    indieBookstores: "独立书店数量",
     aqiLabel: "AQI",
     destLabel: "个目的地",
+    priceUnit: "元/㎡",
     descriptionTemplate:
       "{city}（{country}）整体上收入与生活成本都较高。按当前职业估算年收入约 {income}，月生活成本约 {cost}，年可结余约 {savings}。",
   },
@@ -202,8 +209,12 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     doctorsPerThousand: "Doctors per 1,000 people",
     avgAqi3y: "Avg AQI (3y)",
     directDestinations: "Direct flight destinations",
+    housingPrice: "Housing price",
+    savingsHouseRatio: "Yearly savings / housing price",
+    indieBookstores: "Independent bookstores",
     aqiLabel: "AQI",
     destLabel: "destinations",
+    priceUnit: "/m²",
     descriptionTemplate:
       "{city} ({country}) offers a competitive income-cost profile. Estimated annual income for the selected profession is {income}, monthly living cost is {cost}, and potential yearly savings are {savings}.",
   },
@@ -275,8 +286,12 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     doctorsPerThousand: "人口千人あたり医師数",
     avgAqi3y: "過去3年平均AQI",
     directDestinations: "空港の直行便就航地数",
+    housingPrice: "住宅価格",
+    savingsHouseRatio: "年間貯蓄/住宅価格",
+    indieBookstores: "独立系書店数",
     aqiLabel: "AQI",
     destLabel: "就航地",
+    priceUnit: "円/㎡",
     descriptionTemplate:
       "{city}（{country}）は収入と生活コストのバランスが特徴です。選択中の職種の推定年収は {income}、月間生活費は {cost}、年間貯蓄見込みは {savings} です。",
   },
@@ -348,8 +363,12 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     doctorsPerThousand: "Medicos por cada 1,000 hab.",
     avgAqi3y: "AQI promedio (3 anos)",
     directDestinations: "Destinos directos en avion",
+    housingPrice: "Precio de vivienda",
+    savingsHouseRatio: "Ahorro anual / precio vivienda",
+    indieBookstores: "Librerias independientes",
     aqiLabel: "AQI",
     destLabel: "destinos",
+    priceUnit: "/m²",
     descriptionTemplate:
       "{city} ({country}) muestra un equilibrio competitivo entre ingresos y costo de vida. El ingreso anual estimado para la profesion seleccionada es {income}, el costo mensual es {cost} y el ahorro anual potencial es {savings}.",
   },
@@ -764,10 +783,27 @@ export default function CityComparison() {
       25 + incomeFactor * 90 + (city.continent === "欧洲" ? 30 : 0) + r3 * 110
     );
 
+    const housingPrice = Math.round(
+      city.costOfLiving * (7 + incomeFactor * 5 + r2 * 2.5) * 100
+    );
+    const yearlySavingsBase = Math.max(
+      0,
+      city.averageIncome - city.costOfLiving * 12
+    );
+    const savingsToHouseRatio = parseFloat(
+      (yearlySavingsBase / Math.max(1, housingPrice)).toFixed(3)
+    );
+    const indieBookstores = Math.round(
+      15 + incomeFactor * 70 + r * 50 + (city.continent === "欧洲" ? 20 : 0)
+    );
+
     return {
       doctorsPerThousand: Math.max(0.8, Math.min(8.5, doctorsPerThousand)),
       avgAqi3y: Math.max(15, Math.min(220, avgAqi3y)),
       directDestinations: Math.max(8, Math.min(320, directDestinations)),
+      housingPrice: Math.max(2000, Math.min(220000, housingPrice)),
+      savingsToHouseRatio: Math.max(0, Math.min(2.5, savingsToHouseRatio)),
+      indieBookstores: Math.max(5, Math.min(320, indieBookstores)),
     };
   };
 
@@ -1556,6 +1592,84 @@ export default function CityComparison() {
                         </BarChart>
                       </ResponsiveContainer>
                     </div>
+                    <div>
+                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
+                        {t("housingPrice")} ({t("priceUnit")})
+                      </p>
+                      <ResponsiveContainer width="100%" height={240}>
+                        <BarChart
+                          data={comparisonData.map((city) => {
+                            const infra = getCityInfra(city);
+                            return { name: getCityLabel(city), value: infra.housingPrice };
+                          })}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
+                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
+                          <YAxis stroke={darkMode ? "#999" : "#666"} />
+                          <Tooltip
+                            contentStyle={{
+                              backgroundColor: darkMode ? "#333" : "#fff",
+                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
+                              color: darkMode ? "#fff" : "#000",
+                            }}
+                            formatter={(v: any) => `${Math.round(Number(v)).toLocaleString()} ${t("priceUnit")}`}
+                          />
+                          <Bar dataKey="value" fill="#ec4899" radius={[8, 8, 0, 0]} />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div>
+                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
+                        {t("savingsHouseRatio")}
+                      </p>
+                      <ResponsiveContainer width="100%" height={240}>
+                        <BarChart
+                          data={comparisonData.map((city) => {
+                            const infra = getCityInfra(city);
+                            return { name: getCityLabel(city), value: infra.savingsToHouseRatio };
+                          })}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
+                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
+                          <YAxis stroke={darkMode ? "#999" : "#666"} />
+                          <Tooltip
+                            contentStyle={{
+                              backgroundColor: darkMode ? "#333" : "#fff",
+                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
+                              color: darkMode ? "#fff" : "#000",
+                            }}
+                            formatter={(v: any) => `${Number(v).toFixed(3)}`}
+                          />
+                          <Bar dataKey="value" fill="#14b8a6" radius={[8, 8, 0, 0]} />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div>
+                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
+                        {t("indieBookstores")}
+                      </p>
+                      <ResponsiveContainer width="100%" height={240}>
+                        <BarChart
+                          data={comparisonData.map((city) => {
+                            const infra = getCityInfra(city);
+                            return { name: getCityLabel(city), value: infra.indieBookstores };
+                          })}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
+                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
+                          <YAxis stroke={darkMode ? "#999" : "#666"} />
+                          <Tooltip
+                            contentStyle={{
+                              backgroundColor: darkMode ? "#333" : "#fff",
+                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
+                              color: darkMode ? "#fff" : "#000",
+                            }}
+                            formatter={(v: any) => `${Math.round(Number(v))}`}
+                          />
+                          <Bar dataKey="value" fill="#0ea5e9" radius={[8, 8, 0, 0]} />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1740,6 +1854,24 @@ export default function CityComparison() {
                                 <p className="text-[10px] text-blue-100 mb-1">{t("directDestinations")}</p>
                                 <p className="text-xs text-white font-semibold">
                                   {infra.directDestinations} {t("destLabel")}
+                                </p>
+                              </div>
+                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
+                                <p className="text-[10px] text-blue-100 mb-1">{t("housingPrice")}</p>
+                                <p className="text-xs text-white font-semibold">
+                                  {formatCurrency(infra.housingPrice)}
+                                </p>
+                              </div>
+                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
+                                <p className="text-[10px] text-blue-100 mb-1">{t("savingsHouseRatio")}</p>
+                                <p className="text-xs text-white font-semibold">
+                                  {infra.savingsToHouseRatio.toFixed(3)}
+                                </p>
+                              </div>
+                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
+                                <p className="text-[10px] text-blue-100 mb-1">{t("indieBookstores")}</p>
+                                <p className="text-xs text-white font-semibold">
+                                  {infra.indieBookstores}
                                 </p>
                               </div>
                             </>
