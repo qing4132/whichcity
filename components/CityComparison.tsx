@@ -43,89 +43,93 @@ type Locale = "zh" | "en" | "ja" | "es";
 const TRANSLATIONS: Record<Locale, Record<string, string>> = {
   zh: {
     loading: "加载数据中...",
-    appTitle: "🌍 全球城市职业对比工具",
-    appSubtitle: "对比 {count} 个城市的 10 种职业收入和生活成本",
-    dayMode: "☀️ 日间模式",
-    nightMode: "🌙 夜间模式",
+    appTitle: "全球城市职业对比",
+    appSubtitle: "对比 {count} 个城市的职业收入与生活成本",
+    dayMode: "日间模式",
+    nightMode: "夜间模式",
     language: "语言",
-    displayCurrency: "💱 显示币种:",
-    selectProfession: "选择职业 👨‍💼",
+    displayCurrency: "显示币种:",
+    selectProfession: "选择职业",
     comparisonMode: "对比模式 (最多 {count} 个城市)",
     modeNormal: "绝对值",
     modeRatio: "相对比例",
-    modeBigMac: "以巨无霸算",
+    modeBigMac: "巨无霸模式",
     searchPlaceholder: "搜索城市或国家...",
-    allContinents: "🌍 显示所有大洲",
+    allContinents: "显示所有大洲",
     selectedCities: "已选择城市 ({selected}/{max}):",
     chooseCity: "选择城市:",
     showingCities: "显示 60/{total} 个城市，请使用搜索或过滤筛选",
-    compareCities: "📊 对比 {count} 个城市",
+    compareCities: "对比 {count} 个城市",
     clear: "清除",
     needAtLeastTwoCities: "请选择至少2个城市进行对比",
-    chartAnalysis: "📈 数据图表分析",
-    baseCityTip: "💡 基准城市: {city} - 所有数据按此城市为 1 倍进行对比",
-    professionIncomeCompare: "💼 职业年收入对比",
-    costRatioAnalysis: "📊 生活成本占比",
-    annualFinanceCompare: "💰 年度财务对比",
-    cityDetails: "🏙️ 城市详情",
-    clickSetBase: "💡 点击任何城市卡片即可将其设为对比基准",
-    monthlyExpense: "🏠 月支出",
-    yearlySavings: "🏦 年存钱",
-    bigMac: "🍔 巨无霸",
-    ranking: "📊 数据排名",
+    chartAnalysis: "数据图表分析",
+    baseCityTip: "基准城市: {city} - 所有数据按此城市为 1 倍进行对比",
+    professionIncomeCompare: "职业年收入对比",
+    costRatioAnalysis: "生活成本占比",
+    annualFinanceCompare: "年度财务对比",
+    cityDetails: "城市详情",
+    clickSetBase: "点击任何城市卡片可设为对比基准",
+    monthlyExpense: "月支出",
+    yearlySavings: "年存钱",
+    bigMac: "巨无霸",
+    ranking: "数据排名",
     incomeRanking: "💰 收入排名",
     savingsRanking: "🏦 存钱能力",
-    valueRanking: "📊 性价比排名",
+    lowestCostCity: "🔻 最低生活成本城市",
+    insightSuggestionTitle: "推荐下一步",
+    insightSuggestionPick3: "当前最适合深度调研的城市：{cities}。优先关注收入和储蓄潜力。",
+    insightSuggestionNeedMore: "建议选择至少 3 个城市进行对比（当前：{count}）。",
     annualIncome: "年收入",
-    annualExpense: "年支出",
     annualSavings: "年储蓄",
     costRatioKey: "成本占比",
     savingsRatioKey: "可存钱比例",
     bigMacUnit: "个巨无霸",
     oneBigMac: "1 个巨无霸",
     cityDescription: "城市描述",
-    keyInsights: "🔎 关键洞察",
+    keyInsights: "关键洞察",
     topIncomeCity: "最高收入城市",
     topSavingsCity: "最佳储蓄城市",
-    bestValueCity: "最佳性价比城市",
     descriptionTemplate:
       "{city}（{country}）整体上收入与生活成本都较高。按当前职业估算年收入约 {income}，月生活成本约 {cost}，年可结余约 {savings}。",
   },
   en: {
     loading: "Loading data...",
-    appTitle: "🌍 Global City Career Comparison",
-    appSubtitle: "Compare income and living costs of 10 professions across {count} cities",
-    dayMode: "☀️ Light Mode",
-    nightMode: "🌙 Dark Mode",
+    appTitle: "Global City Comparison",
+    appSubtitle: "Compare income and living costs across {count} cities",
+    dayMode: "Light Mode",
+    nightMode: "Dark Mode",
     language: "Language",
-    displayCurrency: "💱 Display currency:",
-    selectProfession: "Select profession 👨‍💼",
+    displayCurrency: "Display currency:",
+    selectProfession: "Select profession",
     comparisonMode: "Comparison mode (up to {count} cities)",
     modeNormal: "Absolute",
     modeRatio: "Relative",
     modeBigMac: "Big Mac",
     searchPlaceholder: "Search city or country...",
-    allContinents: "🌍 All continents",
+    allContinents: "All continents",
     selectedCities: "Selected cities ({selected}/{max}):",
     chooseCity: "Choose cities:",
     showingCities: "Showing 60/{total} cities, use search or filters to narrow down",
-    compareCities: "📊 Compare {count} cities",
+    compareCities: "Compare {count} cities",
     clear: "Clear",
     needAtLeastTwoCities: "Please select at least 2 cities to compare",
-    chartAnalysis: "📈 Data Chart Analysis",
-    baseCityTip: "💡 Base city: {city} - all values are normalized to 1x against this city",
-    professionIncomeCompare: "💼 Annual Income by Profession",
-    costRatioAnalysis: "📊 Cost of Living Ratio",
-    annualFinanceCompare: "💰 Annual Financial Comparison",
-    cityDetails: "🏙️ City Details",
-    clickSetBase: "💡 Click any city card to set it as the base city",
-    monthlyExpense: "🏠 Monthly Expense",
-    yearlySavings: "🏦 Yearly Savings",
-    bigMac: "🍔 Big Mac",
-    ranking: "📊 Rankings",
+    chartAnalysis: "Data chart analysis",
+    baseCityTip: "Base city: {city} - all values are normalized to 1x against this city",
+    professionIncomeCompare: "Annual income by profession",
+    costRatioAnalysis: "Cost of living ratio",
+    annualFinanceCompare: "Annual financial comparison",
+    cityDetails: "City details",
+    clickSetBase: "Click any city card to set it as base",
+    monthlyExpense: "Monthly expense",
+    yearlySavings: "Yearly savings",
+    bigMac: "Big Mac",
+    ranking: "Rankings",
     incomeRanking: "💰 Income Ranking",
     savingsRanking: "🏦 Savings Potential",
-    valueRanking: "📊 Value-for-Money Ranking",
+    lowestCostCity: "🔻 Lowest Cost City",
+    insightSuggestionTitle: "Recommended next step",
+    insightSuggestionPick3: "Top candidates for deep research: {cities}. Focus on income and savings potential.",
+    insightSuggestionNeedMore: "Select at least 3 cities for more conclusive comparison (current: {count}).",
     annualIncome: "Annual Income",
     annualExpense: "Annual Expense",
     annualSavings: "Annual Savings",
@@ -134,48 +138,50 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     bigMacUnit: "Big Macs",
     oneBigMac: "1 Big Mac",
     cityDescription: "City Description",
-    keyInsights: "🔎 Key Insights",
+    keyInsights: "Key Insights",
     topIncomeCity: "Highest Income City",
     topSavingsCity: "Best Savings City",
-    bestValueCity: "Best Value City",
     descriptionTemplate:
       "{city} ({country}) offers a competitive income-cost profile. Estimated annual income for the selected profession is {income}, monthly living cost is {cost}, and potential yearly savings are {savings}.",
   },
   ja: {
     loading: "データを読み込み中...",
-    appTitle: "🌍 世界都市の職業比較ツール",
-    appSubtitle: "{count}都市で10職種の収入と生活費を比較",
-    dayMode: "☀️ ライトモード",
-    nightMode: "🌙 ダークモード",
+    appTitle: "世界都市比較",
+    appSubtitle: "{count}都市の収入と生活費を比較",
+    dayMode: "ライトモード",
+    nightMode: "ダークモード",
     language: "言語",
-    displayCurrency: "💱 表示通貨:",
-    selectProfession: "職種を選択 👨‍💼",
+    displayCurrency: "表示通貨:",
+    selectProfession: "職種を選択",
     comparisonMode: "比較モード（最大{count}都市）",
     modeNormal: "絶対値",
     modeRatio: "相対比率",
-    modeBigMac: "ビッグマック換算",
+    modeBigMac: "ビッグマック",
     searchPlaceholder: "都市または国を検索...",
-    allContinents: "🌍 すべての大陸",
+    allContinents: "すべての大陸",
     selectedCities: "選択済み都市 ({selected}/{max}):",
     chooseCity: "都市を選択:",
     showingCities: "60/{total}都市を表示中。検索またはフィルターをご利用ください",
-    compareCities: "📊 {count}都市を比較",
+    compareCities: "{count}都市を比較",
     clear: "クリア",
     needAtLeastTwoCities: "比較するには少なくとも2都市を選択してください",
-    chartAnalysis: "📈 データチャート分析",
-    baseCityTip: "💡 基準都市: {city} - すべての値はこの都市を1倍として比較",
-    professionIncomeCompare: "💼 職種別年収比較",
-    costRatioAnalysis: "📊 生活費比率",
-    annualFinanceCompare: "💰 年間財務比較",
-    cityDetails: "🏙️ 都市詳細",
-    clickSetBase: "💡 任意の都市カードをクリックして比較基準に設定",
-    monthlyExpense: "🏠 月間支出",
-    yearlySavings: "🏦 年間貯蓄",
-    bigMac: "🍔 ビッグマック",
-    ranking: "📊 ランキング",
+    chartAnalysis: "データチャート分析",
+    baseCityTip: "基準都市: {city} - すべての値はこの都市を1倍として比較",
+    professionIncomeCompare: "職種別年収比較",
+    costRatioAnalysis: "生活費比率",
+    annualFinanceCompare: "年間財務比較",
+    cityDetails: "都市詳細",
+    clickSetBase: "都市カードをクリックして基準に設定",
+    monthlyExpense: "月間支出",
+    yearlySavings: "年間貯蓄",
+    bigMac: "ビッグマック",
+    ranking: "ランキング",
     incomeRanking: "💰 収入ランキング",
     savingsRanking: "🏦 貯蓄力",
-    valueRanking: "📊 コスパランキング",
+    lowestCostCity: "🔻 最低生活コストの都市",
+    insightSuggestionTitle: "次のステップ",
+    insightSuggestionPick3: "調査候補：{cities}。収入と貯蓄を重視して深堀りしましょう。",
+    insightSuggestionNeedMore: "より有効な比較には3都市以上を選択してください（現在：{count}）。",
     annualIncome: "年間収入",
     annualExpense: "年間支出",
     annualSavings: "年間貯蓄",
@@ -184,48 +190,50 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     bigMacUnit: "個分",
     oneBigMac: "1個分",
     cityDescription: "都市の説明",
-    keyInsights: "🔎 主要インサイト",
+    keyInsights: "主要インサイト",
     topIncomeCity: "最高収入の都市",
     topSavingsCity: "貯蓄力が最も高い都市",
-    bestValueCity: "最もコスパの高い都市",
     descriptionTemplate:
       "{city}（{country}）は収入と生活コストのバランスが特徴です。選択中の職種の推定年収は {income}、月間生活費は {cost}、年間貯蓄見込みは {savings} です。",
   },
   es: {
     loading: "Cargando datos...",
-    appTitle: "🌍 Comparador Global de Ciudades y Profesiones",
-    appSubtitle: "Compara ingresos y costo de vida de 10 profesiones en {count} ciudades",
-    dayMode: "☀️ Modo Claro",
-    nightMode: "🌙 Modo Oscuro",
+    appTitle: "Comparación Global de Ciudades",
+    appSubtitle: "Compara ingresos y costo de vida en {count} ciudades",
+    dayMode: "Modo Claro",
+    nightMode: "Modo Oscuro",
     language: "Idioma",
-    displayCurrency: "💱 Moneda:",
-    selectProfession: "Seleccionar profesión 👨‍💼",
+    displayCurrency: "Moneda:",
+    selectProfession: "Seleccionar profesión",
     comparisonMode: "Modo de comparación (máx. {count} ciudades)",
     modeNormal: "Absoluto",
     modeRatio: "Relativo",
     modeBigMac: "Big Mac",
     searchPlaceholder: "Buscar ciudad o país...",
-    allContinents: "🌍 Todos los continentes",
+    allContinents: "Todos los continentes",
     selectedCities: "Ciudades seleccionadas ({selected}/{max}):",
     chooseCity: "Elegir ciudades:",
     showingCities: "Mostrando 60/{total} ciudades, usa búsqueda o filtros",
-    compareCities: "📊 Comparar {count} ciudades",
+    compareCities: "Comparar {count} ciudades",
     clear: "Limpiar",
     needAtLeastTwoCities: "Selecciona al menos 2 ciudades para comparar",
-    chartAnalysis: "📈 Análisis de Gráficos",
-    baseCityTip: "💡 Ciudad base: {city} - todos los valores se comparan con 1x en esta ciudad",
-    professionIncomeCompare: "💼 Comparación de Ingreso Anual por Profesión",
-    costRatioAnalysis: "📊 Proporción de Costo de Vida",
-    annualFinanceCompare: "💰 Comparación Financiera Anual",
-    cityDetails: "🏙️ Detalles de la Ciudad",
-    clickSetBase: "💡 Haz clic en una tarjeta para establecerla como ciudad base",
-    monthlyExpense: "🏠 Gasto Mensual",
-    yearlySavings: "🏦 Ahorro Anual",
-    bigMac: "🍔 Big Mac",
-    ranking: "📊 Rankings",
+    chartAnalysis: "Análisis de gráficos",
+    baseCityTip: "Ciudad base: {city} - todos los valores se comparan con 1x en esta ciudad",
+    professionIncomeCompare: "Comparación de ingreso anual por profesión",
+    costRatioAnalysis: "Proporción de costo de vida",
+    annualFinanceCompare: "Comparación financiera anual",
+    cityDetails: "Detalles de la ciudad",
+    clickSetBase: "Haz clic en una tarjeta para establecerla como ciudad base",
+    monthlyExpense: "Gasto mensual",
+    yearlySavings: "Ahorro anual",
+    bigMac: "Big Mac",
+    ranking: "Rankings",
     incomeRanking: "💰 Ranking de Ingresos",
     savingsRanking: "🏦 Potencial de Ahorro",
-    valueRanking: "📊 Ranking Calidad-Precio",
+    lowestCostCity: "🔻 Ciudad con Menor Costo",
+    insightSuggestionTitle: "Próximo paso recomendado",
+    insightSuggestionPick3: "Ciudades recomendadas para análisis profundo: {cities}. Prioriza ingresos y ahorro.",
+    insightSuggestionNeedMore: "Selecciona al menos 3 ciudades para una comparación más completa (actual: {count}).",
     annualIncome: "Ingreso Anual",
     annualExpense: "Gasto Anual",
     annualSavings: "Ahorro Anual",
@@ -234,10 +242,9 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     bigMacUnit: "Big Macs",
     oneBigMac: "1 Big Mac",
     cityDescription: "Descripcion de la Ciudad",
-    keyInsights: "🔎 Insights Clave",
+    keyInsights: "Insights Clave",
     topIncomeCity: "Ciudad con Mayor Ingreso",
     topSavingsCity: "Ciudad con Mejor Ahorro",
-    bestValueCity: "Ciudad con Mejor Relacion Costo-Beneficio",
     descriptionTemplate:
       "{city} ({country}) muestra un equilibrio competitivo entre ingresos y costo de vida. El ingreso anual estimado para la profesion seleccionada es {income}, el costo mensual es {cost} y el ahorro anual potencial es {savings}.",
   },
@@ -761,8 +768,8 @@ export default function CityComparison() {
       <div
         className={`min-h-screen flex items-center justify-center p-4 ${
           darkMode
-            ? "bg-gradient-to-br from-gray-900 via-gray-800 to-black"
-            : "bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"
+            ? "bg-slate-950"
+            : "bg-slate-50"
         }`}
       >
         <div className="text-center">
@@ -785,8 +792,8 @@ export default function CityComparison() {
     <div
       className={`min-h-screen py-8 px-4 transition-colors ${
         darkMode
-          ? "bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white"
-          : "bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"
+          ? "bg-slate-950 text-slate-100"
+          : "bg-slate-50 text-slate-900"
       }`}
     >
       <div className="max-w-7xl mx-auto">
@@ -794,10 +801,10 @@ export default function CityComparison() {
         <div className="flex justify-between items-start mb-8 flex-col md:flex-row gap-4">
           <div>
             <h1
-              className={`text-5xl md:text-6xl font-bold mb-3 ${
+              className={`text-4xl md:text-5xl font-bold mb-3 ${
                 darkMode
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"
-                  : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
+                  ? "text-slate-100"
+                  : "text-slate-900"
               }`}
             >
               {t("appTitle")}
@@ -1417,14 +1424,14 @@ export default function CityComparison() {
               </div>
             </div>
 
-            {/* 精简洞察 */}
-            <div className={`rounded-xl shadow-xl p-8 ${
+            {/* 关键洞察 */}
+            <div className={`rounded-xl shadow-lg p-8 ${
               darkMode
-                ? "bg-gray-800 border border-gray-700"
-                : "bg-white"
+                ? "bg-gray-900/80 border border-gray-700"
+                : "bg-white/90 border border-gray-200"
             }`}>
-              <h2 className={`text-3xl font-bold mb-6 ${
-                darkMode ? "text-white" : "text-gray-800"
+              <h2 className={`text-2xl md:text-3xl font-semibold mb-5 ${
+                darkMode ? "text-slate-100" : "text-slate-800"
               }`}>
                 {t("keyInsights")}
               </h2>
@@ -1434,33 +1441,61 @@ export default function CityComparison() {
                     ? city.professions[selectedProfession] || 0
                     : city.averageIncome;
                   const savings = income - city.costOfLiving * 12;
-                  const valueRatio = income > 0 ? (city.costOfLiving * 12) / income : Number.POSITIVE_INFINITY;
-                  return { city, income, savings, valueRatio };
+                  return {
+                    city,
+                    income,
+                    savings,
+                    monthlyCost: city.costOfLiving,
+                  };
                 });
                 const incomeTop = [...withMetrics].sort((a, b) => b.income - a.income)[0];
                 const savingsTop = [...withMetrics].sort((a, b) => b.savings - a.savings)[0];
-                const valueTop = [...withMetrics].sort((a, b) => a.valueRatio - b.valueRatio)[0];
+                const lowestCostTop = [...withMetrics].sort((a, b) => a.monthlyCost - b.monthlyCost)[0];
+
+                const recommended = [...withMetrics]
+                  .sort((a, b) => (b.income + b.savings) - (a.income + a.savings))
+                  .slice(0, Math.min(3, withMetrics.length));
+                const recommendedCities = recommended.map((item) => getCityLabel(item.city));
+                const recommendationText = comparisonData.length >= 3
+                  ? t("insightSuggestionPick3", {
+                      cities: recommendedCities.join("、"),
+                    })
+                  : t("insightSuggestionNeedMore", {
+                      count: comparisonData.length,
+                    });
 
                 return (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className={`rounded-lg p-5 ${darkMode ? "bg-blue-900/40 border border-blue-700" : "bg-blue-50 border border-blue-100"}`}>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-blue-200" : "text-blue-700"}`}>{t("topIncomeCity")}</p>
-                      <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-blue-900"}`}>{getCityLabel(incomeTop.city)}</p>
-                      <p className={`${darkMode ? "text-blue-200" : "text-blue-700"}`}>{formatCurrency(incomeTop.income)}</p>
+                  <>
+                    <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-4">
+                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
+                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("topIncomeCity")}</p>
+                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(incomeTop.city)}</h3>
+                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                          {t("appSubtitle", { count: 1 })} {formatCurrency(incomeTop.income)}
+                        </p>
+                      </div>
+                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
+                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("topSavingsCity")}</p>
+                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(savingsTop.city)}</h3>
+                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                          {formatCurrency(savingsTop.savings)} {t("yearlySavings")}
+                        </p>
+                      </div>
+                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
+                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("lowestCostCity")}</p>
+                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(lowestCostTop.city)}</h3>
+                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                          {formatCurrency(lowestCostTop.monthlyCost)} / {t("monthlyExpense")}
+                        </p>
+                      </div>
                     </div>
-                    <div className={`rounded-lg p-5 ${darkMode ? "bg-green-900/40 border border-green-700" : "bg-green-50 border border-green-100"}`}>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-green-200" : "text-green-700"}`}>{t("topSavingsCity")}</p>
-                      <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-green-900"}`}>{getCityLabel(savingsTop.city)}</p>
-                      <p className={`${darkMode ? "text-green-200" : "text-green-700"}`}>{formatCurrency(savingsTop.savings)}</p>
-                    </div>
-                    <div className={`rounded-lg p-5 ${darkMode ? "bg-amber-900/40 border border-amber-700" : "bg-amber-50 border border-amber-100"}`}>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-amber-200" : "text-amber-700"}`}>{t("bestValueCity")}</p>
-                      <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-amber-900"}`}>{getCityLabel(valueTop.city)}</p>
-                      <p className={`${darkMode ? "text-amber-200" : "text-amber-700"}`}>
-                        {`${(valueTop.valueRatio * 100).toFixed(1)}%`}
+                    <div className={`mt-4 rounded-lg p-5 ${darkMode ? "bg-slate-800/70 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
+                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("insightSuggestionTitle")}</p>
+                      <p className={`text-sm ${darkMode ? "text-slate-100" : "text-slate-700"}`}>
+                        {recommendationText}
                       </p>
                     </div>
-                  </div>
+                  </>
                 );
               })()}
             </div>
