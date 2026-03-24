@@ -244,6 +244,176 @@ const PROFESSION_TRANSLATIONS: Record<string, Record<Locale, string>> = {
   人力资源经理: { zh: "人力资源经理", en: "Human Resources Manager", ja: "人事マネージャー", es: "Gerente de Recursos Humanos" },
 };
 
+const COUNTRY_TRANSLATIONS: Record<string, Record<Locale, string>> = {
+  美国: { zh: "美国", en: "United States", ja: "アメリカ", es: "Estados Unidos" },
+  英国: { zh: "英国", en: "United Kingdom", ja: "イギリス", es: "Reino Unido" },
+  日本: { zh: "日本", en: "Japan", ja: "日本", es: "Japon" },
+  中国: { zh: "中国", en: "China", ja: "中国", es: "China" },
+  澳大利亚: { zh: "澳大利亚", en: "Australia", ja: "オーストラリア", es: "Australia" },
+  新加坡: { zh: "新加坡", en: "Singapore", ja: "シンガポール", es: "Singapur" },
+  法国: { zh: "法国", en: "France", ja: "フランス", es: "Francia" },
+  加拿大: { zh: "加拿大", en: "Canada", ja: "カナダ", es: "Canada" },
+  中国香港: { zh: "中国香港", en: "Hong Kong, China", ja: "中国香港", es: "Hong Kong, China" },
+  阿联酋: { zh: "阿联酋", en: "United Arab Emirates", ja: "アラブ首长国连邦", es: "Emiratos Arabes Unidos" },
+  荷兰: { zh: "荷兰", en: "Netherlands", ja: "オランダ", es: "Paises Bajos" },
+  瑞士: { zh: "瑞士", en: "Switzerland", ja: "スイス", es: "Suiza" },
+  德国: { zh: "德国", en: "Germany", ja: "ドイツ", es: "Alemania" },
+  西班牙: { zh: "西班牙", en: "Spain", ja: "スペイン", es: "Espana" },
+  意大利: { zh: "意大利", en: "Italy", ja: "イタリア", es: "Italia" },
+  比利时: { zh: "比利时", en: "Belgium", ja: "ベルギー", es: "Belgica" },
+  奥地利: { zh: "奥地利", en: "Austria", ja: "オーストリア", es: "Austria" },
+  捷克: { zh: "捷克", en: "Czech Republic", ja: "チェコ", es: "Chequia" },
+  波兰: { zh: "波兰", en: "Poland", ja: "ポーランド", es: "Polonia" },
+  葡萄牙: { zh: "葡萄牙", en: "Portugal", ja: "ポルトガル", es: "Portugal" },
+  希腊: { zh: "希腊", en: "Greece", ja: "ギリシャ", es: "Grecia" },
+  土耳其: { zh: "土耳其", en: "Turkey", ja: "トルコ", es: "Turquia" },
+  墨西哥: { zh: "墨西哥", en: "Mexico", ja: "メキシコ", es: "Mexico" },
+  巴西: { zh: "巴西", en: "Brazil", ja: "ブラジル", es: "Brasil" },
+  新西兰: { zh: "新西兰", en: "New Zealand", ja: "ニュージーランド", es: "Nueva Zelanda" },
+  泰国: { zh: "泰国", en: "Thailand", ja: "タイ", es: "Tailandia" },
+  马来西亚: { zh: "马来西亚", en: "Malaysia", ja: "マレーシア", es: "Malasia" },
+  越南: { zh: "越南", en: "Vietnam", ja: "ベトナム", es: "Vietnam" },
+  印度: { zh: "印度", en: "India", ja: "インド", es: "India" },
+  肯尼亚: { zh: "肯尼亚", en: "Kenya", ja: "ケニア", es: "Kenia" },
+  埃及: { zh: "埃及", en: "Egypt", ja: "エジプト", es: "Egipto" },
+  伊朗: { zh: "伊朗", en: "Iran", ja: "イラン", es: "Iran" },
+  巴基斯坦: { zh: "巴基斯坦", en: "Pakistan", ja: "パキスタン", es: "Pakistan" },
+  印度尼西亚: { zh: "印度尼西亚", en: "Indonesia", ja: "インドネシア", es: "Indonesia" },
+  菲律宾: { zh: "菲律宾", en: "Philippines", ja: "フィリピン", es: "Filipinas" },
+  韩国: { zh: "韩国", en: "South Korea", ja: "韩国", es: "Corea del Sur" },
+  中国台湾: { zh: "中国台湾", en: "Taiwan, China", ja: "中国台湾", es: "Taiwan, China" },
+  阿根廷: { zh: "阿根廷", en: "Argentina", ja: "アルゼンチン", es: "Argentina" },
+  智利: { zh: "智利", en: "Chile", ja: "チリ", es: "Chile" },
+  哥伦比亚: { zh: "哥伦比亚", en: "Colombia", ja: "コロンビア", es: "Colombia" },
+  秘鲁: { zh: "秘鲁", en: "Peru", ja: "ペルー", es: "Peru" },
+  委内瑞拉: { zh: "委内瑞拉", en: "Venezuela", ja: "ベネズエラ", es: "Venezuela" },
+  南非: { zh: "南非", en: "South Africa", ja: "南アフリカ", es: "Sudafrica" },
+  哥斯达黎加: { zh: "哥斯达黎加", en: "Costa Rica", ja: "コスタリカ", es: "Costa Rica" },
+  巴拿马: { zh: "巴拿马", en: "Panama", ja: "パナマ", es: "Panama" },
+  古巴: { zh: "古巴", en: "Cuba", ja: "キューバ", es: "Cuba" },
+  波多黎各: { zh: "波多黎各", en: "Puerto Rico", ja: "プエルトリコ", es: "Puerto Rico" },
+  牙买加: { zh: "牙买加", en: "Jamaica", ja: "ジャマイカ", es: "Jamaica" },
+  卡塔尔: { zh: "卡塔尔", en: "Qatar", ja: "カタール", es: "Catar" },
+  巴林: { zh: "巴林", en: "Bahrain", ja: "バーレーン", es: "Barein" },
+  沙特阿拉伯: { zh: "沙特阿拉伯", en: "Saudi Arabia", ja: "サウジアラビア", es: "Arabia Saudita" },
+  阿曼: { zh: "阿曼", en: "Oman", ja: "オマーン", es: "Oman" },
+  黎巴嫩: { zh: "黎巴嫩", en: "Lebanon", ja: "レバノン", es: "Libano" },
+  约旦: { zh: "约旦", en: "Jordan", ja: "ヨルダン", es: "Jordania" },
+  以色列: { zh: "以色列", en: "Israel", ja: "イスラエル", es: "Israel" },
+  乌克兰: { zh: "乌克兰", en: "Ukraine", ja: "ウクライナ", es: "Ucrania" },
+  罗马尼亚: { zh: "罗马尼亚", en: "Romania", ja: "ルーマニア", es: "Rumania" },
+  保加利亚: { zh: "保加利亚", en: "Bulgaria", ja: "ブルガリア", es: "Bulgaria" },
+  克罗地亚: { zh: "克罗地亚", en: "Croatia", ja: "クロアチア", es: "Croacia" },
+  塞尔维亚: { zh: "塞尔维亚", en: "Serbia", ja: "セルビア", es: "Serbia" },
+  匈牙利: { zh: "匈牙利", en: "Hungary", ja: "ハンガリー", es: "Hungria" },
+  斯洛伐克: { zh: "斯洛伐克", en: "Slovakia", ja: "スロバキア", es: "Eslovaquia" },
+  斯洛文尼亚: { zh: "斯洛文尼亚", en: "Slovenia", ja: "スロベニア", es: "Eslovenia" },
+  爱尔兰: { zh: "爱尔兰", en: "Ireland", ja: "アイルランド", es: "Irlanda" },
+};
+
+const CITY_NAME_TRANSLATIONS: Record<number, Record<Locale, string>> = {
+  1: { zh: "纽约", en: "New York", ja: "ニューヨーク", es: "Nueva York" },
+  2: { zh: "伦敦", en: "London", ja: "ロンドン", es: "Londres" },
+  3: { zh: "东京", en: "Tokyo", ja: "东京", es: "Tokio" },
+  4: { zh: "北京", en: "Beijing", ja: "北京", es: "Pekin" },
+  5: { zh: "上海", en: "Shanghai", ja: "上海", es: "Shanghai" },
+  6: { zh: "悉尼", en: "Sydney", ja: "シドニー", es: "Sidney" },
+  7: { zh: "新加坡", en: "Singapore", ja: "シンガポール", es: "Singapur" },
+  8: { zh: "巴黎", en: "Paris", ja: "パリ", es: "Paris" },
+  9: { zh: "多伦多", en: "Toronto", ja: "トロント", es: "Toronto" },
+  10: { zh: "香港", en: "Hong Kong", ja: "香港", es: "Hong Kong" },
+  11: { zh: "洛杉矶", en: "Los Angeles", ja: "ロサンゼルス", es: "Los Angeles" },
+  12: { zh: "旧金山", en: "San Francisco", ja: "サンフランシスコ", es: "San Francisco" },
+  13: { zh: "芝加哥", en: "Chicago", ja: "シカゴ", es: "Chicago" },
+  14: { zh: "迪拜", en: "Dubai", ja: "ドバイ", es: "Dubai" },
+  15: { zh: "阿姆斯特丹", en: "Amsterdam", ja: "アムステルダム", es: "Amsterdam" },
+  16: { zh: "苏黎世", en: "Zurich", ja: "チューリッヒ", es: "Zurich" },
+  17: { zh: "日内瓦", en: "Geneva", ja: "ジュネーブ", es: "Ginebra" },
+  18: { zh: "慕尼黑", en: "Munich", ja: "ミュンヘン", es: "Munich" },
+  19: { zh: "柏林", en: "Berlin", ja: "ベルリン", es: "Berlin" },
+  20: { zh: "巴塞罗那", en: "Barcelona", ja: "バルセロナ", es: "Barcelona" },
+  21: { zh: "马德里", en: "Madrid", ja: "マドリード", es: "Madrid" },
+  22: { zh: "米兰", en: "Milan", ja: "ミラノ", es: "Milan" },
+  23: { zh: "罗马", en: "Rome", ja: "ローマ", es: "Roma" },
+  24: { zh: "布鲁塞尔", en: "Brussels", ja: "ブリュッセル", es: "Bruselas" },
+  25: { zh: "维也纳", en: "Vienna", ja: "ウィーン", es: "Viena" },
+  26: { zh: "布拉格", en: "Prague", ja: "プラハ", es: "Praga" },
+  27: { zh: "华沙", en: "Warsaw", ja: "ワルシャワ", es: "Varsovia" },
+  28: { zh: "里斯本", en: "Lisbon", ja: "リスボン", es: "Lisboa" },
+  29: { zh: "雅典", en: "Athens", ja: "アテネ", es: "Atenas" },
+  30: { zh: "伊斯坦布尔", en: "Istanbul", ja: "イスタンブール", es: "Estambul" },
+  31: { zh: "墨西哥城", en: "Mexico City", ja: "メキシコシティ", es: "Ciudad de Mexico" },
+  32: { zh: "圣保罗", en: "Sao Paulo", ja: "サンパウロ", es: "Sao Paulo" },
+  33: { zh: "里约热内卢", en: "Rio de Janeiro", ja: "リオデジャネイロ", es: "Rio de Janeiro" },
+  34: { zh: "迈阿密", en: "Miami", ja: "マイアミ", es: "Miami" },
+  35: { zh: "华盛顿", en: "Washington", ja: "ワシントン", es: "Washington" },
+  36: { zh: "波士顿", en: "Boston", ja: "ボストン", es: "Boston" },
+  37: { zh: "西雅图", en: "Seattle", ja: "シアトル", es: "Seattle" },
+  38: { zh: "丹佛", en: "Denver", ja: "デンバー", es: "Denver" },
+  39: { zh: "奥斯汀", en: "Austin", ja: "オースティン", es: "Austin" },
+  40: { zh: "温哥华", en: "Vancouver", ja: "バンクーバー", es: "Vancouver" },
+  41: { zh: "蒙特利尔", en: "Montreal", ja: "モントリオール", es: "Montreal" },
+  42: { zh: "墨尔本", en: "Melbourne", ja: "メルボルン", es: "Melbourne" },
+  43: { zh: "布里斯班", en: "Brisbane", ja: "ブリスベン", es: "Brisbane" },
+  44: { zh: "奥克兰", en: "Auckland", ja: "オークランド", es: "Auckland" },
+  45: { zh: "曼谷", en: "Bangkok", ja: "バンコク", es: "Bangkok" },
+  46: { zh: "吉隆坡", en: "Kuala Lumpur", ja: "クアラルンプール", es: "Kuala Lumpur" },
+  47: { zh: "胡志明市", en: "Ho Chi Minh City", ja: "ホーチミン市", es: "Ciudad Ho Chi Minh" },
+  48: { zh: "河内", en: "Hanoi", ja: "ハノイ", es: "Hanói" },
+  49: { zh: "班加罗尔", en: "Bengaluru", ja: "ベンガルール", es: "Bengaluru" },
+  50: { zh: "孟买", en: "Mumbai", ja: "ムンバイ", es: "Bombay" },
+  51: { zh: "新德里", en: "New Delhi", ja: "ニューデリー", es: "Nueva Delhi" },
+  52: { zh: "内罗毕", en: "Nairobi", ja: "ナイロビ", es: "Nairobi" },
+  53: { zh: "开罗", en: "Cairo", ja: "カイロ", es: "El Cairo" },
+  54: { zh: "德黑兰", en: "Tehran", ja: "テヘラン", es: "Teheran" },
+  55: { zh: "卡拉奇", en: "Karachi", ja: "カラチ", es: "Karachi" },
+  56: { zh: "伊斯兰堡", en: "Islamabad", ja: "イスラマバード", es: "Islamabad" },
+  57: { zh: "雅加达", en: "Jakarta", ja: "ジャカルタ", es: "Yakarta" },
+  58: { zh: "菲律宾马尼拉", en: "Manila", ja: "マニラ", es: "Manila" },
+  59: { zh: "首尔", en: "Seoul", ja: "ソウル", es: "Seul" },
+  60: { zh: "釜山", en: "Busan", ja: "釜山", es: "Busan" },
+  61: { zh: "台北", en: "Taipei", ja: "台北", es: "Taipéi" },
+  62: { zh: "布宜诺斯艾利斯", en: "Buenos Aires", ja: "ブエノスアイレス", es: "Buenos Aires" },
+  63: { zh: "圣地亚哥", en: "Santiago", ja: "サンティアゴ", es: "Santiago" },
+  64: { zh: "波哥大", en: "Bogota", ja: "ボゴタ", es: "Bogota" },
+  65: { zh: "利马", en: "Lima", ja: "リマ", es: "Lima" },
+  66: { zh: "加拉加斯", en: "Caracas", ja: "カラカス", es: "Caracas" },
+  67: { zh: "约翰内斯堡", en: "Johannesburg", ja: "ヨハネスブルグ", es: "Johannesburgo" },
+  68: { zh: "开普敦", en: "Cape Town", ja: "ケープタウン", es: "Ciudad del Cabo" },
+  69: { zh: "瓜达拉哈拉", en: "Guadalajara", ja: "グアダラハラ", es: "Guadalajara" },
+  70: { zh: "圣何塞", en: "San Jose", ja: "サンホセ", es: "San Jose" },
+  71: { zh: "巴拿马城", en: "Panama City", ja: "パナマシティ", es: "Ciudad de Panama" },
+  72: { zh: "哈瓦那", en: "Havana", ja: "ハバナ", es: "La Habana" },
+  73: { zh: "圣胡安", en: "San Juan", ja: "サンフアン", es: "San Juan" },
+  74: { zh: "蒙特哥湾", en: "Montego Bay", ja: "モンテゴベイ", es: "Montego Bay" },
+  75: { zh: "阿布扎比", en: "Abu Dhabi", ja: "アブダビ", es: "Abu Dabi" },
+  76: { zh: "多哈", en: "Doha", ja: "ドーハ", es: "Doha" },
+  77: { zh: "麦纳麦", en: "Manama", ja: "マナーマ", es: "Manama" },
+  78: { zh: "利雅得", en: "Riyadh", ja: "リヤド", es: "Riad" },
+  79: { zh: "马斯喀特", en: "Muscat", ja: "マスカット", es: "Mascate" },
+  80: { zh: "贝鲁特", en: "Beirut", ja: "ベイルート", es: "Beirut" },
+  81: { zh: "安曼", en: "Amman", ja: "アンマン", es: "Aman" },
+  82: { zh: "特拉维夫", en: "Tel Aviv", ja: "テルアビブ", es: "Tel Aviv" },
+  83: { zh: "海得拉巴", en: "Hyderabad", ja: "ハイデラバード", es: "Hyderabad" },
+  84: { zh: "浦那", en: "Pune", ja: "プネー", es: "Pune" },
+  85: { zh: "基辅", en: "Kyiv", ja: "キーウ", es: "Kiev" },
+  86: { zh: "布加勒斯特", en: "Bucharest", ja: "ブカレスト", es: "Bucarest" },
+  87: { zh: "索非亚", en: "Sofia", ja: "ソフィア", es: "Sofia" },
+  88: { zh: "萨格勒布", en: "Zagreb", ja: "ザグレブ", es: "Zagreb" },
+  89: { zh: "贝尔格莱德", en: "Belgrade", ja: "ベオグラード", es: "Belgrado" },
+  90: { zh: "布达佩斯", en: "Budapest", ja: "ブダペスト", es: "Budapest" },
+  91: { zh: "布拉迪斯拉发", en: "Bratislava", ja: "ブラチスラバ", es: "Bratislava" },
+  92: { zh: "卢布尔雅那", en: "Ljubljana", ja: "リュブリャナ", es: "Liubliana" },
+  93: { zh: "都柏林", en: "Dublin", ja: "ダブリン", es: "Dublin" },
+  94: { zh: "贝尔法斯特", en: "Belfast", ja: "ベルファスト", es: "Belfast" },
+  95: { zh: "亚特兰大", en: "Atlanta", ja: "アトランタ", es: "Atlanta" },
+  96: { zh: "凤凰城", en: "Phoenix", ja: "フェニックス", es: "Phoenix" },
+  97: { zh: "波特兰", en: "Portland", ja: "ポートランド", es: "Portland" },
+  98: { zh: "圣地亚哥", en: "San Diego", ja: "サンディエゴ", es: "San Diego" },
+  99: { zh: "拉斯维加斯", en: "Las Vegas", ja: "ラスベガス", es: "Las Vegas" },
+  100: { zh: "坦帕", en: "Tampa", ja: "タンパ", es: "Tampa" },
+};
+
 const POPULAR_CURRENCIES = [
   "USD",
   "EUR",
@@ -346,6 +516,12 @@ export default function CityComparison() {
   const getContinentLabel = (continent: string): string =>
     CONTINENT_TRANSLATIONS[continent]?.[locale] || continent;
 
+  const getCountryLabel = (country: string): string =>
+    COUNTRY_TRANSLATIONS[country]?.[locale] || country;
+
+  const getCityLabel = (city: City): string =>
+    CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name;
+
   const handleCurrencyChange = (currency: string) => {
     setSelectedCurrency(currency);
     localStorage.setItem("selectedCurrency", currency);
@@ -378,9 +554,13 @@ export default function CityComparison() {
     : [];
 
   const filteredCities = cities.filter((city) => {
+    const localizedCityName = getCityLabel(city).toLowerCase();
+    const localizedCountryName = getCountryLabel(city.country).toLowerCase();
     const matchesSearch =
       city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      city.country.toLowerCase().includes(searchTerm.toLowerCase());
+      city.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      localizedCityName.includes(searchTerm.toLowerCase()) ||
+      localizedCountryName.includes(searchTerm.toLowerCase());
 
     const matchesContinent =
       selectedContinent === "all" || city.continent === selectedContinent;
@@ -455,7 +635,7 @@ export default function CityComparison() {
       const savingsBigMac = toBigMacCount(salary - city.costOfLiving * 12, city.bigMacPrice);
 
       return {
-        name: city.name,
+        name: getCityLabel(city),
         income:
           comparisonMode === "ratio"
             ? getRatioValue(salary, baseSalary)
@@ -495,7 +675,7 @@ export default function CityComparison() {
       const salary = city.professions[selectedProfession] || 0;
       const salaryBigMac = toBigMacCount(salary, city.bigMacPrice);
       return {
-        name: city.name,
+        name: getCityLabel(city),
         salary:
           comparisonMode === "ratio"
             ? getRatioValue(salary, baseCity.professions[selectedProfession] || 0)
@@ -521,14 +701,14 @@ export default function CityComparison() {
         const baseCostRatio = baseIncome > 0 ? (baseYearlyExpense / baseIncome) : 0;
         const ratioCostRatio = baseCostRatio !== 0 ? getRatioValue(costRatio, baseCostRatio) : costRatio;
         return {
-          name: city.name,
+          name: getCityLabel(city),
           [t("costRatioKey")]: parseFloat(ratioCostRatio.toFixed(1)),
           [t("savingsRatioKey")]: 2 - ratioCostRatio,
         };
       } else {
         const costRatio = income > 0 ? (yearlyExpense / income) * 100 : 0;
         return {
-          name: city.name,
+          name: getCityLabel(city),
           [t("costRatioKey")]: parseFloat(costRatio.toFixed(1)),
           [t("savingsRatioKey")]: 100 - costRatio,
         };
@@ -792,7 +972,7 @@ export default function CityComparison() {
                           : "bg-blue-100 text-blue-900"
                       }`}
                     >
-                      {city?.name}
+                      {city ? getCityLabel(city) : ""}
                       <button
                         onClick={() => handleCitySelect(id)}
                         className="hover:font-bold"
@@ -822,7 +1002,7 @@ export default function CityComparison() {
                     selectedCities.length >= maxComparisons &&
                     !selectedCities.includes(city.id.toString())
                   }
-                  title={`${city.name}, ${city.country}`}
+                  title={`${getCityLabel(city)}, ${getCountryLabel(city.country)}`}
                   className={`p-2 rounded-lg font-medium transition text-xs ${
                     selectedCities.includes(city.id.toString())
                       ? "bg-blue-600 text-white shadow-lg"
@@ -836,7 +1016,7 @@ export default function CityComparison() {
                   }`}
                 >
                   {selectedCities.includes(city.id.toString()) && "✓ "}
-                  {city.name}
+                  {getCityLabel(city)}
                 </button>
               ))}
             </div>
@@ -897,7 +1077,9 @@ export default function CityComparison() {
                   darkMode ? "text-gray-400" : "text-gray-600"
                 }`}>
                   {t("baseCityTip", {
-                    city: comparisonData.find(c => c.id.toString() === baseCityId)?.name || comparisonData[0].name,
+                    city: getCityLabel(
+                      comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0]
+                    ),
                   })}
                 </p>
               )}
@@ -1108,13 +1290,13 @@ export default function CityComparison() {
                           {isBase && comparisonMode === "ratio" ? "⭐" : "🏙️"}
                         </div>
                         <h3 className="text-2xl font-bold text-white">
-                          {city.name}
+                          {getCityLabel(city)}
                         </h3>
                         <p className="text-sm text-blue-100">
-                          {city.country}
+                          {getCountryLabel(city.country)}
                         </p>
                         <p className="text-xs text-blue-200 mt-1">
-                          {city.continent}
+                          {getContinentLabel(city.continent)}
                         </p>
                       </div>
 
@@ -1243,7 +1425,7 @@ export default function CityComparison() {
                                 : "text-blue-900"
                             }`}
                           >
-                            {idx + 1}. {city.name}
+                            {idx + 1}. {getCityLabel(city)}
                           </span>
                           <span
                             className={`text-sm ${
@@ -1318,7 +1500,7 @@ export default function CityComparison() {
                                   : "text-green-900"
                               }`}
                             >
-                              {idx + 1}. {city.name}
+                              {idx + 1}. {getCityLabel(city)}
                             </span>
                             <span
                               className={`text-sm font-medium ${
@@ -1396,7 +1578,7 @@ export default function CityComparison() {
                                   : "text-orange-900"
                               }`}
                             >
-                              {idx + 1}. {city.name}
+                              {idx + 1}. {getCityLabel(city)}
                             </span>
                             <span
                               className={`text-sm ${
