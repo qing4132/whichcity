@@ -38,6 +38,212 @@ interface ExchangeRates {
   symbols: Record<string, string>;
 }
 
+type Locale = "zh" | "en" | "ja" | "es";
+
+const TRANSLATIONS: Record<Locale, Record<string, string>> = {
+  zh: {
+    loading: "加载数据中...",
+    appTitle: "🌍 全球城市职业对比工具",
+    appSubtitle: "对比 {count} 个城市的 10 种职业收入和生活成本",
+    dayMode: "☀️ 日间模式",
+    nightMode: "🌙 夜间模式",
+    language: "语言",
+    displayCurrency: "💱 显示币种:",
+    selectProfession: "选择职业 👨‍💼",
+    comparisonMode: "对比模式 (最多 {count} 个城市)",
+    modeNormal: "绝对值",
+    modeRatio: "相对比例",
+    modeBigMac: "以巨无霸算",
+    searchPlaceholder: "搜索城市或国家...",
+    allContinents: "🌍 显示所有大洲",
+    selectedCities: "已选择城市 ({selected}/{max}):",
+    chooseCity: "选择城市:",
+    showingCities: "显示 60/{total} 个城市，请使用搜索或过滤筛选",
+    compareCities: "📊 对比 {count} 个城市",
+    clear: "清除",
+    needAtLeastTwoCities: "请选择至少2个城市进行对比",
+    chartAnalysis: "📈 数据图表分析",
+    baseCityTip: "💡 基准城市: {city} - 所有数据按此城市为 1 倍进行对比",
+    professionIncomeCompare: "💼 职业年收入对比",
+    costRatioAnalysis: "📊 生活成本占比",
+    annualFinanceCompare: "💰 年度财务对比",
+    cityDetails: "🏙️ 城市详情",
+    clickSetBase: "💡 点击任何城市卡片即可将其设为对比基准",
+    monthlyExpense: "🏠 月支出",
+    yearlySavings: "🏦 年存钱",
+    bigMac: "🍔 巨无霸",
+    ranking: "📊 数据排名",
+    incomeRanking: "💰 收入排名",
+    savingsRanking: "🏦 存钱能力",
+    valueRanking: "📊 性价比排名",
+    annualIncome: "年收入",
+    annualExpense: "年支出",
+    annualSavings: "年储蓄",
+    costRatioKey: "成本占比",
+    savingsRatioKey: "可存钱比例",
+    bigMacUnit: "个巨无霸",
+    oneBigMac: "1 个巨无霸",
+  },
+  en: {
+    loading: "Loading data...",
+    appTitle: "🌍 Global City Career Comparison",
+    appSubtitle: "Compare income and living costs of 10 professions across {count} cities",
+    dayMode: "☀️ Light Mode",
+    nightMode: "🌙 Dark Mode",
+    language: "Language",
+    displayCurrency: "💱 Display currency:",
+    selectProfession: "Select profession 👨‍💼",
+    comparisonMode: "Comparison mode (up to {count} cities)",
+    modeNormal: "Absolute",
+    modeRatio: "Relative",
+    modeBigMac: "Big Mac",
+    searchPlaceholder: "Search city or country...",
+    allContinents: "🌍 All continents",
+    selectedCities: "Selected cities ({selected}/{max}):",
+    chooseCity: "Choose cities:",
+    showingCities: "Showing 60/{total} cities, use search or filters to narrow down",
+    compareCities: "📊 Compare {count} cities",
+    clear: "Clear",
+    needAtLeastTwoCities: "Please select at least 2 cities to compare",
+    chartAnalysis: "📈 Data Chart Analysis",
+    baseCityTip: "💡 Base city: {city} - all values are normalized to 1x against this city",
+    professionIncomeCompare: "💼 Annual Income by Profession",
+    costRatioAnalysis: "📊 Cost of Living Ratio",
+    annualFinanceCompare: "💰 Annual Financial Comparison",
+    cityDetails: "🏙️ City Details",
+    clickSetBase: "💡 Click any city card to set it as the base city",
+    monthlyExpense: "🏠 Monthly Expense",
+    yearlySavings: "🏦 Yearly Savings",
+    bigMac: "🍔 Big Mac",
+    ranking: "📊 Rankings",
+    incomeRanking: "💰 Income Ranking",
+    savingsRanking: "🏦 Savings Potential",
+    valueRanking: "📊 Value-for-Money Ranking",
+    annualIncome: "Annual Income",
+    annualExpense: "Annual Expense",
+    annualSavings: "Annual Savings",
+    costRatioKey: "Cost Ratio",
+    savingsRatioKey: "Savings Ratio",
+    bigMacUnit: "Big Macs",
+    oneBigMac: "1 Big Mac",
+  },
+  ja: {
+    loading: "データを読み込み中...",
+    appTitle: "🌍 世界都市の職業比較ツール",
+    appSubtitle: "{count}都市で10職種の収入と生活費を比較",
+    dayMode: "☀️ ライトモード",
+    nightMode: "🌙 ダークモード",
+    language: "言語",
+    displayCurrency: "💱 表示通貨:",
+    selectProfession: "職種を選択 👨‍💼",
+    comparisonMode: "比較モード（最大{count}都市）",
+    modeNormal: "絶対値",
+    modeRatio: "相対比率",
+    modeBigMac: "ビッグマック換算",
+    searchPlaceholder: "都市または国を検索...",
+    allContinents: "🌍 すべての大陸",
+    selectedCities: "選択済み都市 ({selected}/{max}):",
+    chooseCity: "都市を選択:",
+    showingCities: "60/{total}都市を表示中。検索またはフィルターをご利用ください",
+    compareCities: "📊 {count}都市を比較",
+    clear: "クリア",
+    needAtLeastTwoCities: "比較するには少なくとも2都市を選択してください",
+    chartAnalysis: "📈 データチャート分析",
+    baseCityTip: "💡 基準都市: {city} - すべての値はこの都市を1倍として比較",
+    professionIncomeCompare: "💼 職種別年収比較",
+    costRatioAnalysis: "📊 生活費比率",
+    annualFinanceCompare: "💰 年間財務比較",
+    cityDetails: "🏙️ 都市詳細",
+    clickSetBase: "💡 任意の都市カードをクリックして比較基準に設定",
+    monthlyExpense: "🏠 月間支出",
+    yearlySavings: "🏦 年間貯蓄",
+    bigMac: "🍔 ビッグマック",
+    ranking: "📊 ランキング",
+    incomeRanking: "💰 収入ランキング",
+    savingsRanking: "🏦 貯蓄力",
+    valueRanking: "📊 コスパランキング",
+    annualIncome: "年間収入",
+    annualExpense: "年間支出",
+    annualSavings: "年間貯蓄",
+    costRatioKey: "コスト比率",
+    savingsRatioKey: "貯蓄比率",
+    bigMacUnit: "個分",
+    oneBigMac: "1個分",
+  },
+  es: {
+    loading: "Cargando datos...",
+    appTitle: "🌍 Comparador Global de Ciudades y Profesiones",
+    appSubtitle: "Compara ingresos y costo de vida de 10 profesiones en {count} ciudades",
+    dayMode: "☀️ Modo Claro",
+    nightMode: "🌙 Modo Oscuro",
+    language: "Idioma",
+    displayCurrency: "💱 Moneda:",
+    selectProfession: "Seleccionar profesión 👨‍💼",
+    comparisonMode: "Modo de comparación (máx. {count} ciudades)",
+    modeNormal: "Absoluto",
+    modeRatio: "Relativo",
+    modeBigMac: "Big Mac",
+    searchPlaceholder: "Buscar ciudad o país...",
+    allContinents: "🌍 Todos los continentes",
+    selectedCities: "Ciudades seleccionadas ({selected}/{max}):",
+    chooseCity: "Elegir ciudades:",
+    showingCities: "Mostrando 60/{total} ciudades, usa búsqueda o filtros",
+    compareCities: "📊 Comparar {count} ciudades",
+    clear: "Limpiar",
+    needAtLeastTwoCities: "Selecciona al menos 2 ciudades para comparar",
+    chartAnalysis: "📈 Análisis de Gráficos",
+    baseCityTip: "💡 Ciudad base: {city} - todos los valores se comparan con 1x en esta ciudad",
+    professionIncomeCompare: "💼 Comparación de Ingreso Anual por Profesión",
+    costRatioAnalysis: "📊 Proporción de Costo de Vida",
+    annualFinanceCompare: "💰 Comparación Financiera Anual",
+    cityDetails: "🏙️ Detalles de la Ciudad",
+    clickSetBase: "💡 Haz clic en una tarjeta para establecerla como ciudad base",
+    monthlyExpense: "🏠 Gasto Mensual",
+    yearlySavings: "🏦 Ahorro Anual",
+    bigMac: "🍔 Big Mac",
+    ranking: "📊 Rankings",
+    incomeRanking: "💰 Ranking de Ingresos",
+    savingsRanking: "🏦 Potencial de Ahorro",
+    valueRanking: "📊 Ranking Calidad-Precio",
+    annualIncome: "Ingreso Anual",
+    annualExpense: "Gasto Anual",
+    annualSavings: "Ahorro Anual",
+    costRatioKey: "Proporción de costo",
+    savingsRatioKey: "Proporción de ahorro",
+    bigMacUnit: "Big Macs",
+    oneBigMac: "1 Big Mac",
+  },
+};
+
+const LANGUAGE_LABELS: Record<Locale, string> = {
+  zh: "中文",
+  en: "English",
+  ja: "日本語",
+  es: "Español",
+};
+
+const CONTINENT_TRANSLATIONS: Record<string, Record<Locale, string>> = {
+  亚洲: { zh: "亚洲", en: "Asia", ja: "アジア", es: "Asia" },
+  欧洲: { zh: "欧洲", en: "Europe", ja: "ヨーロッパ", es: "Europa" },
+  北美洲: { zh: "北美洲", en: "North America", ja: "北アメリカ", es: "Norteamérica" },
+  南美洲: { zh: "南美洲", en: "South America", ja: "南アメリカ", es: "Sudamérica" },
+  大洋洲: { zh: "大洋洲", en: "Oceania", ja: "オセアニア", es: "Oceanía" },
+  非洲: { zh: "非洲", en: "Africa", ja: "アフリカ", es: "África" },
+};
+
+const PROFESSION_TRANSLATIONS: Record<string, Record<Locale, string>> = {
+  软件工程师: { zh: "软件工程师", en: "Software Engineer", ja: "ソフトウェアエンジニア", es: "Ingeniero de Software" },
+  "医生/医学博士": { zh: "医生/医学博士", en: "Doctor/Physician", ja: "医師", es: "Médico" },
+  财务分析师: { zh: "财务分析师", en: "Financial Analyst", ja: "財務アナリスト", es: "Analista Financiero" },
+  市场经理: { zh: "市场经理", en: "Marketing Manager", ja: "マーケティングマネージャー", es: "Gerente de Marketing" },
+  项目经理: { zh: "项目经理", en: "Project Manager", ja: "プロジェクトマネージャー", es: "Gerente de Proyecto" },
+  平面设计师: { zh: "平面设计师", en: "Graphic Designer", ja: "グラフィックデザイナー", es: "Diseñador Gráfico" },
+  数据科学家: { zh: "数据科学家", en: "Data Scientist", ja: "データサイエンティスト", es: "Científico de Datos" },
+  业务分析师: { zh: "业务分析师", en: "Business Analyst", ja: "ビジネスアナリスト", es: "Analista de Negocio" },
+  销售经理: { zh: "销售经理", en: "Sales Manager", ja: "営業マネージャー", es: "Gerente de Ventas" },
+  人力资源经理: { zh: "人力资源经理", en: "Human Resources Manager", ja: "人事マネージャー", es: "Gerente de Recursos Humanos" },
+};
+
 const POPULAR_CURRENCIES = [
   "USD",
   "EUR",
@@ -65,6 +271,7 @@ export default function CityComparison() {
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
   const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
   const [darkMode, setDarkMode] = useState(false);
+  const [locale, setLocale] = useState<Locale>("zh");
 
   const maxComparisons = windowWidth < 768 ? 2 : windowWidth < 1024 ? 3 : 5;
 
@@ -76,6 +283,10 @@ export default function CityComparison() {
     const savedDarkMode = localStorage.getItem("darkMode");
     if (savedDarkMode) {
       setDarkMode(JSON.parse(savedDarkMode));
+    }
+    const savedLocale = localStorage.getItem("locale");
+    if (savedLocale && ["zh", "en", "ja", "es"].includes(savedLocale)) {
+      setLocale(savedLocale as Locale);
     }
 
     const fetchData = async () => {
@@ -115,6 +326,25 @@ export default function CityComparison() {
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
+
+  useEffect(() => {
+    localStorage.setItem("locale", locale);
+  }, [locale]);
+
+  const t = (key: string, params?: Record<string, string | number>) => {
+    const template = TRANSLATIONS[locale]?.[key] || TRANSLATIONS.zh[key] || key;
+    if (!params) return template;
+    return Object.entries(params).reduce(
+      (acc, [paramKey, value]) => acc.replaceAll(`{${paramKey}}`, String(value)),
+      template
+    );
+  };
+
+  const getProfessionLabel = (profession: string): string =>
+    PROFESSION_TRANSLATIONS[profession]?.[locale] || profession;
+
+  const getContinentLabel = (continent: string): string =>
+    CONTINENT_TRANSLATIONS[continent]?.[locale] || continent;
 
   const handleCurrencyChange = (currency: string) => {
     setSelectedCurrency(currency);
@@ -172,7 +402,7 @@ export default function CityComparison() {
 
   const handleCompare = () => {
     if (selectedCities.length < 2) {
-      alert("请选择至少2个城市进行对比");
+      alert(t("needAtLeastTwoCities"));
       return;
     }
 
@@ -292,15 +522,15 @@ export default function CityComparison() {
         const ratioCostRatio = baseCostRatio !== 0 ? getRatioValue(costRatio, baseCostRatio) : costRatio;
         return {
           name: city.name,
-          "成本占比": parseFloat(ratioCostRatio.toFixed(1)),
-          "可存钱比例": 2 - ratioCostRatio,
+          [t("costRatioKey")]: parseFloat(ratioCostRatio.toFixed(1)),
+          [t("savingsRatioKey")]: 2 - ratioCostRatio,
         };
       } else {
         const costRatio = income > 0 ? (yearlyExpense / income) * 100 : 0;
         return {
           name: city.name,
-          "成本占比": parseFloat(costRatio.toFixed(1)),
-          "可存钱比例": 100 - costRatio,
+          [t("costRatioKey")]: parseFloat(costRatio.toFixed(1)),
+          [t("savingsRatioKey")]: 100 - costRatio,
         };
       }
     });
@@ -324,7 +554,7 @@ export default function CityComparison() {
             } mx-auto mb-4`}
           ></div>
           <p className={`text-lg ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
-            加载数据中...
+            {t("loading")}
           </p>
         </div>
       </div>
@@ -350,28 +580,50 @@ export default function CityComparison() {
                   : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
               }`}
             >
-              🌍 全球城市职业对比工具
+              {t("appTitle")}
             </h1>
             <p
               className={`text-lg ${
                 darkMode ? "text-gray-400" : "text-gray-600"
               }`}
             >
-              对比{cities.length}个城市的10种职业收入和生活成本
+              {t("appSubtitle", { count: cities.length })}
             </p>
           </div>
 
-          {/* 夜间模式切换 */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className={`px-4 py-2 rounded-lg font-medium transition whitespace-nowrap ${
-              darkMode
-                ? "bg-yellow-500 text-gray-900 hover:bg-yellow-400"
-                : "bg-indigo-600 text-white hover:bg-indigo-700"
-            }`}
-          >
-            {darkMode ? "☀️ 日间模式" : "🌙 夜间模式"}
-          </button>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <span className={`text-sm font-semibold ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                {t("language")}:
+              </span>
+              <select
+                value={locale}
+                onChange={(e) => setLocale(e.target.value as Locale)}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+                  darkMode
+                    ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400"
+                    : "bg-white text-gray-800 border-2 border-gray-300 focus:border-blue-500"
+                } focus:outline-none`}
+              >
+                {(Object.keys(LANGUAGE_LABELS) as Locale[]).map((lang) => (
+                  <option key={lang} value={lang}>
+                    {LANGUAGE_LABELS[lang]}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className={`px-4 py-2 rounded-lg font-medium transition whitespace-nowrap ${
+                darkMode
+                  ? "bg-yellow-500 text-gray-900 hover:bg-yellow-400"
+                  : "bg-indigo-600 text-white hover:bg-indigo-700"
+              }`}
+            >
+              {darkMode ? t("dayMode") : t("nightMode")}
+            </button>
+          </div>
         </div>
 
         {/* 币种选择器 */}
@@ -384,7 +636,7 @@ export default function CityComparison() {
             <span className={`font-semibold ${
               darkMode ? "text-gray-300" : "text-gray-700"
             }`}>
-              💱 显示币种:
+              {t("displayCurrency")}
             </span>
             <div className="flex flex-wrap gap-2">
               {POPULAR_CURRENCIES.map((currency) => (
@@ -418,7 +670,7 @@ export default function CityComparison() {
               <label className={`block text-sm font-semibold mb-3 ${
                 darkMode ? "text-gray-300" : "text-gray-700"
               }`}>
-                选择职业 👨‍💼
+                {t("selectProfession")}
               </label>
               <select
                 value={selectedProfession}
@@ -431,7 +683,7 @@ export default function CityComparison() {
               >
                 {professions.map((prof) => (
                   <option key={prof} value={prof}>
-                    {prof}
+                    {getProfessionLabel(prof)}
                   </option>
                 ))}
               </select>
@@ -442,7 +694,7 @@ export default function CityComparison() {
               <label className={`block text-sm font-semibold mb-3 ${
                 darkMode ? "text-gray-300" : "text-gray-700"
               }`}>
-                对比模式 (最多{maxComparisons}个城市)
+                {t("comparisonMode", { count: maxComparisons })}
               </label>
               <div className="flex gap-2">
                 <button
@@ -455,7 +707,7 @@ export default function CityComparison() {
                         : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
-                  绝对值
+                  {t("modeNormal")}
                 </button>
                 <button
                   onClick={() => setComparisonMode("ratio")}
@@ -467,7 +719,7 @@ export default function CityComparison() {
                         : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
-                  相对比例
+                  {t("modeRatio")}
                 </button>
                 <button
                   onClick={() => setComparisonMode("bigmac")}
@@ -479,7 +731,7 @@ export default function CityComparison() {
                         : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
-                  以巨无霸算
+                  {t("modeBigMac")}
                 </button>
               </div>
             </div>
@@ -489,7 +741,7 @@ export default function CityComparison() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <input
               type="text"
-              placeholder="搜索城市或国家..."
+              placeholder={t("searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className={`px-4 py-3 rounded-lg focus:outline-none transition ${
@@ -508,10 +760,10 @@ export default function CityComparison() {
                   : "border-2 border-gray-300 focus:border-blue-500"
               }`}
             >
-              <option value="all">🌍 显示所有大洲</option>
+              <option value="all">{t("allContinents")}</option>
               {continents.map((continent) => (
                 <option key={continent} value={continent}>
-                  {continent}
+                  {getContinentLabel(continent)}
                 </option>
               ))}
             </select>
@@ -523,7 +775,10 @@ export default function CityComparison() {
               <p className={`text-sm font-semibold mb-3 ${
                 darkMode ? "text-gray-300" : "text-gray-700"
               }`}>
-                已选择城市 ({selectedCities.length}/{maxComparisons}):
+                {t("selectedCities", {
+                  selected: selectedCities.length,
+                  max: maxComparisons,
+                })}
               </p>
               <div className="flex flex-wrap gap-2">
                 {selectedCities.map((id) => {
@@ -556,7 +811,7 @@ export default function CityComparison() {
             <p className={`text-sm font-semibold mb-3 ${
               darkMode ? "text-gray-300" : "text-gray-700"
             }`}>
-              选择城市:
+              {t("chooseCity")}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
               {filteredCities.slice(0, 60).map((city) => (
@@ -587,7 +842,7 @@ export default function CityComparison() {
             </div>
             {filteredCities.length > 60 && (
               <p className={`text-xs mt-2 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
-                显示 60/{filteredCities.length} 个城市，请使用搜索或过滤筛选
+                {t("showingCities", { total: filteredCities.length })}
               </p>
             )}
           </div>
@@ -605,7 +860,7 @@ export default function CityComparison() {
                   : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-xl"
               }`}
             >
-              📊 对比 {selectedCities.length} 个城市
+              {t("compareCities", { count: selectedCities.length })}
             </button>
 
             {selectedCities.length > 0 && (
@@ -617,7 +872,7 @@ export default function CityComparison() {
                     : "bg-red-500 hover:bg-red-600 text-white"
                 }`}
               >
-                清除
+                {t("clear")}
               </button>
             )}
           </div>
@@ -635,13 +890,15 @@ export default function CityComparison() {
               <h2 className={`text-3xl font-bold mb-2 ${
                 darkMode ? "text-white" : "text-gray-800"
               }`}>
-                📈 数据图表分析
+                {t("chartAnalysis")}
               </h2>
               {comparisonMode === "ratio" && (
                 <p className={`text-sm mb-6 ${
                   darkMode ? "text-gray-400" : "text-gray-600"
                 }`}>
-                  💡 基准城市: <strong>{comparisonData.find(c => c.id.toString() === baseCityId)?.name || comparisonData[0].name}</strong> - 所有数据按此城市为 1 倍进行对比
+                  {t("baseCityTip", {
+                    city: comparisonData.find(c => c.id.toString() === baseCityId)?.name || comparisonData[0].name,
+                  })}
                 </p>
               )}
 
@@ -653,7 +910,7 @@ export default function CityComparison() {
                   <h3 className={`text-lg font-bold mb-4 ${
                     darkMode ? "text-white" : "text-gray-800"
                   }`}>
-                    💼 职业年收入对比
+                    {t("professionIncomeCompare")}
                   </h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={prepareProfessionChartData()}>
@@ -676,7 +933,7 @@ export default function CityComparison() {
                           comparisonMode === "ratio"
                             ? `${parseFloat(value).toFixed(2)}x`
                             : comparisonMode === "bigmac"
-                              ? `${parseFloat(value).toFixed(2)} 个巨无霸`
+                              ? `${parseFloat(value).toFixed(2)} ${t("bigMacUnit")}`
                               : formatCurrency(Number(value))
                         }
                       />
@@ -696,7 +953,7 @@ export default function CityComparison() {
                   <h3 className={`text-lg font-bold mb-4 ${
                     darkMode ? "text-white" : "text-gray-800"
                   }`}>
-                    📊 生活成本占比
+                    {t("costRatioAnalysis")}
                   </h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={prepareCostRatioData()}>
@@ -721,12 +978,12 @@ export default function CityComparison() {
                       />
                       <Legend />
                       <Bar
-                        dataKey="成本占比"
+                        dataKey={t("costRatioKey")}
                         stackId="a"
                         fill="#ef4444"
                       />
                       <Bar
-                        dataKey="可存钱比例"
+                        dataKey={t("savingsRatioKey")}
                         stackId="a"
                         fill="#10b981"
                       />
@@ -741,7 +998,7 @@ export default function CityComparison() {
                   <h3 className={`text-lg font-bold mb-4 ${
                     darkMode ? "text-white" : "text-gray-800"
                   }`}>
-                    💰 年度财务对比
+                    {t("annualFinanceCompare")}
                   </h3>
                   <ResponsiveContainer width="100%" height={350}>
                     <BarChart data={prepareChartData()}>
@@ -764,7 +1021,7 @@ export default function CityComparison() {
                           comparisonMode === "ratio"
                             ? `${parseFloat(value).toFixed(2)}x`
                             : comparisonMode === "bigmac"
-                              ? `${parseFloat(value).toFixed(2)} 个巨无霸`
+                              ? `${parseFloat(value).toFixed(2)} ${t("bigMacUnit")}`
                               : formatCurrency(Number(value))
                         }
                       />
@@ -772,19 +1029,19 @@ export default function CityComparison() {
                       <Bar
                         dataKey="income"
                         fill="#3b82f6"
-                        name="年收入"
+                        name={t("annualIncome")}
                         radius={[8, 8, 0, 0]}
                       />
                       <Bar
                         dataKey="yearlyExpense"
                         fill="#ef4444"
-                        name="年支出"
+                        name={t("annualExpense")}
                         radius={[8, 8, 0, 0]}
                       />
                       <Bar
                         dataKey="savings"
                         fill="#10b981"
-                        name="年储蓄"
+                        name={t("annualSavings")}
                         radius={[8, 8, 0, 0]}
                       />
                     </BarChart>
@@ -802,12 +1059,12 @@ export default function CityComparison() {
               <h2 className={`text-3xl font-bold mb-2 ${
                 darkMode ? "text-white" : "text-gray-800"
               }`}>
-                🏙️ 城市详情
+                {t("cityDetails")}
               </h2>
               <p className={`text-sm mb-6 ${
                 darkMode ? "text-gray-400" : "text-gray-600"
               }`}>
-                💡 点击任何城市卡片即可将其设为对比基准
+                {t("clickSetBase")}
               </p>
 
               <div
@@ -864,13 +1121,13 @@ export default function CityComparison() {
                       {/* 职业收入 */}
                       <div className="bg-blue-500 bg-opacity-30 p-3 rounded-lg mb-3">
                         <p className="text-xs text-blue-100 mb-1">
-                          💼 {selectedProfession}
+                          💼 {getProfessionLabel(selectedProfession)}
                         </p>
                         <p className="text-xl font-bold text-white">
                           {comparisonMode === "ratio"
                             ? `${getRatioValue(salary, baseSalary)}x`
                             : comparisonMode === "bigmac"
-                              ? `${toBigMacCount(salary, city.bigMacPrice)} 个巨无霸`
+                              ? `${toBigMacCount(salary, city.bigMacPrice)} ${t("bigMacUnit")}`
                               : formatCurrency(salary)}
                         </p>
                       </div>
@@ -878,13 +1135,13 @@ export default function CityComparison() {
                       {/* 月支出 */}
                       <div className="bg-red-500 bg-opacity-30 p-3 rounded-lg mb-3">
                         <p className="text-xs text-red-100 mb-1">
-                          🏠 月支出
+                          {t("monthlyExpense")}
                         </p>
                         <p className="text-xl font-bold text-white">
                           {comparisonMode === "ratio"
                             ? `${getRatioValue(city.costOfLiving, baseCity.costOfLiving)}x`
                             : comparisonMode === "bigmac"
-                              ? `${toBigMacCount(city.costOfLiving, city.bigMacPrice)} 个巨无霸`
+                              ? `${toBigMacCount(city.costOfLiving, city.bigMacPrice)} ${t("bigMacUnit")}`
                               : formatCurrency(city.costOfLiving)}
                         </p>
                       </div>
@@ -892,7 +1149,7 @@ export default function CityComparison() {
                       {/* 年存钱 */}
                       <div className="bg-green-500 bg-opacity-30 p-3 rounded-lg mb-3">
                         <p className="text-xs text-green-100 mb-1">
-                          🏦 年存钱
+                          {t("yearlySavings")}
                         </p>
                         <p
                           className={`text-xl font-bold ${
@@ -907,7 +1164,7 @@ export default function CityComparison() {
                                 baseSalary - baseCity.costOfLiving * 12
                               )}x`
                             : comparisonMode === "bigmac"
-                              ? `${toBigMacCount(salary - city.costOfLiving * 12, city.bigMacPrice)} 个巨无霸`
+                              ? `${toBigMacCount(salary - city.costOfLiving * 12, city.bigMacPrice)} ${t("bigMacUnit")}`
                               : formatCurrency(salary - city.costOfLiving * 12)}
                         </p>
                       </div>
@@ -915,13 +1172,13 @@ export default function CityComparison() {
                       {/* 巨无霸价格 */}
                       <div className="bg-yellow-500 bg-opacity-30 p-3 rounded-lg">
                         <p className="text-xs text-yellow-100 mb-1">
-                          🍔 巨无霸
+                          {t("bigMac")}
                         </p>
                         <p className="text-lg font-bold text-white">
                           {comparisonMode === "ratio"
                             ? `${getRatioValue(city.bigMacPrice, baseCity.bigMacPrice)}x`
                             : comparisonMode === "bigmac"
-                              ? "1 个巨无霸"
+                              ? t("oneBigMac")
                               : formatCurrency(city.bigMacPrice)}
                         </p>
                       </div>
@@ -940,7 +1197,7 @@ export default function CityComparison() {
               <h2 className={`text-3xl font-bold mb-6 ${
                 darkMode ? "text-white" : "text-gray-800"
               }`}>
-                📊 数据排名
+                {t("ranking")}
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -957,7 +1214,7 @@ export default function CityComparison() {
                         : "text-blue-900"
                     }`}
                   >
-                    💰 收入排名
+                    {t("incomeRanking")}
                   </h3>
                   <div className="space-y-2">
                     {[...comparisonData]
@@ -1019,7 +1276,7 @@ export default function CityComparison() {
                         : "text-green-900"
                     }`}
                   >
-                    🏦 存钱能力
+                    {t("savingsRanking")}
                   </h3>
                   <div className="space-y-2">
                     {[...comparisonData]
@@ -1097,7 +1354,7 @@ export default function CityComparison() {
                         : "text-orange-900"
                     }`}
                   >
-                    📊 性价比排名
+                    {t("valueRanking")}
                   </h3>
                   <div className="space-y-2">
                     {[...comparisonData]
