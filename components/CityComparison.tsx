@@ -83,6 +83,13 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     savingsRatioKey: "可存钱比例",
     bigMacUnit: "个巨无霸",
     oneBigMac: "1 个巨无霸",
+    cityDescription: "城市描述",
+    keyInsights: "🔎 关键洞察",
+    topIncomeCity: "最高收入城市",
+    topSavingsCity: "最佳储蓄城市",
+    bestValueCity: "最佳性价比城市",
+    descriptionTemplate:
+      "{city}（{country}）整体上收入与生活成本都较高。按当前职业估算年收入约 {income}，月生活成本约 {cost}，年可结余约 {savings}。",
   },
   en: {
     loading: "Loading data...",
@@ -126,6 +133,13 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     savingsRatioKey: "Savings Ratio",
     bigMacUnit: "Big Macs",
     oneBigMac: "1 Big Mac",
+    cityDescription: "City Description",
+    keyInsights: "🔎 Key Insights",
+    topIncomeCity: "Highest Income City",
+    topSavingsCity: "Best Savings City",
+    bestValueCity: "Best Value City",
+    descriptionTemplate:
+      "{city} ({country}) offers a competitive income-cost profile. Estimated annual income for the selected profession is {income}, monthly living cost is {cost}, and potential yearly savings are {savings}.",
   },
   ja: {
     loading: "データを読み込み中...",
@@ -169,6 +183,13 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     savingsRatioKey: "貯蓄比率",
     bigMacUnit: "個分",
     oneBigMac: "1個分",
+    cityDescription: "都市の説明",
+    keyInsights: "🔎 主要インサイト",
+    topIncomeCity: "最高収入の都市",
+    topSavingsCity: "貯蓄力が最も高い都市",
+    bestValueCity: "最もコスパの高い都市",
+    descriptionTemplate:
+      "{city}（{country}）は収入と生活コストのバランスが特徴です。選択中の職種の推定年収は {income}、月間生活費は {cost}、年間貯蓄見込みは {savings} です。",
   },
   es: {
     loading: "Cargando datos...",
@@ -212,6 +233,13 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     savingsRatioKey: "Proporción de ahorro",
     bigMacUnit: "Big Macs",
     oneBigMac: "1 Big Mac",
+    cityDescription: "Descripcion de la Ciudad",
+    keyInsights: "🔎 Insights Clave",
+    topIncomeCity: "Ciudad con Mayor Ingreso",
+    topSavingsCity: "Ciudad con Mejor Ahorro",
+    bestValueCity: "Ciudad con Mejor Relacion Costo-Beneficio",
+    descriptionTemplate:
+      "{city} ({country}) muestra un equilibrio competitivo entre ingresos y costo de vida. El ingreso anual estimado para la profesion seleccionada es {income}, el costo mensual es {cost} y el ahorro anual potencial es {savings}.",
   },
 };
 
@@ -546,6 +574,18 @@ export default function CityComparison() {
     } else {
       return `${symbol}${converted.toLocaleString()}`;
     }
+  };
+
+  const getLocalizedDescription = (city: City, salary: number): string => {
+    if (locale === "zh") return city.description;
+    const yearlySavings = salary - city.costOfLiving * 12;
+    return t("descriptionTemplate", {
+      city: getCityLabel(city),
+      country: getCountryLabel(city.country),
+      income: formatCurrency(salary),
+      cost: formatCurrency(city.costOfLiving),
+      savings: formatCurrency(yearlySavings),
+    });
   };
 
   const continents = [...new Set(cities.map((c) => c.continent))].sort();
@@ -1364,13 +1404,20 @@ export default function CityComparison() {
                               : formatCurrency(city.bigMacPrice)}
                         </p>
                       </div>
+
+                      <div className="mt-4 bg-white bg-opacity-10 p-3 rounded-lg">
+                        <p className="text-xs text-blue-100 mb-1">{t("cityDescription")}</p>
+                        <p className="text-xs text-white leading-relaxed">
+                          {getLocalizedDescription(city, salary)}
+                        </p>
+                      </div>
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* 数据排名 */}
+            {/* 精简洞察 */}
             <div className={`rounded-xl shadow-xl p-8 ${
               darkMode
                 ? "bg-gray-800 border border-gray-700"
@@ -1379,222 +1426,43 @@ export default function CityComparison() {
               <h2 className={`text-3xl font-bold mb-6 ${
                 darkMode ? "text-white" : "text-gray-800"
               }`}>
-                {t("ranking")}
+                {t("keyInsights")}
               </h2>
+              {(() => {
+                const withMetrics = comparisonData.map((city) => {
+                  const income = selectedProfession
+                    ? city.professions[selectedProfession] || 0
+                    : city.averageIncome;
+                  const savings = income - city.costOfLiving * 12;
+                  const valueRatio = income > 0 ? (city.costOfLiving * 12) / income : Number.POSITIVE_INFINITY;
+                  return { city, income, savings, valueRatio };
+                });
+                const incomeTop = [...withMetrics].sort((a, b) => b.income - a.income)[0];
+                const savingsTop = [...withMetrics].sort((a, b) => b.savings - a.savings)[0];
+                const valueTop = [...withMetrics].sort((a, b) => a.valueRatio - b.valueRatio)[0];
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* 收入排名 */}
-                <div className={`rounded-lg p-6 ${
-                  darkMode
-                    ? "bg-gradient-to-br from-blue-600 to-blue-800"
-                    : "bg-gradient-to-br from-blue-50 to-blue-100"
-                }`}>
-                  <h3
-                    className={`text-lg font-bold mb-4 ${
-                      darkMode
-                        ? "text-white"
-                        : "text-blue-900"
-                    }`}
-                  >
-                    {t("incomeRanking")}
-                  </h3>
-                  <div className="space-y-2">
-                    {[...comparisonData]
-                      .sort((a, b) => {
-                        const salaryA = selectedProfession
-                          ? a.professions[selectedProfession] || 0
-                          : a.averageIncome;
-                        const salaryB = selectedProfession
-                          ? b.professions[selectedProfession] || 0
-                          : b.averageIncome;
-                        return salaryB - salaryA;
-                      })
-                      .map((city, idx) => (
-                        <div
-                          key={city.id}
-                          className={`flex justify-between items-center p-2 rounded ${
-                            darkMode
-                              ? "bg-blue-700"
-                              : "bg-white"
-                          }`}
-                        >
-                          <span
-                            className={`font-semibold ${
-                              darkMode
-                                ? "text-white"
-                                : "text-blue-900"
-                            }`}
-                          >
-                            {idx + 1}. {getCityLabel(city)}
-                          </span>
-                          <span
-                            className={`text-sm ${
-                              darkMode
-                                ? "text-blue-200"
-                                : "text-blue-700"
-                            }`}
-                          >
-                            {formatCurrency(
-                              selectedProfession
-                                ? city.professions[selectedProfession] || 0
-                                : city.averageIncome
-                            )}
-                          </span>
-                        </div>
-                      ))}
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className={`rounded-lg p-5 ${darkMode ? "bg-blue-900/40 border border-blue-700" : "bg-blue-50 border border-blue-100"}`}>
+                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-blue-200" : "text-blue-700"}`}>{t("topIncomeCity")}</p>
+                      <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-blue-900"}`}>{getCityLabel(incomeTop.city)}</p>
+                      <p className={`${darkMode ? "text-blue-200" : "text-blue-700"}`}>{formatCurrency(incomeTop.income)}</p>
+                    </div>
+                    <div className={`rounded-lg p-5 ${darkMode ? "bg-green-900/40 border border-green-700" : "bg-green-50 border border-green-100"}`}>
+                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-green-200" : "text-green-700"}`}>{t("topSavingsCity")}</p>
+                      <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-green-900"}`}>{getCityLabel(savingsTop.city)}</p>
+                      <p className={`${darkMode ? "text-green-200" : "text-green-700"}`}>{formatCurrency(savingsTop.savings)}</p>
+                    </div>
+                    <div className={`rounded-lg p-5 ${darkMode ? "bg-amber-900/40 border border-amber-700" : "bg-amber-50 border border-amber-100"}`}>
+                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-amber-200" : "text-amber-700"}`}>{t("bestValueCity")}</p>
+                      <p className={`text-xl font-bold ${darkMode ? "text-white" : "text-amber-900"}`}>{getCityLabel(valueTop.city)}</p>
+                      <p className={`${darkMode ? "text-amber-200" : "text-amber-700"}`}>
+                        {`${(valueTop.valueRatio * 100).toFixed(1)}%`}
+                      </p>
+                    </div>
                   </div>
-                </div>
-
-                {/* 存钱能力排名 */}
-                <div className={`rounded-lg p-6 ${
-                  darkMode
-                    ? "bg-gradient-to-br from-green-600 to-green-800"
-                    : "bg-gradient-to-br from-green-50 to-green-100"
-                }`}>
-                  <h3
-                    className={`text-lg font-bold mb-4 ${
-                      darkMode
-                        ? "text-white"
-                        : "text-green-900"
-                    }`}
-                  >
-                    {t("savingsRanking")}
-                  </h3>
-                  <div className="space-y-2">
-                    {[...comparisonData]
-                      .sort((a, b) => {
-                        const savingsA = selectedProfession
-                          ? (a.professions[selectedProfession] || 0) -
-                            a.costOfLiving * 12
-                          : a.yearlySavings;
-                        const savingsB = selectedProfession
-                          ? (b.professions[selectedProfession] || 0) -
-                            b.costOfLiving * 12
-                          : b.yearlySavings;
-                        return savingsB - savingsA;
-                      })
-                      .map((city, idx) => {
-                        const savings = selectedProfession
-                          ? (city.professions[selectedProfession] || 0) -
-                            city.costOfLiving * 12
-                          : city.yearlySavings;
-                        const baseSavings = (() => {
-                          const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
-                          return selectedProfession
-                            ? (baseCity.professions[selectedProfession] || 0) - baseCity.costOfLiving * 12
-                            : baseCity.yearlySavings;
-                        })();
-                        return (
-                          <div
-                            key={city.id}
-                            className={`flex justify-between items-center p-2 rounded ${
-                              darkMode
-                                ? "bg-green-700"
-                                : "bg-white"
-                            }`}
-                          >
-                            <span
-                              className={`font-semibold ${
-                                darkMode
-                                  ? "text-white"
-                                  : "text-green-900"
-                              }`}
-                            >
-                              {idx + 1}. {getCityLabel(city)}
-                            </span>
-                            <span
-                              className={`text-sm font-medium ${
-                                savings > 0
-                                  ? darkMode
-                                    ? "text-lime-200"
-                                    : "text-green-700"
-                                  : darkMode
-                                    ? "text-red-200"
-                                    : "text-red-700"
-                              }`}
-                            >
-                              {comparisonMode === "ratio"
-                                ? `${getRatioValue(savings, baseSavings)}x`
-                                : formatCurrency(savings)}
-                            </span>
-                          </div>
-                        );
-                      })}
-                  </div>
-                </div>
-
-                {/* 成本占比排名 */}
-                <div className={`rounded-lg p-6 ${
-                  darkMode
-                    ? "bg-gradient-to-br from-orange-600 to-orange-800"
-                    : "bg-gradient-to-br from-orange-50 to-orange-100"
-                }`}>
-                  <h3
-                    className={`text-lg font-bold mb-4 ${
-                      darkMode
-                        ? "text-white"
-                        : "text-orange-900"
-                    }`}
-                  >
-                    {t("valueRanking")}
-                  </h3>
-                  <div className="space-y-2">
-                    {[...comparisonData]
-                      .sort((a, b) => {
-                        const ratioA = selectedProfession
-                          ? (a.costOfLiving * 12) /
-                            (a.professions[selectedProfession] || 1)
-                          : (a.costOfLiving * 12) / a.averageIncome;
-                        const ratioB = selectedProfession
-                          ? (b.costOfLiving * 12) /
-                            (b.professions[selectedProfession] || 1)
-                          : (b.costOfLiving * 12) / b.averageIncome;
-                        return ratioA - ratioB;
-                      })
-                      .map((city, idx) => {
-                        const salary = selectedProfession
-                          ? city.professions[selectedProfession] || 0
-                          : city.averageIncome;
-                        const ratio =
-                          salary > 0
-                            ? (
-                              ((city.costOfLiving * 12) / salary) *
-                              100
-                            ).toFixed(1)
-                            : "0";
-                        return (
-                          <div
-                            key={city.id}
-                            className={`flex justify-between items-center p-2 rounded ${
-                              darkMode
-                                ? "bg-orange-700"
-                                : "bg-white"
-                            }`}
-                          >
-                            <span
-                              className={`font-semibold ${
-                                darkMode
-                                  ? "text-white"
-                                  : "text-orange-900"
-                              }`}
-                            >
-                              {idx + 1}. {getCityLabel(city)}
-                            </span>
-                            <span
-                              className={`text-sm ${
-                                darkMode
-                                  ? "text-orange-200"
-                                  : "text-orange-700"
-                              }`}
-                            >
-                              {ratio}%
-                            </span>
-                          </div>
-                        );
-                      })}
-                  </div>
-                </div>
-              </div>
+                );
+              })()}
             </div>
           </div>
         )}
