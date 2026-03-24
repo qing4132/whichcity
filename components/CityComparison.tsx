@@ -650,7 +650,7 @@ export default function CityComparison() {
   };
 
   const handleCityCardClick = (cityId: string) => {
-    if (comparisonData) {
+    if (comparisonData && comparisonMode === "ratio") {
       setBaseCityId(cityId);
     }
   };
@@ -1293,7 +1293,7 @@ export default function CityComparison() {
               <p className={`text-sm mb-6 ${
                 darkMode ? "text-gray-400" : "text-gray-600"
               }`}>
-                {t("clickSetBase")}
+                {comparisonMode === "ratio" ? t("clickSetBase") : t("cityDetails")}
               </p>
 
               <div
@@ -1321,7 +1321,9 @@ export default function CityComparison() {
                     <div
                       key={city.id}
                       onClick={() => handleCityCardClick(city.id.toString())}
-                      className={`rounded-xl p-6 shadow-xl transition hover:shadow-2xl cursor-pointer ${
+                      className={`rounded-xl p-6 shadow-xl transition ${
+                        comparisonMode === "ratio" ? "hover:shadow-2xl cursor-pointer" : "cursor-default"
+                      } ${
                         isBase && comparisonMode === "ratio"
                           ? "ring-4 ring-yellow-400 ring-opacity-50"
                           : ""
