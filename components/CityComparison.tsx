@@ -585,7 +585,15 @@ export default function CityComparison() {
   };
 
   const getLocalizedDescription = (city: City, salary: number): string => {
-    return city.description;
+    if (locale === "zh") return city.description;
+    const yearlySavings = salary - city.costOfLiving * 12;
+    return t("descriptionTemplate", {
+      city: getCityLabel(city),
+      country: getCountryLabel(city.country),
+      income: formatCurrency(salary),
+      cost: formatCurrency(city.costOfLiving),
+      savings: formatCurrency(yearlySavings),
+    });
   };
 
   const continents = [...new Set(cities.map((c) => c.continent))].sort();
@@ -1027,13 +1035,13 @@ export default function CityComparison() {
           )}
 
           {/* 城市选择网格 */}
-          <div className="mb-6">
-            <p className={`text-sm font-semibold mb-3 ${
+          <div className="mb-4">
+            <p className={`text-sm font-semibold mb-2 ${
               darkMode ? "text-gray-300" : "text-gray-700"
             }`}>
               {t("chooseCity")}
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-1.5">
               {filteredCities.slice(0, 100).map((city) => (
                 <button
                   key={city.id}
@@ -1043,7 +1051,7 @@ export default function CityComparison() {
                     !selectedCities.includes(city.id.toString())
                   }
                   title={`${getCityLabel(city)}, ${getCountryLabel(city.country)}`}
-                  className={`p-2 rounded-lg font-medium transition text-xs ${
+                  className={`p-1.5 rounded font-medium transition text-xs whitespace-nowrap overflow-hidden text-ellipsis ${
                     selectedCities.includes(city.id.toString())
                       ? "bg-blue-600 text-white shadow-lg"
                       : selectedCities.length >= maxComparisons
@@ -1060,8 +1068,8 @@ export default function CityComparison() {
                 </button>
               ))}
             </div>
-            {filteredCities.length > 60 && (
-              <p className={`text-xs mt-2 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+            {filteredCities.length > 100 && (
+              <p className={`text-xs mt-1.5 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
                 {t("showingCities", { total: filteredCities.length })}
               </p>
             )}
