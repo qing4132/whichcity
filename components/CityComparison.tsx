@@ -56,6 +56,7 @@ export default function CityComparison() {
   const [selectedCities, setSelectedCities] = useState<string[]>([]);
   const [selectedProfession, setSelectedProfession] = useState<string>("");
   const [comparisonData, setComparisonData] = useState<City[] | null>(null);
+  const [baseCityId, setBaseCityId] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [comparisonMode, setComparisonMode] = useState<ComparisonMode>("normal");
   const [searchTerm, setSearchTerm] = useState("");
@@ -65,7 +66,7 @@ export default function CityComparison() {
   const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
   const [darkMode, setDarkMode] = useState(false);
 
-  const maxComparisons = windowWidth < 768 ? 2 : windowWidth < 1024 ? 3 : 5;
+  const maxComparisons = windowWidth < 768 ? 2 : windowWidth < 1024 ? 4 : 8;
 
   useEffect(() => {
     const savedCurrency = localStorage.getItem("selectedCurrency");
@@ -181,12 +182,20 @@ export default function CityComparison() {
 
     if (selected.length > 0) {
       setComparisonData(selected);
+      setBaseCityId(selected[0].id.toString());
     }
   };
 
   const handleClearSelection = () => {
     setSelectedCities([]);
     setComparisonData(null);
+    setBaseCityId("");
+  };
+
+  const handleCityCardClick = (cityId: string) => {
+    if (comparisonData) {
+      setBaseCityId(cityId);
+    }
   };
 
   const getRatioValue = (value: number, baseValue: number): number => {
@@ -195,43 +204,76 @@ export default function CityComparison() {
 
   const prepareChartData = () => {
     if (!comparisonData) return [];
+    const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
 
     return comparisonData.map((city) => ({
       name: city.name,
-      income: selectedProfession
-        ? city.professions[selectedProfession] || 0
-        : city.averageIncome,
-      monthlyExpense: city.costOfLiving,
-      yearlyExpense: city.costOfLiving * 12,
-      savings: selectedProfession
-        ? (city.professions[selectedProfession] || 0) -
-          city.costOfLiving * 12
-        : city.yearlySavings,
+      income: comparisonMode === "ratio"
+        ? getRatioValue(
+            selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome,
+            selectedProfession ? baseCity.professions[selectedProfession] || 0 : baseCity.averageIncome
+          )
+        : (selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome),
+      monthlyExpense: comparisonMode === "ratio"
+        ? getRatioValue(city.costOfLiving, baseCity.costOfLiving)
+        : city.costOfLiving,
+      yearlyExpense: comparisonMode === "ratio"
+        ? getRatioValue(city.costOfLiving * 12, baseCity.costOfLiving * 12)
+        : city.costOfLiving * 12,
+      savings: comparisonMode === "ratio"
+        ? getRatioValue(
+            selectedProfession
+              ? (city.professions[selectedProfession] || 0) - city.costOfLiving * 12
+              : city.yearlySavings,
+            selectedProfession
+              ? (baseCity.professions[selectedProfession] || 0) - baseCity.costOfLiving * 12
+              : baseCity.yearlySavings
+          )
+        : (selectedProfession
+          ? (city.professions[selectedProfession] || 0) - city.costOfLiving * 12
+          : city.yearlySavings),
     }));
   };
 
   const prepareProfessionChartData = () => {
     if (!comparisonData || !selectedProfession) return [];
+    const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
 
     return comparisonData.map((city) => ({
       name: city.name,
-      salary: city.professions[selectedProfession] || 0,
+      salary: comparisonMode === "ratio"
+        ? getRatioValue(city.professions[selectedProfession] || 0, baseCity.professions[selectedProfession] || 0)
+        : (city.professions[selectedProfession] || 0),
     }));
   };
 
   const prepareCostRatioData = () => {
     if (!comparisonData || !selectedProfession) return [];
+    const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
 
     return comparisonData.map((city) => {
       const income = city.professions[selectedProfession] || 0;
+      const baseIncome = baseCity.professions[selectedProfession] || 0;
       const yearlyExpense = city.costOfLiving * 12;
-      const costRatio = income > 0 ? (yearlyExpense / income) * 100 : 0;
+      const baseYearlyExpense = baseCity.costOfLiving * 12;
 
-      return {
-        name: city.name,
-        成本占比: parseFloat(costRatio.toFixed(1)),
-        可存钱比例: 100 - costRatio,
-      };
+      if (comparisonMode === "ratio") {
+        const costRatio = baseIncome > 0 ? (yearlyExpense / income) : 0;
+        const baseCostRatio = baseIncome > 0 ? (baseYearlyExpense / baseIncome) : 0;
+        const ratioCostRatio = baseCostRatio !== 0 ? getRatioValue(costRatio, baseCostRatio) : costRatio;
+        return {
+          name: city.name,
+          "成本占比": parseFloat(ratioCostRatio.toFixed(1)),
+          "可存钱比例": 2 - ratioCostRatio,
+        };
+      } else {
+        const costRatio = income > 0 ? (yearlyExpense / income) * 100 : 0;
+        return {
+          name: city.name,
+          "成本占比": parseFloat(costRatio.toFixed(1)),
+          "可存钱比例": 100 - costRatio,
+        };
+      }
     });
   };
 
@@ -434,32 +476,79 @@ export default function CityComparison() {
             </select>
           </div>
 
+          {/* 已选择的城市标签 */}
+          {selectedCities.length > 0 && (
+            <div className="mb-6">
+              <p className={`text-sm font-semibold mb-3 ${
+                darkMode ? "text-gray-300" : "text-gray-700"
+              }`}>
+                已选择城市 ({selectedCities.length}/{maxComparisons}):
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {selectedCities.map((id) => {
+                  const city = cities.find(c => c.id.toString() === id);
+                  return (
+                    <div
+                      key={id}
+                      className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2 ${
+                        darkMode
+                          ? "bg-blue-600 text-white"
+                          : "bg-blue-100 text-blue-900"
+                      }`}
+                    >
+                      {city?.name}
+                      <button
+                        onClick={() => handleCitySelect(id)}
+                        className="hover:font-bold"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* 城市选择网格 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-6">
-            {filteredCities.slice(0, 40).map((city) => (
-              <button
-                key={city.id}
-                onClick={() => handleCitySelect(city.id.toString())}
-                disabled={
-                  selectedCities.length >= maxComparisons &&
-                  !selectedCities.includes(city.id.toString())
-                }
-                className={`p-3 rounded-lg font-medium transition text-sm truncate ${
-                  selectedCities.includes(city.id.toString())
-                    ? "bg-blue-600 text-white shadow-lg scale-105"
-                    : selectedCities.length >= maxComparisons
-                      ? darkMode
-                        ? "bg-gray-700 text-gray-500 cursor-not-allowed"
-                        : "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      : darkMode
-                        ? "bg-gray-700 text-gray-300 hover:bg-gray-600 cursor-pointer"
-                        : "bg-gray-100 text-gray-700 hover:bg-blue-100 cursor-pointer"
-                }`}
-              >
-                {selectedCities.includes(city.id.toString()) && "✓ "}
-                {city.name}
-              </button>
-            ))}
+          <div className="mb-6">
+            <p className={`text-sm font-semibold mb-3 ${
+              darkMode ? "text-gray-300" : "text-gray-700"
+            }`}>
+              选择城市:
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+              {filteredCities.slice(0, 60).map((city) => (
+                <button
+                  key={city.id}
+                  onClick={() => handleCitySelect(city.id.toString())}
+                  disabled={
+                    selectedCities.length >= maxComparisons &&
+                    !selectedCities.includes(city.id.toString())
+                  }
+                  title={`${city.name}, ${city.country}`}
+                  className={`p-2 rounded-lg font-medium transition text-xs ${
+                    selectedCities.includes(city.id.toString())
+                      ? "bg-blue-600 text-white shadow-lg"
+                      : selectedCities.length >= maxComparisons
+                        ? darkMode
+                          ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+                          : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                        : darkMode
+                          ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                          : "bg-gray-200 text-gray-700 hover:bg-blue-100"
+                  }`}
+                >
+                  {selectedCities.includes(city.id.toString()) && "✓ "}
+                  {city.name}
+                </button>
+              ))}
+            </div>
+            {filteredCities.length > 60 && (
+              <p className={`text-xs mt-2 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                显示 60/{filteredCities.length} 个城市，请使用搜索或过滤筛选
+              </p>
+            )}
           </div>
 
           {/* 动作按钮 */}
@@ -487,7 +576,7 @@ export default function CityComparison() {
                     : "bg-red-500 hover:bg-red-600 text-white"
                 }`}
               >
-                清除 ({selectedCities.length})
+                清除
               </button>
             )}
           </div>
@@ -502,11 +591,18 @@ export default function CityComparison() {
                 ? "bg-gray-800 border border-gray-700"
                 : "bg-white"
             }`}>
-              <h2 className={`text-3xl font-bold mb-6 ${
+              <h2 className={`text-3xl font-bold mb-2 ${
                 darkMode ? "text-white" : "text-gray-800"
               }`}>
                 📈 数据图表分析
               </h2>
+              {comparisonMode === "ratio" && (
+                <p className={`text-sm mb-6 ${
+                  darkMode ? "text-gray-400" : "text-gray-600"
+                }`}>
+                  💡 基准城市: <strong>{comparisonData.find(c => c.id.toString() === baseCityId)?.name || comparisonData[0].name}</strong> - 所有数据按此城市为 1 倍进行对比
+                </p>
+              )}
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* 职业收入对比 */}
@@ -654,11 +750,16 @@ export default function CityComparison() {
                 ? "bg-gray-800 border border-gray-700"
                 : "bg-white"
             }`}>
-              <h2 className={`text-3xl font-bold mb-6 ${
+              <h2 className={`text-3xl font-bold mb-2 ${
                 darkMode ? "text-white" : "text-gray-800"
               }`}>
                 🏙️ 城市详情
               </h2>
+              <p className={`text-sm mb-6 ${
+                darkMode ? "text-gray-400" : "text-gray-600"
+              }`}>
+                💡 点击任何城市卡片即可将其设为对比基准
+              </p>
 
               <div
                 className={`grid gap-6 ${
@@ -666,14 +767,14 @@ export default function CityComparison() {
                     ? "grid-cols-1 md:grid-cols-2"
                     : comparisonData.length === 3
                       ? "grid-cols-1 md:grid-cols-3"
-                      : comparisonData.length === 4
-                        ? "grid-cols-2 lg:grid-cols-4"
-                        : "grid-cols-2 lg:grid-cols-5"
+                      : comparisonData.length <= 5
+                        ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+                        : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8"
                 }`}
               >
-                {comparisonData.map((city, index) => {
-                  const baseCity = comparisonData[0];
-                  const isBase = index === 0;
+                {comparisonData.map((city) => {
+                  const isBase = city.id.toString() === baseCityId;
+                  const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
                   const salary = selectedProfession
                     ? city.professions[selectedProfession] || 0
                     : city.averageIncome;
@@ -684,8 +785,13 @@ export default function CityComparison() {
                   return (
                     <div
                       key={city.id}
-                      className={`rounded-xl p-6 shadow-xl transition hover:shadow-2xl ${
-                        isBase
+                      onClick={() => handleCityCardClick(city.id.toString())}
+                      className={`rounded-xl p-6 shadow-xl transition hover:shadow-2xl cursor-pointer ${
+                        isBase && comparisonMode === "ratio"
+                          ? "ring-4 ring-yellow-400 ring-opacity-50"
+                          : ""
+                      } ${
+                        isBase || comparisonData.length <= 2
                           ? "bg-gradient-to-br from-blue-600 to-blue-800"
                           : "bg-gradient-to-br from-gray-700 to-gray-900"
                       }`}
@@ -693,7 +799,7 @@ export default function CityComparison() {
                       {/* 城市信息头 */}
                       <div className="text-center mb-6 pb-4 border-b-2 border-white border-opacity-20">
                         <div className="text-3xl mb-2">
-                          {isBase ? "🌟" : "🏙️"}
+                          {isBase && comparisonMode === "ratio" ? "⭐" : "🏙️"}
                         </div>
                         <h3 className="text-2xl font-bold text-white">
                           {city.name}
@@ -711,23 +817,11 @@ export default function CityComparison() {
                         <p className="text-xs text-blue-100 mb-1">
                           💼 {selectedProfession}
                         </p>
-                        <div>
-                          <p className="text-xl font-bold text-white">
-                            {comparisonMode === "ratio"
-                              ? `${getRatioValue(
-                                  salary,
-                                  baseSalary
-                                )}x`
-                              : formatCurrency(salary)}
-                          </p>
-                          {comparisonMode === "normal" && index > 0 && (
-                            <p className="text-xs text-blue-200 mt-1">
-                              {salary > baseSalary
-                                ? `+${formatCurrency(salary - baseSalary)}`
-                                : `-${formatCurrency(baseSalary - salary)}`}
-                            </p>
-                          )}
-                        </div>
+                        <p className="text-xl font-bold text-white">
+                          {comparisonMode === "ratio"
+                            ? `${getRatioValue(salary, baseSalary)}x`
+                            : formatCurrency(salary)}
+                        </p>
                       </div>
 
                       {/* 月支出 */}
@@ -736,7 +830,9 @@ export default function CityComparison() {
                           🏠 月支出
                         </p>
                         <p className="text-xl font-bold text-white">
-                          {formatCurrency(city.costOfLiving)}
+                          {comparisonMode === "ratio"
+                            ? `${getRatioValue(city.costOfLiving, baseCity.costOfLiving)}x`
+                            : formatCurrency(city.costOfLiving)}
                         </p>
                       </div>
 
@@ -752,17 +848,24 @@ export default function CityComparison() {
                               : "text-red-200"
                           }`}
                         >
-                          {formatCurrency(salary - city.costOfLiving * 12)}
+                          {comparisonMode === "ratio"
+                            ? `${getRatioValue(
+                                salary - city.costOfLiving * 12,
+                                baseSalary - baseCity.costOfLiving * 12
+                              )}x`
+                            : formatCurrency(salary - city.costOfLiving * 12)}
                         </p>
                       </div>
 
-                      {/* 麦当劳 */}
+                      {/* 巨无霸价格 */}
                       <div className="bg-yellow-500 bg-opacity-30 p-3 rounded-lg">
                         <p className="text-xs text-yellow-100 mb-1">
                           🍔 巨无霸
                         </p>
                         <p className="text-lg font-bold text-white">
-                          {formatCurrency(city.bigMacPrice)}
+                          {comparisonMode === "ratio"
+                            ? `${getRatioValue(city.bigMacPrice, baseCity.bigMacPrice)}x`
+                            : formatCurrency(city.bigMacPrice)}
                         </p>
                       </div>
                     </div>
@@ -771,7 +874,7 @@ export default function CityComparison() {
               </div>
             </div>
 
-            {/* 对比分析 */}
+            {/* 数据排名 */}
             <div className={`rounded-xl shadow-xl p-8 ${
               darkMode
                 ? "bg-gray-800 border border-gray-700"
@@ -879,6 +982,12 @@ export default function CityComparison() {
                           ? (city.professions[selectedProfession] || 0) -
                             city.costOfLiving * 12
                           : city.yearlySavings;
+                        const baseSavings = (() => {
+                          const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
+                          return selectedProfession
+                            ? (baseCity.professions[selectedProfession] || 0) - baseCity.costOfLiving * 12
+                            : baseCity.yearlySavings;
+                        })();
                         return (
                           <div
                             key={city.id}
@@ -908,7 +1017,9 @@ export default function CityComparison() {
                                     : "text-red-700"
                               }`}
                             >
-                              {formatCurrency(savings)}
+                              {comparisonMode === "ratio"
+                                ? `${getRatioValue(savings, baseSavings)}x`
+                                : formatCurrency(savings)}
                             </span>
                           </div>
                         );
