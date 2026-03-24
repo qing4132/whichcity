@@ -39,7 +39,6 @@ interface ExchangeRates {
 }
 
 type Locale = "zh" | "en" | "ja" | "es";
-type DescriptionMode = "data" | "narrative";
 
 type ClimateType =
   | "tropical"
@@ -102,9 +101,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     bigMacUnit: "个巨无霸",
     oneBigMac: "1 个巨无霸",
     cityDescription: "城市描述",
-    descriptionMode: "描述模式",
-    descModeData: "数据模板",
-    descModeNarrative: "自然叙述",
     keyInsights: "关键洞察",
     topIncomeCity: "最高收入城市",
     topSavingsCity: "最佳储蓄城市",
@@ -125,11 +121,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     climate_oceanic: "海洋性",
     descriptionTemplate:
       "{city}（{country}）整体上收入与生活成本都较高。按当前职业估算年收入约 {income}，月生活成本约 {cost}，年可结余约 {savings}。",
-    narrativeTemplate:
-      "如果你正在考虑搬去 {city}（{country}），从这份对比看，它的生活节奏更偏向“{climateType}”。按当前职业估算，你的年收入约 {income}，月生活成本约 {cost}，一年大概能存下 {savings}。结合气候（{avgTemp}{unitC}、{annualRain}{unitMm}、{sunshine}{unitH} 日照），适合追求 {focus} 的人。",
-    focusIncome: "高收入机会",
-    focusSavings: "更强的储蓄能力",
-    focusBalance: "收入与成本的平衡",
   },
   en: {
     loading: "Loading data...",
@@ -177,9 +168,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     bigMacUnit: "Big Macs",
     oneBigMac: "1 Big Mac",
     cityDescription: "City Description",
-    descriptionMode: "Description",
-    descModeData: "Data",
-    descModeNarrative: "Narrative",
     keyInsights: "Key Insights",
     topIncomeCity: "Highest Income City",
     topSavingsCity: "Best Savings City",
@@ -200,11 +188,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     climate_oceanic: "Oceanic",
     descriptionTemplate:
       "{city} ({country}) offers a competitive income-cost profile. Estimated annual income for the selected profession is {income}, monthly living cost is {cost}, and potential yearly savings are {savings}.",
-    narrativeTemplate:
-      "Thinking about moving to {city} ({country})? Based on this comparison, it leans toward a {climateType} lifestyle. With the selected profession, estimated annual income is {income}, monthly living cost is {cost}, and potential yearly savings are {savings}. Climate-wise ({avgTemp}{unitC}, {annualRain}{unitMm}, {sunshine}{unitH} sunshine), it fits people prioritizing {focus}.",
-    focusIncome: "higher income opportunities",
-    focusSavings: "stronger saving potential",
-    focusBalance: "a balanced trade-off",
   },
   ja: {
     loading: "データを読み込み中...",
@@ -252,9 +235,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     bigMacUnit: "個分",
     oneBigMac: "1個分",
     cityDescription: "都市の説明",
-    descriptionMode: "説明モード",
-    descModeData: "データ",
-    descModeNarrative: "自然文",
     keyInsights: "主要インサイト",
     topIncomeCity: "最高収入の都市",
     topSavingsCity: "貯蓄力が最も高い都市",
@@ -275,11 +255,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     climate_oceanic: "海洋性",
     descriptionTemplate:
       "{city}（{country}）は収入と生活コストのバランスが特徴です。選択中の職種の推定年収は {income}、月間生活費は {cost}、年間貯蓄見込みは {savings} です。",
-    narrativeTemplate:
-      "{city}（{country}）への移住を検討中ですか？この比較では「{climateType}」寄りの暮らしが想像できます。選択中の職種の推定年収は {income}、月間生活費は {cost}、年間貯蓄見込みは {savings}。気候（{avgTemp}{unitC}・{annualRain}{unitMm}・日照{sunshine}{unitH}）も踏まえると、{focus} を重視する人に向きます。",
-    focusIncome: "収入機会",
-    focusSavings: "貯蓄力",
-    focusBalance: "バランス",
   },
   es: {
     loading: "Cargando datos...",
@@ -327,9 +302,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     bigMacUnit: "Big Macs",
     oneBigMac: "1 Big Mac",
     cityDescription: "Descripcion de la Ciudad",
-    descriptionMode: "Descripcion",
-    descModeData: "Datos",
-    descModeNarrative: "Narrativa",
     keyInsights: "Insights Clave",
     topIncomeCity: "Ciudad con Mayor Ingreso",
     topSavingsCity: "Ciudad con Mejor Ahorro",
@@ -350,11 +322,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     climate_oceanic: "Oceanico",
     descriptionTemplate:
       "{city} ({country}) muestra un equilibrio competitivo entre ingresos y costo de vida. El ingreso anual estimado para la profesion seleccionada es {income}, el costo mensual es {cost} y el ahorro anual potencial es {savings}.",
-    narrativeTemplate:
-      "¿Pensando en mudarte a {city} ({country})? Según esta comparación, encaja con un estilo de vida {climateType}. Con la profesión seleccionada, el ingreso anual estimado es {income}, el costo mensual es {cost} y el ahorro anual potencial es {savings}. En cuanto al clima ({avgTemp}{unitC}, {annualRain}{unitMm}, {sunshine}{unitH} de sol), es ideal si priorizas {focus}.",
-    focusIncome: "mayores ingresos",
-    focusSavings: "más ahorro",
-    focusBalance: "un equilibrio",
   },
 };
 
@@ -585,8 +552,6 @@ export default function CityComparison() {
   const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
   const [darkMode, setDarkMode] = useState(false);
   const [locale, setLocale] = useState<Locale>("zh");
-  const [descriptionMode, setDescriptionMode] =
-    useState<DescriptionMode>("data");
 
   const maxComparisons = windowWidth < 768 ? 2 : windowWidth < 1024 ? 3 : 5;
 
@@ -602,10 +567,6 @@ export default function CityComparison() {
     const savedLocale = localStorage.getItem("locale");
     if (savedLocale && ["zh", "en", "ja", "es"].includes(savedLocale)) {
       setLocale(savedLocale as Locale);
-    }
-    const savedDescriptionMode = localStorage.getItem("descriptionMode");
-    if (savedDescriptionMode && ["data", "narrative"].includes(savedDescriptionMode)) {
-      setDescriptionMode(savedDescriptionMode as DescriptionMode);
     }
 
     const fetchData = async () => {
@@ -649,10 +610,6 @@ export default function CityComparison() {
   useEffect(() => {
     localStorage.setItem("locale", locale);
   }, [locale]);
-
-  useEffect(() => {
-    localStorage.setItem("descriptionMode", descriptionMode);
-  }, [descriptionMode]);
 
   const t = (key: string, params?: Record<string, string | number>) => {
     const template = TRANSLATIONS[locale]?.[key] || TRANSLATIONS.zh[key] || key;
@@ -711,14 +668,6 @@ export default function CityComparison() {
     return `${symbol}${converted.toFixed(2)}`;
   };
 
-  const pickFocusKey = (salary: number, monthlyCost: number) => {
-    const yearlySavings = salary - monthlyCost * 12;
-    const savingsRate = salary > 0 ? yearlySavings / salary : 0;
-    if (salary >= 150000 || salary >= monthlyCost * 40) return "focusIncome";
-    if (savingsRate >= 0.35) return "focusSavings";
-    return "focusBalance";
-  };
-
   const getClimate = (city: City): ClimateInfo => {
     const r = (Math.sin(city.id * 999) + 1) / 2; // 0..1 deterministic
     const r2 = (Math.sin(city.id * 1337 + 42) + 1) / 2;
@@ -765,35 +714,14 @@ export default function CityComparison() {
   };
 
   const getLocalizedDescription = (city: City, salary: number): string => {
-    if (descriptionMode === "data") {
-      if (locale === "zh") return city.description;
-      const yearlySavings = salary - city.costOfLiving * 12;
-      return t("descriptionTemplate", {
-        city: getCityLabel(city),
-        country: getCountryLabel(city.country),
-        income: formatCurrency(salary),
-        cost: formatCurrency(city.costOfLiving),
-        savings: formatCurrency(yearlySavings),
-      });
-    }
-
+    if (locale === "zh") return city.description;
     const yearlySavings = salary - city.costOfLiving * 12;
-    const climate = getClimate(city);
-    const focusKey = pickFocusKey(salary, city.costOfLiving);
-    return t("narrativeTemplate", {
+    return t("descriptionTemplate", {
       city: getCityLabel(city),
       country: getCountryLabel(city.country),
       income: formatCurrency(salary),
       cost: formatCurrency(city.costOfLiving),
       savings: formatCurrency(yearlySavings),
-      climateType: t(`climate_${climate.type}`),
-      avgTemp: climate.avgTempC,
-      annualRain: climate.annualRainMm,
-      sunshine: climate.sunshineHours,
-      unitC: t("unitC"),
-      unitMm: t("unitMm"),
-      unitH: t("unitH"),
-      focus: t(focusKey),
     });
   };
 
@@ -1021,42 +949,6 @@ export default function CityComparison() {
           </div>
 
           <div className="flex items-center gap-3 flex-wrap justify-end">
-            <div className="flex items-center gap-2">
-              <span className={`text-sm font-semibold ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
-                {t("descriptionMode")}:
-              </span>
-              <div className={`inline-flex rounded-lg overflow-hidden border ${darkMode ? "border-gray-600" : "border-gray-300"}`}>
-                <button
-                  onClick={() => setDescriptionMode("data")}
-                  className={`px-3 py-2 text-sm font-medium transition ${
-                    descriptionMode === "data"
-                      ? darkMode
-                        ? "bg-blue-600 text-white"
-                        : "bg-blue-600 text-white"
-                      : darkMode
-                        ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
-                        : "bg-white text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  {t("descModeData")}
-                </button>
-                <button
-                  onClick={() => setDescriptionMode("narrative")}
-                  className={`px-3 py-2 text-sm font-medium transition ${
-                    descriptionMode === "narrative"
-                      ? darkMode
-                        ? "bg-blue-600 text-white"
-                        : "bg-blue-600 text-white"
-                      : darkMode
-                        ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
-                        : "bg-white text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  {t("descModeNarrative")}
-                </button>
-              </div>
-            </div>
-
             <div className="flex items-center gap-2">
               <span className={`text-sm font-semibold ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
                 {t("language")}:
@@ -1370,94 +1262,6 @@ export default function CityComparison() {
               )}
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* 职业收入对比 */}
-                <div className={`p-4 rounded-lg ${
-                  darkMode ? "bg-gray-700" : "bg-gray-50"
-                }`}>
-                  <h3 className={`text-lg font-bold mb-4 ${
-                    darkMode ? "text-white" : "text-gray-800"
-                  }`}>
-                    {t("professionIncomeCompare")}
-                  </h3>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={prepareProfessionChartData()}>
-                      <CartesianGrid
-                        strokeDasharray="3 3"
-                        stroke={darkMode ? "#444" : "#ddd"}
-                      />
-                      <XAxis
-                        dataKey="name"
-                        stroke={darkMode ? "#999" : "#666"}
-                      />
-                      <YAxis stroke={darkMode ? "#999" : "#666"} />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: darkMode ? "#333" : "#fff",
-                          border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
-                          color: darkMode ? "#fff" : "#000",
-                        }}
-                        formatter={(value: any) =>
-                          comparisonMode === "ratio"
-                            ? `${parseFloat(value).toFixed(2)}x`
-                            : comparisonMode === "bigmac"
-                              ? `${parseFloat(value).toFixed(2)} ${t("bigMacUnit")}`
-                              : formatCurrency(Number(value))
-                        }
-                      />
-                      <Bar
-                        dataKey="salary"
-                        fill="#3b82f6"
-                        radius={[8, 8, 0, 0]}
-                      />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-
-                {/* 成本占比分析 */}
-                <div className={`p-4 rounded-lg ${
-                  darkMode ? "bg-gray-700" : "bg-gray-50"
-                }`}>
-                  <h3 className={`text-lg font-bold mb-4 ${
-                    darkMode ? "text-white" : "text-gray-800"
-                  }`}>
-                    {t("costRatioAnalysis")}
-                  </h3>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={prepareCostRatioData()}>
-                      <CartesianGrid
-                        strokeDasharray="3 3"
-                        stroke={darkMode ? "#444" : "#ddd"}
-                      />
-                      <XAxis
-                        dataKey="name"
-                        stroke={darkMode ? "#999" : "#666"}
-                      />
-                      <YAxis stroke={darkMode ? "#999" : "#666"} />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: darkMode ? "#333" : "#fff",
-                          border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
-                          color: darkMode ? "#fff" : "#000",
-                        }}
-                        formatter={(value: any) =>
-                          `${parseFloat(value).toFixed(1)}%`
-                        }
-                      />
-                      <Legend />
-                      <Bar
-                        dataKey={t("costRatioKey")}
-                        stackId="a"
-                        fill="#ef4444"
-                      />
-                      <Bar
-                        dataKey={t("savingsRatioKey")}
-                        stackId="a"
-                        fill="#10b981"
-                      />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-
                 {/* 年度财务对比 */}
                 <div className={`p-4 rounded-lg lg:col-span-2 ${
                   darkMode ? "bg-gray-700" : "bg-gray-50"
@@ -1524,7 +1328,7 @@ export default function CityComparison() {
                   }`}>
                     {t("climateCompare")}
                   </h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div>
                       <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
                         {t("avgTemp")} ({t("unitC")})
@@ -1574,6 +1378,32 @@ export default function CityComparison() {
                             formatter={(v: any) => `${Math.round(Number(v))} ${t("unitMm")}`}
                           />
                           <Bar dataKey="value" fill="#a78bfa" radius={[8, 8, 0, 0]} />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div>
+                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
+                        {t("sunshine")} ({t("unitH")})
+                      </p>
+                      <ResponsiveContainer width="100%" height={240}>
+                        <BarChart
+                          data={comparisonData.map((city) => {
+                            const climate = getClimate(city);
+                            return { name: getCityLabel(city), value: climate.sunshineHours };
+                          })}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
+                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
+                          <YAxis stroke={darkMode ? "#999" : "#666"} />
+                          <Tooltip
+                            contentStyle={{
+                              backgroundColor: darkMode ? "#333" : "#fff",
+                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
+                              color: darkMode ? "#fff" : "#000",
+                            }}
+                            formatter={(v: any) => `${Math.round(Number(v))} ${t("unitH")}`}
+                          />
+                          <Bar dataKey="value" fill="#fbbf24" radius={[8, 8, 0, 0]} />
                         </BarChart>
                       </ResponsiveContainer>
                     </div>
