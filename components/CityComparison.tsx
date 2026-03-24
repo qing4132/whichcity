@@ -58,7 +58,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     allContinents: "显示所有大洲",
     selectedCities: "已选择城市 ({selected}/{max}):",
     chooseCity: "选择城市:",
-    showingCities: "显示 80/{total} 个城市，请使用搜索或过滤筛选",
+    showingCities: "显示 100/{total} 个城市，请使用搜索或过滤筛选",
     compareCities: "对比 {count} 个城市",
     clear: "清除",
     needAtLeastTwoCities: "请选择至少2个城市进行对比",
@@ -109,7 +109,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     allContinents: "All continents",
     selectedCities: "Selected cities ({selected}/{max}):",
     chooseCity: "Choose cities:",
-    showingCities: "Showing 80/{total} cities, use search or filters to narrow down",
+    showingCities: "Showing 100/{total} cities, use search or filters to narrow down",
     compareCities: "Compare {count} cities",
     clear: "Clear",
     needAtLeastTwoCities: "Please select at least 2 cities to compare",
@@ -161,7 +161,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     allContinents: "すべての大陸",
     selectedCities: "選択済み都市 ({selected}/{max}):",
     chooseCity: "都市を選択:",
-    showingCities: "80/{total}都市を表示中。検索またはフィルターをご利用ください",
+    showingCities: "100/{total}都市を表示中。検索またはフィルターをご利用ください",
     compareCities: "{count}都市を比較",
     clear: "クリア",
     needAtLeastTwoCities: "比較するには少なくとも2都市を選択してください",
@@ -213,7 +213,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     allContinents: "Todos los continentes",
     selectedCities: "Ciudades seleccionadas ({selected}/{max}):",
     chooseCity: "Elegir ciudades:",
-    showingCities: "Mostrando 80/{total} ciudades, usa búsqueda o filtros",
+    showingCities: "Mostrando 100/{total} ciudades, usa búsqueda o filtros",
     compareCities: "Comparar {count} ciudades",
     clear: "Limpiar",
     needAtLeastTwoCities: "Selecciona al menos 2 ciudades para comparar",
@@ -585,15 +585,7 @@ export default function CityComparison() {
   };
 
   const getLocalizedDescription = (city: City, salary: number): string => {
-    if (locale === "zh") return city.description;
-    const yearlySavings = salary - city.costOfLiving * 12;
-    return t("descriptionTemplate", {
-      city: getCityLabel(city),
-      country: getCountryLabel(city.country),
-      income: formatCurrency(salary),
-      cost: formatCurrency(city.costOfLiving),
-      savings: formatCurrency(yearlySavings),
-    });
+    return city.description;
   };
 
   const continents = [...new Set(cities.map((c) => c.continent))].sort();
@@ -1042,7 +1034,7 @@ export default function CityComparison() {
               {t("chooseCity")}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-              {filteredCities.slice(0, 80).map((city) => (
+              {filteredCities.slice(0, 100).map((city) => (
                 <button
                   key={city.id}
                   onClick={() => handleCitySelect(city.id.toString())}
