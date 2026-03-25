@@ -27,6 +27,7 @@ interface City {
   costComfort: number;
   costModerate: number;
   costBudget: number;
+  costMinimal: number;
   bigMacPrice: number;
   yearlySavings: number;
   currency: string;
@@ -37,7 +38,7 @@ interface City {
 }
 
 type ComparisonMode = "normal" | "ratio" | "bigmac";
-type CostTier = "comfort" | "moderate" | "budget";
+type CostTier = "comfort" | "moderate" | "budget" | "minimal";
 
 interface ExchangeRates {
   rates: Record<string, number>;
@@ -144,6 +145,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     costTierComfort: "舒适",
     costTierModerate: "适中",
     costTierBudget: "节俭",
+    costTierMinimal: "极简",
     climate: "气候",
     climateCompare: "气候对比",
     climateType: "气候类型",
@@ -244,6 +246,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     costTierComfort: "Comfort",
     costTierModerate: "Average",
     costTierBudget: "Budget",
+    costTierMinimal: "Minimal",
     climate: "Climate",
     climateCompare: "Climate comparison",
     climateType: "Climate type",
@@ -344,6 +347,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     costTierComfort: "快適",
     costTierModerate: "標準",
     costTierBudget: "節約",
+    costTierMinimal: "極限",
     climate: "気候",
     climateCompare: "気候比較",
     climateType: "気候タイプ",
@@ -444,6 +448,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     costTierComfort: "Cómodo",
     costTierModerate: "Promedio",
     costTierBudget: "Económico",
+    costTierMinimal: "Mínimo",
     climate: "Clima",
     climateCompare: "Comparacion de clima",
     climateType: "Tipo de clima",
@@ -961,6 +966,7 @@ export default function CityComparison() {
   const getCost = (city: City): number => {
     if (costTier === "comfort") return city.costComfort;
     if (costTier === "budget") return city.costBudget;
+    if (costTier === "minimal") return city.costMinimal;
     return city.costModerate;
   };
 
@@ -1381,6 +1387,18 @@ export default function CityComparison() {
                   }`}
                 >
                   {t("costTierBudget")}
+                </button>
+                <button
+                  onClick={() => setCostTier("minimal")}
+                  className={`flex-1 px-4 py-2 rounded-lg font-medium transition ${
+                    costTier === "minimal"
+                      ? "bg-orange-600 text-white"
+                      : darkMode
+                        ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  }`}
+                >
+                  {t("costTierMinimal")}
                 </button>
               </div>
             </div>
