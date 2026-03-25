@@ -262,38 +262,37 @@ export default function CityComparison() {
       <div className={`min-h-screen py-4 sm:py-8 px-3 sm:px-4 transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
         <div className="max-w-7xl mx-auto">
 
-          {/* ── Header ── */}
-          <div className="flex justify-between items-start mb-6 sm:mb-8 flex-col md:flex-row gap-4">
-            <div>
-              <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 ${darkMode ? "text-slate-100" : "text-slate-900"}`}>
-                {t("appTitle")}
-              </h1>
-              <p className={`text-base sm:text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
-                {t("appSubtitle", { count: cities.length })}
-              </p>
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
-              <div className="flex items-center gap-2">
-                <span className={`text-sm font-semibold ${darkMode ? "text-gray-300" : "text-gray-700"}`}>{t("language")}:</span>
+          {/* ── Top Bar (switchers) ── */}
+          <div className={`border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 sm:mb-8 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
+            <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 flex-wrap">
+              <span className={`font-bold text-sm ${darkMode ? "text-slate-200" : "text-slate-700"}`}>🌍 City Compare</span>
+              <div className="flex items-center gap-2 flex-wrap">
                 <select value={locale} onChange={e => setLocale(e.target.value as Locale)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition ${darkMode ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400" : "bg-white text-gray-800 border border-gray-300 focus:border-blue-500"} focus:outline-none`}>
+                  className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
                   {(Object.keys(LANGUAGE_LABELS) as Locale[]).map(lang => (
                     <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
                   ))}
                 </select>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className={`text-sm font-semibold ${darkMode ? "text-gray-300" : "text-gray-700"}`}>{t("displayCurrency")}</span>
                 <select value={selectedCurrency} onChange={e => handleCurrencyChange(e.target.value)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition ${darkMode ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400" : "bg-white text-gray-800 border border-gray-300 focus:border-blue-500"} focus:outline-none`}>
+                  className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
                   {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
                 </select>
+                <button onClick={() => setDarkMode(!darkMode)}
+                  className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
+                  {darkMode ? "☀️" : "🌙"}
+                </button>
               </div>
-              <button onClick={() => setDarkMode(!darkMode)}
-                className={`px-4 py-2 rounded-lg font-medium transition whitespace-nowrap ${darkMode ? "bg-yellow-500 text-gray-900 hover:bg-yellow-400" : "bg-indigo-600 text-white hover:bg-indigo-700"}`}>
-                {darkMode ? t("dayMode") : t("nightMode")}
-              </button>
             </div>
+          </div>
+
+          {/* ── Header ── */}
+          <div className="text-center mb-8 sm:mb-10">
+            <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3 ${darkMode ? "text-white" : "text-slate-900"}`}>
+              {t("appTitle")}
+            </h1>
+            <p className={`text-base sm:text-lg max-w-2xl mx-auto ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+              {t("appSubtitle", { count: cities.length })}
+            </p>
           </div>
 
           {/* ── Control Panel ── */}
@@ -362,26 +361,6 @@ export default function CityComparison() {
                 {continents.map(c => <option key={c} value={c}>{getContinentLabel(c)}</option>)}
               </select>
             </div>
-
-            {/* Selected city tags */}
-            {selectedCities.length > 0 && (
-              <div className="mb-6">
-                <p className={`text-sm font-semibold mb-3 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
-                  {t("selectedCities", { selected: selectedCities.length, max: maxComparisons })}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {selectedCities.map(id => {
-                    const city = cities.find(c => c.id.toString() === id);
-                    return (
-                      <div key={id} className={`px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 ${darkMode ? "bg-blue-600/90 text-white" : "bg-blue-50 text-blue-700 border border-blue-200"}`}>
-                        {city ? getCityLabel(city) : ""}
-                        <button onClick={() => handleCitySelect(id)} className={`opacity-60 hover:opacity-100 transition-opacity ${darkMode ? "text-white" : "text-blue-500"}`}>✕</button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
 
             {/* City grid — responsive columns */}
             <div className="mb-4">

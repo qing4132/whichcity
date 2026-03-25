@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import type { Locale } from "@/lib/types";
 import { POPULAR_CURRENCIES } from "@/lib/constants";
@@ -21,6 +22,8 @@ export default function PageShell({
   onLocaleChange, onDarkModeChange, onCurrencyChange,
   t, children,
 }: Props) {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   const bg = darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900";
   const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
   const footerBg = darkMode ? "bg-slate-900 border-slate-700 text-slate-500" : "bg-white border-slate-200 text-slate-400";

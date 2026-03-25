@@ -788,7 +788,7 @@ export const CITY_NAME_TRANSLATIONS: Record<number, Record<Locale, string>> = {
   55: { zh: "卡拉奇", en: "Karachi", ja: "カラチ", es: "Karachi" },
   56: { zh: "伊斯兰堡", en: "Islamabad", ja: "イスラマバード", es: "Islamabad" },
   57: { zh: "雅加达", en: "Jakarta", ja: "ジャカルタ", es: "Yakarta" },
-  58: { zh: "菲律宾马尼拉", en: "Manila", ja: "マニラ", es: "Manila" },
+  58: { zh: "马尼拉", en: "Manila", ja: "マニラ", es: "Manila" },
   59: { zh: "首尔", en: "Seoul", ja: "ソウル", es: "Seul" },
   60: { zh: "釜山", en: "Busan", ja: "釜山", es: "Busan" },
   61: { zh: "台北", en: "Taipei", ja: "台北", es: "Taipéi" },

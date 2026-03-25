@@ -35,7 +35,7 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
   const cityName = CITY_NAME_TRANSLATIONS[id]?.[locale] || city.name;
   const countryName = COUNTRY_TRANSLATIONS[city.country]?.[locale] || city.country;
   const climate = getCityClimate(id);
-  const aqiLabel = getAqiLabel(city.airQuality);
+  const aqiLabel = getAqiLabel(city.airQuality, locale);
 
   const tierCost = city[TIER_KEYS.find((tk) => tk.key === selectedTier)!.field];
   const annualExpense = tierCost * 12;
@@ -187,7 +187,7 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
           <h2 className={`text-xl font-bold mb-4 ${headingCls}`}>{t("climateEnv")}</h2>
           <div className="space-y-3">
             {[
-              [t("climateType"), getClimateLabel(climate.type)],
+              [t("climateType"), getClimateLabel(climate.type, locale)],
               [t("avgTemp"), `${climate.avgTempC.toFixed(1)}°C`],
               [t("annualRain"), `${Math.round(climate.annualRainMm)} mm`],
               [t("sunshine"), `${Math.round(climate.sunshineHours)} h`],

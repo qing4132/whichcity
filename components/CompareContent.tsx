@@ -61,10 +61,10 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
     { label: t("yearlySavings"), a: fc(savingsA), b: fc(savingsB), winner: wins.savings as "A" | "B" },
     { label: t("housePrice") + " " + t("housePriceUnit"), a: fc(cityA.housePrice), b: fc(cityB.housePrice), winner: wins.housing as "A" | "B" },
     { label: t("yearsToBuy"), a: `${yearsA} ${t("insightYears")}`, b: `${yearsB} ${t("insightYears")}`, winner: yearsA !== "N/A" && yearsB !== "N/A" ? (Number(yearsA) <= Number(yearsB) ? "A" : "B") : "tie" },
-    { label: t("airQuality") + " (AQI)", a: `${cityA.airQuality} – ${getAqiLabel(cityA.airQuality)}`, b: `${cityB.airQuality} – ${getAqiLabel(cityB.airQuality)}`, winner: wins.air as "A" | "B" },
+    { label: t("airQuality") + " (AQI)", a: `${cityA.airQuality} – ${getAqiLabel(cityA.airQuality, locale)}`, b: `${cityB.airQuality} – ${getAqiLabel(cityB.airQuality, locale)}`, winner: wins.air as "A" | "B" },
     { label: t("doctorsPerThousand"), a: String(cityA.doctorsPerThousand), b: String(cityB.doctorsPerThousand), winner: wins.doctors as "A" | "B" },
     { label: t("bigMac"), a: fc(cityA.bigMacPrice), b: fc(cityB.bigMacPrice), winner: cityA.bigMacPrice <= cityB.bigMacPrice ? "A" : "B" },
-    { label: t("climateType"), a: getClimateLabel(climateA.type), b: getClimateLabel(climateB.type), winner: "tie" },
+    { label: t("climateType"), a: getClimateLabel(climateA.type, locale), b: getClimateLabel(climateB.type, locale), winner: "tie" },
     { label: t("avgTemp"), a: `${climateA.avgTempC.toFixed(1)}°C`, b: `${climateB.avgTempC.toFixed(1)}°C`, winner: "tie" },
     { label: t("sunshine"), a: `${Math.round(climateA.sunshineHours)} h`, b: `${Math.round(climateB.sunshineHours)} h`, winner: "tie" },
   ];
