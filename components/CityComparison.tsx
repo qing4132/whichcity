@@ -29,6 +29,7 @@ interface City {
   currency: string;
   description: string;
   professions: Record<string, number>;
+  housePrice: number;
 }
 
 type ComparisonMode = "normal" | "ratio" | "bigmac";
@@ -53,15 +54,6 @@ interface ClimateInfo {
   avgTempC: number;
   annualRainMm: number;
   sunshineHours: number;
-}
-
-interface CityInfraInfo {
-  doctorsPerThousand: number;
-  avgAqi3y: number;
-  directDestinations: number;
-  housingPrice: number;
-  savingsToHouseRatio: number;
-  indieBookstores: number;
 }
 
 const TRANSLATIONS: Record<Locale, Record<string, string>> = {
@@ -100,6 +92,10 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     incomeRanking: "💰 收入排名",
     savingsRanking: "🏦 存钱能力",
     lowestCostCity: "🔻 最低生活成本城市",
+    housePrice: "房价",
+    housePricePerSqm: "每平米房价",
+    housePriceUnit: "/m²",
+    lowestHousePrice: "🏠 最低房价城市",
     insightSuggestionTitle: "推荐下一步",
     insightSuggestionPick3: "当前最适合深度调研的城市：{cities}。优先关注收入和储蓄潜力。",
     insightSuggestionNeedMore: "建议选择至少 3 个城市进行对比（当前：{count}）。",
@@ -128,16 +124,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     climate_arid: "干旱",
     climate_mediterranean: "地中海",
     climate_oceanic: "海洋性",
-    infrastructureCompare: "城市基础与健康环境对比",
-    doctorsPerThousand: "每千人医生数",
-    avgAqi3y: "近三年平均AQI",
-    directDestinations: "机场直飞目的地",
-    housingPrice: "房价",
-    savingsHouseRatio: "年储蓄/房价",
-    indieBookstores: "独立书店数量",
-    aqiLabel: "AQI",
-    destLabel: "个目的地",
-    priceUnit: "元/㎡",
     descriptionTemplate:
       "{city}（{country}）整体上收入与生活成本都较高。按当前职业估算年收入约 {income}，月生活成本约 {cost}，年可结余约 {savings}。",
   },
@@ -176,6 +162,10 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     incomeRanking: "💰 Income Ranking",
     savingsRanking: "🏦 Savings Potential",
     lowestCostCity: "🔻 Lowest Cost City",
+    housePrice: "House Price",
+    housePricePerSqm: "Price per sqm",
+    housePriceUnit: "/m²",
+    lowestHousePrice: "🏠 Lowest House Price",
     insightSuggestionTitle: "Recommended next step",
     insightSuggestionPick3: "Top candidates for deep research: {cities}. Focus on income and savings potential.",
     insightSuggestionNeedMore: "Select at least 3 cities for more conclusive comparison (current: {count}).",
@@ -205,16 +195,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     climate_arid: "Arid",
     climate_mediterranean: "Mediterranean",
     climate_oceanic: "Oceanic",
-    infrastructureCompare: "Urban Infrastructure & Health Environment",
-    doctorsPerThousand: "Doctors per 1,000 people",
-    avgAqi3y: "Avg AQI (3y)",
-    directDestinations: "Direct flight destinations",
-    housingPrice: "Housing price",
-    savingsHouseRatio: "Yearly savings / housing price",
-    indieBookstores: "Independent bookstores",
-    aqiLabel: "AQI",
-    destLabel: "destinations",
-    priceUnit: "/m²",
     descriptionTemplate:
       "{city} ({country}) offers a competitive income-cost profile. Estimated annual income for the selected profession is {income}, monthly living cost is {cost}, and potential yearly savings are {savings}.",
   },
@@ -253,6 +233,10 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     incomeRanking: "💰 収入ランキング",
     savingsRanking: "🏦 貯蓄力",
     lowestCostCity: "🔻 最低生活コストの都市",
+    housePrice: "住宅価格",
+    housePricePerSqm: "㎡あたり価格",
+    housePriceUnit: "/m²",
+    lowestHousePrice: "🏠 最低住宅価格の都市",
     insightSuggestionTitle: "次のステップ",
     insightSuggestionPick3: "調査候補：{cities}。収入と貯蓄を重視して深堀りしましょう。",
     insightSuggestionNeedMore: "より有効な比較には3都市以上を選択してください（現在：{count}）。",
@@ -282,16 +266,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     climate_arid: "乾燥",
     climate_mediterranean: "地中海性",
     climate_oceanic: "海洋性",
-    infrastructureCompare: "都市インフラと健康環境の比較",
-    doctorsPerThousand: "人口千人あたり医師数",
-    avgAqi3y: "過去3年平均AQI",
-    directDestinations: "空港の直行便就航地数",
-    housingPrice: "住宅価格",
-    savingsHouseRatio: "年間貯蓄/住宅価格",
-    indieBookstores: "独立系書店数",
-    aqiLabel: "AQI",
-    destLabel: "就航地",
-    priceUnit: "円/㎡",
     descriptionTemplate:
       "{city}（{country}）は収入と生活コストのバランスが特徴です。選択中の職種の推定年収は {income}、月間生活費は {cost}、年間貯蓄見込みは {savings} です。",
   },
@@ -330,6 +304,10 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     incomeRanking: "💰 Ranking de Ingresos",
     savingsRanking: "🏦 Potencial de Ahorro",
     lowestCostCity: "🔻 Ciudad con Menor Costo",
+    housePrice: "Precio de Vivienda",
+    housePricePerSqm: "Precio por m²",
+    housePriceUnit: "/m²",
+    lowestHousePrice: "🏠 Ciudad con Menor Precio",
     insightSuggestionTitle: "Próximo paso recomendado",
     insightSuggestionPick3: "Ciudades recomendadas para análisis profundo: {cities}. Prioriza ingresos y ahorro.",
     insightSuggestionNeedMore: "Selecciona al menos 3 ciudades para una comparación más completa (actual: {count}).",
@@ -359,16 +337,6 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     climate_arid: "Arido",
     climate_mediterranean: "Mediterraneo",
     climate_oceanic: "Oceanico",
-    infrastructureCompare: "Infraestructura urbana y entorno de salud",
-    doctorsPerThousand: "Medicos por cada 1,000 hab.",
-    avgAqi3y: "AQI promedio (3 anos)",
-    directDestinations: "Destinos directos en avion",
-    housingPrice: "Precio de vivienda",
-    savingsHouseRatio: "Ahorro anual / precio vivienda",
-    indieBookstores: "Librerias independientes",
-    aqiLabel: "AQI",
-    destLabel: "destinos",
-    priceUnit: "/m²",
     descriptionTemplate:
       "{city} ({country}) muestra un equilibrio competitivo entre ingresos y costo de vida. El ingreso anual estimado para la profesion seleccionada es {income}, el costo mensual es {cost} y el ahorro anual potencial es {savings}.",
   },
@@ -759,51 +727,6 @@ export default function CityComparison() {
       avgTempC: temp,
       annualRainMm: Math.max(0, rain),
       sunshineHours: Math.max(800, sunshine),
-    };
-  };
-
-  const getCityInfra = (city: City): CityInfraInfo => {
-    const r = (Math.sin(city.id * 811 + 17) + 1) / 2;
-    const r2 = (Math.sin(city.id * 1237 + 29) + 1) / 2;
-    const r3 = (Math.sin(city.id * 1999 + 5) + 1) / 2;
-
-    const incomeFactor = Math.min(1.4, Math.max(0.7, city.averageIncome / 80000));
-    const costFactor = Math.min(1.3, Math.max(0.75, city.costOfLiving / 3000));
-
-    const doctorsPerThousand = parseFloat(
-      (1.1 + incomeFactor * 2.2 + r * 1.8).toFixed(1)
-    );
-
-    // Approximate conversion to AQI-like scale, regardless of local standards.
-    const avgAqi3y = Math.round(
-      35 + (1.4 - incomeFactor) * 35 + (costFactor - 0.8) * 12 + r2 * 70
-    );
-
-    const directDestinations = Math.round(
-      25 + incomeFactor * 90 + (city.continent === "欧洲" ? 30 : 0) + r3 * 110
-    );
-
-    const housingPrice = Math.round(
-      city.costOfLiving * (7 + incomeFactor * 5 + r2 * 2.5) * 100
-    );
-    const yearlySavingsBase = Math.max(
-      0,
-      city.averageIncome - city.costOfLiving * 12
-    );
-    const savingsToHouseRatio = parseFloat(
-      (yearlySavingsBase / Math.max(1, housingPrice)).toFixed(3)
-    );
-    const indieBookstores = Math.round(
-      15 + incomeFactor * 70 + r * 50 + (city.continent === "欧洲" ? 20 : 0)
-    );
-
-    return {
-      doctorsPerThousand: Math.max(0.8, Math.min(8.5, doctorsPerThousand)),
-      avgAqi3y: Math.max(15, Math.min(220, avgAqi3y)),
-      directDestinations: Math.max(8, Math.min(320, directDestinations)),
-      housingPrice: Math.max(2000, Math.min(220000, housingPrice)),
-      savingsToHouseRatio: Math.max(0, Math.min(2.5, savingsToHouseRatio)),
-      indieBookstores: Math.max(5, Math.min(320, indieBookstores)),
     };
   };
 
@@ -1503,175 +1426,6 @@ export default function CityComparison() {
                     </div>
                   </div>
                 </div>
-
-                {/* 城市基础与健康环境对比 */}
-                <div className={`p-4 rounded-lg lg:col-span-2 ${
-                  darkMode ? "bg-gray-700" : "bg-gray-50"
-                }`}>
-                  <h3 className={`text-lg font-bold mb-4 ${
-                    darkMode ? "text-white" : "text-gray-800"
-                  }`}>
-                    {t("infrastructureCompare")}
-                  </h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
-                        {t("doctorsPerThousand")}
-                      </p>
-                      <ResponsiveContainer width="100%" height={240}>
-                        <BarChart
-                          data={comparisonData.map((city) => {
-                            const infra = getCityInfra(city);
-                            return { name: getCityLabel(city), value: infra.doctorsPerThousand };
-                          })}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
-                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
-                          <YAxis stroke={darkMode ? "#999" : "#666"} />
-                          <Tooltip
-                            contentStyle={{
-                              backgroundColor: darkMode ? "#333" : "#fff",
-                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
-                              color: darkMode ? "#fff" : "#000",
-                            }}
-                            formatter={(v: any) => `${Number(v).toFixed(1)}`}
-                          />
-                          <Bar dataKey="value" fill="#22c55e" radius={[8, 8, 0, 0]} />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                    <div>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
-                        {t("avgAqi3y")} ({t("aqiLabel")})
-                      </p>
-                      <ResponsiveContainer width="100%" height={240}>
-                        <BarChart
-                          data={comparisonData.map((city) => {
-                            const infra = getCityInfra(city);
-                            return { name: getCityLabel(city), value: infra.avgAqi3y };
-                          })}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
-                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
-                          <YAxis stroke={darkMode ? "#999" : "#666"} />
-                          <Tooltip
-                            contentStyle={{
-                              backgroundColor: darkMode ? "#333" : "#fff",
-                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
-                              color: darkMode ? "#fff" : "#000",
-                            }}
-                            formatter={(v: any) => `${Math.round(Number(v))} ${t("aqiLabel")}`}
-                          />
-                          <Bar dataKey="value" fill="#f97316" radius={[8, 8, 0, 0]} />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                    <div>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
-                        {t("directDestinations")}
-                      </p>
-                      <ResponsiveContainer width="100%" height={240}>
-                        <BarChart
-                          data={comparisonData.map((city) => {
-                            const infra = getCityInfra(city);
-                            return { name: getCityLabel(city), value: infra.directDestinations };
-                          })}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
-                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
-                          <YAxis stroke={darkMode ? "#999" : "#666"} />
-                          <Tooltip
-                            contentStyle={{
-                              backgroundColor: darkMode ? "#333" : "#fff",
-                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
-                              color: darkMode ? "#fff" : "#000",
-                            }}
-                            formatter={(v: any) => `${Math.round(Number(v))} ${t("destLabel")}`}
-                          />
-                          <Bar dataKey="value" fill="#6366f1" radius={[8, 8, 0, 0]} />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                    <div>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
-                        {t("housingPrice")} ({t("priceUnit")})
-                      </p>
-                      <ResponsiveContainer width="100%" height={240}>
-                        <BarChart
-                          data={comparisonData.map((city) => {
-                            const infra = getCityInfra(city);
-                            return { name: getCityLabel(city), value: infra.housingPrice };
-                          })}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
-                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
-                          <YAxis stroke={darkMode ? "#999" : "#666"} />
-                          <Tooltip
-                            contentStyle={{
-                              backgroundColor: darkMode ? "#333" : "#fff",
-                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
-                              color: darkMode ? "#fff" : "#000",
-                            }}
-                            formatter={(v: any) => `${Math.round(Number(v)).toLocaleString()} ${t("priceUnit")}`}
-                          />
-                          <Bar dataKey="value" fill="#ec4899" radius={[8, 8, 0, 0]} />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                    <div>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
-                        {t("savingsHouseRatio")}
-                      </p>
-                      <ResponsiveContainer width="100%" height={240}>
-                        <BarChart
-                          data={comparisonData.map((city) => {
-                            const infra = getCityInfra(city);
-                            return { name: getCityLabel(city), value: infra.savingsToHouseRatio };
-                          })}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
-                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
-                          <YAxis stroke={darkMode ? "#999" : "#666"} />
-                          <Tooltip
-                            contentStyle={{
-                              backgroundColor: darkMode ? "#333" : "#fff",
-                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
-                              color: darkMode ? "#fff" : "#000",
-                            }}
-                            formatter={(v: any) => `${Number(v).toFixed(3)}`}
-                          />
-                          <Bar dataKey="value" fill="#14b8a6" radius={[8, 8, 0, 0]} />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                    <div>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
-                        {t("indieBookstores")}
-                      </p>
-                      <ResponsiveContainer width="100%" height={240}>
-                        <BarChart
-                          data={comparisonData.map((city) => {
-                            const infra = getCityInfra(city);
-                            return { name: getCityLabel(city), value: infra.indieBookstores };
-                          })}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
-                          <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
-                          <YAxis stroke={darkMode ? "#999" : "#666"} />
-                          <Tooltip
-                            contentStyle={{
-                              backgroundColor: darkMode ? "#333" : "#fff",
-                              border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
-                              color: darkMode ? "#fff" : "#000",
-                            }}
-                            formatter={(v: any) => `${Math.round(Number(v))}`}
-                          />
-                          <Bar dataKey="value" fill="#0ea5e9" radius={[8, 8, 0, 0]} />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -1797,7 +1551,7 @@ export default function CityComparison() {
                       </div>
 
                       {/* 巨无霸价格 */}
-                      <div className="bg-yellow-500 bg-opacity-30 p-3 rounded-lg">
+                      <div className="bg-yellow-500 bg-opacity-30 p-3 rounded-lg mb-3">
                         <p className="text-xs text-yellow-100 mb-1">
                           {t("bigMac")}
                         </p>
@@ -1810,10 +1564,23 @@ export default function CityComparison() {
                         </p>
                       </div>
 
+                      {/* 房价 */}
+                      <div className="bg-purple-500 bg-opacity-30 p-3 rounded-lg">
+                        <p className="text-xs text-purple-100 mb-1">
+                          {t("housePrice")}
+                        </p>
+                        <p className="text-lg font-bold text-white">
+                          {comparisonMode === "ratio"
+                            ? `${getRatioValue(city.housePrice, baseCity.housePrice)}x`
+                            : comparisonMode === "bigmac"
+                              ? `${toBigMacCount(city.housePrice, city.bigMacPrice)} ${t("bigMacUnit")}`
+                              : `${formatCurrency(city.housePrice)}${t("housePriceUnit")}`}
+                        </p>
+                      </div>
+
                       <div className="mt-3 grid grid-cols-2 gap-2">
                         {(() => {
                           const climate = getClimate(city);
-                          const infra = getCityInfra(city);
                           return (
                             <>
                               <div className="bg-white bg-opacity-10 p-2 rounded-lg">
@@ -1836,42 +1603,6 @@ export default function CityComparison() {
                                 <p className="text-[10px] text-blue-100 mb-1">{t("sunshine")}</p>
                                 <p className="text-xs text-white font-semibold">
                                   {Math.round(climate.sunshineHours)} {t("unitH")}
-                                </p>
-                              </div>
-                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("doctorsPerThousand")}</p>
-                                <p className="text-xs text-white font-semibold">
-                                  {infra.doctorsPerThousand.toFixed(1)}
-                                </p>
-                              </div>
-                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("avgAqi3y")}</p>
-                                <p className="text-xs text-white font-semibold">
-                                  {infra.avgAqi3y} {t("aqiLabel")}
-                                </p>
-                              </div>
-                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("directDestinations")}</p>
-                                <p className="text-xs text-white font-semibold">
-                                  {infra.directDestinations} {t("destLabel")}
-                                </p>
-                              </div>
-                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("housingPrice")}</p>
-                                <p className="text-xs text-white font-semibold">
-                                  {formatCurrency(infra.housingPrice)}
-                                </p>
-                              </div>
-                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("savingsHouseRatio")}</p>
-                                <p className="text-xs text-white font-semibold">
-                                  {infra.savingsToHouseRatio.toFixed(3)}
-                                </p>
-                              </div>
-                              <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("indieBookstores")}</p>
-                                <p className="text-xs text-white font-semibold">
-                                  {infra.indieBookstores}
                                 </p>
                               </div>
                             </>
@@ -1918,6 +1649,7 @@ export default function CityComparison() {
                 const incomeTop = [...withMetrics].sort((a, b) => b.income - a.income)[0];
                 const savingsTop = [...withMetrics].sort((a, b) => b.savings - a.savings)[0];
                 const lowestCostTop = [...withMetrics].sort((a, b) => a.monthlyCost - b.monthlyCost)[0];
+                const lowestHousePriceTop = [...withMetrics].sort((a, b) => a.city.housePrice - b.city.housePrice)[0];
 
                 const recommended = [...withMetrics]
                   .sort((a, b) => (b.income + b.savings) - (a.income + a.savings))
@@ -1933,7 +1665,7 @@ export default function CityComparison() {
 
                 return (
                   <>
-                    <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-4">
+                    <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                       <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
                         <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("topIncomeCity")}</p>
                         <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(incomeTop.city)}</h3>
@@ -1953,6 +1685,13 @@ export default function CityComparison() {
                         <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(lowestCostTop.city)}</h3>
                         <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
                           {formatCurrency(lowestCostTop.monthlyCost)} / {t("monthlyExpense")}
+                        </p>
+                      </div>
+                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
+                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("lowestHousePrice")}</p>
+                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(lowestHousePriceTop.city)}</h3>
+                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                          {formatCurrency(lowestHousePriceTop.city.housePrice)}{t("housePriceUnit")}
                         </p>
                       </div>
                     </div>
