@@ -37,7 +37,7 @@
       "airQuality": 55,
       "costComfort": 7200,
       "costModerate": 4500,
-      "costBudget": 2800
+      "costBudget": 2160
     },
     {
       "id": 2,
@@ -76,7 +76,7 @@
       "airQuality": 48,
       "costComfort": 6200,
       "costModerate": 3800,
-      "costBudget": 2400
+      "costBudget": 1710
     },
     {
       "id": 3,
@@ -115,7 +115,7 @@
       "airQuality": 42,
       "costComfort": 5200,
       "costModerate": 3200,
-      "costBudget": 2000
+      "costBudget": 1440
     },
     {
       "id": 4,
@@ -154,7 +154,7 @@
       "airQuality": 140,
       "costComfort": 3600,
       "costModerate": 2200,
-      "costBudget": 1300
+      "costBudget": 924
     },
     {
       "id": 5,
@@ -193,7 +193,7 @@
       "airQuality": 112,
       "costComfort": 4200,
       "costModerate": 2600,
-      "costBudget": 1550
+      "costBudget": 1170
     },
     {
       "id": 6,
@@ -232,7 +232,7 @@
       "airQuality": 35,
       "costComfort": 6000,
       "costModerate": 3800,
-      "costBudget": 2400
+      "costBudget": 1710
     },
     {
       "id": 7,
@@ -271,7 +271,7 @@
       "airQuality": 52,
       "costComfort": 5500,
       "costModerate": 3500,
-      "costBudget": 2200
+      "costBudget": 1575
     },
     {
       "id": 8,
@@ -310,7 +310,7 @@
       "airQuality": 45,
       "costComfort": 5200,
       "costModerate": 3200,
-      "costBudget": 2000
+      "costBudget": 1440
     },
     {
       "id": 9,
@@ -349,7 +349,7 @@
       "airQuality": 38,
       "costComfort": 5200,
       "costModerate": 3200,
-      "costBudget": 2000
+      "costBudget": 1440
     },
     {
       "id": 10,
@@ -388,7 +388,7 @@
       "airQuality": 55,
       "costComfort": 6500,
       "costModerate": 4000,
-      "costBudget": 2500
+      "costBudget": 1920
     },
     {
       "id": 11,
@@ -427,7 +427,7 @@
       "airQuality": 65,
       "costComfort": 6800,
       "costModerate": 4200,
-      "costBudget": 2600
+      "costBudget": 2016
     },
     {
       "id": 12,
@@ -466,7 +466,7 @@
       "airQuality": 48,
       "costComfort": 7800,
       "costModerate": 4800,
-      "costBudget": 3000
+      "costBudget": 2304
     },
     {
       "id": 13,
@@ -505,7 +505,7 @@
       "airQuality": 52,
       "costComfort": 5800,
       "costModerate": 3600,
-      "costBudget": 2200
+      "costBudget": 1620
     },
     {
       "id": 14,
@@ -544,7 +544,7 @@
       "airQuality": 95,
       "costComfort": 5500,
       "costModerate": 3500,
-      "costBudget": 2000
+      "costBudget": 1575
     },
     {
       "id": 15,
@@ -583,7 +583,7 @@
       "airQuality": 35,
       "costComfort": 5000,
       "costModerate": 3100,
-      "costBudget": 1950
+      "costBudget": 1395
     },
     {
       "id": 16,
@@ -622,7 +622,7 @@
       "airQuality": 28,
       "costComfort": 8500,
       "costModerate": 5200,
-      "costBudget": 3500
+      "costBudget": 2496
     },
     {
       "id": 17,
@@ -661,7 +661,7 @@
       "airQuality": 30,
       "costComfort": 8000,
       "costModerate": 4900,
-      "costBudget": 3300
+      "costBudget": 2352
     },
     {
       "id": 18,
@@ -700,7 +700,7 @@
       "airQuality": 32,
       "costComfort": 5200,
       "costModerate": 3200,
-      "costBudget": 2000
+      "costBudget": 1440
     },
     {
       "id": 19,
@@ -739,7 +739,7 @@
       "airQuality": 35,
       "costComfort": 4200,
       "costModerate": 2600,
-      "costBudget": 1600
+      "costBudget": 1170
     },
     {
       "id": 20,
@@ -778,7 +778,7 @@
       "airQuality": 42,
       "costComfort": 3600,
       "costModerate": 2200,
-      "costBudget": 1300
+      "costBudget": 924
     },
     {
       "id": 21,
@@ -817,7 +817,7 @@
       "airQuality": 45,
       "costComfort": 3600,
       "costModerate": 2200,
-      "costBudget": 1350
+      "costBudget": 924
     },
     {
       "id": 22,
@@ -856,7 +856,7 @@
       "airQuality": 62,
       "costComfort": 4200,
       "costModerate": 2600,
-      "costBudget": 1600
+      "costBudget": 1170
     },
     {
       "id": 23,
@@ -895,7 +895,7 @@
       "airQuality": 50,
       "costComfort": 3800,
       "costModerate": 2300,
-      "costBudget": 1400
+      "costBudget": 966
     },
     {
       "id": 24,
@@ -934,7 +934,7 @@
       "airQuality": 38,
       "costComfort": 4600,
       "costModerate": 2800,
-      "costBudget": 1750
+      "costBudget": 1260
     },
     {
       "id": 25,
@@ -973,7 +973,7 @@
       "airQuality": 30,
       "costComfort": 4600,
       "costModerate": 2900,
-      "costBudget": 1800
+      "costBudget": 1305
     },
     {
       "id": 26,
@@ -1012,7 +1012,7 @@
       "airQuality": 42,
       "costComfort": 3200,
       "costModerate": 1800,
-      "costBudget": 1050
+      "costBudget": 756
     },
     {
       "id": 27,
@@ -1051,7 +1051,7 @@
       "airQuality": 55,
       "costComfort": 3000,
       "costModerate": 1900,
-      "costBudget": 1100
+      "costBudget": 798
     },
     {
       "id": 28,
@@ -1090,7 +1090,7 @@
       "airQuality": 35,
       "costComfort": 3200,
       "costModerate": 1900,
-      "costBudget": 1150
+      "costBudget": 798
     },
     {
       "id": 29,
@@ -1129,7 +1129,7 @@
       "airQuality": 48,
       "costComfort": 2800,
       "costModerate": 1700,
-      "costBudget": 1000
+      "costBudget": 714
     },
     {
       "id": 30,
@@ -1168,7 +1168,7 @@
       "airQuality": 68,
       "costComfort": 2200,
       "costModerate": 1300,
-      "costBudget": 800
+      "costBudget": 520
     },
     {
       "id": 31,
@@ -1207,7 +1207,7 @@
       "airQuality": 90,
       "costComfort": 3200,
       "costModerate": 1800,
-      "costBudget": 1000
+      "costBudget": 756
     },
     {
       "id": 32,
@@ -1246,7 +1246,7 @@
       "airQuality": 52,
       "costComfort": 3500,
       "costModerate": 2000,
-      "costBudget": 1100
+      "costBudget": 840
     },
     {
       "id": 33,
@@ -1285,7 +1285,7 @@
       "airQuality": 45,
       "costComfort": 3000,
       "costModerate": 1700,
-      "costBudget": 950
+      "costBudget": 714
     },
     {
       "id": 34,
@@ -1324,7 +1324,7 @@
       "airQuality": 42,
       "costComfort": 6200,
       "costModerate": 3800,
-      "costBudget": 2400
+      "costBudget": 1710
     },
     {
       "id": 35,
@@ -1363,7 +1363,7 @@
       "airQuality": 48,
       "costComfort": 6500,
       "costModerate": 4000,
-      "costBudget": 2500
+      "costBudget": 1920
     },
     {
       "id": 36,
@@ -1402,7 +1402,7 @@
       "airQuality": 42,
       "costComfort": 6400,
       "costModerate": 3900,
-      "costBudget": 2500
+      "costBudget": 1755
     },
     {
       "id": 37,
@@ -1441,7 +1441,7 @@
       "airQuality": 45,
       "costComfort": 6600,
       "costModerate": 4200,
-      "costBudget": 2600
+      "costBudget": 2016
     },
     {
       "id": 38,
@@ -1480,7 +1480,7 @@
       "airQuality": 52,
       "costComfort": 5500,
       "costModerate": 3400,
-      "costBudget": 2100
+      "costBudget": 1530
     },
     {
       "id": 39,
@@ -1519,7 +1519,7 @@
       "airQuality": 48,
       "costComfort": 5600,
       "costModerate": 3500,
-      "costBudget": 2200
+      "costBudget": 1575
     },
     {
       "id": 40,
@@ -1558,7 +1558,7 @@
       "airQuality": 32,
       "costComfort": 5000,
       "costModerate": 3100,
-      "costBudget": 1950
+      "costBudget": 1395
     },
     {
       "id": 41,
@@ -1597,7 +1597,7 @@
       "airQuality": 35,
       "costComfort": 4000,
       "costModerate": 2500,
-      "costBudget": 1600
+      "costBudget": 1125
     },
     {
       "id": 42,
@@ -1636,7 +1636,7 @@
       "airQuality": 32,
       "costComfort": 5500,
       "costModerate": 3500,
-      "costBudget": 2200
+      "costBudget": 1575
     },
     {
       "id": 43,
@@ -1675,7 +1675,7 @@
       "airQuality": 30,
       "costComfort": 5000,
       "costModerate": 3100,
-      "costBudget": 1950
+      "costBudget": 1395
     },
     {
       "id": 44,
@@ -1714,7 +1714,7 @@
       "airQuality": 22,
       "costComfort": 4500,
       "costModerate": 2800,
-      "costBudget": 1800
+      "costBudget": 1260
     },
     {
       "id": 45,
@@ -1753,7 +1753,7 @@
       "airQuality": 85,
       "costComfort": 2200,
       "costModerate": 1300,
-      "costBudget": 750
+      "costBudget": 520
     },
     {
       "id": 46,
@@ -1792,7 +1792,7 @@
       "airQuality": 72,
       "costComfort": 2000,
       "costModerate": 1200,
-      "costBudget": 700
+      "costBudget": 480
     },
     {
       "id": 47,
@@ -1831,7 +1831,7 @@
       "airQuality": 95,
       "costComfort": 1600,
       "costModerate": 950,
-      "costBudget": 550
+      "costBudget": 380
     },
     {
       "id": 48,
@@ -1870,7 +1870,7 @@
       "airQuality": 115,
       "costComfort": 1400,
       "costModerate": 850,
-      "costBudget": 500
+      "costBudget": 340
     },
     {
       "id": 49,
@@ -1909,7 +1909,7 @@
       "airQuality": 95,
       "costComfort": 1800,
       "costModerate": 1000,
-      "costBudget": 550
+      "costBudget": 400
     },
     {
       "id": 50,
@@ -1948,7 +1948,7 @@
       "airQuality": 135,
       "costComfort": 2200,
       "costModerate": 1200,
-      "costBudget": 650
+      "costBudget": 480
     },
     {
       "id": 51,
@@ -1987,7 +1987,7 @@
       "airQuality": 175,
       "costComfort": 1800,
       "costModerate": 1000,
-      "costBudget": 550
+      "costBudget": 400
     },
     {
       "id": 52,
@@ -2026,7 +2026,7 @@
       "airQuality": 65,
       "costComfort": 2000,
       "costModerate": 1200,
-      "costBudget": 700
+      "costBudget": 480
     },
     {
       "id": 53,
@@ -2065,7 +2065,7 @@
       "airQuality": 130,
       "costComfort": 1400,
       "costModerate": 800,
-      "costBudget": 450
+      "costBudget": 320
     },
     {
       "id": 54,
@@ -2104,7 +2104,7 @@
       "airQuality": 115,
       "costComfort": 1500,
       "costModerate": 800,
-      "costBudget": 450
+      "costBudget": 320
     },
     {
       "id": 55,
@@ -2143,7 +2143,7 @@
       "airQuality": 155,
       "costComfort": 1200,
       "costModerate": 750,
-      "costBudget": 420
+      "costBudget": 285
     },
     {
       "id": 56,
@@ -2182,7 +2182,7 @@
       "airQuality": 120,
       "costComfort": 1300,
       "costModerate": 800,
-      "costBudget": 450
+      "costBudget": 320
     },
     {
       "id": 57,
@@ -2221,7 +2221,7 @@
       "airQuality": 105,
       "costComfort": 1800,
       "costModerate": 1050,
-      "costBudget": 600
+      "costBudget": 420
     },
     {
       "id": 58,
@@ -2260,7 +2260,7 @@
       "airQuality": 72,
       "costComfort": 1600,
       "costModerate": 950,
-      "costBudget": 550
+      "costBudget": 380
     },
     {
       "id": 59,
@@ -2299,7 +2299,7 @@
       "airQuality": 58,
       "costComfort": 4200,
       "costModerate": 2600,
-      "costBudget": 1600
+      "costBudget": 1170
     },
     {
       "id": 60,
@@ -2338,7 +2338,7 @@
       "airQuality": 48,
       "costComfort": 3000,
       "costModerate": 1800,
-      "costBudget": 1100
+      "costBudget": 756
     },
     {
       "id": 61,
@@ -2377,7 +2377,7 @@
       "airQuality": 43,
       "costComfort": 3000,
       "costModerate": 1800,
-      "costBudget": 1100
+      "costBudget": 756
     },
     {
       "id": 62,
@@ -2416,7 +2416,7 @@
       "airQuality": 42,
       "costComfort": 2200,
       "costModerate": 1300,
-      "costBudget": 750
+      "costBudget": 520
     },
     {
       "id": 63,
@@ -2455,7 +2455,7 @@
       "airQuality": 65,
       "costComfort": 3000,
       "costModerate": 1800,
-      "costBudget": 1050
+      "costBudget": 756
     },
     {
       "id": 64,
@@ -2494,7 +2494,7 @@
       "airQuality": 52,
       "costComfort": 2000,
       "costModerate": 1200,
-      "costBudget": 700
+      "costBudget": 480
     },
     {
       "id": 65,
@@ -2533,7 +2533,7 @@
       "airQuality": 78,
       "costComfort": 2000,
       "costModerate": 1200,
-      "costBudget": 680
+      "costBudget": 480
     },
     {
       "id": 66,
@@ -2572,7 +2572,7 @@
       "airQuality": 55,
       "costComfort": 1200,
       "costModerate": 700,
-      "costBudget": 400
+      "costBudget": 266
     },
     {
       "id": 67,
@@ -2611,7 +2611,7 @@
       "airQuality": 55,
       "costComfort": 2600,
       "costModerate": 1600,
-      "costBudget": 900
+      "costBudget": 672
     },
     {
       "id": 68,
@@ -2650,7 +2650,7 @@
       "airQuality": 32,
       "costComfort": 2400,
       "costModerate": 1500,
-      "costBudget": 850
+      "costBudget": 630
     },
     {
       "id": 69,
@@ -2689,7 +2689,7 @@
       "airQuality": 72,
       "costComfort": 2500,
       "costModerate": 1400,
-      "costBudget": 800
+      "costBudget": 560
     },
     {
       "id": 70,
@@ -2728,7 +2728,7 @@
       "airQuality": 35,
       "costComfort": 2800,
       "costModerate": 1600,
-      "costBudget": 950
+      "costBudget": 672
     },
     {
       "id": 71,
@@ -2767,7 +2767,7 @@
       "airQuality": 42,
       "costComfort": 3200,
       "costModerate": 1900,
-      "costBudget": 1100
+      "costBudget": 798
     },
     {
       "id": 72,
@@ -2806,7 +2806,7 @@
       "airQuality": 45,
       "costComfort": 1200,
       "costModerate": 800,
-      "costBudget": 500
+      "costBudget": 320
     },
     {
       "id": 73,
@@ -2845,7 +2845,7 @@
       "airQuality": 32,
       "costComfort": 3800,
       "costModerate": 2300,
-      "costBudget": 1400
+      "costBudget": 966
     },
     {
       "id": 74,
@@ -2884,7 +2884,7 @@
       "airQuality": 28,
       "costComfort": 2000,
       "costModerate": 1200,
-      "costBudget": 700
+      "costBudget": 480
     },
     {
       "id": 75,
@@ -2923,7 +2923,7 @@
       "airQuality": 105,
       "costComfort": 5200,
       "costModerate": 3300,
-      "costBudget": 1900
+      "costBudget": 1485
     },
     {
       "id": 76,
@@ -2962,7 +2962,7 @@
       "airQuality": 95,
       "costComfort": 5000,
       "costModerate": 3200,
-      "costBudget": 1850
+      "costBudget": 1440
     },
     {
       "id": 77,
@@ -3001,7 +3001,7 @@
       "airQuality": 98,
       "costComfort": 3600,
       "costModerate": 2200,
-      "costBudget": 1300
+      "costBudget": 924
     },
     {
       "id": 78,
@@ -3040,7 +3040,7 @@
       "airQuality": 120,
       "costComfort": 3800,
       "costModerate": 2400,
-      "costBudget": 1400
+      "costBudget": 1008
     },
     {
       "id": 79,
@@ -3079,7 +3079,7 @@
       "airQuality": 85,
       "costComfort": 3200,
       "costModerate": 2000,
-      "costBudget": 1200
+      "costBudget": 840
     },
     {
       "id": 80,
@@ -3118,7 +3118,7 @@
       "airQuality": 72,
       "costComfort": 2000,
       "costModerate": 1200,
-      "costBudget": 700
+      "costBudget": 480
     },
     {
       "id": 81,
@@ -3157,7 +3157,7 @@
       "airQuality": 78,
       "costComfort": 2200,
       "costModerate": 1400,
-      "costBudget": 800
+      "costBudget": 560
     },
     {
       "id": 82,
@@ -3196,7 +3196,7 @@
       "airQuality": 62,
       "costComfort": 5200,
       "costModerate": 3200,
-      "costBudget": 2000
+      "costBudget": 1440
     },
     {
       "id": 83,
@@ -3235,7 +3235,7 @@
       "airQuality": 105,
       "costComfort": 1500,
       "costModerate": 850,
-      "costBudget": 480
+      "costBudget": 340
     },
     {
       "id": 84,
@@ -3274,7 +3274,7 @@
       "airQuality": 95,
       "costComfort": 1400,
       "costModerate": 800,
-      "costBudget": 450
+      "costBudget": 320
     },
     {
       "id": 85,
@@ -3313,7 +3313,7 @@
       "airQuality": 55,
       "costComfort": 1800,
       "costModerate": 1100,
-      "costBudget": 650
+      "costBudget": 440
     },
     {
       "id": 86,
@@ -3352,7 +3352,7 @@
       "airQuality": 58,
       "costComfort": 2400,
       "costModerate": 1500,
-      "costBudget": 900
+      "costBudget": 630
     },
     {
       "id": 87,
@@ -3391,7 +3391,7 @@
       "airQuality": 65,
       "costComfort": 2000,
       "costModerate": 1200,
-      "costBudget": 700
+      "costBudget": 480
     },
     {
       "id": 88,
@@ -3430,7 +3430,7 @@
       "airQuality": 48,
       "costComfort": 2600,
       "costModerate": 1600,
-      "costBudget": 950
+      "costBudget": 672
     },
     {
       "id": 89,
@@ -3469,7 +3469,7 @@
       "airQuality": 72,
       "costComfort": 2000,
       "costModerate": 1200,
-      "costBudget": 700
+      "costBudget": 480
     },
     {
       "id": 90,
@@ -3508,7 +3508,7 @@
       "airQuality": 52,
       "costComfort": 2600,
       "costModerate": 1600,
-      "costBudget": 950
+      "costBudget": 672
     },
     {
       "id": 91,
@@ -3547,7 +3547,7 @@
       "airQuality": 45,
       "costComfort": 2800,
       "costModerate": 1700,
-      "costBudget": 1000
+      "costBudget": 714
     },
     {
       "id": 92,
@@ -3586,7 +3586,7 @@
       "airQuality": 42,
       "costComfort": 3000,
       "costModerate": 1800,
-      "costBudget": 1100
+      "costBudget": 756
     },
     {
       "id": 93,
@@ -3625,7 +3625,7 @@
       "airQuality": 28,
       "costComfort": 5400,
       "costModerate": 3400,
-      "costBudget": 2100
+      "costBudget": 1530
     },
     {
       "id": 94,
@@ -3664,7 +3664,7 @@
       "airQuality": 25,
       "costComfort": 3500,
       "costModerate": 2200,
-      "costBudget": 1350
+      "costBudget": 924
     },
     {
       "id": 95,
@@ -3703,7 +3703,7 @@
       "airQuality": 52,
       "costComfort": 5200,
       "costModerate": 3200,
-      "costBudget": 2000
+      "costBudget": 1440
     },
     {
       "id": 96,
@@ -3742,7 +3742,7 @@
       "airQuality": 62,
       "costComfort": 4800,
       "costModerate": 3000,
-      "costBudget": 1900
+      "costBudget": 1350
     },
     {
       "id": 97,
@@ -3781,7 +3781,7 @@
       "airQuality": 45,
       "costComfort": 5400,
       "costModerate": 3400,
-      "costBudget": 2100
+      "costBudget": 1530
     },
     {
       "id": 98,
@@ -3820,7 +3820,7 @@
       "airQuality": 55,
       "costComfort": 6000,
       "costModerate": 3800,
-      "costBudget": 2400
+      "costBudget": 1710
     },
     {
       "id": 99,
@@ -3859,7 +3859,7 @@
       "airQuality": 58,
       "costComfort": 4600,
       "costModerate": 2800,
-      "costBudget": 1800
+      "costBudget": 1260
     },
     {
       "id": 100,
@@ -3898,7 +3898,7 @@
       "airQuality": 42,
       "costComfort": 4400,
       "costModerate": 2700,
-      "costBudget": 1700
+      "costBudget": 1215
     }
   ]
 }
