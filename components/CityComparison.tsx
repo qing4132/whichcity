@@ -24,6 +24,9 @@ interface City {
   continent: string;
   averageIncome: number;
   costOfLiving: number;
+  costComfort: number;
+  costModerate: number;
+  costBudget: number;
   bigMacPrice: number;
   yearlySavings: number;
   currency: string;
@@ -34,6 +37,7 @@ interface City {
 }
 
 type ComparisonMode = "normal" | "ratio" | "bigmac";
+type CostTier = "comfort" | "moderate" | "budget";
 
 interface ExchangeRates {
   rates: Record<string, number>;
@@ -136,6 +140,10 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightCity: "城市",
     insightHomePurchaseYears: "购房年限",
     insightNegativeSavings: "入不敷出",
+    costTierLabel: "生活水平:",
+    costTierComfort: "舒适",
+    costTierModerate: "适中",
+    costTierBudget: "节俭",
     climate: "气候",
     climateCompare: "气候对比",
     climateType: "气候类型",
@@ -232,6 +240,10 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightCity: "City",
     insightHomePurchaseYears: "Years to Buy",
     insightNegativeSavings: "Net negative",
+    costTierLabel: "Lifestyle:",
+    costTierComfort: "Comfort",
+    costTierModerate: "Average",
+    costTierBudget: "Budget",
     climate: "Climate",
     climateCompare: "Climate comparison",
     climateType: "Climate type",
@@ -328,6 +340,10 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightCity: "都市",
     insightHomePurchaseYears: "購入年数",
     insightNegativeSavings: "赤字",
+    costTierLabel: "生活水準:",
+    costTierComfort: "快適",
+    costTierModerate: "標準",
+    costTierBudget: "節約",
     climate: "気候",
     climateCompare: "気候比較",
     climateType: "気候タイプ",
@@ -424,6 +440,10 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightCity: "Ciudad",
     insightHomePurchaseYears: "Años para Comprar",
     insightNegativeSavings: "Déficit",
+    costTierLabel: "Estilo de vida:",
+    costTierComfort: "Cómodo",
+    costTierModerate: "Promedio",
+    costTierBudget: "Económico",
     climate: "Clima",
     climateCompare: "Comparacion de clima",
     climateType: "Tipo de clima",
@@ -697,6 +717,7 @@ export default function CityComparison() {
   const [baseCityId, setBaseCityId] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [comparisonMode, setComparisonMode] = useState<ComparisonMode>("normal");
+  const [costTier, setCostTier] = useState<CostTier>("moderate");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedContinent, setSelectedContinent] = useState<string>("all");
   const [windowWidth, setWindowWidth] = useState(1200);
@@ -937,14 +958,20 @@ export default function CityComparison() {
     return { key: "aqiHazardous", color: "text-rose-400" };
   };
 
+  const getCost = (city: City): number => {
+    if (costTier === "comfort") return city.costComfort;
+    if (costTier === "budget") return city.costBudget;
+    return city.costModerate;
+  };
+
   const getLocalizedDescription = (city: City, salary: number): string => {
     if (locale === "zh") return city.description;
-    const yearlySavings = salary - city.costOfLiving * 12;
+    const yearlySavings = salary - getCost(city) * 12;
     return t("descriptionTemplate", {
       city: getCityLabel(city),
       country: getCountryLabel(city.country),
       income: formatCurrency(salary),
-      cost: formatCurrency(city.costOfLiving),
+      cost: formatCurrency(getCost(city)),
       savings: formatCurrency(yearlySavings),
     });
   };
@@ -1034,9 +1061,11 @@ export default function CityComparison() {
         : baseCity.averageIncome;
 
       const salaryBigMac = toBigMacCount(salary, city.bigMacPrice);
-      const monthlyBigMac = toBigMacCount(city.costOfLiving, city.bigMacPrice);
-      const yearlyBigMac = toBigMacCount(city.costOfLiving * 12, city.bigMacPrice);
-      const savingsBigMac = toBigMacCount(salary - city.costOfLiving * 12, city.bigMacPrice);
+      const cityCost = getCost(city);
+      const baseCityCost = getCost(baseCity);
+      const monthlyBigMac = toBigMacCount(cityCost, city.bigMacPrice);
+      const yearlyBigMac = toBigMacCount(cityCost * 12, city.bigMacPrice);
+      const savingsBigMac = toBigMacCount(salary - cityCost * 12, city.bigMacPrice);
 
       return {
         name: getCityLabel(city),
@@ -1048,25 +1077,25 @@ export default function CityComparison() {
               : salary,
         monthlyExpense:
           comparisonMode === "ratio"
-            ? getRatioValue(city.costOfLiving, baseCity.costOfLiving)
+            ? getRatioValue(cityCost, baseCityCost)
             : comparisonMode === "bigmac"
               ? monthlyBigMac
-              : city.costOfLiving,
+              : cityCost,
         yearlyExpense:
           comparisonMode === "ratio"
-            ? getRatioValue(city.costOfLiving * 12, baseCity.costOfLiving * 12)
+            ? getRatioValue(cityCost * 12, baseCityCost * 12)
             : comparisonMode === "bigmac"
               ? yearlyBigMac
-              : city.costOfLiving * 12,
+              : cityCost * 12,
         savings:
           comparisonMode === "ratio"
             ? getRatioValue(
-                salary - city.costOfLiving * 12,
-                baseSalary - baseCity.costOfLiving * 12
+                salary - cityCost * 12,
+                baseSalary - baseCityCost * 12
               )
             : comparisonMode === "bigmac"
               ? savingsBigMac
-              : salary - city.costOfLiving * 12,
+              : salary - cityCost * 12,
       };
     });
   };
@@ -1097,8 +1126,8 @@ export default function CityComparison() {
     return comparisonData.map((city) => {
       const income = city.professions[selectedProfession] || 0;
       const baseIncome = baseCity.professions[selectedProfession] || 0;
-      const yearlyExpense = city.costOfLiving * 12;
-      const baseYearlyExpense = baseCity.costOfLiving * 12;
+      const yearlyExpense = getCost(city) * 12;
+      const baseYearlyExpense = getCost(baseCity) * 12;
 
       if (comparisonMode === "ratio") {
         const costRatio = baseIncome > 0 ? (yearlyExpense / income) : 0;
@@ -1237,7 +1266,7 @@ export default function CityComparison() {
             ? "bg-gray-800 border border-gray-700"
             : "bg-white border border-gray-100"
         }`}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {/* 职业选择 */}
             <div>
               <label className={`block text-sm font-semibold mb-3 ${
@@ -1305,6 +1334,53 @@ export default function CityComparison() {
                   }`}
                 >
                   {t("modeBigMac")}
+                </button>
+              </div>
+            </div>
+
+            {/* 生活水平选择 */}
+            <div>
+              <label className={`block text-sm font-semibold mb-3 ${
+                darkMode ? "text-gray-300" : "text-gray-700"
+              }`}>
+                {t("costTierLabel")}
+              </label>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setCostTier("comfort")}
+                  className={`flex-1 px-4 py-2 rounded-lg font-medium transition ${
+                    costTier === "comfort"
+                      ? "bg-rose-600 text-white"
+                      : darkMode
+                        ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  }`}
+                >
+                  {t("costTierComfort")}
+                </button>
+                <button
+                  onClick={() => setCostTier("moderate")}
+                  className={`flex-1 px-4 py-2 rounded-lg font-medium transition ${
+                    costTier === "moderate"
+                      ? "bg-sky-600 text-white"
+                      : darkMode
+                        ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  }`}
+                >
+                  {t("costTierModerate")}
+                </button>
+                <button
+                  onClick={() => setCostTier("budget")}
+                  className={`flex-1 px-4 py-2 rounded-lg font-medium transition ${
+                    costTier === "budget"
+                      ? "bg-emerald-600 text-white"
+                      : darkMode
+                        ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  }`}
+                >
+                  {t("costTierBudget")}
                 </button>
               </div>
             </div>
@@ -1747,14 +1823,14 @@ export default function CityComparison() {
                       {/* 月支出 */}
                       <div className="bg-red-500 bg-opacity-30 p-3 rounded-lg mb-3">
                         <p className="text-xs text-red-100 mb-1">
-                          {t("monthlyExpense")}
+                          {t("monthlyExpense")} · {t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof typeof TRANSLATIONS.zh)}
                         </p>
                         <p className="text-xl font-bold text-white">
                           {comparisonMode === "ratio"
-                            ? `${getRatioValue(city.costOfLiving, baseCity.costOfLiving)}x`
+                            ? `${getRatioValue(getCost(city), getCost(baseCity))}x`
                             : comparisonMode === "bigmac"
-                              ? `${toBigMacCount(city.costOfLiving, city.bigMacPrice)} ${t("bigMacUnit")}`
-                              : formatCurrency(city.costOfLiving)}
+                              ? `${toBigMacCount(getCost(city), city.bigMacPrice)} ${t("bigMacUnit")}`
+                              : formatCurrency(getCost(city))}
                         </p>
                       </div>
 
@@ -1765,19 +1841,19 @@ export default function CityComparison() {
                         </p>
                         <p
                           className={`text-xl font-bold ${
-                            salary - city.costOfLiving * 12 > 0
+                            salary - getCost(city) * 12 > 0
                               ? "text-lime-200"
                               : "text-red-200"
                           }`}
                         >
                           {comparisonMode === "ratio"
                             ? `${getRatioValue(
-                                salary - city.costOfLiving * 12,
-                                baseSalary - baseCity.costOfLiving * 12
+                                salary - getCost(city) * 12,
+                                baseSalary - getCost(baseCity) * 12
                               )}x`
                             : comparisonMode === "bigmac"
-                              ? `${toBigMacCount(salary - city.costOfLiving * 12, city.bigMacPrice)} ${t("bigMacUnit")}`
-                              : formatCurrency(salary - city.costOfLiving * 12)}
+                              ? `${toBigMacCount(salary - getCost(city) * 12, city.bigMacPrice)} ${t("bigMacUnit")}`
+                              : formatCurrency(salary - getCost(city) * 12)}
                         </p>
                       </div>
 
@@ -1879,11 +1955,11 @@ export default function CityComparison() {
                   const income = selectedProfession
                     ? city.professions[selectedProfession] || 0
                     : city.averageIncome;
-                  const annualCost = city.costOfLiving * 12;
+                  const annualCost = getCost(city) * 12;
                   const savings = income - annualCost;
                   const savingsRate = income > 0 ? (savings / income) * 100 : 0;
                   const yearsToHome = savings > 0 ? (city.housePrice * 70) / savings : Infinity;
-                  return { city, income, savings, annualCost, monthlyCost: city.costOfLiving, savingsRate, yearsToHome };
+                  return { city, income, savings, annualCost, monthlyCost: getCost(city), savingsRate, yearsToHome };
                 });
 
                 const bestSavings = [...withMetrics].sort((a, b) => b.savings - a.savings)[0];
