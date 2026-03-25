@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   BarChart,
   Bar,
@@ -128,7 +128,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightSavingsRate: "储蓄率",
     insightYears: "年",
     insightFor70sqm: "70m² 住房 · 按年净存计",
-    insightCompositeNote: "综合储蓄率 · 购房年限 · 空气质量",
+    insightCompositeNote: "年储蓄 40% · 购房年限 35% · 空气质量 25%",
     insightIncomeGap: "收入",
     insightCostGap: "生活成本",
     insightHousingGap: "房价",
@@ -224,7 +224,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightSavingsRate: "Savings Rate",
     insightYears: "yrs",
     insightFor70sqm: "70m² home · based on annual savings",
-    insightCompositeNote: "Savings rate · Housing · Air quality",
+    insightCompositeNote: "Savings 40% · Housing 35% · Air quality 25%",
     insightIncomeGap: "Income",
     insightCostGap: "Living Cost",
     insightHousingGap: "Housing",
@@ -320,7 +320,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightSavingsRate: "貯蓄率",
     insightYears: "年",
     insightFor70sqm: "70m² · 年間貯蓄ベース",
-    insightCompositeNote: "貯蓄率 · 購入年数 · 大気質",
+    insightCompositeNote: "年間貯蓄 40% · 購入年数 35% · 大気質 25%",
     insightIncomeGap: "収入",
     insightCostGap: "生活費",
     insightHousingGap: "住宅価格",
@@ -416,7 +416,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightSavingsRate: "Tasa de ahorro",
     insightYears: "años",
     insightFor70sqm: "70m² · según ahorro anual",
-    insightCompositeNote: "Ahorro · Vivienda · Calidad del aire",
+    insightCompositeNote: "Ahorro 40% · Vivienda 35% · Calidad del aire 25%",
     insightIncomeGap: "Ingresos",
     insightCostGap: "Costo de vida",
     insightHousingGap: "Vivienda",
@@ -656,6 +656,29 @@ const POPULAR_CURRENCIES = [
   "INR",
 ];
 
+const CITY_FLAG_EMOJIS: Record<number, string> = {
+  1: "🇺🇸", 2: "🇬🇧", 3: "🇯🇵", 4: "🇨🇳", 5: "🇨🇳",
+  6: "🇦🇺", 7: "🇸🇬", 8: "🇫🇷", 9: "🇨🇦", 10: "🇭🇰",
+  11: "🇺🇸", 12: "🇺🇸", 13: "🇺🇸", 14: "🇦🇪", 15: "🇳🇱",
+  16: "🇨🇭", 17: "🇨🇭", 18: "🇩🇪", 19: "🇩🇪", 20: "🇪🇸",
+  21: "🇪🇸", 22: "🇮🇹", 23: "🇮🇹", 24: "🇧🇪", 25: "🇦🇹",
+  26: "🇨🇿", 27: "🇵🇱", 28: "🇵🇹", 29: "🇬🇷", 30: "🇹🇷",
+  31: "🇲🇽", 32: "🇧🇷", 33: "🇧🇷", 34: "🇺🇸", 35: "🇺🇸",
+  36: "🇺🇸", 37: "🇺🇸", 38: "🇺🇸", 39: "🇺🇸", 40: "🇨🇦",
+  41: "🇨🇦", 42: "🇦🇺", 43: "🇦🇺", 44: "🇳🇿", 45: "🇹🇭",
+  46: "🇲🇾", 47: "🇻🇳", 48: "🇻🇳", 49: "🇮🇳", 50: "🇮🇳",
+  51: "🇮🇳", 52: "🇰🇪", 53: "🇪🇬", 54: "🇮🇷", 55: "🇵🇰",
+  56: "🇵🇰", 57: "🇮🇩", 58: "🇵🇭", 59: "🇰🇷", 60: "🇰🇷",
+  61: "🇹🇼", 62: "🇦🇷", 63: "🇨🇱", 64: "🇨🇴", 65: "🇵🇪",
+  66: "🇻🇪", 67: "🇿🇦", 68: "🇿🇦", 69: "🇲🇽", 70: "🇨🇷",
+  71: "🇵🇦", 72: "🇨🇺", 73: "🇵🇷", 74: "🇯🇲", 75: "🇦🇪",
+  76: "🇶🇦", 77: "🇧🇭", 78: "🇸🇦", 79: "🇴🇲", 80: "🇱🇧",
+  81: "🇯🇴", 82: "🇮🇱", 83: "🇮🇳", 84: "🇮🇳", 85: "🇺🇦",
+  86: "🇷🇴", 87: "🇧🇬", 88: "🇭🇷", 89: "🇷🇸", 90: "🇭🇺",
+  91: "🇸🇰", 92: "🇸🇮", 93: "🇮🇪", 94: "🇬🇧", 95: "🇺🇸",
+  96: "🇺🇸", 97: "🇺🇸", 98: "🇺🇸", 99: "🇺🇸", 100: "🇺🇸",
+};
+
 export default function CityComparison() {
   const [cities, setCities] = useState<City[]>([]);
   const [selectedCities, setSelectedCities] = useState<string[]>([]);
@@ -671,6 +694,7 @@ export default function CityComparison() {
   const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
   const [darkMode, setDarkMode] = useState(false);
   const [locale, setLocale] = useState<Locale>("zh");
+  const comparisonRef = useRef<HTMLDivElement>(null);
 
   const maxComparisons = windowWidth < 768 ? 2 : windowWidth < 1024 ? 3 : 5;
 
@@ -787,49 +811,111 @@ export default function CityComparison() {
     return `${symbol}${converted.toFixed(2)}`;
   };
 
+  const CITY_CLIMATE: Record<number, ClimateInfo> = {
+    1:  { type: "continental", avgTempC: 12.9, annualRainMm: 1268, sunshineHours: 2535 },
+    2:  { type: "oceanic", avgTempC: 11.3, annualRainMm: 602, sunshineHours: 1633 },
+    3:  { type: "temperate", avgTempC: 15.8, annualRainMm: 1530, sunshineHours: 1877 },
+    4:  { type: "continental", avgTempC: 13.0, annualRainMm: 577, sunshineHours: 2671 },
+    5:  { type: "temperate", avgTempC: 16.1, annualRainMm: 1166, sunshineHours: 1778 },
+    6:  { type: "oceanic", avgTempC: 18.4, annualRainMm: 1214, sunshineHours: 2592 },
+    7:  { type: "tropical", avgTempC: 27.0, annualRainMm: 2340, sunshineHours: 2022 },
+    8:  { type: "oceanic", avgTempC: 12.3, annualRainMm: 641, sunshineHours: 1662 },
+    9:  { type: "continental", avgTempC: 9.4, annualRainMm: 831, sunshineHours: 2066 },
+    10: { type: "tropical", avgTempC: 23.3, annualRainMm: 2399, sunshineHours: 1836 },
+    11: { type: "mediterranean", avgTempC: 18.3, annualRainMm: 379, sunshineHours: 3254 },
+    12: { type: "mediterranean", avgTempC: 14.6, annualRainMm: 515, sunshineHours: 3061 },
+    13: { type: "continental", avgTempC: 10.0, annualRainMm: 941, sunshineHours: 2508 },
+    14: { type: "arid", avgTempC: 27.2, annualRainMm: 95, sunshineHours: 3509 },
+    15: { type: "oceanic", avgTempC: 10.2, annualRainMm: 838, sunshineHours: 1662 },
+    16: { type: "continental", avgTempC: 9.3, annualRainMm: 1134, sunshineHours: 1566 },
+    17: { type: "continental", avgTempC: 10.5, annualRainMm: 1005, sunshineHours: 1887 },
+    18: { type: "continental", avgTempC: 8.6, annualRainMm: 967, sunshineHours: 1756 },
+    19: { type: "continental", avgTempC: 10.3, annualRainMm: 570, sunshineHours: 1626 },
+    20: { type: "mediterranean", avgTempC: 16.5, annualRainMm: 620, sunshineHours: 2591 },
+    21: { type: "mediterranean", avgTempC: 14.5, annualRainMm: 436, sunshineHours: 2769 },
+    22: { type: "continental", avgTempC: 13.1, annualRainMm: 1013, sunshineHours: 1900 },
+    23: { type: "mediterranean", avgTempC: 15.7, annualRainMm: 798, sunshineHours: 2551 },
+    24: { type: "oceanic", avgTempC: 10.8, annualRainMm: 852, sunshineHours: 1546 },
+    25: { type: "continental", avgTempC: 11.4, annualRainMm: 620, sunshineHours: 1884 },
+    26: { type: "continental", avgTempC: 9.4, annualRainMm: 526, sunshineHours: 1668 },
+    27: { type: "continental", avgTempC: 8.5, annualRainMm: 529, sunshineHours: 1571 },
+    28: { type: "mediterranean", avgTempC: 17.4, annualRainMm: 725, sunshineHours: 2799 },
+    29: { type: "mediterranean", avgTempC: 18.4, annualRainMm: 402, sunshineHours: 2783 },
+    30: { type: "temperate", avgTempC: 14.7, annualRainMm: 689, sunshineHours: 2381 },
+    31: { type: "temperate", avgTempC: 16.6, annualRainMm: 846, sunshineHours: 2555 },
+    32: { type: "tropical", avgTempC: 19.2, annualRainMm: 1454, sunshineHours: 1893 },
+    33: { type: "tropical", avgTempC: 23.8, annualRainMm: 1069, sunshineHours: 2145 },
+    34: { type: "tropical", avgTempC: 25.3, annualRainMm: 1572, sunshineHours: 2744 },
+    35: { type: "temperate", avgTempC: 14.6, annualRainMm: 1007, sunshineHours: 2528 },
+    36: { type: "continental", avgTempC: 10.9, annualRainMm: 1112, sunshineHours: 2634 },
+    37: { type: "oceanic", avgTempC: 11.3, annualRainMm: 953, sunshineHours: 2170 },
+    38: { type: "continental", avgTempC: 10.4, annualRainMm: 396, sunshineHours: 3107 },
+    39: { type: "temperate", avgTempC: 20.3, annualRainMm: 890, sunshineHours: 2650 },
+    40: { type: "oceanic", avgTempC: 10.4, annualRainMm: 1154, sunshineHours: 1938 },
+    41: { type: "continental", avgTempC: 6.8, annualRainMm: 1000, sunshineHours: 2051 },
+    42: { type: "oceanic", avgTempC: 15.0, annualRainMm: 648, sunshineHours: 2363 },
+    43: { type: "tropical", avgTempC: 20.4, annualRainMm: 1149, sunshineHours: 2884 },
+    44: { type: "oceanic", avgTempC: 15.2, annualRainMm: 1240, sunshineHours: 2060 },
+    45: { type: "tropical", avgTempC: 28.6, annualRainMm: 1648, sunshineHours: 2564 },
+    46: { type: "tropical", avgTempC: 27.7, annualRainMm: 2627, sunshineHours: 2200 },
+    47: { type: "tropical", avgTempC: 27.6, annualRainMm: 1931, sunshineHours: 2400 },
+    48: { type: "tropical", avgTempC: 23.6, annualRainMm: 1676, sunshineHours: 1560 },
+    49: { type: "tropical", avgTempC: 24.0, annualRainMm: 970, sunshineHours: 2482 },
+    50: { type: "tropical", avgTempC: 27.2, annualRainMm: 2422, sunshineHours: 2553 },
+    51: { type: "arid", avgTempC: 25.2, annualRainMm: 797, sunshineHours: 2732 },
+    52: { type: "tropical", avgTempC: 19.0, annualRainMm: 869, sunshineHours: 2490 },
+    53: { type: "arid", avgTempC: 22.1, annualRainMm: 25, sunshineHours: 3452 },
+    54: { type: "arid", avgTempC: 17.5, annualRainMm: 232, sunshineHours: 3050 },
+    55: { type: "arid", avgTempC: 26.0, annualRainMm: 174, sunshineHours: 3083 },
+    56: { type: "temperate", avgTempC: 21.3, annualRainMm: 1142, sunshineHours: 2755 },
+    57: { type: "tropical", avgTempC: 27.0, annualRainMm: 1800, sunshineHours: 2207 },
+    58: { type: "tropical", avgTempC: 27.8, annualRainMm: 1877, sunshineHours: 2025 },
+    59: { type: "continental", avgTempC: 12.5, annualRainMm: 1394, sunshineHours: 2066 },
+    60: { type: "temperate", avgTempC: 14.7, annualRainMm: 1519, sunshineHours: 2101 },
+    61: { type: "tropical", avgTempC: 23.0, annualRainMm: 2405, sunshineHours: 1405 },
+    62: { type: "temperate", avgTempC: 17.9, annualRainMm: 1236, sunshineHours: 2524 },
+    63: { type: "mediterranean", avgTempC: 14.4, annualRainMm: 312, sunshineHours: 2970 },
+    64: { type: "tropical", avgTempC: 14.0, annualRainMm: 797, sunshineHours: 1420 },
+    65: { type: "arid", avgTempC: 19.2, annualRainMm: 10, sunshineHours: 1230 },
+    66: { type: "tropical", avgTempC: 22.0, annualRainMm: 823, sunshineHours: 2416 },
+    67: { type: "temperate", avgTempC: 16.0, annualRainMm: 713, sunshineHours: 3124 },
+    68: { type: "mediterranean", avgTempC: 16.7, annualRainMm: 515, sunshineHours: 3094 },
+    69: { type: "temperate", avgTempC: 20.5, annualRainMm: 944, sunshineHours: 2700 },
+    70: { type: "tropical", avgTempC: 20.8, annualRainMm: 1798, sunshineHours: 2000 },
+    71: { type: "tropical", avgTempC: 27.0, annualRainMm: 1876, sunshineHours: 2350 },
+    72: { type: "tropical", avgTempC: 25.2, annualRainMm: 1335, sunshineHours: 2490 },
+    73: { type: "tropical", avgTempC: 26.7, annualRainMm: 1346, sunshineHours: 2623 },
+    74: { type: "tropical", avgTempC: 26.4, annualRainMm: 1025, sunshineHours: 2890 },
+    75: { type: "arid", avgTempC: 27.6, annualRainMm: 56, sunshineHours: 3448 },
+    76: { type: "arid", avgTempC: 27.1, annualRainMm: 71, sunshineHours: 3418 },
+    77: { type: "arid", avgTempC: 26.8, annualRainMm: 72, sunshineHours: 3370 },
+    78: { type: "arid", avgTempC: 26.0, annualRainMm: 100, sunshineHours: 3274 },
+    79: { type: "arid", avgTempC: 28.5, annualRainMm: 100, sunshineHours: 3418 },
+    80: { type: "mediterranean", avgTempC: 20.8, annualRainMm: 661, sunshineHours: 3050 },
+    81: { type: "arid", avgTempC: 17.5, annualRainMm: 276, sunshineHours: 3100 },
+    82: { type: "mediterranean", avgTempC: 20.3, annualRainMm: 530, sunshineHours: 3311 },
+    83: { type: "tropical", avgTempC: 26.6, annualRainMm: 812, sunshineHours: 2731 },
+    84: { type: "tropical", avgTempC: 25.3, annualRainMm: 722, sunshineHours: 2757 },
+    85: { type: "continental", avgTempC: 8.4, annualRainMm: 649, sunshineHours: 1843 },
+    86: { type: "continental", avgTempC: 11.2, annualRainMm: 595, sunshineHours: 2112 },
+    87: { type: "continental", avgTempC: 10.4, annualRainMm: 581, sunshineHours: 2090 },
+    88: { type: "continental", avgTempC: 11.3, annualRainMm: 880, sunshineHours: 1913 },
+    89: { type: "continental", avgTempC: 12.0, annualRainMm: 669, sunshineHours: 2112 },
+    90: { type: "continental", avgTempC: 11.3, annualRainMm: 536, sunshineHours: 1988 },
+    91: { type: "continental", avgTempC: 10.3, annualRainMm: 527, sunshineHours: 1960 },
+    92: { type: "continental", avgTempC: 10.9, annualRainMm: 1393, sunshineHours: 1828 },
+    93: { type: "oceanic", avgTempC: 9.8, annualRainMm: 757, sunshineHours: 1453 },
+    94: { type: "oceanic", avgTempC: 9.1, annualRainMm: 846, sunshineHours: 1340 },
+    95: { type: "temperate", avgTempC: 17.1, annualRainMm: 1260, sunshineHours: 2738 },
+    96: { type: "arid", avgTempC: 23.9, annualRainMm: 204, sunshineHours: 3872 },
+    97: { type: "oceanic", avgTempC: 12.4, annualRainMm: 914, sunshineHours: 2341 },
+    98: { type: "mediterranean", avgTempC: 17.8, annualRainMm: 263, sunshineHours: 3055 },
+    99: { type: "arid", avgTempC: 20.3, annualRainMm: 106, sunshineHours: 3816 },
+    100:{ type: "tropical", avgTempC: 22.4, annualRainMm: 1173, sunshineHours: 2927 },
+  };
+
   const getClimate = (city: City): ClimateInfo => {
-    const r = (Math.sin(city.id * 999) + 1) / 2; // 0..1 deterministic
-    const r2 = (Math.sin(city.id * 1337 + 42) + 1) / 2;
-    const r3 = (Math.sin(city.id * 2718 - 7) + 1) / 2;
-
-    const pick = <T,>(arr: T[]) => arr[Math.floor(r * arr.length) % arr.length];
-
-    let type: ClimateType = "temperate";
-    if (city.continent === "非洲") type = pick(["arid", "tropical", "temperate"]);
-    else if (city.continent === "南美洲") type = pick(["tropical", "temperate", "mediterranean"]);
-    else if (city.continent === "大洋洲") type = pick(["oceanic", "temperate", "mediterranean"]);
-    else if (city.continent === "欧洲") type = pick(["oceanic", "temperate", "continental", "mediterranean"]);
-    else if (city.continent === "北美洲") type = pick(["temperate", "continental", "arid", "oceanic"]);
-    else type = pick(["tropical", "temperate", "continental", "arid"]);
-
-    const baseTemp =
-      type === "tropical" ? 26 :
-      type === "arid" ? 24 :
-      type === "mediterranean" ? 18 :
-      type === "oceanic" ? 14 : 10; // continental
-
-    const baseRain =
-      type === "tropical" ? 2200 :
-      type === "oceanic" ? 1400 :
-      type === "mediterranean" ? 650 :
-      type === "temperate" ? 900 : 500; // arid/continental lower
-
-    const temp = Math.round((baseTemp + (r2 - 0.5) * 10) * 10) / 10; // one decimal
-    const rain = Math.round(baseRain + (r3 - 0.5) * 600);
-    const sunshine = Math.round(
-      (type === "arid" ? 3200 :
-        type === "tropical" ? 2600 :
-        type === "mediterranean" ? 2800 :
-        type === "oceanic" ? 1800 :
-        type === "continental" ? 2000 : 2200) + (r - 0.5) * 400
-    );
-
-    return {
-      type,
-      avgTempC: temp,
-      annualRainMm: Math.max(0, rain),
-      sunshineHours: Math.max(800, sunshine),
-    };
+    return CITY_CLIMATE[city.id] || { type: "temperate" as ClimateType, avgTempC: 15, annualRainMm: 800, sunshineHours: 2000 };
   };
 
   const getAqiLevel = (aqi: number): { key: string; color: string } => {
@@ -898,6 +984,9 @@ export default function CityComparison() {
     if (selected.length > 0) {
       setComparisonData(selected);
       setBaseCityId(selected[0].id.toString());
+      setTimeout(() => {
+        comparisonRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
     }
   };
 
@@ -1356,7 +1445,7 @@ export default function CityComparison() {
 
         {/* 对比结果 */}
         {comparisonData && (
-          <div className="space-y-8">
+          <div ref={comparisonRef} className="space-y-8">
             {/* 图表区域 */}
             <div className={`rounded-xl shadow-md p-8 ${
               darkMode
@@ -1618,7 +1707,7 @@ export default function CityComparison() {
                       {/* 城市信息头 */}
                       <div className="text-center mb-6 pb-4 border-b-2 border-white border-opacity-20">
                         <div className="text-3xl mb-2">
-                          {isBase ? "⭐" : "🏙️"}
+                          {CITY_FLAG_EMOJIS[city.id] || "🏙️"}{isBase ? " ⭐" : ""}
                         </div>
                         <h3 className="text-2xl font-bold text-white">
                           {getCityLabel(city)}
@@ -1792,18 +1881,19 @@ export default function CityComparison() {
                   .filter(m => m.yearsToHome > 0 && isFinite(m.yearsToHome))
                   .sort((a, b) => a.yearsToHome - b.yearsToHome)[0] || withMetrics[0];
 
-                const maxSR = Math.max(...withMetrics.map(m => m.savingsRate), 1);
+                const maxSavings = Math.max(...withMetrics.map(m => Math.max(0, m.savings)), 1);
                 const maxYears = Math.max(...withMetrics.filter(m => isFinite(m.yearsToHome)).map(m => m.yearsToHome), 1);
                 const maxAqi = Math.max(...withMetrics.map(m => m.city.airQuality), 1);
                 const withScores = withMetrics.map(m => {
-                  const sr = maxSR > 0 ? m.savingsRate / maxSR : 0;
+                  const sv = maxSavings > 0 ? Math.max(0, m.savings) / maxSavings : 0;
                   const af = isFinite(m.yearsToHome) && maxYears > 0 ? 1 - (m.yearsToHome / maxYears) : 0;
                   const aq = maxAqi > 0 ? 1 - (m.city.airQuality / maxAqi) : 0;
-                  return { ...m, composite: sr * 0.4 + af * 0.35 + aq * 0.25 };
+                  return { ...m, composite: sv * 0.4 + af * 0.35 + aq * 0.25 };
                 });
-                const overallBest = [...withScores].sort((a, b) => b.composite - a.composite)[0];
+                const top = [...withScores].sort((a, b) => b.composite - a.composite);
+                const overallBest = top[0];
 
-                const top3 = [...withScores].sort((a, b) => b.composite - a.composite).slice(0, Math.min(3, withScores.length));
+                const top3 = [...withScores].sort((a, b) => b.composite - a.composite);
 
                 const cardCls = `rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`;
                 const labelCls = `text-xs font-semibold uppercase tracking-wide mb-3 ${darkMode ? "text-slate-400" : "text-slate-500"}`;
@@ -1823,7 +1913,7 @@ export default function CityComparison() {
                           <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${
                             darkMode ? "bg-blue-900/60 text-blue-300" : "bg-blue-100 text-blue-700"
                           }`}>
-                            {t("insightSavingsRate")} {Math.round(overallBest.savingsRate)}%
+                            {t("annualSavings")} {formatCurrency(overallBest.savings)}
                           </span>
                           <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${
                             darkMode ? "bg-purple-900/60 text-purple-300" : "bg-purple-100 text-purple-700"
@@ -1864,16 +1954,18 @@ export default function CityComparison() {
                         {(() => {
                           const baseM = withMetrics.find(m => m.city.id.toString() === baseCityId);
                           if (!baseM) return <p className={subCls}>{t("insightClickToSetBase")}</p>;
-                          const best = [...withMetrics].filter(m => m !== baseM).sort((a, b) => b.savings - a.savings)[0];
-                          if (!best) return <p className={subCls}>—</p>;
+                          const compareCity = overallBest.city.id.toString() === baseCityId
+                            ? top[1]
+                            : overallBest;
+                          if (!compareCity) return <p className={subCls}>—</p>;
                           return (
                             <>
-                              <p className={cityCls}>{getCityLabel(best.city)} vs {getCityLabel(baseM.city)}</p>
+                              <p className={cityCls}>{getCityLabel(compareCity.city)} vs {getCityLabel(baseM.city)}</p>
                               <div className="space-y-1 mt-2">
                                 {[
-                                  { label: t("insightIncomeGap"), ratio: baseM.income > 0 ? best.income / baseM.income : 0 },
-                                  { label: t("insightCostGap"), ratio: baseM.monthlyCost > 0 ? best.monthlyCost / baseM.monthlyCost : 0 },
-                                  { label: t("annualSavings"), ratio: baseM.savings > 0 ? best.savings / baseM.savings : 0 },
+                                  { label: t("insightIncomeGap"), ratio: baseM.income > 0 ? compareCity.income / baseM.income : 0 },
+                                  { label: t("insightCostGap"), ratio: baseM.monthlyCost > 0 ? compareCity.monthlyCost / baseM.monthlyCost : 0 },
+                                  { label: t("annualSavings"), ratio: baseM.savings > 0 ? compareCity.savings / baseM.savings : 0 },
                                 ].map(({ label, ratio }) => (
                                   <div key={label} className="flex items-center justify-between">
                                     <span className={`text-xs ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{label}</span>
@@ -1899,9 +1991,9 @@ export default function CityComparison() {
                         <div className={`grid grid-cols-5 gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide ${darkMode ? "text-slate-400 border-b border-slate-700" : "text-slate-500 border-b border-slate-200"}`}>
                           <span>#</span>
                           <span>{t("insightCity")}</span>
-                          <span>{t("annualSavings")}</span>
-                          <span>{t("insightHomePurchaseYears")}</span>
-                          <span>{t("airQuality")}</span>
+                          <span>{t("annualSavings")} (40%)</span>
+                          <span>{t("insightHomePurchaseYears")} (35%)</span>
+                          <span>{t("airQuality")} (25%)</span>
                         </div>
                         {/* Rows */}
                         {top3.map((item, idx) => (
