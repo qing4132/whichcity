@@ -12,7 +12,7 @@ interface ChartSectionProps {
 
 export default function ChartSection({ comparisonData }: ChartSectionProps) {
   const ctx = useCompare();
-  const { darkMode, comparisonMode, baseCityId, selectedProfession, t, getCityLabel, formatCurrency, getCost, getClimate } = ctx;
+  const { darkMode, comparisonMode, baseCityId, selectedProfession, t, getCityLabel, convertAmount, currencySymbol, formatCurrency, getCost, getClimate } = ctx;
 
   const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
 
@@ -25,10 +25,11 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
   const fmtYAxis = (value: number): string => {
     if (comparisonMode === "ratio") return `${value}x`;
     if (comparisonMode === "bigmac") return String(value);
-    const abs = Math.abs(value);
-    if (abs >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
-    if (abs >= 1_000) return `${(value / 1_000).toFixed(0)}K`;
-    return String(value);
+    const converted = convertAmount(value);
+    const abs = Math.abs(converted);
+    if (abs >= 1_000_000) return `${currencySymbol}${(converted / 1_000_000).toFixed(1)}M`;
+    if (abs >= 1_000) return `${currencySymbol}${(converted / 1_000).toFixed(0)}K`;
+    return `${currencySymbol}${Math.round(converted)}`;
   };
 
   const chartData = comparisonData.map((city) => {

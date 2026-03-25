@@ -2,8 +2,17 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "City Compare",
-  description: "Compare cities by average income and cost of living",
+  title: {
+    default: "City Compare – Global Salary & Cost of Living Comparison",
+    template: "%s | City Compare",
+  },
+  description:
+    "Compare 100+ cities worldwide by salary, cost of living, housing prices, air quality, healthcare density. Find the best city for your career and lifestyle.",
+  metadataBase: new URL("https://citycompare.app"),
+  openGraph: {
+    type: "website",
+    siteName: "City Compare",
+  },
 };
 
 export default function RootLayout({
