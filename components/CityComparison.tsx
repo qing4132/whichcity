@@ -471,6 +471,16 @@ const PROFESSION_TRANSLATIONS: Record<string, Record<Locale, string>> = {
   业务分析师: { zh: "业务分析师", en: "Business Analyst", ja: "ビジネスアナリスト", es: "Analista de Negocio" },
   销售经理: { zh: "销售经理", en: "Sales Manager", ja: "営業マネージャー", es: "Gerente de Ventas" },
   人力资源经理: { zh: "人力资源经理", en: "Human Resources Manager", ja: "人事マネージャー", es: "Gerente de Recursos Humanos" },
+  教师: { zh: "教师", en: "Teacher", ja: "教師", es: "Profesor" },
+  护士: { zh: "护士", en: "Nurse", ja: "看護師", es: "Enfermero/a" },
+  律师: { zh: "律师", en: "Lawyer", ja: "弁護士", es: "Abogado" },
+  建筑师: { zh: "建筑师", en: "Architect", ja: "建築士", es: "Arquitecto" },
+  厨师: { zh: "厨师", en: "Chef", ja: "シェフ", es: "Chef" },
+  记者: { zh: "记者", en: "Journalist", ja: "ジャーナリスト", es: "Periodista" },
+  机械工程师: { zh: "机械工程师", en: "Mechanical Engineer", ja: "機械エンジニア", es: "Ingeniero Mecánico" },
+  药剂师: { zh: "药剂师", en: "Pharmacist", ja: "薬剤師", es: "Farmacéutico" },
+  会计师: { zh: "会计师", en: "Accountant", ja: "会計士", es: "Contador" },
+  公务员: { zh: "公务员", en: "Civil Servant", ja: "公務員", es: "Funcionario Público" },
 };
 
 const COUNTRY_TRANSLATIONS: Record<string, Record<Locale, string>> = {
