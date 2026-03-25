@@ -110,6 +110,7 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     insightSuggestionPick3: "当前最适合深度调研的城市：{cities}。优先关注收入和储蓄潜力。",
     insightSuggestionNeedMore: "建议选择至少 3 个城市进行对比（当前：{count}）。",
     annualIncome: "年收入",
+    annualExpense: "年支出",
     annualSavings: "年储蓄",
     costRatioKey: "成本占比",
     savingsRatioKey: "可存钱比例",
@@ -119,10 +120,11 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     keyInsights: "关键洞察",
     topIncomeCity: "最高收入城市",
     topSavingsCity: "最佳储蓄城市",
-    insightBestSavingsRate: "💰 储蓄率最高",
+    insightBestSavingsAmount: "💰 年储蓄最高",
     insightFastestHome: "🏠 购房最快",
     insightOverallBest: "⭐ 综合推荐",
-    insightKeyGaps: "📊 关键差距",
+    insightVsBase: "📊 对比基准城市",
+    insightClickToSetBase: "点击城市卡片设为基准",
     insightSavingsRate: "储蓄率",
     insightYears: "年",
     insightFor70sqm: "70m² 住房 · 按年净存计",
@@ -214,10 +216,11 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     keyInsights: "Key Insights",
     topIncomeCity: "Highest Income City",
     topSavingsCity: "Best Savings City",
-    insightBestSavingsRate: "💰 Best Savings Rate",
+    insightBestSavingsAmount: "💰 Highest Annual Savings",
     insightFastestHome: "🏠 Fastest Home Purchase",
     insightOverallBest: "⭐ Overall Best",
-    insightKeyGaps: "📊 Key Gaps",
+    insightVsBase: "📊 vs Base City",
+    insightClickToSetBase: "Click a city card to set as base",
     insightSavingsRate: "Savings Rate",
     insightYears: "yrs",
     insightFor70sqm: "70m² home · based on annual savings",
@@ -309,10 +312,11 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     keyInsights: "主要インサイト",
     topIncomeCity: "最高収入の都市",
     topSavingsCity: "貯蓄力が最も高い都市",
-    insightBestSavingsRate: "💰 貯蓄率トップ",
+    insightBestSavingsAmount: "💰 年間貯蓄トップ",
     insightFastestHome: "🏠 住宅購入最速",
     insightOverallBest: "⭐ 総合おすすめ",
-    insightKeyGaps: "📊 格差概要",
+    insightVsBase: "📊 基準都市との比較",
+    insightClickToSetBase: "都市カードをクリックして基準設定",
     insightSavingsRate: "貯蓄率",
     insightYears: "年",
     insightFor70sqm: "70m² · 年間貯蓄ベース",
@@ -404,10 +408,11 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     keyInsights: "Insights Clave",
     topIncomeCity: "Ciudad con Mayor Ingreso",
     topSavingsCity: "Ciudad con Mejor Ahorro",
-    insightBestSavingsRate: "💰 Mayor Tasa de Ahorro",
+    insightBestSavingsAmount: "💰 Mayor Ahorro Anual",
     insightFastestHome: "🏠 Compra más Rápida",
     insightOverallBest: "⭐ Mejor en General",
-    insightKeyGaps: "📊 Brechas Clave",
+    insightVsBase: "📊 vs Ciudad Base",
+    insightClickToSetBase: "Haz clic en una tarjeta para establecer base",
     insightSavingsRate: "Tasa de ahorro",
     insightYears: "años",
     insightFor70sqm: "70m² · según ahorro anual",
@@ -903,7 +908,7 @@ export default function CityComparison() {
   };
 
   const handleCityCardClick = (cityId: string) => {
-    if (comparisonData && comparisonMode === "ratio") {
+    if (comparisonData) {
       setBaseCityId(cityId);
     }
   };
@@ -1082,12 +1087,33 @@ export default function CityComparison() {
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
                   darkMode
                     ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400"
-                    : "bg-white text-gray-800 border-2 border-gray-300 focus:border-blue-500"
+                    : "bg-white text-gray-800 border border-gray-300 focus:border-blue-500"
                 } focus:outline-none`}
               >
                 {(Object.keys(LANGUAGE_LABELS) as Locale[]).map((lang) => (
                   <option key={lang} value={lang}>
                     {LANGUAGE_LABELS[lang]}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className={`text-sm font-semibold ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                {t("displayCurrency")}
+              </span>
+              <select
+                value={selectedCurrency}
+                onChange={(e) => handleCurrencyChange(e.target.value)}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+                  darkMode
+                    ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400"
+                    : "bg-white text-gray-800 border border-gray-300 focus:border-blue-500"
+                } focus:outline-none`}
+              >
+                {POPULAR_CURRENCIES.map((currency) => (
+                  <option key={currency} value={currency}>
+                    {currency}
                   </option>
                 ))}
               </select>
@@ -1103,38 +1129,6 @@ export default function CityComparison() {
             >
               {darkMode ? t("dayMode") : t("nightMode")}
             </button>
-          </div>
-        </div>
-
-        {/* 币种选择器 */}
-        <div className={`rounded-xl shadow-md p-6 mb-6 ${
-          darkMode
-            ? "bg-gray-800 border border-gray-700"
-            : "bg-white border border-gray-100"
-        }`}>
-          <div className="flex flex-wrap items-center gap-4">
-            <span className={`font-semibold ${
-              darkMode ? "text-gray-300" : "text-gray-700"
-            }`}>
-              {t("displayCurrency")}
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {POPULAR_CURRENCIES.map((currency) => (
-                <button
-                  key={currency}
-                  onClick={() => handleCurrencyChange(currency)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
-                    selectedCurrency === currency
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : darkMode
-                        ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
-                >
-                  {currency}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
 
@@ -1583,7 +1577,7 @@ export default function CityComparison() {
               <p className={`text-sm mb-6 ${
                 darkMode ? "text-gray-400" : "text-gray-600"
               }`}>
-                {comparisonMode === "ratio" ? t("clickSetBase") : t("cityDetails")}
+                {t("clickSetBase")}
               </p>
 
               <div
@@ -1611,10 +1605,8 @@ export default function CityComparison() {
                     <div
                       key={city.id}
                       onClick={() => handleCityCardClick(city.id.toString())}
-                      className={`rounded-xl p-6 shadow-lg transition ${
-                        comparisonMode === "ratio" ? "hover:shadow-xl cursor-pointer" : "cursor-default"
-                      } ${
-                        isBase && comparisonMode === "ratio"
+                      className={`rounded-xl p-6 shadow-lg transition hover:shadow-xl cursor-pointer ${
+                        isBase
                           ? "ring-4 ring-yellow-400 ring-opacity-50"
                           : ""
                       } ${
@@ -1626,7 +1618,7 @@ export default function CityComparison() {
                       {/* 城市信息头 */}
                       <div className="text-center mb-6 pb-4 border-b-2 border-white border-opacity-20">
                         <div className="text-3xl mb-2">
-                          {isBase && comparisonMode === "ratio" ? "⭐" : "🏙️"}
+                          {isBase ? "⭐" : "🏙️"}
                         </div>
                         <h3 className="text-2xl font-bold text-white">
                           {getCityLabel(city)}
@@ -1795,7 +1787,7 @@ export default function CityComparison() {
                   return { city, income, savings, annualCost, monthlyCost: city.costOfLiving, savingsRate, yearsToHome };
                 });
 
-                const bestSavingsRate = [...withMetrics].sort((a, b) => b.savingsRate - a.savingsRate)[0];
+                const bestSavings = [...withMetrics].sort((a, b) => b.savings - a.savings)[0];
                 const fastestHome = [...withMetrics]
                   .filter(m => m.yearsToHome > 0 && isFinite(m.yearsToHome))
                   .sort((a, b) => a.yearsToHome - b.yearsToHome)[0] || withMetrics[0];
@@ -1811,13 +1803,6 @@ export default function CityComparison() {
                 });
                 const overallBest = [...withScores].sort((a, b) => b.composite - a.composite)[0];
 
-                const incomes = withMetrics.map(m => m.income).sort((a, b) => a - b);
-                const costs = withMetrics.map(m => m.monthlyCost).sort((a, b) => a - b);
-                const prices = withMetrics.map(m => m.city.housePrice).sort((a, b) => a - b);
-                const incomeSpread = incomes[0] > 0 ? (incomes[incomes.length - 1] / incomes[0]).toFixed(1) : "—";
-                const costSpread = costs[0] > 0 ? (costs[costs.length - 1] / costs[0]).toFixed(1) : "—";
-                const housingSpread = prices[0] > 0 ? (prices[prices.length - 1] / prices[0]).toFixed(1) : "—";
-
                 const top3 = [...withScores].sort((a, b) => b.composite - a.composite).slice(0, Math.min(3, withScores.length));
 
                 const cardCls = `rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`;
@@ -1830,27 +1815,7 @@ export default function CityComparison() {
                   <>
                     {/* Row 1: 4 decision cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
-                      {/* Savings Rate */}
-                      <div className={cardCls}>
-                        <p className={labelCls}>{t("insightBestSavingsRate")}</p>
-                        <p className={cityCls}>{getCityLabel(bestSavingsRate.city)}</p>
-                        <p className={numCls}>{Math.round(bestSavingsRate.savingsRate)}%</p>
-                        <p className={subCls}>
-                          {t("annualIncome")} {formatCurrency(bestSavingsRate.income)} → {t("annualSavings")} {formatCurrency(bestSavingsRate.savings)}
-                        </p>
-                      </div>
-                      {/* Fastest Home Purchase */}
-                      <div className={cardCls}>
-                        <p className={labelCls}>{t("insightFastestHome")}</p>
-                        <p className={cityCls}>{getCityLabel(fastestHome.city)}</p>
-                        <p className={numCls}>
-                          {isFinite(fastestHome.yearsToHome) ? fastestHome.yearsToHome.toFixed(1) : "—"} {t("insightYears")}
-                        </p>
-                        <p className={subCls}>
-                          {t("insightFor70sqm")} · {formatCurrency(fastestHome.city.housePrice)}{t("housePriceUnit")}
-                        </p>
-                      </div>
-                      {/* Overall Best */}
+                      {/* 1. Overall Best */}
                       <div className={cardCls}>
                         <p className={labelCls}>{t("insightOverallBest")}</p>
                         <p className={cityCls}>{getCityLabel(overallBest.city)}</p>
@@ -1873,27 +1838,54 @@ export default function CityComparison() {
                         </div>
                         <p className={`${subCls} mt-2`}>{t("insightCompositeNote")}</p>
                       </div>
-                      {/* Key Gaps */}
+                      {/* 2. Best Annual Savings */}
                       <div className={cardCls}>
-                        <p className={labelCls}>{t("insightKeyGaps")}</p>
-                        <div className="space-y-2 mt-1">
-                          {[
-                            { label: t("insightIncomeGap"), value: `${incomeSpread}x` },
-                            { label: t("insightCostGap"), value: `${costSpread}x` },
-                            { label: t("insightHousingGap"), value: `${housingSpread}x` },
-                          ].map(({ label, value }) => (
-                            <div key={label} className="flex items-center justify-between">
-                              <span className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{label}</span>
-                              <span className={`text-sm font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{value}</span>
-                            </div>
-                          ))}
-                          <div className="flex items-center justify-between">
-                            <span className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("insightSavingsRate")}</span>
-                            <span className={`text-sm font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
-                              {Math.round(withMetrics.reduce((min, m) => Math.min(min, m.savingsRate), Infinity))}% ~ {Math.round(withMetrics.reduce((max, m) => Math.max(max, m.savingsRate), -Infinity))}%
-                            </span>
-                          </div>
-                        </div>
+                        <p className={labelCls}>{t("insightBestSavingsAmount")}</p>
+                        <p className={cityCls}>{getCityLabel(bestSavings.city)}</p>
+                        <p className={numCls}>{formatCurrency(bestSavings.savings)}</p>
+                        <p className={subCls}>
+                          {t("annualIncome")} {formatCurrency(bestSavings.income)} − {t("annualExpense")} {formatCurrency(bestSavings.annualCost)}
+                        </p>
+                      </div>
+                      {/* 3. Fastest Home Purchase */}
+                      <div className={cardCls}>
+                        <p className={labelCls}>{t("insightFastestHome")}</p>
+                        <p className={cityCls}>{getCityLabel(fastestHome.city)}</p>
+                        <p className={numCls}>
+                          {isFinite(fastestHome.yearsToHome) ? fastestHome.yearsToHome.toFixed(1) : "—"} {t("insightYears")}
+                        </p>
+                        <p className={subCls}>
+                          {t("insightFor70sqm")} · {formatCurrency(fastestHome.city.housePrice)}{t("housePriceUnit")}
+                        </p>
+                      </div>
+                      {/* 4. Ratio vs Base */}
+                      <div className={cardCls}>
+                        <p className={labelCls}>{t("insightVsBase")}</p>
+                        {(() => {
+                          const baseM = withMetrics.find(m => m.city.id.toString() === baseCityId);
+                          if (!baseM) return <p className={subCls}>{t("insightClickToSetBase")}</p>;
+                          const best = [...withMetrics].filter(m => m !== baseM).sort((a, b) => b.savings - a.savings)[0];
+                          if (!best) return <p className={subCls}>—</p>;
+                          return (
+                            <>
+                              <p className={cityCls}>{getCityLabel(best.city)} vs {getCityLabel(baseM.city)}</p>
+                              <div className="space-y-1 mt-2">
+                                {[
+                                  { label: t("insightIncomeGap"), ratio: baseM.income > 0 ? best.income / baseM.income : 0 },
+                                  { label: t("insightCostGap"), ratio: baseM.monthlyCost > 0 ? best.monthlyCost / baseM.monthlyCost : 0 },
+                                  { label: t("annualSavings"), ratio: baseM.savings > 0 ? best.savings / baseM.savings : 0 },
+                                ].map(({ label, ratio }) => (
+                                  <div key={label} className="flex items-center justify-between">
+                                    <span className={`text-xs ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{label}</span>
+                                    <span className={`text-xs font-bold ${ratio >= 1 ? (darkMode ? "text-green-400" : "text-green-600") : (darkMode ? "text-red-400" : "text-red-600")}`}>
+                                      {ratio.toFixed(2)}x
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          );
+                        })()}
                       </div>
                     </div>
 
@@ -1907,7 +1899,7 @@ export default function CityComparison() {
                         <div className={`grid grid-cols-5 gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide ${darkMode ? "text-slate-400 border-b border-slate-700" : "text-slate-500 border-b border-slate-200"}`}>
                           <span>#</span>
                           <span>{t("insightCity")}</span>
-                          <span>{t("insightSavingsRate")}</span>
+                          <span>{t("annualSavings")}</span>
                           <span>{t("insightHomePurchaseYears")}</span>
                           <span>{t("airQuality")}</span>
                         </div>
@@ -1924,12 +1916,10 @@ export default function CityComparison() {
                             <span className={`text-sm font-bold ${darkMode ? "text-slate-300" : "text-slate-500"}`}>{idx + 1}</span>
                             <span className={`text-sm font-semibold truncate ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(item.city)}</span>
                             <span className={`text-sm font-bold ${
-                              item.savingsRate > 40 ? (darkMode ? "text-green-400" : "text-green-600")
-                                : item.savingsRate > 20 ? (darkMode ? "text-blue-400" : "text-blue-600")
-                                : item.savingsRate > 0 ? (darkMode ? "text-yellow-400" : "text-yellow-600")
+                              item.savings > 0 ? (darkMode ? "text-green-400" : "text-green-600")
                                 : (darkMode ? "text-red-400" : "text-red-600")
                             }`}>
-                              {Math.round(item.savingsRate)}%
+                              {formatCurrency(item.savings)}
                             </span>
                             <span className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
                               {isFinite(item.yearsToHome) ? `${item.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("insightNegativeSavings")}
