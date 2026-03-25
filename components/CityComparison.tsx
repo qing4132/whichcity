@@ -30,6 +30,7 @@ interface City {
   description: string;
   professions: Record<string, number>;
   housePrice: number;
+  airQuality: number;
 }
 
 type ComparisonMode = "normal" | "ratio" | "bigmac";
@@ -96,6 +97,15 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     housePricePerSqm: "每平米房价",
     housePriceUnit: "/m²",
     lowestHousePrice: "🏠 最低房价城市",
+    airQuality: "空气质量",
+    airQualityAQI: "AQI",
+    bestAirQuality: "🌿 最佳空气质量",
+    aqiGood: "优",
+    aqiModerate: "良",
+    aqiUSG: "轻度污染",
+    aqiUnhealthy: "中度污染",
+    aqiVeryUnhealthy: "重度污染",
+    aqiHazardous: "严重污染",
     insightSuggestionTitle: "推荐下一步",
     insightSuggestionPick3: "当前最适合深度调研的城市：{cities}。优先关注收入和储蓄潜力。",
     insightSuggestionNeedMore: "建议选择至少 3 个城市进行对比（当前：{count}）。",
@@ -166,6 +176,15 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     housePricePerSqm: "Price per sqm",
     housePriceUnit: "/m²",
     lowestHousePrice: "🏠 Lowest House Price",
+    airQuality: "Air Quality",
+    airQualityAQI: "AQI",
+    bestAirQuality: "🌿 Best Air Quality",
+    aqiGood: "Good",
+    aqiModerate: "Moderate",
+    aqiUSG: "Unhealthy (SG)",
+    aqiUnhealthy: "Unhealthy",
+    aqiVeryUnhealthy: "Very Unhealthy",
+    aqiHazardous: "Hazardous",
     insightSuggestionTitle: "Recommended next step",
     insightSuggestionPick3: "Top candidates for deep research: {cities}. Focus on income and savings potential.",
     insightSuggestionNeedMore: "Select at least 3 cities for more conclusive comparison (current: {count}).",
@@ -237,6 +256,15 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     housePricePerSqm: "㎡あたり価格",
     housePriceUnit: "/m²",
     lowestHousePrice: "🏠 最低住宅価格の都市",
+    airQuality: "大気質",
+    airQualityAQI: "AQI",
+    bestAirQuality: "🌿 最良大気質の都市",
+    aqiGood: "良好",
+    aqiModerate: "普通",
+    aqiUSG: "敏感グループに有害",
+    aqiUnhealthy: "有害",
+    aqiVeryUnhealthy: "非常に有害",
+    aqiHazardous: "危険",
     insightSuggestionTitle: "次のステップ",
     insightSuggestionPick3: "調査候補：{cities}。収入と貯蓄を重視して深堀りしましょう。",
     insightSuggestionNeedMore: "より有効な比較には3都市以上を選択してください（現在：{count}）。",
@@ -308,6 +336,15 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     housePricePerSqm: "Precio por m²",
     housePriceUnit: "/m²",
     lowestHousePrice: "🏠 Ciudad con Menor Precio",
+    airQuality: "Calidad del Aire",
+    airQualityAQI: "AQI",
+    bestAirQuality: "🌿 Mejor Calidad del Aire",
+    aqiGood: "Bueno",
+    aqiModerate: "Moderado",
+    aqiUSG: "Dañino (GS)",
+    aqiUnhealthy: "Dañino",
+    aqiVeryUnhealthy: "Muy Dañino",
+    aqiHazardous: "Peligroso",
     insightSuggestionTitle: "Próximo paso recomendado",
     insightSuggestionPick3: "Ciudades recomendadas para análisis profundo: {cities}. Prioriza ingresos y ahorro.",
     insightSuggestionNeedMore: "Selecciona al menos 3 ciudades para una comparación más completa (actual: {count}).",
@@ -728,6 +765,15 @@ export default function CityComparison() {
       annualRainMm: Math.max(0, rain),
       sunshineHours: Math.max(800, sunshine),
     };
+  };
+
+  const getAqiLevel = (aqi: number): { key: string; color: string } => {
+    if (aqi <= 50) return { key: "aqiGood", color: "text-green-300" };
+    if (aqi <= 100) return { key: "aqiModerate", color: "text-yellow-300" };
+    if (aqi <= 150) return { key: "aqiUSG", color: "text-orange-300" };
+    if (aqi <= 200) return { key: "aqiUnhealthy", color: "text-red-300" };
+    if (aqi <= 300) return { key: "aqiVeryUnhealthy", color: "text-purple-300" };
+    return { key: "aqiHazardous", color: "text-rose-400" };
   };
 
   const getLocalizedDescription = (city: City, salary: number): string => {
@@ -1426,6 +1472,38 @@ export default function CityComparison() {
                     </div>
                   </div>
                 </div>
+
+                {/* 空气质量对比 */}
+                <div className={`p-4 rounded-lg ${
+                  darkMode ? "bg-gray-700" : "bg-gray-50"
+                }`}>
+                  <h3 className={`text-lg font-bold mb-4 ${
+                    darkMode ? "text-white" : "text-gray-800"
+                  }`}>
+                    {t("airQuality")} (AQI)
+                  </h3>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <BarChart
+                      data={comparisonData.map((city) => ({
+                        name: getCityLabel(city),
+                        value: city.airQuality,
+                      }))}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? "#444" : "#ddd"} />
+                      <XAxis dataKey="name" stroke={darkMode ? "#999" : "#666"} />
+                      <YAxis stroke={darkMode ? "#999" : "#666"} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: darkMode ? "#333" : "#fff",
+                          border: `1px solid ${darkMode ? "#555" : "#ddd"}`,
+                          color: darkMode ? "#fff" : "#000",
+                        }}
+                        formatter={(v: any) => `AQI ${v}`}
+                      />
+                      <Bar dataKey="value" fill="#14b8a6" radius={[8, 8, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
             </div>
 
@@ -1578,6 +1656,16 @@ export default function CityComparison() {
                         </p>
                       </div>
 
+                      {/* 空气质量 */}
+                      <div className="bg-teal-500 bg-opacity-30 p-3 rounded-lg">
+                        <p className="text-xs text-teal-100 mb-1">
+                          {t("airQuality")}
+                        </p>
+                        <p className={`text-lg font-bold ${getAqiLevel(city.airQuality).color}`}>
+                          AQI {city.airQuality} · {t(getAqiLevel(city.airQuality).key)}
+                        </p>
+                      </div>
+
                       <div className="mt-3 grid grid-cols-2 gap-2">
                         {(() => {
                           const climate = getClimate(city);
@@ -1650,6 +1738,7 @@ export default function CityComparison() {
                 const savingsTop = [...withMetrics].sort((a, b) => b.savings - a.savings)[0];
                 const lowestCostTop = [...withMetrics].sort((a, b) => a.monthlyCost - b.monthlyCost)[0];
                 const lowestHousePriceTop = [...withMetrics].sort((a, b) => a.city.housePrice - b.city.housePrice)[0];
+                const bestAirTop = [...withMetrics].sort((a, b) => a.city.airQuality - b.city.airQuality)[0];
 
                 const recommended = [...withMetrics]
                   .sort((a, b) => (b.income + b.savings) - (a.income + a.savings))
@@ -1665,7 +1754,7 @@ export default function CityComparison() {
 
                 return (
                   <>
-                    <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-5 gap-4">
                       <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
                         <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("topIncomeCity")}</p>
                         <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(incomeTop.city)}</h3>
@@ -1692,6 +1781,13 @@ export default function CityComparison() {
                         <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(lowestHousePriceTop.city)}</h3>
                         <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
                           {formatCurrency(lowestHousePriceTop.city.housePrice)}{t("housePriceUnit")}
+                        </p>
+                      </div>
+                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
+                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("bestAirQuality")}</p>
+                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(bestAirTop.city)}</h3>
+                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                          AQI {bestAirTop.city.airQuality} · {t(getAqiLevel(bestAirTop.city.airQuality).key)}
                         </p>
                       </div>
                     </div>
