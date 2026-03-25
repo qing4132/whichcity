@@ -102,7 +102,7 @@
         "人力资源经理": 45000
       },
       "housePrice": 6230,
-      "airQuality": 105
+      "airQuality": 140
     },
     {
       "id": 5,
@@ -128,7 +128,7 @@
         "人力资源经理": 58000
       },
       "housePrice": 7050,
-      "airQuality": 85
+      "airQuality": 112
     },
     {
       "id": 6,
@@ -258,7 +258,7 @@
         "人力资源经理": 77852
       },
       "housePrice": 16091,
-      "airQuality": 58
+      "airQuality": 77
     },
     {
       "id": 11,
@@ -1584,7 +1584,7 @@
         "人力资源经理": 57092
       },
       "housePrice": 1200,
-      "airQuality": 45
+      "airQuality": 60
     },
     {
       "id": 62,
