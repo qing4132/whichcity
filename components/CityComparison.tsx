@@ -10,6 +10,7 @@ import ChartSection from "./ChartSection";
 import CityCard from "./CityCard";
 import KeyInsights from "./KeyInsights";
 import DataSources from "./DataSources";
+import CityLinks from "./CityLinks";
 
 export default function CityComparison() {
   const [cities, setCities] = useState<City[]>([]);
@@ -236,10 +237,12 @@ export default function CityComparison() {
   };
 
   // ── Context value ──
+  const currencySymbol = exchangeRates?.symbols[selectedCurrency] || '$';
+
   const ctxValue: CompareContextValue = {
     darkMode, locale, comparisonMode, costTier, baseCityId, selectedProfession,
     t, getCityLabel, getCountryLabel, getContinentLabel, getProfessionLabel,
-    formatCurrency, formatPrice, getCost, getClimate, getAqiLevel, getRatioValue, toBigMacCount,
+    convertAmount, currencySymbol, formatCurrency, formatPrice, getCost, getClimate, getAqiLevel, getRatioValue, toBigMacCount,
   };
 
   // ── Loading ──
@@ -477,6 +480,9 @@ export default function CityComparison() {
               <DataSources />
             </div>
           )}
+
+          {/* SEO internal links — always visible */}
+          <CityLinks />
         </div>
       </div>
     </CompareCtx.Provider>

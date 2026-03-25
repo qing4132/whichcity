@@ -15,6 +15,8 @@ export interface CompareContextValue {
   getCountryLabel: (country: string) => string;
   getContinentLabel: (continent: string) => string;
   getProfessionLabel: (profession: string) => string;
+  convertAmount: (amount: number) => number;
+  currencySymbol: string;
   formatCurrency: (amount: number) => string;
   formatPrice: (amount: number) => string;
   getCost: (city: City) => number;
