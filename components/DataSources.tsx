@@ -22,6 +22,7 @@ export default function DataSources() {
         <p>• {t("dataBigMacSrc")}</p>
         <p>• {t("dataClimateSrc")}</p>
         <p>• {t("dataAqiSrc")}</p>
+        <p>• {t("dataDoctorSrc")}</p>
       </div>
       <div className={`mt-4 pt-3 border-t ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
         <p className={`text-xs ${darkMode ? "text-gray-500" : "text-gray-400"}`}>

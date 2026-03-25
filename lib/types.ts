@@ -16,6 +16,7 @@ export interface City {
   professions: Record<string, number>;
   housePrice: number;
   airQuality: number;
+  doctorsPerThousand: number;
 }
 
 export type ComparisonMode = "normal" | "ratio" | "bigmac";

@@ -17,16 +17,28 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
   const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
 
   const getRatioValue = (value: number, baseValue: number): number =>
-    parseFloat((value / baseValue).toFixed(2));
+    baseValue === 0 ? 0 : parseFloat((value / baseValue).toFixed(2));
 
   const toBigMacCount = (value: number, bigMacPrice: number): number =>
     bigMacPrice <= 0 ? 0 : parseFloat((value / bigMacPrice).toFixed(2));
+
+  const fmtYAxis = (value: number): string => {
+    if (comparisonMode === "ratio") return `${value}x`;
+    if (comparisonMode === "bigmac") return String(value);
+    const abs = Math.abs(value);
+    if (abs >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
+    if (abs >= 1_000) return `${(value / 1_000).toFixed(0)}K`;
+    return String(value);
+  };
 
   const chartData = comparisonData.map((city) => {
     const salary = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
     const baseSalary = selectedProfession ? baseCity.professions[selectedProfession] || 0 : baseCity.averageIncome;
     const cityCost = getCost(city);
     const baseCityCost = getCost(baseCity);
+
+    const rawSavings = salary - cityCost * 12;
+    const baseRawSavings = baseSalary - baseCityCost * 12;
 
     return {
       name: getCityLabel(city),
@@ -35,9 +47,9 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
       yearlyExpense: comparisonMode === "ratio" ? getRatioValue(cityCost * 12, baseCityCost * 12)
         : comparisonMode === "bigmac" ? toBigMacCount(cityCost * 12, city.bigMacPrice) : cityCost * 12,
       savings: comparisonMode === "ratio"
-        ? getRatioValue(salary - cityCost * 12, baseSalary - baseCityCost * 12)
+        ? getRatioValue(rawSavings, baseRawSavings)
         : comparisonMode === "bigmac"
-          ? toBigMacCount(salary - cityCost * 12, city.bigMacPrice) : salary - cityCost * 12,
+          ? toBigMacCount(rawSavings, city.bigMacPrice) : rawSavings,
     };
   });
 
@@ -76,7 +88,7 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis dataKey="name" stroke={axisStroke} tick={{ fontSize: 12 }} />
-              <YAxis stroke={axisStroke} />
+              <YAxis stroke={axisStroke} tickFormatter={fmtYAxis} />
               <Tooltip contentStyle={tooltipStyle} formatter={fmtTooltip} />
               <Legend />
               <Bar dataKey="income" fill="#3b82f6" name={t("annualIncome")} radius={[8, 8, 0, 0]} />
@@ -130,6 +142,22 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
               <YAxis stroke={axisStroke} />
               <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => `AQI ${v}`} />
               <Bar dataKey="value" fill="#14b8a6" radius={[8, 8, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Doctors per 1000 */}
+        <div className={`p-4 rounded-lg ${darkMode ? "bg-gray-700" : "bg-gray-50"}`}>
+          <h3 className={`text-lg font-bold mb-4 ${darkMode ? "text-white" : "text-gray-800"}`}>
+            {t("doctorsPerThousand")}
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={comparisonData.map(city => ({ name: getCityLabel(city), value: city.doctorsPerThousand }))}>
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+              <XAxis dataKey="name" stroke={axisStroke} tick={{ fontSize: 12 }} />
+              <YAxis stroke={axisStroke} />
+              <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => `${v} ${t("doctorsUnit")}`} />
+              <Bar dataKey="value" fill="#f472b6" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
