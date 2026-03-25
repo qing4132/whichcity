@@ -112,6 +112,14 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
         </p>
       </div>
 
+      {/* Doctors per 1000 */}
+      <div className="bg-pink-500 bg-opacity-30 p-3 rounded-lg mb-3">
+        <p className="text-xs text-pink-100 mb-1">{t("doctorsPerThousand")}</p>
+        <p className="text-base sm:text-lg font-bold text-white">
+          {city.doctorsPerThousand} {t("doctorsUnit")}
+        </p>
+      </div>
+
       {/* Climate mini-cards */}
       <div className="mt-3 grid grid-cols-2 gap-1.5">
         <div className="bg-white bg-opacity-10 p-2 rounded-lg">

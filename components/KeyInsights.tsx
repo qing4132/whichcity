@@ -28,12 +28,14 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
   const maxSavings = Math.max(...withMetrics.map(m => Math.max(0, m.savings)), 1);
   const maxYears = Math.max(...withMetrics.filter(m => isFinite(m.yearsToHome)).map(m => m.yearsToHome), 1);
   const maxAqi = Math.max(...withMetrics.map(m => m.city.airQuality), 1);
+  const maxDoctors = Math.max(...withMetrics.map(m => m.city.doctorsPerThousand), 1);
 
   const withScores = withMetrics.map(m => {
     const sv = maxSavings > 0 ? Math.max(0, m.savings) / maxSavings : 0;
     const af = isFinite(m.yearsToHome) && maxYears > 0 ? 1 - (m.yearsToHome / maxYears) : 0;
     const aq = maxAqi > 0 ? 1 - (m.city.airQuality / maxAqi) : 0;
-    return { ...m, composite: sv * 0.4 + af * 0.35 + aq * 0.25 };
+    const doc = maxDoctors > 0 ? m.city.doctorsPerThousand / maxDoctors : 0;
+    return { ...m, composite: sv * 0.35 + af * 0.30 + aq * 0.20 + doc * 0.15 };
   });
 
   const top = [...withScores].sort((a, b) => b.composite - a.composite);
@@ -66,6 +68,9 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
             </span>
             <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${darkMode ? "bg-teal-900/60 text-teal-300" : "bg-teal-100 text-teal-700"}`}>
               AQI {overallBest.city.airQuality}
+            </span>
+            <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${darkMode ? "bg-pink-900/60 text-pink-300" : "bg-pink-100 text-pink-700"}`}>
+              {overallBest.city.doctorsPerThousand} {t("doctorsUnit")}
             </span>
           </div>
           <p className={`${subCls} mt-2`}>{t("insightCompositeNote")}</p>
@@ -132,18 +137,19 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
         <div className={`overflow-x-auto ${darkMode ? "bg-slate-800/50" : "bg-white"}`}>
           <div className="min-w-[600px]">
             {/* Header */}
-            <div className={`grid grid-cols-5 gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide ${darkMode ? "text-slate-400 border-b border-slate-700" : "text-slate-500 border-b border-slate-200"}`}>
+            <div className={`grid grid-cols-6 gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide ${darkMode ? "text-slate-400 border-b border-slate-700" : "text-slate-500 border-b border-slate-200"}`}>
               <span>#</span>
               <span>{t("insightCity")}</span>
-              <span>{t("annualSavings")} (40%)</span>
-              <span>{t("insightHomePurchaseYears")} (35%)</span>
-              <span>{t("airQuality")} (25%)</span>
+              <span>{t("annualSavings")} (35%)</span>
+              <span>{t("insightHomePurchaseYears")} (30%)</span>
+              <span>{t("airQuality")} (20%)</span>
+              <span>{t("doctorsPerThousand")} (15%)</span>
             </div>
             {/* Rows */}
             {top.map((item, idx) => (
               <div
                 key={item.city.id}
-                className={`grid grid-cols-5 gap-2 px-5 py-3 items-center ${
+                className={`grid grid-cols-6 gap-2 px-5 py-3 items-center ${
                   idx < top.length - 1 ? (darkMode ? "border-b border-slate-700/50" : "border-b border-slate-100") : ""
                 }`}
               >
@@ -157,6 +163,9 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
                 </span>
                 <span className="text-sm font-medium" style={{ color: getAqiLevel(item.city.airQuality).color }}>
                   {item.city.airQuality} · {t(getAqiLevel(item.city.airQuality).key)}
+                </span>
+                <span className={`text-sm font-medium ${darkMode ? "text-pink-400" : "text-pink-600"}`}>
+                  {item.city.doctorsPerThousand}
                 </span>
               </div>
             ))}
