@@ -119,6 +119,21 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     keyInsights: "关键洞察",
     topIncomeCity: "最高收入城市",
     topSavingsCity: "最佳储蓄城市",
+    insightBestSavingsRate: "💰 储蓄率最高",
+    insightFastestHome: "🏠 购房最快",
+    insightOverallBest: "⭐ 综合推荐",
+    insightKeyGaps: "📊 关键差距",
+    insightSavingsRate: "储蓄率",
+    insightYears: "年",
+    insightFor70sqm: "70m² 住房 · 按年净存计",
+    insightCompositeNote: "综合储蓄率 · 购房年限 · 空气质量",
+    insightIncomeGap: "收入",
+    insightCostGap: "生活成本",
+    insightHousingGap: "房价",
+    insightDecisionMatrix: "💡 决策矩阵",
+    insightCity: "城市",
+    insightHomePurchaseYears: "购房年限",
+    insightNegativeSavings: "入不敷出",
     climate: "气候",
     climateCompare: "气候对比",
     climateType: "气候类型",
@@ -199,6 +214,21 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     keyInsights: "Key Insights",
     topIncomeCity: "Highest Income City",
     topSavingsCity: "Best Savings City",
+    insightBestSavingsRate: "💰 Best Savings Rate",
+    insightFastestHome: "🏠 Fastest Home Purchase",
+    insightOverallBest: "⭐ Overall Best",
+    insightKeyGaps: "📊 Key Gaps",
+    insightSavingsRate: "Savings Rate",
+    insightYears: "yrs",
+    insightFor70sqm: "70m² home · based on annual savings",
+    insightCompositeNote: "Savings rate · Housing · Air quality",
+    insightIncomeGap: "Income",
+    insightCostGap: "Living Cost",
+    insightHousingGap: "Housing",
+    insightDecisionMatrix: "💡 Decision Matrix",
+    insightCity: "City",
+    insightHomePurchaseYears: "Years to Buy",
+    insightNegativeSavings: "Net negative",
     climate: "Climate",
     climateCompare: "Climate comparison",
     climateType: "Climate type",
@@ -279,6 +309,21 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     keyInsights: "主要インサイト",
     topIncomeCity: "最高収入の都市",
     topSavingsCity: "貯蓄力が最も高い都市",
+    insightBestSavingsRate: "💰 貯蓄率トップ",
+    insightFastestHome: "🏠 住宅購入最速",
+    insightOverallBest: "⭐ 総合おすすめ",
+    insightKeyGaps: "📊 格差概要",
+    insightSavingsRate: "貯蓄率",
+    insightYears: "年",
+    insightFor70sqm: "70m² · 年間貯蓄ベース",
+    insightCompositeNote: "貯蓄率 · 購入年数 · 大気質",
+    insightIncomeGap: "収入",
+    insightCostGap: "生活費",
+    insightHousingGap: "住宅価格",
+    insightDecisionMatrix: "💡 意思決定マトリクス",
+    insightCity: "都市",
+    insightHomePurchaseYears: "購入年数",
+    insightNegativeSavings: "赤字",
     climate: "気候",
     climateCompare: "気候比較",
     climateType: "気候タイプ",
@@ -359,6 +404,21 @@ const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     keyInsights: "Insights Clave",
     topIncomeCity: "Ciudad con Mayor Ingreso",
     topSavingsCity: "Ciudad con Mejor Ahorro",
+    insightBestSavingsRate: "💰 Mayor Tasa de Ahorro",
+    insightFastestHome: "🏠 Compra más Rápida",
+    insightOverallBest: "⭐ Mejor en General",
+    insightKeyGaps: "📊 Brechas Clave",
+    insightSavingsRate: "Tasa de ahorro",
+    insightYears: "años",
+    insightFor70sqm: "70m² · según ahorro anual",
+    insightCompositeNote: "Ahorro · Vivienda · Calidad del aire",
+    insightIncomeGap: "Ingresos",
+    insightCostGap: "Costo de vida",
+    insightHousingGap: "Vivienda",
+    insightDecisionMatrix: "💡 Matriz de Decisión",
+    insightCity: "Ciudad",
+    insightHomePurchaseYears: "Años para Comprar",
+    insightNegativeSavings: "Déficit",
     climate: "Clima",
     climateCompare: "Comparacion de clima",
     climateType: "Tipo de clima",
@@ -1047,10 +1107,10 @@ export default function CityComparison() {
         </div>
 
         {/* 币种选择器 */}
-        <div className={`rounded-lg shadow-lg p-6 mb-6 ${
+        <div className={`rounded-xl shadow-md p-6 mb-6 ${
           darkMode
             ? "bg-gray-800 border border-gray-700"
-            : "bg-white"
+            : "bg-white border border-gray-100"
         }`}>
           <div className="flex flex-wrap items-center gap-4">
             <span className={`font-semibold ${
@@ -1063,12 +1123,12 @@ export default function CityComparison() {
                 <button
                   key={currency}
                   onClick={() => handleCurrencyChange(currency)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition ${
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
                     selectedCurrency === currency
-                      ? "bg-blue-600 text-white"
+                      ? "bg-blue-600 text-white shadow-sm"
                       : darkMode
                         ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
                   {currency}
@@ -1079,10 +1139,10 @@ export default function CityComparison() {
         </div>
 
         {/* 职业和对比模式选择 */}
-        <div className={`rounded-lg shadow-lg p-6 mb-6 ${
+        <div className={`rounded-xl shadow-md p-6 mb-6 ${
           darkMode
             ? "bg-gray-800 border border-gray-700"
-            : "bg-white"
+            : "bg-white border border-gray-100"
         }`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* 职业选择 */}
@@ -1095,10 +1155,10 @@ export default function CityComparison() {
               <select
                 value={selectedProfession}
                 onChange={(e) => setSelectedProfession(e.target.value)}
-                className={`w-full px-4 py-2 rounded-lg font-medium transition ${
+                className={`w-full px-4 py-2.5 rounded-lg font-medium transition ${
                   darkMode
                     ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400"
-                    : "border-2 border-gray-300 focus:border-blue-500"
+                    : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 } focus:outline-none`}
               >
                 {professions.map((prof) => (
@@ -1164,20 +1224,20 @@ export default function CityComparison() {
               placeholder={t("searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className={`px-4 py-3 rounded-lg focus:outline-none transition ${
+              className={`px-4 py-2.5 rounded-lg focus:outline-none transition ${
                 darkMode
                   ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400"
-                  : "border-2 border-gray-300 focus:border-blue-500"
+                  : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               }`}
             />
 
             <select
               value={selectedContinent}
               onChange={(e) => setSelectedContinent(e.target.value)}
-              className={`px-4 py-3 rounded-lg focus:outline-none transition font-medium ${
+              className={`px-4 py-2.5 rounded-lg focus:outline-none transition font-medium ${
                 darkMode
                   ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400"
-                  : "border-2 border-gray-300 focus:border-blue-500"
+                  : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               }`}
             >
               <option value="all">{t("allContinents")}</option>
@@ -1206,16 +1266,18 @@ export default function CityComparison() {
                   return (
                     <div
                       key={id}
-                      className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2 ${
+                      className={`px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 ${
                         darkMode
-                          ? "bg-blue-600 text-white"
-                          : "bg-blue-100 text-blue-900"
+                          ? "bg-blue-600/90 text-white"
+                          : "bg-blue-50 text-blue-700 border border-blue-200"
                       }`}
                     >
                       {city ? getCityLabel(city) : ""}
                       <button
                         onClick={() => handleCitySelect(id)}
-                        className="hover:font-bold"
+                        className={`opacity-60 hover:opacity-100 transition-opacity ${
+                          darkMode ? "text-white" : "text-blue-500"
+                        }`}
                       >
                         ✕
                       </button>
@@ -1233,7 +1295,7 @@ export default function CityComparison() {
             }`}>
               {t("chooseCity")}
             </p>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-1.5">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2">
               {filteredCities.slice(0, 100).map((city) => (
                 <button
                   key={city.id}
@@ -1243,16 +1305,16 @@ export default function CityComparison() {
                     !selectedCities.includes(city.id.toString())
                   }
                   title={`${getCityLabel(city)}, ${getCountryLabel(city.country)}`}
-                  className={`p-1.5 rounded font-medium transition text-xs whitespace-nowrap overflow-hidden text-ellipsis ${
+                  className={`px-2 py-1.5 rounded-lg font-medium transition text-xs whitespace-nowrap overflow-hidden text-ellipsis ${
                     selectedCities.includes(city.id.toString())
-                      ? "bg-blue-600 text-white shadow-lg"
+                      ? "bg-blue-600 text-white shadow-sm ring-2 ring-blue-300 ring-opacity-50"
                       : selectedCities.length >= maxComparisons
                         ? darkMode
                           ? "bg-gray-700 text-gray-500 cursor-not-allowed"
                           : "bg-gray-100 text-gray-400 cursor-not-allowed"
                         : darkMode
                           ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                          : "bg-gray-200 text-gray-700 hover:bg-blue-100"
+                          : "bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-blue-700"
                   }`}
                 >
                   {selectedCities.includes(city.id.toString()) && "✓ "}
@@ -1276,8 +1338,8 @@ export default function CityComparison() {
                 selectedCities.length < 2
                   ? darkMode
                     ? "bg-gray-700 text-gray-500 cursor-not-allowed"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-xl"
+                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg hover:from-blue-700 hover:to-blue-800"
               }`}
             >
               {t("compareCities", { count: selectedCities.length })}
@@ -1286,10 +1348,10 @@ export default function CityComparison() {
             {selectedCities.length > 0 && (
               <button
                 onClick={handleClearSelection}
-                className={`px-6 py-3 rounded-lg font-medium transition ${
+                className={`px-6 py-3 rounded-lg font-medium text-lg transition ${
                   darkMode
-                    ? "bg-red-600 hover:bg-red-700 text-white"
-                    : "bg-red-500 hover:bg-red-600 text-white"
+                    ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-200"
                 }`}
               >
                 {t("clear")}
@@ -1302,10 +1364,10 @@ export default function CityComparison() {
         {comparisonData && (
           <div className="space-y-8">
             {/* 图表区域 */}
-            <div className={`rounded-xl shadow-xl p-8 ${
+            <div className={`rounded-xl shadow-md p-8 ${
               darkMode
                 ? "bg-gray-800 border border-gray-700"
-                : "bg-white"
+                : "bg-white border border-gray-100"
             }`}>
               <h2 className={`text-3xl font-bold mb-2 ${
                 darkMode ? "text-white" : "text-gray-800"
@@ -1508,10 +1570,10 @@ export default function CityComparison() {
             </div>
 
             {/* 城市卡片 */}
-            <div className={`rounded-xl shadow-xl p-8 ${
+            <div className={`rounded-xl shadow-md p-8 ${
               darkMode
                 ? "bg-gray-800 border border-gray-700"
-                : "bg-white"
+                : "bg-white border border-gray-100"
             }`}>
               <h2 className={`text-3xl font-bold mb-2 ${
                 darkMode ? "text-white" : "text-gray-800"
@@ -1549,8 +1611,8 @@ export default function CityComparison() {
                     <div
                       key={city.id}
                       onClick={() => handleCityCardClick(city.id.toString())}
-                      className={`rounded-xl p-6 shadow-xl transition ${
-                        comparisonMode === "ratio" ? "hover:shadow-2xl cursor-pointer" : "cursor-default"
+                      className={`rounded-xl p-6 shadow-lg transition ${
+                        comparisonMode === "ratio" ? "hover:shadow-xl cursor-pointer" : "cursor-default"
                       } ${
                         isBase && comparisonMode === "ratio"
                           ? "ring-4 ring-yellow-400 ring-opacity-50"
@@ -1643,7 +1705,7 @@ export default function CityComparison() {
                       </div>
 
                       {/* 房价 */}
-                      <div className="bg-purple-500 bg-opacity-30 p-3 rounded-lg">
+                      <div className="bg-purple-500 bg-opacity-30 p-3 rounded-lg mb-3">
                         <p className="text-xs text-purple-100 mb-1">
                           {t("housePrice")}
                         </p>
@@ -1657,7 +1719,7 @@ export default function CityComparison() {
                       </div>
 
                       {/* 空气质量 */}
-                      <div className="bg-teal-500 bg-opacity-30 p-3 rounded-lg">
+                      <div className="bg-teal-500 bg-opacity-30 p-3 rounded-lg mb-3">
                         <p className="text-xs text-teal-100 mb-1">
                           {t("airQuality")}
                         </p>
@@ -1666,29 +1728,29 @@ export default function CityComparison() {
                         </p>
                       </div>
 
-                      <div className="mt-3 grid grid-cols-2 gap-2">
+                      <div className="mt-3 grid grid-cols-2 gap-1.5">
                         {(() => {
                           const climate = getClimate(city);
                           return (
                             <>
                               <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("climateType")}</p>
+                                <p className="text-[10px] text-white/60 mb-0.5">{t("climateType")}</p>
                                 <p className="text-xs text-white font-semibold">{t(`climate_${climate.type}`)}</p>
                               </div>
                               <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("avgTemp")}</p>
+                                <p className="text-[10px] text-white/60 mb-0.5">{t("avgTemp")}</p>
                                 <p className="text-xs text-white font-semibold">
                                   {climate.avgTempC.toFixed(1)}{t("unitC")}
                                 </p>
                               </div>
                               <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("annualRain")}</p>
+                                <p className="text-[10px] text-white/60 mb-0.5">{t("annualRain")}</p>
                                 <p className="text-xs text-white font-semibold">
                                   {Math.round(climate.annualRainMm)} {t("unitMm")}
                                 </p>
                               </div>
                               <div className="bg-white bg-opacity-10 p-2 rounded-lg">
-                                <p className="text-[10px] text-blue-100 mb-1">{t("sunshine")}</p>
+                                <p className="text-[10px] text-white/60 mb-0.5">{t("sunshine")}</p>
                                 <p className="text-xs text-white font-semibold">
                                   {Math.round(climate.sunshineHours)} {t("unitH")}
                                 </p>
@@ -1698,8 +1760,8 @@ export default function CityComparison() {
                         })()}
                       </div>
 
-                      <div className="mt-4 bg-white bg-opacity-10 p-3 rounded-lg">
-                        <p className="text-xs text-blue-100 mb-1">{t("cityDescription")}</p>
+                      <div className="mt-3 bg-white bg-opacity-10 p-3 rounded-lg">
+                        <p className="text-[10px] text-white/60 mb-1">{t("cityDescription")}</p>
                         <p className="text-xs text-white leading-relaxed">
                           {getLocalizedDescription(city, salary)}
                         </p>
@@ -1711,10 +1773,10 @@ export default function CityComparison() {
             </div>
 
             {/* 关键洞察 */}
-            <div className={`rounded-xl shadow-lg p-8 ${
+            <div className={`rounded-xl shadow-md p-8 ${
               darkMode
-                ? "bg-gray-900/80 border border-gray-700"
-                : "bg-white/90 border border-gray-200"
+                ? "bg-gray-800 border border-gray-700"
+                : "bg-white border border-gray-100"
             }`}>
               <h2 className={`text-2xl md:text-3xl font-semibold mb-5 ${
                 darkMode ? "text-slate-100" : "text-slate-800"
@@ -1726,76 +1788,158 @@ export default function CityComparison() {
                   const income = selectedProfession
                     ? city.professions[selectedProfession] || 0
                     : city.averageIncome;
-                  const savings = income - city.costOfLiving * 12;
-                  return {
-                    city,
-                    income,
-                    savings,
-                    monthlyCost: city.costOfLiving,
-                  };
+                  const annualCost = city.costOfLiving * 12;
+                  const savings = income - annualCost;
+                  const savingsRate = income > 0 ? (savings / income) * 100 : 0;
+                  const yearsToHome = savings > 0 ? (city.housePrice * 70) / savings : Infinity;
+                  return { city, income, savings, annualCost, monthlyCost: city.costOfLiving, savingsRate, yearsToHome };
                 });
-                const incomeTop = [...withMetrics].sort((a, b) => b.income - a.income)[0];
-                const savingsTop = [...withMetrics].sort((a, b) => b.savings - a.savings)[0];
-                const lowestCostTop = [...withMetrics].sort((a, b) => a.monthlyCost - b.monthlyCost)[0];
-                const lowestHousePriceTop = [...withMetrics].sort((a, b) => a.city.housePrice - b.city.housePrice)[0];
-                const bestAirTop = [...withMetrics].sort((a, b) => a.city.airQuality - b.city.airQuality)[0];
 
-                const recommended = [...withMetrics]
-                  .sort((a, b) => (b.income + b.savings) - (a.income + a.savings))
-                  .slice(0, Math.min(3, withMetrics.length));
-                const recommendedCities = recommended.map((item) => getCityLabel(item.city));
-                const recommendationText = comparisonData.length >= 3
-                  ? t("insightSuggestionPick3", {
-                      cities: recommendedCities.join("、"),
-                    })
-                  : t("insightSuggestionNeedMore", {
-                      count: comparisonData.length,
-                    });
+                const bestSavingsRate = [...withMetrics].sort((a, b) => b.savingsRate - a.savingsRate)[0];
+                const fastestHome = [...withMetrics]
+                  .filter(m => m.yearsToHome > 0 && isFinite(m.yearsToHome))
+                  .sort((a, b) => a.yearsToHome - b.yearsToHome)[0] || withMetrics[0];
+
+                const maxSR = Math.max(...withMetrics.map(m => m.savingsRate), 1);
+                const maxYears = Math.max(...withMetrics.filter(m => isFinite(m.yearsToHome)).map(m => m.yearsToHome), 1);
+                const maxAqi = Math.max(...withMetrics.map(m => m.city.airQuality), 1);
+                const withScores = withMetrics.map(m => {
+                  const sr = maxSR > 0 ? m.savingsRate / maxSR : 0;
+                  const af = isFinite(m.yearsToHome) && maxYears > 0 ? 1 - (m.yearsToHome / maxYears) : 0;
+                  const aq = maxAqi > 0 ? 1 - (m.city.airQuality / maxAqi) : 0;
+                  return { ...m, composite: sr * 0.4 + af * 0.35 + aq * 0.25 };
+                });
+                const overallBest = [...withScores].sort((a, b) => b.composite - a.composite)[0];
+
+                const incomes = withMetrics.map(m => m.income).sort((a, b) => a - b);
+                const costs = withMetrics.map(m => m.monthlyCost).sort((a, b) => a - b);
+                const prices = withMetrics.map(m => m.city.housePrice).sort((a, b) => a - b);
+                const incomeSpread = incomes[0] > 0 ? (incomes[incomes.length - 1] / incomes[0]).toFixed(1) : "—";
+                const costSpread = costs[0] > 0 ? (costs[costs.length - 1] / costs[0]).toFixed(1) : "—";
+                const housingSpread = prices[0] > 0 ? (prices[prices.length - 1] / prices[0]).toFixed(1) : "—";
+
+                const top3 = [...withScores].sort((a, b) => b.composite - a.composite).slice(0, Math.min(3, withScores.length));
+
+                const cardCls = `rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`;
+                const labelCls = `text-xs font-semibold uppercase tracking-wide mb-3 ${darkMode ? "text-slate-400" : "text-slate-500"}`;
+                const cityCls = `text-lg font-bold mb-1 ${darkMode ? "text-white" : "text-slate-900"}`;
+                const numCls = `text-2xl font-extrabold mb-1 ${darkMode ? "text-blue-400" : "text-blue-600"}`;
+                const subCls = `text-xs ${darkMode ? "text-slate-400" : "text-slate-500"}`;
 
                 return (
                   <>
-                    <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
-                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("topIncomeCity")}</p>
-                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(incomeTop.city)}</h3>
-                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-                          {t("appSubtitle", { count: 1 })} {formatCurrency(incomeTop.income)}
+                    {/* Row 1: 4 decision cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+                      {/* Savings Rate */}
+                      <div className={cardCls}>
+                        <p className={labelCls}>{t("insightBestSavingsRate")}</p>
+                        <p className={cityCls}>{getCityLabel(bestSavingsRate.city)}</p>
+                        <p className={numCls}>{Math.round(bestSavingsRate.savingsRate)}%</p>
+                        <p className={subCls}>
+                          {t("annualIncome")} {formatCurrency(bestSavingsRate.income)} → {t("annualSavings")} {formatCurrency(bestSavingsRate.savings)}
                         </p>
                       </div>
-                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
-                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("topSavingsCity")}</p>
-                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(savingsTop.city)}</h3>
-                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-                          {formatCurrency(savingsTop.savings)} {t("yearlySavings")}
+                      {/* Fastest Home Purchase */}
+                      <div className={cardCls}>
+                        <p className={labelCls}>{t("insightFastestHome")}</p>
+                        <p className={cityCls}>{getCityLabel(fastestHome.city)}</p>
+                        <p className={numCls}>
+                          {isFinite(fastestHome.yearsToHome) ? fastestHome.yearsToHome.toFixed(1) : "—"} {t("insightYears")}
+                        </p>
+                        <p className={subCls}>
+                          {t("insightFor70sqm")} · {formatCurrency(fastestHome.city.housePrice)}{t("housePriceUnit")}
                         </p>
                       </div>
-                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
-                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("lowestCostCity")}</p>
-                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(lowestCostTop.city)}</h3>
-                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-                          {formatCurrency(lowestCostTop.monthlyCost)} / {t("monthlyExpense")}
-                        </p>
+                      {/* Overall Best */}
+                      <div className={cardCls}>
+                        <p className={labelCls}>{t("insightOverallBest")}</p>
+                        <p className={cityCls}>{getCityLabel(overallBest.city)}</p>
+                        <div className="flex flex-wrap gap-1.5 mt-2">
+                          <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${
+                            darkMode ? "bg-blue-900/60 text-blue-300" : "bg-blue-100 text-blue-700"
+                          }`}>
+                            {t("insightSavingsRate")} {Math.round(overallBest.savingsRate)}%
+                          </span>
+                          <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${
+                            darkMode ? "bg-purple-900/60 text-purple-300" : "bg-purple-100 text-purple-700"
+                          }`}>
+                            {isFinite(overallBest.yearsToHome) ? `${overallBest.yearsToHome.toFixed(1)} ${t("insightYears")}` : "—"}
+                          </span>
+                          <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${
+                            darkMode ? "bg-teal-900/60 text-teal-300" : "bg-teal-100 text-teal-700"
+                          }`}>
+                            AQI {overallBest.city.airQuality}
+                          </span>
+                        </div>
+                        <p className={`${subCls} mt-2`}>{t("insightCompositeNote")}</p>
                       </div>
-                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
-                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("lowestHousePrice")}</p>
-                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(lowestHousePriceTop.city)}</h3>
-                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-                          {formatCurrency(lowestHousePriceTop.city.housePrice)}{t("housePriceUnit")}
-                        </p>
-                      </div>
-                      <div className={`rounded-lg p-5 ${darkMode ? "bg-slate-800/80 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
-                        <p className={`text-sm font-medium mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("bestAirQuality")}</p>
-                        <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(bestAirTop.city)}</h3>
-                        <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-                          AQI {bestAirTop.city.airQuality} · {t(getAqiLevel(bestAirTop.city.airQuality).key)}
-                        </p>
+                      {/* Key Gaps */}
+                      <div className={cardCls}>
+                        <p className={labelCls}>{t("insightKeyGaps")}</p>
+                        <div className="space-y-2 mt-1">
+                          {[
+                            { label: t("insightIncomeGap"), value: `${incomeSpread}x` },
+                            { label: t("insightCostGap"), value: `${costSpread}x` },
+                            { label: t("insightHousingGap"), value: `${housingSpread}x` },
+                          ].map(({ label, value }) => (
+                            <div key={label} className="flex items-center justify-between">
+                              <span className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{label}</span>
+                              <span className={`text-sm font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>{value}</span>
+                            </div>
+                          ))}
+                          <div className="flex items-center justify-between">
+                            <span className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("insightSavingsRate")}</span>
+                            <span className={`text-sm font-bold ${darkMode ? "text-white" : "text-slate-900"}`}>
+                              {Math.round(withMetrics.reduce((min, m) => Math.min(min, m.savingsRate), Infinity))}% ~ {Math.round(withMetrics.reduce((max, m) => Math.max(max, m.savingsRate), -Infinity))}%
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className={`mt-4 rounded-lg p-5 ${darkMode ? "bg-slate-800/70 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
-                      <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{t("insightSuggestionTitle")}</p>
-                      <p className={`text-sm ${darkMode ? "text-slate-100" : "text-slate-700"}`}>
-                        {recommendationText}
-                      </p>
+
+                    {/* Row 2: Decision matrix */}
+                    <div className={`rounded-lg overflow-hidden ${darkMode ? "border border-slate-700" : "border border-slate-200"}`}>
+                      <div className={`px-5 py-3 ${darkMode ? "bg-slate-700/60" : "bg-slate-100"}`}>
+                        <p className={`text-sm font-semibold ${darkMode ? "text-slate-200" : "text-slate-700"}`}>{t("insightDecisionMatrix")}</p>
+                      </div>
+                      <div className={`${darkMode ? "bg-slate-800/50" : "bg-white"}`}>
+                        {/* Header */}
+                        <div className={`grid grid-cols-5 gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide ${darkMode ? "text-slate-400 border-b border-slate-700" : "text-slate-500 border-b border-slate-200"}`}>
+                          <span>#</span>
+                          <span>{t("insightCity")}</span>
+                          <span>{t("insightSavingsRate")}</span>
+                          <span>{t("insightHomePurchaseYears")}</span>
+                          <span>{t("airQuality")}</span>
+                        </div>
+                        {/* Rows */}
+                        {top3.map((item, idx) => (
+                          <div
+                            key={item.city.id}
+                            className={`grid grid-cols-5 gap-2 px-5 py-3 items-center ${
+                              idx < top3.length - 1
+                                ? darkMode ? "border-b border-slate-700/50" : "border-b border-slate-100"
+                                : ""
+                            }`}
+                          >
+                            <span className={`text-sm font-bold ${darkMode ? "text-slate-300" : "text-slate-500"}`}>{idx + 1}</span>
+                            <span className={`text-sm font-semibold truncate ${darkMode ? "text-white" : "text-slate-900"}`}>{getCityLabel(item.city)}</span>
+                            <span className={`text-sm font-bold ${
+                              item.savingsRate > 40 ? (darkMode ? "text-green-400" : "text-green-600")
+                                : item.savingsRate > 20 ? (darkMode ? "text-blue-400" : "text-blue-600")
+                                : item.savingsRate > 0 ? (darkMode ? "text-yellow-400" : "text-yellow-600")
+                                : (darkMode ? "text-red-400" : "text-red-600")
+                            }`}>
+                              {Math.round(item.savingsRate)}%
+                            </span>
+                            <span className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                              {isFinite(item.yearsToHome) ? `${item.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("insightNegativeSavings")}
+                            </span>
+                            <span className={`text-sm font-medium`} style={{ color: getAqiLevel(item.city.airQuality).color }}>
+                              {item.city.airQuality} · {t(getAqiLevel(item.city.airQuality).key)}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </>
                 );
