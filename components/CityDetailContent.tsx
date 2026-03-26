@@ -14,6 +14,7 @@ interface Props {
   city: City;
   relatedIds: number[];
   slug: string;
+  allCities: City[];
 }
 
 const TIER_KEYS: { key: CostTier; field: "costComfort" | "costModerate" | "costBudget" | "costMinimal"; labelKey: string }[] = [
@@ -23,7 +24,7 @@ const TIER_KEYS: { key: CostTier; field: "costComfort" | "costModerate" | "costB
   { key: "minimal", field: "costMinimal", labelKey: "costTierMinimal" },
 ];
 
-export default function CityDetailContent({ city, relatedIds, slug }: Props) {
+export default function CityDetailContent({ city, relatedIds, slug, allCities }: Props) {
   const s = useSettings();
   const router = useRouter();
   const { locale, darkMode, t, formatCurrency, costTier, profession } = s;
@@ -47,15 +48,43 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
   const savingsRate = income > 0 ? ((savings / income) * 100).toFixed(1) : "0";
   const yearsToHome = savings > 0 ? ((city.housePrice * 70) / savings).toFixed(1) : "N/A";
 
-  const cardCls = darkMode
-    ? "bg-slate-800 border-slate-700 rounded-xl border p-4 text-center"
-    : "bg-white border-slate-200 rounded-xl border p-4 text-center";
   const headingCls = darkMode ? "text-slate-100" : "text-slate-800";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
   const sectionBg = darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200";
   const borderRow = darkMode ? "border-slate-700" : "border-slate-100";
   const selectCls = `text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
   const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
+
+  // Percentile ranking: compute where this city stands for each metric
+  const pct = (values: number[], val: number) => {
+    const sorted = [...values].sort((a, b) => a - b);
+    const idx = sorted.findIndex((v) => v >= val);
+    return idx === -1 ? 1 : idx / sorted.length;
+  };
+  const allIncomes = allCities.map((c) => activeProfession ? c.professions[activeProfession] || 0 : c.averageIncome);
+  const allCosts = allCities.map((c) => c[TIER_KEYS.find((tk) => tk.key === costTier)!.field]);
+  const allSavings = allCities.map((c, i) => allIncomes[i] - allCosts[i] * 12);
+  const allHouse = allCities.map((c) => c.housePrice);
+  const allAqi = allCities.map((c) => c.airQuality);
+  const allDoctors = allCities.map((c) => c.doctorsPerThousand);
+  const allFlights = allCities.map((c) => c.directFlightCities);
+
+  // "good"=top25%, "bad"=bottom25%, "mid"=middle — higher-is-better: pct>=0.75=good; lower-is-better: pct<=0.25=good
+  type Tier = "good" | "mid" | "bad";
+  const tierHigh = (values: number[], val: number): Tier => { const p = pct(values, val); return p >= 0.75 ? "good" : p <= 0.25 ? "bad" : "mid"; };
+  const tierLow = (values: number[], val: number): Tier => { const p = pct(values, val); return p <= 0.25 ? "good" : p >= 0.75 ? "bad" : "mid"; };
+
+  const cardBorder = (tier: Tier) => {
+    if (tier === "good") return darkMode ? "border-emerald-500/60" : "border-emerald-400";
+    if (tier === "bad") return darkMode ? "border-rose-500/60" : "border-rose-400";
+    return darkMode ? "border-slate-600" : "border-slate-200";
+  };
+  const cardValCls = (tier: Tier) => {
+    if (tier === "good") return darkMode ? "text-emerald-400" : "text-emerald-600";
+    if (tier === "bad") return darkMode ? "text-rose-400" : "text-rose-500";
+    return headingCls;
+  };
+  const baseCard = "rounded-xl border p-4 text-center " + (darkMode ? "bg-slate-800" : "bg-white");
 
   return (
     <div className={`min-h-screen ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
@@ -114,18 +143,19 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
       </header>
 
       {/* Key Stats */}
-      <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+      <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 mb-10">
         {[
-          { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: t("perYear") },
-          { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: t("perMonth") },
-          { label: t("yearlySavings"), value: formatCurrency(savings), sub: `${savingsRate}%` },
-          { label: t("housePrice"), value: formatCurrency(city.housePrice), sub: t("housePriceUnit") },
-          { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: aqiLabel },
-          { label: t("doctorsPerThousand"), value: String(city.doctorsPerThousand), sub: t("doctorsUnit") },
+          { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: t("perYear"), tier: tierHigh(allIncomes, income) },
+          { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: t("perMonth"), tier: tierLow(allCosts, tierCost) },
+          { label: t("yearlySavings"), value: formatCurrency(savings), sub: `${savingsRate}%`, tier: tierHigh(allSavings, savings) },
+          { label: t("housePrice"), value: formatCurrency(city.housePrice), sub: t("housePriceUnit"), tier: tierLow(allHouse, city.housePrice) },
+          { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: aqiLabel, tier: tierLow(allAqi, city.airQuality) },
+          { label: t("doctorsPerThousand"), value: String(city.doctorsPerThousand), sub: t("doctorsUnit"), tier: tierHigh(allDoctors, city.doctorsPerThousand) },
+          { label: t("directFlights"), value: String(city.directFlightCities), sub: t("directFlightsUnit"), tier: tierHigh(allFlights, city.directFlightCities) },
         ].map((stat) => (
-          <div key={stat.label} className={cardCls}>
+          <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)}`}>
             <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${subCls}`}>{stat.label}</p>
-            <p className={`text-xl font-extrabold ${headingCls}`}>{stat.value}</p>
+            <p className={`text-xl font-extrabold ${cardValCls(stat.tier)}`}>{stat.value}</p>
             <p className={`text-xs mt-0.5 ${subCls}`}>{stat.sub}</p>
           </div>
         ))}
@@ -198,7 +228,7 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
         <h3 className={`text-base sm:text-lg font-semibold mb-3 ${headingCls}`}>{t("dataSourcesTitle")}</h3>
         <p className={`text-sm mb-3 ${subCls}`}>{t("dataSourcesDesc")}</p>
         <div className={`space-y-1.5 text-xs ${subCls}`}>
-          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc"].map((k) => (
+          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc"].map((k) => (
             <p key={k}>• {t(k)}</p>
           ))}
         </div>
