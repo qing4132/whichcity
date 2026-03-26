@@ -39,7 +39,8 @@
       "costModerate": 4500,
       "costBudget": 2160,
       "costMinimal": 1350,
-      "doctorsPerThousand": 4.1
+      "doctorsPerThousand": 4.1,
+      "directFlightCities": 280
     },
     {
       "id": 2,
@@ -80,7 +81,8 @@
       "costModerate": 3800,
       "costBudget": 1710,
       "costMinimal": 1150,
-      "doctorsPerThousand": 3.6
+      "doctorsPerThousand": 3.6,
+      "directFlightCities": 390
     },
     {
       "id": 3,
@@ -121,7 +123,8 @@
       "costModerate": 3200,
       "costBudget": 1440,
       "costMinimal": 850,
-      "doctorsPerThousand": 2.7
+      "doctorsPerThousand": 2.7,
+      "directFlightCities": 165
     },
     {
       "id": 4,
@@ -162,7 +165,8 @@
       "costModerate": 2200,
       "costBudget": 924,
       "costMinimal": 520,
-      "doctorsPerThousand": 4.6
+      "doctorsPerThousand": 4.6,
+      "directFlightCities": 220
     },
     {
       "id": 5,
@@ -203,7 +207,8 @@
       "costModerate": 2600,
       "costBudget": 1170,
       "costMinimal": 600,
-      "doctorsPerThousand": 3.8
+      "doctorsPerThousand": 3.8,
+      "directFlightCities": 230
     },
     {
       "id": 6,
@@ -244,7 +249,8 @@
       "costModerate": 3800,
       "costBudget": 1710,
       "costMinimal": 1100,
-      "doctorsPerThousand": 4.3
+      "doctorsPerThousand": 4.3,
+      "directFlightCities": 95
     },
     {
       "id": 7,
@@ -285,7 +291,8 @@
       "costModerate": 3500,
       "costBudget": 1575,
       "costMinimal": 850,
-      "doctorsPerThousand": 2.5
+      "doctorsPerThousand": 2.5,
+      "directFlightCities": 150
     },
     {
       "id": 8,
@@ -326,7 +333,8 @@
       "costModerate": 3200,
       "costBudget": 1440,
       "costMinimal": 950,
-      "doctorsPerThousand": 3.6
+      "doctorsPerThousand": 3.6,
+      "directFlightCities": 290
     },
     {
       "id": 9,
@@ -367,7 +375,8 @@
       "costModerate": 3200,
       "costBudget": 1440,
       "costMinimal": 950,
-      "doctorsPerThousand": 2.9
+      "doctorsPerThousand": 2.9,
+      "directFlightCities": 180
     },
     {
       "id": 10,
@@ -408,7 +417,8 @@
       "costModerate": 4000,
       "costBudget": 1920,
       "costMinimal": 1100,
-      "doctorsPerThousand": 2.1
+      "doctorsPerThousand": 2.1,
+      "directFlightCities": 180
     },
     {
       "id": 11,
@@ -449,7 +459,8 @@
       "costModerate": 4200,
       "costBudget": 2016,
       "costMinimal": 1250,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 195
     },
     {
       "id": 12,
@@ -490,7 +501,8 @@
       "costModerate": 4800,
       "costBudget": 2304,
       "costMinimal": 1450,
-      "doctorsPerThousand": 3.5
+      "doctorsPerThousand": 3.5,
+      "directFlightCities": 130
     },
     {
       "id": 13,
@@ -531,7 +543,8 @@
       "costModerate": 3600,
       "costBudget": 1620,
       "costMinimal": 1050,
-      "doctorsPerThousand": 3.4
+      "doctorsPerThousand": 3.4,
+      "directFlightCities": 250
     },
     {
       "id": 14,
@@ -572,7 +585,8 @@
       "costModerate": 3500,
       "costBudget": 1575,
       "costMinimal": 750,
-      "doctorsPerThousand": 3.2
+      "doctorsPerThousand": 3.2,
+      "directFlightCities": 265
     },
     {
       "id": 15,
@@ -613,7 +627,8 @@
       "costModerate": 3100,
       "costBudget": 1395,
       "costMinimal": 920,
-      "doctorsPerThousand": 3.9
+      "doctorsPerThousand": 3.9,
+      "directFlightCities": 195
     },
     {
       "id": 16,
@@ -654,7 +669,8 @@
       "costModerate": 5200,
       "costBudget": 2496,
       "costMinimal": 1550,
-      "doctorsPerThousand": 4.7
+      "doctorsPerThousand": 4.7,
+      "directFlightCities": 130
     },
     {
       "id": 17,
@@ -695,7 +711,8 @@
       "costModerate": 4900,
       "costBudget": 2352,
       "costMinimal": 1450,
-      "doctorsPerThousand": 4.6
+      "doctorsPerThousand": 4.6,
+      "directFlightCities": 110
     },
     {
       "id": 18,
@@ -736,7 +753,8 @@
       "costModerate": 3200,
       "costBudget": 1440,
       "costMinimal": 900,
-      "doctorsPerThousand": 4.8
+      "doctorsPerThousand": 4.8,
+      "directFlightCities": 190
     },
     {
       "id": 19,
@@ -777,7 +795,8 @@
       "costModerate": 2600,
       "costBudget": 1170,
       "costMinimal": 750,
-      "doctorsPerThousand": 4.3
+      "doctorsPerThousand": 4.3,
+      "directFlightCities": 180
     },
     {
       "id": 20,
@@ -818,7 +837,8 @@
       "costModerate": 2200,
       "costBudget": 924,
       "costMinimal": 600,
-      "doctorsPerThousand": 4.5
+      "doctorsPerThousand": 4.5,
+      "directFlightCities": 215
     },
     {
       "id": 21,
@@ -859,7 +879,8 @@
       "costModerate": 2200,
       "costBudget": 924,
       "costMinimal": 620,
-      "doctorsPerThousand": 4.5
+      "doctorsPerThousand": 4.5,
+      "directFlightCities": 200
     },
     {
       "id": 22,
@@ -900,7 +921,8 @@
       "costModerate": 2600,
       "costBudget": 1170,
       "costMinimal": 700,
-      "doctorsPerThousand": 4.4
+      "doctorsPerThousand": 4.4,
+      "directFlightCities": 190
     },
     {
       "id": 23,
@@ -941,7 +963,8 @@
       "costModerate": 2300,
       "costBudget": 966,
       "costMinimal": 620,
-      "doctorsPerThousand": 4.3
+      "doctorsPerThousand": 4.3,
+      "directFlightCities": 190
     },
     {
       "id": 24,
@@ -982,7 +1005,8 @@
       "costModerate": 2800,
       "costBudget": 1260,
       "costMinimal": 780,
-      "doctorsPerThousand": 3.8
+      "doctorsPerThousand": 3.8,
+      "directFlightCities": 170
     },
     {
       "id": 25,
@@ -1023,7 +1047,8 @@
       "costModerate": 2900,
       "costBudget": 1305,
       "costMinimal": 800,
-      "doctorsPerThousand": 5.7
+      "doctorsPerThousand": 5.7,
+      "directFlightCities": 175
     },
     {
       "id": 26,
@@ -1064,7 +1089,8 @@
       "costModerate": 1800,
       "costBudget": 756,
       "costMinimal": 480,
-      "doctorsPerThousand": 4.6
+      "doctorsPerThousand": 4.6,
+      "directFlightCities": 155
     },
     {
       "id": 27,
@@ -1105,7 +1131,8 @@
       "costModerate": 1900,
       "costBudget": 798,
       "costMinimal": 450,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 160
     },
     {
       "id": 28,
@@ -1146,7 +1173,8 @@
       "costModerate": 1900,
       "costBudget": 798,
       "costMinimal": 520,
-      "doctorsPerThousand": 5.7
+      "doctorsPerThousand": 5.7,
+      "directFlightCities": 150
     },
     {
       "id": 29,
@@ -1187,7 +1215,8 @@
       "costModerate": 1700,
       "costBudget": 714,
       "costMinimal": 420,
-      "doctorsPerThousand": 7.0
+      "doctorsPerThousand": 7,
+      "directFlightCities": 165
     },
     {
       "id": 30,
@@ -1228,7 +1257,8 @@
       "costModerate": 1300,
       "costBudget": 520,
       "costMinimal": 320,
-      "doctorsPerThousand": 2.4
+      "doctorsPerThousand": 2.4,
+      "directFlightCities": 310
     },
     {
       "id": 31,
@@ -1269,7 +1299,8 @@
       "costModerate": 1800,
       "costBudget": 756,
       "costMinimal": 480,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 115
     },
     {
       "id": 32,
@@ -1310,7 +1341,8 @@
       "costModerate": 2000,
       "costBudget": 840,
       "costMinimal": 480,
-      "doctorsPerThousand": 2.7
+      "doctorsPerThousand": 2.7,
+      "directFlightCities": 135
     },
     {
       "id": 33,
@@ -1351,7 +1383,8 @@
       "costModerate": 1700,
       "costBudget": 714,
       "costMinimal": 400,
-      "doctorsPerThousand": 2.5
+      "doctorsPerThousand": 2.5,
+      "directFlightCities": 55
     },
     {
       "id": 34,
@@ -1392,7 +1425,8 @@
       "costModerate": 3800,
       "costBudget": 1710,
       "costMinimal": 1100,
-      "doctorsPerThousand": 2.9
+      "doctorsPerThousand": 2.9,
+      "directFlightCities": 180
     },
     {
       "id": 35,
@@ -1433,7 +1467,8 @@
       "costModerate": 4000,
       "costBudget": 1920,
       "costMinimal": 1200,
-      "doctorsPerThousand": 4.0
+      "doctorsPerThousand": 4,
+      "directFlightCities": 200
     },
     {
       "id": 36,
@@ -1474,7 +1509,8 @@
       "costModerate": 3900,
       "costBudget": 1755,
       "costMinimal": 1150,
-      "doctorsPerThousand": 5.0
+      "doctorsPerThousand": 5,
+      "directFlightCities": 140
     },
     {
       "id": 37,
@@ -1515,7 +1551,8 @@
       "costModerate": 4200,
       "costBudget": 2016,
       "costMinimal": 1250,
-      "doctorsPerThousand": 3.1
+      "doctorsPerThousand": 3.1,
+      "directFlightCities": 135
     },
     {
       "id": 38,
@@ -1556,7 +1593,8 @@
       "costModerate": 3400,
       "costBudget": 1530,
       "costMinimal": 980,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 215
     },
     {
       "id": 39,
@@ -1597,7 +1635,8 @@
       "costModerate": 3500,
       "costBudget": 1575,
       "costMinimal": 1000,
-      "doctorsPerThousand": 2.4
+      "doctorsPerThousand": 2.4,
+      "directFlightCities": 75
     },
     {
       "id": 40,
@@ -1638,7 +1677,8 @@
       "costModerate": 3100,
       "costBudget": 1395,
       "costMinimal": 920,
-      "doctorsPerThousand": 2.6
+      "doctorsPerThousand": 2.6,
+      "directFlightCities": 120
     },
     {
       "id": 41,
@@ -1679,7 +1719,8 @@
       "costModerate": 2500,
       "costBudget": 1125,
       "costMinimal": 750,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 130
     },
     {
       "id": 42,
@@ -1720,7 +1761,8 @@
       "costModerate": 3500,
       "costBudget": 1575,
       "costMinimal": 1000,
-      "doctorsPerThousand": 4.2
+      "doctorsPerThousand": 4.2,
+      "directFlightCities": 75
     },
     {
       "id": 43,
@@ -1761,7 +1803,8 @@
       "costModerate": 3100,
       "costBudget": 1395,
       "costMinimal": 900,
-      "doctorsPerThousand": 3.8
+      "doctorsPerThousand": 3.8,
+      "directFlightCities": 55
     },
     {
       "id": 44,
@@ -1802,7 +1845,8 @@
       "costModerate": 2800,
       "costBudget": 1260,
       "costMinimal": 800,
-      "doctorsPerThousand": 3.5
+      "doctorsPerThousand": 3.5,
+      "directFlightCities": 60
     },
     {
       "id": 45,
@@ -1843,7 +1887,8 @@
       "costModerate": 1300,
       "costBudget": 520,
       "costMinimal": 320,
-      "doctorsPerThousand": 0.8
+      "doctorsPerThousand": 0.8,
+      "directFlightCities": 190
     },
     {
       "id": 46,
@@ -1884,7 +1929,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 280,
-      "doctorsPerThousand": 2.5
+      "doctorsPerThousand": 2.5,
+      "directFlightCities": 140
     },
     {
       "id": 47,
@@ -1925,7 +1971,8 @@
       "costModerate": 950,
       "costBudget": 380,
       "costMinimal": 220,
-      "doctorsPerThousand": 1.4
+      "doctorsPerThousand": 1.4,
+      "directFlightCities": 85
     },
     {
       "id": 48,
@@ -1966,7 +2013,8 @@
       "costModerate": 850,
       "costBudget": 340,
       "costMinimal": 200,
-      "doctorsPerThousand": 1.3
+      "doctorsPerThousand": 1.3,
+      "directFlightCities": 70
     },
     {
       "id": 49,
@@ -2007,7 +2055,8 @@
       "costModerate": 1000,
       "costBudget": 400,
       "costMinimal": 200,
-      "doctorsPerThousand": 1.0
+      "doctorsPerThousand": 1,
+      "directFlightCities": 75
     },
     {
       "id": 50,
@@ -2048,7 +2097,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 250,
-      "doctorsPerThousand": 1.2
+      "doctorsPerThousand": 1.2,
+      "directFlightCities": 110
     },
     {
       "id": 51,
@@ -2089,7 +2139,8 @@
       "costModerate": 1000,
       "costBudget": 400,
       "costMinimal": 200,
-      "doctorsPerThousand": 1.1
+      "doctorsPerThousand": 1.1,
+      "directFlightCities": 145
     },
     {
       "id": 52,
@@ -2130,7 +2181,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 280,
-      "doctorsPerThousand": 0.3
+      "doctorsPerThousand": 0.3,
+      "directFlightCities": 60
     },
     {
       "id": 53,
@@ -2171,7 +2223,8 @@
       "costModerate": 800,
       "costBudget": 320,
       "costMinimal": 180,
-      "doctorsPerThousand": 0.9
+      "doctorsPerThousand": 0.9,
+      "directFlightCities": 100
     },
     {
       "id": 54,
@@ -2212,7 +2265,8 @@
       "costModerate": 800,
       "costBudget": 320,
       "costMinimal": 200,
-      "doctorsPerThousand": 2.2
+      "doctorsPerThousand": 2.2,
+      "directFlightCities": 75
     },
     {
       "id": 55,
@@ -2253,7 +2307,8 @@
       "costModerate": 750,
       "costBudget": 285,
       "costMinimal": 140,
-      "doctorsPerThousand": 1.1
+      "doctorsPerThousand": 1.1,
+      "directFlightCities": 40
     },
     {
       "id": 56,
@@ -2294,7 +2349,8 @@
       "costModerate": 800,
       "costBudget": 320,
       "costMinimal": 150,
-      "doctorsPerThousand": 1.3
+      "doctorsPerThousand": 1.3,
+      "directFlightCities": 45
     },
     {
       "id": 57,
@@ -2335,7 +2391,8 @@
       "costModerate": 1050,
       "costBudget": 420,
       "costMinimal": 250,
-      "doctorsPerThousand": 0.7
+      "doctorsPerThousand": 0.7,
+      "directFlightCities": 90
     },
     {
       "id": 58,
@@ -2376,7 +2433,8 @@
       "costModerate": 950,
       "costBudget": 380,
       "costMinimal": 220,
-      "doctorsPerThousand": 0.8
+      "doctorsPerThousand": 0.8,
+      "directFlightCities": 80
     },
     {
       "id": 59,
@@ -2417,7 +2475,8 @@
       "costModerate": 2600,
       "costBudget": 1170,
       "costMinimal": 650,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 190
     },
     {
       "id": 60,
@@ -2458,7 +2517,8 @@
       "costModerate": 1800,
       "costBudget": 756,
       "costMinimal": 480,
-      "doctorsPerThousand": 2.4
+      "doctorsPerThousand": 2.4,
+      "directFlightCities": 50
     },
     {
       "id": 61,
@@ -2499,7 +2559,8 @@
       "costModerate": 1800,
       "costBudget": 756,
       "costMinimal": 450,
-      "doctorsPerThousand": 2.5
+      "doctorsPerThousand": 2.5,
+      "directFlightCities": 130
     },
     {
       "id": 62,
@@ -2540,7 +2601,8 @@
       "costModerate": 1300,
       "costBudget": 520,
       "costMinimal": 320,
-      "doctorsPerThousand": 5.5
+      "doctorsPerThousand": 5.5,
+      "directFlightCities": 65
     },
     {
       "id": 63,
@@ -2581,7 +2643,8 @@
       "costModerate": 1800,
       "costBudget": 756,
       "costMinimal": 450,
-      "doctorsPerThousand": 3.6
+      "doctorsPerThousand": 3.6,
+      "directFlightCities": 55
     },
     {
       "id": 64,
@@ -2622,7 +2685,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 280,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 75
     },
     {
       "id": 65,
@@ -2663,7 +2727,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 260,
-      "doctorsPerThousand": 1.7
+      "doctorsPerThousand": 1.7,
+      "directFlightCities": 65
     },
     {
       "id": 66,
@@ -2704,7 +2769,8 @@
       "costModerate": 700,
       "costBudget": 266,
       "costMinimal": 150,
-      "doctorsPerThousand": 1.5
+      "doctorsPerThousand": 1.5,
+      "directFlightCities": 25
     },
     {
       "id": 67,
@@ -2745,7 +2811,8 @@
       "costModerate": 1600,
       "costBudget": 672,
       "costMinimal": 380,
-      "doctorsPerThousand": 1.0
+      "doctorsPerThousand": 1,
+      "directFlightCities": 75
     },
     {
       "id": 68,
@@ -2786,7 +2853,8 @@
       "costModerate": 1500,
       "costBudget": 630,
       "costMinimal": 350,
-      "doctorsPerThousand": 1.0
+      "doctorsPerThousand": 1,
+      "directFlightCities": 35
     },
     {
       "id": 69,
@@ -2827,7 +2895,8 @@
       "costModerate": 1400,
       "costBudget": 560,
       "costMinimal": 380,
-      "doctorsPerThousand": 2.2
+      "doctorsPerThousand": 2.2,
+      "directFlightCities": 50
     },
     {
       "id": 70,
@@ -2868,7 +2937,8 @@
       "costModerate": 1600,
       "costBudget": 672,
       "costMinimal": 420,
-      "doctorsPerThousand": 3.0
+      "doctorsPerThousand": 3,
+      "directFlightCities": 55
     },
     {
       "id": 71,
@@ -2909,7 +2979,8 @@
       "costModerate": 1900,
       "costBudget": 798,
       "costMinimal": 500,
-      "doctorsPerThousand": 1.9
+      "doctorsPerThousand": 1.9,
+      "directFlightCities": 90
     },
     {
       "id": 72,
@@ -2950,7 +3021,8 @@
       "costModerate": 800,
       "costBudget": 320,
       "costMinimal": 180,
-      "doctorsPerThousand": 8.4
+      "doctorsPerThousand": 8.4,
+      "directFlightCities": 40
     },
     {
       "id": 73,
@@ -2991,7 +3063,8 @@
       "costModerate": 2300,
       "costBudget": 966,
       "costMinimal": 650,
-      "doctorsPerThousand": 3.0
+      "doctorsPerThousand": 3,
+      "directFlightCities": 45
     },
     {
       "id": 74,
@@ -3032,7 +3105,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 300,
-      "doctorsPerThousand": 0.5
+      "doctorsPerThousand": 0.5,
+      "directFlightCities": 30
     },
     {
       "id": 75,
@@ -3073,7 +3147,8 @@
       "costModerate": 3300,
       "costBudget": 1485,
       "costMinimal": 700,
-      "doctorsPerThousand": 3.0
+      "doctorsPerThousand": 3,
+      "directFlightCities": 115
     },
     {
       "id": 76,
@@ -3114,7 +3189,8 @@
       "costModerate": 3200,
       "costBudget": 1440,
       "costMinimal": 680,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 185
     },
     {
       "id": 77,
@@ -3155,7 +3231,8 @@
       "costModerate": 2200,
       "costBudget": 924,
       "costMinimal": 520,
-      "doctorsPerThousand": 0.9
+      "doctorsPerThousand": 0.9,
+      "directFlightCities": 65
     },
     {
       "id": 78,
@@ -3196,7 +3273,8 @@
       "costModerate": 2400,
       "costBudget": 1008,
       "costMinimal": 550,
-      "doctorsPerThousand": 3.0
+      "doctorsPerThousand": 3,
+      "directFlightCities": 105
     },
     {
       "id": 79,
@@ -3237,7 +3315,8 @@
       "costModerate": 2000,
       "costBudget": 840,
       "costMinimal": 480,
-      "doctorsPerThousand": 2.2
+      "doctorsPerThousand": 2.2,
+      "directFlightCities": 75
     },
     {
       "id": 80,
@@ -3278,7 +3357,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 280,
-      "doctorsPerThousand": 3.0
+      "doctorsPerThousand": 3,
+      "directFlightCities": 60
     },
     {
       "id": 81,
@@ -3319,7 +3399,8 @@
       "costModerate": 1400,
       "costBudget": 560,
       "costMinimal": 320,
-      "doctorsPerThousand": 2.5
+      "doctorsPerThousand": 2.5,
+      "directFlightCities": 70
     },
     {
       "id": 82,
@@ -3360,7 +3441,8 @@
       "costModerate": 3200,
       "costBudget": 1440,
       "costMinimal": 850,
-      "doctorsPerThousand": 4.0
+      "doctorsPerThousand": 4,
+      "directFlightCities": 120
     },
     {
       "id": 83,
@@ -3401,7 +3483,8 @@
       "costModerate": 850,
       "costBudget": 340,
       "costMinimal": 170,
-      "doctorsPerThousand": 0.9
+      "doctorsPerThousand": 0.9,
+      "directFlightCities": 55
     },
     {
       "id": 84,
@@ -3442,7 +3525,8 @@
       "costModerate": 800,
       "costBudget": 320,
       "costMinimal": 160,
-      "doctorsPerThousand": 0.9
+      "doctorsPerThousand": 0.9,
+      "directFlightCities": 30
     },
     {
       "id": 85,
@@ -3483,7 +3567,8 @@
       "costModerate": 1100,
       "costBudget": 440,
       "costMinimal": 280,
-      "doctorsPerThousand": 3.7
+      "doctorsPerThousand": 3.7,
+      "directFlightCities": 0
     },
     {
       "id": 86,
@@ -3524,7 +3609,8 @@
       "costModerate": 1500,
       "costBudget": 630,
       "costMinimal": 350,
-      "doctorsPerThousand": 3.3
+      "doctorsPerThousand": 3.3,
+      "directFlightCities": 115
     },
     {
       "id": 87,
@@ -3565,7 +3651,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 280,
-      "doctorsPerThousand": 4.5
+      "doctorsPerThousand": 4.5,
+      "directFlightCities": 90
     },
     {
       "id": 88,
@@ -3606,7 +3693,8 @@
       "costModerate": 1600,
       "costBudget": 672,
       "costMinimal": 380,
-      "doctorsPerThousand": 3.6
+      "doctorsPerThousand": 3.6,
+      "directFlightCities": 65
     },
     {
       "id": 89,
@@ -3647,7 +3735,8 @@
       "costModerate": 1200,
       "costBudget": 480,
       "costMinimal": 280,
-      "doctorsPerThousand": 3.3
+      "doctorsPerThousand": 3.3,
+      "directFlightCities": 90
     },
     {
       "id": 90,
@@ -3688,7 +3777,8 @@
       "costModerate": 1600,
       "costBudget": 672,
       "costMinimal": 380,
-      "doctorsPerThousand": 3.7
+      "doctorsPerThousand": 3.7,
+      "directFlightCities": 145
     },
     {
       "id": 91,
@@ -3729,7 +3819,8 @@
       "costModerate": 1700,
       "costBudget": 714,
       "costMinimal": 400,
-      "doctorsPerThousand": 3.9
+      "doctorsPerThousand": 3.9,
+      "directFlightCities": 45
     },
     {
       "id": 92,
@@ -3770,7 +3861,8 @@
       "costModerate": 1800,
       "costBudget": 756,
       "costMinimal": 450,
-      "doctorsPerThousand": 3.6
+      "doctorsPerThousand": 3.6,
+      "directFlightCities": 40
     },
     {
       "id": 93,
@@ -3811,7 +3903,8 @@
       "costModerate": 3400,
       "costBudget": 1530,
       "costMinimal": 950,
-      "doctorsPerThousand": 4.1
+      "doctorsPerThousand": 4.1,
+      "directFlightCities": 185
     },
     {
       "id": 94,
@@ -3852,7 +3945,8 @@
       "costModerate": 2200,
       "costBudget": 924,
       "costMinimal": 600,
-      "doctorsPerThousand": 3.0
+      "doctorsPerThousand": 3,
+      "directFlightCities": 65
     },
     {
       "id": 95,
@@ -3893,7 +3987,8 @@
       "costModerate": 3200,
       "costBudget": 1440,
       "costMinimal": 920,
-      "doctorsPerThousand": 2.9
+      "doctorsPerThousand": 2.9,
+      "directFlightCities": 260
     },
     {
       "id": 96,
@@ -3934,7 +4029,8 @@
       "costModerate": 3000,
       "costBudget": 1350,
       "costMinimal": 880,
-      "doctorsPerThousand": 2.3
+      "doctorsPerThousand": 2.3,
+      "directFlightCities": 135
     },
     {
       "id": 97,
@@ -3975,7 +4071,8 @@
       "costModerate": 3400,
       "costBudget": 1530,
       "costMinimal": 980,
-      "doctorsPerThousand": 2.9
+      "doctorsPerThousand": 2.9,
+      "directFlightCities": 80
     },
     {
       "id": 98,
@@ -4016,7 +4113,8 @@
       "costModerate": 3800,
       "costBudget": 1710,
       "costMinimal": 1100,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 75
     },
     {
       "id": 99,
@@ -4057,7 +4155,8 @@
       "costModerate": 2800,
       "costBudget": 1260,
       "costMinimal": 850,
-      "doctorsPerThousand": 2.0
+      "doctorsPerThousand": 2,
+      "directFlightCities": 145
     },
     {
       "id": 100,
@@ -4098,7 +4197,8 @@
       "costModerate": 2700,
       "costBudget": 1215,
       "costMinimal": 820,
-      "doctorsPerThousand": 2.6
+      "doctorsPerThousand": 2.6,
+      "directFlightCities": 90
     },
     {
       "id": 101,
@@ -4139,7 +4239,8 @@
       "costModerate": 1600,
       "costBudget": 720,
       "costMinimal": 448,
-      "doctorsPerThousand": 3.2
+      "doctorsPerThousand": 3.2,
+      "directFlightCities": 210
     },
     {
       "id": 102,
@@ -4180,7 +4281,8 @@
       "costModerate": 1800,
       "costBudget": 810,
       "costMinimal": 504,
-      "doctorsPerThousand": 2.8
+      "doctorsPerThousand": 2.8,
+      "directFlightCities": 150
     },
     {
       "id": 103,
@@ -4221,7 +4323,8 @@
       "costModerate": 1200,
       "costBudget": 540,
       "costMinimal": 336,
-      "doctorsPerThousand": 3.5
+      "doctorsPerThousand": 3.5,
+      "directFlightCities": 200
     },
     {
       "id": 104,
@@ -4262,7 +4365,8 @@
       "costModerate": 1650,
       "costBudget": 742,
       "costMinimal": 462,
-      "doctorsPerThousand": 3.3
+      "doctorsPerThousand": 3.3,
+      "directFlightCities": 140
     },
     {
       "id": 105,
@@ -4303,7 +4407,8 @@
       "costModerate": 1100,
       "costBudget": 495,
       "costMinimal": 308,
-      "doctorsPerThousand": 2.9
+      "doctorsPerThousand": 2.9,
+      "directFlightCities": 150
     },
     {
       "id": 106,
@@ -4344,7 +4449,8 @@
       "costModerate": 2200,
       "costBudget": 990,
       "costMinimal": 616,
-      "doctorsPerThousand": 2.6
+      "doctorsPerThousand": 2.6,
+      "directFlightCities": 115
     },
     {
       "id": 107,
@@ -4385,7 +4491,8 @@
       "costModerate": 1900,
       "costBudget": 855,
       "costMinimal": 532,
-      "doctorsPerThousand": 2.5
+      "doctorsPerThousand": 2.5,
+      "directFlightCities": 55
     },
     {
       "id": 108,
@@ -4426,7 +4533,8 @@
       "costModerate": 1600,
       "costBudget": 720,
       "costMinimal": 448,
-      "doctorsPerThousand": 2.4
+      "doctorsPerThousand": 2.4,
+      "directFlightCities": 185
     },
     {
       "id": 109,
@@ -4467,7 +4575,8 @@
       "costModerate": 650,
       "costBudget": 292,
       "costMinimal": 182,
-      "doctorsPerThousand": 0.2
+      "doctorsPerThousand": 0.2,
+      "directFlightCities": 35
     },
     {
       "id": 110,
@@ -4508,7 +4617,8 @@
       "costModerate": 500,
       "costBudget": 225,
       "costMinimal": 140,
-      "doctorsPerThousand": 0.7
+      "doctorsPerThousand": 0.7,
+      "directFlightCities": 30
     },
     {
       "id": 111,
@@ -4549,7 +4659,8 @@
       "costModerate": 550,
       "costBudget": 248,
       "costMinimal": 154,
-      "doctorsPerThousand": 0.4
+      "doctorsPerThousand": 0.4,
+      "directFlightCities": 15
     },
     {
       "id": 112,
@@ -4590,7 +4701,8 @@
       "costModerate": 750,
       "costBudget": 338,
       "costMinimal": 210,
-      "doctorsPerThousand": 0.8
+      "doctorsPerThousand": 0.8,
+      "directFlightCities": 40
     },
     {
       "id": 113,
@@ -4631,7 +4743,8 @@
       "costModerate": 600,
       "costBudget": 270,
       "costMinimal": 168,
-      "doctorsPerThousand": 0.6
+      "doctorsPerThousand": 0.6,
+      "directFlightCities": 15
     },
     {
       "id": 114,
@@ -4672,7 +4785,8 @@
       "costModerate": 500,
       "costBudget": 225,
       "costMinimal": 140,
-      "doctorsPerThousand": 0.5
+      "doctorsPerThousand": 0.5,
+      "directFlightCities": 40
     },
     {
       "id": 115,
@@ -4680,7 +4794,7 @@
       "country": "斯里兰卡",
       "averageIncome": 16000,
       "costOfLiving": 650,
-      "bigMacPrice": 3.0,
+      "bigMacPrice": 3,
       "currency": "USD",
       "description": "斯里兰卡商业首都，印度洋贸易枢纽。旅游和IT服务业增长，生活成本较低。",
       "yearlySavings": 8200,
@@ -4713,7 +4827,8 @@
       "costModerate": 650,
       "costBudget": 292,
       "costMinimal": 182,
-      "doctorsPerThousand": 1.0
+      "doctorsPerThousand": 1,
+      "directFlightCities": 55
     },
     {
       "id": 116,
@@ -4754,7 +4869,8 @@
       "costModerate": 450,
       "costBudget": 202,
       "costMinimal": 126,
-      "doctorsPerThousand": 0.3
+      "doctorsPerThousand": 0.3,
+      "directFlightCities": 40
     },
     {
       "id": 117,
@@ -4795,7 +4911,8 @@
       "costModerate": 900,
       "costBudget": 405,
       "costMinimal": 252,
-      "doctorsPerThousand": 3.3
+      "doctorsPerThousand": 3.3,
+      "directFlightCities": 75
     },
     {
       "id": 118,
@@ -4836,7 +4953,8 @@
       "costModerate": 550,
       "costBudget": 248,
       "costMinimal": 154,
-      "doctorsPerThousand": 2.4
+      "doctorsPerThousand": 2.4,
+      "directFlightCities": 65
     },
     {
       "id": 119,
@@ -4844,7 +4962,7 @@
       "country": "阿塞拜疆",
       "averageIncome": 18000,
       "costOfLiving": 750,
-      "bigMacPrice": 3.0,
+      "bigMacPrice": 3,
       "currency": "USD",
       "description": "阿塞拜疆首都，里海沿岸石油之城。现代化建筑与古城并存，能源经济为主。",
       "yearlySavings": 9000,
@@ -4877,7 +4995,8 @@
       "costModerate": 750,
       "costBudget": 338,
       "costMinimal": 210,
-      "doctorsPerThousand": 3.5
+      "doctorsPerThousand": 3.5,
+      "directFlightCities": 70
     },
     {
       "id": 120,
@@ -4918,7 +5037,8 @@
       "costModerate": 700,
       "costBudget": 315,
       "costMinimal": 196,
-      "doctorsPerThousand": 3.0
+      "doctorsPerThousand": 3,
+      "directFlightCities": 25
     }
   ]
 }

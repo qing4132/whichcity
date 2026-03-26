@@ -17,6 +17,7 @@ export interface City {
   housePrice: number;
   airQuality: number;
   doctorsPerThousand: number;
+  directFlightCities: number;
 }
 
 export type CostTier = "comfort" | "moderate" | "budget" | "minimal";

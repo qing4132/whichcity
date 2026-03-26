@@ -75,7 +75,7 @@ export default async function CityPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CityDetailContent city={city} relatedIds={related} slug={slug} />
+      <CityDetailContent city={city} relatedIds={related} slug={slug} allCities={allCities} />
     </>
   );
 }
