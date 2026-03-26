@@ -3,14 +3,42 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import type { City, ComparisonMode, CostTier, Locale, ClimateInfo, ExchangeRates } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, CONTINENT_TRANSLATIONS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
-import { POPULAR_CURRENCIES, CITY_CLIMATE } from "@/lib/constants";
+import { POPULAR_CURRENCIES, CITY_CLIMATE, CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CompareCtx, type CompareContextValue } from "@/lib/CompareContext";
 import { readUrlParams, writeUrlParams } from "@/hooks/useUrlState";
+import Link from "next/link";
+import { CITY_SLUGS } from "@/lib/citySlug";
 import ChartSection from "./ChartSection";
 import CityCard from "./CityCard";
 import KeyInsights from "./KeyInsights";
 import DataSources from "./DataSources";
 import CityLinks from "./CityLinks";
+
+const REGIONS = [
+  { key: "northAmerica", ids: [1, 11, 12, 13, 34, 35, 36, 37, 38, 39, 95, 96, 97, 98, 99, 100, 9, 40, 41] },
+  { key: "europe", ids: [2, 8, 93, 94, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 85, 86, 87, 88, 89, 90, 91, 92] },
+  { key: "eastAsia", ids: [3, 106, 107, 4, 5, 101, 102, 103, 104, 105, 10, 59, 60, 108, 61] },
+  { key: "southeastAsia", ids: [7, 45, 112, 46, 47, 48, 57, 58, 113, 109, 110, 111] },
+  { key: "southAsia", ids: [49, 50, 51, 83, 84, 55, 56, 114, 115, 116] },
+  { key: "oceania", ids: [6, 42, 43, 44] },
+  { key: "middleEast", ids: [14, 75, 76, 77, 78, 79, 82, 80, 81, 54] },
+  { key: "centralAsia", ids: [117, 118, 119, 120] },
+  { key: "latinAmerica", ids: [31, 69, 32, 33, 62, 63, 64, 65, 66, 70, 71, 72, 73, 74] },
+  { key: "africa", ids: [52, 53, 67, 68] },
+];
+
+const REGION_LABELS: Record<string, Record<string, string>> = {
+  northAmerica: { zh: "北美洲", en: "North America", ja: "北米", es: "América del Norte" },
+  europe: { zh: "欧洲", en: "Europe", ja: "ヨーロッパ", es: "Europa" },
+  eastAsia: { zh: "东亚", en: "East Asia", ja: "東アジア", es: "Asia Oriental" },
+  southeastAsia: { zh: "东南亚", en: "Southeast Asia", ja: "東南アジア", es: "Sudeste Asiático" },
+  southAsia: { zh: "南亚", en: "South Asia", ja: "南アジア", es: "Asia del Sur" },
+  oceania: { zh: "大洋洲", en: "Oceania", ja: "オセアニア", es: "Oceanía" },
+  middleEast: { zh: "中东", en: "Middle East", ja: "中東", es: "Medio Oriente" },
+  centralAsia: { zh: "中亚", en: "Central Asia", ja: "中央アジア", es: "Asia Central" },
+  latinAmerica: { zh: "拉美", en: "Latin America", ja: "中南米", es: "América Latina" },
+  africa: { zh: "非洲", en: "Africa", ja: "アフリカ", es: "África" },
+};
 
 export default function CityComparison() {
   const [cities, setCities] = useState<City[]>([]);
@@ -22,7 +50,6 @@ export default function CityComparison() {
   const [comparisonMode, setComparisonMode] = useState<ComparisonMode>("normal");
   const [costTier, setCostTier] = useState<CostTier>("moderate");
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedContinent, setSelectedContinent] = useState<string>("all");
   const [windowWidth, setWindowWidth] = useState(1200);
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
   const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
@@ -180,16 +207,15 @@ export default function CityComparison() {
     !bigMacPrice || bigMacPrice <= 0 ? 0 : parseFloat((value / bigMacPrice).toFixed(2));
 
   // ── City selection / comparison logic ──
-  const continents = [...new Set(cities.map(c => c.continent))].sort();
   const professions = cities[0]?.professions ? Object.keys(cities[0].professions) : [];
 
   const filteredCities = cities.filter((city) => {
+    if (!searchTerm) return true;
     const q = searchTerm.toLowerCase();
-    const matchesSearch = city.name.toLowerCase().includes(q) ||
+    return city.name.toLowerCase().includes(q) ||
       city.country.toLowerCase().includes(q) ||
       getCityLabel(city).toLowerCase().includes(q) ||
       getCountryLabel(city.country).toLowerCase().includes(q);
-    return matchesSearch && (selectedContinent === "all" || city.continent === selectedContinent);
   });
 
   const handleCitySelect = (cityId: string) => {
@@ -295,29 +321,29 @@ export default function CityComparison() {
             </p>
           </div>
 
-          {/* ── Control Panel ── */}
-          <div className={`rounded-xl shadow-md p-4 sm:p-6 mb-6 ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6">
+          {/* ── Settings ── */}
+          <div className={`rounded-xl shadow-md p-4 sm:p-6 mb-4 ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
               {/* Profession */}
               <div>
-                <label className={`block text-sm font-semibold mb-3 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                <label className={`block text-xs font-semibold mb-1.5 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
                   {t("selectProfession")}
                 </label>
                 <select value={selectedProfession} onChange={e => setSelectedProfession(e.target.value)}
-                  className={`w-full px-4 py-2.5 rounded-lg font-medium transition ${darkMode ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400" : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"} focus:outline-none`}>
+                  className={`w-full px-3 py-2 rounded-lg font-medium transition text-sm ${darkMode ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400" : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"} focus:outline-none`}>
                   {professions.map(prof => <option key={prof} value={prof}>{getProfessionLabel(prof)}</option>)}
                 </select>
               </div>
 
               {/* Comparison Mode */}
               <div>
-                <label className={`block text-sm font-semibold mb-3 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                <label className={`block text-xs font-semibold mb-1.5 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
                   {t("comparisonMode", { count: maxComparisons })}
                 </label>
-                <div className="flex gap-2">
+                <div className="flex gap-1.5">
                   {(["normal", "ratio", "bigmac"] as const).map(mode => (
                     <button key={mode} onClick={() => setComparisonMode(mode)}
-                      className={`flex-1 px-3 sm:px-4 py-2 rounded-lg font-medium transition text-sm sm:text-base ${
+                      className={`flex-1 px-2 py-2 rounded-lg font-medium transition text-sm ${
                         comparisonMode === mode
                           ? mode === "normal" ? "bg-blue-600 text-white" : mode === "ratio" ? "bg-purple-600 text-white" : "bg-amber-600 text-white"
                           : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -328,17 +354,17 @@ export default function CityComparison() {
                 </div>
               </div>
 
-              {/* Cost Tier — 2x2 on mobile, 4-col on sm+ */}
+              {/* Cost Tier */}
               <div>
-                <label className={`block text-sm font-semibold mb-3 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                <label className={`block text-xs font-semibold mb-1.5 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
                   {t("costTierLabel")}
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-1.5">
                   {(["comfort", "moderate", "budget", "minimal"] as const).map(tier => {
                     const colors: Record<CostTier, string> = { comfort: "bg-rose-600", moderate: "bg-sky-600", budget: "bg-emerald-600", minimal: "bg-orange-600" };
                     return (
                       <button key={tier} onClick={() => setCostTier(tier)}
-                        className={`px-3 py-2 rounded-lg font-medium transition text-sm ${
+                        className={`px-2 py-2 rounded-lg font-medium transition text-sm ${
                           costTier === tier ? `${colors[tier]} text-white`
                             : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                         }`}>
@@ -349,76 +375,123 @@ export default function CityComparison() {
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Search + continent filter */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {/* ── City Selector ── */}
+          <div className={`rounded-xl shadow-md p-4 sm:p-6 mb-6 ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
+            {/* Search */}
+            <div className="mb-4">
               <input type="text" placeholder={t("searchPlaceholder")} value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                className={`px-4 py-2.5 rounded-lg focus:outline-none transition ${darkMode ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400" : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"}`} />
-              <select value={selectedContinent} onChange={e => setSelectedContinent(e.target.value)}
-                className={`px-4 py-2.5 rounded-lg focus:outline-none transition font-medium ${darkMode ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400" : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"}`}>
-                <option value="all">{t("allContinents")}</option>
-                {continents.map(c => <option key={c} value={c}>{getContinentLabel(c)}</option>)}
-              </select>
+                className={`w-full px-4 py-2.5 rounded-lg focus:outline-none transition ${darkMode ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400 placeholder-gray-400" : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"}`} />
             </div>
 
-            {/* City grid — responsive columns */}
-            <div className="mb-4">
-              <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>{t("chooseCity")}</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2">
-                {filteredCities.slice(0, 100).map(city => (
-                  <button key={city.id}
-                    onClick={() => handleCitySelect(city.id.toString())}
-                    disabled={selectedCities.length >= maxComparisons && !selectedCities.includes(city.id.toString())}
-                    title={`${getCityLabel(city)}, ${getCountryLabel(city.country)}`}
-                    className={`px-2 py-2 sm:py-1.5 rounded-lg font-medium transition text-xs whitespace-nowrap overflow-hidden text-ellipsis min-h-[40px] sm:min-h-0 ${
-                      selectedCities.includes(city.id.toString())
-                        ? "bg-blue-600 text-white shadow-sm ring-2 ring-blue-300 ring-opacity-50"
-                        : selectedCities.length >= maxComparisons
-                          ? darkMode ? "bg-gray-700 text-gray-500 cursor-not-allowed" : "bg-gray-100 text-gray-400 cursor-not-allowed"
-                          : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-blue-700"
-                    }`}>
-                    {selectedCities.includes(city.id.toString()) && "✓ "}{getCityLabel(city)}
-                  </button>
-                ))}
-              </div>
-              {filteredCities.length > 100 && (
-                <p className={`text-xs mt-1.5 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
-                  {t("showingCities", { total: filteredCities.length })}
+            {/* Selected cities strip + action buttons */}
+            {selectedCities.length > 0 && (
+              <div className={`rounded-lg p-3 sm:p-4 mb-5 ${darkMode ? "bg-gray-700/50 border border-gray-600" : "bg-blue-50/60 border border-blue-100"}`}>
+                <p className={`text-xs font-semibold mb-2 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+                  {t("selectedCities", { selected: selectedCities.length, max: maxComparisons })}
                 </p>
-              )}
-            </div>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {selectedCities.map(id => {
+                    const city = cities.find(c => c.id.toString() === id);
+                    if (!city) return null;
+                    const slug = CITY_SLUGS[city.id];
+                    return (
+                      <span key={id} className={`inline-flex items-center gap-1 pl-2 pr-1 py-1 rounded-lg text-sm font-medium ${darkMode ? "bg-blue-900/60 text-blue-200 border border-blue-700" : "bg-blue-100 text-blue-800 border border-blue-200"}`}>
+                        <span>{CITY_FLAG_EMOJIS[city.id] || "🏙️"}</span>
+                        {slug ? (
+                          <Link href={`/city/${slug}`} className="hover:underline" title={t("backToHome")}>{getCityLabel(city)}</Link>
+                        ) : (
+                          <span>{getCityLabel(city)}</span>
+                        )}
+                        <button onClick={() => handleCitySelect(id)}
+                          className={`ml-0.5 rounded px-1 py-0.5 text-xs leading-none ${darkMode ? "hover:bg-white/10" : "hover:bg-black/10"}`}>✕</button>
+                      </span>
+                    );
+                  })}
+                </div>
+                <div className="flex gap-2 flex-wrap">
+                  <button onClick={handleCompare}
+                    disabled={selectedCities.length < 2}
+                    className={`px-4 py-2 rounded-lg font-bold text-sm transition ${
+                      selectedCities.length < 2
+                        ? darkMode ? "bg-gray-600 text-gray-400 cursor-not-allowed" : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                        : "bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-md"
+                    }`}>
+                    {t("compareCities", { count: selectedCities.length })}
+                  </button>
+                  {selectedCities.length === 2 && (() => {
+                    const [idA, idB] = selectedCities;
+                    const slugA = CITY_SLUGS[Number(idA)];
+                    const slugB = CITY_SLUGS[Number(idB)];
+                    if (!slugA || !slugB) return null;
+                    const pair = [slugA, slugB].sort().join("-vs-");
+                    const cityA = cities.find(c => c.id.toString() === idA);
+                    const cityB = cities.find(c => c.id.toString() === idB);
+                    return (
+                      <Link href={`/compare/${pair}`}
+                        className={`px-4 py-2 rounded-lg font-bold text-sm transition inline-flex items-center gap-1 ${darkMode ? "bg-indigo-700 text-white hover:bg-indigo-600" : "bg-indigo-600 text-white hover:bg-indigo-500"}`}>
+                        {getCityLabel(cityA!)} vs {getCityLabel(cityB!)} →
+                      </Link>
+                    );
+                  })()}
+                  <button onClick={handleClearSelection}
+                    className={`px-4 py-2 rounded-lg font-medium text-sm transition ${darkMode ? "bg-gray-600 text-gray-300 hover:bg-gray-500" : "bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-200"}`}>
+                    {t("clear")}
+                  </button>
+                  {comparisonData && (
+                    <button onClick={handleShare}
+                      className={`px-4 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${
+                        shareToast ? "bg-green-600 text-white"
+                          : darkMode ? "bg-gray-600 text-gray-300 hover:bg-gray-500" : "bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-200"
+                      }`}>
+                      {shareToast ? "✓ " : "🔗 "}{shareToast ? t("shareCopied") : t("shareLink")}
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
 
-            {/* Action buttons */}
-            <div className="flex gap-3 sm:gap-4 flex-wrap">
-              <button onClick={handleCompare}
-                disabled={selectedCities.length < 2}
-                className={`flex-1 min-w-[160px] py-3 px-6 rounded-lg font-bold text-base sm:text-lg transition ${
-                  selectedCities.length < 2
-                    ? darkMode ? "bg-gray-700 text-gray-500 cursor-not-allowed" : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    : "bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg hover:from-blue-700 hover:to-blue-800"
-                }`}>
-                {t("compareCities", { count: selectedCities.length })}
-              </button>
-
-              {selectedCities.length > 0 && (
-                <button onClick={handleClearSelection}
-                  className={`px-6 py-3 rounded-lg font-medium text-base sm:text-lg transition ${darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-200"}`}>
-                  {t("clear")}
-                </button>
-              )}
-
-              {/* Share button */}
-              {comparisonData && (
-                <button onClick={handleShare}
-                  className={`px-5 py-3 rounded-lg font-medium text-base transition flex items-center gap-2 ${
-                    shareToast
-                      ? "bg-green-600 text-white"
-                      : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-200"
-                  }`}>
-                  {shareToast ? "✓ " : "🔗 "}{shareToast ? t("shareCopied") : t("shareLink")}
-                </button>
-              )}
+            {/* Region-grouped city grid */}
+            <div className="space-y-4">
+              {REGIONS.map(region => {
+                const regionCities = region.ids
+                  .map(id => cities.find(c => c.id === id))
+                  .filter((c): c is City => !!c)
+                  .filter(c => filteredCities.some(fc => fc.id === c.id));
+                if (regionCities.length === 0) return null;
+                return (
+                  <div key={region.key}>
+                    <h3 className={`text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+                      {REGION_LABELS[region.key]?.[locale] || region.key}
+                      <span className="ml-1 font-normal opacity-60">({regionCities.length})</span>
+                    </h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-1.5">
+                      {regionCities.map(city => {
+                        const isSelected = selectedCities.includes(city.id.toString());
+                        const isDisabled = selectedCities.length >= maxComparisons && !isSelected;
+                        return (
+                          <button key={city.id}
+                            onClick={() => handleCitySelect(city.id.toString())}
+                            disabled={isDisabled}
+                            title={`${getCityLabel(city)}, ${getCountryLabel(city.country)}`}
+                            className={`flex items-center gap-1.5 px-2.5 py-2 rounded-lg font-medium transition text-xs text-left ${
+                              isSelected
+                                ? "bg-blue-600 text-white shadow-sm ring-2 ring-blue-300/50"
+                                : isDisabled
+                                  ? darkMode ? "bg-gray-700/50 text-gray-500 cursor-not-allowed" : "bg-gray-50 text-gray-400 cursor-not-allowed"
+                                  : darkMode ? "bg-gray-700/50 text-gray-300 hover:bg-gray-600 hover:text-white" : "bg-gray-50 text-gray-600 hover:bg-blue-50 hover:text-blue-700"
+                            }`}>
+                            <span className="flex-shrink-0">{CITY_FLAG_EMOJIS[city.id] || "🏙️"}</span>
+                            <span className="truncate">{getCityLabel(city)}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
