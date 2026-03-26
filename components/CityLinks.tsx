@@ -16,11 +16,12 @@ export default function CityLinks() {
   const regions: { label: string; ids: number[] }[] = [
     { label: locale === "zh" ? "北美洲" : locale === "ja" ? "北米" : locale === "es" ? "América del Norte" : "North America", ids: [1, 11, 12, 13, 34, 35, 36, 37, 38, 39, 95, 96, 97, 98, 99, 100, 9, 40, 41] },
     { label: locale === "zh" ? "欧洲" : locale === "ja" ? "ヨーロッパ" : locale === "es" ? "Europa" : "Europe", ids: [2, 8, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94] },
-    { label: locale === "zh" ? "东亚" : locale === "ja" ? "東アジア" : locale === "es" ? "Asia Oriental" : "East Asia", ids: [3, 4, 5, 10, 59, 60, 61] },
-    { label: locale === "zh" ? "东南亚" : locale === "ja" ? "東南アジア" : locale === "es" ? "Sudeste Asiático" : "Southeast Asia", ids: [7, 45, 46, 47, 48, 57, 58] },
-    { label: locale === "zh" ? "南亚" : locale === "ja" ? "南アジア" : locale === "es" ? "Asia del Sur" : "South Asia", ids: [49, 50, 51, 83, 84, 55, 56] },
+    { label: locale === "zh" ? "东亚" : locale === "ja" ? "東アジア" : locale === "es" ? "Asia Oriental" : "East Asia", ids: [3, 4, 5, 10, 59, 60, 61, 101, 102, 103, 104, 105, 106, 107, 108] },
+    { label: locale === "zh" ? "东南亚" : locale === "ja" ? "東南アジア" : locale === "es" ? "Sudeste Asiático" : "Southeast Asia", ids: [7, 45, 46, 47, 48, 57, 58, 109, 110, 111, 112, 113] },
+    { label: locale === "zh" ? "南亚" : locale === "ja" ? "南アジア" : locale === "es" ? "Asia del Sur" : "South Asia", ids: [49, 50, 51, 83, 84, 55, 56, 114, 115, 116] },
     { label: locale === "zh" ? "大洋洲" : locale === "ja" ? "オセアニア" : locale === "es" ? "Oceanía" : "Oceania", ids: [6, 42, 43, 44] },
     { label: locale === "zh" ? "中东" : locale === "ja" ? "中東" : locale === "es" ? "Medio Oriente" : "Middle East", ids: [14, 75, 76, 77, 78, 79, 80, 81, 82, 54] },
+    { label: locale === "zh" ? "中亚" : locale === "ja" ? "中央アジア" : locale === "es" ? "Asia Central" : "Central Asia", ids: [117, 118, 119, 120] },
     { label: locale === "zh" ? "拉美" : locale === "ja" ? "中南米" : locale === "es" ? "América Latina" : "Latin America", ids: [31, 32, 33, 62, 63, 64, 65, 66, 69, 70, 71, 72, 73, 74] },
     { label: locale === "zh" ? "非洲" : locale === "ja" ? "アフリカ" : locale === "es" ? "África" : "Africa", ids: [52, 53, 67, 68] },
   ];

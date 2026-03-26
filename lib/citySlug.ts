@@ -20,6 +20,10 @@ export const CITY_SLUGS: Record<number, string> = {
   86: "bucharest", 87: "sofia", 88: "zagreb", 89: "belgrade", 90: "budapest",
   91: "bratislava", 92: "ljubljana", 93: "dublin", 94: "belfast", 95: "atlanta",
   96: "phoenix", 97: "portland", 98: "san-diego", 99: "las-vegas", 100: "tampa",
+  101: "guangzhou", 102: "shenzhen", 103: "chengdu", 104: "hangzhou", 105: "chongqing",
+  106: "osaka", 107: "nagoya", 108: "incheon", 109: "phnom-penh", 110: "yangon",
+  111: "vientiane", 112: "chiang-mai", 113: "davao", 114: "dhaka", 115: "colombo",
+  116: "kathmandu", 117: "almaty", 118: "tashkent", 119: "baku", 120: "ulaanbaatar",
 };
 
 /** Reverse lookup: slug → city ID */
@@ -58,4 +62,8 @@ export const POPULAR_PAIRS: [number, number][] = [
   [14, 75], [14, 78],
   // DACH
   [16, 17], [16, 18], [25, 18],
+  // New Asian cities
+  [4, 101], [4, 102], [5, 102], [101, 102], [103, 104], [105, 103],
+  [3, 106], [106, 59], [59, 108], [45, 112], [58, 113],
+  [50, 114], [49, 115], [117, 118], [119, 120],
 ];
