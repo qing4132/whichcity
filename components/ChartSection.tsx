@@ -79,6 +79,33 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
         </p>
       )}
 
+      {comparisonMode === "ratio" && (() => {
+        const otherCity = comparisonData.find(c => c.id !== baseCity.id);
+        if (!otherCity) return null;
+        const baseSalary = selectedProfession ? baseCity.professions[selectedProfession] || 0 : baseCity.averageIncome;
+        const otherSalary = selectedProfession ? otherCity.professions[selectedProfession] || 0 : otherCity.averageIncome;
+        const ratio = baseSalary > 0 ? otherSalary / baseSalary : 0;
+        const converted = Math.round(10000 * ratio).toLocaleString();
+        return (
+          <div className={`rounded-lg p-3 mb-6 ${darkMode ? "bg-blue-900/20 border border-blue-800/40" : "bg-blue-50 border border-blue-100"}`}>
+            <p className={`text-sm font-semibold mb-1 ${darkMode ? "text-blue-300" : "text-blue-700"}`}>
+              {t("pppTitle")}
+            </p>
+            <p className={`text-xs ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+              {t("pppDesc", { base: getCityLabel(baseCity) })}
+            </p>
+            <p className={`text-xs mt-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
+              {t("pppExample", {
+                base: getCityLabel(baseCity),
+                city: getCityLabel(otherCity),
+                currency: currencySymbol,
+                converted,
+              })}
+            </p>
+          </div>
+        );
+      })()}
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Annual Finance */}
         <div className={`p-4 rounded-lg lg:col-span-2 ${darkMode ? "bg-gray-700" : "bg-gray-50"}`}>
