@@ -11,7 +11,6 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import ChartSection from "./ChartSection";
 import CityCard from "./CityCard";
 import KeyInsights from "./KeyInsights";
-import InsightSummary from "./InsightSummary";
 import ShareCard from "./ShareCard";
 import DataSources from "./DataSources";
 
@@ -94,27 +93,33 @@ export default function CityComparison() {
         const initProf = url.prof && profs.includes(url.prof) ? url.prof : profs[0] || "";
         setSelectedProfession(initProf);
 
-        // Restore city selection from URL
+        // Restore city selection from URL → localStorage → defaults
+        let restoredIds: string[] | null = null;
         if (url.cities) {
           const ids = url.cities.split(",").filter(Boolean);
           const valid = ids.filter(id => citiesData.cities.some((c: City) => c.id.toString() === id));
-          if (valid.length >= 2) {
-            setSelectedCities(valid);
-            const selected = valid.map((id: string) => citiesData.cities.find((c: City) => c.id.toString() === id)).filter(Boolean) as City[];
-            setComparisonData(selected);
-            setBaseCityId(url.base && valid.includes(url.base) ? url.base : selected[0]?.id.toString() || "");
+          if (valid.length >= 2) restoredIds = valid;
+        }
+        if (!restoredIds) {
+          const saved = localStorage.getItem("selectedCities");
+          if (saved) {
+            try {
+              const ids = JSON.parse(saved) as string[];
+              const valid = ids.filter(id => citiesData.cities.some((c: City) => c.id.toString() === id));
+              if (valid.length >= 2) restoredIds = valid;
+            } catch { /* ignore */ }
           }
-        } else {
-          // Default pre-selected cities: New York(1), Tokyo(3), Beijing(4)
-          const defaultIds = ["1", "3", "4"];
-          const defaultSelected = defaultIds
-            .map(id => citiesData.cities.find((c: City) => c.id.toString() === id))
-            .filter(Boolean) as City[];
-          if (defaultSelected.length >= 2) {
-            setSelectedCities(defaultIds);
-            setComparisonData(defaultSelected);
-            setBaseCityId(defaultSelected[0].id.toString());
-          }
+        }
+        if (!restoredIds) {
+          restoredIds = ["1", "3", "4"];
+        }
+        const selected = restoredIds
+          .map(id => citiesData.cities.find((c: City) => c.id.toString() === id))
+          .filter(Boolean) as City[];
+        if (selected.length >= 2) {
+          setSelectedCities(restoredIds);
+          setComparisonData(selected);
+          setBaseCityId(url.base && restoredIds.includes(url.base) ? url.base : selected[0]?.id.toString() || "");
         }
 
         setLoading(false);
@@ -151,6 +156,7 @@ export default function CityComparison() {
   // ── Persist to localStorage ──
   useEffect(() => { localStorage.setItem("darkMode", JSON.stringify(darkMode)); }, [darkMode]);
   useEffect(() => { localStorage.setItem("locale", locale); }, [locale]);
+  useEffect(() => { if (selectedCities.length >= 2) localStorage.setItem("selectedCities", JSON.stringify(selectedCities)); }, [selectedCities]);
 
   // ── i18n helpers ──
   const t = useCallback((key: string, params?: Record<string, string | number>) => {
@@ -303,7 +309,13 @@ export default function CityComparison() {
           {/* ── Top Bar (switchers) ── */}
           <div className={`border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 sm:mb-8 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
             <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 flex-wrap">
-              <span className={`font-bold text-sm ${darkMode ? "text-slate-200" : "text-slate-700"}`}>🌍 City Compare</span>
+              <div className="flex items-center gap-3">
+                <span className={`font-bold text-sm ${darkMode ? "text-slate-200" : "text-slate-700"}`}>🌍 City Compare</span>
+                <Link href="/ranking"
+                  className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+                  {t("rankViewRanking")}
+                </Link>
+              </div>
               <div className="flex items-center gap-2 flex-wrap">
                 <select value={locale} onChange={e => setLocale(e.target.value as Locale)}
                   className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
@@ -328,15 +340,9 @@ export default function CityComparison() {
             <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3 ${darkMode ? "text-white" : "text-slate-900"}`}>
               {t("appTitle")}
             </h1>
-            <p className={`text-base sm:text-lg max-w-2xl mx-auto mb-4 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            <p className={`text-base sm:text-lg max-w-2xl mx-auto ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
               {t("appSubtitle", { count: cities.length })}
             </p>
-            <Link href="/ranking"
-              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition ${
-                darkMode ? "bg-slate-800 text-amber-300 hover:bg-slate-700 border border-slate-700" : "bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200"
-              }`}>
-              {t("rankViewRanking")}
-            </Link>
           </div>
 
           {/* ── Settings ── */}
@@ -520,7 +526,6 @@ export default function CityComparison() {
           {comparisonData && (
             <div ref={comparisonRef} className="space-y-6 sm:space-y-8">
               <ChartSection comparisonData={comparisonData} />
-              <InsightSummary comparisonData={comparisonData} />
 
               {/* City Cards */}
               <div className={`rounded-xl shadow-md p-4 sm:p-8 ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
