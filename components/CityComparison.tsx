@@ -7,6 +7,7 @@ import { POPULAR_CURRENCIES, CITY_CLIMATE, CITY_FLAG_EMOJIS, REGIONS, REGION_LAB
 import { CompareCtx, type CompareContextValue } from "@/lib/CompareContext";
 import { readUrlParams, writeUrlParams } from "@/hooks/useUrlState";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import ChartSection from "./ChartSection";
 import CityCard from "./CityCard";
@@ -32,6 +33,7 @@ export default function CityComparison() {
   const comparisonRef = useRef<HTMLDivElement>(null);
   const urlInitRef = useRef(false);
 
+  const router = useRouter();
   const maxComparisons = windowWidth < 768 ? 2 : windowWidth < 1024 ? 3 : 5;
 
   // ── Init: read URL params (priority) → localStorage → defaults ──
@@ -287,6 +289,10 @@ export default function CityComparison() {
                   className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
                   {t("navRanking")}
                 </Link>
+                <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+                  className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+                  {t("navRandomCity")}
+                </button>
               </div>
               <div className="flex items-center gap-2 flex-wrap">
                 <select value={selectedProfession} onChange={e => setSelectedProfession(e.target.value)}

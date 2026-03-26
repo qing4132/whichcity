@@ -1,15 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { City, CostTier } from "@/lib/types";
-import { CITY_FLAG_EMOJIS } from "@/lib/constants";
+import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
-import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
+import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { getCityClimate, getCityEnName, getAqiLabel, getClimateLabel } from "@/lib/clientUtils";
 import { CITY_INTROS } from "@/lib/cityIntros";
 import { useSettings } from "@/hooks/useSettings";
-import PageShell from "./PageShell";
 
 interface Props {
   city: City;
@@ -17,17 +16,17 @@ interface Props {
   slug: string;
 }
 
-const TIER_KEYS: { key: CostTier; field: "costComfort" | "costModerate" | "costBudget" | "costMinimal"; labelKey: string; descKey: string }[] = [
-  { key: "comfort", field: "costComfort", labelKey: "costTierComfort", descKey: "comfortDesc" },
-  { key: "moderate", field: "costModerate", labelKey: "costTierModerate", descKey: "moderateDesc" },
-  { key: "budget", field: "costBudget", labelKey: "costTierBudget", descKey: "budgetDesc" },
-  { key: "minimal", field: "costMinimal", labelKey: "costTierMinimal", descKey: "minimalDesc" },
+const TIER_KEYS: { key: CostTier; field: "costComfort" | "costModerate" | "costBudget" | "costMinimal"; labelKey: string }[] = [
+  { key: "comfort", field: "costComfort", labelKey: "costTierComfort" },
+  { key: "moderate", field: "costModerate", labelKey: "costTierModerate" },
+  { key: "budget", field: "costBudget", labelKey: "costTierBudget" },
+  { key: "minimal", field: "costMinimal", labelKey: "costTierMinimal" },
 ];
 
 export default function CityDetailContent({ city, relatedIds, slug }: Props) {
   const s = useSettings();
-  const { locale, darkMode, t, formatCurrency } = s;
-  const [selectedTier, setSelectedTier] = useState<CostTier>("moderate");
+  const router = useRouter();
+  const { locale, darkMode, t, formatCurrency, costTier, profession } = s;
 
   if (!s.ready) return null;
 
@@ -38,15 +37,15 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
   const climate = getCityClimate(id);
   const aqiLabel = getAqiLabel(city.airQuality, locale);
 
-  const tierCost = city[TIER_KEYS.find((tk) => tk.key === selectedTier)!.field];
-  const annualExpense = tierCost * 12;
-  const savings = city.averageIncome - annualExpense;
-  const savingsRate = city.averageIncome > 0 ? ((savings / city.averageIncome) * 100).toFixed(1) : "0";
-  const yearsToHome = savings > 0 ? ((city.housePrice * 70) / savings).toFixed(1) : "N/A";
+  const professions = city.professions ? Object.keys(city.professions) : [];
+  const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
+  const income = activeProfession ? city.professions[activeProfession] || 0 : city.averageIncome;
 
-  const professions = Object.entries(city.professions)
-    .map(([key, salary]) => ({ key, salary, name: PROFESSION_TRANSLATIONS[key]?.[locale] || key }))
-    .sort((a, b) => b.salary - a.salary);
+  const tierCost = city[TIER_KEYS.find((tk) => tk.key === costTier)!.field];
+  const annualExpense = tierCost * 12;
+  const savings = income - annualExpense;
+  const savingsRate = income > 0 ? ((savings / income) * 100).toFixed(1) : "0";
+  const yearsToHome = savings > 0 ? ((city.housePrice * 70) / savings).toFixed(1) : "N/A";
 
   const cardCls = darkMode
     ? "bg-slate-800 border-slate-700 rounded-xl border p-4 text-center"
@@ -54,20 +53,52 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
   const headingCls = darkMode ? "text-slate-100" : "text-slate-800";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
   const sectionBg = darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200";
-  const rowHover = darkMode ? "hover:bg-slate-700/50" : "hover:bg-slate-50";
-  const thBg = darkMode ? "bg-slate-700 border-slate-600 text-slate-300" : "bg-slate-50 border-slate-200 text-slate-600";
   const borderRow = darkMode ? "border-slate-700" : "border-slate-100";
+  const selectCls = `text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
+  const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
 
   return (
-    <PageShell
-      locale={locale}
-      darkMode={darkMode}
-      currency={s.currency}
-      onLocaleChange={s.setLocale}
-      onDarkModeChange={s.setDarkMode}
-      onCurrencyChange={s.setCurrency}
-      t={t}
-    >
+    <div className={`min-h-screen ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
+      {/* Top Bar — same style as homepage */}
+      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
+          <div className="flex items-center gap-2">
+            <Link href="/" className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
+              {t("navHome")}
+            </Link>
+            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+              {t("navRanking")}
+            </Link>
+            <button onClick={() => { const slugs = Object.values(CITY_SLUGS).filter(s => s !== slug); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              {t("navRandomCity")}
+            </button>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+              {professions.map(prof => <option key={prof} value={prof}>{s.getProfessionLabel(prof)}</option>)}
+            </select>
+            <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+              {(["comfort", "moderate", "budget", "minimal"] as const).map(tier => (
+                <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
+              ))}
+            </select>
+            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+              {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
+                <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
+              ))}
+            </select>
+            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+              {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+            </select>
+            <button onClick={() => s.setDarkMode(!darkMode)} className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
+              {darkMode ? "☀️" : "🌙"}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Hero */}
       <header className="mb-10">
         <div className="flex items-center gap-3 mb-2">
@@ -85,8 +116,8 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
       {/* Key Stats */}
       <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
         {[
-          { label: t("avgIncome"), value: formatCurrency(city.averageIncome), sub: t("perYear") },
-          { label: t("monthlyCost"), value: formatCurrency(tierCost), sub: t(`costTier${selectedTier.charAt(0).toUpperCase()}${selectedTier.slice(1)}`) },
+          { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: t("perYear") },
+          { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: t("perMonth") },
           { label: t("yearlySavings"), value: formatCurrency(savings), sub: `${savingsRate}%` },
           { label: t("housePrice"), value: formatCurrency(city.housePrice), sub: t("housePriceUnit") },
           { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: aqiLabel },
@@ -98,72 +129,6 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
             <p className={`text-xs mt-0.5 ${subCls}`}>{stat.sub}</p>
           </div>
         ))}
-      </section>
-
-      {/* Cost of Living Tiers — clickable */}
-      <section className="mb-10">
-        <h2 className={`text-2xl font-bold mb-4 ${headingCls}`}>{t("costByLifestyle")}</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {TIER_KEYS.map((tier) => {
-            const cost = city[tier.field];
-            const isActive = selectedTier === tier.key;
-            return (
-              <button
-                key={tier.key}
-                onClick={() => setSelectedTier(tier.key)}
-                className={`rounded-xl border p-4 text-left transition ${
-                  isActive
-                    ? "ring-2 ring-blue-500 " + (darkMode ? "bg-blue-900/30 border-blue-500" : "bg-blue-50 border-blue-400")
-                    : sectionBg
-                } cursor-pointer`}
-              >
-                <p className={`text-sm font-bold ${headingCls}`}>{t(tier.labelKey)}</p>
-                <p className="text-2xl font-extrabold text-blue-600 mt-1">{formatCurrency(cost)}</p>
-                <p className={`text-xs ${subCls}`}>{t("perMonth")} · {t(tier.descKey)}</p>
-                <p className={`text-xs mt-1 ${subCls}`}>{t("annual")}: {formatCurrency(cost * 12)}</p>
-              </button>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Salary Table */}
-      <section className="mb-10">
-        <h2 className={`text-2xl font-bold mb-4 ${headingCls}`}>{t("salaryByProfession")}</h2>
-        <div className={`rounded-xl border overflow-hidden ${sectionBg}`}>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className={`border-b ${thBg}`}>
-                  <th className="text-left px-4 py-3 font-semibold">{t("profession")}</th>
-                  <th className="text-right px-4 py-3 font-semibold">{t("annualSalaryCol")}</th>
-                  <th className="text-right px-4 py-3 font-semibold">{t("monthlyGross")}</th>
-                  <th className="text-right px-4 py-3 font-semibold">{t("savingsPotential")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {professions.map(({ key, salary, name }) => {
-                  const monthlySavings = salary / 12 - tierCost;
-                  return (
-                    <tr key={key} className={`border-b ${borderRow} ${rowHover}`}>
-                      <td className={`px-4 py-2.5 font-medium ${headingCls}`}>{name}</td>
-                      <td className={`px-4 py-2.5 text-right font-bold ${headingCls}`}>
-                        {formatCurrency(salary)}
-                      </td>
-                      <td className={`px-4 py-2.5 text-right ${subCls}`}>
-                        {formatCurrency(salary / 12)}
-                      </td>
-                      <td className={`px-4 py-2.5 text-right font-semibold ${monthlySavings > 0 ? "text-green-500" : "text-red-500"}`}>
-                        {formatCurrency(monthlySavings)}{t("perMonth")}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <p className={`px-4 py-2 text-xs border-t ${borderRow} ${subCls}`}>{t("salaryNote")}</p>
-        </div>
       </section>
 
       {/* Housing & Climate */}
@@ -242,6 +207,18 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
         </div>
       </section>
 
-    </PageShell>
+      {/* Footer */}
+      <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
+        <p>{t("dataSourcesDisclaimer")}</p>
+        <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
+        <p className="mt-1">
+          {t("feedbackText")}{" "}
+          <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub Issues</a>
+          {" / "}
+          <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">Email</a>
+        </p>
+      </footer>
+      </div>
+    </div>
   );
 }

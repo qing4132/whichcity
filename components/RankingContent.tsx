@@ -6,6 +6,7 @@ import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLA
 import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type Tab = "savings" | "ppp" | "housing" | "air";
 
@@ -14,6 +15,7 @@ interface RankingContentProps {
 }
 
 export default function RankingContent({ cities }: RankingContentProps) {
+  const router = useRouter();
   const [locale, setLocale] = useState<Locale>("zh");
   const [darkMode, setDarkMode] = useState(false);
   const [selectedProfession, setSelectedProfession] = useState("");
@@ -117,6 +119,10 @@ export default function RankingContent({ cities }: RankingContentProps) {
                 className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
                 {t("navRanking")}
               </Link>
+              <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+                className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+                {t("navRandomCity")}
+              </button>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <select value={selectedProfession} onChange={e => { setSelectedProfession(e.target.value); localStorage.setItem("selectedProfession", e.target.value); }}
