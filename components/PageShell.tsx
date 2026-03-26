@@ -33,11 +33,18 @@ export default function PageShell({
 
   return (
     <div className={`min-h-screen ${bg}`}>
-      <nav className={`border-b px-4 py-2.5 ${navBg}`}>
+      <nav className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
-          <Link href="/" className="text-blue-600 font-semibold hover:underline text-sm whitespace-nowrap">
-            {t("backToHome")}
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link href="/"
+              className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
+              {t("navHome")}
+            </Link>
+            <Link href="/ranking"
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+              {t("navRanking")}
+            </Link>
+          </div>
           <div className="flex items-center gap-2 flex-wrap">
             {/* Language */}
             <select

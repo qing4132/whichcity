@@ -57,7 +57,7 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
           <h3 className={`text-lg font-bold mb-4 ${darkMode ? "text-white" : "text-gray-800"}`}>
             {t("annualFinanceCompare")}
           </h3>
-          <ResponsiveContainer width="100%" height={350}>
+          <ResponsiveContainer width="100%" height={250}>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis dataKey="name" stroke={axisStroke} tick={{ fontSize: 12 }} />
@@ -86,7 +86,7 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
                 <p className={`text-sm font-semibold mb-2 ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
                   {label} ({unit})
                 </p>
-                <ResponsiveContainer width="100%" height={240}>
+                <ResponsiveContainer width="100%" height={180}>
                   <BarChart data={comparisonData.map(city => {
                     const climate = getClimate(city);
                     return { name: getCityLabel(city), value: (climate as any)[key] };
@@ -108,7 +108,7 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
           <h3 className={`text-lg font-bold mb-4 ${darkMode ? "text-white" : "text-gray-800"}`}>
             {t("airQuality")} (AQI)
           </h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={220}>
             <BarChart data={comparisonData.map(city => ({ name: getCityLabel(city), value: city.airQuality }))}>
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis dataKey="name" stroke={axisStroke} tick={{ fontSize: 12 }} />
@@ -124,7 +124,7 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
           <h3 className={`text-lg font-bold mb-4 ${darkMode ? "text-white" : "text-gray-800"}`}>
             {t("doctorsPerThousand")}
           </h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={220}>
             <BarChart data={comparisonData.map(city => ({ name: getCityLabel(city), value: city.doctorsPerThousand }))}>
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis dataKey="name" stroke={axisStroke} tick={{ fontSize: 12 }} />

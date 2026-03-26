@@ -106,11 +106,18 @@ export default function RankingContent({ cities }: RankingContentProps) {
       <div className="max-w-6xl mx-auto">
 
         {/* Top bar */}
-        <div className={`border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
+        <div className={`sticky top-0 z-50 border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
           <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
-            <Link href="/" className={`font-bold text-sm hover:underline ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
-              {t("rankBackHome")}
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link href="/"
+                className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
+                {t("navHome")}
+              </Link>
+              <Link href="/ranking"
+                className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+                {t("navRanking")}
+              </Link>
+            </div>
             <div className="flex items-center gap-2 flex-wrap">
               <select value={selectedProfession} onChange={e => { setSelectedProfession(e.target.value); localStorage.setItem("selectedProfession", e.target.value); }}
                 className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
@@ -161,13 +168,6 @@ export default function RankingContent({ cities }: RankingContentProps) {
             </button>
           ))}
         </div>
-
-        {/* Formula note */}
-        {tab === "ppp" && (
-          <p className={`text-xs mb-3 px-2 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
-            {t("rankPppFormula")}
-          </p>
-        )}
 
         {/* Table */}
         <div className={`rounded-xl shadow-md overflow-hidden ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
