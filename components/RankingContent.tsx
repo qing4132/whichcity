@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import type { City, Locale, ExchangeRates } from "@/lib/types";
+import type { City, Locale, ExchangeRates, CostTier } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
@@ -18,6 +18,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
   const [darkMode, setDarkMode] = useState(false);
   const [selectedProfession, setSelectedProfession] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [costTier, setCostTier] = useState<CostTier>("moderate");
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
   const [tab, setTab] = useState<Tab>("savings");
 
@@ -30,7 +31,11 @@ export default function RankingContent({ cities }: RankingContentProps) {
     setDarkMode(savedDark);
     const savedCur = localStorage.getItem("selectedCurrency");
     if (savedCur) setSelectedCurrency(savedCur);
-    if (professions.length) setSelectedProfession(professions[0]);
+    const savedProf = localStorage.getItem("selectedProfession");
+    if (savedProf && professions.includes(savedProf)) setSelectedProfession(savedProf);
+    else if (professions.length) setSelectedProfession(professions[0]);
+    const savedTier = localStorage.getItem("costTier");
+    if (savedTier && ["comfort", "moderate", "budget", "minimal"].includes(savedTier)) setCostTier(savedTier as CostTier);
     fetch("/data/exchange-rates.json").then(r => r.json()).then(setExchangeRates).catch(() => {});
   }, []);
 
@@ -66,7 +71,8 @@ export default function RankingContent({ cities }: RankingContentProps) {
   // Compute rankings
   const ranked = cities.map(city => {
     const income = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
-    const annualCost = city.costModerate * 12;
+    const costKey = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
+    const annualCost = (city[costKey] as number) * 12;
     const savings = income - annualCost;
     const savingsRate = income > 0 ? savings / income : 0;
     const yearsToHome = savings > 0 ? (city.housePrice * 70) / savings : Infinity;
@@ -101,23 +107,45 @@ export default function RankingContent({ cities }: RankingContentProps) {
 
         {/* Top bar */}
         <div className={`border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
-          <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
-            <Link href="/" className={`font-bold text-sm hover:underline ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
-              {t("rankBackHome")}
-            </Link>
+          <div className="max-w-6xl mx-auto space-y-2">
+            {/* Row 1: Back + language/currency/dark */}
+            <div className="flex items-center justify-between gap-2 flex-wrap">
+              <Link href="/" className={`font-bold text-sm hover:underline ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
+                {t("rankBackHome")}
+              </Link>
+              <div className="flex items-center gap-2 flex-wrap">
+                <select value={locale} onChange={e => { setLocale(e.target.value as Locale); localStorage.setItem("locale", e.target.value); }}
+                  className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
+                  {(Object.keys(LANGUAGE_LABELS) as Locale[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
+                </select>
+                <select value={selectedCurrency} onChange={e => { setSelectedCurrency(e.target.value); localStorage.setItem("selectedCurrency", e.target.value); }}
+                  className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
+                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+                </select>
+                <button onClick={() => { setDarkMode(!darkMode); localStorage.setItem("darkMode", JSON.stringify(!darkMode)); }}
+                  className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
+                  {darkMode ? "☀️" : "🌙"}
+                </button>
+              </div>
+            </div>
+            {/* Row 2: Profession + Cost Tier */}
             <div className="flex items-center gap-2 flex-wrap">
-              <select value={locale} onChange={e => { setLocale(e.target.value as Locale); localStorage.setItem("locale", e.target.value); }}
+              <select value={selectedProfession} onChange={e => { setSelectedProfession(e.target.value); localStorage.setItem("selectedProfession", e.target.value); }}
                 className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                {(Object.keys(LANGUAGE_LABELS) as Locale[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
+                {professions.map(p => <option key={p} value={p}>{getProfessionLabel(p)}</option>)}
               </select>
-              <select value={selectedCurrency} onChange={e => { setSelectedCurrency(e.target.value); localStorage.setItem("selectedCurrency", e.target.value); }}
-                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-              </select>
-              <button onClick={() => { setDarkMode(!darkMode); localStorage.setItem("darkMode", JSON.stringify(!darkMode)); }}
-                className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
-                {darkMode ? "☀️" : "🌙"}
-              </button>
+              <div className={`flex rounded overflow-hidden border ${darkMode ? "border-slate-600" : "border-slate-300"}`}>
+                {(["comfort", "moderate", "budget", "minimal"] as const).map(tier => (
+                  <button key={tier} onClick={() => { setCostTier(tier); localStorage.setItem("costTier", tier); }}
+                    className={`text-xs px-2 py-1 transition ${
+                      costTier === tier
+                        ? "bg-blue-600 text-white"
+                        : darkMode ? "bg-slate-800 text-slate-300 hover:bg-slate-700" : "bg-white text-slate-600 hover:bg-slate-50"
+                    }`}>
+                    {t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -132,33 +160,18 @@ export default function RankingContent({ cities }: RankingContentProps) {
           </p>
         </div>
 
-        {/* Controls */}
-        <div className={`rounded-xl p-4 mb-4 ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"} shadow-sm`}>
-          <div className="flex flex-col sm:flex-row gap-3 sm:items-end">
-            {tab !== "air" && (
-              <div className="flex-1 min-w-0">
-                <label className={`block text-xs font-semibold mb-1 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
-                  {t("selectProfession")}
-                </label>
-                <select value={selectedProfession} onChange={e => setSelectedProfession(e.target.value)}
-                  className={`w-full px-3 py-2 rounded-lg text-sm ${darkMode ? "bg-gray-700 text-white border border-gray-600" : "bg-white border border-gray-300"} focus:outline-none`}>
-                  {professions.map(p => <option key={p} value={p}>{getProfessionLabel(p)}</option>)}
-                </select>
-              </div>
-            )}
-            <div className="flex gap-1.5 flex-wrap">
-              {tabs.map(({ key, label }) => (
-                <button key={key} onClick={() => setTab(key)}
-                  className={`px-3 py-2 rounded-lg font-medium text-sm transition ${
-                    tab === key
-                      ? "bg-blue-600 text-white"
-                      : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}>
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
+        {/* Tab selector */}
+        <div className="flex gap-1.5 flex-wrap mb-4">
+          {tabs.map(({ key, label }) => (
+            <button key={key} onClick={() => setTab(key)}
+              className={`px-3 py-2 rounded-lg font-medium text-sm transition ${
+                tab === key
+                  ? "bg-blue-600 text-white"
+                  : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}>
+              {label}
+            </button>
+          ))}
         </div>
 
         {/* Formula note */}

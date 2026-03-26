@@ -75,7 +75,8 @@ export default function CityComparison() {
     if (savedLocale && ["zh", "en", "ja", "es"].includes(savedLocale)) setLocale(savedLocale as Locale);
 
     if (url.mode && ["normal", "ratio", "bigmac"].includes(url.mode)) setComparisonMode(url.mode as ComparisonMode);
-    if (url.tier && ["comfort", "moderate", "budget", "minimal"].includes(url.tier)) setCostTier(url.tier as CostTier);
+    const savedTier = url.tier || localStorage.getItem("costTier");
+    if (savedTier && ["comfort", "moderate", "budget", "minimal"].includes(savedTier)) setCostTier(savedTier as CostTier);
 
     const fetchData = async () => {
       try {
@@ -90,7 +91,8 @@ export default function CityComparison() {
         setExchangeRates(ratesData);
 
         const profs = citiesData.cities[0]?.professions ? Object.keys(citiesData.cities[0].professions) : [];
-        const initProf = url.prof && profs.includes(url.prof) ? url.prof : profs[0] || "";
+        const savedProf = url.prof || localStorage.getItem("selectedProfession");
+        const initProf = savedProf && profs.includes(savedProf) ? savedProf : profs[0] || "";
         setSelectedProfession(initProf);
 
         // Restore city selection from URL → localStorage → defaults
@@ -157,6 +159,8 @@ export default function CityComparison() {
   useEffect(() => { localStorage.setItem("darkMode", JSON.stringify(darkMode)); }, [darkMode]);
   useEffect(() => { localStorage.setItem("locale", locale); }, [locale]);
   useEffect(() => { if (selectedCities.length >= 2) localStorage.setItem("selectedCities", JSON.stringify(selectedCities)); }, [selectedCities]);
+  useEffect(() => { if (selectedProfession) localStorage.setItem("selectedProfession", selectedProfession); }, [selectedProfession]);
+  useEffect(() => { localStorage.setItem("costTier", costTier); }, [costTier]);
 
   // ── i18n helpers ──
   const t = useCallback((key: string, params?: Record<string, string | number>) => {
@@ -308,29 +312,63 @@ export default function CityComparison() {
 
           {/* ── Top Bar (switchers) ── */}
           <div className={`border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 sm:mb-8 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
-            <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 flex-wrap">
-              <div className="flex items-center gap-3">
-                <span className={`font-bold text-sm ${darkMode ? "text-slate-200" : "text-slate-700"}`}>🌍 City Compare</span>
-                <Link href="/ranking"
-                  className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
-                  {t("rankViewRanking")}
-                </Link>
+            <div className="max-w-7xl mx-auto space-y-2">
+              {/* Row 1: Brand + language/currency/dark */}
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <span className={`font-bold text-sm ${darkMode ? "text-slate-200" : "text-slate-700"}`}>🌍 City Compare</span>
+                  <Link href="/ranking"
+                    className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+                    {t("rankViewRanking")}
+                  </Link>
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <select value={locale} onChange={e => setLocale(e.target.value as Locale)}
+                    className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
+                    {(Object.keys(LANGUAGE_LABELS) as Locale[]).map(lang => (
+                      <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
+                    ))}
+                  </select>
+                  <select value={selectedCurrency} onChange={e => handleCurrencyChange(e.target.value)}
+                    className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
+                    {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+                  </select>
+                  <button onClick={() => setDarkMode(!darkMode)}
+                    className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
+                    {darkMode ? "☀️" : "🌙"}
+                  </button>
+                </div>
               </div>
+              {/* Row 2: Profession + Cost Tier + Comparison Mode */}
               <div className="flex items-center gap-2 flex-wrap">
-                <select value={locale} onChange={e => setLocale(e.target.value as Locale)}
+                <select value={selectedProfession} onChange={e => setSelectedProfession(e.target.value)}
                   className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                  {(Object.keys(LANGUAGE_LABELS) as Locale[]).map(lang => (
-                    <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
+                  {professions.map(prof => <option key={prof} value={prof}>{getProfessionLabel(prof)}</option>)}
+                </select>
+                <div className={`flex rounded overflow-hidden border ${darkMode ? "border-slate-600" : "border-slate-300"}`}>
+                  {(["comfort", "moderate", "budget", "minimal"] as const).map(tier => (
+                    <button key={tier} onClick={() => setCostTier(tier)}
+                      className={`text-xs px-2 py-1 transition ${
+                        costTier === tier
+                          ? "bg-blue-600 text-white"
+                          : darkMode ? "bg-slate-800 text-slate-300 hover:bg-slate-700" : "bg-white text-slate-600 hover:bg-slate-50"
+                      }`}>
+                      {t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}
+                    </button>
                   ))}
-                </select>
-                <select value={selectedCurrency} onChange={e => handleCurrencyChange(e.target.value)}
-                  className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-                </select>
-                <button onClick={() => setDarkMode(!darkMode)}
-                  className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
-                  {darkMode ? "☀️" : "🌙"}
-                </button>
+                </div>
+                <div className={`flex rounded overflow-hidden border ${darkMode ? "border-slate-600" : "border-slate-300"}`}>
+                  {(["normal", "ratio", "bigmac"] as const).map(mode => (
+                    <button key={mode} onClick={() => setComparisonMode(mode)}
+                      className={`text-xs px-2 py-1 transition ${
+                        comparisonMode === mode
+                          ? mode === "normal" ? "bg-blue-600 text-white" : mode === "ratio" ? "bg-purple-600 text-white" : "bg-amber-600 text-white"
+                          : darkMode ? "bg-slate-800 text-slate-300 hover:bg-slate-700" : "bg-white text-slate-600 hover:bg-slate-50"
+                      }`}>
+                      {t(mode === "normal" ? "modeNormal" : mode === "ratio" ? "modeRatio" : "modeBigMac")}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -343,62 +381,6 @@ export default function CityComparison() {
             <p className={`text-base sm:text-lg max-w-2xl mx-auto ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
               {t("appSubtitle", { count: cities.length })}
             </p>
-          </div>
-
-          {/* ── Settings ── */}
-          <div className={`rounded-xl shadow-md p-4 sm:p-6 mb-4 ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-              {/* Profession */}
-              <div>
-                <label className={`block text-xs font-semibold mb-1.5 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
-                  {t("selectProfession")}
-                </label>
-                <select value={selectedProfession} onChange={e => setSelectedProfession(e.target.value)}
-                  className={`w-full px-3 py-2 rounded-lg font-medium transition text-sm ${darkMode ? "bg-gray-700 text-white border border-gray-600 focus:border-blue-400" : "bg-white border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"} focus:outline-none`}>
-                  {professions.map(prof => <option key={prof} value={prof}>{getProfessionLabel(prof)}</option>)}
-                </select>
-              </div>
-
-              {/* Comparison Mode */}
-              <div>
-                <label className={`block text-xs font-semibold mb-1.5 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
-                  {t("comparisonMode", { count: maxComparisons })}
-                </label>
-                <div className="flex gap-1.5">
-                  {(["normal", "ratio", "bigmac"] as const).map(mode => (
-                    <button key={mode} onClick={() => setComparisonMode(mode)}
-                      className={`flex-1 px-2 py-2 rounded-lg font-medium transition text-sm ${
-                        comparisonMode === mode
-                          ? mode === "normal" ? "bg-blue-600 text-white" : mode === "ratio" ? "bg-purple-600 text-white" : "bg-amber-600 text-white"
-                          : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                      }`}>
-                      {t(mode === "normal" ? "modeNormal" : mode === "ratio" ? "modeRatio" : "modeBigMac")}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Cost Tier */}
-              <div>
-                <label className={`block text-xs font-semibold mb-1.5 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
-                  {t("costTierLabel")}
-                </label>
-                <div className="grid grid-cols-4 gap-1.5">
-                  {(["comfort", "moderate", "budget", "minimal"] as const).map(tier => {
-                    const colors: Record<CostTier, string> = { comfort: "bg-rose-600", moderate: "bg-sky-600", budget: "bg-emerald-600", minimal: "bg-orange-600" };
-                    return (
-                      <button key={tier} onClick={() => setCostTier(tier)}
-                        className={`px-2 py-2 rounded-lg font-medium transition text-sm ${
-                          costTier === tier ? `${colors[tier]} text-white`
-                            : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                        }`}>
-                        {t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* ── City Selector ── */}
