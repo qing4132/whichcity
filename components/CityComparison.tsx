@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import type { City, CostTier, Locale, ClimateInfo, ExchangeRates } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, CONTINENT_TRANSLATIONS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
-import { POPULAR_CURRENCIES, CITY_CLIMATE, CITY_FLAG_EMOJIS } from "@/lib/constants";
+import { POPULAR_CURRENCIES, CITY_CLIMATE, CITY_FLAG_EMOJIS, REGIONS, REGION_LABELS } from "@/lib/constants";
 import { CompareCtx, type CompareContextValue } from "@/lib/CompareContext";
 import { readUrlParams, writeUrlParams } from "@/hooks/useUrlState";
 import Link from "next/link";
@@ -13,32 +13,7 @@ import CityCard from "./CityCard";
 import KeyInsights from "./KeyInsights";
 import ShareCard from "./ShareCard";
 import DataSources from "./DataSources";
-
-const REGIONS = [
-  { key: "northAmerica", ids: [1, 11, 12, 13, 34, 35, 36, 37, 38, 39, 95, 96, 97, 98, 99, 100, 9, 40, 41] },
-  { key: "europe", ids: [2, 8, 93, 94, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 85, 86, 87, 88, 89, 90, 91, 92] },
-  { key: "eastAsia", ids: [3, 106, 107, 4, 5, 101, 102, 103, 104, 105, 10, 59, 60, 108, 61] },
-  { key: "southeastAsia", ids: [7, 45, 112, 46, 47, 48, 57, 58, 113, 109, 110, 111] },
-  { key: "southAsia", ids: [49, 50, 51, 83, 84, 55, 56, 114, 115, 116] },
-  { key: "oceania", ids: [6, 42, 43, 44] },
-  { key: "middleEast", ids: [14, 75, 76, 77, 78, 79, 82, 80, 81, 54] },
-  { key: "centralAsia", ids: [117, 118, 119, 120] },
-  { key: "latinAmerica", ids: [31, 69, 32, 33, 62, 63, 64, 65, 66, 70, 71, 72, 73, 74] },
-  { key: "africa", ids: [52, 53, 67, 68] },
-];
-
-const REGION_LABELS: Record<string, Record<string, string>> = {
-  northAmerica: { zh: "北美洲", en: "North America", ja: "北米", es: "América del Norte" },
-  europe: { zh: "欧洲", en: "Europe", ja: "ヨーロッパ", es: "Europa" },
-  eastAsia: { zh: "东亚", en: "East Asia", ja: "東アジア", es: "Asia Oriental" },
-  southeastAsia: { zh: "东南亚", en: "Southeast Asia", ja: "東南アジア", es: "Sudeste Asiático" },
-  southAsia: { zh: "南亚", en: "South Asia", ja: "南アジア", es: "Asia del Sur" },
-  oceania: { zh: "大洋洲", en: "Oceania", ja: "オセアニア", es: "Oceanía" },
-  middleEast: { zh: "中东", en: "Middle East", ja: "中東", es: "Medio Oriente" },
-  centralAsia: { zh: "中亚", en: "Central Asia", ja: "中央アジア", es: "Asia Central" },
-  latinAmerica: { zh: "拉美", en: "Latin America", ja: "中南米", es: "América Latina" },
-  africa: { zh: "非洲", en: "Africa", ja: "アフリカ", es: "África" },
-};
+import CityLinks from "./CityLinks";
 
 export default function CityComparison() {
   const [cities, setCities] = useState<City[]>([]);
@@ -73,7 +48,6 @@ export default function CityComparison() {
     const savedLocale = url.lang || localStorage.getItem("locale");
     if (savedLocale && ["zh", "en", "ja", "es"].includes(savedLocale)) setLocale(savedLocale as Locale);
 
-    if (url.mode && ["normal", "ratio", "bigmac"].includes(url.mode)) { /* legacy, ignore */ }
     const savedTier = url.tier || localStorage.getItem("costTier");
     if (savedTier && ["comfort", "moderate", "budget", "minimal"].includes(savedTier)) setCostTier(savedTier as CostTier);
 
@@ -145,7 +119,6 @@ export default function CityComparison() {
     writeUrlParams({
       cities: selectedCities.length ? selectedCities.join(",") : undefined,
       prof: selectedProfession || undefined,
-      mode: undefined,
       tier: costTier !== "moderate" ? costTier : undefined,
       lang: locale !== "zh" ? locale : undefined,
       cur: selectedCurrency !== "USD" ? selectedCurrency : undefined,
@@ -516,6 +489,8 @@ export default function CityComparison() {
               <DataSources />
             </div>
           )}
+
+          <CityLinks />
 
         </div>
       </div>

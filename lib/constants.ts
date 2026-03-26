@@ -1,5 +1,32 @@
 import type { ClimateInfo } from "./types";
 
+/** Geographic regions with city IDs — single source of truth, used by CityComparison & CityLinks */
+export const REGIONS = [
+  { key: "northAmerica", ids: [1, 11, 12, 13, 34, 35, 36, 37, 38, 39, 95, 96, 97, 98, 99, 100, 9, 40, 41] },
+  { key: "europe", ids: [2, 8, 93, 94, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 85, 86, 87, 88, 89, 90, 91, 92] },
+  { key: "eastAsia", ids: [3, 106, 107, 4, 5, 101, 102, 103, 104, 105, 10, 59, 60, 108, 61] },
+  { key: "southeastAsia", ids: [7, 45, 112, 46, 47, 48, 57, 58, 113, 109, 110, 111] },
+  { key: "southAsia", ids: [49, 50, 51, 83, 84, 55, 56, 114, 115, 116] },
+  { key: "oceania", ids: [6, 42, 43, 44] },
+  { key: "middleEast", ids: [14, 75, 76, 77, 78, 79, 82, 80, 81, 54] },
+  { key: "centralAsia", ids: [117, 118, 119, 120] },
+  { key: "latinAmerica", ids: [31, 69, 32, 33, 62, 63, 64, 65, 66, 70, 71, 72, 73, 74] },
+  { key: "africa", ids: [52, 53, 67, 68] },
+];
+
+export const REGION_LABELS: Record<string, Record<string, string>> = {
+  northAmerica: { zh: "北美洲", en: "North America", ja: "北米", es: "América del Norte" },
+  europe: { zh: "欧洲", en: "Europe", ja: "ヨーロッパ", es: "Europa" },
+  eastAsia: { zh: "东亚", en: "East Asia", ja: "東アジア", es: "Asia Oriental" },
+  southeastAsia: { zh: "东南亚", en: "Southeast Asia", ja: "東南アジア", es: "Sudeste Asiático" },
+  southAsia: { zh: "南亚", en: "South Asia", ja: "南アジア", es: "Asia del Sur" },
+  oceania: { zh: "大洋洲", en: "Oceania", ja: "オセアニア", es: "Oceanía" },
+  middleEast: { zh: "中东", en: "Middle East", ja: "中東", es: "Medio Oriente" },
+  centralAsia: { zh: "中亚", en: "Central Asia", ja: "中央アジア", es: "Asia Central" },
+  latinAmerica: { zh: "拉美", en: "Latin America", ja: "中南米", es: "América Latina" },
+  africa: { zh: "非洲", en: "Africa", ja: "アフリカ", es: "África" },
+};
+
 export const POPULAR_CURRENCIES = [
   "USD", "EUR", "GBP", "JPY", "CNY", "HKD", "AUD", "CAD", "SGD", "INR",
 ];
