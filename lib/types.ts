@@ -18,6 +18,8 @@ export interface City {
   airQuality: number;
   doctorsPerThousand: number;
   directFlightCities: number;
+  safetyIndex: number;
+  safetyConfidence: "high" | "medium" | "low";
 }
 
 export type CostTier = "comfort" | "moderate" | "budget" | "minimal";

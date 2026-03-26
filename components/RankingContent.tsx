@@ -8,7 +8,7 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-type Tab = "savings" | "ppp" | "housing" | "air" | "flights";
+type Tab = "savings" | "ppp" | "housing" | "air" | "flights" | "safety";
 
 interface RankingContentProps {
   cities: City[];
@@ -87,6 +87,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
     if (tab === "ppp") return b.ppp - a.ppp;
     if (tab === "air") return a.city.airQuality - b.city.airQuality; // lower AQI = better
     if (tab === "flights") return b.city.directFlightCities - a.city.directFlightCities;
+    if (tab === "safety") return b.city.safetyIndex - a.city.safetyIndex;
     // housing: ascending years
     const aY = isFinite(a.yearsToHome) ? a.yearsToHome : 999999;
     const bY = isFinite(b.yearsToHome) ? b.yearsToHome : 999999;
@@ -99,6 +100,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
     { key: "housing", label: t("rankTab_housing") },
     { key: "air", label: t("rankTab_air") },
     { key: "flights", label: t("rankTab_flights") },
+    { key: "safety", label: t("rankTab_safety") },
   ];
 
   const headerCls = `sticky top-0 z-10 ${darkMode ? "bg-slate-800" : "bg-slate-100"}`;
@@ -190,6 +192,8 @@ export default function RankingContent({ cities }: RankingContentProps) {
                     <th className={thCls}>{t("rankCol_aqi")}</th>
                   ) : tab === "flights" ? (
                     <th className={thCls}>{t("directFlights")}</th>
+                  ) : tab === "safety" ? (
+                    <th className={thCls}>{t("safetyIndex")}</th>
                   ) : (
                     <>
                       <th className={thCls}>{t("rankCol_income")}</th>
@@ -235,6 +239,13 @@ export default function RankingContent({ cities }: RankingContentProps) {
                         <td className={tdCls}>
                           <span className={`font-bold ${item.city.directFlightCities >= 150 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.directFlightCities >= 50 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-slate-400" : "text-slate-500")}`}>
                             {item.city.directFlightCities} {t("directFlightsUnit")}
+                          </span>
+                        </td>
+                      ) : tab === "safety" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${item.city.safetyIndex >= 70 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.safetyIndex >= 40 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {item.city.safetyIndex} / 100
+                            {item.city.safetyConfidence === "low" && " *"}
                           </span>
                         </td>
                       ) : (

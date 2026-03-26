@@ -68,6 +68,7 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
   const allAqi = allCities.map((c) => c.airQuality);
   const allDoctors = allCities.map((c) => c.doctorsPerThousand);
   const allFlights = allCities.map((c) => c.directFlightCities);
+  const allSafety = allCities.map((c) => c.safetyIndex);
 
   // "good"=top25%, "bad"=bottom25%, "mid"=middle — higher-is-better: pct>=0.75=good; lower-is-better: pct<=0.25=good
   type Tier = "good" | "mid" | "bad";
@@ -143,7 +144,7 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
       </header>
 
       {/* Key Stats */}
-      <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 mb-10">
+      <section className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
         {[
           { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: t("perYear"), tier: tierHigh(allIncomes, income) },
           { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: t("perMonth"), tier: tierLow(allCosts, tierCost) },
@@ -152,6 +153,7 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
           { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: aqiLabel, tier: tierLow(allAqi, city.airQuality) },
           { label: t("doctorsPerThousand"), value: String(city.doctorsPerThousand), sub: t("doctorsUnit"), tier: tierHigh(allDoctors, city.doctorsPerThousand) },
           { label: t("directFlights"), value: String(city.directFlightCities), sub: t("directFlightsUnit"), tier: tierHigh(allFlights, city.directFlightCities) },
+          { label: t("safetyIndex"), value: String(city.safetyIndex), sub: t("safetyUnit"), tier: tierHigh(allSafety, city.safetyIndex) },
         ].map((stat) => (
           <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)}`}>
             <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${subCls}`}>{stat.label}</p>
@@ -228,9 +230,10 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
         <h3 className={`text-base sm:text-lg font-semibold mb-3 ${headingCls}`}>{t("dataSourcesTitle")}</h3>
         <p className={`text-sm mb-3 ${subCls}`}>{t("dataSourcesDesc")}</p>
         <div className={`space-y-1.5 text-xs ${subCls}`}>
-          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc"].map((k) => (
+          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc", "dataSafetySrc"].map((k) => (
             <p key={k}>• {t(k)}</p>
           ))}
+          <p className={`mt-2 italic`}>• {t("safetyMethodNote")}</p>
         </div>
         <div className={`mt-4 pt-3 border-t ${borderRow}`}>
           <p className={`text-xs ${subCls}`}>{t("dataSourcesDisclaimer")}</p>

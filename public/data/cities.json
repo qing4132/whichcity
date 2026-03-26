@@ -40,7 +40,9 @@
       "costBudget": 2160,
       "costMinimal": 1350,
       "doctorsPerThousand": 4.1,
-      "directFlightCities": 280
+      "directFlightCities": 280,
+      "safetyIndex": 52,
+      "safetyConfidence": "high"
     },
     {
       "id": 2,
@@ -82,7 +84,9 @@
       "costBudget": 1710,
       "costMinimal": 1150,
       "doctorsPerThousand": 3.6,
-      "directFlightCities": 390
+      "directFlightCities": 390,
+      "safetyIndex": 59,
+      "safetyConfidence": "high"
     },
     {
       "id": 3,
@@ -124,7 +128,9 @@
       "costBudget": 1440,
       "costMinimal": 850,
       "doctorsPerThousand": 2.7,
-      "directFlightCities": 165
+      "directFlightCities": 165,
+      "safetyIndex": 83,
+      "safetyConfidence": "high"
     },
     {
       "id": 4,
@@ -166,7 +172,9 @@
       "costBudget": 924,
       "costMinimal": 520,
       "doctorsPerThousand": 4.6,
-      "directFlightCities": 220
+      "directFlightCities": 220,
+      "safetyIndex": 73,
+      "safetyConfidence": "high"
     },
     {
       "id": 5,
@@ -208,7 +216,9 @@
       "costBudget": 1170,
       "costMinimal": 600,
       "doctorsPerThousand": 3.8,
-      "directFlightCities": 230
+      "directFlightCities": 230,
+      "safetyIndex": 75,
+      "safetyConfidence": "high"
     },
     {
       "id": 6,
@@ -250,7 +260,9 @@
       "costBudget": 1710,
       "costMinimal": 1100,
       "doctorsPerThousand": 4.3,
-      "directFlightCities": 95
+      "directFlightCities": 95,
+      "safetyIndex": 68,
+      "safetyConfidence": "high"
     },
     {
       "id": 7,
@@ -292,7 +304,9 @@
       "costBudget": 1575,
       "costMinimal": 850,
       "doctorsPerThousand": 2.5,
-      "directFlightCities": 150
+      "directFlightCities": 150,
+      "safetyIndex": 82,
+      "safetyConfidence": "high"
     },
     {
       "id": 8,
@@ -334,7 +348,9 @@
       "costBudget": 1440,
       "costMinimal": 950,
       "doctorsPerThousand": 3.6,
-      "directFlightCities": 290
+      "directFlightCities": 290,
+      "safetyIndex": 51,
+      "safetyConfidence": "high"
     },
     {
       "id": 9,
@@ -376,7 +392,9 @@
       "costBudget": 1440,
       "costMinimal": 950,
       "doctorsPerThousand": 2.9,
-      "directFlightCities": 180
+      "directFlightCities": 180,
+      "safetyIndex": 64,
+      "safetyConfidence": "high"
     },
     {
       "id": 10,
@@ -418,7 +436,9 @@
       "costBudget": 1920,
       "costMinimal": 1100,
       "doctorsPerThousand": 2.1,
-      "directFlightCities": 180
+      "directFlightCities": 180,
+      "safetyIndex": 78,
+      "safetyConfidence": "high"
     },
     {
       "id": 11,
@@ -460,7 +480,9 @@
       "costBudget": 2016,
       "costMinimal": 1250,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 195
+      "directFlightCities": 195,
+      "safetyIndex": 47,
+      "safetyConfidence": "high"
     },
     {
       "id": 12,
@@ -502,7 +524,9 @@
       "costBudget": 2304,
       "costMinimal": 1450,
       "doctorsPerThousand": 3.5,
-      "directFlightCities": 130
+      "directFlightCities": 130,
+      "safetyIndex": 41,
+      "safetyConfidence": "high"
     },
     {
       "id": 13,
@@ -544,7 +568,9 @@
       "costBudget": 1620,
       "costMinimal": 1050,
       "doctorsPerThousand": 3.4,
-      "directFlightCities": 250
+      "directFlightCities": 250,
+      "safetyIndex": 44,
+      "safetyConfidence": "high"
     },
     {
       "id": 14,
@@ -586,7 +612,9 @@
       "costBudget": 1575,
       "costMinimal": 750,
       "doctorsPerThousand": 3.2,
-      "directFlightCities": 265
+      "directFlightCities": 265,
+      "safetyIndex": 85,
+      "safetyConfidence": "high"
     },
     {
       "id": 15,
@@ -628,7 +656,9 @@
       "costBudget": 1395,
       "costMinimal": 920,
       "doctorsPerThousand": 3.9,
-      "directFlightCities": 195
+      "directFlightCities": 195,
+      "safetyIndex": 65,
+      "safetyConfidence": "high"
     },
     {
       "id": 16,
@@ -670,7 +700,9 @@
       "costBudget": 2496,
       "costMinimal": 1550,
       "doctorsPerThousand": 4.7,
-      "directFlightCities": 130
+      "directFlightCities": 130,
+      "safetyIndex": 81,
+      "safetyConfidence": "high"
     },
     {
       "id": 17,
@@ -712,7 +744,9 @@
       "costBudget": 2352,
       "costMinimal": 1450,
       "doctorsPerThousand": 4.6,
-      "directFlightCities": 110
+      "directFlightCities": 110,
+      "safetyIndex": 78,
+      "safetyConfidence": "high"
     },
     {
       "id": 18,
@@ -754,7 +788,9 @@
       "costBudget": 1440,
       "costMinimal": 900,
       "doctorsPerThousand": 4.8,
-      "directFlightCities": 190
+      "directFlightCities": 190,
+      "safetyIndex": 76,
+      "safetyConfidence": "high"
     },
     {
       "id": 19,
@@ -796,7 +832,9 @@
       "costBudget": 1170,
       "costMinimal": 750,
       "doctorsPerThousand": 4.3,
-      "directFlightCities": 180
+      "directFlightCities": 180,
+      "safetyIndex": 62,
+      "safetyConfidence": "high"
     },
     {
       "id": 20,
@@ -838,7 +876,9 @@
       "costBudget": 924,
       "costMinimal": 600,
       "doctorsPerThousand": 4.5,
-      "directFlightCities": 215
+      "directFlightCities": 215,
+      "safetyIndex": 54,
+      "safetyConfidence": "high"
     },
     {
       "id": 21,
@@ -880,7 +920,9 @@
       "costBudget": 924,
       "costMinimal": 620,
       "doctorsPerThousand": 4.5,
-      "directFlightCities": 200
+      "directFlightCities": 200,
+      "safetyIndex": 59,
+      "safetyConfidence": "high"
     },
     {
       "id": 22,
@@ -922,7 +964,9 @@
       "costBudget": 1170,
       "costMinimal": 700,
       "doctorsPerThousand": 4.4,
-      "directFlightCities": 190
+      "directFlightCities": 190,
+      "safetyIndex": 56,
+      "safetyConfidence": "high"
     },
     {
       "id": 23,
@@ -964,7 +1008,9 @@
       "costBudget": 966,
       "costMinimal": 620,
       "doctorsPerThousand": 4.3,
-      "directFlightCities": 190
+      "directFlightCities": 190,
+      "safetyIndex": 53,
+      "safetyConfidence": "high"
     },
     {
       "id": 24,
@@ -1006,7 +1052,9 @@
       "costBudget": 1260,
       "costMinimal": 780,
       "doctorsPerThousand": 3.8,
-      "directFlightCities": 170
+      "directFlightCities": 170,
+      "safetyIndex": 53,
+      "safetyConfidence": "high"
     },
     {
       "id": 25,
@@ -1048,7 +1096,9 @@
       "costBudget": 1305,
       "costMinimal": 800,
       "doctorsPerThousand": 5.7,
-      "directFlightCities": 175
+      "directFlightCities": 175,
+      "safetyIndex": 73,
+      "safetyConfidence": "high"
     },
     {
       "id": 26,
@@ -1090,7 +1140,9 @@
       "costBudget": 756,
       "costMinimal": 480,
       "doctorsPerThousand": 4.6,
-      "directFlightCities": 155
+      "directFlightCities": 155,
+      "safetyIndex": 70,
+      "safetyConfidence": "high"
     },
     {
       "id": 27,
@@ -1132,7 +1184,9 @@
       "costBudget": 798,
       "costMinimal": 450,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 160
+      "directFlightCities": 160,
+      "safetyIndex": 64,
+      "safetyConfidence": "high"
     },
     {
       "id": 28,
@@ -1174,7 +1228,9 @@
       "costBudget": 798,
       "costMinimal": 520,
       "doctorsPerThousand": 5.7,
-      "directFlightCities": 150
+      "directFlightCities": 150,
+      "safetyIndex": 65,
+      "safetyConfidence": "high"
     },
     {
       "id": 29,
@@ -1216,7 +1272,9 @@
       "costBudget": 714,
       "costMinimal": 420,
       "doctorsPerThousand": 7,
-      "directFlightCities": 165
+      "directFlightCities": 165,
+      "safetyIndex": 58,
+      "safetyConfidence": "high"
     },
     {
       "id": 30,
@@ -1258,7 +1316,9 @@
       "costBudget": 520,
       "costMinimal": 320,
       "doctorsPerThousand": 2.4,
-      "directFlightCities": 310
+      "directFlightCities": 310,
+      "safetyIndex": 53,
+      "safetyConfidence": "high"
     },
     {
       "id": 31,
@@ -1300,7 +1360,9 @@
       "costBudget": 756,
       "costMinimal": 480,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 115
+      "directFlightCities": 115,
+      "safetyIndex": 34,
+      "safetyConfidence": "high"
     },
     {
       "id": 32,
@@ -1342,7 +1404,9 @@
       "costBudget": 840,
       "costMinimal": 480,
       "doctorsPerThousand": 2.7,
-      "directFlightCities": 135
+      "directFlightCities": 135,
+      "safetyIndex": 29,
+      "safetyConfidence": "high"
     },
     {
       "id": 33,
@@ -1384,7 +1448,9 @@
       "costBudget": 714,
       "costMinimal": 400,
       "doctorsPerThousand": 2.5,
-      "directFlightCities": 55
+      "directFlightCities": 55,
+      "safetyIndex": 33,
+      "safetyConfidence": "high"
     },
     {
       "id": 34,
@@ -1426,7 +1492,9 @@
       "costBudget": 1710,
       "costMinimal": 1100,
       "doctorsPerThousand": 2.9,
-      "directFlightCities": 180
+      "directFlightCities": 180,
+      "safetyIndex": 53,
+      "safetyConfidence": "high"
     },
     {
       "id": 35,
@@ -1468,7 +1536,9 @@
       "costBudget": 1920,
       "costMinimal": 1200,
       "doctorsPerThousand": 4,
-      "directFlightCities": 200
+      "directFlightCities": 200,
+      "safetyIndex": 59,
+      "safetyConfidence": "high"
     },
     {
       "id": 36,
@@ -1510,7 +1580,9 @@
       "costBudget": 1755,
       "costMinimal": 1150,
       "doctorsPerThousand": 5,
-      "directFlightCities": 140
+      "directFlightCities": 140,
+      "safetyIndex": 64,
+      "safetyConfidence": "high"
     },
     {
       "id": 37,
@@ -1552,7 +1624,9 @@
       "costBudget": 2016,
       "costMinimal": 1250,
       "doctorsPerThousand": 3.1,
-      "directFlightCities": 135
+      "directFlightCities": 135,
+      "safetyIndex": 53,
+      "safetyConfidence": "high"
     },
     {
       "id": 38,
@@ -1594,7 +1668,9 @@
       "costBudget": 1530,
       "costMinimal": 980,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 215
+      "directFlightCities": 215,
+      "safetyIndex": 60,
+      "safetyConfidence": "high"
     },
     {
       "id": 39,
@@ -1636,7 +1712,9 @@
       "costBudget": 1575,
       "costMinimal": 1000,
       "doctorsPerThousand": 2.4,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 56,
+      "safetyConfidence": "high"
     },
     {
       "id": 40,
@@ -1678,7 +1756,9 @@
       "costBudget": 1395,
       "costMinimal": 920,
       "doctorsPerThousand": 2.6,
-      "directFlightCities": 120
+      "directFlightCities": 120,
+      "safetyIndex": 65,
+      "safetyConfidence": "high"
     },
     {
       "id": 41,
@@ -1720,7 +1800,9 @@
       "costBudget": 1125,
       "costMinimal": 750,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 130
+      "directFlightCities": 130,
+      "safetyIndex": 62,
+      "safetyConfidence": "high"
     },
     {
       "id": 42,
@@ -1762,7 +1844,9 @@
       "costBudget": 1575,
       "costMinimal": 1000,
       "doctorsPerThousand": 4.2,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 70,
+      "safetyConfidence": "high"
     },
     {
       "id": 43,
@@ -1804,7 +1888,9 @@
       "costBudget": 1395,
       "costMinimal": 900,
       "doctorsPerThousand": 3.8,
-      "directFlightCities": 55
+      "directFlightCities": 55,
+      "safetyIndex": 72,
+      "safetyConfidence": "high"
     },
     {
       "id": 44,
@@ -1846,7 +1932,9 @@
       "costBudget": 1260,
       "costMinimal": 800,
       "doctorsPerThousand": 3.5,
-      "directFlightCities": 60
+      "directFlightCities": 60,
+      "safetyIndex": 72,
+      "safetyConfidence": "high"
     },
     {
       "id": 45,
@@ -1888,7 +1976,9 @@
       "costBudget": 520,
       "costMinimal": 320,
       "doctorsPerThousand": 0.8,
-      "directFlightCities": 190
+      "directFlightCities": 190,
+      "safetyIndex": 57,
+      "safetyConfidence": "high"
     },
     {
       "id": 46,
@@ -1930,7 +2020,9 @@
       "costBudget": 480,
       "costMinimal": 280,
       "doctorsPerThousand": 2.5,
-      "directFlightCities": 140
+      "directFlightCities": 140,
+      "safetyIndex": 57,
+      "safetyConfidence": "high"
     },
     {
       "id": 47,
@@ -1972,7 +2064,9 @@
       "costBudget": 380,
       "costMinimal": 220,
       "doctorsPerThousand": 1.4,
-      "directFlightCities": 85
+      "directFlightCities": 85,
+      "safetyIndex": 50,
+      "safetyConfidence": "medium"
     },
     {
       "id": 48,
@@ -2014,7 +2108,9 @@
       "costBudget": 340,
       "costMinimal": 200,
       "doctorsPerThousand": 1.3,
-      "directFlightCities": 70
+      "directFlightCities": 70,
+      "safetyIndex": 60,
+      "safetyConfidence": "medium"
     },
     {
       "id": 49,
@@ -2056,7 +2152,9 @@
       "costBudget": 400,
       "costMinimal": 200,
       "doctorsPerThousand": 1,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 54,
+      "safetyConfidence": "medium"
     },
     {
       "id": 50,
@@ -2098,7 +2196,9 @@
       "costBudget": 480,
       "costMinimal": 250,
       "doctorsPerThousand": 1.2,
-      "directFlightCities": 110
+      "directFlightCities": 110,
+      "safetyIndex": 41,
+      "safetyConfidence": "high"
     },
     {
       "id": 51,
@@ -2140,7 +2240,9 @@
       "costBudget": 400,
       "costMinimal": 200,
       "doctorsPerThousand": 1.1,
-      "directFlightCities": 145
+      "directFlightCities": 145,
+      "safetyIndex": 35,
+      "safetyConfidence": "high"
     },
     {
       "id": 52,
@@ -2182,7 +2284,9 @@
       "costBudget": 480,
       "costMinimal": 280,
       "doctorsPerThousand": 0.3,
-      "directFlightCities": 60
+      "directFlightCities": 60,
+      "safetyIndex": 30,
+      "safetyConfidence": "medium"
     },
     {
       "id": 53,
@@ -2224,7 +2328,9 @@
       "costBudget": 320,
       "costMinimal": 180,
       "doctorsPerThousand": 0.9,
-      "directFlightCities": 100
+      "directFlightCities": 100,
+      "safetyIndex": 43,
+      "safetyConfidence": "medium"
     },
     {
       "id": 54,
@@ -2266,7 +2372,9 @@
       "costBudget": 320,
       "costMinimal": 200,
       "doctorsPerThousand": 2.2,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 52,
+      "safetyConfidence": "medium"
     },
     {
       "id": 55,
@@ -2308,7 +2416,9 @@
       "costBudget": 285,
       "costMinimal": 140,
       "doctorsPerThousand": 1.1,
-      "directFlightCities": 40
+      "directFlightCities": 40,
+      "safetyIndex": 25,
+      "safetyConfidence": "medium"
     },
     {
       "id": 56,
@@ -2350,7 +2460,9 @@
       "costBudget": 320,
       "costMinimal": 150,
       "doctorsPerThousand": 1.3,
-      "directFlightCities": 45
+      "directFlightCities": 45,
+      "safetyIndex": 43,
+      "safetyConfidence": "medium"
     },
     {
       "id": 57,
@@ -2392,7 +2504,9 @@
       "costBudget": 420,
       "costMinimal": 250,
       "doctorsPerThousand": 0.7,
-      "directFlightCities": 90
+      "directFlightCities": 90,
+      "safetyIndex": 46,
+      "safetyConfidence": "medium"
     },
     {
       "id": 58,
@@ -2434,7 +2548,9 @@
       "costBudget": 380,
       "costMinimal": 220,
       "doctorsPerThousand": 0.8,
-      "directFlightCities": 80
+      "directFlightCities": 80,
+      "safetyIndex": 44,
+      "safetyConfidence": "medium"
     },
     {
       "id": 59,
@@ -2476,7 +2592,9 @@
       "costBudget": 1170,
       "costMinimal": 650,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 190
+      "directFlightCities": 190,
+      "safetyIndex": 77,
+      "safetyConfidence": "high"
     },
     {
       "id": 60,
@@ -2518,7 +2636,9 @@
       "costBudget": 756,
       "costMinimal": 480,
       "doctorsPerThousand": 2.4,
-      "directFlightCities": 50
+      "directFlightCities": 50,
+      "safetyIndex": 74,
+      "safetyConfidence": "medium"
     },
     {
       "id": 61,
@@ -2560,7 +2680,9 @@
       "costBudget": 756,
       "costMinimal": 450,
       "doctorsPerThousand": 2.5,
-      "directFlightCities": 130
+      "directFlightCities": 130,
+      "safetyIndex": 78,
+      "safetyConfidence": "high"
     },
     {
       "id": 62,
@@ -2602,7 +2724,9 @@
       "costBudget": 520,
       "costMinimal": 320,
       "doctorsPerThousand": 5.5,
-      "directFlightCities": 65
+      "directFlightCities": 65,
+      "safetyIndex": 38,
+      "safetyConfidence": "high"
     },
     {
       "id": 63,
@@ -2644,7 +2768,9 @@
       "costBudget": 756,
       "costMinimal": 450,
       "doctorsPerThousand": 3.6,
-      "directFlightCities": 55
+      "directFlightCities": 55,
+      "safetyIndex": 45,
+      "safetyConfidence": "high"
     },
     {
       "id": 64,
@@ -2686,7 +2812,9 @@
       "costBudget": 480,
       "costMinimal": 280,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 33,
+      "safetyConfidence": "medium"
     },
     {
       "id": 65,
@@ -2728,7 +2856,9 @@
       "costBudget": 480,
       "costMinimal": 260,
       "doctorsPerThousand": 1.7,
-      "directFlightCities": 65
+      "directFlightCities": 65,
+      "safetyIndex": 37,
+      "safetyConfidence": "medium"
     },
     {
       "id": 66,
@@ -2770,7 +2900,9 @@
       "costBudget": 266,
       "costMinimal": 150,
       "doctorsPerThousand": 1.5,
-      "directFlightCities": 25
+      "directFlightCities": 25,
+      "safetyIndex": 17,
+      "safetyConfidence": "low"
     },
     {
       "id": 67,
@@ -2812,7 +2944,9 @@
       "costBudget": 672,
       "costMinimal": 380,
       "doctorsPerThousand": 1,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 25,
+      "safetyConfidence": "high"
     },
     {
       "id": 68,
@@ -2854,7 +2988,9 @@
       "costBudget": 630,
       "costMinimal": 350,
       "doctorsPerThousand": 1,
-      "directFlightCities": 35
+      "directFlightCities": 35,
+      "safetyIndex": 39,
+      "safetyConfidence": "high"
     },
     {
       "id": 69,
@@ -2896,7 +3032,9 @@
       "costBudget": 560,
       "costMinimal": 380,
       "doctorsPerThousand": 2.2,
-      "directFlightCities": 50
+      "directFlightCities": 50,
+      "safetyIndex": 35,
+      "safetyConfidence": "medium"
     },
     {
       "id": 70,
@@ -2938,7 +3076,9 @@
       "costBudget": 672,
       "costMinimal": 420,
       "doctorsPerThousand": 3,
-      "directFlightCities": 55
+      "directFlightCities": 55,
+      "safetyIndex": 52,
+      "safetyConfidence": "medium"
     },
     {
       "id": 71,
@@ -2980,7 +3120,9 @@
       "costBudget": 798,
       "costMinimal": 500,
       "doctorsPerThousand": 1.9,
-      "directFlightCities": 90
+      "directFlightCities": 90,
+      "safetyIndex": 47,
+      "safetyConfidence": "medium"
     },
     {
       "id": 72,
@@ -3022,7 +3164,9 @@
       "costBudget": 320,
       "costMinimal": 180,
       "doctorsPerThousand": 8.4,
-      "directFlightCities": 40
+      "directFlightCities": 40,
+      "safetyIndex": 59,
+      "safetyConfidence": "low"
     },
     {
       "id": 73,
@@ -3064,7 +3208,9 @@
       "costBudget": 966,
       "costMinimal": 650,
       "doctorsPerThousand": 3,
-      "directFlightCities": 45
+      "directFlightCities": 45,
+      "safetyIndex": 47,
+      "safetyConfidence": "medium"
     },
     {
       "id": 74,
@@ -3106,7 +3252,9 @@
       "costBudget": 480,
       "costMinimal": 300,
       "doctorsPerThousand": 0.5,
-      "directFlightCities": 30
+      "directFlightCities": 30,
+      "safetyIndex": 40,
+      "safetyConfidence": "medium"
     },
     {
       "id": 75,
@@ -3148,7 +3296,9 @@
       "costBudget": 1485,
       "costMinimal": 700,
       "doctorsPerThousand": 3,
-      "directFlightCities": 115
+      "directFlightCities": 115,
+      "safetyIndex": 84,
+      "safetyConfidence": "high"
     },
     {
       "id": 76,
@@ -3190,7 +3340,9 @@
       "costBudget": 1440,
       "costMinimal": 680,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 185
+      "directFlightCities": 185,
+      "safetyIndex": 82,
+      "safetyConfidence": "high"
     },
     {
       "id": 77,
@@ -3232,7 +3384,9 @@
       "costBudget": 924,
       "costMinimal": 520,
       "doctorsPerThousand": 0.9,
-      "directFlightCities": 65
+      "directFlightCities": 65,
+      "safetyIndex": 77,
+      "safetyConfidence": "medium"
     },
     {
       "id": 78,
@@ -3274,7 +3428,9 @@
       "costBudget": 1008,
       "costMinimal": 550,
       "doctorsPerThousand": 3,
-      "directFlightCities": 105
+      "directFlightCities": 105,
+      "safetyIndex": 72,
+      "safetyConfidence": "medium"
     },
     {
       "id": 79,
@@ -3316,7 +3472,9 @@
       "costBudget": 840,
       "costMinimal": 480,
       "doctorsPerThousand": 2.2,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 80,
+      "safetyConfidence": "medium"
     },
     {
       "id": 80,
@@ -3358,7 +3516,9 @@
       "costBudget": 480,
       "costMinimal": 280,
       "doctorsPerThousand": 3,
-      "directFlightCities": 60
+      "directFlightCities": 60,
+      "safetyIndex": 48,
+      "safetyConfidence": "medium"
     },
     {
       "id": 81,
@@ -3400,7 +3560,9 @@
       "costBudget": 560,
       "costMinimal": 320,
       "doctorsPerThousand": 2.5,
-      "directFlightCities": 70
+      "directFlightCities": 70,
+      "safetyIndex": 58,
+      "safetyConfidence": "medium"
     },
     {
       "id": 82,
@@ -3442,7 +3604,9 @@
       "costBudget": 1440,
       "costMinimal": 850,
       "doctorsPerThousand": 4,
-      "directFlightCities": 120
+      "directFlightCities": 120,
+      "safetyIndex": 63,
+      "safetyConfidence": "high"
     },
     {
       "id": 83,
@@ -3484,7 +3648,9 @@
       "costBudget": 340,
       "costMinimal": 170,
       "doctorsPerThousand": 0.9,
-      "directFlightCities": 55
+      "directFlightCities": 55,
+      "safetyIndex": 51,
+      "safetyConfidence": "medium"
     },
     {
       "id": 84,
@@ -3526,7 +3692,9 @@
       "costBudget": 320,
       "costMinimal": 160,
       "doctorsPerThousand": 0.9,
-      "directFlightCities": 30
+      "directFlightCities": 30,
+      "safetyIndex": 54,
+      "safetyConfidence": "medium"
     },
     {
       "id": 85,
@@ -3568,7 +3736,9 @@
       "costBudget": 440,
       "costMinimal": 280,
       "doctorsPerThousand": 3.7,
-      "directFlightCities": 0
+      "directFlightCities": 0,
+      "safetyIndex": 20,
+      "safetyConfidence": "low"
     },
     {
       "id": 86,
@@ -3610,7 +3780,9 @@
       "costBudget": 630,
       "costMinimal": 350,
       "doctorsPerThousand": 3.3,
-      "directFlightCities": 115
+      "directFlightCities": 115,
+      "safetyIndex": 57,
+      "safetyConfidence": "medium"
     },
     {
       "id": 87,
@@ -3652,7 +3824,9 @@
       "costBudget": 480,
       "costMinimal": 280,
       "doctorsPerThousand": 4.5,
-      "directFlightCities": 90
+      "directFlightCities": 90,
+      "safetyIndex": 63,
+      "safetyConfidence": "medium"
     },
     {
       "id": 88,
@@ -3694,7 +3868,9 @@
       "costBudget": 672,
       "costMinimal": 380,
       "doctorsPerThousand": 3.6,
-      "directFlightCities": 65
+      "directFlightCities": 65,
+      "safetyIndex": 68,
+      "safetyConfidence": "medium"
     },
     {
       "id": 89,
@@ -3736,7 +3912,9 @@
       "costBudget": 480,
       "costMinimal": 280,
       "doctorsPerThousand": 3.3,
-      "directFlightCities": 90
+      "directFlightCities": 90,
+      "safetyIndex": 59,
+      "safetyConfidence": "medium"
     },
     {
       "id": 90,
@@ -3778,7 +3956,9 @@
       "costBudget": 672,
       "costMinimal": 380,
       "doctorsPerThousand": 3.7,
-      "directFlightCities": 145
+      "directFlightCities": 145,
+      "safetyIndex": 63,
+      "safetyConfidence": "high"
     },
     {
       "id": 91,
@@ -3820,7 +4000,9 @@
       "costBudget": 714,
       "costMinimal": 400,
       "doctorsPerThousand": 3.9,
-      "directFlightCities": 45
+      "directFlightCities": 45,
+      "safetyIndex": 68,
+      "safetyConfidence": "medium"
     },
     {
       "id": 92,
@@ -3862,7 +4044,9 @@
       "costBudget": 756,
       "costMinimal": 450,
       "doctorsPerThousand": 3.6,
-      "directFlightCities": 40
+      "directFlightCities": 40,
+      "safetyIndex": 75,
+      "safetyConfidence": "medium"
     },
     {
       "id": 93,
@@ -3904,7 +4088,9 @@
       "costBudget": 1530,
       "costMinimal": 950,
       "doctorsPerThousand": 4.1,
-      "directFlightCities": 185
+      "directFlightCities": 185,
+      "safetyIndex": 58,
+      "safetyConfidence": "high"
     },
     {
       "id": 94,
@@ -3946,7 +4132,9 @@
       "costBudget": 924,
       "costMinimal": 600,
       "doctorsPerThousand": 3,
-      "directFlightCities": 65
+      "directFlightCities": 65,
+      "safetyIndex": 59,
+      "safetyConfidence": "medium"
     },
     {
       "id": 95,
@@ -3988,7 +4176,9 @@
       "costBudget": 1440,
       "costMinimal": 920,
       "doctorsPerThousand": 2.9,
-      "directFlightCities": 260
+      "directFlightCities": 260,
+      "safetyIndex": 45,
+      "safetyConfidence": "high"
     },
     {
       "id": 96,
@@ -4030,7 +4220,9 @@
       "costBudget": 1350,
       "costMinimal": 880,
       "doctorsPerThousand": 2.3,
-      "directFlightCities": 135
+      "directFlightCities": 135,
+      "safetyIndex": 55,
+      "safetyConfidence": "high"
     },
     {
       "id": 97,
@@ -4072,7 +4264,9 @@
       "costBudget": 1530,
       "costMinimal": 980,
       "doctorsPerThousand": 2.9,
-      "directFlightCities": 80
+      "directFlightCities": 80,
+      "safetyIndex": 47,
+      "safetyConfidence": "high"
     },
     {
       "id": 98,
@@ -4114,7 +4308,9 @@
       "costBudget": 1710,
       "costMinimal": 1100,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 63,
+      "safetyConfidence": "high"
     },
     {
       "id": 99,
@@ -4156,7 +4352,9 @@
       "costBudget": 1260,
       "costMinimal": 850,
       "doctorsPerThousand": 2,
-      "directFlightCities": 145
+      "directFlightCities": 145,
+      "safetyIndex": 55,
+      "safetyConfidence": "high"
     },
     {
       "id": 100,
@@ -4198,7 +4396,9 @@
       "costBudget": 1215,
       "costMinimal": 820,
       "doctorsPerThousand": 2.6,
-      "directFlightCities": 90
+      "directFlightCities": 90,
+      "safetyIndex": 58,
+      "safetyConfidence": "high"
     },
     {
       "id": 101,
@@ -4240,7 +4440,9 @@
       "costBudget": 720,
       "costMinimal": 448,
       "doctorsPerThousand": 3.2,
-      "directFlightCities": 210
+      "directFlightCities": 210,
+      "safetyIndex": 72,
+      "safetyConfidence": "medium"
     },
     {
       "id": 102,
@@ -4282,7 +4484,9 @@
       "costBudget": 810,
       "costMinimal": 504,
       "doctorsPerThousand": 2.8,
-      "directFlightCities": 150
+      "directFlightCities": 150,
+      "safetyIndex": 77,
+      "safetyConfidence": "medium"
     },
     {
       "id": 103,
@@ -4324,7 +4528,9 @@
       "costBudget": 540,
       "costMinimal": 336,
       "doctorsPerThousand": 3.5,
-      "directFlightCities": 200
+      "directFlightCities": 200,
+      "safetyIndex": 74,
+      "safetyConfidence": "medium"
     },
     {
       "id": 104,
@@ -4366,7 +4572,9 @@
       "costBudget": 742,
       "costMinimal": 462,
       "doctorsPerThousand": 3.3,
-      "directFlightCities": 140
+      "directFlightCities": 140,
+      "safetyIndex": 77,
+      "safetyConfidence": "medium"
     },
     {
       "id": 105,
@@ -4408,7 +4616,9 @@
       "costBudget": 495,
       "costMinimal": 308,
       "doctorsPerThousand": 2.9,
-      "directFlightCities": 150
+      "directFlightCities": 150,
+      "safetyIndex": 72,
+      "safetyConfidence": "medium"
     },
     {
       "id": 106,
@@ -4450,7 +4660,9 @@
       "costBudget": 990,
       "costMinimal": 616,
       "doctorsPerThousand": 2.6,
-      "directFlightCities": 115
+      "directFlightCities": 115,
+      "safetyIndex": 81,
+      "safetyConfidence": "high"
     },
     {
       "id": 107,
@@ -4492,7 +4704,9 @@
       "costBudget": 855,
       "costMinimal": 532,
       "doctorsPerThousand": 2.5,
-      "directFlightCities": 55
+      "directFlightCities": 55,
+      "safetyIndex": 82,
+      "safetyConfidence": "medium"
     },
     {
       "id": 108,
@@ -4534,7 +4748,9 @@
       "costBudget": 720,
       "costMinimal": 448,
       "doctorsPerThousand": 2.4,
-      "directFlightCities": 185
+      "directFlightCities": 185,
+      "safetyIndex": 77,
+      "safetyConfidence": "medium"
     },
     {
       "id": 109,
@@ -4576,7 +4792,9 @@
       "costBudget": 292,
       "costMinimal": 182,
       "doctorsPerThousand": 0.2,
-      "directFlightCities": 35
+      "directFlightCities": 35,
+      "safetyIndex": 47,
+      "safetyConfidence": "medium"
     },
     {
       "id": 110,
@@ -4618,7 +4836,9 @@
       "costBudget": 225,
       "costMinimal": 140,
       "doctorsPerThousand": 0.7,
-      "directFlightCities": 30
+      "directFlightCities": 30,
+      "safetyIndex": 41,
+      "safetyConfidence": "low"
     },
     {
       "id": 111,
@@ -4660,7 +4880,9 @@
       "costBudget": 248,
       "costMinimal": 154,
       "doctorsPerThousand": 0.4,
-      "directFlightCities": 15
+      "directFlightCities": 15,
+      "safetyIndex": 58,
+      "safetyConfidence": "low"
     },
     {
       "id": 112,
@@ -4702,7 +4924,9 @@
       "costBudget": 338,
       "costMinimal": 210,
       "doctorsPerThousand": 0.8,
-      "directFlightCities": 40
+      "directFlightCities": 40,
+      "safetyIndex": 67,
+      "safetyConfidence": "medium"
     },
     {
       "id": 113,
@@ -4744,7 +4968,9 @@
       "costBudget": 270,
       "costMinimal": 168,
       "doctorsPerThousand": 0.6,
-      "directFlightCities": 15
+      "directFlightCities": 15,
+      "safetyIndex": 42,
+      "safetyConfidence": "low"
     },
     {
       "id": 114,
@@ -4786,7 +5012,9 @@
       "costBudget": 225,
       "costMinimal": 140,
       "doctorsPerThousand": 0.5,
-      "directFlightCities": 40
+      "directFlightCities": 40,
+      "safetyIndex": 32,
+      "safetyConfidence": "medium"
     },
     {
       "id": 115,
@@ -4828,7 +5056,9 @@
       "costBudget": 292,
       "costMinimal": 182,
       "doctorsPerThousand": 1,
-      "directFlightCities": 55
+      "directFlightCities": 55,
+      "safetyIndex": 48,
+      "safetyConfidence": "medium"
     },
     {
       "id": 116,
@@ -4870,7 +5100,9 @@
       "costBudget": 202,
       "costMinimal": 126,
       "doctorsPerThousand": 0.3,
-      "directFlightCities": 40
+      "directFlightCities": 40,
+      "safetyIndex": 53,
+      "safetyConfidence": "medium"
     },
     {
       "id": 117,
@@ -4912,7 +5144,9 @@
       "costBudget": 405,
       "costMinimal": 252,
       "doctorsPerThousand": 3.3,
-      "directFlightCities": 75
+      "directFlightCities": 75,
+      "safetyIndex": 57,
+      "safetyConfidence": "medium"
     },
     {
       "id": 118,
@@ -4954,7 +5188,9 @@
       "costBudget": 248,
       "costMinimal": 154,
       "doctorsPerThousand": 2.4,
-      "directFlightCities": 65
+      "directFlightCities": 65,
+      "safetyIndex": 54,
+      "safetyConfidence": "medium"
     },
     {
       "id": 119,
@@ -4996,7 +5232,9 @@
       "costBudget": 338,
       "costMinimal": 210,
       "doctorsPerThousand": 3.5,
-      "directFlightCities": 70
+      "directFlightCities": 70,
+      "safetyIndex": 58,
+      "safetyConfidence": "medium"
     },
     {
       "id": 120,
@@ -5038,7 +5276,9 @@
       "costBudget": 315,
       "costMinimal": 196,
       "doctorsPerThousand": 3,
-      "directFlightCities": 25
+      "directFlightCities": 25,
+      "safetyIndex": 59,
+      "safetyConfidence": "medium"
     }
   ]
 }
