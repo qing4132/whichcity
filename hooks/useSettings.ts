@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import type { Locale, ExchangeRates } from "@/lib/types";
-import { TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
+import type { Locale, CostTier, ExchangeRates } from "@/lib/types";
+import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
 
 /** Lightweight settings hook for sub-pages (city detail, compare).
  *  Reads/writes the same localStorage keys as CityComparison so values are shared. */
@@ -10,6 +10,8 @@ export function useSettings() {
   const [locale, setLocaleState] = useState<Locale>("zh");
   const [darkMode, setDarkModeState] = useState(false);
   const [currency, setCurrencyState] = useState("USD");
+  const [costTier, setCostTierState] = useState<CostTier>("moderate");
+  const [profession, setProfessionState] = useState("");
   const [rates, setRates] = useState<ExchangeRates | null>(null);
   const [ready, setReady] = useState(false);
 
@@ -20,6 +22,10 @@ export function useSettings() {
     if (d === "true") setDarkModeState(true);
     const c = localStorage.getItem("selectedCurrency");
     if (c) setCurrencyState(c);
+    const tier = localStorage.getItem("costTier");
+    if (tier && ["comfort", "moderate", "budget", "minimal"].includes(tier)) setCostTierState(tier as CostTier);
+    const prof = localStorage.getItem("selectedProfession");
+    if (prof) setProfessionState(prof);
 
     fetch("/data/exchange-rates.json")
       .then((r) => r.json())
@@ -43,6 +49,21 @@ export function useSettings() {
     setCurrencyState(c);
     localStorage.setItem("selectedCurrency", c);
   }, []);
+
+  const setCostTier = useCallback((tier: CostTier) => {
+    setCostTierState(tier);
+    localStorage.setItem("costTier", tier);
+  }, []);
+
+  const setProfession = useCallback((p: string) => {
+    setProfessionState(p);
+    localStorage.setItem("selectedProfession", p);
+  }, []);
+
+  const getProfessionLabel = useCallback(
+    (p: string): string => PROFESSION_TRANSLATIONS[p]?.[locale] || p,
+    [locale],
+  );
 
   const t = useCallback(
     (key: string, params?: Record<string, string | number>) => {
@@ -85,6 +106,11 @@ export function useSettings() {
     setDarkMode,
     currency,
     setCurrency,
+    costTier,
+    setCostTier,
+    profession,
+    setProfession,
+    getProfessionLabel,
     t,
     formatCurrency,
     convertAmount,
