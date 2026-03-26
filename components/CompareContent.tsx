@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { City, CostTier, ClimateInfo } from "@/lib/types";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES, CITY_CLIMATE } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
@@ -19,6 +20,7 @@ interface Props {
 
 export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
   const s = useSettings();
+  const router = useRouter();
   const { locale, darkMode, t, formatCurrency, costTier, profession, convertAmount } = s;
 
   if (!s.ready) return null;
@@ -53,30 +55,25 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
   const yearsA = savingsA > 0 ? ((cityA.housePrice * 70) / savingsA).toFixed(1) : "N/A";
   const yearsB = savingsB > 0 ? ((cityB.housePrice * 70) / savingsB).toFixed(1) : "N/A";
 
-  const wins = {
-    income: incomeA >= incomeB ? "A" : "B",
-    cost: costA <= costB ? "A" : "B",
-    savings: savingsA >= savingsB ? "A" : "B",
-    housing: cityA.housePrice <= cityB.housePrice ? "A" : "B",
-    air: cityA.airQuality <= cityB.airQuality ? "A" : "B",
-    doctors: cityA.doctorsPerThousand >= cityB.doctorsPerThousand ? "A" : "B",
-  };
-  const winsA = Object.values(wins).filter((v) => v === "A").length;
-  const winsB = Object.values(wins).filter((v) => v === "B").length;
+  const cmp = (a: number, b: number, lower = false): "A" | "B" | "tie" =>
+    a === b ? "tie" : lower ? (a < b ? "A" : "B") : (a > b ? "A" : "B");
 
   const rows: { label: string; a: string; b: string; winner: "A" | "B" | "tie" }[] = [
-    { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, a: fc(incomeA), b: fc(incomeB), winner: wins.income as "A" | "B" },
-    { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, a: fc(costA), b: fc(costB), winner: wins.cost as "A" | "B" },
-    { label: t("yearlySavings"), a: fc(savingsA), b: fc(savingsB), winner: wins.savings as "A" | "B" },
-    { label: t("housePrice") + " " + t("housePriceUnit"), a: fc(cityA.housePrice), b: fc(cityB.housePrice), winner: wins.housing as "A" | "B" },
-    { label: t("yearsToBuy"), a: `${yearsA} ${t("insightYears")}`, b: `${yearsB} ${t("insightYears")}`, winner: yearsA !== "N/A" && yearsB !== "N/A" ? (Number(yearsA) <= Number(yearsB) ? "A" : "B") : "tie" },
-    { label: t("airQuality") + " (AQI)", a: `${cityA.airQuality} – ${getAqiLabel(cityA.airQuality, locale)}`, b: `${cityB.airQuality} – ${getAqiLabel(cityB.airQuality, locale)}`, winner: wins.air as "A" | "B" },
-    { label: t("doctorsPerThousand"), a: String(cityA.doctorsPerThousand), b: String(cityB.doctorsPerThousand), winner: wins.doctors as "A" | "B" },
-    { label: t("bigMac"), a: cityA.bigMacPrice !== null ? fc(cityA.bigMacPrice) : t("noMcDonalds"), b: cityB.bigMacPrice !== null ? fc(cityB.bigMacPrice) : t("noMcDonalds"), winner: cityA.bigMacPrice !== null && cityB.bigMacPrice !== null ? (cityA.bigMacPrice <= cityB.bigMacPrice ? "A" : "B") : "tie" },
+    { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, a: fc(incomeA), b: fc(incomeB), winner: cmp(incomeA, incomeB) },
+    { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, a: fc(costA), b: fc(costB), winner: cmp(costA, costB, true) },
+    { label: t("yearlySavings"), a: fc(savingsA), b: fc(savingsB), winner: cmp(savingsA, savingsB) },
+    { label: t("housePrice") + " " + t("housePriceUnit"), a: fc(cityA.housePrice), b: fc(cityB.housePrice), winner: cmp(cityA.housePrice, cityB.housePrice, true) },
+    { label: t("yearsToBuy"), a: `${yearsA} ${t("insightYears")}`, b: `${yearsB} ${t("insightYears")}`, winner: yearsA !== "N/A" && yearsB !== "N/A" ? cmp(Number(yearsA), Number(yearsB), true) : "tie" },
+    { label: t("airQuality") + " (AQI)", a: `${cityA.airQuality} – ${getAqiLabel(cityA.airQuality, locale)}`, b: `${cityB.airQuality} – ${getAqiLabel(cityB.airQuality, locale)}`, winner: cmp(cityA.airQuality, cityB.airQuality, true) },
+    { label: t("doctorsPerThousand"), a: String(cityA.doctorsPerThousand), b: String(cityB.doctorsPerThousand), winner: cmp(cityA.doctorsPerThousand, cityB.doctorsPerThousand) },
+    { label: t("bigMac"), a: cityA.bigMacPrice !== null ? fc(cityA.bigMacPrice) : t("noMcDonalds"), b: cityB.bigMacPrice !== null ? fc(cityB.bigMacPrice) : t("noMcDonalds"), winner: cityA.bigMacPrice !== null && cityB.bigMacPrice !== null ? cmp(cityA.bigMacPrice, cityB.bigMacPrice, true) : "tie" },
     { label: t("climateType"), a: getClimateLabel(climateA.type, locale), b: getClimateLabel(climateB.type, locale), winner: "tie" },
     { label: t("avgTemp"), a: `${climateA.avgTempC.toFixed(1)}°C`, b: `${climateB.avgTempC.toFixed(1)}°C`, winner: "tie" },
     { label: t("sunshine"), a: `${Math.round(climateA.sunshineHours)} h`, b: `${Math.round(climateB.sunshineHours)} h`, winner: "tie" },
   ];
+
+  const winsA = rows.filter((r) => r.winner === "A").length;
+  const winsB = rows.filter((r) => r.winner === "B").length;
 
   const headingCls = darkMode ? "text-slate-100" : "text-slate-800";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
@@ -122,6 +119,10 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
             <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
               {t("navRanking")}
             </Link>
+            <button onClick={() => { const slugs = Object.values(CITY_SLUGS).filter(s => s !== slugA && s !== slugB); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              {t("navRandomCity")}
+            </button>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
