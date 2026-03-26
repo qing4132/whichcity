@@ -153,7 +153,7 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
           { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: aqiLabel, tier: tierLow(allAqi, city.airQuality) },
           { label: t("doctorsPerThousand"), value: String(city.doctorsPerThousand), sub: t("doctorsUnit"), tier: tierHigh(allDoctors, city.doctorsPerThousand) },
           { label: t("directFlights"), value: String(city.directFlightCities), sub: t("directFlightsUnit"), tier: tierHigh(allFlights, city.directFlightCities) },
-          { label: t("safetyIndex"), value: String(city.safetyIndex), sub: t("safetyUnit"), tier: tierHigh(allSafety, city.safetyIndex) },
+          { label: t("safetyIndex"), value: `${city.safetyIndex}${city.safetyConfidence === "low" ? " *" : ""}`, sub: t("safetyUnit"), tier: tierHigh(allSafety, city.safetyIndex) },
         ].map((stat) => (
           <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)}`}>
             <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${subCls}`}>{stat.label}</p>

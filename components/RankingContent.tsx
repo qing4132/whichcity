@@ -186,8 +186,8 @@ export default function RankingContent({ cities }: RankingContentProps) {
               <thead>
                 <tr className={headerCls}>
                   <th className={`${thCls} w-10`}>{t("rankCol_rank")}</th>
-                  <th className={thCls}>{t("rankCol_city")}</th>
-                  <th className={`${thCls} hidden sm:table-cell`}>{t("rankCol_country")}</th>
+                  <th className={`${thCls} w-44`}>{t("rankCol_city")}</th>
+                  <th className={`${thCls} w-32 hidden sm:table-cell`}>{t("rankCol_country")}</th>
                   {tab === "air" ? (
                     <th className={thCls}>{t("rankCol_aqi")}</th>
                   ) : tab === "flights" ? (
@@ -237,7 +237,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
                         </td>
                       ) : tab === "flights" ? (
                         <td className={tdCls}>
-                          <span className={`font-bold ${item.city.directFlightCities >= 150 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.directFlightCities >= 50 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-slate-400" : "text-slate-500")}`}>
+                          <span className={`font-bold ${item.city.directFlightCities >= 150 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.directFlightCities >= 50 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
                             {item.city.directFlightCities} {t("directFlightsUnit")}
                           </span>
                         </td>
@@ -254,13 +254,13 @@ export default function RankingContent({ cities }: RankingContentProps) {
                           {tab === "savings" && <td className={tdCls}>{formatCurrency(item.annualCost)}</td>}
                           <td className={tdCls}>
                             {tab === "ppp" ? (
-                              <span className={`font-bold ${item.ppp >= 1.5 ? (darkMode ? "text-green-400" : "text-green-600") : item.ppp >= 1 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                              <span className={`font-bold ${item.ppp >= 1.5 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.ppp >= 1 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
                                 {item.ppp > 0 ? item.ppp.toFixed(2) + "x" : "—"}
                               </span>
                             ) : tab === "housing" ? (
                               <span className={`font-bold ${
                                 isFinite(item.yearsToHome) && item.yearsToHome <= 15
-                                  ? (darkMode ? "text-green-400" : "text-green-600")
+                                  ? (darkMode ? "text-emerald-400" : "text-emerald-600")
                                   : isFinite(item.yearsToHome)
                                     ? (darkMode ? "text-amber-400" : "text-amber-600")
                                     : (darkMode ? "text-red-400" : "text-red-500")
@@ -268,7 +268,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
                                 {isFinite(item.yearsToHome) ? `${item.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("rankNoSavings")}
                               </span>
                             ) : (
-                              <span className={`font-bold ${item.savings > 0 ? (darkMode ? "text-green-400" : "text-green-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                              <span className={`font-bold ${item.savings > 0 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
                                 {formatCurrency(item.savings)}
                               </span>
                             )}
