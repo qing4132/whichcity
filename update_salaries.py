@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Update salary data for 100 cities × 20 professions based on researched values.
+Update salary data for 120 cities × 20 professions based on researched values.
 
 Data sources referenced (2024-2026):
 - ERI/SalaryExpert (salaryexpert.com) – employer-verified survey data
@@ -10,16 +10,23 @@ Data sources referenced (2024-2026):
 - Robert Half / Hays / Michael Page salary guides (regional)
 - 智联招聘 / 猎聘 / 看准 (China job platforms)
 - JobStreet / JobsDB (Southeast Asia)
-- Korean Statistical Information Service (KOSIS)
+- Korean Statistical Information Service (KOSIS) / JobKorea
 - 行政院主計總處 (Taiwan DGBAS)
 - Numbeo Cost of Living & Salary Surveys
+- doda (Japan salary surveys)
+- HeadHunter.kz (Kazakhstan) / Boss.az (Azerbaijan)
+- BdJobs (Bangladesh) / TopJobs.lk (Sri Lanka) / MeroJob (Nepal)
+- CAMHR / BongThom (Cambodia)
 
 All values: USD/year, gross pre-tax.
 Exchange rates (approx mid-2025):
   EUR=1.10, GBP=1.27, JPY=0.0067, CHF=1.15, AUD=0.65, CAD=0.73,
   SGD=0.75, HKD=0.128, CNY=0.138, KRW=0.00073, TWD=0.031,
   INR=0.012, THB=0.028, MYR=0.22, VND=0.00004, IDR=0.000061,
-  BRL=0.19, MXN=0.055, AED=0.27, NZD=0.60
+  BRL=0.19, MXN=0.055, AED=0.27, NZD=0.60,
+  KZT=0.002, UZS=0.000078, AZN=0.59, MNT=0.00029,
+  KHR=0.00024, MMK=0.00048, LAK=0.000046, BDT=0.0083,
+  LKR=0.0034, NPR=0.0075
 """
 
 import json
@@ -363,6 +370,72 @@ SALARY_DATA = {
     # Cape Town: ~10% below Joburg
     68: [25000, 28000, 16000, 14000, 16000, 9000, 22000, 12000, 16000, 12000,
          7000, 7000, 24000, 12000, 5000, 6000, 14000, 9000, 10000, 10000],
+
+    # ==================== 20 NEW ASIAN CITIES (101-120) ====================
+    # Sources: ERI/SalaryExpert, 智联招聘/猎聘/看准 (China), doda (Japan),
+    #   KOSIS/JobKorea (Korea), JobsDB/JobStreet (SE Asia), BdJobs, TopJobs.lk,
+    #   HeadHunter.kz, Boss.az, Numbeo, Glassdoor regional
+
+    # Guangzhou: Southern trade/mfg hub; ERI avg ¥190k CNY; nurse ¥266k, pharmacist ¥395k
+    101:[38000, 48000, 25000, 22000, 25000, 14000, 32000, 20000, 25000, 20000,
+         13000, 11000, 30000, 20000, 9000, 11000, 20000, 15000, 16000, 16000],
+    # Shenzhen: Top tech hub (Tencent/Huawei/DJI); premium over BJ for tech roles
+    102:[50000, 52000, 30000, 28000, 30000, 18000, 45000, 25000, 30000, 25000,
+         16000, 14000, 35000, 25000, 10000, 13000, 25000, 18000, 20000, 18000],
+    # Chengdu: Western China hub, game dev; 智联 shows 65-70% of BJ for most roles
+    103:[30000, 38000, 18000, 16000, 18000, 10000, 25000, 14000, 18000, 14000,
+         10000, 9000, 22000, 14000, 7000, 8000, 15000, 12000, 12000, 14000],
+    # Hangzhou: Alibaba HQ, e-commerce/fintech; ERI avg ¥176k; nurse ¥248k, pharm ¥369k
+    104:[48000, 50000, 28000, 25000, 28000, 16000, 42000, 22000, 28000, 22000,
+         14000, 12000, 32000, 22000, 9000, 11000, 22000, 16000, 18000, 17000],
+    # Chongqing: Midwest manufacturing; 智联 shows 55-65% of BJ; civil servant stronger
+    105:[26000, 35000, 16000, 14000, 16000, 9000, 22000, 12000, 16000, 12000,
+         9000, 8000, 20000, 12000, 6000, 7000, 14000, 10000, 11000, 13000],
+    # Osaka: 2nd city Japan; ERI SW ¥12.9M=$86k (verified); doda salary surveys
+    106:[86000, 100000, 55000, 50000, 58000, 32000, 78000, 48000, 55000, 48000,
+         42000, 36000, 72000, 48000, 28000, 36000, 60000, 50000, 52000, 45000],
+    # Nagoya: Industrial (Toyota HQ); ERI SW ¥10.6M=$71k (verified); mech_eng premium
+    107:[71000, 90000, 48000, 42000, 50000, 28000, 65000, 42000, 48000, 42000,
+         40000, 35000, 65000, 42000, 26000, 35000, 58000, 48000, 48000, 42000],
+    # Incheon: Seoul metro; KOSIS/JobKorea show ~80-85% of Seoul, varies by sector
+    108:[45000, 62000, 35000, 30000, 35000, 22000, 42000, 28000, 35000, 28000,
+         32000, 28000, 50000, 28000, 18000, 22000, 35000, 38000, 28000, 32000],
+    # Phnom Penh: Cambodia capital; CAMHR/BongThom; very low wages, USD-denominated
+    109:[8000, 6000, 4500, 4000, 4500, 2500, 6000, 3000, 4000, 3000,
+         3000, 2000, 5000, 3000, 1500, 2000, 3500, 2500, 2500, 2500],
+    # Yangon: Myanmar post-coup; JobNet.com.mm; economy severely contracted
+    110:[5000, 4000, 3000, 2500, 3000, 1800, 4000, 2200, 2800, 2200,
+         1800, 1500, 3500, 2000, 1200, 1500, 2500, 2000, 1800, 1800],
+    # Vientiane: Laos capital; Numbeo/ASEAN benchmarks; small economy
+    111:[6000, 5000, 3500, 3000, 3500, 2000, 5000, 2500, 3200, 2500,
+         2200, 1800, 4000, 2500, 1400, 1800, 3000, 2500, 2200, 2200],
+    # Chiang Mai: Northern Thailand; JobsDB TH; ~60-65% of Bangkok, tourism/digital nomad
+    112:[14000, 18000, 9000, 8000, 9000, 5000, 12000, 6500, 9000, 6500,
+         5000, 4000, 12000, 6500, 3500, 3500, 8000, 7000, 5500, 5500],
+    # Davao: Philippines 2nd city; JobStreet PH; ~65-70% of Manila
+    113:[10000, 12000, 6000, 5500, 6000, 3500, 8000, 4500, 6000, 4500,
+         3000, 3000, 7000, 4000, 2200, 2500, 5000, 4000, 3500, 3500],
+    # Dhaka: Bangladesh; BdJobs data; garment economy, low wages
+    114:[7000, 6000, 4000, 3500, 4000, 2000, 5500, 3000, 4000, 3000,
+         2000, 1500, 4500, 2500, 1200, 1500, 3500, 2500, 2200, 2000],
+    # Colombo: Sri Lanka commercial capital; TopJobs.lk/Glassdoor LK
+    115:[10000, 9000, 6000, 5000, 6000, 3000, 8000, 4000, 5500, 4000,
+         3000, 2500, 7000, 4000, 2000, 2500, 5000, 3500, 3500, 3500],
+    # Kathmandu: Nepal; MeroJob/RojgarSamachar; very low wages, tourism economy
+    116:[5500, 4500, 3000, 2500, 3000, 1500, 4000, 2200, 2800, 2200,
+         1800, 1200, 3500, 2000, 1000, 1200, 2500, 2000, 1800, 2000],
+    # Almaty: Kazakhstan; ERI avg 8M KZT, nurse 7.1M, pharm 9.6M; HeadHunter.kz
+    117:[18000, 14000, 10000, 9000, 10000, 6000, 15000, 8000, 10000, 8000,
+         5000, 5000, 14000, 8000, 4000, 5000, 10000, 7000, 7000, 7000],
+    # Tashkent: Uzbekistan; OLX.uz/Numbeo; reforming economy, low base
+    118:[8000, 7000, 4500, 4000, 4500, 2500, 6000, 3500, 4500, 3500,
+         3000, 2500, 5500, 3000, 1800, 2000, 4000, 3000, 2800, 3000],
+    # Baku: Azerbaijan oil capital; Boss.az/Glassdoor; energy sector premium
+    119:[12000, 10000, 7000, 6000, 7000, 4000, 10000, 5000, 7000, 5000,
+         3500, 3000, 9000, 5000, 2500, 3000, 6000, 4500, 4000, 4500],
+    # Ulaanbaatar: Mongolia; mining economy; CareerGPS.mn/Ministry of Labour
+    120:[10000, 8000, 5500, 5000, 5500, 3000, 8000, 4000, 5000, 4000,
+         3000, 2500, 6000, 3500, 2000, 2500, 4500, 3500, 3000, 3500],
 }
 
 
@@ -398,7 +471,7 @@ def update_salaries():
 
     # Verification: sample cities
     print("\n=== Verification Samples ===")
-    sample_ids = [1, 2, 3, 4, 7, 16, 49, 32, 52, 30, 72, 82]
+    sample_ids = [1, 2, 3, 4, 7, 16, 49, 32, 52, 30, 72, 82, 101, 102, 106, 117, 110, 114]
     for sid in sample_ids:
         c = next((c for c in data['cities'] if c['id'] == sid), None)
         if not c:
