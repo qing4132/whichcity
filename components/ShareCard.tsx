@@ -2,7 +2,6 @@
 
 import { useState, useRef, useCallback } from "react";
 import { useCompare } from "@/lib/CompareContext";
-import { CITY_FLAG_EMOJIS } from "@/lib/constants";
 import type { City } from "@/lib/types";
 
 interface ShareCardProps {
@@ -11,10 +10,10 @@ interface ShareCardProps {
 
 export default function ShareCard({ comparisonData }: ShareCardProps) {
   const { darkMode, selectedProfession, t, getCityLabel, getProfessionLabel, formatCurrency, getCost } = useCompare();
-  const [showCard, setShowCard] = useState(false);
+  const [cardDataUrl, setCardDataUrl] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const getIncome = (city: City) => selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+  const getIncome = useCallback((city: City) => selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome, [selectedProfession]);
 
   const generateCard = useCallback(() => {
     const canvas = canvasRef.current;
@@ -26,8 +25,6 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
     const H = 260 + cityCount * 90;
     canvas.width = W * dpr;
     canvas.height = H * dpr;
-    canvas.style.width = `${W}px`;
-    canvas.style.height = `${H}px`;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -46,7 +43,7 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
 
     ctx.fillStyle = "#93c5fd";
     ctx.font = "bold 22px system-ui, -apple-system, sans-serif";
-    ctx.fillText(`🌍 ${t("shareCardTitle")}`, 24, 44);
+    ctx.fillText(t("shareCardTitle"), 24, 44);
 
     // Profession label
     ctx.fillStyle = "#94a3b8";
@@ -78,10 +75,9 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
       }
 
       // City name
-      const flag = CITY_FLAG_EMOJIS[city.id] || "🏙️";
       ctx.fillStyle = "#f1f5f9";
       ctx.font = "bold 16px system-ui, -apple-system, sans-serif";
-      ctx.fillText(`${flag} ${getCityLabel(city)}`, 30, y + 22);
+      ctx.fillText(getCityLabel(city), 30, y + 22);
 
       // Data columns
       const col1 = 30;
@@ -117,20 +113,23 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
     ctx.fillText(new Date().toLocaleDateString(), W - 24, H - 18);
     ctx.textAlign = "left";
 
-    setShowCard(true);
-  }, [comparisonData, selectedProfession, t, getCityLabel, getProfessionLabel, formatCurrency, getCost]);
+    // Save as data URL so the modal displays a stable image
+    setCardDataUrl(canvas.toDataURL("image/png"));
+  }, [comparisonData, selectedProfession, t, getCityLabel, getProfessionLabel, formatCurrency, getCost, getIncome]);
 
   const downloadCard = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!cardDataUrl) return;
     const link = document.createElement("a");
     link.download = "city-compare.png";
-    link.href = canvas.toDataURL("image/png");
+    link.href = cardDataUrl;
     link.click();
   };
 
   return (
     <div>
+      {/* Off-screen canvas used only for drawing */}
+      <canvas ref={canvasRef} style={{ position: "absolute", left: "-9999px", top: "-9999px" }} />
+
       <button onClick={generateCard}
         className={`px-4 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${
           darkMode ? "bg-gray-600 text-gray-300 hover:bg-gray-500" : "bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-200"
@@ -138,17 +137,17 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
         {t("shareCardGenerate")}
       </button>
 
-      {showCard && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setShowCard(false)}>
+      {cardDataUrl && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setCardDataUrl(null)}>
           <div className={`max-w-[640px] w-full rounded-xl p-4 ${darkMode ? "bg-slate-800" : "bg-white"} shadow-2xl`}
             onClick={e => e.stopPropagation()}>
-            <canvas ref={canvasRef} className="w-full rounded-lg" />
+            <img src={cardDataUrl} alt="Share card" className="w-full rounded-lg" />
             <div className="flex gap-2 mt-3 justify-end">
               <button onClick={downloadCard}
                 className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium text-sm hover:bg-blue-500 transition">
                 {t("shareCardDownload")}
               </button>
-              <button onClick={() => setShowCard(false)}
+              <button onClick={() => setCardDataUrl(null)}
                 className={`px-4 py-2 rounded-lg font-medium text-sm transition ${darkMode ? "bg-slate-700 text-slate-300" : "bg-gray-100 text-gray-700"}`}>
                 ✕
               </button>
@@ -156,9 +155,6 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
           </div>
         </div>
       )}
-
-      {/* Hidden canvas for pre-render */}
-      {!showCard && <canvas ref={canvasRef} className="hidden" />}
     </div>
   );
 }

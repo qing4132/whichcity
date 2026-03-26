@@ -7,7 +7,7 @@ import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import Link from "next/link";
 
-type Tab = "savings" | "value" | "housing";
+type Tab = "savings" | "ppp" | "housing" | "air";
 
 interface RankingContentProps {
   cities: City[];
@@ -43,6 +43,14 @@ export default function RankingContent({ cities }: RankingContentProps) {
   const getCityLabel = (city: City) => CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name;
   const getCountryLabel = (c: string) => COUNTRY_TRANSLATIONS[c]?.[locale] || c;
   const getProfessionLabel = (p: string) => PROFESSION_TRANSLATIONS[p]?.[locale] || p;
+  const getAqiLevel = (aqi: number) => {
+    if (aqi <= 50) return { key: "aqiGood", color: "text-green-500" };
+    if (aqi <= 100) return { key: "aqiModerate", color: "text-yellow-500" };
+    if (aqi <= 150) return { key: "aqiUSG", color: "text-orange-500" };
+    if (aqi <= 200) return { key: "aqiUnhealthy", color: "text-red-500" };
+    if (aqi <= 300) return { key: "aqiVeryUnhealthy", color: "text-purple-500" };
+    return { key: "aqiHazardous", color: "text-rose-600" };
+  };
 
   const convertAmount = (amount: number) => {
     if (!exchangeRates) return amount;
@@ -62,16 +70,15 @@ export default function RankingContent({ cities }: RankingContentProps) {
     const savings = income - annualCost;
     const savingsRate = income > 0 ? savings / income : 0;
     const yearsToHome = savings > 0 ? (city.housePrice * 70) / savings : Infinity;
-    const valueIndex = savings > 0 && isFinite(yearsToHome) && yearsToHome > 0
-      ? (savings * (1 + Math.max(0, savingsRate))) / yearsToHome / 1000
-      : 0;
-    return { city, income, annualCost, savings, savingsRate, yearsToHome, valueIndex };
+    const ppp = annualCost > 0 ? income / annualCost : 0;
+    return { city, income, annualCost, savings, savingsRate, yearsToHome, ppp };
   });
 
   const sorted = [...ranked].sort((a, b) => {
     if (tab === "savings") return b.savings - a.savings;
-    if (tab === "value") return b.valueIndex - a.valueIndex;
-    // housing: ascending years (filter out Infinity)
+    if (tab === "ppp") return b.ppp - a.ppp;
+    if (tab === "air") return a.city.airQuality - b.city.airQuality; // lower AQI = better
+    // housing: ascending years
     const aY = isFinite(a.yearsToHome) ? a.yearsToHome : 999999;
     const bY = isFinite(b.yearsToHome) ? b.yearsToHome : 999999;
     return aY - bY;
@@ -79,8 +86,9 @@ export default function RankingContent({ cities }: RankingContentProps) {
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "savings", label: t("rankTab_savings") },
-    { key: "value", label: t("rankTab_value") },
+    { key: "ppp", label: t("rankTab_ppp") },
     { key: "housing", label: t("rankTab_housing") },
+    { key: "air", label: t("rankTab_air") },
   ];
 
   const headerCls = `sticky top-0 z-10 ${darkMode ? "bg-slate-800" : "bg-slate-100"}`;
@@ -127,16 +135,18 @@ export default function RankingContent({ cities }: RankingContentProps) {
         {/* Controls */}
         <div className={`rounded-xl p-4 mb-4 ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"} shadow-sm`}>
           <div className="flex flex-col sm:flex-row gap-3 sm:items-end">
-            <div className="flex-1 min-w-0">
-              <label className={`block text-xs font-semibold mb-1 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
-                {t("selectProfession")}
-              </label>
-              <select value={selectedProfession} onChange={e => setSelectedProfession(e.target.value)}
-                className={`w-full px-3 py-2 rounded-lg text-sm ${darkMode ? "bg-gray-700 text-white border border-gray-600" : "bg-white border border-gray-300"} focus:outline-none`}>
-                {professions.map(p => <option key={p} value={p}>{getProfessionLabel(p)}</option>)}
-              </select>
-            </div>
-            <div className="flex gap-1.5">
+            {tab !== "air" && (
+              <div className="flex-1 min-w-0">
+                <label className={`block text-xs font-semibold mb-1 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+                  {t("selectProfession")}
+                </label>
+                <select value={selectedProfession} onChange={e => setSelectedProfession(e.target.value)}
+                  className={`w-full px-3 py-2 rounded-lg text-sm ${darkMode ? "bg-gray-700 text-white border border-gray-600" : "bg-white border border-gray-300"} focus:outline-none`}>
+                  {professions.map(p => <option key={p} value={p}>{getProfessionLabel(p)}</option>)}
+                </select>
+              </div>
+            )}
+            <div className="flex gap-1.5 flex-wrap">
               {tabs.map(({ key, label }) => (
                 <button key={key} onClick={() => setTab(key)}
                   className={`px-3 py-2 rounded-lg font-medium text-sm transition ${
@@ -151,10 +161,10 @@ export default function RankingContent({ cities }: RankingContentProps) {
           </div>
         </div>
 
-        {/* Value formula note */}
-        {tab === "value" && (
+        {/* Formula note */}
+        {tab === "ppp" && (
           <p className={`text-xs mb-3 px-2 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
-            {t("rankValueFormula")}
+            {t("rankPppFormula")}
           </p>
         )}
 
@@ -167,13 +177,21 @@ export default function RankingContent({ cities }: RankingContentProps) {
                   <th className={`${thCls} w-10`}>{t("rankCol_rank")}</th>
                   <th className={thCls}>{t("rankCol_city")}</th>
                   <th className={`${thCls} hidden sm:table-cell`}>{t("rankCol_country")}</th>
-                  <th className={thCls}>{t("rankCol_income")}</th>
-                  {tab === "savings" && <th className={thCls}>{t("rankCol_expense")}</th>}
-                  <th className={thCls}>
-                    {tab === "value" ? t("rankCol_valueIndex") : tab === "housing" ? t("rankCol_homeYears") : t("rankCol_savings")}
-                  </th>
-                  <th className={thCls}>{t("rankCol_savingsRate")}</th>
-                  {tab === "housing" && <th className={thCls}>{t("housePrice")}</th>}
+                  {tab === "air" ? (
+                    <>
+                      <th className={thCls}>{t("rankCol_aqi")}</th>
+                    </>
+                  ) : (
+                    <>
+                      <th className={thCls}>{t("rankCol_income")}</th>
+                      {tab === "savings" && <th className={thCls}>{t("rankCol_expense")}</th>}
+                      <th className={thCls}>
+                        {tab === "ppp" ? t("rankCol_ppp") : tab === "housing" ? t("rankCol_homeYears") : t("rankCol_savings")}
+                      </th>
+                      <th className={thCls}>{t("rankCol_savingsRate")}</th>
+                      {tab === "housing" && <th className={thCls}>{t("housePrice")}</th>}
+                    </>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -198,38 +216,48 @@ export default function RankingContent({ cities }: RankingContentProps) {
                         )}
                       </td>
                       <td className={`${tdCls} hidden sm:table-cell`}>{getCountryLabel(item.city.country)}</td>
-                      <td className={tdCls}>{formatCurrency(item.income)}</td>
-                      {tab === "savings" && <td className={tdCls}>{formatCurrency(item.annualCost)}</td>}
-                      <td className={tdCls}>
-                        {tab === "value" ? (
-                          <span className={`font-bold ${item.valueIndex > 0 ? (darkMode ? "text-green-400" : "text-green-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {item.valueIndex > 0 ? item.valueIndex.toFixed(1) : "—"}
-                          </span>
-                        ) : tab === "housing" ? (
-                          <span className={`font-bold ${
-                            isFinite(item.yearsToHome) && item.yearsToHome <= 15
-                              ? (darkMode ? "text-green-400" : "text-green-600")
-                              : isFinite(item.yearsToHome)
-                                ? (darkMode ? "text-amber-400" : "text-amber-600")
-                                : (darkMode ? "text-red-400" : "text-red-500")
-                          }`}>
-                            {isFinite(item.yearsToHome) ? `${item.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("rankNoSavings")}
-                          </span>
-                        ) : (
-                          <span className={`font-bold ${item.savings > 0 ? (darkMode ? "text-green-400" : "text-green-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {formatCurrency(item.savings)}
-                          </span>
-                        )}
-                      </td>
-                      <td className={tdCls}>
-                        <span className={item.savingsRate > 0 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-red-400" : "text-red-500")}>
-                          {item.income > 0 ? `${Math.round(item.savingsRate * 100)}%` : "—"}
-                        </span>
-                      </td>
-                      {tab === "housing" && (
+                      {tab === "air" ? (
                         <td className={tdCls}>
-                          {formatCurrency(item.city.housePrice)}{t("housePriceUnit")}
+                          <span className={`font-bold ${getAqiLevel(item.city.airQuality).color}`}>
+                            AQI {item.city.airQuality} · {t(getAqiLevel(item.city.airQuality).key)}
+                          </span>
                         </td>
+                      ) : (
+                        <>
+                          <td className={tdCls}>{formatCurrency(item.income)}</td>
+                          {tab === "savings" && <td className={tdCls}>{formatCurrency(item.annualCost)}</td>}
+                          <td className={tdCls}>
+                            {tab === "ppp" ? (
+                              <span className={`font-bold ${item.ppp >= 1.5 ? (darkMode ? "text-green-400" : "text-green-600") : item.ppp >= 1 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                                {item.ppp > 0 ? item.ppp.toFixed(2) + "x" : "—"}
+                              </span>
+                            ) : tab === "housing" ? (
+                              <span className={`font-bold ${
+                                isFinite(item.yearsToHome) && item.yearsToHome <= 15
+                                  ? (darkMode ? "text-green-400" : "text-green-600")
+                                  : isFinite(item.yearsToHome)
+                                    ? (darkMode ? "text-amber-400" : "text-amber-600")
+                                    : (darkMode ? "text-red-400" : "text-red-500")
+                              }`}>
+                                {isFinite(item.yearsToHome) ? `${item.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("rankNoSavings")}
+                              </span>
+                            ) : (
+                              <span className={`font-bold ${item.savings > 0 ? (darkMode ? "text-green-400" : "text-green-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                                {formatCurrency(item.savings)}
+                              </span>
+                            )}
+                          </td>
+                          <td className={tdCls}>
+                            <span className={item.savingsRate > 0 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-red-400" : "text-red-500")}>
+                              {item.income > 0 ? `${Math.round(item.savingsRate * 100)}%` : "—"}
+                            </span>
+                          </td>
+                          {tab === "housing" && (
+                            <td className={tdCls}>
+                              {formatCurrency(item.city.housePrice)}{t("housePriceUnit")}
+                            </td>
+                          )}
+                        </>
                       )}
                     </tr>
                   );
