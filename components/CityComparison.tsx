@@ -12,7 +12,6 @@ import ChartSection from "./ChartSection";
 import CityCard from "./CityCard";
 import KeyInsights from "./KeyInsights";
 import DataSources from "./DataSources";
-import CityLinks from "./CityLinks";
 
 const REGIONS = [
   { key: "northAmerica", ids: [1, 11, 12, 13, 34, 35, 36, 37, 38, 39, 95, 96, 97, 98, 99, 100, 9, 40, 41] },
@@ -533,8 +532,6 @@ export default function CityComparison() {
             </div>
           )}
 
-          {/* SEO internal links — always visible */}
-          <CityLinks />
         </div>
       </div>
     </CompareCtx.Provider>
