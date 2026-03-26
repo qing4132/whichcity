@@ -8,7 +8,7 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-type Tab = "savings" | "ppp" | "housing" | "air";
+type Tab = "savings" | "ppp" | "housing" | "air" | "flights";
 
 interface RankingContentProps {
   cities: City[];
@@ -86,6 +86,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
     if (tab === "savings") return b.savings - a.savings;
     if (tab === "ppp") return b.ppp - a.ppp;
     if (tab === "air") return a.city.airQuality - b.city.airQuality; // lower AQI = better
+    if (tab === "flights") return b.city.directFlightCities - a.city.directFlightCities;
     // housing: ascending years
     const aY = isFinite(a.yearsToHome) ? a.yearsToHome : 999999;
     const bY = isFinite(b.yearsToHome) ? b.yearsToHome : 999999;
@@ -97,6 +98,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
     { key: "ppp", label: t("rankTab_ppp") },
     { key: "housing", label: t("rankTab_housing") },
     { key: "air", label: t("rankTab_air") },
+    { key: "flights", label: t("rankTab_flights") },
   ];
 
   const headerCls = `sticky top-0 z-10 ${darkMode ? "bg-slate-800" : "bg-slate-100"}`;
@@ -185,9 +187,9 @@ export default function RankingContent({ cities }: RankingContentProps) {
                   <th className={thCls}>{t("rankCol_city")}</th>
                   <th className={`${thCls} hidden sm:table-cell`}>{t("rankCol_country")}</th>
                   {tab === "air" ? (
-                    <>
-                      <th className={thCls}>{t("rankCol_aqi")}</th>
-                    </>
+                    <th className={thCls}>{t("rankCol_aqi")}</th>
+                  ) : tab === "flights" ? (
+                    <th className={thCls}>{t("directFlights")}</th>
                   ) : (
                     <>
                       <th className={thCls}>{t("rankCol_income")}</th>
@@ -227,6 +229,12 @@ export default function RankingContent({ cities }: RankingContentProps) {
                         <td className={tdCls}>
                           <span className={`font-bold ${getAqiLevel(item.city.airQuality).color}`}>
                             AQI {item.city.airQuality} · {t(getAqiLevel(item.city.airQuality).key)}
+                          </span>
+                        </td>
+                      ) : tab === "flights" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${item.city.directFlightCities >= 150 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.directFlightCities >= 50 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-slate-400" : "text-slate-500")}`}>
+                            {item.city.directFlightCities} {t("directFlightsUnit")}
                           </span>
                         </td>
                       ) : (
