@@ -174,7 +174,7 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
               [t("pricePerSqm"), formatCurrency(city.housePrice)],
               [t("apt70sqm"), formatCurrency(city.housePrice * 70)],
               [t("yearsToBuy"), `${yearsToHome} ${t("insightYears")}`],
-              [t("bigMac"), formatCurrency(city.bigMacPrice)],
+              [t("bigMac"), city.bigMacPrice !== null ? formatCurrency(city.bigMacPrice) : t("noMcDonalds")],
             ].map(([label, val]) => (
               <div key={label} className="flex justify-between">
                 <span className={subCls}>{label}</span>

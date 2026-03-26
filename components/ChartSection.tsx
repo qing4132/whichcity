@@ -19,8 +19,8 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
   const getRatioValue = (value: number, baseValue: number): number =>
     baseValue === 0 ? 0 : parseFloat((value / baseValue).toFixed(2));
 
-  const toBigMacCount = (value: number, bigMacPrice: number): number =>
-    bigMacPrice <= 0 ? 0 : parseFloat((value / bigMacPrice).toFixed(2));
+  const toBigMacCount = (value: number, bigMacPrice: number | null): number =>
+    !bigMacPrice || bigMacPrice <= 0 ? 0 : parseFloat((value / bigMacPrice).toFixed(2));
 
   const fmtYAxis = (value: number): string => {
     if (comparisonMode === "ratio") return `${value}x`;

@@ -23,7 +23,7 @@ export interface CompareContextValue {
   getClimate: (city: City) => ClimateInfo;
   getAqiLevel: (aqi: number) => { key: string; color: string };
   getRatioValue: (value: number, baseValue: number) => number;
-  toBigMacCount: (value: number, bigMacPrice: number) => number;
+  toBigMacCount: (value: number, bigMacPrice: number | null) => number;
 }
 
 export const CompareCtx = createContext<CompareContextValue>(null!);

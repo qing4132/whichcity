@@ -9,7 +9,7 @@ export interface City {
   costModerate: number;
   costBudget: number;
   costMinimal: number;
-  bigMacPrice: number;
+  bigMacPrice: number | null;
   yearlySavings: number;
   currency: string;
   description: string;

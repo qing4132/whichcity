@@ -63,7 +63,7 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
     { label: t("yearsToBuy"), a: `${yearsA} ${t("insightYears")}`, b: `${yearsB} ${t("insightYears")}`, winner: yearsA !== "N/A" && yearsB !== "N/A" ? (Number(yearsA) <= Number(yearsB) ? "A" : "B") : "tie" },
     { label: t("airQuality") + " (AQI)", a: `${cityA.airQuality} – ${getAqiLabel(cityA.airQuality, locale)}`, b: `${cityB.airQuality} – ${getAqiLabel(cityB.airQuality, locale)}`, winner: wins.air as "A" | "B" },
     { label: t("doctorsPerThousand"), a: String(cityA.doctorsPerThousand), b: String(cityB.doctorsPerThousand), winner: wins.doctors as "A" | "B" },
-    { label: t("bigMac"), a: fc(cityA.bigMacPrice), b: fc(cityB.bigMacPrice), winner: cityA.bigMacPrice <= cityB.bigMacPrice ? "A" : "B" },
+    { label: t("bigMac"), a: cityA.bigMacPrice !== null ? fc(cityA.bigMacPrice) : t("noMcDonalds"), b: cityB.bigMacPrice !== null ? fc(cityB.bigMacPrice) : t("noMcDonalds"), winner: cityA.bigMacPrice !== null && cityB.bigMacPrice !== null ? (cityA.bigMacPrice <= cityB.bigMacPrice ? "A" : "B") : "tie" },
     { label: t("climateType"), a: getClimateLabel(climateA.type, locale), b: getClimateLabel(climateB.type, locale), winner: "tie" },
     { label: t("avgTemp"), a: `${climateA.avgTempC.toFixed(1)}°C`, b: `${climateB.avgTempC.toFixed(1)}°C`, winner: "tie" },
     { label: t("sunshine"), a: `${Math.round(climateA.sunshineHours)} h`, b: `${Math.round(climateB.sunshineHours)} h`, winner: "tie" },

@@ -31,9 +31,9 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
 
   const tierKey = `costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`;
 
-  const fmtVal = (val: number, baseVal: number, bigMacPrice: number) =>
+  const fmtVal = (val: number, baseVal: number, bigMacPrice: number | null) =>
     comparisonMode === "ratio" ? `${getRatioValue(val, baseVal)}x`
-      : comparisonMode === "bigmac" ? `${toBigMacCount(val, bigMacPrice)} ${t("bigMacUnit")}`
+      : comparisonMode === "bigmac" ? (bigMacPrice ? `${toBigMacCount(val, bigMacPrice)} ${t("bigMacUnit")}` : t("noMcDonalds"))
         : formatCurrency(val);
 
   // Localized description
@@ -80,7 +80,7 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
         <p className="text-xs text-green-100 mb-1">{t("yearlySavings")}</p>
         <p className={`text-lg sm:text-xl font-bold ${savings > 0 ? "text-lime-200" : "text-red-200"}`}>
           {comparisonMode === "ratio" ? `${getRatioValue(savings, baseSavings)}x`
-            : comparisonMode === "bigmac" ? `${toBigMacCount(savings, city.bigMacPrice)} ${t("bigMacUnit")}`
+            : comparisonMode === "bigmac" ? (city.bigMacPrice ? `${toBigMacCount(savings, city.bigMacPrice)} ${t("bigMacUnit")}` : t("noMcDonalds"))
               : formatCurrency(savings)}
         </p>
       </div>
@@ -89,7 +89,8 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
       <div className="bg-yellow-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-yellow-100 mb-1">{t("bigMac")}</p>
         <p className="text-base sm:text-lg font-bold text-white">
-          {comparisonMode === "ratio" ? `${getRatioValue(city.bigMacPrice, baseCity.bigMacPrice)}x`
+          {city.bigMacPrice === null ? t("noMcDonalds")
+            : comparisonMode === "ratio" ? `${getRatioValue(city.bigMacPrice, baseCity.bigMacPrice!)}x`
             : comparisonMode === "bigmac" ? t("oneBigMac") : formatPrice(city.bigMacPrice)}
         </p>
       </div>
@@ -99,7 +100,7 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
         <p className="text-xs text-purple-100 mb-1">{t("housePrice")}</p>
         <p className="text-base sm:text-lg font-bold text-white">
           {comparisonMode === "ratio" ? `${getRatioValue(city.housePrice, baseCity.housePrice)}x`
-            : comparisonMode === "bigmac" ? `${toBigMacCount(city.housePrice, city.bigMacPrice)} ${t("bigMacUnit")}`
+            : comparisonMode === "bigmac" ? (city.bigMacPrice ? `${toBigMacCount(city.housePrice, city.bigMacPrice)} ${t("bigMacUnit")}` : t("noMcDonalds"))
               : `${formatCurrency(city.housePrice)}${t("housePriceUnit")}`}
         </p>
       </div>
