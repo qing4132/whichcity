@@ -13,7 +13,6 @@ import CityCard from "./CityCard";
 import KeyInsights from "./KeyInsights";
 import ShareCard from "./ShareCard";
 import DataSources from "./DataSources";
-import CityLinks from "./CityLinks";
 
 export default function CityComparison() {
   const [cities, setCities] = useState<City[]>([]);
@@ -489,8 +488,6 @@ export default function CityComparison() {
               <DataSources />
             </div>
           )}
-
-          <CityLinks />
 
         </div>
       </div>

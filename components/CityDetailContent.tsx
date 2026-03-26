@@ -242,16 +242,6 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className={`text-center py-8 border-t ${borderRow}`}>
-        <p className={`mb-3 ${subCls}`}>{t("wantCompareMore")}</p>
-        <Link
-          href={`/?cities=${id}`}
-          className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-        >
-          ← {t("openTool")}
-        </Link>
-      </section>
     </PageShell>
   );
 }
