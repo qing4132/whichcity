@@ -14,27 +14,18 @@ interface CityCardProps {
 export default function CityCard({ city, isBase, baseCity, onClick }: CityCardProps) {
   const ctx = useCompare();
   const {
-    comparisonMode, costTier, selectedProfession,
+    costTier, selectedProfession,
     t, getCityLabel, getCountryLabel, getContinentLabel, getProfessionLabel,
     formatCurrency, formatPrice, getCost, getClimate, getAqiLevel,
-    getRatioValue, toBigMacCount,
   } = ctx;
 
   const salary = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
-  const baseSalary = selectedProfession ? baseCity.professions[selectedProfession] || 0 : baseCity.averageIncome;
   const cityCost = getCost(city);
-  const baseCost = getCost(baseCity);
   const savings = salary - cityCost * 12;
-  const baseSavings = baseSalary - baseCost * 12;
   const climate = getClimate(city);
   const aqiLevel = getAqiLevel(city.airQuality);
 
   const tierKey = `costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`;
-
-  const fmtVal = (val: number, baseVal: number, bigMacPrice: number | null) =>
-    comparisonMode === "ratio" ? `${getRatioValue(val, baseVal)}x`
-      : comparisonMode === "bigmac" ? (bigMacPrice ? `${toBigMacCount(val, bigMacPrice)} ${t("bigMacUnit")}` : t("noMcDonalds"))
-        : formatCurrency(val);
 
   // Localized description
   const getDesc = () => {
@@ -66,22 +57,20 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
       {/* Profession Income */}
       <div className="bg-blue-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-blue-100 mb-1">💼 {getProfessionLabel(selectedProfession)}</p>
-        <p className="text-lg sm:text-xl font-bold text-white">{fmtVal(salary, baseSalary, city.bigMacPrice)}</p>
+        <p className="text-lg sm:text-xl font-bold text-white">{formatCurrency(salary)}</p>
       </div>
 
       {/* Monthly Expense */}
       <div className="bg-red-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-red-100 mb-1">{t("monthlyExpense")} · {t(tierKey)}</p>
-        <p className="text-lg sm:text-xl font-bold text-white">{fmtVal(cityCost, baseCost, city.bigMacPrice)}</p>
+        <p className="text-lg sm:text-xl font-bold text-white">{formatCurrency(cityCost)}</p>
       </div>
 
       {/* Yearly Savings */}
       <div className="bg-green-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-green-100 mb-1">{t("yearlySavings")}</p>
         <p className={`text-lg sm:text-xl font-bold ${savings > 0 ? "text-lime-200" : "text-red-200"}`}>
-          {comparisonMode === "ratio" ? `${getRatioValue(savings, baseSavings)}x`
-            : comparisonMode === "bigmac" ? (city.bigMacPrice ? `${toBigMacCount(savings, city.bigMacPrice)} ${t("bigMacUnit")}` : t("noMcDonalds"))
-              : formatCurrency(savings)}
+          {formatCurrency(savings)}
         </p>
       </div>
 
@@ -89,9 +78,7 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
       <div className="bg-yellow-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-yellow-100 mb-1">{t("bigMac")}</p>
         <p className="text-base sm:text-lg font-bold text-white">
-          {city.bigMacPrice === null ? t("noMcDonalds")
-            : comparisonMode === "ratio" ? `${getRatioValue(city.bigMacPrice, baseCity.bigMacPrice!)}x`
-            : comparisonMode === "bigmac" ? t("oneBigMac") : formatPrice(city.bigMacPrice)}
+          {city.bigMacPrice === null ? t("noMcDonalds") : formatPrice(city.bigMacPrice)}
         </p>
       </div>
 
@@ -99,9 +86,7 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
       <div className="bg-purple-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-purple-100 mb-1">{t("housePrice")}</p>
         <p className="text-base sm:text-lg font-bold text-white">
-          {comparisonMode === "ratio" ? `${getRatioValue(city.housePrice, baseCity.housePrice)}x`
-            : comparisonMode === "bigmac" ? (city.bigMacPrice ? `${toBigMacCount(city.housePrice, city.bigMacPrice)} ${t("bigMacUnit")}` : t("noMcDonalds"))
-              : `${formatCurrency(city.housePrice)}${t("housePriceUnit")}`}
+          {`${formatCurrency(city.housePrice)}${t("housePriceUnit")}`}
         </p>
       </div>
 
