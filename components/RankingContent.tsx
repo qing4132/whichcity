@@ -107,45 +107,33 @@ export default function RankingContent({ cities }: RankingContentProps) {
 
         {/* Top bar */}
         <div className={`border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
-          <div className="max-w-6xl mx-auto space-y-2">
-            {/* Row 1: Back + language/currency/dark */}
-            <div className="flex items-center justify-between gap-2 flex-wrap">
-              <Link href="/" className={`font-bold text-sm hover:underline ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
-                {t("rankBackHome")}
-              </Link>
-              <div className="flex items-center gap-2 flex-wrap">
-                <select value={locale} onChange={e => { setLocale(e.target.value as Locale); localStorage.setItem("locale", e.target.value); }}
-                  className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                  {(Object.keys(LANGUAGE_LABELS) as Locale[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
-                </select>
-                <select value={selectedCurrency} onChange={e => { setSelectedCurrency(e.target.value); localStorage.setItem("selectedCurrency", e.target.value); }}
-                  className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-                </select>
-                <button onClick={() => { setDarkMode(!darkMode); localStorage.setItem("darkMode", JSON.stringify(!darkMode)); }}
-                  className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
-                  {darkMode ? "☀️" : "🌙"}
-                </button>
-              </div>
-            </div>
-            {/* Row 2: Profession + Cost Tier */}
+          <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
+            <Link href="/" className={`font-bold text-sm hover:underline ${darkMode ? "text-slate-200" : "text-slate-700"}`}>
+              {t("rankBackHome")}
+            </Link>
             <div className="flex items-center gap-2 flex-wrap">
               <select value={selectedProfession} onChange={e => { setSelectedProfession(e.target.value); localStorage.setItem("selectedProfession", e.target.value); }}
                 className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
                 {professions.map(p => <option key={p} value={p}>{getProfessionLabel(p)}</option>)}
               </select>
-              <div className={`flex rounded overflow-hidden border ${darkMode ? "border-slate-600" : "border-slate-300"}`}>
+              <select value={costTier} onChange={e => { const v = e.target.value as CostTier; setCostTier(v); localStorage.setItem("costTier", v); }}
+                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
                 {(["comfort", "moderate", "budget", "minimal"] as const).map(tier => (
-                  <button key={tier} onClick={() => { setCostTier(tier); localStorage.setItem("costTier", tier); }}
-                    className={`text-xs px-2 py-1 transition ${
-                      costTier === tier
-                        ? "bg-blue-600 text-white"
-                        : darkMode ? "bg-slate-800 text-slate-300 hover:bg-slate-700" : "bg-white text-slate-600 hover:bg-slate-50"
-                    }`}>
-                    {t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}
-                  </button>
+                  <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
                 ))}
-              </div>
+              </select>
+              <select value={locale} onChange={e => { setLocale(e.target.value as Locale); localStorage.setItem("locale", e.target.value); }}
+                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
+                {(Object.keys(LANGUAGE_LABELS) as Locale[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
+              </select>
+              <select value={selectedCurrency} onChange={e => { setSelectedCurrency(e.target.value); localStorage.setItem("selectedCurrency", e.target.value); }}
+                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
+                {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+              </select>
+              <button onClick={() => { setDarkMode(!darkMode); localStorage.setItem("darkMode", JSON.stringify(!darkMode)); }}
+                className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
+                {darkMode ? "☀️" : "🌙"}
+              </button>
             </div>
           </div>
         </div>
