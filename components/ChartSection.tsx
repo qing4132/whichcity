@@ -12,19 +12,9 @@ interface ChartSectionProps {
 
 export default function ChartSection({ comparisonData }: ChartSectionProps) {
   const ctx = useCompare();
-  const { darkMode, comparisonMode, baseCityId, selectedProfession, t, getCityLabel, convertAmount, currencySymbol, formatCurrency, getCost, getClimate } = ctx;
-
-  const baseCity = comparisonData.find(c => c.id.toString() === baseCityId) || comparisonData[0];
-
-  const getRatioValue = (value: number, baseValue: number): number =>
-    baseValue === 0 ? 0 : parseFloat((value / baseValue).toFixed(2));
-
-  const toBigMacCount = (value: number, bigMacPrice: number | null): number =>
-    !bigMacPrice || bigMacPrice <= 0 ? 0 : parseFloat((value / bigMacPrice).toFixed(2));
+  const { darkMode, selectedProfession, t, getCityLabel, convertAmount, currencySymbol, formatCurrency, getCost, getClimate } = ctx;
 
   const fmtYAxis = (value: number): string => {
-    if (comparisonMode === "ratio") return `${value}x`;
-    if (comparisonMode === "bigmac") return String(value);
     const converted = convertAmount(value);
     const abs = Math.abs(converted);
     if (abs >= 1_000_000) return `${currencySymbol}${(converted / 1_000_000).toFixed(1)}M`;
@@ -34,23 +24,13 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
 
   const chartData = comparisonData.map((city) => {
     const salary = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
-    const baseSalary = selectedProfession ? baseCity.professions[selectedProfession] || 0 : baseCity.averageIncome;
     const cityCost = getCost(city);
-    const baseCityCost = getCost(baseCity);
-
-    const rawSavings = salary - cityCost * 12;
-    const baseRawSavings = baseSalary - baseCityCost * 12;
 
     return {
       name: getCityLabel(city),
-      income: comparisonMode === "ratio" ? getRatioValue(salary, baseSalary)
-        : comparisonMode === "bigmac" ? toBigMacCount(salary, city.bigMacPrice) : salary,
-      yearlyExpense: comparisonMode === "ratio" ? getRatioValue(cityCost * 12, baseCityCost * 12)
-        : comparisonMode === "bigmac" ? toBigMacCount(cityCost * 12, city.bigMacPrice) : cityCost * 12,
-      savings: comparisonMode === "ratio"
-        ? getRatioValue(rawSavings, baseRawSavings)
-        : comparisonMode === "bigmac"
-          ? toBigMacCount(rawSavings, city.bigMacPrice) : rawSavings,
+      income: salary,
+      yearlyExpense: cityCost * 12,
+      savings: salary - cityCost * 12,
     };
   });
 
@@ -60,10 +40,7 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
     color: darkMode ? "#fff" : "#000",
   };
 
-  const fmtTooltip = (value: any) =>
-    comparisonMode === "ratio" ? `${parseFloat(value).toFixed(2)}x`
-      : comparisonMode === "bigmac" ? `${parseFloat(value).toFixed(2)} ${t("bigMacUnit")}`
-        : formatCurrency(Number(value));
+  const fmtTooltip = (value: any) => formatCurrency(Number(value));
 
   const axisStroke = darkMode ? "#999" : "#666";
   const gridStroke = darkMode ? "#444" : "#ddd";
@@ -73,11 +50,6 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
       <h2 className={`text-2xl sm:text-3xl font-bold mb-2 ${darkMode ? "text-white" : "text-gray-800"}`}>
         {t("chartAnalysis")}
       </h2>
-      {comparisonMode === "ratio" && (
-        <p className={`text-sm mb-6 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
-          {t("baseCityTip", { city: getCityLabel(baseCity) })}
-        </p>
-      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Annual Finance */}

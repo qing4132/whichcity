@@ -34,7 +34,7 @@ export default function PageShell({
   return (
     <div className={`min-h-screen ${bg}`}>
       <nav className={`border-b px-4 py-2.5 ${navBg}`}>
-        <div className="max-w-5xl mx-auto flex items-center justify-between gap-2 flex-wrap">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
           <Link href="/" className="text-blue-600 font-semibold hover:underline text-sm whitespace-nowrap">
             {t("backToHome")}
           </Link>
@@ -72,7 +72,7 @@ export default function PageShell({
         </div>
       </nav>
 
-      <main className="max-w-5xl mx-auto px-4 py-8">
+      <main className="max-w-6xl mx-auto px-4 py-8">
         {children}
       </main>
 

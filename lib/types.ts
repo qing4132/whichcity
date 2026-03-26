@@ -19,7 +19,6 @@ export interface City {
   doctorsPerThousand: number;
 }
 
-export type ComparisonMode = "normal" | "ratio" | "bigmac";
 export type CostTier = "comfort" | "moderate" | "budget" | "minimal";
 export type Locale = "zh" | "en" | "ja" | "es";
 export type ClimateType =

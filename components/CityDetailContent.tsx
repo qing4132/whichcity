@@ -7,6 +7,7 @@ import { CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
 import { getCityClimate, getCityEnName, getAqiLabel, getClimateLabel } from "@/lib/clientUtils";
+import { CITY_INTROS } from "@/lib/cityIntros";
 import { useSettings } from "@/hooks/useSettings";
 import PageShell from "./PageShell";
 
@@ -76,8 +77,8 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
             <p className={`text-lg ${subCls}`}>{countryName}</p>
           </div>
         </div>
-        {locale === "zh" && (
-          <p className={`mt-4 max-w-2xl leading-relaxed ${subCls}`}>{city.description}</p>
+        {CITY_INTROS[id] && (
+          <p className={`mt-4 leading-relaxed text-sm sm:text-base ${subCls}`}>{CITY_INTROS[id]}</p>
         )}
       </header>
 

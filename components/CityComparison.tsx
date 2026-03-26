@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import type { City, ComparisonMode, CostTier, Locale, ClimateInfo, ExchangeRates } from "@/lib/types";
+import type { City, CostTier, Locale, ClimateInfo, ExchangeRates } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, CONTINENT_TRANSLATIONS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES, CITY_CLIMATE, CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CompareCtx, type CompareContextValue } from "@/lib/CompareContext";
@@ -47,7 +47,6 @@ export default function CityComparison() {
   const [comparisonData, setComparisonData] = useState<City[] | null>(null);
   const [baseCityId, setBaseCityId] = useState<string>("");
   const [loading, setLoading] = useState(true);
-  const [comparisonMode, setComparisonMode] = useState<ComparisonMode>("normal");
   const [costTier, setCostTier] = useState<CostTier>("moderate");
   const [searchTerm, setSearchTerm] = useState("");
   const [windowWidth, setWindowWidth] = useState(1200);
@@ -74,7 +73,7 @@ export default function CityComparison() {
     const savedLocale = url.lang || localStorage.getItem("locale");
     if (savedLocale && ["zh", "en", "ja", "es"].includes(savedLocale)) setLocale(savedLocale as Locale);
 
-    if (url.mode && ["normal", "ratio", "bigmac"].includes(url.mode)) setComparisonMode(url.mode as ComparisonMode);
+    if (url.mode && ["normal", "ratio", "bigmac"].includes(url.mode)) { /* legacy, ignore */ }
     const savedTier = url.tier || localStorage.getItem("costTier");
     if (savedTier && ["comfort", "moderate", "budget", "minimal"].includes(savedTier)) setCostTier(savedTier as CostTier);
 
@@ -146,14 +145,14 @@ export default function CityComparison() {
     writeUrlParams({
       cities: selectedCities.length ? selectedCities.join(",") : undefined,
       prof: selectedProfession || undefined,
-      mode: comparisonMode !== "normal" ? comparisonMode : undefined,
+      mode: undefined,
       tier: costTier !== "moderate" ? costTier : undefined,
       lang: locale !== "zh" ? locale : undefined,
       cur: selectedCurrency !== "USD" ? selectedCurrency : undefined,
       dark: darkMode ? "1" : undefined,
       base: baseCityId || undefined,
     });
-  }, [selectedCities, selectedProfession, comparisonMode, costTier, locale, selectedCurrency, darkMode, baseCityId]);
+  }, [selectedCities, selectedProfession, costTier, locale, selectedCurrency, darkMode, baseCityId]);
 
   // ── Persist to localStorage ──
   useEffect(() => { localStorage.setItem("darkMode", JSON.stringify(darkMode)); }, [darkMode]);
@@ -222,12 +221,6 @@ export default function CityComparison() {
     return { key: "aqiHazardous", color: "text-rose-400" };
   };
 
-  const getRatioValue = (value: number, baseValue: number): number =>
-    parseFloat((value / baseValue).toFixed(2));
-
-  const toBigMacCount = (value: number, bigMacPrice: number | null): number =>
-    !bigMacPrice || bigMacPrice <= 0 ? 0 : parseFloat((value / bigMacPrice).toFixed(2));
-
   // ── City selection / comparison logic ──
   const professions = cities[0]?.professions ? Object.keys(cities[0].professions) : [];
 
@@ -288,9 +281,9 @@ export default function CityComparison() {
   const currencySymbol = exchangeRates?.symbols[selectedCurrency] || '$';
 
   const ctxValue: CompareContextValue = {
-    darkMode, locale, comparisonMode, costTier, baseCityId, selectedProfession,
+    darkMode, locale, costTier, baseCityId, selectedProfession,
     t, getCityLabel, getCountryLabel, getContinentLabel, getProfessionLabel,
-    convertAmount, currencySymbol, formatCurrency, formatPrice, getCost, getClimate, getAqiLevel, getRatioValue, toBigMacCount,
+    convertAmount, currencySymbol, formatCurrency, formatPrice, getCost, getClimate, getAqiLevel,
   };
 
   // ── Loading ──
@@ -308,11 +301,11 @@ export default function CityComparison() {
   return (
     <CompareCtx.Provider value={ctxValue}>
       <div className={`min-h-screen py-4 sm:py-8 px-3 sm:px-4 transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
 
           {/* ── Top Bar (switchers) ── */}
           <div className={`border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 sm:mb-8 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
-            <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 flex-wrap">
+            <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
               <div className="flex items-center gap-3">
                 <span className={`font-bold text-sm ${darkMode ? "text-slate-200" : "text-slate-700"}`}>🌍 City Compare</span>
                 <Link href="/ranking"
@@ -357,20 +350,9 @@ export default function CityComparison() {
             <p className={`text-base sm:text-lg max-w-2xl mx-auto ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
               {t("appSubtitle", { count: cities.length })}
             </p>
-          </div>
-
-          {/* ── Comparison Mode ── */}
-          <div className="flex justify-center gap-1.5 mb-6">
-            {(["normal", "ratio", "bigmac"] as const).map(mode => (
-              <button key={mode} onClick={() => setComparisonMode(mode)}
-                className={`px-3 py-2 rounded-lg font-medium text-sm transition ${
-                  comparisonMode === mode
-                    ? mode === "normal" ? "bg-blue-600 text-white" : mode === "ratio" ? "bg-purple-600 text-white" : "bg-amber-600 text-white"
-                    : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}>
-                {t(mode === "normal" ? "modeNormal" : mode === "ratio" ? "modeRatio" : "modeBigMac")}
-              </button>
-            ))}
+            <p className={`text-xs mt-2 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
+              📅 {t("dataLastUpdated")}
+            </p>
           </div>
 
           {/* ── City Selector ── */}
