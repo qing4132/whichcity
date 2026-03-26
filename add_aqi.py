@@ -1,7 +1,7 @@
 import json
 
 # 3-year average AQI (US EPA standard, 2023-2025)
-# Chinese cities / AQICN-based cities: raw value * ~1.05 to approximate US EPA AQI
+# Chinese cities / AQICN-based cities: AQICN raw value * 1.4 to convert to US EPA AQI
 # Sources: IQAir, AQICN, EPA AirNow annual reports
 aqi_data = {
     1: 55,    # New York

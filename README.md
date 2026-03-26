@@ -10,7 +10,7 @@
 
 ### 功能亮点
 
-- 🏙️ **100 座城市** — 覆盖六大洲主要城市
+- 🏙️ **120 座城市** — 覆盖六大洲主要城市
 - 💼 **10 种职业** — 按具体职业查看薪资差异
 - 💱 **10 种货币** — 自由切换显示币种
 - 🌐 **4 种语言** — 中文 / English / 日本語 / Español
@@ -48,7 +48,7 @@ A Next.js-based global city comparison tool that helps you compare cities across
 
 ### Features
 
-- 🏙️ **100 cities** across 6 continents
+- 🏙️ **120 cities** across 6 continents
 - 💼 **10 professions** with city-specific salaries
 - 💱 **10 currencies** for flexible display
 - 🌐 **4 languages** — 中文 / English / 日本語 / Español
@@ -86,7 +86,7 @@ Next.js ベースのグローバル都市比較ツールです。収入、生活
 
 ### 主な機能
 
-- 🏙️ **100都市** — 6大陸をカバー
+- 🏙️ **120都市** — 6大陸をカバー
 - 💼 **10職種** — 都市別の年収データ
 - 💱 **10通貨** — 表示通貨を自由に切替
 - 🌐 **4言語** — 中文 / English / 日本語 / Español
@@ -124,7 +124,7 @@ Herramienta de comparación global de ciudades basada en Next.js. Compara ciudad
 
 ### Características
 
-- 🏙️ **100 ciudades** en 6 continentes
+- 🏙️ **120 ciudades** en 6 continentes
 - 💼 **10 profesiones** con salarios por ciudad
 - 💱 **10 monedas** de visualización
 - 🌐 **4 idiomas** — 中文 / English / 日本語 / Español

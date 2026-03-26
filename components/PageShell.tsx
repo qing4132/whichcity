@@ -79,6 +79,12 @@ export default function PageShell({
       <footer className={`border-t px-4 py-6 text-center text-xs ${footerBg}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
         <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
+        <p className="mt-1">
+          {t("feedbackText")}{" "}
+          <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub Issues</a>
+          {" / "}
+          <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">Email</a>
+        </p>
       </footer>
     </div>
   );
