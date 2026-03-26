@@ -78,7 +78,7 @@ export default function CityDetailContent({ city, relatedIds, slug }: Props) {
           </div>
         </div>
         {CITY_INTROS[id] && (
-          <p className={`mt-4 leading-relaxed text-sm sm:text-base ${subCls}`}>{CITY_INTROS[id]}</p>
+          <p className={`mt-4 leading-relaxed text-sm sm:text-base ${subCls}`}>{CITY_INTROS[id][locale] || CITY_INTROS[id].zh}</p>
         )}
       </header>
 
