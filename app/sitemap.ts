@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Home
   const routes: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${BASE_URL}/ranking`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
   ];
 
   // City pages

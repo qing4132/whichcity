@@ -11,6 +11,8 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import ChartSection from "./ChartSection";
 import CityCard from "./CityCard";
 import KeyInsights from "./KeyInsights";
+import InsightSummary from "./InsightSummary";
+import ShareCard from "./ShareCard";
 import DataSources from "./DataSources";
 
 const REGIONS = [
@@ -101,6 +103,17 @@ export default function CityComparison() {
             const selected = valid.map((id: string) => citiesData.cities.find((c: City) => c.id.toString() === id)).filter(Boolean) as City[];
             setComparisonData(selected);
             setBaseCityId(url.base && valid.includes(url.base) ? url.base : selected[0]?.id.toString() || "");
+          }
+        } else {
+          // Default pre-selected cities: New York(1), Tokyo(3), Beijing(4)
+          const defaultIds = ["1", "3", "4"];
+          const defaultSelected = defaultIds
+            .map(id => citiesData.cities.find((c: City) => c.id.toString() === id))
+            .filter(Boolean) as City[];
+          if (defaultSelected.length >= 2) {
+            setSelectedCities(defaultIds);
+            setComparisonData(defaultSelected);
+            setBaseCityId(defaultSelected[0].id.toString());
           }
         }
 
@@ -315,9 +328,15 @@ export default function CityComparison() {
             <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3 ${darkMode ? "text-white" : "text-slate-900"}`}>
               {t("appTitle")}
             </h1>
-            <p className={`text-base sm:text-lg max-w-2xl mx-auto ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            <p className={`text-base sm:text-lg max-w-2xl mx-auto mb-4 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
               {t("appSubtitle", { count: cities.length })}
             </p>
+            <Link href="/ranking"
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition ${
+                darkMode ? "bg-slate-800 text-amber-300 hover:bg-slate-700 border border-slate-700" : "bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200"
+              }`}>
+              {t("rankViewRanking")}
+            </Link>
           </div>
 
           {/* ── Settings ── */}
@@ -448,6 +467,9 @@ export default function CityComparison() {
                       {shareToast ? "✓ " : "🔗 "}{shareToast ? t("shareCopied") : t("shareLink")}
                     </button>
                   )}
+                  {comparisonData && (
+                    <ShareCard comparisonData={comparisonData} />
+                  )}
                 </div>
               </div>
             )}
@@ -498,6 +520,7 @@ export default function CityComparison() {
           {comparisonData && (
             <div ref={comparisonRef} className="space-y-6 sm:space-y-8">
               <ChartSection comparisonData={comparisonData} />
+              <InsightSummary comparisonData={comparisonData} />
 
               {/* City Cards */}
               <div className={`rounded-xl shadow-md p-4 sm:p-8 ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
