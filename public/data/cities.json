@@ -41,7 +41,7 @@
       "costMinimal": 1350,
       "doctorsPerThousand": 4.1,
       "directFlightCities": 280,
-      "safetyIndex": 52,
+      "safetyIndex": 66,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 3200,
@@ -53,10 +53,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 45,
-      "safetyViolentCrimeInv": 55,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 78
+      "numbeoSafetyIndex": 45,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 2,
@@ -99,7 +99,7 @@
       "costMinimal": 1150,
       "doctorsPerThousand": 3.6,
       "directFlightCities": 390,
-      "safetyIndex": 59,
+      "safetyIndex": 74,
       "safetyConfidence": "high",
       "annualWorkHours": 1532,
       "monthlyRent": 2100,
@@ -111,10 +111,10 @@
       "pressFreedomScore": 70,
       "democracyIndex": 8.54,
       "corruptionPerceptionIndex": 71,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 50,
-      "safetyForeignerFriendly": 82
+      "numbeoSafetyIndex": 46,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 84,
+      "gallupLawOrder": 79
     },
     {
       "id": 3,
@@ -157,7 +157,7 @@
       "costMinimal": 850,
       "doctorsPerThousand": 2.7,
       "directFlightCities": 165,
-      "safetyIndex": 83,
+      "safetyIndex": 90,
       "safetyConfidence": "high",
       "annualWorkHours": 1607,
       "monthlyRent": 1400,
@@ -169,10 +169,10 @@
       "pressFreedomScore": 64,
       "democracyIndex": 8.33,
       "corruptionPerceptionIndex": 73,
-      "safetyNightSafety": 82,
-      "safetyViolentCrimeInv": 90,
-      "safetyPropertyCrimeInv": 88,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 80,
+      "homicideRateInv": 100,
+      "gpiScoreInv": 92,
+      "gallupLawOrder": 91
     },
     {
       "id": 4,
@@ -215,7 +215,7 @@
       "costMinimal": 520,
       "doctorsPerThousand": 4.6,
       "directFlightCities": 220,
-      "safetyIndex": 73,
+      "safetyIndex": 84,
       "safetyConfidence": "high",
       "annualWorkHours": 2170,
       "monthlyRent": 1100,
@@ -227,10 +227,10 @@
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 72,
-      "safetyViolentCrimeInv": 82,
-      "safetyPropertyCrimeInv": 78,
-      "safetyForeignerFriendly": 42
+      "numbeoSafetyIndex": 71,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 90
     },
     {
       "id": 5,
@@ -273,7 +273,7 @@
       "costMinimal": 600,
       "doctorsPerThousand": 3.8,
       "directFlightCities": 230,
-      "safetyIndex": 75,
+      "safetyIndex": 85,
       "safetyConfidence": "high",
       "annualWorkHours": 2170,
       "monthlyRent": 1300,
@@ -285,10 +285,10 @@
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 74,
-      "safetyViolentCrimeInv": 84,
-      "safetyPropertyCrimeInv": 80,
-      "safetyForeignerFriendly": 45
+      "numbeoSafetyIndex": 74,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 90
     },
     {
       "id": 6,
@@ -331,7 +331,7 @@
       "costMinimal": 1100,
       "doctorsPerThousand": 4.3,
       "directFlightCities": 95,
-      "safetyIndex": 68,
+      "safetyIndex": 81,
       "safetyConfidence": "high",
       "annualWorkHours": 1694,
       "monthlyRent": 2200,
@@ -343,10 +343,10 @@
       "pressFreedomScore": 65,
       "democracyIndex": 8.71,
       "corruptionPerceptionIndex": 75,
-      "safetyNightSafety": 65,
-      "safetyViolentCrimeInv": 72,
-      "safetyPropertyCrimeInv": 60,
-      "safetyForeignerFriendly": 85
+      "numbeoSafetyIndex": 62,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 87,
+      "gallupLawOrder": 82
     },
     {
       "id": 7,
@@ -389,7 +389,7 @@
       "costMinimal": 850,
       "doctorsPerThousand": 2.5,
       "directFlightCities": 150,
-      "safetyIndex": 82,
+      "safetyIndex": 91,
       "safetyConfidence": "high",
       "annualWorkHours": 2238,
       "monthlyRent": 2400,
@@ -401,10 +401,10 @@
       "pressFreedomScore": 40,
       "democracyIndex": 6.02,
       "corruptionPerceptionIndex": 83,
-      "safetyNightSafety": 82,
-      "safetyViolentCrimeInv": 88,
-      "safetyPropertyCrimeInv": 80,
-      "safetyForeignerFriendly": 70
+      "numbeoSafetyIndex": 80,
+      "homicideRateInv": 100,
+      "gpiScoreInv": 92,
+      "gallupLawOrder": 97
     },
     {
       "id": 8,
@@ -447,7 +447,7 @@
       "costMinimal": 950,
       "doctorsPerThousand": 3.6,
       "directFlightCities": 290,
-      "safetyIndex": 51,
+      "safetyIndex": 71,
       "safetyConfidence": "high",
       "annualWorkHours": 1511,
       "monthlyRent": 1500,
@@ -459,10 +459,10 @@
       "pressFreedomScore": 68,
       "democracyIndex": 7.99,
       "corruptionPerceptionIndex": 71,
-      "safetyNightSafety": 45,
-      "safetyViolentCrimeInv": 58,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 45,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 76,
+      "gallupLawOrder": 74
     },
     {
       "id": 9,
@@ -505,7 +505,7 @@
       "costMinimal": 950,
       "doctorsPerThousand": 2.9,
       "directFlightCities": 180,
-      "safetyIndex": 64,
+      "safetyIndex": 79,
       "safetyConfidence": "high",
       "annualWorkHours": 1686,
       "monthlyRent": 1800,
@@ -517,10 +517,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 8.88,
       "corruptionPerceptionIndex": 76,
-      "safetyNightSafety": 60,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 58,
-      "safetyForeignerFriendly": 82
+      "numbeoSafetyIndex": 56,
+      "homicideRateInv": 96,
+      "gpiScoreInv": 91,
+      "gallupLawOrder": 80
     },
     {
       "id": 10,
@@ -563,7 +563,7 @@
       "costMinimal": 1100,
       "doctorsPerThousand": 2.1,
       "directFlightCities": 180,
-      "safetyIndex": 78,
+      "safetyIndex": 84,
       "safetyConfidence": "high",
       "annualWorkHours": 2080,
       "monthlyRent": 1900,
@@ -575,10 +575,10 @@
       "pressFreedomScore": 16,
       "democracyIndex": 3.54,
       "corruptionPerceptionIndex": 75,
-      "safetyNightSafety": 78,
-      "safetyViolentCrimeInv": 85,
-      "safetyPropertyCrimeInv": 75,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 73,
+      "homicideRateInv": 100,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 86
     },
     {
       "id": 11,
@@ -621,7 +621,7 @@
       "costMinimal": 1250,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 195,
-      "safetyIndex": 47,
+      "safetyIndex": 63,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 2500,
@@ -633,10 +633,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 38,
-      "safetyViolentCrimeInv": 52,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 75
+      "numbeoSafetyIndex": 37,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 12,
@@ -679,7 +679,7 @@
       "costMinimal": 1450,
       "doctorsPerThousand": 3.5,
       "directFlightCities": 130,
-      "safetyIndex": 41,
+      "safetyIndex": 61,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 2800,
@@ -691,10 +691,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 30,
-      "safetyViolentCrimeInv": 48,
-      "safetyPropertyCrimeInv": 35,
-      "safetyForeignerFriendly": 78
+      "numbeoSafetyIndex": 31,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 13,
@@ -737,7 +737,7 @@
       "costMinimal": 1050,
       "doctorsPerThousand": 3.4,
       "directFlightCities": 250,
-      "safetyIndex": 44,
+      "safetyIndex": 62,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1600,
@@ -749,10 +749,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 35,
-      "safetyViolentCrimeInv": 50,
-      "safetyPropertyCrimeInv": 40,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 33,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 14,
@@ -795,7 +795,7 @@
       "costMinimal": 750,
       "doctorsPerThousand": 3.2,
       "directFlightCities": 265,
-      "safetyIndex": 85,
+      "safetyIndex": 91,
       "safetyConfidence": "high",
       "annualWorkHours": 2200,
       "monthlyRent": 1800,
@@ -807,10 +807,10 @@
       "pressFreedomScore": 26,
       "democracyIndex": 2.76,
       "corruptionPerceptionIndex": 68,
-      "safetyNightSafety": 85,
-      "safetyViolentCrimeInv": 88,
-      "safetyPropertyCrimeInv": 85,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 85,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 87,
+      "gallupLawOrder": 95
     },
     {
       "id": 15,
@@ -853,7 +853,7 @@
       "costMinimal": 920,
       "doctorsPerThousand": 3.9,
       "directFlightCities": 195,
-      "safetyIndex": 65,
+      "safetyIndex": 79,
       "safetyConfidence": "high",
       "annualWorkHours": 1417,
       "monthlyRent": 1700,
@@ -865,10 +865,10 @@
       "pressFreedomScore": 77,
       "democracyIndex": 8.88,
       "corruptionPerceptionIndex": 79,
-      "safetyNightSafety": 62,
-      "safetyViolentCrimeInv": 70,
-      "safetyPropertyCrimeInv": 52,
-      "safetyForeignerFriendly": 88
+      "numbeoSafetyIndex": 57,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 87,
+      "gallupLawOrder": 79
     },
     {
       "id": 16,
@@ -911,7 +911,7 @@
       "costMinimal": 1550,
       "doctorsPerThousand": 4.7,
       "directFlightCities": 130,
-      "safetyIndex": 81,
+      "safetyIndex": 89,
       "safetyConfidence": "high",
       "annualWorkHours": 1533,
       "monthlyRent": 2200,
@@ -923,10 +923,10 @@
       "pressFreedomScore": 82,
       "democracyIndex": 9.14,
       "corruptionPerceptionIndex": 82,
-      "safetyNightSafety": 80,
-      "safetyViolentCrimeInv": 85,
-      "safetyPropertyCrimeInv": 78,
-      "safetyForeignerFriendly": 75
+      "numbeoSafetyIndex": 80,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 92,
+      "gallupLawOrder": 89
     },
     {
       "id": 17,
@@ -969,7 +969,7 @@
       "costMinimal": 1450,
       "doctorsPerThousand": 4.6,
       "directFlightCities": 110,
-      "safetyIndex": 78,
+      "safetyIndex": 88,
       "safetyConfidence": "high",
       "annualWorkHours": 1533,
       "monthlyRent": 1900,
@@ -981,10 +981,10 @@
       "pressFreedomScore": 82,
       "democracyIndex": 9.14,
       "corruptionPerceptionIndex": 82,
-      "safetyNightSafety": 78,
-      "safetyViolentCrimeInv": 82,
-      "safetyPropertyCrimeInv": 75,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 76,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 92,
+      "gallupLawOrder": 89
     },
     {
       "id": 18,
@@ -1027,7 +1027,7 @@
       "costMinimal": 900,
       "doctorsPerThousand": 4.8,
       "directFlightCities": 190,
-      "safetyIndex": 76,
+      "safetyIndex": 85,
       "safetyConfidence": "high",
       "annualWorkHours": 1341,
       "monthlyRent": 1200,
@@ -1039,10 +1039,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 8.8,
       "corruptionPerceptionIndex": 78,
-      "safetyNightSafety": 76,
-      "safetyViolentCrimeInv": 80,
-      "safetyPropertyCrimeInv": 72,
-      "safetyForeignerFriendly": 68
+      "numbeoSafetyIndex": 75,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 83,
+      "gallupLawOrder": 80
     },
     {
       "id": 19,
@@ -1085,7 +1085,7 @@
       "costMinimal": 750,
       "doctorsPerThousand": 4.3,
       "directFlightCities": 180,
-      "safetyIndex": 62,
+      "safetyIndex": 77,
       "safetyConfidence": "high",
       "annualWorkHours": 1341,
       "monthlyRent": 1100,
@@ -1097,10 +1097,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 8.8,
       "corruptionPerceptionIndex": 78,
-      "safetyNightSafety": 58,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 70
+      "numbeoSafetyIndex": 53,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 83,
+      "gallupLawOrder": 80
     },
     {
       "id": 20,
@@ -1143,7 +1143,7 @@
       "costMinimal": 600,
       "doctorsPerThousand": 4.5,
       "directFlightCities": 215,
-      "safetyIndex": 54,
+      "safetyIndex": 73,
       "safetyConfidence": "high",
       "annualWorkHours": 1644,
       "monthlyRent": 1100,
@@ -1155,10 +1155,10 @@
       "pressFreedomScore": 66,
       "democracyIndex": 8.07,
       "corruptionPerceptionIndex": 60,
-      "safetyNightSafety": 48,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 40,
-      "safetyForeignerFriendly": 80
+      "numbeoSafetyIndex": 44,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 85,
+      "gallupLawOrder": 74
     },
     {
       "id": 21,
@@ -1201,7 +1201,7 @@
       "costMinimal": 620,
       "doctorsPerThousand": 4.5,
       "directFlightCities": 200,
-      "safetyIndex": 59,
+      "safetyIndex": 77,
       "safetyConfidence": "high",
       "annualWorkHours": 1644,
       "monthlyRent": 1000,
@@ -1213,10 +1213,10 @@
       "pressFreedomScore": 66,
       "democracyIndex": 8.07,
       "corruptionPerceptionIndex": 60,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 75
+      "numbeoSafetyIndex": 54,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 85,
+      "gallupLawOrder": 74
     },
     {
       "id": 22,
@@ -1259,7 +1259,7 @@
       "costMinimal": 700,
       "doctorsPerThousand": 4.4,
       "directFlightCities": 190,
-      "safetyIndex": 56,
+      "safetyIndex": 74,
       "safetyConfidence": "high",
       "annualWorkHours": 1669,
       "monthlyRent": 1200,
@@ -1271,10 +1271,10 @@
       "pressFreedomScore": 56,
       "democracyIndex": 7.69,
       "corruptionPerceptionIndex": 56,
-      "safetyNightSafety": 52,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 45,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 49,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 84,
+      "gallupLawOrder": 72
     },
     {
       "id": 23,
@@ -1317,7 +1317,7 @@
       "costMinimal": 620,
       "doctorsPerThousand": 4.3,
       "directFlightCities": 190,
-      "safetyIndex": 53,
+      "safetyIndex": 74,
       "safetyConfidence": "high",
       "annualWorkHours": 1669,
       "monthlyRent": 950,
@@ -1329,10 +1329,10 @@
       "pressFreedomScore": 56,
       "democracyIndex": 7.69,
       "corruptionPerceptionIndex": 56,
-      "safetyNightSafety": 50,
-      "safetyViolentCrimeInv": 60,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 68
+      "numbeoSafetyIndex": 47,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 84,
+      "gallupLawOrder": 72
     },
     {
       "id": 24,
@@ -1375,7 +1375,7 @@
       "costMinimal": 780,
       "doctorsPerThousand": 3.8,
       "directFlightCities": 170,
-      "safetyIndex": 53,
+      "safetyIndex": 72,
       "safetyConfidence": "high",
       "annualWorkHours": 1577,
       "monthlyRent": 1100,
@@ -1387,10 +1387,10 @@
       "pressFreedomScore": 75,
       "democracyIndex": 7.64,
       "corruptionPerceptionIndex": 73,
-      "safetyNightSafety": 48,
-      "safetyViolentCrimeInv": 58,
-      "safetyPropertyCrimeInv": 45,
-      "safetyForeignerFriendly": 78
+      "numbeoSafetyIndex": 42,
+      "homicideRateInv": 97,
+      "gpiScoreInv": 87,
+      "gallupLawOrder": 72
     },
     {
       "id": 25,
@@ -1433,7 +1433,7 @@
       "costMinimal": 800,
       "doctorsPerThousand": 5.7,
       "directFlightCities": 175,
-      "safetyIndex": 73,
+      "safetyIndex": 87,
       "safetyConfidence": "high",
       "annualWorkHours": 1442,
       "monthlyRent": 1000,
@@ -1445,10 +1445,10 @@
       "pressFreedomScore": 70,
       "democracyIndex": 8.41,
       "corruptionPerceptionIndex": 71,
-      "safetyNightSafety": 72,
-      "safetyViolentCrimeInv": 78,
-      "safetyPropertyCrimeInv": 68,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 73,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 93,
+      "gallupLawOrder": 85
     },
     {
       "id": 26,
@@ -1491,7 +1491,7 @@
       "costMinimal": 480,
       "doctorsPerThousand": 4.6,
       "directFlightCities": 155,
-      "safetyIndex": 70,
+      "safetyIndex": 85,
       "safetyConfidence": "high",
       "annualWorkHours": 1766,
       "monthlyRent": 700,
@@ -1503,10 +1503,10 @@
       "pressFreedomScore": 63,
       "democracyIndex": 7.97,
       "corruptionPerceptionIndex": 57,
-      "safetyNightSafety": 70,
-      "safetyViolentCrimeInv": 76,
-      "safetyPropertyCrimeInv": 65,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 71,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 91,
+      "gallupLawOrder": 81
     },
     {
       "id": 27,
@@ -1549,7 +1549,7 @@
       "costMinimal": 450,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 160,
-      "safetyIndex": 64,
+      "safetyIndex": 82,
       "safetyConfidence": "high",
       "annualWorkHours": 1803,
       "monthlyRent": 650,
@@ -1561,10 +1561,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.04,
       "corruptionPerceptionIndex": 54,
-      "safetyNightSafety": 62,
-      "safetyViolentCrimeInv": 72,
-      "safetyPropertyCrimeInv": 60,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 68,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 82,
+      "gallupLawOrder": 79
     },
     {
       "id": 28,
@@ -1607,7 +1607,7 @@
       "costMinimal": 520,
       "doctorsPerThousand": 5.7,
       "directFlightCities": 150,
-      "safetyIndex": 65,
+      "safetyIndex": 80,
       "safetyConfidence": "high",
       "annualWorkHours": 1649,
       "monthlyRent": 900,
@@ -1619,10 +1619,10 @@
       "pressFreedomScore": 80,
       "democracyIndex": 8.03,
       "corruptionPerceptionIndex": 61,
-      "safetyNightSafety": 62,
-      "safetyViolentCrimeInv": 72,
-      "safetyPropertyCrimeInv": 52,
-      "safetyForeignerFriendly": 82
+      "numbeoSafetyIndex": 58,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 93,
+      "gallupLawOrder": 76
     },
     {
       "id": 29,
@@ -1665,7 +1665,7 @@
       "costMinimal": 420,
       "doctorsPerThousand": 7,
       "directFlightCities": 165,
-      "safetyIndex": 58,
+      "safetyIndex": 74,
       "safetyConfidence": "high",
       "annualWorkHours": 1886,
       "monthlyRent": 550,
@@ -1677,10 +1677,10 @@
       "pressFreedomScore": 58,
       "democracyIndex": 7.56,
       "corruptionPerceptionIndex": 49,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 50,
-      "safetyForeignerFriendly": 68
+      "numbeoSafetyIndex": 52,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 81,
+      "gallupLawOrder": 69
     },
     {
       "id": 30,
@@ -1723,7 +1723,7 @@
       "costMinimal": 320,
       "doctorsPerThousand": 2.4,
       "directFlightCities": 310,
-      "safetyIndex": 53,
+      "safetyIndex": 70,
       "safetyConfidence": "high",
       "annualWorkHours": 1855,
       "monthlyRent": 500,
@@ -1735,10 +1735,10 @@
       "pressFreedomScore": 22,
       "democracyIndex": 4.35,
       "corruptionPerceptionIndex": 36,
-      "safetyNightSafety": 52,
-      "safetyViolentCrimeInv": 58,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 53,
+      "homicideRateInv": 95,
+      "gpiScoreInv": 62,
+      "gallupLawOrder": 72
     },
     {
       "id": 31,
@@ -1781,7 +1781,7 @@
       "costMinimal": 480,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 115,
-      "safetyIndex": 34,
+      "safetyIndex": 40,
       "safetyConfidence": "high",
       "annualWorkHours": 2128,
       "monthlyRent": 550,
@@ -1793,10 +1793,10 @@
       "pressFreedomScore": 33,
       "democracyIndex": 5.57,
       "corruptionPerceptionIndex": 31,
-      "safetyNightSafety": 28,
-      "safetyViolentCrimeInv": 35,
-      "safetyPropertyCrimeInv": 30,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 27,
+      "homicideRateInv": 44,
+      "gpiScoreInv": 52,
+      "gallupLawOrder": 48
     },
     {
       "id": 32,
@@ -1839,7 +1839,7 @@
       "costMinimal": 480,
       "doctorsPerThousand": 2.7,
       "directFlightCities": 135,
-      "safetyIndex": 29,
+      "safetyIndex": 44,
       "safetyConfidence": "high",
       "annualWorkHours": 1776,
       "monthlyRent": 550,
@@ -1851,10 +1851,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 6.78,
       "corruptionPerceptionIndex": 36,
-      "safetyNightSafety": 22,
-      "safetyViolentCrimeInv": 32,
-      "safetyPropertyCrimeInv": 25,
-      "safetyForeignerFriendly": 60
+      "numbeoSafetyIndex": 25,
+      "homicideRateInv": 50,
+      "gpiScoreInv": 66,
+      "gallupLawOrder": 49
     },
     {
       "id": 33,
@@ -1897,7 +1897,7 @@
       "costMinimal": 400,
       "doctorsPerThousand": 2.5,
       "directFlightCities": 55,
-      "safetyIndex": 33,
+      "safetyIndex": 43,
       "safetyConfidence": "high",
       "annualWorkHours": 1776,
       "monthlyRent": 650,
@@ -1909,10 +1909,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 6.78,
       "corruptionPerceptionIndex": 36,
-      "safetyNightSafety": 25,
-      "safetyViolentCrimeInv": 35,
-      "safetyPropertyCrimeInv": 28,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 22,
+      "homicideRateInv": 50,
+      "gpiScoreInv": 66,
+      "gallupLawOrder": 49
     },
     {
       "id": 34,
@@ -1955,7 +1955,7 @@
       "costMinimal": 1100,
       "doctorsPerThousand": 2.9,
       "directFlightCities": 180,
-      "safetyIndex": 53,
+      "safetyIndex": 67,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 2000,
@@ -1967,10 +1967,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 50,
-      "safetyViolentCrimeInv": 55,
-      "safetyPropertyCrimeInv": 45,
-      "safetyForeignerFriendly": 78
+      "numbeoSafetyIndex": 49,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 35,
@@ -2013,7 +2013,7 @@
       "costMinimal": 1200,
       "doctorsPerThousand": 4,
       "directFlightCities": 200,
-      "safetyIndex": 59,
+      "safetyIndex": 68,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1700,
@@ -2025,10 +2025,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 75
+      "numbeoSafetyIndex": 51,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 36,
@@ -2071,7 +2071,7 @@
       "costMinimal": 1150,
       "doctorsPerThousand": 5,
       "directFlightCities": 140,
-      "safetyIndex": 64,
+      "safetyIndex": 71,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1500,
@@ -2083,10 +2083,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 60,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 58,
-      "safetyForeignerFriendly": 80
+      "numbeoSafetyIndex": 58,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 37,
@@ -2129,7 +2129,7 @@
       "costMinimal": 1250,
       "doctorsPerThousand": 3.1,
       "directFlightCities": 135,
-      "safetyIndex": 53,
+      "safetyIndex": 64,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1800,
@@ -2141,10 +2141,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 48,
-      "safetyViolentCrimeInv": 58,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 78
+      "numbeoSafetyIndex": 40,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 38,
@@ -2187,7 +2187,7 @@
       "costMinimal": 980,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 215,
-      "safetyIndex": 60,
+      "safetyIndex": 69,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1400,
@@ -2199,10 +2199,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 52,
-      "safetyForeignerFriendly": 76
+      "numbeoSafetyIndex": 52,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 39,
@@ -2245,7 +2245,7 @@
       "costMinimal": 1000,
       "doctorsPerThousand": 2.4,
       "directFlightCities": 75,
-      "safetyIndex": 56,
+      "safetyIndex": 69,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1600,
@@ -2257,10 +2257,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 52,
-      "safetyViolentCrimeInv": 60,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 78
+      "numbeoSafetyIndex": 53,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 40,
@@ -2303,7 +2303,7 @@
       "costMinimal": 920,
       "doctorsPerThousand": 2.6,
       "directFlightCities": 120,
-      "safetyIndex": 65,
+      "safetyIndex": 79,
       "safetyConfidence": "high",
       "annualWorkHours": 1686,
       "monthlyRent": 1600,
@@ -2315,10 +2315,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 8.88,
       "corruptionPerceptionIndex": 76,
-      "safetyNightSafety": 62,
-      "safetyViolentCrimeInv": 70,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 85
+      "numbeoSafetyIndex": 58,
+      "homicideRateInv": 96,
+      "gpiScoreInv": 91,
+      "gallupLawOrder": 80
     },
     {
       "id": 41,
@@ -2361,7 +2361,7 @@
       "costMinimal": 750,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 130,
-      "safetyIndex": 62,
+      "safetyIndex": 79,
       "safetyConfidence": "high",
       "annualWorkHours": 1686,
       "monthlyRent": 1400,
@@ -2373,10 +2373,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 8.88,
       "corruptionPerceptionIndex": 76,
-      "safetyNightSafety": 58,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 80
+      "numbeoSafetyIndex": 57,
+      "homicideRateInv": 96,
+      "gpiScoreInv": 91,
+      "gallupLawOrder": 80
     },
     {
       "id": 42,
@@ -2419,7 +2419,7 @@
       "costMinimal": 1000,
       "doctorsPerThousand": 4.2,
       "directFlightCities": 75,
-      "safetyIndex": 70,
+      "safetyIndex": 81,
       "safetyConfidence": "high",
       "annualWorkHours": 1694,
       "monthlyRent": 1800,
@@ -2431,10 +2431,10 @@
       "pressFreedomScore": 65,
       "democracyIndex": 8.71,
       "corruptionPerceptionIndex": 75,
-      "safetyNightSafety": 68,
-      "safetyViolentCrimeInv": 74,
-      "safetyPropertyCrimeInv": 62,
-      "safetyForeignerFriendly": 82
+      "numbeoSafetyIndex": 62,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 87,
+      "gallupLawOrder": 82
     },
     {
       "id": 43,
@@ -2477,7 +2477,7 @@
       "costMinimal": 900,
       "doctorsPerThousand": 3.8,
       "directFlightCities": 55,
-      "safetyIndex": 72,
+      "safetyIndex": 82,
       "safetyConfidence": "high",
       "annualWorkHours": 1694,
       "monthlyRent": 1400,
@@ -2489,10 +2489,10 @@
       "pressFreedomScore": 65,
       "democracyIndex": 8.71,
       "corruptionPerceptionIndex": 75,
-      "safetyNightSafety": 70,
-      "safetyViolentCrimeInv": 75,
-      "safetyPropertyCrimeInv": 65,
-      "safetyForeignerFriendly": 80
+      "numbeoSafetyIndex": 64,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 87,
+      "gallupLawOrder": 82
     },
     {
       "id": 44,
@@ -2535,7 +2535,7 @@
       "costMinimal": 800,
       "doctorsPerThousand": 3.5,
       "directFlightCities": 60,
-      "safetyIndex": 72,
+      "safetyIndex": 79,
       "safetyConfidence": "high",
       "annualWorkHours": 1752,
       "monthlyRent": 1300,
@@ -2547,10 +2547,10 @@
       "pressFreedomScore": 78,
       "democracyIndex": 9.61,
       "corruptionPerceptionIndex": 85,
-      "safetyNightSafety": 68,
-      "safetyViolentCrimeInv": 78,
-      "safetyPropertyCrimeInv": 65,
-      "safetyForeignerFriendly": 82
+      "numbeoSafetyIndex": 53,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 95,
+      "gallupLawOrder": 82
     },
     {
       "id": 45,
@@ -2593,7 +2593,7 @@
       "costMinimal": 320,
       "doctorsPerThousand": 0.8,
       "directFlightCities": 190,
-      "safetyIndex": 57,
+      "safetyIndex": 75,
       "safetyConfidence": "high",
       "annualWorkHours": 2024,
       "monthlyRent": 500,
@@ -2605,10 +2605,10 @@
       "pressFreedomScore": 40,
       "democracyIndex": 6.35,
       "corruptionPerceptionIndex": 35,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 60,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 56,
+      "homicideRateInv": 94,
+      "gpiScoreInv": 75,
+      "gallupLawOrder": 78
     },
     {
       "id": 46,
@@ -2651,7 +2651,7 @@
       "costMinimal": 280,
       "doctorsPerThousand": 2.5,
       "directFlightCities": 140,
-      "safetyIndex": 57,
+      "safetyIndex": 76,
       "safetyConfidence": "high",
       "annualWorkHours": 2028,
       "monthlyRent": 550,
@@ -2663,10 +2663,10 @@
       "pressFreedomScore": 47,
       "democracyIndex": 7.3,
       "corruptionPerceptionIndex": 50,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 50,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 53,
+      "homicideRateInv": 96,
+      "gpiScoreInv": 86,
+      "gallupLawOrder": 77
     },
     {
       "id": 47,
@@ -2709,8 +2709,8 @@
       "costMinimal": 220,
       "doctorsPerThousand": 1.4,
       "directFlightCities": 85,
-      "safetyIndex": 50,
-      "safetyConfidence": "medium",
+      "safetyIndex": 78,
+      "safetyConfidence": "high",
       "annualWorkHours": 2060,
       "monthlyRent": 400,
       "paidLeaveDays": 12,
@@ -2721,10 +2721,10 @@
       "pressFreedomScore": 15,
       "democracyIndex": 2.82,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 45,
-      "safetyViolentCrimeInv": 58,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 62
+      "numbeoSafetyIndex": 58,
+      "homicideRateInv": 97,
+      "gpiScoreInv": 79,
+      "gallupLawOrder": 85
     },
     {
       "id": 48,
@@ -2767,8 +2767,8 @@
       "costMinimal": 200,
       "doctorsPerThousand": 1.3,
       "directFlightCities": 70,
-      "safetyIndex": 60,
-      "safetyConfidence": "medium",
+      "safetyIndex": 80,
+      "safetyConfidence": "high",
       "annualWorkHours": 2060,
       "monthlyRent": 450,
       "paidLeaveDays": 12,
@@ -2779,10 +2779,10 @@
       "pressFreedomScore": 15,
       "democracyIndex": 2.82,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 58,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 63,
+      "homicideRateInv": 97,
+      "gpiScoreInv": 79,
+      "gallupLawOrder": 85
     },
     {
       "id": 49,
@@ -2825,8 +2825,8 @@
       "costMinimal": 200,
       "doctorsPerThousand": 1,
       "directFlightCities": 75,
-      "safetyIndex": 54,
-      "safetyConfidence": "medium",
+      "safetyIndex": 70,
+      "safetyConfidence": "high",
       "annualWorkHours": 2117,
       "monthlyRent": 250,
       "paidLeaveDays": 15,
@@ -2837,10 +2837,10 @@
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
       "corruptionPerceptionIndex": 39,
-      "safetyNightSafety": 52,
-      "safetyViolentCrimeInv": 60,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 50,
+      "homicideRateInv": 94,
+      "gpiScoreInv": 67,
+      "gallupLawOrder": 73
     },
     {
       "id": 50,
@@ -2883,7 +2883,7 @@
       "costMinimal": 250,
       "doctorsPerThousand": 1.2,
       "directFlightCities": 110,
-      "safetyIndex": 41,
+      "safetyIndex": 69,
       "safetyConfidence": "high",
       "annualWorkHours": 2117,
       "monthlyRent": 200,
@@ -2895,10 +2895,10 @@
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
       "corruptionPerceptionIndex": 39,
-      "safetyNightSafety": 35,
-      "safetyViolentCrimeInv": 48,
-      "safetyPropertyCrimeInv": 38,
-      "safetyForeignerFriendly": 50
+      "numbeoSafetyIndex": 46,
+      "homicideRateInv": 94,
+      "gpiScoreInv": 67,
+      "gallupLawOrder": 73
     },
     {
       "id": 51,
@@ -2941,7 +2941,7 @@
       "costMinimal": 200,
       "doctorsPerThousand": 1.1,
       "directFlightCities": 145,
-      "safetyIndex": 35,
+      "safetyIndex": 67,
       "safetyConfidence": "high",
       "annualWorkHours": 2117,
       "monthlyRent": 250,
@@ -2953,10 +2953,10 @@
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
       "corruptionPerceptionIndex": 39,
-      "safetyNightSafety": 28,
-      "safetyViolentCrimeInv": 42,
-      "safetyPropertyCrimeInv": 32,
-      "safetyForeignerFriendly": 48
+      "numbeoSafetyIndex": 40,
+      "homicideRateInv": 94,
+      "gpiScoreInv": 67,
+      "gallupLawOrder": 73
     },
     {
       "id": 52,
@@ -2999,8 +2999,8 @@
       "costMinimal": 280,
       "doctorsPerThousand": 0.3,
       "directFlightCities": 60,
-      "safetyIndex": 30,
-      "safetyConfidence": "medium",
+      "safetyIndex": 59,
+      "safetyConfidence": "high",
       "annualWorkHours": 2100,
       "monthlyRent": 350,
       "paidLeaveDays": 21,
@@ -3011,10 +3011,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 5.05,
       "corruptionPerceptionIndex": 32,
-      "safetyNightSafety": 22,
-      "safetyViolentCrimeInv": 35,
-      "safetyPropertyCrimeInv": 25,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 29,
+      "homicideRateInv": 90,
+      "gpiScoreInv": 65,
+      "gallupLawOrder": 60
     },
     {
       "id": 53,
@@ -3057,8 +3057,8 @@
       "costMinimal": 180,
       "doctorsPerThousand": 0.9,
       "directFlightCities": 100,
-      "safetyIndex": 43,
-      "safetyConfidence": "medium",
+      "safetyIndex": 72,
+      "safetyConfidence": "high",
       "annualWorkHours": 2070,
       "monthlyRent": 300,
       "paidLeaveDays": 21,
@@ -3069,10 +3069,10 @@
       "pressFreedomScore": 14,
       "democracyIndex": 2.93,
       "corruptionPerceptionIndex": 35,
-      "safetyNightSafety": 38,
-      "safetyViolentCrimeInv": 52,
-      "safetyPropertyCrimeInv": 40,
-      "safetyForeignerFriendly": 45
+      "numbeoSafetyIndex": 49,
+      "homicideRateInv": 95,
+      "gpiScoreInv": 71,
+      "gallupLawOrder": 78
     },
     {
       "id": 54,
@@ -3115,8 +3115,8 @@
       "costMinimal": 200,
       "doctorsPerThousand": 2.2,
       "directFlightCities": 75,
-      "safetyIndex": 52,
-      "safetyConfidence": "medium",
+      "safetyIndex": 69,
+      "safetyConfidence": "high",
       "annualWorkHours": 2024,
       "monthlyRent": 200,
       "paidLeaveDays": 26,
@@ -3127,10 +3127,10 @@
       "pressFreedomScore": 8,
       "democracyIndex": 1.96,
       "corruptionPerceptionIndex": 24,
-      "safetyNightSafety": 48,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 30
+      "numbeoSafetyIndex": 51,
+      "homicideRateInv": 95,
+      "gpiScoreInv": 63,
+      "gallupLawOrder": 68
     },
     {
       "id": 55,
@@ -3173,8 +3173,8 @@
       "costMinimal": 140,
       "doctorsPerThousand": 1.1,
       "directFlightCities": 40,
-      "safetyIndex": 25,
-      "safetyConfidence": "medium",
+      "safetyIndex": 57,
+      "safetyConfidence": "high",
       "annualWorkHours": 2150,
       "monthlyRent": 150,
       "paidLeaveDays": 14,
@@ -3185,10 +3185,10 @@
       "pressFreedomScore": 27,
       "democracyIndex": 4.13,
       "corruptionPerceptionIndex": 27,
-      "safetyNightSafety": 18,
-      "safetyViolentCrimeInv": 30,
-      "safetyPropertyCrimeInv": 22,
-      "safetyForeignerFriendly": 40
+      "numbeoSafetyIndex": 26,
+      "homicideRateInv": 92,
+      "gpiScoreInv": 56,
+      "gallupLawOrder": 63
     },
     {
       "id": 56,
@@ -3231,8 +3231,8 @@
       "costMinimal": 150,
       "doctorsPerThousand": 1.3,
       "directFlightCities": 45,
-      "safetyIndex": 43,
-      "safetyConfidence": "medium",
+      "safetyIndex": 63,
+      "safetyConfidence": "high",
       "annualWorkHours": 2150,
       "monthlyRent": 180,
       "paidLeaveDays": 14,
@@ -3243,10 +3243,10 @@
       "pressFreedomScore": 27,
       "democracyIndex": 4.13,
       "corruptionPerceptionIndex": 27,
-      "safetyNightSafety": 38,
-      "safetyViolentCrimeInv": 52,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 42
+      "numbeoSafetyIndex": 42,
+      "homicideRateInv": 92,
+      "gpiScoreInv": 56,
+      "gallupLawOrder": 63
     },
     {
       "id": 57,
@@ -3289,8 +3289,8 @@
       "costMinimal": 250,
       "doctorsPerThousand": 0.7,
       "directFlightCities": 90,
-      "safetyIndex": 46,
-      "safetyConfidence": "medium",
+      "safetyIndex": 76,
+      "safetyConfidence": "high",
       "annualWorkHours": 1950,
       "monthlyRent": 350,
       "paidLeaveDays": 12,
@@ -3301,10 +3301,10 @@
       "pressFreedomScore": 50,
       "democracyIndex": 6.71,
       "corruptionPerceptionIndex": 37,
-      "safetyNightSafety": 40,
-      "safetyViolentCrimeInv": 52,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 50,
+      "homicideRateInv": 100,
+      "gpiScoreInv": 79,
+      "gallupLawOrder": 82
     },
     {
       "id": 58,
@@ -3347,8 +3347,8 @@
       "costMinimal": 220,
       "doctorsPerThousand": 0.8,
       "directFlightCities": 80,
-      "safetyIndex": 44,
-      "safetyConfidence": "medium",
+      "safetyIndex": 66,
+      "safetyConfidence": "high",
       "annualWorkHours": 2000,
       "monthlyRent": 350,
       "paidLeaveDays": 5,
@@ -3359,10 +3359,10 @@
       "pressFreedomScore": 42,
       "democracyIndex": 6.73,
       "corruptionPerceptionIndex": 34,
-      "safetyNightSafety": 38,
-      "safetyViolentCrimeInv": 48,
-      "safetyPropertyCrimeInv": 38,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 41,
+      "homicideRateInv": 91,
+      "gpiScoreInv": 68,
+      "gallupLawOrder": 72
     },
     {
       "id": 59,
@@ -3405,7 +3405,7 @@
       "costMinimal": 650,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 190,
-      "safetyIndex": 77,
+      "safetyIndex": 85,
       "safetyConfidence": "high",
       "annualWorkHours": 1901,
       "monthlyRent": 900,
@@ -3417,10 +3417,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 8.09,
       "corruptionPerceptionIndex": 63,
-      "safetyNightSafety": 78,
-      "safetyViolentCrimeInv": 85,
-      "safetyPropertyCrimeInv": 78,
-      "safetyForeignerFriendly": 48
+      "numbeoSafetyIndex": 75,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 82,
+      "gallupLawOrder": 85
     },
     {
       "id": 60,
@@ -3463,8 +3463,8 @@
       "costMinimal": 480,
       "doctorsPerThousand": 2.4,
       "directFlightCities": 50,
-      "safetyIndex": 74,
-      "safetyConfidence": "medium",
+      "safetyIndex": 85,
+      "safetyConfidence": "high",
       "annualWorkHours": 1901,
       "monthlyRent": 600,
       "paidLeaveDays": 15,
@@ -3475,10 +3475,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 8.09,
       "corruptionPerceptionIndex": 63,
-      "safetyNightSafety": 75,
-      "safetyViolentCrimeInv": 82,
-      "safetyPropertyCrimeInv": 75,
-      "safetyForeignerFriendly": 42
+      "numbeoSafetyIndex": 74,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 82,
+      "gallupLawOrder": 85
     },
     {
       "id": 61,
@@ -3521,7 +3521,7 @@
       "costMinimal": 450,
       "doctorsPerThousand": 2.5,
       "directFlightCities": 130,
-      "safetyIndex": 78,
+      "safetyIndex": 88,
       "safetyConfidence": "high",
       "annualWorkHours": 2008,
       "monthlyRent": 800,
@@ -3533,10 +3533,10 @@
       "pressFreedomScore": 74,
       "democracyIndex": 8.99,
       "corruptionPerceptionIndex": 68,
-      "safetyNightSafety": 78,
-      "safetyViolentCrimeInv": 85,
-      "safetyPropertyCrimeInv": 78,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 85,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 88
     },
     {
       "id": 62,
@@ -3579,7 +3579,7 @@
       "costMinimal": 320,
       "doctorsPerThousand": 5.5,
       "directFlightCities": 65,
-      "safetyIndex": 38,
+      "safetyIndex": 60,
       "safetyConfidence": "high",
       "annualWorkHours": 1820,
       "monthlyRent": 350,
@@ -3591,10 +3591,10 @@
       "pressFreedomScore": 60,
       "democracyIndex": 6.81,
       "corruptionPerceptionIndex": 38,
-      "safetyNightSafety": 32,
-      "safetyViolentCrimeInv": 42,
-      "safetyPropertyCrimeInv": 32,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 29,
+      "homicideRateInv": 90,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 50
     },
     {
       "id": 63,
@@ -3637,7 +3637,7 @@
       "costMinimal": 450,
       "doctorsPerThousand": 3.6,
       "directFlightCities": 55,
-      "safetyIndex": 45,
+      "safetyIndex": 64,
       "safetyConfidence": "high",
       "annualWorkHours": 1916,
       "monthlyRent": 500,
@@ -3649,10 +3649,10 @@
       "pressFreedomScore": 68,
       "democracyIndex": 8.28,
       "corruptionPerceptionIndex": 67,
-      "safetyNightSafety": 38,
-      "safetyViolentCrimeInv": 52,
-      "safetyPropertyCrimeInv": 40,
-      "safetyForeignerFriendly": 62
+      "numbeoSafetyIndex": 35,
+      "homicideRateInv": 90,
+      "gpiScoreInv": 80,
+      "gallupLawOrder": 58
     },
     {
       "id": 64,
@@ -3695,8 +3695,8 @@
       "costMinimal": 280,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 75,
-      "safetyIndex": 33,
-      "safetyConfidence": "medium",
+      "safetyIndex": 42,
+      "safetyConfidence": "high",
       "annualWorkHours": 1964,
       "monthlyRent": 350,
       "paidLeaveDays": 15,
@@ -3707,10 +3707,10 @@
       "pressFreedomScore": 48,
       "democracyIndex": 7.04,
       "corruptionPerceptionIndex": 40,
-      "safetyNightSafety": 25,
-      "safetyViolentCrimeInv": 38,
-      "safetyPropertyCrimeInv": 28,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 26,
+      "homicideRateInv": 47,
+      "gpiScoreInv": 57,
+      "gallupLawOrder": 51
     },
     {
       "id": 65,
@@ -3753,8 +3753,8 @@
       "costMinimal": 260,
       "doctorsPerThousand": 1.7,
       "directFlightCities": 65,
-      "safetyIndex": 37,
-      "safetyConfidence": "medium",
+      "safetyIndex": 53,
+      "safetyConfidence": "high",
       "annualWorkHours": 2000,
       "monthlyRent": 300,
       "paidLeaveDays": 30,
@@ -3765,10 +3765,10 @@
       "pressFreedomScore": 52,
       "democracyIndex": 6.09,
       "corruptionPerceptionIndex": 36,
-      "safetyNightSafety": 30,
-      "safetyViolentCrimeInv": 42,
-      "safetyPropertyCrimeInv": 32,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 21,
+      "homicideRateInv": 83,
+      "gpiScoreInv": 71,
+      "gallupLawOrder": 45
     },
     {
       "id": 66,
@@ -3811,8 +3811,8 @@
       "costMinimal": 150,
       "doctorsPerThousand": 1.5,
       "directFlightCities": 25,
-      "safetyIndex": 17,
-      "safetyConfidence": "low",
+      "safetyIndex": 26,
+      "safetyConfidence": "high",
       "annualWorkHours": 1800,
       "monthlyRent": 250,
       "paidLeaveDays": 15,
@@ -3823,10 +3823,11 @@
       "pressFreedomScore": 18,
       "democracyIndex": 2.23,
       "corruptionPerceptionIndex": 13,
-      "safetyNightSafety": 12,
-      "safetyViolentCrimeInv": 18,
-      "safetyPropertyCrimeInv": 15,
-      "safetyForeignerFriendly": 42
+      "numbeoSafetyIndex": 13,
+      "homicideRateInv": 18,
+      "gpiScoreInv": 54,
+      "gallupLawOrder": 37,
+      "safetyWarning": "extreme_instability"
     },
     {
       "id": 67,
@@ -3869,7 +3870,7 @@
       "costMinimal": 380,
       "doctorsPerThousand": 1,
       "directFlightCities": 75,
-      "safetyIndex": 25,
+      "safetyIndex": 28,
       "safetyConfidence": "high",
       "annualWorkHours": 1856,
       "monthlyRent": 500,
@@ -3881,10 +3882,10 @@
       "pressFreedomScore": 62,
       "democracyIndex": 7.05,
       "corruptionPerceptionIndex": 43,
-      "safetyNightSafety": 20,
-      "safetyViolentCrimeInv": 28,
-      "safetyPropertyCrimeInv": 20,
-      "safetyForeignerFriendly": 50
+      "numbeoSafetyIndex": 19,
+      "homicideRateInv": 9,
+      "gpiScoreInv": 58,
+      "gallupLawOrder": 45
     },
     {
       "id": 68,
@@ -3927,7 +3928,7 @@
       "costMinimal": 350,
       "doctorsPerThousand": 1,
       "directFlightCities": 35,
-      "safetyIndex": 39,
+      "safetyIndex": 29,
       "safetyConfidence": "high",
       "annualWorkHours": 1856,
       "monthlyRent": 600,
@@ -3939,10 +3940,10 @@
       "pressFreedomScore": 62,
       "democracyIndex": 7.05,
       "corruptionPerceptionIndex": 43,
-      "safetyNightSafety": 32,
-      "safetyViolentCrimeInv": 45,
-      "safetyPropertyCrimeInv": 32,
-      "safetyForeignerFriendly": 62
+      "numbeoSafetyIndex": 23,
+      "homicideRateInv": 9,
+      "gpiScoreInv": 58,
+      "gallupLawOrder": 45
     },
     {
       "id": 69,
@@ -3985,8 +3986,8 @@
       "costMinimal": 380,
       "doctorsPerThousand": 2.2,
       "directFlightCities": 50,
-      "safetyIndex": 35,
-      "safetyConfidence": "medium",
+      "safetyIndex": 42,
+      "safetyConfidence": "high",
       "annualWorkHours": 2128,
       "monthlyRent": 450,
       "paidLeaveDays": 12,
@@ -3997,10 +3998,10 @@
       "pressFreedomScore": 33,
       "democracyIndex": 5.57,
       "corruptionPerceptionIndex": 31,
-      "safetyNightSafety": 30,
-      "safetyViolentCrimeInv": 38,
-      "safetyPropertyCrimeInv": 30,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 31,
+      "homicideRateInv": 44,
+      "gpiScoreInv": 52,
+      "gallupLawOrder": 48
     },
     {
       "id": 70,
@@ -4043,8 +4044,8 @@
       "costMinimal": 420,
       "doctorsPerThousand": 3,
       "directFlightCities": 55,
-      "safetyIndex": 52,
-      "safetyConfidence": "medium",
+      "safetyIndex": 62,
+      "safetyConfidence": "high",
       "annualWorkHours": 2026,
       "monthlyRent": 550,
       "paidLeaveDays": 14,
@@ -4055,10 +4056,10 @@
       "pressFreedomScore": 70,
       "democracyIndex": 8.29,
       "corruptionPerceptionIndex": 55,
-      "safetyNightSafety": 48,
-      "safetyViolentCrimeInv": 55,
-      "safetyPropertyCrimeInv": 45,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 42,
+      "homicideRateInv": 75,
+      "gpiScoreInv": 80,
+      "gallupLawOrder": 59
     },
     {
       "id": 71,
@@ -4101,8 +4102,8 @@
       "costMinimal": 500,
       "doctorsPerThousand": 1.9,
       "directFlightCities": 90,
-      "safetyIndex": 47,
-      "safetyConfidence": "medium",
+      "safetyIndex": 64,
+      "safetyConfidence": "high",
       "annualWorkHours": 1960,
       "monthlyRent": 800,
       "paidLeaveDays": 30,
@@ -4113,10 +4114,10 @@
       "pressFreedomScore": 56,
       "democracyIndex": 7.18,
       "corruptionPerceptionIndex": 36,
-      "safetyNightSafety": 42,
-      "safetyViolentCrimeInv": 50,
-      "safetyPropertyCrimeInv": 40,
-      "safetyForeignerFriendly": 70
+      "numbeoSafetyIndex": 43,
+      "homicideRateInv": 79,
+      "gpiScoreInv": 77,
+      "gallupLawOrder": 63
     },
     {
       "id": 72,
@@ -4159,7 +4160,7 @@
       "costMinimal": 180,
       "doctorsPerThousand": 8.4,
       "directFlightCities": 40,
-      "safetyIndex": 59,
+      "safetyIndex": 85,
       "safetyConfidence": "low",
       "annualWorkHours": 1780,
       "monthlyRent": 150,
@@ -4171,10 +4172,11 @@
       "pressFreedomScore": 7,
       "democracyIndex": 2.84,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 52
+      "numbeoSafetyIndex": null,
+      "homicideRateInv": 89,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": null,
+      "safetyWarning": "data_blocked"
     },
     {
       "id": 73,
@@ -4217,8 +4219,8 @@
       "costMinimal": 650,
       "doctorsPerThousand": 3,
       "directFlightCities": 45,
-      "safetyIndex": 47,
-      "safetyConfidence": "medium",
+      "safetyIndex": 57,
+      "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 750,
       "paidLeaveDays": 0,
@@ -4229,10 +4231,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 42,
-      "safetyViolentCrimeInv": 50,
-      "safetyPropertyCrimeInv": 38,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 34,
+      "homicideRateInv": 75,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 62
     },
     {
       "id": 74,
@@ -4275,7 +4277,7 @@
       "costMinimal": 300,
       "doctorsPerThousand": 0.5,
       "directFlightCities": 30,
-      "safetyIndex": 40,
+      "safetyIndex": 32,
       "safetyConfidence": "medium",
       "annualWorkHours": 1920,
       "monthlyRent": 400,
@@ -4287,10 +4289,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 7.39,
       "corruptionPerceptionIndex": 44,
-      "safetyNightSafety": 35,
-      "safetyViolentCrimeInv": 42,
-      "safetyPropertyCrimeInv": 32,
-      "safetyForeignerFriendly": 70
+      "numbeoSafetyIndex": null,
+      "homicideRateInv": 0,
+      "gpiScoreInv": 65,
+      "gallupLawOrder": 54
     },
     {
       "id": 75,
@@ -4333,7 +4335,7 @@
       "costMinimal": 700,
       "doctorsPerThousand": 3,
       "directFlightCities": 115,
-      "safetyIndex": 84,
+      "safetyIndex": 93,
       "safetyConfidence": "high",
       "annualWorkHours": 2200,
       "monthlyRent": 1500,
@@ -4345,10 +4347,10 @@
       "pressFreedomScore": 26,
       "democracyIndex": 2.76,
       "corruptionPerceptionIndex": 68,
-      "safetyNightSafety": 85,
-      "safetyViolentCrimeInv": 88,
-      "safetyPropertyCrimeInv": 85,
-      "safetyForeignerFriendly": 68
+      "numbeoSafetyIndex": 89,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 87,
+      "gallupLawOrder": 95
     },
     {
       "id": 76,
@@ -4391,7 +4393,7 @@
       "costMinimal": 680,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 185,
-      "safetyIndex": 82,
+      "safetyIndex": 92,
       "safetyConfidence": "high",
       "annualWorkHours": 2200,
       "monthlyRent": 1600,
@@ -4403,10 +4405,10 @@
       "pressFreedomScore": 30,
       "democracyIndex": 3.19,
       "corruptionPerceptionIndex": 58,
-      "safetyNightSafety": 82,
-      "safetyViolentCrimeInv": 86,
-      "safetyPropertyCrimeInv": 82,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 85,
+      "homicideRateInv": 100,
+      "gpiScoreInv": 89,
+      "gallupLawOrder": 93
     },
     {
       "id": 77,
@@ -4449,8 +4451,8 @@
       "costMinimal": 520,
       "doctorsPerThousand": 0.9,
       "directFlightCities": 65,
-      "safetyIndex": 77,
-      "safetyConfidence": "medium",
+      "safetyIndex": 84,
+      "safetyConfidence": "high",
       "annualWorkHours": 2150,
       "monthlyRent": 700,
       "paidLeaveDays": 30,
@@ -4461,10 +4463,10 @@
       "pressFreedomScore": 15,
       "democracyIndex": 2.52,
       "corruptionPerceptionIndex": 44,
-      "safetyNightSafety": 78,
-      "safetyViolentCrimeInv": 82,
-      "safetyPropertyCrimeInv": 78,
-      "safetyForeignerFriendly": 60
+      "numbeoSafetyIndex": 75,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 80,
+      "gallupLawOrder": 83
     },
     {
       "id": 78,
@@ -4507,8 +4509,8 @@
       "costMinimal": 550,
       "doctorsPerThousand": 3,
       "directFlightCities": 105,
-      "safetyIndex": 72,
-      "safetyConfidence": "medium",
+      "safetyIndex": 84,
+      "safetyConfidence": "high",
       "annualWorkHours": 2100,
       "monthlyRent": 800,
       "paidLeaveDays": 21,
@@ -4519,10 +4521,10 @@
       "pressFreedomScore": 12,
       "democracyIndex": 2.08,
       "corruptionPerceptionIndex": 52,
-      "safetyNightSafety": 72,
-      "safetyViolentCrimeInv": 78,
-      "safetyPropertyCrimeInv": 72,
-      "safetyForeignerFriendly": 52
+      "numbeoSafetyIndex": 74,
+      "homicideRateInv": 97,
+      "gpiScoreInv": 77,
+      "gallupLawOrder": 90
     },
     {
       "id": 79,
@@ -4565,8 +4567,8 @@
       "costMinimal": 480,
       "doctorsPerThousand": 2.2,
       "directFlightCities": 75,
-      "safetyIndex": 80,
-      "safetyConfidence": "medium",
+      "safetyIndex": 90,
+      "safetyConfidence": "high",
       "annualWorkHours": 2100,
       "monthlyRent": 650,
       "paidLeaveDays": 30,
@@ -4577,10 +4579,10 @@
       "pressFreedomScore": 28,
       "democracyIndex": 3.12,
       "corruptionPerceptionIndex": 52,
-      "safetyNightSafety": 80,
-      "safetyViolentCrimeInv": 85,
-      "safetyPropertyCrimeInv": 80,
-      "safetyForeignerFriendly": 62
+      "numbeoSafetyIndex": 83,
+      "homicideRateInv": 100,
+      "gpiScoreInv": 86,
+      "gallupLawOrder": 92
     },
     {
       "id": 80,
@@ -4623,8 +4625,8 @@
       "costMinimal": 280,
       "doctorsPerThousand": 3,
       "directFlightCities": 60,
-      "safetyIndex": 48,
-      "safetyConfidence": "medium",
+      "safetyIndex": 62,
+      "safetyConfidence": "high",
       "annualWorkHours": 1950,
       "monthlyRent": 500,
       "paidLeaveDays": 15,
@@ -4635,10 +4637,10 @@
       "pressFreedomScore": 48,
       "democracyIndex": 4.16,
       "corruptionPerceptionIndex": 24,
-      "safetyNightSafety": 42,
-      "safetyViolentCrimeInv": 55,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 41,
+      "homicideRateInv": 92,
+      "gpiScoreInv": 58,
+      "gallupLawOrder": 55
     },
     {
       "id": 81,
@@ -4681,8 +4683,8 @@
       "costMinimal": 320,
       "doctorsPerThousand": 2.5,
       "directFlightCities": 70,
-      "safetyIndex": 58,
-      "safetyConfidence": "medium",
+      "safetyIndex": 77,
+      "safetyConfidence": "high",
       "annualWorkHours": 2050,
       "monthlyRent": 400,
       "paidLeaveDays": 14,
@@ -4693,10 +4695,10 @@
       "pressFreedomScore": 32,
       "democracyIndex": 3.41,
       "corruptionPerceptionIndex": 47,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 58,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 75,
+      "gallupLawOrder": 79
     },
     {
       "id": 82,
@@ -4739,7 +4741,7 @@
       "costMinimal": 850,
       "doctorsPerThousand": 4,
       "directFlightCities": 120,
-      "safetyIndex": 63,
+      "safetyIndex": 73,
       "safetyConfidence": "high",
       "annualWorkHours": 1898,
       "monthlyRent": 1500,
@@ -4751,10 +4753,10 @@
       "pressFreedomScore": 53,
       "democracyIndex": 7.84,
       "corruptionPerceptionIndex": 62,
-      "safetyNightSafety": 62,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 60,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 63,
+      "homicideRateInv": 96,
+      "gpiScoreInv": 56,
+      "gallupLawOrder": 76
     },
     {
       "id": 83,
@@ -4797,8 +4799,8 @@
       "costMinimal": 170,
       "doctorsPerThousand": 0.9,
       "directFlightCities": 55,
-      "safetyIndex": 51,
-      "safetyConfidence": "medium",
+      "safetyIndex": 71,
+      "safetyConfidence": "high",
       "annualWorkHours": 2117,
       "monthlyRent": 200,
       "paidLeaveDays": 15,
@@ -4809,10 +4811,10 @@
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
       "corruptionPerceptionIndex": 39,
-      "safetyNightSafety": 48,
-      "safetyViolentCrimeInv": 58,
-      "safetyPropertyCrimeInv": 45,
-      "safetyForeignerFriendly": 50
+      "numbeoSafetyIndex": 54,
+      "homicideRateInv": 94,
+      "gpiScoreInv": 67,
+      "gallupLawOrder": 73
     },
     {
       "id": 84,
@@ -4855,8 +4857,8 @@
       "costMinimal": 160,
       "doctorsPerThousand": 0.9,
       "directFlightCities": 30,
-      "safetyIndex": 54,
-      "safetyConfidence": "medium",
+      "safetyIndex": 72,
+      "safetyConfidence": "high",
       "annualWorkHours": 2117,
       "monthlyRent": 200,
       "paidLeaveDays": 15,
@@ -4867,10 +4869,10 @@
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
       "corruptionPerceptionIndex": 39,
-      "safetyNightSafety": 52,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 50,
-      "safetyForeignerFriendly": 48
+      "numbeoSafetyIndex": 55,
+      "homicideRateInv": 94,
+      "gpiScoreInv": 67,
+      "gallupLawOrder": 73
     },
     {
       "id": 85,
@@ -4913,8 +4915,8 @@
       "costMinimal": 280,
       "doctorsPerThousand": 3.7,
       "directFlightCities": 0,
-      "safetyIndex": 20,
-      "safetyConfidence": "low",
+      "safetyIndex": 62,
+      "safetyConfidence": "high",
       "annualWorkHours": 1750,
       "monthlyRent": 350,
       "paidLeaveDays": 24,
@@ -4925,10 +4927,11 @@
       "pressFreedomScore": 44,
       "democracyIndex": 5.42,
       "corruptionPerceptionIndex": 36,
-      "safetyNightSafety": 15,
-      "safetyViolentCrimeInv": 20,
-      "safetyPropertyCrimeInv": 18,
-      "safetyForeignerFriendly": 45
+      "numbeoSafetyIndex": 55,
+      "homicideRateInv": 87,
+      "gpiScoreInv": 33,
+      "gallupLawOrder": 67,
+      "safetyWarning": "active_conflict"
     },
     {
       "id": 86,
@@ -4971,8 +4974,8 @@
       "costMinimal": 350,
       "doctorsPerThousand": 3.3,
       "directFlightCities": 115,
-      "safetyIndex": 57,
-      "safetyConfidence": "medium",
+      "safetyIndex": 78,
+      "safetyConfidence": "high",
       "annualWorkHours": 1838,
       "monthlyRent": 400,
       "paidLeaveDays": 20,
@@ -4983,10 +4986,10 @@
       "pressFreedomScore": 60,
       "democracyIndex": 6.4,
       "corruptionPerceptionIndex": 46,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 52,
-      "safetyForeignerFriendly": 50
+      "numbeoSafetyIndex": 60,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 84,
+      "gallupLawOrder": 71
     },
     {
       "id": 87,
@@ -5029,8 +5032,8 @@
       "costMinimal": 280,
       "doctorsPerThousand": 4.5,
       "directFlightCities": 90,
-      "safetyIndex": 63,
-      "safetyConfidence": "medium",
+      "safetyIndex": 79,
+      "safetyConfidence": "high",
       "annualWorkHours": 1754,
       "monthlyRent": 350,
       "paidLeaveDays": 20,
@@ -5041,10 +5044,10 @@
       "pressFreedomScore": 42,
       "democracyIndex": 6.53,
       "corruptionPerceptionIndex": 45,
-      "safetyNightSafety": 62,
-      "safetyViolentCrimeInv": 70,
-      "safetyPropertyCrimeInv": 60,
-      "safetyForeignerFriendly": 48
+      "numbeoSafetyIndex": 64,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 85,
+      "gallupLawOrder": 70
     },
     {
       "id": 88,
@@ -5087,8 +5090,8 @@
       "costMinimal": 380,
       "doctorsPerThousand": 3.6,
       "directFlightCities": 65,
-      "safetyIndex": 68,
-      "safetyConfidence": "medium",
+      "safetyIndex": 85,
+      "safetyConfidence": "high",
       "annualWorkHours": 1715,
       "monthlyRent": 500,
       "paidLeaveDays": 20,
@@ -5099,10 +5102,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 6.5,
       "corruptionPerceptionIndex": 47,
-      "safetyNightSafety": 68,
-      "safetyViolentCrimeInv": 75,
-      "safetyPropertyCrimeInv": 65,
-      "safetyForeignerFriendly": 52
+      "numbeoSafetyIndex": 72,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 90,
+      "gallupLawOrder": 80
     },
     {
       "id": 89,
@@ -5145,8 +5148,8 @@
       "costMinimal": 280,
       "doctorsPerThousand": 3.3,
       "directFlightCities": 90,
-      "safetyIndex": 59,
-      "safetyConfidence": "medium",
+      "safetyIndex": 77,
+      "safetyConfidence": "high",
       "annualWorkHours": 1780,
       "monthlyRent": 350,
       "paidLeaveDays": 20,
@@ -5157,10 +5160,10 @@
       "pressFreedomScore": 34,
       "democracyIndex": 6.02,
       "corruptionPerceptionIndex": 36,
-      "safetyNightSafety": 58,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 48
+      "numbeoSafetyIndex": 61,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 77,
+      "gallupLawOrder": 73
     },
     {
       "id": 90,
@@ -5203,7 +5206,7 @@
       "costMinimal": 380,
       "doctorsPerThousand": 3.7,
       "directFlightCities": 145,
-      "safetyIndex": 63,
+      "safetyIndex": 80,
       "safetyConfidence": "high",
       "annualWorkHours": 1805,
       "monthlyRent": 500,
@@ -5215,10 +5218,10 @@
       "pressFreedomScore": 40,
       "democracyIndex": 6.5,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 62,
-      "safetyViolentCrimeInv": 70,
-      "safetyPropertyCrimeInv": 58,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 63,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 86,
+      "gallupLawOrder": 76
     },
     {
       "id": 91,
@@ -5261,8 +5264,8 @@
       "costMinimal": 400,
       "doctorsPerThousand": 3.9,
       "directFlightCities": 45,
-      "safetyIndex": 68,
-      "safetyConfidence": "medium",
+      "safetyIndex": 82,
+      "safetyConfidence": "high",
       "annualWorkHours": 1700,
       "monthlyRent": 550,
       "paidLeaveDays": 20,
@@ -5273,10 +5276,10 @@
       "pressFreedomScore": 56,
       "democracyIndex": 7.17,
       "corruptionPerceptionIndex": 54,
-      "safetyNightSafety": 68,
-      "safetyViolentCrimeInv": 75,
-      "safetyPropertyCrimeInv": 65,
-      "safetyForeignerFriendly": 50
+      "numbeoSafetyIndex": 68,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 86,
+      "gallupLawOrder": 75
     },
     {
       "id": 92,
@@ -5319,8 +5322,8 @@
       "costMinimal": 450,
       "doctorsPerThousand": 3.6,
       "directFlightCities": 40,
-      "safetyIndex": 75,
-      "safetyConfidence": "medium",
+      "safetyIndex": 88,
+      "safetyConfidence": "high",
       "annualWorkHours": 1624,
       "monthlyRent": 600,
       "paidLeaveDays": 20,
@@ -5331,10 +5334,10 @@
       "pressFreedomScore": 62,
       "democracyIndex": 7.96,
       "corruptionPerceptionIndex": 56,
-      "safetyNightSafety": 75,
-      "safetyViolentCrimeInv": 82,
-      "safetyPropertyCrimeInv": 75,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": 78,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 92,
+      "gallupLawOrder": 84
     },
     {
       "id": 93,
@@ -5377,7 +5380,7 @@
       "costMinimal": 950,
       "doctorsPerThousand": 4.1,
       "directFlightCities": 185,
-      "safetyIndex": 58,
+      "safetyIndex": 76,
       "safetyConfidence": "high",
       "annualWorkHours": 1656,
       "monthlyRent": 1800,
@@ -5389,10 +5392,10 @@
       "pressFreedomScore": 78,
       "democracyIndex": 9.05,
       "corruptionPerceptionIndex": 77,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 82
+      "numbeoSafetyIndex": 49,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 93,
+      "gallupLawOrder": 75
     },
     {
       "id": 94,
@@ -5435,8 +5438,8 @@
       "costMinimal": 600,
       "doctorsPerThousand": 3,
       "directFlightCities": 65,
-      "safetyIndex": 59,
-      "safetyConfidence": "medium",
+      "safetyIndex": 77,
+      "safetyConfidence": "high",
       "annualWorkHours": 1532,
       "monthlyRent": 1200,
       "paidLeaveDays": 28,
@@ -5447,10 +5450,10 @@
       "pressFreedomScore": 70,
       "democracyIndex": 8.54,
       "corruptionPerceptionIndex": 71,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 52,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 55,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 84,
+      "gallupLawOrder": 79
     },
     {
       "id": 95,
@@ -5493,7 +5496,7 @@
       "costMinimal": 920,
       "doctorsPerThousand": 2.9,
       "directFlightCities": 260,
-      "safetyIndex": 45,
+      "safetyIndex": 62,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1500,
@@ -5505,10 +5508,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 38,
-      "safetyViolentCrimeInv": 50,
-      "safetyPropertyCrimeInv": 40,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 34,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 96,
@@ -5551,7 +5554,7 @@
       "costMinimal": 880,
       "doctorsPerThousand": 2.3,
       "directFlightCities": 135,
-      "safetyIndex": 55,
+      "safetyIndex": 66,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1400,
@@ -5563,10 +5566,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 50,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 45,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 97,
@@ -5609,7 +5612,7 @@
       "costMinimal": 980,
       "doctorsPerThousand": 2.9,
       "directFlightCities": 80,
-      "safetyIndex": 47,
+      "safetyIndex": 62,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1300,
@@ -5621,10 +5624,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 40,
-      "safetyViolentCrimeInv": 52,
-      "safetyPropertyCrimeInv": 38,
-      "safetyForeignerFriendly": 78
+      "numbeoSafetyIndex": 33,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 98,
@@ -5667,7 +5670,7 @@
       "costMinimal": 1100,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 75,
-      "safetyIndex": 63,
+      "safetyIndex": 71,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1100,
@@ -5679,10 +5682,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 60,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 78
+      "numbeoSafetyIndex": 59,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 99,
@@ -5725,7 +5728,7 @@
       "costMinimal": 850,
       "doctorsPerThousand": 2,
       "directFlightCities": 145,
-      "safetyIndex": 55,
+      "safetyIndex": 66,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1200,
@@ -5737,10 +5740,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 50,
-      "safetyViolentCrimeInv": 58,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 75
+      "numbeoSafetyIndex": 44,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 100,
@@ -5783,7 +5786,7 @@
       "costMinimal": 820,
       "doctorsPerThousand": 2.6,
       "directFlightCities": 90,
-      "safetyIndex": 58,
+      "safetyIndex": 67,
       "safetyConfidence": "high",
       "annualWorkHours": 1811,
       "monthlyRent": 1100,
@@ -5795,10 +5798,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 50,
-      "safetyForeignerFriendly": 75
+      "numbeoSafetyIndex": 49,
+      "homicideRateInv": 86,
+      "gpiScoreInv": 64,
+      "gallupLawOrder": 78
     },
     {
       "id": 101,
@@ -5841,8 +5844,8 @@
       "costMinimal": 448,
       "doctorsPerThousand": 3.2,
       "directFlightCities": 210,
-      "safetyIndex": 72,
-      "safetyConfidence": "medium",
+      "safetyIndex": 83,
+      "safetyConfidence": "high",
       "annualWorkHours": 2170,
       "monthlyRent": 700,
       "paidLeaveDays": 5,
@@ -5853,10 +5856,10 @@
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 72,
-      "safetyViolentCrimeInv": 80,
-      "safetyPropertyCrimeInv": 75,
-      "safetyForeignerFriendly": 40
+      "numbeoSafetyIndex": 69,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 90
     },
     {
       "id": 102,
@@ -5899,8 +5902,8 @@
       "costMinimal": 504,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 150,
-      "safetyIndex": 77,
-      "safetyConfidence": "medium",
+      "safetyIndex": 84,
+      "safetyConfidence": "high",
       "annualWorkHours": 2170,
       "monthlyRent": 550,
       "paidLeaveDays": 5,
@@ -5911,10 +5914,10 @@
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 78,
-      "safetyViolentCrimeInv": 85,
-      "safetyPropertyCrimeInv": 80,
-      "safetyForeignerFriendly": 42
+      "numbeoSafetyIndex": 72,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 90
     },
     {
       "id": 103,
@@ -5957,8 +5960,8 @@
       "costMinimal": 336,
       "doctorsPerThousand": 3.5,
       "directFlightCities": 200,
-      "safetyIndex": 74,
-      "safetyConfidence": "medium",
+      "safetyIndex": 83,
+      "safetyConfidence": "high",
       "annualWorkHours": 2170,
       "monthlyRent": 450,
       "paidLeaveDays": 5,
@@ -5969,10 +5972,10 @@
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 75,
-      "safetyViolentCrimeInv": 82,
-      "safetyPropertyCrimeInv": 78,
-      "safetyForeignerFriendly": 38
+      "numbeoSafetyIndex": 70,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 90
     },
     {
       "id": 104,
@@ -6015,8 +6018,8 @@
       "costMinimal": 462,
       "doctorsPerThousand": 3.3,
       "directFlightCities": 140,
-      "safetyIndex": 77,
-      "safetyConfidence": "medium",
+      "safetyIndex": 85,
+      "safetyConfidence": "high",
       "annualWorkHours": 2170,
       "monthlyRent": 400,
       "paidLeaveDays": 5,
@@ -6027,10 +6030,10 @@
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 78,
-      "safetyViolentCrimeInv": 85,
-      "safetyPropertyCrimeInv": 80,
-      "safetyForeignerFriendly": 40
+      "numbeoSafetyIndex": 75,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 90
     },
     {
       "id": 105,
@@ -6073,8 +6076,8 @@
       "costMinimal": 308,
       "doctorsPerThousand": 2.9,
       "directFlightCities": 150,
-      "safetyIndex": 72,
-      "safetyConfidence": "medium",
+      "safetyIndex": 82,
+      "safetyConfidence": "high",
       "annualWorkHours": 2170,
       "monthlyRent": 500,
       "paidLeaveDays": 5,
@@ -6085,10 +6088,10 @@
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
       "corruptionPerceptionIndex": 42,
-      "safetyNightSafety": 72,
-      "safetyViolentCrimeInv": 80,
-      "safetyPropertyCrimeInv": 75,
-      "safetyForeignerFriendly": 38
+      "numbeoSafetyIndex": 67,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 90
     },
     {
       "id": 106,
@@ -6131,7 +6134,7 @@
       "costMinimal": 616,
       "doctorsPerThousand": 2.6,
       "directFlightCities": 115,
-      "safetyIndex": 81,
+      "safetyIndex": 89,
       "safetyConfidence": "high",
       "annualWorkHours": 1607,
       "monthlyRent": 1000,
@@ -6143,10 +6146,10 @@
       "pressFreedomScore": 64,
       "democracyIndex": 8.33,
       "corruptionPerceptionIndex": 73,
-      "safetyNightSafety": 80,
-      "safetyViolentCrimeInv": 88,
-      "safetyPropertyCrimeInv": 85,
-      "safetyForeignerFriendly": 52
+      "numbeoSafetyIndex": 77,
+      "homicideRateInv": 100,
+      "gpiScoreInv": 92,
+      "gallupLawOrder": 91
     },
     {
       "id": 107,
@@ -6189,8 +6192,8 @@
       "costMinimal": 532,
       "doctorsPerThousand": 2.5,
       "directFlightCities": 55,
-      "safetyIndex": 82,
-      "safetyConfidence": "medium",
+      "safetyIndex": 90,
+      "safetyConfidence": "high",
       "annualWorkHours": 1607,
       "monthlyRent": 550,
       "paidLeaveDays": 10,
@@ -6201,10 +6204,10 @@
       "pressFreedomScore": 64,
       "democracyIndex": 8.33,
       "corruptionPerceptionIndex": 73,
-      "safetyNightSafety": 82,
-      "safetyViolentCrimeInv": 90,
-      "safetyPropertyCrimeInv": 88,
-      "safetyForeignerFriendly": 48
+      "numbeoSafetyIndex": 79,
+      "homicideRateInv": 100,
+      "gpiScoreInv": 92,
+      "gallupLawOrder": 91
     },
     {
       "id": 108,
@@ -6247,8 +6250,8 @@
       "costMinimal": 448,
       "doctorsPerThousand": 2.4,
       "directFlightCities": 185,
-      "safetyIndex": 77,
-      "safetyConfidence": "medium",
+      "safetyIndex": 84,
+      "safetyConfidence": "high",
       "annualWorkHours": 1901,
       "monthlyRent": 450,
       "paidLeaveDays": 15,
@@ -6259,10 +6262,10 @@
       "pressFreedomScore": 72,
       "democracyIndex": 8.09,
       "corruptionPerceptionIndex": 63,
-      "safetyNightSafety": 78,
-      "safetyViolentCrimeInv": 85,
-      "safetyPropertyCrimeInv": 80,
-      "safetyForeignerFriendly": 45
+      "numbeoSafetyIndex": 73,
+      "homicideRateInv": 99,
+      "gpiScoreInv": 82,
+      "gallupLawOrder": 85
     },
     {
       "id": 109,
@@ -6305,8 +6308,8 @@
       "costMinimal": 182,
       "doctorsPerThousand": 0.2,
       "directFlightCities": 35,
-      "safetyIndex": 47,
-      "safetyConfidence": "medium",
+      "safetyIndex": 73,
+      "safetyConfidence": "high",
       "annualWorkHours": 2100,
       "monthlyRent": 250,
       "paidLeaveDays": 18,
@@ -6317,10 +6320,10 @@
       "pressFreedomScore": 20,
       "democracyIndex": 3.18,
       "corruptionPerceptionIndex": 22,
-      "safetyNightSafety": 42,
-      "safetyViolentCrimeInv": 52,
-      "safetyPropertyCrimeInv": 40,
-      "safetyForeignerFriendly": 62
+      "numbeoSafetyIndex": 51,
+      "homicideRateInv": 97,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 70
     },
     {
       "id": 110,
@@ -6363,8 +6366,8 @@
       "costMinimal": 140,
       "doctorsPerThousand": 0.7,
       "directFlightCities": 30,
-      "safetyIndex": 41,
-      "safetyConfidence": "low",
+      "safetyIndex": 70,
+      "safetyConfidence": "medium",
       "annualWorkHours": 2100,
       "monthlyRent": 200,
       "paidLeaveDays": 10,
@@ -6375,10 +6378,10 @@
       "pressFreedomScore": 10,
       "democracyIndex": 1.74,
       "corruptionPerceptionIndex": 23,
-      "safetyNightSafety": 35,
-      "safetyViolentCrimeInv": 48,
-      "safetyPropertyCrimeInv": 38,
-      "safetyForeignerFriendly": 48
+      "numbeoSafetyIndex": null,
+      "homicideRateInv": 95,
+      "gpiScoreInv": 43,
+      "gallupLawOrder": 54
     },
     {
       "id": 111,
@@ -6421,8 +6424,8 @@
       "costMinimal": 154,
       "doctorsPerThousand": 0.4,
       "directFlightCities": 15,
-      "safetyIndex": 58,
-      "safetyConfidence": "low",
+      "safetyIndex": 84,
+      "safetyConfidence": "medium",
       "annualWorkHours": 2050,
       "monthlyRent": 200,
       "paidLeaveDays": 15,
@@ -6433,10 +6436,10 @@
       "pressFreedomScore": 12,
       "democracyIndex": 2.14,
       "corruptionPerceptionIndex": 28,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 55
+      "numbeoSafetyIndex": null,
+      "homicideRateInv": 94,
+      "gpiScoreInv": 77,
+      "gallupLawOrder": 73
     },
     {
       "id": 112,
@@ -6479,8 +6482,8 @@
       "costMinimal": 210,
       "doctorsPerThousand": 0.8,
       "directFlightCities": 40,
-      "safetyIndex": 67,
-      "safetyConfidence": "medium",
+      "safetyIndex": 79,
+      "safetyConfidence": "high",
       "annualWorkHours": 2024,
       "monthlyRent": 350,
       "paidLeaveDays": 6,
@@ -6491,10 +6494,10 @@
       "pressFreedomScore": 40,
       "democracyIndex": 6.35,
       "corruptionPerceptionIndex": 35,
-      "safetyNightSafety": 65,
-      "safetyViolentCrimeInv": 72,
-      "safetyPropertyCrimeInv": 60,
-      "safetyForeignerFriendly": 72
+      "numbeoSafetyIndex": 70,
+      "homicideRateInv": 94,
+      "gpiScoreInv": 75,
+      "gallupLawOrder": 78
     },
     {
       "id": 113,
@@ -6537,8 +6540,8 @@
       "costMinimal": 168,
       "doctorsPerThousand": 0.6,
       "directFlightCities": 15,
-      "safetyIndex": 42,
-      "safetyConfidence": "low",
+      "safetyIndex": 68,
+      "safetyConfidence": "high",
       "annualWorkHours": 2000,
       "monthlyRent": 300,
       "paidLeaveDays": 5,
@@ -6549,10 +6552,10 @@
       "pressFreedomScore": 42,
       "democracyIndex": 6.73,
       "corruptionPerceptionIndex": 34,
-      "safetyNightSafety": 38,
-      "safetyViolentCrimeInv": 48,
-      "safetyPropertyCrimeInv": 35,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 47,
+      "homicideRateInv": 91,
+      "gpiScoreInv": 68,
+      "gallupLawOrder": 72
     },
     {
       "id": 114,
@@ -6595,8 +6598,8 @@
       "costMinimal": 140,
       "doctorsPerThousand": 0.5,
       "directFlightCities": 40,
-      "safetyIndex": 32,
-      "safetyConfidence": "medium",
+      "safetyIndex": 67,
+      "safetyConfidence": "high",
       "annualWorkHours": 2200,
       "monthlyRent": 200,
       "paidLeaveDays": 10,
@@ -6607,10 +6610,10 @@
       "pressFreedomScore": 30,
       "democracyIndex": 5.99,
       "corruptionPerceptionIndex": 25,
-      "safetyNightSafety": 28,
-      "safetyViolentCrimeInv": 38,
-      "safetyPropertyCrimeInv": 28,
-      "safetyForeignerFriendly": 42
+      "numbeoSafetyIndex": 39,
+      "homicideRateInv": 95,
+      "gpiScoreInv": 73,
+      "gallupLawOrder": 67
     },
     {
       "id": 115,
@@ -6653,8 +6656,8 @@
       "costMinimal": 182,
       "doctorsPerThousand": 1,
       "directFlightCities": 55,
-      "safetyIndex": 48,
-      "safetyConfidence": "medium",
+      "safetyIndex": 75,
+      "safetyConfidence": "high",
       "annualWorkHours": 1980,
       "monthlyRent": 200,
       "paidLeaveDays": 14,
@@ -6665,10 +6668,10 @@
       "pressFreedomScore": 38,
       "democracyIndex": 6.14,
       "corruptionPerceptionIndex": 34,
-      "safetyNightSafety": 42,
-      "safetyViolentCrimeInv": 55,
-      "safetyPropertyCrimeInv": 42,
-      "safetyForeignerFriendly": 58
+      "numbeoSafetyIndex": 58,
+      "homicideRateInv": 96,
+      "gpiScoreInv": 76,
+      "gallupLawOrder": 73
     },
     {
       "id": 116,
@@ -6711,8 +6714,8 @@
       "costMinimal": 126,
       "doctorsPerThousand": 0.3,
       "directFlightCities": 40,
-      "safetyIndex": 53,
-      "safetyConfidence": "medium",
+      "safetyIndex": 74,
+      "safetyConfidence": "high",
       "annualWorkHours": 2050,
       "monthlyRent": 150,
       "paidLeaveDays": 13,
@@ -6723,10 +6726,10 @@
       "pressFreedomScore": 55,
       "democracyIndex": 4.49,
       "corruptionPerceptionIndex": 33,
-      "safetyNightSafety": 48,
-      "safetyViolentCrimeInv": 60,
-      "safetyPropertyCrimeInv": 48,
-      "safetyForeignerFriendly": 65
+      "numbeoSafetyIndex": 55,
+      "homicideRateInv": 96,
+      "gpiScoreInv": 78,
+      "gallupLawOrder": 70
     },
     {
       "id": 117,
@@ -6769,8 +6772,8 @@
       "costMinimal": 252,
       "doctorsPerThousand": 3.3,
       "directFlightCities": 75,
-      "safetyIndex": 57,
-      "safetyConfidence": "medium",
+      "safetyIndex": 74,
+      "safetyConfidence": "high",
       "annualWorkHours": 1900,
       "monthlyRent": 350,
       "paidLeaveDays": 24,
@@ -6781,10 +6784,10 @@
       "pressFreedomScore": 22,
       "democracyIndex": 3.08,
       "corruptionPerceptionIndex": 39,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 48
+      "numbeoSafetyIndex": 56,
+      "homicideRateInv": 92,
+      "gpiScoreInv": 76,
+      "gallupLawOrder": 77
     },
     {
       "id": 118,
@@ -6827,8 +6830,8 @@
       "costMinimal": 154,
       "doctorsPerThousand": 2.4,
       "directFlightCities": 65,
-      "safetyIndex": 54,
-      "safetyConfidence": "medium",
+      "safetyIndex": 79,
+      "safetyConfidence": "high",
       "annualWorkHours": 1950,
       "monthlyRent": 250,
       "paidLeaveDays": 15,
@@ -6839,10 +6842,10 @@
       "pressFreedomScore": 18,
       "democracyIndex": 2.12,
       "corruptionPerceptionIndex": 33,
-      "safetyNightSafety": 52,
-      "safetyViolentCrimeInv": 62,
-      "safetyPropertyCrimeInv": 52,
-      "safetyForeignerFriendly": 45
+      "numbeoSafetyIndex": 64,
+      "homicideRateInv": 97,
+      "gpiScoreInv": 76,
+      "gallupLawOrder": 83
     },
     {
       "id": 119,
@@ -6885,8 +6888,8 @@
       "costMinimal": 210,
       "doctorsPerThousand": 3.5,
       "directFlightCities": 70,
-      "safetyIndex": 58,
-      "safetyConfidence": "medium",
+      "safetyIndex": 77,
+      "safetyConfidence": "high",
       "annualWorkHours": 1920,
       "monthlyRent": 400,
       "paidLeaveDays": 21,
@@ -6897,10 +6900,10 @@
       "pressFreedomScore": 12,
       "democracyIndex": 2.68,
       "corruptionPerceptionIndex": 23,
-      "safetyNightSafety": 55,
-      "safetyViolentCrimeInv": 65,
-      "safetyPropertyCrimeInv": 55,
-      "safetyForeignerFriendly": 50
+      "numbeoSafetyIndex": 63,
+      "homicideRateInv": 97,
+      "gpiScoreInv": 72,
+      "gallupLawOrder": 75
     },
     {
       "id": 120,
@@ -6943,8 +6946,8 @@
       "costMinimal": 196,
       "doctorsPerThousand": 3,
       "directFlightCities": 25,
-      "safetyIndex": 59,
-      "safetyConfidence": "medium",
+      "safetyIndex": 68,
+      "safetyConfidence": "high",
       "annualWorkHours": 1980,
       "monthlyRent": 250,
       "paidLeaveDays": 15,
@@ -6955,10 +6958,10 @@
       "pressFreedomScore": 58,
       "democracyIndex": 6.48,
       "corruptionPerceptionIndex": 35,
-      "safetyNightSafety": 58,
-      "safetyViolentCrimeInv": 68,
-      "safetyPropertyCrimeInv": 58,
-      "safetyForeignerFriendly": 40
+      "numbeoSafetyIndex": 47,
+      "homicideRateInv": 87,
+      "gpiScoreInv": 80,
+      "gallupLawOrder": 65
     }
   ]
 }

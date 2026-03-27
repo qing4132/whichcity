@@ -60,10 +60,10 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
   const allBigMacPowerArr = allCities.filter(c => c.bigMacPrice !== null && c.bigMacPrice > 0 && c.annualWorkHours > 0).map(c => { const i = allCities.indexOf(c); return (allIncomes[i] / c.annualWorkHours) / (c.bigMacPrice as number); });
   const allWorkHoursArr = allCities.map(c => c.annualWorkHours);
   const allYearsValid = allCities.map((c, i) => { const s = allIncomes[i] - c[costTierField] * 12; return s > 0 ? (c.housePrice * 70) / s : Infinity; }).filter(isFinite);
-  const allNightSafety = allCities.map(c => c.safetyNightSafety);
-  const allViolentInv = allCities.map(c => c.safetyViolentCrimeInv);
-  const allPropertyInv = allCities.map(c => c.safetyPropertyCrimeInv);
-  const allForeignerF = allCities.map(c => c.safetyForeignerFriendly);
+  const allNumbeoSafety = allCities.map(c => c.numbeoSafetyIndex).filter((v): v is number => v !== null);
+  const allHomicideInv = allCities.map(c => c.homicideRateInv).filter((v): v is number => v !== null);
+  const allGpiInv = allCities.map(c => c.gpiScoreInv).filter((v): v is number => v !== null);
+  const allGallupLO = allCities.map(c => c.gallupLawOrder).filter((v): v is number => v !== null);
   const allDoctorsArr = allCities.map(c => c.doctorsPerThousand);
   const allBedsArr = allCities.map(c => c.hospitalBedsPerThousand);
   const allUhcArr = allCities.map(c => c.uhcCoverageIndex);
@@ -71,9 +71,13 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
   const allPressArr = allCities.map(c => c.pressFreedomScore);
   const allDemocracyArr = allCities.map(c => c.democracyIndex);
   const allCpiArr = allCities.map(c => c.corruptionPerceptionIndex);
-  const lowSafety = city.safetyConfidence === "low";
-  const lsMark = lowSafety ? " *" : "";
+  const nullMark = (v: number | null) => v === null ? " *" : "";
   const bigMacPowerNum = city.bigMacPrice !== null && city.bigMacPrice > 0 && city.annualWorkHours > 0 ? (income / city.annualWorkHours) / city.bigMacPrice : null;
+
+  // Safety warning i18n
+  const safetyWarningText = city.safetyWarning === "active_conflict" ? t("safetyWarningConflict")
+    : city.safetyWarning === "extreme_instability" ? t("safetyWarningInstability")
+    : city.safetyWarning === "data_blocked" ? t("safetyWarningBlocked") : null;
 
   const indices = [
     {
@@ -92,14 +96,15 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
     {
       key: "safety",
       label: t("safetyIndex"),
-      value: `${safetyIndex}${lsMark} / 100`,
+      value: `${safetyIndex} / 100`,
       sub: `#${rankHigher(allSafety, safetyIndex)} / ${n}`,
       tier: tierHigh(allSafety, safetyIndex),
+      warning: safetyWarningText,
       details: [
-        { label: t("safetyNightSafety"), value: `${city.safetyNightSafety}${lsMark}`, weight: "40%", tier: tierHigh(allNightSafety, city.safetyNightSafety) },
-        { label: t("safetyViolentCrime"), value: `${city.safetyViolentCrimeInv}${lsMark}`, weight: "30%", tier: tierHigh(allViolentInv, city.safetyViolentCrimeInv) },
-        { label: t("safetyPropertyCrime"), value: `${city.safetyPropertyCrimeInv}${lsMark}`, weight: "20%", tier: tierHigh(allPropertyInv, city.safetyPropertyCrimeInv) },
-        { label: t("safetyForeignerFriendly"), value: `${city.safetyForeignerFriendly}${lsMark}`, weight: "10%", tier: tierHigh(allForeignerF, city.safetyForeignerFriendly) },
+        { label: t("safetyNumbeo"), value: city.numbeoSafetyIndex !== null ? `${city.numbeoSafetyIndex}` : "—", weight: "35%", tier: city.numbeoSafetyIndex !== null ? tierHigh(allNumbeoSafety, city.numbeoSafetyIndex) : "mid" as Tier, missing: city.numbeoSafetyIndex === null },
+        { label: t("safetyHomicide"), value: city.homicideRateInv !== null ? `${city.homicideRateInv}` : "—", weight: "30%", tier: city.homicideRateInv !== null ? tierHigh(allHomicideInv, city.homicideRateInv) : "mid" as Tier, missing: city.homicideRateInv === null },
+        { label: t("safetyGpi"), value: city.gpiScoreInv !== null ? `${city.gpiScoreInv}` : "—", weight: "20%", tier: city.gpiScoreInv !== null ? tierHigh(allGpiInv, city.gpiScoreInv) : "mid" as Tier, missing: city.gpiScoreInv === null },
+        { label: t("safetyGallup"), value: city.gallupLawOrder !== null ? `${city.gallupLawOrder}` : "—", weight: "15%", tier: city.gallupLawOrder !== null ? tierHigh(allGallupLO, city.gallupLawOrder) : "mid" as Tier, missing: city.gallupLawOrder === null },
       ],
     },
     {
@@ -143,13 +148,16 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
             </div>
             <div className={`mt-1 rounded-lg border p-3 text-xs ${detailBg} ${detailBorder}`}>
               <div className="space-y-1.5">
-                {idx.details.map((d) => (
+                {idx.details.map((d: any) => (
                   <div key={d.label} className="flex justify-between">
                     <span className={subCls}>{d.label} <span className="opacity-60">({d.weight})</span></span>
-                    <span className={`font-semibold ${cardValCls(d.tier)}`}>{d.value}</span>
+                    <span className={`font-semibold ${d.missing ? subCls : cardValCls(d.tier)}`}>{d.value}{d.missing ? " *" : ""}</span>
                   </div>
                 ))}
               </div>
+              {(idx as any).warning && (
+                <p className={`mt-2 text-xs leading-snug ${darkMode ? "text-amber-400" : "text-amber-600"}`}>{(idx as any).warning}</p>
+              )}
             </div>
           </div>
         ))}
