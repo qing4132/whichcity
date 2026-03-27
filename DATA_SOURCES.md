@@ -16,11 +16,11 @@
 | `averageIncome` | ERI / SalaryExpert、BLS、PayScale、OECD | 城市级 | 综合估算各城市中等收入水平（USD） |
 | `professions{}` | 同上 + Robert Half、Hays、智联招聘、JobStreet | 城市级 | 按职业查询各城市年薪中位数 |
 | `costOfLiving` / `costModerate` | Numbeo、Expatistan、各国统计局 | 城市级 | 单人月生活开支（适度水平，USD） |
-| `costComfort` / `costBudget` / `costMinimal` | 基于 `costModerate` 按比例计算 | — | comfort×1.6, budget×0.45, minimal×0.28 |
+| `costBudget` | 基于 `costModerate` 按城市级比例计算 | 城市级 | 原100城: Numbeo 独立研究; 新20城: fix-asian-data.mjs 独立校准 |
 | `bigMacPrice` | The Economist Big Mac Index (2025-01) | 国家级 | 各国麦当劳巨无霸单品售价（USD） |
 | `housePrice` | Global Property Guide、各地房产指数 | 城市级 | 城市中心区域每平米均价（USD/m²） |
 | `monthlyRent` | Numbeo Rent Index 2024-2025 | 城市级 | 1 居室市中心月租金（USD） |
-| `airQuality` (AQI) | IQAir 世界空气质量报告 2024、AQICN | 城市级 | US EPA AQI 标准值 |
+| `airQuality` (AQI) | IQAir 2024 年度报告 (8城) / US EPA (112城) | 城市级 | US EPA AQI 标准值，aqiSource 字段标识来源 |
 | `doctorsPerThousand` | WHO 全球卫生人力统计 / World Bank (CC BY-4.0) | 城市级 | 每千人执业医师数 |
 | `directFlightCities` | OAG Aviation Analytics、FlightConnections.com (2025) | 城市级 | 直飞航线目的地城市数 |
 | `annualWorkHours` | OECD Employment Outlook 2024、ILO ILOSTAT | 国家级 | 国家全行业平均年工时 |
@@ -123,14 +123,36 @@ freedomIdx = 新闻自由度 × 0.35
 
 ---
 
-## AQI 转换说明
+## AQI 数据来源说明
 
-- 中国大陆城市 AQI 原始数据来自 AQICN (aqicn.org)
-- AQICN 默认使用中国 AQI（HJ 633-2012）标准
-- 转换为 US EPA AQI 的系数: **× 1.4**
-  - 依据: 中国 AQI 以 PM₁₀ 为主要指标，US EPA 以 PM₂.₅ 为主；
-    两者在对应浓度区间的标度差异约为 1.4 倍
-- 非中国城市 AQI 已直接采用 US EPA 标准值，无需转换
+### 当前数据源分布
+
+| aqiSource | 城市数 | 说明 |
+|-----------|--------|------|
+| `EPA` | 112 | 直接采用 US EPA AQI 标准值 |
+| `iqair` | 8 | IQAir 2024 年度均值（US EPA AQI 制） |
+
+### IQAir 来源城市（8 座中国/港澳城市）
+
+| 城市 | ID | AQI | PM2.5 年均 (µg/m³) |
+|------|-----|-----|--------------------|
+| 北京 | 4 | 89 | ~30.5 |
+| 上海 | 5 | 77 | ~25.0 |
+| 香港 | 10 | 55 | ~14.5 |
+| 广州 | 101 | 78 | ~25.5 |
+| 深圳 | 102 | 66 | ~19.5 |
+| 成都 | 103 | 94 | ~33.0 |
+| 杭州 | 104 | 84 | ~28.5 |
+| 重庆 | 105 | 87 | ~29.5 |
+
+转换公式（PM2.5 → US EPA AQI）：
+- PM2.5 12.1–35.4 µg/m³ → AQI = 50 + 2.10 × (PM2.5 − 12.1)
+- PM2.5 35.5–55.4 µg/m³ → AQI = 101 + 2.46 × (PM2.5 − 35.5)
+
+### 历史：AQICN ×1.4 转换（已废弃）
+
+早期版本曾使用 AQICN (HJ 633-2012) 原始数据乘以 1.4 近似转换为 US EPA AQI。
+该方法已被替换为 IQAir 年度 PM2.5 均值直接转换，精度更高。
 
 ---
 
@@ -139,15 +161,27 @@ freedomIdx = 新闻自由度 × 0.35
 这批城市由 `add_20_asian_cities.py` 脚本生成，方法如下:
 
 ### 收入与生活成本
-- `averageIncome`、`costModerate`、`bigMacPrice`、`housePrice`、`airQuality`、`doctorsPerThousand`
+- `averageIncome`、`costModerate`、`bigMacPrice`、`housePrice`、`doctorsPerThousand`
   均为手动查询公开数据后填入的估算值
-- 参考了 Numbeo、Expatistan、World Bank、IQAir 等来源
+- 参考了 Numbeo、Expatistan、World Bank 等来源
 
 ### 职业薪资
 - 全部 120 座城市的 20 个职业薪资均为独立查询真实数据
 - 数据来源: ERI/SalaryExpert、智联招聘/猎聘/看准(中国)、doda(日本)、KOSIS/JobKorea(韩国)、
   JobStreet/JobsDB(东南亚)、HeadHunter.kz(哈萨克斯坦)、Boss.az(阿塞拜疆)等
 - 管理脚本: `update_salaries.py`（包含全部 120 城 × 20 职业的数据与来源注释）
+
+### costBudget（节俭生活成本）
+- 20 座新增亚洲城市的 costBudget 现采用独立校准的比例系数（0.37–0.44），
+  基于 Numbeo 单人预算生活成本数据和同类城市参照
+- 原 100 座城市的比例系数范围为 0.38–0.48，按城市经济水平分化
+- 管理脚本: `scripts/fix-asian-data.mjs`
+
+### 空气质量 (AQI)
+- 8 座中国/港澳城市的 AQI 现采用 IQAir 2024 年度 PM2.5 均值转换为 US EPA AQI
+- 其余 112 城直接采用 US EPA 标准值
+- `aqiSource` 字段标识每座城市的数据来源（`iqair` 或 `EPA`）
+- 管理脚本: `scripts/fix-asian-data.mjs`
 
 ### ⚠️ 数据规则（强制）
 
@@ -182,6 +216,8 @@ freedomIdx = 新闻自由度 × 0.35
 | 2025-06 | 修正 9 座城市巨无霸价格（与现有数据集内部一致性对齐） |
 | 2025-06 | 修正 add_aqi.py / add_20_asian_cities.py 中 AQICN 转换系数注释 |
 | 2025-06 | 20 座新城市职业薪资从等比例缩放替换为逐城市逐职业真实查询数据（update_salaries.py） |
+| 2026-03 | 8 座中国/港澳城市 AQI 从 AQICN ×1.4 转换替换为 IQAir 2024 年度 PM2.5 均值（fix-asian-data.mjs） |
+| 2026-03 | 20 座新增亚洲城市 costBudget 从统一 ×0.45 替换为独立校准比例（0.37–0.44）（fix-asian-data.mjs） |
 
 ---
 

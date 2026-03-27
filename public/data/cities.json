@@ -209,7 +209,7 @@
         "公务员": 18000
       },
       "housePrice": 6230,
-      "airQuality": 100,
+      "airQuality": 89,
       "costModerate": 2200,
       "costBudget": 924,
       "doctorsPerThousand": 4.6,
@@ -234,7 +234,7 @@
       "healthcareConfidence": "high",
       "freedomIndex": 23,
       "freedomConfidence": "high",
-      "aqiSource": "AQICN"
+      "aqiSource": "iqair"
     },
     {
       "id": 5,
@@ -268,7 +268,7 @@
         "公务员": 20000
       },
       "housePrice": 7050,
-      "airQuality": 80,
+      "airQuality": 77,
       "costModerate": 2600,
       "costBudget": 1170,
       "doctorsPerThousand": 3.8,
@@ -293,7 +293,7 @@
       "healthcareConfidence": "high",
       "freedomIndex": 23,
       "freedomConfidence": "high",
-      "aqiSource": "AQICN"
+      "aqiSource": "iqair"
     },
     {
       "id": 6,
@@ -588,7 +588,7 @@
       "healthcareConfidence": "high",
       "freedomIndex": 40,
       "freedomConfidence": "high",
-      "aqiSource": "AQICN"
+      "aqiSource": "iqair"
     },
     {
       "id": 11,
@@ -5935,9 +5935,9 @@
         "公务员": 16000
       },
       "housePrice": 5200,
-      "airQuality": 75,
+      "airQuality": 78,
       "costModerate": 1600,
-      "costBudget": 720,
+      "costBudget": 656,
       "doctorsPerThousand": 3.2,
       "directFlightCities": 210,
       "safetyIndex": 83,
@@ -5960,7 +5960,7 @@
       "healthcareConfidence": "high",
       "freedomIndex": 23,
       "freedomConfidence": "high",
-      "aqiSource": "AQICN"
+      "aqiSource": "iqair"
     },
     {
       "id": 102,
@@ -5994,9 +5994,9 @@
         "公务员": 18000
       },
       "housePrice": 7800,
-      "airQuality": 55,
+      "airQuality": 66,
       "costModerate": 1800,
-      "costBudget": 810,
+      "costBudget": 774,
       "doctorsPerThousand": 2.8,
       "directFlightCities": 150,
       "safetyIndex": 84,
@@ -6019,7 +6019,7 @@
       "healthcareConfidence": "high",
       "freedomIndex": 23,
       "freedomConfidence": "high",
-      "aqiSource": "AQICN"
+      "aqiSource": "iqair"
     },
     {
       "id": 103,
@@ -6053,9 +6053,9 @@
         "公务员": 14000
       },
       "housePrice": 2800,
-      "airQuality": 85,
+      "airQuality": 94,
       "costModerate": 1200,
-      "costBudget": 540,
+      "costBudget": 468,
       "doctorsPerThousand": 3.5,
       "directFlightCities": 200,
       "safetyIndex": 83,
@@ -6078,7 +6078,7 @@
       "healthcareConfidence": "high",
       "freedomIndex": 23,
       "freedomConfidence": "high",
-      "aqiSource": "AQICN"
+      "aqiSource": "iqair"
     },
     {
       "id": 104,
@@ -6112,9 +6112,9 @@
         "公务员": 17000
       },
       "housePrice": 5500,
-      "airQuality": 65,
+      "airQuality": 84,
       "costModerate": 1650,
-      "costBudget": 742,
+      "costBudget": 693,
       "doctorsPerThousand": 3.3,
       "directFlightCities": 140,
       "safetyIndex": 85,
@@ -6137,7 +6137,7 @@
       "healthcareConfidence": "high",
       "freedomIndex": 23,
       "freedomConfidence": "high",
-      "aqiSource": "AQICN"
+      "aqiSource": "iqair"
     },
     {
       "id": 105,
@@ -6171,9 +6171,9 @@
         "公务员": 13000
       },
       "housePrice": 2200,
-      "airQuality": 80,
+      "airQuality": 87,
       "costModerate": 1100,
-      "costBudget": 495,
+      "costBudget": 429,
       "doctorsPerThousand": 2.9,
       "directFlightCities": 150,
       "safetyIndex": 82,
@@ -6196,7 +6196,7 @@
       "healthcareConfidence": "high",
       "freedomIndex": 23,
       "freedomConfidence": "high",
-      "aqiSource": "AQICN"
+      "aqiSource": "iqair"
     },
     {
       "id": 106,
@@ -6232,7 +6232,7 @@
       "housePrice": 4800,
       "airQuality": 38,
       "costModerate": 2200,
-      "costBudget": 990,
+      "costBudget": 968,
       "doctorsPerThousand": 2.6,
       "directFlightCities": 115,
       "safetyIndex": 89,
@@ -6291,7 +6291,7 @@
       "housePrice": 3200,
       "airQuality": 35,
       "costModerate": 1900,
-      "costBudget": 855,
+      "costBudget": 817,
       "doctorsPerThousand": 2.5,
       "directFlightCities": 55,
       "safetyIndex": 90,
@@ -6350,7 +6350,7 @@
       "housePrice": 3800,
       "airQuality": 55,
       "costModerate": 1600,
-      "costBudget": 720,
+      "costBudget": 672,
       "doctorsPerThousand": 2.4,
       "directFlightCities": 185,
       "safetyIndex": 84,
@@ -6409,7 +6409,7 @@
       "housePrice": 1800,
       "airQuality": 75,
       "costModerate": 650,
-      "costBudget": 292,
+      "costBudget": 247,
       "doctorsPerThousand": 0.2,
       "directFlightCities": 35,
       "safetyIndex": 73,
@@ -6468,7 +6468,7 @@
       "housePrice": 800,
       "airQuality": 85,
       "costModerate": 500,
-      "costBudget": 225,
+      "costBudget": 185,
       "doctorsPerThousand": 0.7,
       "directFlightCities": 30,
       "safetyIndex": 70,
@@ -6527,7 +6527,7 @@
       "housePrice": 900,
       "airQuality": 60,
       "costModerate": 550,
-      "costBudget": 248,
+      "costBudget": 209,
       "doctorsPerThousand": 0.4,
       "directFlightCities": 15,
       "safetyIndex": 84,
@@ -6586,7 +6586,7 @@
       "housePrice": 1500,
       "airQuality": 70,
       "costModerate": 750,
-      "costBudget": 338,
+      "costBudget": 293,
       "doctorsPerThousand": 0.8,
       "directFlightCities": 40,
       "safetyIndex": 79,
@@ -6645,7 +6645,7 @@
       "housePrice": 1100,
       "airQuality": 45,
       "costModerate": 600,
-      "costBudget": 270,
+      "costBudget": 240,
       "doctorsPerThousand": 0.6,
       "directFlightCities": 15,
       "safetyIndex": 68,
@@ -6704,7 +6704,7 @@
       "housePrice": 1200,
       "airQuality": 170,
       "costModerate": 500,
-      "costBudget": 225,
+      "costBudget": 190,
       "doctorsPerThousand": 0.5,
       "directFlightCities": 40,
       "safetyIndex": 67,
@@ -6763,7 +6763,7 @@
       "housePrice": 1400,
       "airQuality": 65,
       "costModerate": 650,
-      "costBudget": 292,
+      "costBudget": 254,
       "doctorsPerThousand": 1,
       "directFlightCities": 55,
       "safetyIndex": 75,
@@ -6822,7 +6822,7 @@
       "housePrice": 700,
       "airQuality": 135,
       "costModerate": 450,
-      "costBudget": 202,
+      "costBudget": 171,
       "doctorsPerThousand": 0.3,
       "directFlightCities": 40,
       "safetyIndex": 74,
@@ -6881,7 +6881,7 @@
       "housePrice": 1600,
       "airQuality": 80,
       "costModerate": 900,
-      "costBudget": 405,
+      "costBudget": 369,
       "doctorsPerThousand": 3.3,
       "directFlightCities": 75,
       "safetyIndex": 74,
@@ -6940,7 +6940,7 @@
       "housePrice": 800,
       "airQuality": 75,
       "costModerate": 550,
-      "costBudget": 248,
+      "costBudget": 215,
       "doctorsPerThousand": 2.4,
       "directFlightCities": 65,
       "safetyIndex": 79,
@@ -6999,7 +6999,7 @@
       "housePrice": 1500,
       "airQuality": 65,
       "costModerate": 750,
-      "costBudget": 338,
+      "costBudget": 300,
       "doctorsPerThousand": 3.5,
       "directFlightCities": 70,
       "safetyIndex": 77,
@@ -7058,7 +7058,7 @@
       "housePrice": 1000,
       "airQuality": 155,
       "costModerate": 700,
-      "costBudget": 315,
+      "costBudget": 280,
       "doctorsPerThousand": 3,
       "directFlightCities": 25,
       "safetyIndex": 68,

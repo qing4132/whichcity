@@ -1,6 +1,6 @@
 # Data Dictionary — 数据字典
 
-> 最后审计：2026-03-27 (v2 — 新增 9 个数据字段 + 3 个复合指标)
+> 最后审计：2026-06-04 (v2 — 新增 9 个数据字段 + 3 个复合指标)
 
 本文档定义了项目中所有数据字段、计算公式、转换规则、分级标准和算法的完整技术规范。
 
@@ -18,10 +18,8 @@ interface City {
   continent: string;                   // 中文大洲名
   averageIncome: number;               // 年均收入 (USD)
   costOfLiving: number;                // [旧字段] 月生活成本 (等同 costModerate)
-  costComfort: number;                 // 月支出 — 舒适
   costModerate: number;                // 月支出 — 适中
   costBudget: number;                  // 月支出 — 节俭
-  costMinimal: number;                 // 月支出 — 极简
   bigMacPrice: number | null;          // 巨无霸价格 (USD)，null=无麦当劳
   yearlySavings: number;               // [旧字段] 年储蓄 (基于 costModerate)
   currency: string;                    // 本地货币代码
@@ -29,6 +27,7 @@ interface City {
   professions: Record<string, number>; // 20个职业年薪 (USD)
   housePrice: number;                  // 房价 (USD/m²)
   airQuality: number;                  // AQI (US EPA)
+  aqiSource: "iqair" | "EPA";           // AQI 数据来源标识
   doctorsPerThousand: number;          // 每千人医师数
   directFlightCities: number;          // 直飞城市数
   annualWorkHours: number;             // 年工作时长 (小时)
@@ -68,7 +67,7 @@ interface ClimateInfo {
 ### 1.3 其他类型
 
 ```typescript
-type CostTier = "comfort" | "moderate" | "budget" | "minimal";
+type CostTier = "moderate" | "budget";
 type Locale = "zh" | "en" | "ja" | "es";
 type ClimateType = "tropical" | "temperate" | "continental" | "arid" | "mediterranean" | "oceanic";
 
@@ -87,11 +86,12 @@ interface ExchangeRates {
 | `averageIncome` | ERI/SalaryExpert, BLS, PayScale, OECD | 城市级 | 年度 | 2025 |
 | `professions{}` | 同上 + Robert Half, Hays, 智联招聘, JobStreet | 城市级 | 年度 | 2025（逐城逐职独立查询） |
 | `costModerate` | Numbeo, Expatistan, 各国统计局 | 城市级 | 年度 | 2024-2025 |
-| `costComfort/Budget/Minimal` | 基于 `costModerate` 乘系数 | — | 随 costModerate | — |
+| `costBudget` | 基于 `costModerate` 乘城市级系数 | — | 随 costModerate | — |
 | `bigMacPrice` | The Economist Big Mac Index | 国家级 | 半年 | 2025-01 |
 | `housePrice` | Global Property Guide, 各地房产指数 | 城市级 | 年度 | 2024-2025 |
 | `monthlyRent` | Numbeo Rent Index (1-bedroom city center) | 城市级 | 年度 | 2024-2025 |
-| `airQuality` | IQAir 2024, AQICN | 城市级 | 年度 | 2024 |
+| `airQuality` | IQAir 2024 (8城) / US EPA (112城) | 城市级 | 年度 | 2024 |
+| `aqiSource` | — | — | — | 标识数据来源 (iqair/EPA) |
 | `doctorsPerThousand` | WHO GHO / World Bank (CC BY-4.0) | 城市级 | 不定期 | 2022-2024 |
 | `directFlightCities` | OAG Aviation, FlightConnections.com | 城市级 | 年度 | 2025 |
 | `annualWorkHours` | OECD Employment Outlook 2024, ILO ILOSTAT | 国家级 | 年度 | 2024 |
@@ -117,13 +117,13 @@ interface ExchangeRates {
 
 ### 3.1 生活成本层级
 
-基于 `costModerate` 按固定系数计算（定义于 `update_cost_tiers.py`）：
+当前系统只使用两个层级：`moderate`（适中）和 `budget`（节俭）。
 
-```
-costComfort  = costModerate × 1.6
-costBudget   = costModerate × 0.45
-costMinimal  = costModerate × 0.28
-```
+- `costModerate`: 基础数据，来自 Numbeo/Expatistan 独立研究
+- `costBudget`: 基于 `costModerate` 乘以城市级比例系数
+  - 原 100 城: 系数 0.38–0.48，按城市经济水平分化（来自 `update_cost_tiers.py`）
+  - 新增 20 亚洲城市: 系数 0.37–0.44，独立校准（来自 `fix-asian-data.mjs`）
+  - 发达昂贵城市 ≈ 0.45–0.48，发展中城市 ≈ 0.37–0.42
 
 ### 3.2 运行时派生值（CityDetailContent / CompareContent 内计算）
 
@@ -138,7 +138,7 @@ costMinimal  = costModerate × 0.28
 
 其中：
 - `income` = `professions[activeProfession]` 或 `averageIncome`（无选择时）
-- `cost` = 根据 `costTier` 选择 `costComfort/Moderate/Budget/Minimal`
+- `cost` = 根据 `costTier` 选择 `costModerate` 或 `costBudget`
 - `median(allBigMacPrices)` = 所有 `bigMacPrice !== null` 城市价格的中位数
 
 ### 3.3 巨无霸相关特殊处理
@@ -168,17 +168,14 @@ costMinimal  = costModerate × 0.28
 | 201-300 | Very Unhealthy (重度) | purple |
 | 301+ | Hazardous (严重) | rose |
 
-### 4.2 中国城市 AQI 转换
+### 4.2 AQI 数据来源
 
-中国大陆城市(ID 4, 5, 101-105) 原始数据来自 AQICN (HJ 633-2012 标准)：
+| aqiSource | 城市数 | 方法 |
+|-----------|--------|------|
+| `EPA` | 112 | 直接采用 US EPA AQI 年度标准值 |
+| `iqair` | 8 | IQAir 2024 年度 PM2.5 均值 → US EPA AQI 公式转换 |
 
-```
-US EPA AQI = AQICN raw × 1.4
-```
-
-转换依据：中国 AQI 以 PM₁₀ 为主指标，US EPA 以 PM₂.₅ 为主，浓度标度差约 1.4 倍。
-
-脚本：`scripts/add_aqi.py`
+8 座 `iqair` 城市: 北京(4)、上海(5)、香港(10)、广州(101)、深圳(102)、成都(103)、杭州(104)、重庆(105)
 
 ---
 
@@ -548,8 +545,8 @@ export const CITY_CLIMATE: Record<number, ClimateInfo> = {
 | 脚本 | 语言 | 用途 | 关键逻辑/公式 |
 |------|------|------|-------------|
 | `update_salaries.py` | Python | 更新 120 城 × 20 职业薪资 | 逐城逐职独立查询，禁止等比缩放 |
-| `update_cost_tiers.py` | Python | 计算 cost 四档 | comfort×1.6, budget×0.45, minimal×0.28 |
-| `add_aqi.py` | Python | 添加 AQI | 中国城市 raw×1.4 → US EPA |
+| `update_cost_tiers.py` | Python | 计算 cost 二档 | moderate=Numbeo, budget=moderate×城市级系数(0.37–0.48) |
+| `add_aqi.py` | Python | 添加 AQI | EPA 直报城市直取；8 中国城市用 IQAir PM2.5→US EPA 公式 |
 | `add-safety.mjs` | Node.js | 添加安全指数 | 40/30/20/10 加权 |
 | `add-flights.mjs` | Node.js | 添加直飞城市数 | OAG + FlightConnections |
 | `add-workhours.mjs` | Node.js | 添加年工时 | OECD/ILO 国家级数据 |
