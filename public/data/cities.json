@@ -43,7 +43,16 @@
       "directFlightCities": 280,
       "safetyIndex": 52,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 3200,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 220,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 2,
@@ -88,7 +97,16 @@
       "directFlightCities": 390,
       "safetyIndex": 59,
       "safetyConfidence": "high",
-      "annualWorkHours": 1532
+      "annualWorkHours": 1532,
+      "monthlyRent": 2100,
+      "paidLeaveDays": 28,
+      "internetSpeedMbps": 100,
+      "hospitalBedsPerThousand": 2.5,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 81,
+      "pressFreedomScore": 70,
+      "democracyIndex": 8.54,
+      "corruptionPerceptionIndex": 71
     },
     {
       "id": 3,
@@ -133,7 +151,16 @@
       "directFlightCities": 165,
       "safetyIndex": 83,
       "safetyConfidence": "high",
-      "annualWorkHours": 1607
+      "annualWorkHours": 1607,
+      "monthlyRent": 1400,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 12.6,
+      "uhcCoverageIndex": 83,
+      "lifeExpectancy": 84.5,
+      "pressFreedomScore": 64,
+      "democracyIndex": 8.33,
+      "corruptionPerceptionIndex": 73
     },
     {
       "id": 4,
@@ -178,7 +205,16 @@
       "directFlightCities": 220,
       "safetyIndex": 73,
       "safetyConfidence": "high",
-      "annualWorkHours": 2170
+      "annualWorkHours": 2170,
+      "monthlyRent": 1100,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 190,
+      "hospitalBedsPerThousand": 4.3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.2,
+      "pressFreedomScore": 9,
+      "democracyIndex": 2.12,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 5,
@@ -223,7 +259,16 @@
       "directFlightCities": 230,
       "safetyIndex": 75,
       "safetyConfidence": "high",
-      "annualWorkHours": 2170
+      "annualWorkHours": 2170,
+      "monthlyRent": 1300,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 210,
+      "hospitalBedsPerThousand": 4.3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.2,
+      "pressFreedomScore": 9,
+      "democracyIndex": 2.12,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 6,
@@ -268,7 +313,16 @@
       "directFlightCities": 95,
       "safetyIndex": 68,
       "safetyConfidence": "high",
-      "annualWorkHours": 1694
+      "annualWorkHours": 1694,
+      "monthlyRent": 2200,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 90,
+      "hospitalBedsPerThousand": 3.8,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 83.3,
+      "pressFreedomScore": 65,
+      "democracyIndex": 8.71,
+      "corruptionPerceptionIndex": 75
     },
     {
       "id": 7,
@@ -313,7 +367,16 @@
       "directFlightCities": 150,
       "safetyIndex": 82,
       "safetyConfidence": "high",
-      "annualWorkHours": 2238
+      "annualWorkHours": 2238,
+      "monthlyRent": 2400,
+      "paidLeaveDays": 7,
+      "internetSpeedMbps": 250,
+      "hospitalBedsPerThousand": 2.5,
+      "uhcCoverageIndex": 86,
+      "lifeExpectancy": 83.9,
+      "pressFreedomScore": 40,
+      "democracyIndex": 6.02,
+      "corruptionPerceptionIndex": 83
     },
     {
       "id": 8,
@@ -358,7 +421,16 @@
       "directFlightCities": 290,
       "safetyIndex": 51,
       "safetyConfidence": "high",
-      "annualWorkHours": 1511
+      "annualWorkHours": 1511,
+      "monthlyRent": 1500,
+      "paidLeaveDays": 25,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 5.9,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 82.5,
+      "pressFreedomScore": 68,
+      "democracyIndex": 7.99,
+      "corruptionPerceptionIndex": 71
     },
     {
       "id": 9,
@@ -403,7 +475,16 @@
       "directFlightCities": 180,
       "safetyIndex": 64,
       "safetyConfidence": "high",
-      "annualWorkHours": 1686
+      "annualWorkHours": 1686,
+      "monthlyRent": 1800,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 120,
+      "hospitalBedsPerThousand": 2.5,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 82,
+      "pressFreedomScore": 72,
+      "democracyIndex": 8.88,
+      "corruptionPerceptionIndex": 76
     },
     {
       "id": 10,
@@ -448,7 +529,16 @@
       "directFlightCities": 180,
       "safetyIndex": 78,
       "safetyConfidence": "high",
-      "annualWorkHours": 2080
+      "annualWorkHours": 2080,
+      "monthlyRent": 1900,
+      "paidLeaveDays": 7,
+      "internetSpeedMbps": 250,
+      "hospitalBedsPerThousand": 4.9,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 85.3,
+      "pressFreedomScore": 16,
+      "democracyIndex": 3.54,
+      "corruptionPerceptionIndex": 75
     },
     {
       "id": 11,
@@ -493,7 +583,16 @@
       "directFlightCities": 195,
       "safetyIndex": 47,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 2500,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 12,
@@ -538,7 +637,16 @@
       "directFlightCities": 130,
       "safetyIndex": 41,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 2800,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 13,
@@ -583,7 +691,16 @@
       "directFlightCities": 250,
       "safetyIndex": 44,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1600,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 14,
@@ -628,7 +745,16 @@
       "directFlightCities": 265,
       "safetyIndex": 85,
       "safetyConfidence": "high",
-      "annualWorkHours": 2200
+      "annualWorkHours": 2200,
+      "monthlyRent": 1800,
+      "paidLeaveDays": 30,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 1.4,
+      "uhcCoverageIndex": 78,
+      "lifeExpectancy": 78.7,
+      "pressFreedomScore": 26,
+      "democracyIndex": 2.76,
+      "corruptionPerceptionIndex": 68
     },
     {
       "id": 15,
@@ -673,7 +799,16 @@
       "directFlightCities": 195,
       "safetyIndex": 65,
       "safetyConfidence": "high",
-      "annualWorkHours": 1417
+      "annualWorkHours": 1417,
+      "monthlyRent": 1700,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 130,
+      "hospitalBedsPerThousand": 3.2,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 81.5,
+      "pressFreedomScore": 77,
+      "democracyIndex": 8.88,
+      "corruptionPerceptionIndex": 79
     },
     {
       "id": 16,
@@ -718,7 +853,16 @@
       "directFlightCities": 130,
       "safetyIndex": 81,
       "safetyConfidence": "high",
-      "annualWorkHours": 1533
+      "annualWorkHours": 1533,
+      "monthlyRent": 2200,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 170,
+      "hospitalBedsPerThousand": 4.6,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 83.4,
+      "pressFreedomScore": 82,
+      "democracyIndex": 9.14,
+      "corruptionPerceptionIndex": 82
     },
     {
       "id": 17,
@@ -763,7 +907,16 @@
       "directFlightCities": 110,
       "safetyIndex": 78,
       "safetyConfidence": "high",
-      "annualWorkHours": 1533
+      "annualWorkHours": 1533,
+      "monthlyRent": 1900,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 160,
+      "hospitalBedsPerThousand": 4.6,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 83.4,
+      "pressFreedomScore": 82,
+      "democracyIndex": 9.14,
+      "corruptionPerceptionIndex": 82
     },
     {
       "id": 18,
@@ -808,7 +961,16 @@
       "directFlightCities": 190,
       "safetyIndex": 76,
       "safetyConfidence": "high",
-      "annualWorkHours": 1341
+      "annualWorkHours": 1341,
+      "monthlyRent": 1200,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 120,
+      "hospitalBedsPerThousand": 8,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 80.6,
+      "pressFreedomScore": 72,
+      "democracyIndex": 8.8,
+      "corruptionPerceptionIndex": 78
     },
     {
       "id": 19,
@@ -853,7 +1015,16 @@
       "directFlightCities": 180,
       "safetyIndex": 62,
       "safetyConfidence": "high",
-      "annualWorkHours": 1341
+      "annualWorkHours": 1341,
+      "monthlyRent": 1100,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 110,
+      "hospitalBedsPerThousand": 8,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 80.6,
+      "pressFreedomScore": 72,
+      "democracyIndex": 8.8,
+      "corruptionPerceptionIndex": 78
     },
     {
       "id": 20,
@@ -898,7 +1069,16 @@
       "directFlightCities": 215,
       "safetyIndex": 54,
       "safetyConfidence": "high",
-      "annualWorkHours": 1644
+      "annualWorkHours": 1644,
+      "monthlyRent": 1100,
+      "paidLeaveDays": 22,
+      "internetSpeedMbps": 190,
+      "hospitalBedsPerThousand": 3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 83,
+      "pressFreedomScore": 66,
+      "democracyIndex": 8.07,
+      "corruptionPerceptionIndex": 60
     },
     {
       "id": 21,
@@ -943,7 +1123,16 @@
       "directFlightCities": 200,
       "safetyIndex": 59,
       "safetyConfidence": "high",
-      "annualWorkHours": 1644
+      "annualWorkHours": 1644,
+      "monthlyRent": 1000,
+      "paidLeaveDays": 22,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 83,
+      "pressFreedomScore": 66,
+      "democracyIndex": 8.07,
+      "corruptionPerceptionIndex": 60
     },
     {
       "id": 22,
@@ -988,7 +1177,16 @@
       "directFlightCities": 190,
       "safetyIndex": 56,
       "safetyConfidence": "high",
-      "annualWorkHours": 1669
+      "annualWorkHours": 1669,
+      "monthlyRent": 1200,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 120,
+      "hospitalBedsPerThousand": 3.2,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 82.9,
+      "pressFreedomScore": 56,
+      "democracyIndex": 7.69,
+      "corruptionPerceptionIndex": 56
     },
     {
       "id": 23,
@@ -1033,7 +1231,16 @@
       "directFlightCities": 190,
       "safetyIndex": 53,
       "safetyConfidence": "high",
-      "annualWorkHours": 1669
+      "annualWorkHours": 1669,
+      "monthlyRent": 950,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 100,
+      "hospitalBedsPerThousand": 3.2,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 82.9,
+      "pressFreedomScore": 56,
+      "democracyIndex": 7.69,
+      "corruptionPerceptionIndex": 56
     },
     {
       "id": 24,
@@ -1078,7 +1285,16 @@
       "directFlightCities": 170,
       "safetyIndex": 53,
       "safetyConfidence": "high",
-      "annualWorkHours": 1577
+      "annualWorkHours": 1577,
+      "monthlyRent": 1100,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 100,
+      "hospitalBedsPerThousand": 5.6,
+      "uhcCoverageIndex": 85,
+      "lifeExpectancy": 81.4,
+      "pressFreedomScore": 75,
+      "democracyIndex": 7.64,
+      "corruptionPerceptionIndex": 73
     },
     {
       "id": 25,
@@ -1123,7 +1339,16 @@
       "directFlightCities": 175,
       "safetyIndex": 73,
       "safetyConfidence": "high",
-      "annualWorkHours": 1442
+      "annualWorkHours": 1442,
+      "monthlyRent": 1000,
+      "paidLeaveDays": 25,
+      "internetSpeedMbps": 110,
+      "hospitalBedsPerThousand": 7.3,
+      "uhcCoverageIndex": 85,
+      "lifeExpectancy": 81.6,
+      "pressFreedomScore": 70,
+      "democracyIndex": 8.41,
+      "corruptionPerceptionIndex": 71
     },
     {
       "id": 26,
@@ -1168,7 +1393,16 @@
       "directFlightCities": 155,
       "safetyIndex": 70,
       "safetyConfidence": "high",
-      "annualWorkHours": 1766
+      "annualWorkHours": 1766,
+      "monthlyRent": 700,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 100,
+      "hospitalBedsPerThousand": 6.6,
+      "uhcCoverageIndex": 80,
+      "lifeExpectancy": 78.3,
+      "pressFreedomScore": 63,
+      "democracyIndex": 7.97,
+      "corruptionPerceptionIndex": 57
     },
     {
       "id": 27,
@@ -1213,7 +1447,16 @@
       "directFlightCities": 160,
       "safetyIndex": 64,
       "safetyConfidence": "high",
-      "annualWorkHours": 1803
+      "annualWorkHours": 1803,
+      "monthlyRent": 650,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 130,
+      "hospitalBedsPerThousand": 6.5,
+      "uhcCoverageIndex": 77,
+      "lifeExpectancy": 76.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.04,
+      "corruptionPerceptionIndex": 54
     },
     {
       "id": 28,
@@ -1258,7 +1501,16 @@
       "directFlightCities": 150,
       "safetyIndex": 65,
       "safetyConfidence": "high",
-      "annualWorkHours": 1649
+      "annualWorkHours": 1649,
+      "monthlyRent": 900,
+      "paidLeaveDays": 22,
+      "internetSpeedMbps": 140,
+      "hospitalBedsPerThousand": 3.5,
+      "uhcCoverageIndex": 83,
+      "lifeExpectancy": 81.1,
+      "pressFreedomScore": 80,
+      "democracyIndex": 8.03,
+      "corruptionPerceptionIndex": 61
     },
     {
       "id": 29,
@@ -1303,7 +1555,16 @@
       "directFlightCities": 165,
       "safetyIndex": 58,
       "safetyConfidence": "high",
-      "annualWorkHours": 1886
+      "annualWorkHours": 1886,
+      "monthlyRent": 550,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 70,
+      "hospitalBedsPerThousand": 4.2,
+      "uhcCoverageIndex": 77,
+      "lifeExpectancy": 80.1,
+      "pressFreedomScore": 58,
+      "democracyIndex": 7.56,
+      "corruptionPerceptionIndex": 49
     },
     {
       "id": 30,
@@ -1348,7 +1609,16 @@
       "directFlightCities": 310,
       "safetyIndex": 53,
       "safetyConfidence": "high",
-      "annualWorkHours": 1855
+      "annualWorkHours": 1855,
+      "monthlyRent": 500,
+      "paidLeaveDays": 14,
+      "internetSpeedMbps": 60,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 77,
+      "lifeExpectancy": 76,
+      "pressFreedomScore": 22,
+      "democracyIndex": 4.35,
+      "corruptionPerceptionIndex": 36
     },
     {
       "id": 31,
@@ -1393,7 +1663,16 @@
       "directFlightCities": 115,
       "safetyIndex": 34,
       "safetyConfidence": "high",
-      "annualWorkHours": 2128
+      "annualWorkHours": 2128,
+      "monthlyRent": 550,
+      "paidLeaveDays": 12,
+      "internetSpeedMbps": 70,
+      "hospitalBedsPerThousand": 1,
+      "uhcCoverageIndex": 74,
+      "lifeExpectancy": 75,
+      "pressFreedomScore": 33,
+      "democracyIndex": 5.57,
+      "corruptionPerceptionIndex": 31
     },
     {
       "id": 32,
@@ -1438,7 +1717,16 @@
       "directFlightCities": 135,
       "safetyIndex": 29,
       "safetyConfidence": "high",
-      "annualWorkHours": 1776
+      "annualWorkHours": 1776,
+      "monthlyRent": 550,
+      "paidLeaveDays": 30,
+      "internetSpeedMbps": 80,
+      "hospitalBedsPerThousand": 2.1,
+      "uhcCoverageIndex": 75,
+      "lifeExpectancy": 75.3,
+      "pressFreedomScore": 55,
+      "democracyIndex": 6.78,
+      "corruptionPerceptionIndex": 36
     },
     {
       "id": 33,
@@ -1483,7 +1771,16 @@
       "directFlightCities": 55,
       "safetyIndex": 33,
       "safetyConfidence": "high",
-      "annualWorkHours": 1776
+      "annualWorkHours": 1776,
+      "monthlyRent": 650,
+      "paidLeaveDays": 30,
+      "internetSpeedMbps": 75,
+      "hospitalBedsPerThousand": 2.1,
+      "uhcCoverageIndex": 75,
+      "lifeExpectancy": 75.3,
+      "pressFreedomScore": 55,
+      "democracyIndex": 6.78,
+      "corruptionPerceptionIndex": 36
     },
     {
       "id": 34,
@@ -1528,7 +1825,16 @@
       "directFlightCities": 180,
       "safetyIndex": 53,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 2000,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 35,
@@ -1573,7 +1879,16 @@
       "directFlightCities": 200,
       "safetyIndex": 59,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1700,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 210,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 36,
@@ -1618,7 +1933,16 @@
       "directFlightCities": 140,
       "safetyIndex": 64,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1500,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 190,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 37,
@@ -1663,7 +1987,16 @@
       "directFlightCities": 135,
       "safetyIndex": 53,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1800,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 220,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 38,
@@ -1708,7 +2041,16 @@
       "directFlightCities": 215,
       "safetyIndex": 60,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1400,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 39,
@@ -1753,7 +2095,16 @@
       "directFlightCities": 75,
       "safetyIndex": 56,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1600,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 40,
@@ -1798,7 +2149,16 @@
       "directFlightCities": 120,
       "safetyIndex": 65,
       "safetyConfidence": "high",
-      "annualWorkHours": 1686
+      "annualWorkHours": 1686,
+      "monthlyRent": 1600,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 130,
+      "hospitalBedsPerThousand": 2.5,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 82,
+      "pressFreedomScore": 72,
+      "democracyIndex": 8.88,
+      "corruptionPerceptionIndex": 76
     },
     {
       "id": 41,
@@ -1843,7 +2203,16 @@
       "directFlightCities": 130,
       "safetyIndex": 62,
       "safetyConfidence": "high",
-      "annualWorkHours": 1686
+      "annualWorkHours": 1686,
+      "monthlyRent": 1400,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 120,
+      "hospitalBedsPerThousand": 2.5,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 82,
+      "pressFreedomScore": 72,
+      "democracyIndex": 8.88,
+      "corruptionPerceptionIndex": 76
     },
     {
       "id": 42,
@@ -1888,7 +2257,16 @@
       "directFlightCities": 75,
       "safetyIndex": 70,
       "safetyConfidence": "high",
-      "annualWorkHours": 1694
+      "annualWorkHours": 1694,
+      "monthlyRent": 1800,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 85,
+      "hospitalBedsPerThousand": 3.8,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 83.3,
+      "pressFreedomScore": 65,
+      "democracyIndex": 8.71,
+      "corruptionPerceptionIndex": 75
     },
     {
       "id": 43,
@@ -1933,7 +2311,16 @@
       "directFlightCities": 55,
       "safetyIndex": 72,
       "safetyConfidence": "high",
-      "annualWorkHours": 1694
+      "annualWorkHours": 1694,
+      "monthlyRent": 1400,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 80,
+      "hospitalBedsPerThousand": 3.8,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 83.3,
+      "pressFreedomScore": 65,
+      "democracyIndex": 8.71,
+      "corruptionPerceptionIndex": 75
     },
     {
       "id": 44,
@@ -1978,7 +2365,16 @@
       "directFlightCities": 60,
       "safetyIndex": 72,
       "safetyConfidence": "high",
-      "annualWorkHours": 1752
+      "annualWorkHours": 1752,
+      "monthlyRent": 1300,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 110,
+      "hospitalBedsPerThousand": 2.6,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 82.1,
+      "pressFreedomScore": 78,
+      "democracyIndex": 9.61,
+      "corruptionPerceptionIndex": 85
     },
     {
       "id": 45,
@@ -2023,7 +2419,16 @@
       "directFlightCities": 190,
       "safetyIndex": 57,
       "safetyConfidence": "high",
-      "annualWorkHours": 2024
+      "annualWorkHours": 2024,
+      "monthlyRent": 500,
+      "paidLeaveDays": 6,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 2.1,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.7,
+      "pressFreedomScore": 40,
+      "democracyIndex": 6.35,
+      "corruptionPerceptionIndex": 35
     },
     {
       "id": 46,
@@ -2068,7 +2473,16 @@
       "directFlightCities": 140,
       "safetyIndex": 57,
       "safetyConfidence": "high",
-      "annualWorkHours": 2028
+      "annualWorkHours": 2028,
+      "monthlyRent": 550,
+      "paidLeaveDays": 8,
+      "internetSpeedMbps": 110,
+      "hospitalBedsPerThousand": 1.9,
+      "uhcCoverageIndex": 73,
+      "lifeExpectancy": 76.2,
+      "pressFreedomScore": 47,
+      "democracyIndex": 7.3,
+      "corruptionPerceptionIndex": 50
     },
     {
       "id": 47,
@@ -2113,7 +2527,16 @@
       "directFlightCities": 85,
       "safetyIndex": 50,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2060
+      "annualWorkHours": 2060,
+      "monthlyRent": 400,
+      "paidLeaveDays": 12,
+      "internetSpeedMbps": 90,
+      "hospitalBedsPerThousand": 2.6,
+      "uhcCoverageIndex": 73,
+      "lifeExpectancy": 75.4,
+      "pressFreedomScore": 15,
+      "democracyIndex": 2.82,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 48,
@@ -2158,7 +2581,16 @@
       "directFlightCities": 70,
       "safetyIndex": 60,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2060
+      "annualWorkHours": 2060,
+      "monthlyRent": 450,
+      "paidLeaveDays": 12,
+      "internetSpeedMbps": 95,
+      "hospitalBedsPerThousand": 2.6,
+      "uhcCoverageIndex": 73,
+      "lifeExpectancy": 75.4,
+      "pressFreedomScore": 15,
+      "democracyIndex": 2.82,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 49,
@@ -2203,7 +2635,16 @@
       "directFlightCities": 75,
       "safetyIndex": 54,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2117
+      "annualWorkHours": 2117,
+      "monthlyRent": 250,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 60,
+      "hospitalBedsPerThousand": 0.5,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 70.8,
+      "pressFreedomScore": 31,
+      "democracyIndex": 7.18,
+      "corruptionPerceptionIndex": 39
     },
     {
       "id": 50,
@@ -2248,7 +2689,16 @@
       "directFlightCities": 110,
       "safetyIndex": 41,
       "safetyConfidence": "high",
-      "annualWorkHours": 2117
+      "annualWorkHours": 2117,
+      "monthlyRent": 200,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 65,
+      "hospitalBedsPerThousand": 0.5,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 70.8,
+      "pressFreedomScore": 31,
+      "democracyIndex": 7.18,
+      "corruptionPerceptionIndex": 39
     },
     {
       "id": 51,
@@ -2293,7 +2743,16 @@
       "directFlightCities": 145,
       "safetyIndex": 35,
       "safetyConfidence": "high",
-      "annualWorkHours": 2117
+      "annualWorkHours": 2117,
+      "monthlyRent": 250,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 70,
+      "hospitalBedsPerThousand": 0.5,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 70.8,
+      "pressFreedomScore": 31,
+      "democracyIndex": 7.18,
+      "corruptionPerceptionIndex": 39
     },
     {
       "id": 52,
@@ -2338,7 +2797,16 @@
       "directFlightCities": 60,
       "safetyIndex": 30,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2100
+      "annualWorkHours": 2100,
+      "monthlyRent": 350,
+      "paidLeaveDays": 21,
+      "internetSpeedMbps": 25,
+      "hospitalBedsPerThousand": 1.4,
+      "uhcCoverageIndex": 48,
+      "lifeExpectancy": 61.4,
+      "pressFreedomScore": 55,
+      "democracyIndex": 5.05,
+      "corruptionPerceptionIndex": 32
     },
     {
       "id": 53,
@@ -2383,7 +2851,16 @@
       "directFlightCities": 100,
       "safetyIndex": 43,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2070
+      "annualWorkHours": 2070,
+      "monthlyRent": 300,
+      "paidLeaveDays": 21,
+      "internetSpeedMbps": 40,
+      "hospitalBedsPerThousand": 1.6,
+      "uhcCoverageIndex": 57,
+      "lifeExpectancy": 72,
+      "pressFreedomScore": 14,
+      "democracyIndex": 2.93,
+      "corruptionPerceptionIndex": 35
     },
     {
       "id": 54,
@@ -2428,7 +2905,16 @@
       "directFlightCities": 75,
       "safetyIndex": 52,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2024
+      "annualWorkHours": 2024,
+      "monthlyRent": 200,
+      "paidLeaveDays": 26,
+      "internetSpeedMbps": 30,
+      "hospitalBedsPerThousand": 1.6,
+      "uhcCoverageIndex": 67,
+      "lifeExpectancy": 76.7,
+      "pressFreedomScore": 8,
+      "democracyIndex": 1.96,
+      "corruptionPerceptionIndex": 24
     },
     {
       "id": 55,
@@ -2473,7 +2959,16 @@
       "directFlightCities": 40,
       "safetyIndex": 25,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2150
+      "annualWorkHours": 2150,
+      "monthlyRent": 150,
+      "paidLeaveDays": 14,
+      "internetSpeedMbps": 20,
+      "hospitalBedsPerThousand": 0.6,
+      "uhcCoverageIndex": 40,
+      "lifeExpectancy": 67.3,
+      "pressFreedomScore": 27,
+      "democracyIndex": 4.13,
+      "corruptionPerceptionIndex": 27
     },
     {
       "id": 56,
@@ -2518,7 +3013,16 @@
       "directFlightCities": 45,
       "safetyIndex": 43,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2150
+      "annualWorkHours": 2150,
+      "monthlyRent": 180,
+      "paidLeaveDays": 14,
+      "internetSpeedMbps": 25,
+      "hospitalBedsPerThousand": 0.6,
+      "uhcCoverageIndex": 40,
+      "lifeExpectancy": 67.3,
+      "pressFreedomScore": 27,
+      "democracyIndex": 4.13,
+      "corruptionPerceptionIndex": 27
     },
     {
       "id": 57,
@@ -2563,7 +3067,16 @@
       "directFlightCities": 90,
       "safetyIndex": 46,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1950
+      "annualWorkHours": 1950,
+      "monthlyRent": 350,
+      "paidLeaveDays": 12,
+      "internetSpeedMbps": 35,
+      "hospitalBedsPerThousand": 1,
+      "uhcCoverageIndex": 59,
+      "lifeExpectancy": 71.7,
+      "pressFreedomScore": 50,
+      "democracyIndex": 6.71,
+      "corruptionPerceptionIndex": 37
     },
     {
       "id": 58,
@@ -2608,7 +3121,16 @@
       "directFlightCities": 80,
       "safetyIndex": 44,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2000
+      "annualWorkHours": 2000,
+      "monthlyRent": 350,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 80,
+      "hospitalBedsPerThousand": 1,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 71.1,
+      "pressFreedomScore": 42,
+      "democracyIndex": 6.73,
+      "corruptionPerceptionIndex": 34
     },
     {
       "id": 59,
@@ -2653,7 +3175,16 @@
       "directFlightCities": 190,
       "safetyIndex": 77,
       "safetyConfidence": "high",
-      "annualWorkHours": 1901
+      "annualWorkHours": 1901,
+      "monthlyRent": 900,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 12.4,
+      "uhcCoverageIndex": 86,
+      "lifeExpectancy": 83.7,
+      "pressFreedomScore": 72,
+      "democracyIndex": 8.09,
+      "corruptionPerceptionIndex": 63
     },
     {
       "id": 60,
@@ -2698,7 +3229,16 @@
       "directFlightCities": 50,
       "safetyIndex": 74,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1901
+      "annualWorkHours": 1901,
+      "monthlyRent": 600,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 190,
+      "hospitalBedsPerThousand": 12.4,
+      "uhcCoverageIndex": 86,
+      "lifeExpectancy": 83.7,
+      "pressFreedomScore": 72,
+      "democracyIndex": 8.09,
+      "corruptionPerceptionIndex": 63
     },
     {
       "id": 61,
@@ -2743,7 +3283,16 @@
       "directFlightCities": 130,
       "safetyIndex": 78,
       "safetyConfidence": "high",
-      "annualWorkHours": 2008
+      "annualWorkHours": 2008,
+      "monthlyRent": 800,
+      "paidLeaveDays": 7,
+      "internetSpeedMbps": 170,
+      "hospitalBedsPerThousand": 5.6,
+      "uhcCoverageIndex": 86,
+      "lifeExpectancy": 81,
+      "pressFreedomScore": 74,
+      "democracyIndex": 8.99,
+      "corruptionPerceptionIndex": 68
     },
     {
       "id": 62,
@@ -2788,7 +3337,16 @@
       "directFlightCities": 65,
       "safetyIndex": 38,
       "safetyConfidence": "high",
-      "annualWorkHours": 1820
+      "annualWorkHours": 1820,
+      "monthlyRent": 350,
+      "paidLeaveDays": 14,
+      "internetSpeedMbps": 55,
+      "hospitalBedsPerThousand": 5,
+      "uhcCoverageIndex": 74,
+      "lifeExpectancy": 76.5,
+      "pressFreedomScore": 60,
+      "democracyIndex": 6.81,
+      "corruptionPerceptionIndex": 38
     },
     {
       "id": 63,
@@ -2833,7 +3391,16 @@
       "directFlightCities": 55,
       "safetyIndex": 45,
       "safetyConfidence": "high",
-      "annualWorkHours": 1916
+      "annualWorkHours": 1916,
+      "monthlyRent": 500,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 130,
+      "hospitalBedsPerThousand": 2.1,
+      "uhcCoverageIndex": 75,
+      "lifeExpectancy": 80.2,
+      "pressFreedomScore": 68,
+      "democracyIndex": 8.28,
+      "corruptionPerceptionIndex": 67
     },
     {
       "id": 64,
@@ -2878,7 +3445,16 @@
       "directFlightCities": 75,
       "safetyIndex": 33,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1964
+      "annualWorkHours": 1964,
+      "monthlyRent": 350,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 40,
+      "hospitalBedsPerThousand": 1.7,
+      "uhcCoverageIndex": 76,
+      "lifeExpectancy": 77.3,
+      "pressFreedomScore": 48,
+      "democracyIndex": 7.04,
+      "corruptionPerceptionIndex": 40
     },
     {
       "id": 65,
@@ -2923,7 +3499,16 @@
       "directFlightCities": 65,
       "safetyIndex": 37,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2000
+      "annualWorkHours": 2000,
+      "monthlyRent": 300,
+      "paidLeaveDays": 30,
+      "internetSpeedMbps": 50,
+      "hospitalBedsPerThousand": 1.6,
+      "uhcCoverageIndex": 65,
+      "lifeExpectancy": 76.5,
+      "pressFreedomScore": 52,
+      "democracyIndex": 6.09,
+      "corruptionPerceptionIndex": 36
     },
     {
       "id": 66,
@@ -2968,7 +3553,16 @@
       "directFlightCities": 25,
       "safetyIndex": 17,
       "safetyConfidence": "low",
-      "annualWorkHours": 1800
+      "annualWorkHours": 1800,
+      "monthlyRent": 250,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 15,
+      "hospitalBedsPerThousand": 0.9,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 72.1,
+      "pressFreedomScore": 18,
+      "democracyIndex": 2.23,
+      "corruptionPerceptionIndex": 13
     },
     {
       "id": 67,
@@ -3013,7 +3607,16 @@
       "directFlightCities": 75,
       "safetyIndex": 25,
       "safetyConfidence": "high",
-      "annualWorkHours": 1856
+      "annualWorkHours": 1856,
+      "monthlyRent": 500,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 40,
+      "hospitalBedsPerThousand": 2.3,
+      "uhcCoverageIndex": 54,
+      "lifeExpectancy": 64.9,
+      "pressFreedomScore": 62,
+      "democracyIndex": 7.05,
+      "corruptionPerceptionIndex": 43
     },
     {
       "id": 68,
@@ -3058,7 +3661,16 @@
       "directFlightCities": 35,
       "safetyIndex": 39,
       "safetyConfidence": "high",
-      "annualWorkHours": 1856
+      "annualWorkHours": 1856,
+      "monthlyRent": 600,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 45,
+      "hospitalBedsPerThousand": 2.3,
+      "uhcCoverageIndex": 54,
+      "lifeExpectancy": 64.9,
+      "pressFreedomScore": 62,
+      "democracyIndex": 7.05,
+      "corruptionPerceptionIndex": 43
     },
     {
       "id": 69,
@@ -3103,7 +3715,16 @@
       "directFlightCities": 50,
       "safetyIndex": 35,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2128
+      "annualWorkHours": 2128,
+      "monthlyRent": 450,
+      "paidLeaveDays": 12,
+      "internetSpeedMbps": 60,
+      "hospitalBedsPerThousand": 1,
+      "uhcCoverageIndex": 74,
+      "lifeExpectancy": 75,
+      "pressFreedomScore": 33,
+      "democracyIndex": 5.57,
+      "corruptionPerceptionIndex": 31
     },
     {
       "id": 70,
@@ -3148,7 +3769,16 @@
       "directFlightCities": 55,
       "safetyIndex": 52,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2026
+      "annualWorkHours": 2026,
+      "monthlyRent": 550,
+      "paidLeaveDays": 14,
+      "internetSpeedMbps": 55,
+      "hospitalBedsPerThousand": 1.1,
+      "uhcCoverageIndex": 75,
+      "lifeExpectancy": 80.3,
+      "pressFreedomScore": 70,
+      "democracyIndex": 8.29,
+      "corruptionPerceptionIndex": 55
     },
     {
       "id": 71,
@@ -3193,7 +3823,16 @@
       "directFlightCities": 90,
       "safetyIndex": 47,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1960
+      "annualWorkHours": 1960,
+      "monthlyRent": 800,
+      "paidLeaveDays": 30,
+      "internetSpeedMbps": 70,
+      "hospitalBedsPerThousand": 2.3,
+      "uhcCoverageIndex": 72,
+      "lifeExpectancy": 78.5,
+      "pressFreedomScore": 56,
+      "democracyIndex": 7.18,
+      "corruptionPerceptionIndex": 36
     },
     {
       "id": 72,
@@ -3238,7 +3877,16 @@
       "directFlightCities": 40,
       "safetyIndex": 59,
       "safetyConfidence": "low",
-      "annualWorkHours": 1780
+      "annualWorkHours": 1780,
+      "monthlyRent": 150,
+      "paidLeaveDays": 22,
+      "internetSpeedMbps": 5,
+      "hospitalBedsPerThousand": 5.3,
+      "uhcCoverageIndex": 80,
+      "lifeExpectancy": 78.8,
+      "pressFreedomScore": 7,
+      "democracyIndex": 2.84,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 73,
@@ -3283,7 +3931,16 @@
       "directFlightCities": 45,
       "safetyIndex": 47,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 750,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 150,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 74,
@@ -3328,7 +3985,16 @@
       "directFlightCities": 30,
       "safetyIndex": 40,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1920
+      "annualWorkHours": 1920,
+      "monthlyRent": 400,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 30,
+      "hospitalBedsPerThousand": 1.7,
+      "uhcCoverageIndex": 68,
+      "lifeExpectancy": 75.2,
+      "pressFreedomScore": 72,
+      "democracyIndex": 7.39,
+      "corruptionPerceptionIndex": 44
     },
     {
       "id": 75,
@@ -3373,7 +4039,16 @@
       "directFlightCities": 115,
       "safetyIndex": 84,
       "safetyConfidence": "high",
-      "annualWorkHours": 2200
+      "annualWorkHours": 2200,
+      "monthlyRent": 1500,
+      "paidLeaveDays": 30,
+      "internetSpeedMbps": 160,
+      "hospitalBedsPerThousand": 1.4,
+      "uhcCoverageIndex": 78,
+      "lifeExpectancy": 78.7,
+      "pressFreedomScore": 26,
+      "democracyIndex": 2.76,
+      "corruptionPerceptionIndex": 68
     },
     {
       "id": 76,
@@ -3418,7 +4093,16 @@
       "directFlightCities": 185,
       "safetyIndex": 82,
       "safetyConfidence": "high",
-      "annualWorkHours": 2200
+      "annualWorkHours": 2200,
+      "monthlyRent": 1600,
+      "paidLeaveDays": 21,
+      "internetSpeedMbps": 170,
+      "hospitalBedsPerThousand": 1.3,
+      "uhcCoverageIndex": 70,
+      "lifeExpectancy": 80.2,
+      "pressFreedomScore": 30,
+      "democracyIndex": 3.19,
+      "corruptionPerceptionIndex": 58
     },
     {
       "id": 77,
@@ -3463,7 +4147,16 @@
       "directFlightCities": 65,
       "safetyIndex": 77,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2150
+      "annualWorkHours": 2150,
+      "monthlyRent": 700,
+      "paidLeaveDays": 30,
+      "internetSpeedMbps": 100,
+      "hospitalBedsPerThousand": 2,
+      "uhcCoverageIndex": 72,
+      "lifeExpectancy": 77.2,
+      "pressFreedomScore": 15,
+      "democracyIndex": 2.52,
+      "corruptionPerceptionIndex": 44
     },
     {
       "id": 78,
@@ -3508,7 +4201,16 @@
       "directFlightCities": 105,
       "safetyIndex": 72,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2100
+      "annualWorkHours": 2100,
+      "monthlyRent": 800,
+      "paidLeaveDays": 21,
+      "internetSpeedMbps": 120,
+      "hospitalBedsPerThousand": 2.2,
+      "uhcCoverageIndex": 74,
+      "lifeExpectancy": 77.6,
+      "pressFreedomScore": 12,
+      "democracyIndex": 2.08,
+      "corruptionPerceptionIndex": 52
     },
     {
       "id": 79,
@@ -3553,7 +4255,16 @@
       "directFlightCities": 75,
       "safetyIndex": 80,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2100
+      "annualWorkHours": 2100,
+      "monthlyRent": 650,
+      "paidLeaveDays": 30,
+      "internetSpeedMbps": 80,
+      "hospitalBedsPerThousand": 1.5,
+      "uhcCoverageIndex": 70,
+      "lifeExpectancy": 78.2,
+      "pressFreedomScore": 28,
+      "democracyIndex": 3.12,
+      "corruptionPerceptionIndex": 52
     },
     {
       "id": 80,
@@ -3598,7 +4309,16 @@
       "directFlightCities": 60,
       "safetyIndex": 48,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1950
+      "annualWorkHours": 1950,
+      "monthlyRent": 500,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 30,
+      "hospitalBedsPerThousand": 2.7,
+      "uhcCoverageIndex": 65,
+      "lifeExpectancy": 78.9,
+      "pressFreedomScore": 48,
+      "democracyIndex": 4.16,
+      "corruptionPerceptionIndex": 24
     },
     {
       "id": 81,
@@ -3643,7 +4363,16 @@
       "directFlightCities": 70,
       "safetyIndex": 58,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2050
+      "annualWorkHours": 2050,
+      "monthlyRent": 400,
+      "paidLeaveDays": 14,
+      "internetSpeedMbps": 50,
+      "hospitalBedsPerThousand": 1.4,
+      "uhcCoverageIndex": 68,
+      "lifeExpectancy": 74.5,
+      "pressFreedomScore": 32,
+      "democracyIndex": 3.41,
+      "corruptionPerceptionIndex": 47
     },
     {
       "id": 82,
@@ -3688,7 +4417,16 @@
       "directFlightCities": 120,
       "safetyIndex": 63,
       "safetyConfidence": "high",
-      "annualWorkHours": 1898
+      "annualWorkHours": 1898,
+      "monthlyRent": 1500,
+      "paidLeaveDays": 12,
+      "internetSpeedMbps": 110,
+      "hospitalBedsPerThousand": 3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 82.6,
+      "pressFreedomScore": 53,
+      "democracyIndex": 7.84,
+      "corruptionPerceptionIndex": 62
     },
     {
       "id": 83,
@@ -3733,7 +4471,16 @@
       "directFlightCities": 55,
       "safetyIndex": 51,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2117
+      "annualWorkHours": 2117,
+      "monthlyRent": 200,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 65,
+      "hospitalBedsPerThousand": 0.5,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 70.8,
+      "pressFreedomScore": 31,
+      "democracyIndex": 7.18,
+      "corruptionPerceptionIndex": 39
     },
     {
       "id": 84,
@@ -3778,7 +4525,16 @@
       "directFlightCities": 30,
       "safetyIndex": 54,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2117
+      "annualWorkHours": 2117,
+      "monthlyRent": 200,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 60,
+      "hospitalBedsPerThousand": 0.5,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 70.8,
+      "pressFreedomScore": 31,
+      "democracyIndex": 7.18,
+      "corruptionPerceptionIndex": 39
     },
     {
       "id": 85,
@@ -3823,7 +4579,16 @@
       "directFlightCities": 0,
       "safetyIndex": 20,
       "safetyConfidence": "low",
-      "annualWorkHours": 1750
+      "annualWorkHours": 1750,
+      "monthlyRent": 350,
+      "paidLeaveDays": 24,
+      "internetSpeedMbps": 70,
+      "hospitalBedsPerThousand": 7.5,
+      "uhcCoverageIndex": 63,
+      "lifeExpectancy": 73.6,
+      "pressFreedomScore": 44,
+      "democracyIndex": 5.42,
+      "corruptionPerceptionIndex": 36
     },
     {
       "id": 86,
@@ -3868,7 +4633,16 @@
       "directFlightCities": 115,
       "safetyIndex": 57,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1838
+      "annualWorkHours": 1838,
+      "monthlyRent": 400,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 140,
+      "hospitalBedsPerThousand": 6.9,
+      "uhcCoverageIndex": 70,
+      "lifeExpectancy": 74.2,
+      "pressFreedomScore": 60,
+      "democracyIndex": 6.4,
+      "corruptionPerceptionIndex": 46
     },
     {
       "id": 87,
@@ -3913,7 +4687,16 @@
       "directFlightCities": 90,
       "safetyIndex": 63,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1754
+      "annualWorkHours": 1754,
+      "monthlyRent": 350,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 130,
+      "hospitalBedsPerThousand": 7.6,
+      "uhcCoverageIndex": 67,
+      "lifeExpectancy": 73.6,
+      "pressFreedomScore": 42,
+      "democracyIndex": 6.53,
+      "corruptionPerceptionIndex": 45
     },
     {
       "id": 88,
@@ -3958,7 +4741,16 @@
       "directFlightCities": 65,
       "safetyIndex": 68,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1715
+      "annualWorkHours": 1715,
+      "monthlyRent": 500,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 80,
+      "hospitalBedsPerThousand": 5.5,
+      "uhcCoverageIndex": 76,
+      "lifeExpectancy": 77.8,
+      "pressFreedomScore": 55,
+      "democracyIndex": 6.5,
+      "corruptionPerceptionIndex": 47
     },
     {
       "id": 89,
@@ -4003,7 +4795,16 @@
       "directFlightCities": 90,
       "safetyIndex": 59,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1780
+      "annualWorkHours": 1780,
+      "monthlyRent": 350,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 90,
+      "hospitalBedsPerThousand": 5.6,
+      "uhcCoverageIndex": 68,
+      "lifeExpectancy": 75.4,
+      "pressFreedomScore": 34,
+      "democracyIndex": 6.02,
+      "corruptionPerceptionIndex": 36
     },
     {
       "id": 90,
@@ -4048,7 +4849,16 @@
       "directFlightCities": 145,
       "safetyIndex": 63,
       "safetyConfidence": "high",
-      "annualWorkHours": 1805
+      "annualWorkHours": 1805,
+      "monthlyRent": 500,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 150,
+      "hospitalBedsPerThousand": 7,
+      "uhcCoverageIndex": 74,
+      "lifeExpectancy": 75.6,
+      "pressFreedomScore": 40,
+      "democracyIndex": 6.5,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 91,
@@ -4093,7 +4903,16 @@
       "directFlightCities": 45,
       "safetyIndex": 68,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1700
+      "annualWorkHours": 1700,
+      "monthlyRent": 550,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 100,
+      "hospitalBedsPerThousand": 5.8,
+      "uhcCoverageIndex": 77,
+      "lifeExpectancy": 76.3,
+      "pressFreedomScore": 56,
+      "democracyIndex": 7.17,
+      "corruptionPerceptionIndex": 54
     },
     {
       "id": 92,
@@ -4138,7 +4957,16 @@
       "directFlightCities": 40,
       "safetyIndex": 75,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1624
+      "annualWorkHours": 1624,
+      "monthlyRent": 600,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 95,
+      "hospitalBedsPerThousand": 4.4,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 81.3,
+      "pressFreedomScore": 62,
+      "democracyIndex": 7.96,
+      "corruptionPerceptionIndex": 56
     },
     {
       "id": 93,
@@ -4183,7 +5011,16 @@
       "directFlightCities": 185,
       "safetyIndex": 58,
       "safetyConfidence": "high",
-      "annualWorkHours": 1656
+      "annualWorkHours": 1656,
+      "monthlyRent": 1800,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 110,
+      "hospitalBedsPerThousand": 3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 82,
+      "pressFreedomScore": 78,
+      "democracyIndex": 9.05,
+      "corruptionPerceptionIndex": 77
     },
     {
       "id": 94,
@@ -4228,7 +5065,16 @@
       "directFlightCities": 65,
       "safetyIndex": 59,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1532
+      "annualWorkHours": 1532,
+      "monthlyRent": 1200,
+      "paidLeaveDays": 28,
+      "internetSpeedMbps": 100,
+      "hospitalBedsPerThousand": 2.5,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 81,
+      "pressFreedomScore": 70,
+      "democracyIndex": 8.54,
+      "corruptionPerceptionIndex": 71
     },
     {
       "id": 95,
@@ -4273,7 +5119,16 @@
       "directFlightCities": 260,
       "safetyIndex": 45,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1500,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 190,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 96,
@@ -4318,7 +5173,16 @@
       "directFlightCities": 135,
       "safetyIndex": 55,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1400,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 97,
@@ -4363,7 +5227,16 @@
       "directFlightCities": 80,
       "safetyIndex": 47,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1300,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 170,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 98,
@@ -4408,7 +5281,16 @@
       "directFlightCities": 75,
       "safetyIndex": 63,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1100,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 190,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 99,
@@ -4453,7 +5335,16 @@
       "directFlightCities": 145,
       "safetyIndex": 55,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1200,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 100,
@@ -4498,7 +5389,16 @@
       "directFlightCities": 90,
       "safetyIndex": 58,
       "safetyConfidence": "high",
-      "annualWorkHours": 1811
+      "annualWorkHours": 1811,
+      "monthlyRent": 1100,
+      "paidLeaveDays": 0,
+      "internetSpeedMbps": 190,
+      "hospitalBedsPerThousand": 2.9,
+      "uhcCoverageIndex": 84,
+      "lifeExpectancy": 77.5,
+      "pressFreedomScore": 55,
+      "democracyIndex": 7.85,
+      "corruptionPerceptionIndex": 69
     },
     {
       "id": 101,
@@ -4543,7 +5443,16 @@
       "directFlightCities": 210,
       "safetyIndex": 72,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2170
+      "annualWorkHours": 2170,
+      "monthlyRent": 700,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 200,
+      "hospitalBedsPerThousand": 4.3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.2,
+      "pressFreedomScore": 9,
+      "democracyIndex": 2.12,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 102,
@@ -4588,7 +5497,16 @@
       "directFlightCities": 150,
       "safetyIndex": 77,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2170
+      "annualWorkHours": 2170,
+      "monthlyRent": 550,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 4.3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.2,
+      "pressFreedomScore": 9,
+      "democracyIndex": 2.12,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 103,
@@ -4633,7 +5551,16 @@
       "directFlightCities": 200,
       "safetyIndex": 74,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2170
+      "annualWorkHours": 2170,
+      "monthlyRent": 450,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 160,
+      "hospitalBedsPerThousand": 4.3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.2,
+      "pressFreedomScore": 9,
+      "democracyIndex": 2.12,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 104,
@@ -4678,7 +5605,16 @@
       "directFlightCities": 140,
       "safetyIndex": 77,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2170
+      "annualWorkHours": 2170,
+      "monthlyRent": 400,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 150,
+      "hospitalBedsPerThousand": 4.3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.2,
+      "pressFreedomScore": 9,
+      "democracyIndex": 2.12,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 105,
@@ -4723,7 +5659,16 @@
       "directFlightCities": 150,
       "safetyIndex": 72,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2170
+      "annualWorkHours": 2170,
+      "monthlyRent": 500,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 190,
+      "hospitalBedsPerThousand": 4.3,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.2,
+      "pressFreedomScore": 9,
+      "democracyIndex": 2.12,
+      "corruptionPerceptionIndex": 42
     },
     {
       "id": 106,
@@ -4768,7 +5713,16 @@
       "directFlightCities": 115,
       "safetyIndex": 81,
       "safetyConfidence": "high",
-      "annualWorkHours": 1607
+      "annualWorkHours": 1607,
+      "monthlyRent": 1000,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 12.6,
+      "uhcCoverageIndex": 83,
+      "lifeExpectancy": 84.5,
+      "pressFreedomScore": 64,
+      "democracyIndex": 8.33,
+      "corruptionPerceptionIndex": 73
     },
     {
       "id": 107,
@@ -4813,7 +5767,16 @@
       "directFlightCities": 55,
       "safetyIndex": 82,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1607
+      "annualWorkHours": 1607,
+      "monthlyRent": 550,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 170,
+      "hospitalBedsPerThousand": 12.6,
+      "uhcCoverageIndex": 83,
+      "lifeExpectancy": 84.5,
+      "pressFreedomScore": 64,
+      "democracyIndex": 8.33,
+      "corruptionPerceptionIndex": 73
     },
     {
       "id": 108,
@@ -4858,7 +5821,16 @@
       "directFlightCities": 185,
       "safetyIndex": 77,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1901
+      "annualWorkHours": 1901,
+      "monthlyRent": 450,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 180,
+      "hospitalBedsPerThousand": 12.4,
+      "uhcCoverageIndex": 86,
+      "lifeExpectancy": 83.7,
+      "pressFreedomScore": 72,
+      "democracyIndex": 8.09,
+      "corruptionPerceptionIndex": 63
     },
     {
       "id": 109,
@@ -4903,7 +5875,16 @@
       "directFlightCities": 35,
       "safetyIndex": 47,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2100
+      "annualWorkHours": 2100,
+      "monthlyRent": 250,
+      "paidLeaveDays": 18,
+      "internetSpeedMbps": 30,
+      "hospitalBedsPerThousand": 0.8,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 69.8,
+      "pressFreedomScore": 20,
+      "democracyIndex": 3.18,
+      "corruptionPerceptionIndex": 22
     },
     {
       "id": 110,
@@ -4948,7 +5929,16 @@
       "directFlightCities": 30,
       "safetyIndex": 41,
       "safetyConfidence": "low",
-      "annualWorkHours": 2100
+      "annualWorkHours": 2100,
+      "monthlyRent": 200,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 20,
+      "hospitalBedsPerThousand": 0.9,
+      "uhcCoverageIndex": 48,
+      "lifeExpectancy": 67.1,
+      "pressFreedomScore": 10,
+      "democracyIndex": 1.74,
+      "corruptionPerceptionIndex": 23
     },
     {
       "id": 111,
@@ -4993,7 +5983,16 @@
       "directFlightCities": 15,
       "safetyIndex": 58,
       "safetyConfidence": "low",
-      "annualWorkHours": 2050
+      "annualWorkHours": 2050,
+      "monthlyRent": 200,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 25,
+      "hospitalBedsPerThousand": 1.5,
+      "uhcCoverageIndex": 46,
+      "lifeExpectancy": 68.9,
+      "pressFreedomScore": 12,
+      "democracyIndex": 2.14,
+      "corruptionPerceptionIndex": 28
     },
     {
       "id": 112,
@@ -5038,7 +6037,16 @@
       "directFlightCities": 40,
       "safetyIndex": 67,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2024
+      "annualWorkHours": 2024,
+      "monthlyRent": 350,
+      "paidLeaveDays": 6,
+      "internetSpeedMbps": 150,
+      "hospitalBedsPerThousand": 2.1,
+      "uhcCoverageIndex": 82,
+      "lifeExpectancy": 78.7,
+      "pressFreedomScore": 40,
+      "democracyIndex": 6.35,
+      "corruptionPerceptionIndex": 35
     },
     {
       "id": 113,
@@ -5083,7 +6091,16 @@
       "directFlightCities": 15,
       "safetyIndex": 42,
       "safetyConfidence": "low",
-      "annualWorkHours": 2000
+      "annualWorkHours": 2000,
+      "monthlyRent": 300,
+      "paidLeaveDays": 5,
+      "internetSpeedMbps": 70,
+      "hospitalBedsPerThousand": 1,
+      "uhcCoverageIndex": 55,
+      "lifeExpectancy": 71.1,
+      "pressFreedomScore": 42,
+      "democracyIndex": 6.73,
+      "corruptionPerceptionIndex": 34
     },
     {
       "id": 114,
@@ -5128,7 +6145,16 @@
       "directFlightCities": 40,
       "safetyIndex": 32,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2200
+      "annualWorkHours": 2200,
+      "monthlyRent": 200,
+      "paidLeaveDays": 10,
+      "internetSpeedMbps": 35,
+      "hospitalBedsPerThousand": 0.8,
+      "uhcCoverageIndex": 48,
+      "lifeExpectancy": 72.4,
+      "pressFreedomScore": 30,
+      "democracyIndex": 5.99,
+      "corruptionPerceptionIndex": 25
     },
     {
       "id": 115,
@@ -5173,7 +6199,16 @@
       "directFlightCities": 55,
       "safetyIndex": 48,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1980
+      "annualWorkHours": 1980,
+      "monthlyRent": 200,
+      "paidLeaveDays": 14,
+      "internetSpeedMbps": 30,
+      "hospitalBedsPerThousand": 4.2,
+      "uhcCoverageIndex": 63,
+      "lifeExpectancy": 77,
+      "pressFreedomScore": 38,
+      "democracyIndex": 6.14,
+      "corruptionPerceptionIndex": 34
     },
     {
       "id": 116,
@@ -5218,7 +6253,16 @@
       "directFlightCities": 40,
       "safetyIndex": 53,
       "safetyConfidence": "medium",
-      "annualWorkHours": 2050
+      "annualWorkHours": 2050,
+      "monthlyRent": 150,
+      "paidLeaveDays": 13,
+      "internetSpeedMbps": 25,
+      "hospitalBedsPerThousand": 0.3,
+      "uhcCoverageIndex": 45,
+      "lifeExpectancy": 70.8,
+      "pressFreedomScore": 55,
+      "democracyIndex": 4.49,
+      "corruptionPerceptionIndex": 33
     },
     {
       "id": 117,
@@ -5263,7 +6307,16 @@
       "directFlightCities": 75,
       "safetyIndex": 57,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1900
+      "annualWorkHours": 1900,
+      "monthlyRent": 350,
+      "paidLeaveDays": 24,
+      "internetSpeedMbps": 60,
+      "hospitalBedsPerThousand": 6.7,
+      "uhcCoverageIndex": 69,
+      "lifeExpectancy": 73.2,
+      "pressFreedomScore": 22,
+      "democracyIndex": 3.08,
+      "corruptionPerceptionIndex": 39
     },
     {
       "id": 118,
@@ -5308,7 +6361,16 @@
       "directFlightCities": 65,
       "safetyIndex": 54,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1950
+      "annualWorkHours": 1950,
+      "monthlyRent": 250,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 50,
+      "hospitalBedsPerThousand": 4,
+      "uhcCoverageIndex": 66,
+      "lifeExpectancy": 73.8,
+      "pressFreedomScore": 18,
+      "democracyIndex": 2.12,
+      "corruptionPerceptionIndex": 33
     },
     {
       "id": 119,
@@ -5353,7 +6415,16 @@
       "directFlightCities": 70,
       "safetyIndex": 58,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1920
+      "annualWorkHours": 1920,
+      "monthlyRent": 400,
+      "paidLeaveDays": 21,
+      "internetSpeedMbps": 55,
+      "hospitalBedsPerThousand": 4.7,
+      "uhcCoverageIndex": 64,
+      "lifeExpectancy": 73,
+      "pressFreedomScore": 12,
+      "democracyIndex": 2.68,
+      "corruptionPerceptionIndex": 23
     },
     {
       "id": 120,
@@ -5398,7 +6469,16 @@
       "directFlightCities": 25,
       "safetyIndex": 59,
       "safetyConfidence": "medium",
-      "annualWorkHours": 1980
+      "annualWorkHours": 1980,
+      "monthlyRent": 250,
+      "paidLeaveDays": 15,
+      "internetSpeedMbps": 30,
+      "hospitalBedsPerThousand": 7,
+      "uhcCoverageIndex": 60,
+      "lifeExpectancy": 70.8,
+      "pressFreedomScore": 58,
+      "democracyIndex": 6.48,
+      "corruptionPerceptionIndex": 35
     }
   ]
 }

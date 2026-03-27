@@ -9,17 +9,94 @@
 
 ## 数据字段来源
 
-| 字段 | 来源 | 获取方式 |
-|------|------|----------|
-| `averageIncome` | ERI / SalaryExpert、BLS、PayScale、OECD | 综合估算各城市中等收入水平（USD） |
-| `professions{}` | 同上 + Robert Half、Hays、智联招聘、JobStreet | 按职业查询各城市年薪中位数 |
-| `costOfLiving` / `costModerate` | Numbeo、Expatistan、各国统计局 | 单人月生活开支（适度水平，USD） |
-| `costComfort` / `costBudget` / `costMinimal` | 基于 `costModerate` 按比例计算 | comfort×1.6, budget×0.45, minimal×0.28 |
-| `bigMacPrice` | The Economist Big Mac Index (2025-01) | 各国麦当劳巨无霸单品售价（USD） |
-| `housePrice` | Global Property Guide、各地房产指数 | 城市中心区域每平米均价（USD/m²） |
-| `airQuality` (AQI) | IQAir 世界空气质量报告 2024、AQICN | US EPA AQI 标准值 |
-| `doctorsPerThousand` | WHO 全球卫生人力统计 / World Bank (CC BY-4.0) | 每千人执业医师数 |
-| `description` | AI 生成 | 城市简介文本 |
+### 原始数据字段
+
+| 字段 | 来源 | 粒度 | 获取方式 |
+|------|------|------|----------|
+| `averageIncome` | ERI / SalaryExpert、BLS、PayScale、OECD | 城市级 | 综合估算各城市中等收入水平（USD） |
+| `professions{}` | 同上 + Robert Half、Hays、智联招聘、JobStreet | 城市级 | 按职业查询各城市年薪中位数 |
+| `costOfLiving` / `costModerate` | Numbeo、Expatistan、各国统计局 | 城市级 | 单人月生活开支（适度水平，USD） |
+| `costComfort` / `costBudget` / `costMinimal` | 基于 `costModerate` 按比例计算 | — | comfort×1.6, budget×0.45, minimal×0.28 |
+| `bigMacPrice` | The Economist Big Mac Index (2025-01) | 国家级 | 各国麦当劳巨无霸单品售价（USD） |
+| `housePrice` | Global Property Guide、各地房产指数 | 城市级 | 城市中心区域每平米均价（USD/m²） |
+| `monthlyRent` | Numbeo Rent Index 2024-2025 | 城市级 | 1 居室市中心月租金（USD） |
+| `airQuality` (AQI) | IQAir 世界空气质量报告 2024、AQICN | 城市级 | US EPA AQI 标准值 |
+| `doctorsPerThousand` | WHO 全球卫生人力统计 / World Bank (CC BY-4.0) | 城市级 | 每千人执业医师数 |
+| `directFlightCities` | OAG Aviation Analytics、FlightConnections.com (2025) | 城市级 | 直飞航线目的地城市数 |
+| `annualWorkHours` | OECD Employment Outlook 2024、ILO ILOSTAT | 国家级 | 国家全行业平均年工时 |
+| `paidLeaveDays` | OECD / 各国劳动法 | 国家级 | 法定最低带薪年假天数 |
+| `internetSpeedMbps` | Ookla Speedtest Global Index 2025 | 城市级 | 固定宽带下载速度（Mbps） |
+| `description` | AI 生成 | — | 城市简介文本 |
+
+### 医疗保障指数子数据（v2 新增）
+
+| 字段 | 来源 | 粒度 | 获取方式 |
+|------|------|------|----------|
+| `hospitalBedsPerThousand` | World Bank (SH.MED.BEDS.ZS) | 国家级 | API / CSV 下载 |
+| `uhcCoverageIndex` | WHO Global Health Observatory | 国家级 | WHO UHC Service Coverage Index (0-100) |
+| `lifeExpectancy` | World Bank (SP.DYN.LE00.IN) | 国家级 | 出生时预期寿命（年） |
+
+### 制度自由度指数子数据（v2 新增）
+
+| 字段 | 来源 | 粒度 | 获取方式 |
+|------|------|------|----------|
+| `pressFreedomScore` | RSF World Press Freedom Index 2024 | 国家级 | 年度报告 (0-100, 越高越自由) |
+| `democracyIndex` | EIU Democracy Index 2024 | 国家级 | 年度报告 (0-10) |
+| `corruptionPerceptionIndex` | Transparency International CPI 2024 | 国家级 | 官网 CSV (0-100, 越高越廉洁) |
+
+---
+
+## 复合指标计算方法
+
+### 体感安全指数 (Safety Index)
+
+已有指标，计算方式见 `scripts/add-safety.mjs`：
+
+```
+safetyIndex = 夜间安全感(Numbeo) × 0.40
+            + 暴力犯罪反向分(UNODC) × 0.30
+            + 财产犯罪反向分(Numbeo Crime) × 0.20
+            + 外国人友好度(InterNations/Gallup) × 0.10
+```
+
+### 生活压力指数 (Life Pressure Index) — v2 新增
+
+```
+lifePressure = 储蓄率(norm) × 0.30
+             + 巨无霸购买力(norm) × 0.25
+             + 年工时(inv_norm) × 0.25
+             + 购房年限(inv_norm) × 0.20
+```
+
+- 全部子指标 min-max 归一化到 [0, 100]
+- 反向指标取 100 − normalized
+- 范围 0-100, 越高越轻松
+- 无麦当劳城市：权重重分配至剩余 3 项 (40/33/27)
+- 受用户职业和生活水平选择影响
+
+### 医疗保障指数 (Healthcare Security Index) — v2 新增
+
+```
+healthcareIdx = 每千人医师(norm) × 0.35
+              + 每千人病床(norm) × 0.25
+              + UHC覆盖率(norm) × 0.25
+              + 预期寿命(norm) × 0.15
+```
+
+- 各子指标 min-max 归一化到 [0, 100]
+- 范围 0-100, 越高越好
+
+### 制度自由度指数 (Institutional Freedom Index) — v2 新增
+
+```
+freedomIdx = 新闻自由度 × 0.35
+           + 民主指数 × 10 × 0.35
+           + 清廉感知指数 × 0.30
+```
+
+- 各子项已在 0-100 量程（民主指数原始 0-10, ×10）
+- 直接加权求和
+- 范围 0-100, 越高越自由
 
 ---
 
@@ -76,6 +153,8 @@
 2. **部分城市无麦当劳** — 古巴(哈瓦那)、伊朗(德黑兰)、柬埔寨(金边)、缅甸(仰光)、老挝(万象)、孟加拉国(达卡)、尼泊尔(加德满都)、蒙古(乌兰巴托)
    的 `bigMacPrice` 为 `null`，不做估算；前端以「无麦当劳」标签替代数值展示
 3. **数据时效性** — 基准数据来自 2024–2025 年，经济波动与汇率变化可能导致数据过时
+4. **v2 国家级数据** — paidLeaveDays, hospitalBedsPerThousand, uhcCoverageIndex, lifeExpectancy, pressFreedomScore, democracyIndex, corruptionPerceptionIndex 均为国家级数据，同国城市共享同一数值
+5. **带薪年假仅为法定最低** — 美国联邦法定为 0 天，但大多数雇主实际提供 10-15 天
 
 ---
 
@@ -83,6 +162,10 @@
 
 | 日期 | 内容 |
 |------|------|
+| 2026-03 | v2: 新增 9 个数据字段 (monthlyRent, paidLeaveDays, internetSpeedMbps, hospitalBedsPerThousand, uhcCoverageIndex, lifeExpectancy, pressFreedomScore, democracyIndex, corruptionPerceptionIndex) |
+| 2026-03 | v2: 新增 3 个复合指标 (生活压力、医疗保障、制度自由度)，计算逻辑位于 lib/clientUtils.ts |
+| 2026-03 | v2: 城市详情页从 12 平铺卡片重构为 4 行分组布局 (2中+2中+4小+1大) |
+| 2026-03 | v2: 排行榜从 7 个 Tab 扩展为 13 个 Tab |
 | 2025-06 | 修正 5 座中国新城市 AQI（AQICN raw × 1.4 → US EPA） |
 | 2025-06 | 修正 9 座城市巨无霸价格（与现有数据集内部一致性对齐） |
 | 2025-06 | 修正 add_aqi.py / add_20_asian_cities.py 中 AQICN 转换系数注释 |

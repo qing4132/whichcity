@@ -5,10 +5,11 @@ import type { City, Locale, ExchangeRates, CostTier } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
+import { computeLifePressure, computeHealthcare, computeInstitutionalFreedom } from "@/lib/clientUtils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-type Tab = "savings" | "ppp" | "housing" | "air" | "flights" | "safety" | "workhours";
+type Tab = "savings" | "ppp" | "housing" | "air" | "flights" | "safety" | "workhours" | "rent" | "vacation" | "internet" | "lifePressure" | "healthcare" | "freedom";
 
 interface RankingContentProps {
   cities: City[];
@@ -72,22 +73,40 @@ export default function RankingContent({ cities }: RankingContentProps) {
   const ranked = cities.map(city => {
     const income = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
     const costKey = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
+    const costTierField = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
     const annualCost = (city[costKey] as number) * 12;
     const savings = income - annualCost;
     const savingsRate = income > 0 ? savings / income : 0;
     const yearsToHome = savings > 0 ? (city.housePrice * 70) / savings : Infinity;
     const ppp = annualCost > 0 ? income / annualCost : 0;
-    return { city, income, annualCost, savings, savingsRate, yearsToHome, ppp };
+    return { city, income, annualCost, savings, savingsRate, yearsToHome, ppp, costTierField };
   });
 
-  const sorted = [...ranked].sort((a, b) => {
+  // Pre-compute all incomes for index calculations
+  const allIncomes = ranked.map(r => r.income);
+  const costTierField = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
+
+  // Pre-compute indices for all cities
+  const indexCache = ranked.map((r, i) => ({
+    lifePressure: computeLifePressure(r.city, cities, r.income, allIncomes, costTierField),
+    healthcare: computeHealthcare(r.city, cities),
+    freedom: computeInstitutionalFreedom(r.city),
+  }));
+
+  const sorted = [...ranked.map((r, i) => ({ ...r, idx: i }))].sort((a, b) => {
     if (tab === "savings") return b.savings - a.savings;
     if (tab === "ppp") return b.ppp - a.ppp;
-    if (tab === "air") return a.city.airQuality - b.city.airQuality; // lower AQI = better
+    if (tab === "air") return a.city.airQuality - b.city.airQuality;
     if (tab === "flights") return b.city.directFlightCities - a.city.directFlightCities;
     if (tab === "safety") return b.city.safetyIndex - a.city.safetyIndex;
-    if (tab === "workhours") return a.city.annualWorkHours - b.city.annualWorkHours; // lower = better
-    // housing: ascending years
+    if (tab === "workhours") return a.city.annualWorkHours - b.city.annualWorkHours;
+    if (tab === "rent") return a.city.monthlyRent - b.city.monthlyRent;
+    if (tab === "vacation") return b.city.paidLeaveDays - a.city.paidLeaveDays;
+    if (tab === "internet") return b.city.internetSpeedMbps - a.city.internetSpeedMbps;
+    if (tab === "lifePressure") return indexCache[b.idx].lifePressure - indexCache[a.idx].lifePressure;
+    if (tab === "healthcare") return indexCache[b.idx].healthcare - indexCache[a.idx].healthcare;
+    if (tab === "freedom") return indexCache[b.idx].freedom - indexCache[a.idx].freedom;
+    // housing
     const aY = isFinite(a.yearsToHome) ? a.yearsToHome : 999999;
     const bY = isFinite(b.yearsToHome) ? b.yearsToHome : 999999;
     return aY - bY;
@@ -97,10 +116,16 @@ export default function RankingContent({ cities }: RankingContentProps) {
     { key: "savings", label: t("rankTab_savings") },
     { key: "ppp", label: t("rankTab_ppp") },
     { key: "housing", label: t("rankTab_housing") },
+    { key: "rent", label: t("rankTab_rent") },
     { key: "air", label: t("rankTab_air") },
     { key: "flights", label: t("rankTab_flights") },
     { key: "safety", label: t("rankTab_safety") },
     { key: "workhours", label: t("rankTab_workhours") },
+    { key: "vacation", label: t("rankTab_vacation") },
+    { key: "internet", label: t("rankTab_internet") },
+    { key: "lifePressure", label: t("rankTab_lifePressure") },
+    { key: "healthcare", label: t("rankTab_healthcare") },
+    { key: "freedom", label: t("rankTab_freedom") },
   ];
 
   const headerCls = `sticky top-0 z-10 ${darkMode ? "bg-slate-800" : "bg-slate-100"}`;
@@ -166,7 +191,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
         </div>
 
         {/* Tab selector */}
-        <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 mb-4">
+        <div className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-13 gap-1.5 mb-4">
           {tabs.map(({ key, label }) => (
             <button key={key} onClick={() => setTab(key)}
               className={`px-2 py-2 rounded-lg font-medium text-sm transition text-center ${
@@ -196,6 +221,18 @@ export default function RankingContent({ cities }: RankingContentProps) {
                     <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("safetyIndex")}</th>
                   ) : tab === "workhours" ? (
                     <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("annualWorkHours")}</th>
+                  ) : tab === "rent" ? (
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("monthlyRent")}</th>
+                  ) : tab === "vacation" ? (
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("paidLeaveDays")}</th>
+                  ) : tab === "internet" ? (
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("internetSpeed")}</th>
+                  ) : tab === "lifePressure" ? (
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("lifePressureIndex")}</th>
+                  ) : tab === "healthcare" ? (
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("healthcareIndex")}</th>
+                  ) : tab === "freedom" ? (
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("institutionalFreedom")}</th>
                   ) : (
                     <>
                       <th className={thCls}>{t("rankCol_income")}</th>
@@ -254,6 +291,42 @@ export default function RankingContent({ cities }: RankingContentProps) {
                         <td className={tdCls}>
                           <span className={`font-bold ${item.city.annualWorkHours <= 1600 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.annualWorkHours <= 1900 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
                             {item.city.annualWorkHours} {t("workHoursUnit")}
+                          </span>
+                        </td>
+                      ) : tab === "rent" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${item.city.monthlyRent <= 500 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.monthlyRent <= 1500 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {formatCurrency(item.city.monthlyRent)}
+                          </span>
+                        </td>
+                      ) : tab === "vacation" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${item.city.paidLeaveDays >= 20 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.paidLeaveDays >= 10 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {item.city.paidLeaveDays} {t("paidLeaveDaysUnit")}
+                          </span>
+                        </td>
+                      ) : tab === "internet" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${item.city.internetSpeedMbps >= 150 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.internetSpeedMbps >= 50 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {item.city.internetSpeedMbps} Mbps
+                          </span>
+                        </td>
+                      ) : tab === "lifePressure" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${indexCache[item.idx].lifePressure >= 65 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].lifePressure >= 35 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {indexCache[item.idx].lifePressure} / 100
+                          </span>
+                        </td>
+                      ) : tab === "healthcare" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${indexCache[item.idx].healthcare >= 65 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].healthcare >= 35 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {indexCache[item.idx].healthcare} / 100
+                          </span>
+                        </td>
+                      ) : tab === "freedom" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${indexCache[item.idx].freedom >= 65 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].freedom >= 35 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {indexCache[item.idx].freedom} / 100
                           </span>
                         </td>
                       ) : (
