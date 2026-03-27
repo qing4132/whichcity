@@ -18,6 +18,7 @@ export interface City {
   airQuality: number;
   doctorsPerThousand: number;
   directFlightCities: number;
+  annualWorkHours: number;
   safetyIndex: number;
   safetyConfidence: "high" | "medium" | "low";
 }

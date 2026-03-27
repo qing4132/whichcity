@@ -69,6 +69,8 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
   const allDoctors = allCities.map((c) => c.doctorsPerThousand);
   const allFlights = allCities.map((c) => c.directFlightCities);
   const allSafety = allCities.map((c) => c.safetyIndex);
+  const allWorkHours = allCities.map((c) => c.annualWorkHours);
+  const allBigMac = allCities.filter((c) => c.bigMacPrice !== null).map((c) => c.bigMacPrice as number);
 
   // "good"=top25%, "bad"=bottom25%, "mid"=middle — higher-is-better: pct>=0.75=good; lower-is-better: pct<=0.25=good
   type Tier = "good" | "mid" | "bad";
@@ -143,17 +145,19 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
         )}
       </header>
 
-      {/* Key Stats */}
-      <section className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+      {/* Key Stats — 10 cards, 5 per row */}
+      <section className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-10">
         {[
           { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: t("perYear"), tier: tierHigh(allIncomes, income) },
           { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: t("perMonth"), tier: tierLow(allCosts, tierCost) },
           { label: t("yearlySavings"), value: formatCurrency(savings), sub: `${savingsRate}%`, tier: tierHigh(allSavings, savings) },
           { label: t("housePrice"), value: formatCurrency(city.housePrice), sub: t("housePriceUnit"), tier: tierLow(allHouse, city.housePrice) },
+          { label: t("bigMac"), value: city.bigMacPrice !== null ? formatCurrency(city.bigMacPrice) : t("noMcDonalds"), sub: city.bigMacPrice !== null ? "" : "", tier: city.bigMacPrice !== null ? tierLow(allBigMac, city.bigMacPrice) : "mid" as Tier },
+          { label: t("annualWorkHours"), value: `${city.annualWorkHours}`, sub: t("workHoursUnit"), tier: tierLow(allWorkHours, city.annualWorkHours) },
           { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: aqiLabel, tier: tierLow(allAqi, city.airQuality) },
+          { label: t("safetyIndex"), value: `${city.safetyIndex}${city.safetyConfidence === "low" ? " *" : ""}`, sub: t("safetyUnit"), tier: tierHigh(allSafety, city.safetyIndex) },
           { label: t("doctorsPerThousand"), value: String(city.doctorsPerThousand), sub: t("doctorsUnit"), tier: tierHigh(allDoctors, city.doctorsPerThousand) },
           { label: t("directFlights"), value: String(city.directFlightCities), sub: t("directFlightsUnit"), tier: tierHigh(allFlights, city.directFlightCities) },
-          { label: t("safetyIndex"), value: `${city.safetyIndex}${city.safetyConfidence === "low" ? " *" : ""}`, sub: t("safetyUnit"), tier: tierHigh(allSafety, city.safetyIndex) },
         ].map((stat) => (
           <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)}`}>
             <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${subCls}`}>{stat.label}</p>
@@ -163,38 +167,20 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
         ))}
       </section>
 
-      {/* Housing & Climate */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
-        <div className={`rounded-xl border p-6 ${sectionBg}`}>
-          <h2 className={`text-xl font-bold mb-4 ${headingCls}`}>{t("housing")}</h2>
-          <div className="space-y-3">
-            {[
-              [t("pricePerSqm"), formatCurrency(city.housePrice)],
-              [t("apt70sqm"), formatCurrency(city.housePrice * 70)],
-              [t("yearsToBuy"), `${yearsToHome} ${t("insightYears")}`],
-              [t("bigMac"), city.bigMacPrice !== null ? formatCurrency(city.bigMacPrice) : t("noMcDonalds")],
-            ].map(([label, val]) => (
-              <div key={label} className="flex justify-between">
-                <span className={subCls}>{label}</span>
-                <span className={`font-bold ${headingCls}`}>{val}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Climate */}
+      <section className="mb-10">
         <div className={`rounded-xl border p-6 ${sectionBg}`}>
           <h2 className={`text-xl font-bold mb-4 ${headingCls}`}>{t("climateEnv")}</h2>
-          <div className="space-y-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               [t("climateType"), getClimateLabel(climate.type, locale)],
               [t("avgTemp"), `${climate.avgTempC.toFixed(1)}°C`],
               [t("annualRain"), `${Math.round(climate.annualRainMm)} mm`],
               [t("sunshine"), `${Math.round(climate.sunshineHours)} h`],
-              [t("airQuality"), `${city.airQuality} – ${aqiLabel}`],
-              [t("doctorsPerThousand"), `${city.doctorsPerThousand}`],
             ].map(([label, val]) => (
-              <div key={label} className="flex justify-between">
-                <span className={subCls}>{label}</span>
-                <span className={`font-bold ${headingCls}`}>{val}</span>
+              <div key={label} className="text-center">
+                <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${subCls}`}>{label}</p>
+                <p className={`text-lg font-bold ${headingCls}`}>{val}</p>
               </div>
             ))}
           </div>
@@ -230,7 +216,7 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
         <h3 className={`text-base sm:text-lg font-semibold mb-3 ${headingCls}`}>{t("dataSourcesTitle")}</h3>
         <p className={`text-sm mb-3 ${subCls}`}>{t("dataSourcesDesc")}</p>
         <div className={`space-y-1.5 text-xs ${subCls}`}>
-          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc", "dataSafetySrc"].map((k) => (
+          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc", "dataSafetySrc", "dataWorkHoursSrc"].map((k) => (
             <p key={k}>• {t(k)}</p>
           ))}
           <p className={`mt-2 italic`}>• {t("safetyMethodNote")}</p>

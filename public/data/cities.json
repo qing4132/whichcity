@@ -42,7 +42,8 @@
       "doctorsPerThousand": 4.1,
       "directFlightCities": 280,
       "safetyIndex": 52,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 2,
@@ -86,7 +87,8 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 390,
       "safetyIndex": 59,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1532
     },
     {
       "id": 3,
@@ -130,7 +132,8 @@
       "doctorsPerThousand": 2.7,
       "directFlightCities": 165,
       "safetyIndex": 83,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1607
     },
     {
       "id": 4,
@@ -174,7 +177,8 @@
       "doctorsPerThousand": 4.6,
       "directFlightCities": 220,
       "safetyIndex": 73,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2170
     },
     {
       "id": 5,
@@ -218,7 +222,8 @@
       "doctorsPerThousand": 3.8,
       "directFlightCities": 230,
       "safetyIndex": 75,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2170
     },
     {
       "id": 6,
@@ -262,7 +267,8 @@
       "doctorsPerThousand": 4.3,
       "directFlightCities": 95,
       "safetyIndex": 68,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1694
     },
     {
       "id": 7,
@@ -306,7 +312,8 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 150,
       "safetyIndex": 82,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2238
     },
     {
       "id": 8,
@@ -350,7 +357,8 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 290,
       "safetyIndex": 51,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1511
     },
     {
       "id": 9,
@@ -394,7 +402,8 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 180,
       "safetyIndex": 64,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1686
     },
     {
       "id": 10,
@@ -438,7 +447,8 @@
       "doctorsPerThousand": 2.1,
       "directFlightCities": 180,
       "safetyIndex": 78,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2080
     },
     {
       "id": 11,
@@ -482,7 +492,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 195,
       "safetyIndex": 47,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 12,
@@ -526,7 +537,8 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 130,
       "safetyIndex": 41,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 13,
@@ -570,7 +582,8 @@
       "doctorsPerThousand": 3.4,
       "directFlightCities": 250,
       "safetyIndex": 44,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 14,
@@ -614,7 +627,8 @@
       "doctorsPerThousand": 3.2,
       "directFlightCities": 265,
       "safetyIndex": 85,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2200
     },
     {
       "id": 15,
@@ -658,7 +672,8 @@
       "doctorsPerThousand": 3.9,
       "directFlightCities": 195,
       "safetyIndex": 65,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1417
     },
     {
       "id": 16,
@@ -702,7 +717,8 @@
       "doctorsPerThousand": 4.7,
       "directFlightCities": 130,
       "safetyIndex": 81,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1533
     },
     {
       "id": 17,
@@ -746,7 +762,8 @@
       "doctorsPerThousand": 4.6,
       "directFlightCities": 110,
       "safetyIndex": 78,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1533
     },
     {
       "id": 18,
@@ -790,7 +807,8 @@
       "doctorsPerThousand": 4.8,
       "directFlightCities": 190,
       "safetyIndex": 76,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1341
     },
     {
       "id": 19,
@@ -834,7 +852,8 @@
       "doctorsPerThousand": 4.3,
       "directFlightCities": 180,
       "safetyIndex": 62,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1341
     },
     {
       "id": 20,
@@ -878,7 +897,8 @@
       "doctorsPerThousand": 4.5,
       "directFlightCities": 215,
       "safetyIndex": 54,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1644
     },
     {
       "id": 21,
@@ -922,7 +942,8 @@
       "doctorsPerThousand": 4.5,
       "directFlightCities": 200,
       "safetyIndex": 59,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1644
     },
     {
       "id": 22,
@@ -966,7 +987,8 @@
       "doctorsPerThousand": 4.4,
       "directFlightCities": 190,
       "safetyIndex": 56,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1669
     },
     {
       "id": 23,
@@ -1010,7 +1032,8 @@
       "doctorsPerThousand": 4.3,
       "directFlightCities": 190,
       "safetyIndex": 53,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1669
     },
     {
       "id": 24,
@@ -1054,7 +1077,8 @@
       "doctorsPerThousand": 3.8,
       "directFlightCities": 170,
       "safetyIndex": 53,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1577
     },
     {
       "id": 25,
@@ -1098,7 +1122,8 @@
       "doctorsPerThousand": 5.7,
       "directFlightCities": 175,
       "safetyIndex": 73,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1442
     },
     {
       "id": 26,
@@ -1142,7 +1167,8 @@
       "doctorsPerThousand": 4.6,
       "directFlightCities": 155,
       "safetyIndex": 70,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1766
     },
     {
       "id": 27,
@@ -1186,7 +1212,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 160,
       "safetyIndex": 64,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1803
     },
     {
       "id": 28,
@@ -1230,7 +1257,8 @@
       "doctorsPerThousand": 5.7,
       "directFlightCities": 150,
       "safetyIndex": 65,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1649
     },
     {
       "id": 29,
@@ -1274,7 +1302,8 @@
       "doctorsPerThousand": 7,
       "directFlightCities": 165,
       "safetyIndex": 58,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1886
     },
     {
       "id": 30,
@@ -1318,7 +1347,8 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 310,
       "safetyIndex": 53,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1855
     },
     {
       "id": 31,
@@ -1362,7 +1392,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 115,
       "safetyIndex": 34,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2128
     },
     {
       "id": 32,
@@ -1406,7 +1437,8 @@
       "doctorsPerThousand": 2.7,
       "directFlightCities": 135,
       "safetyIndex": 29,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1776
     },
     {
       "id": 33,
@@ -1450,7 +1482,8 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 55,
       "safetyIndex": 33,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1776
     },
     {
       "id": 34,
@@ -1494,7 +1527,8 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 180,
       "safetyIndex": 53,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 35,
@@ -1538,7 +1572,8 @@
       "doctorsPerThousand": 4,
       "directFlightCities": 200,
       "safetyIndex": 59,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 36,
@@ -1582,7 +1617,8 @@
       "doctorsPerThousand": 5,
       "directFlightCities": 140,
       "safetyIndex": 64,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 37,
@@ -1626,7 +1662,8 @@
       "doctorsPerThousand": 3.1,
       "directFlightCities": 135,
       "safetyIndex": 53,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 38,
@@ -1670,7 +1707,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 215,
       "safetyIndex": 60,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 39,
@@ -1714,7 +1752,8 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 75,
       "safetyIndex": 56,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 40,
@@ -1758,7 +1797,8 @@
       "doctorsPerThousand": 2.6,
       "directFlightCities": 120,
       "safetyIndex": 65,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1686
     },
     {
       "id": 41,
@@ -1802,7 +1842,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 130,
       "safetyIndex": 62,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1686
     },
     {
       "id": 42,
@@ -1846,7 +1887,8 @@
       "doctorsPerThousand": 4.2,
       "directFlightCities": 75,
       "safetyIndex": 70,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1694
     },
     {
       "id": 43,
@@ -1890,7 +1932,8 @@
       "doctorsPerThousand": 3.8,
       "directFlightCities": 55,
       "safetyIndex": 72,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1694
     },
     {
       "id": 44,
@@ -1934,7 +1977,8 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 60,
       "safetyIndex": 72,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1752
     },
     {
       "id": 45,
@@ -1978,7 +2022,8 @@
       "doctorsPerThousand": 0.8,
       "directFlightCities": 190,
       "safetyIndex": 57,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2024
     },
     {
       "id": 46,
@@ -2022,7 +2067,8 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 140,
       "safetyIndex": 57,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2028
     },
     {
       "id": 47,
@@ -2066,7 +2112,8 @@
       "doctorsPerThousand": 1.4,
       "directFlightCities": 85,
       "safetyIndex": 50,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2060
     },
     {
       "id": 48,
@@ -2110,7 +2157,8 @@
       "doctorsPerThousand": 1.3,
       "directFlightCities": 70,
       "safetyIndex": 60,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2060
     },
     {
       "id": 49,
@@ -2154,7 +2202,8 @@
       "doctorsPerThousand": 1,
       "directFlightCities": 75,
       "safetyIndex": 54,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2117
     },
     {
       "id": 50,
@@ -2198,7 +2247,8 @@
       "doctorsPerThousand": 1.2,
       "directFlightCities": 110,
       "safetyIndex": 41,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2117
     },
     {
       "id": 51,
@@ -2242,7 +2292,8 @@
       "doctorsPerThousand": 1.1,
       "directFlightCities": 145,
       "safetyIndex": 35,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2117
     },
     {
       "id": 52,
@@ -2286,7 +2337,8 @@
       "doctorsPerThousand": 0.3,
       "directFlightCities": 60,
       "safetyIndex": 30,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2100
     },
     {
       "id": 53,
@@ -2330,7 +2382,8 @@
       "doctorsPerThousand": 0.9,
       "directFlightCities": 100,
       "safetyIndex": 43,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2070
     },
     {
       "id": 54,
@@ -2374,7 +2427,8 @@
       "doctorsPerThousand": 2.2,
       "directFlightCities": 75,
       "safetyIndex": 52,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2024
     },
     {
       "id": 55,
@@ -2418,7 +2472,8 @@
       "doctorsPerThousand": 1.1,
       "directFlightCities": 40,
       "safetyIndex": 25,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2150
     },
     {
       "id": 56,
@@ -2462,7 +2517,8 @@
       "doctorsPerThousand": 1.3,
       "directFlightCities": 45,
       "safetyIndex": 43,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2150
     },
     {
       "id": 57,
@@ -2506,7 +2562,8 @@
       "doctorsPerThousand": 0.7,
       "directFlightCities": 90,
       "safetyIndex": 46,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1950
     },
     {
       "id": 58,
@@ -2550,7 +2607,8 @@
       "doctorsPerThousand": 0.8,
       "directFlightCities": 80,
       "safetyIndex": 44,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2000
     },
     {
       "id": 59,
@@ -2594,7 +2652,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 190,
       "safetyIndex": 77,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1901
     },
     {
       "id": 60,
@@ -2638,7 +2697,8 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 50,
       "safetyIndex": 74,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1901
     },
     {
       "id": 61,
@@ -2682,7 +2742,8 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 130,
       "safetyIndex": 78,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2008
     },
     {
       "id": 62,
@@ -2726,7 +2787,8 @@
       "doctorsPerThousand": 5.5,
       "directFlightCities": 65,
       "safetyIndex": 38,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1820
     },
     {
       "id": 63,
@@ -2770,7 +2832,8 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 55,
       "safetyIndex": 45,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1916
     },
     {
       "id": 64,
@@ -2814,7 +2877,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 75,
       "safetyIndex": 33,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1964
     },
     {
       "id": 65,
@@ -2858,7 +2922,8 @@
       "doctorsPerThousand": 1.7,
       "directFlightCities": 65,
       "safetyIndex": 37,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2000
     },
     {
       "id": 66,
@@ -2902,7 +2967,8 @@
       "doctorsPerThousand": 1.5,
       "directFlightCities": 25,
       "safetyIndex": 17,
-      "safetyConfidence": "low"
+      "safetyConfidence": "low",
+      "annualWorkHours": 1800
     },
     {
       "id": 67,
@@ -2946,7 +3012,8 @@
       "doctorsPerThousand": 1,
       "directFlightCities": 75,
       "safetyIndex": 25,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1856
     },
     {
       "id": 68,
@@ -2990,7 +3057,8 @@
       "doctorsPerThousand": 1,
       "directFlightCities": 35,
       "safetyIndex": 39,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1856
     },
     {
       "id": 69,
@@ -3034,7 +3102,8 @@
       "doctorsPerThousand": 2.2,
       "directFlightCities": 50,
       "safetyIndex": 35,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2128
     },
     {
       "id": 70,
@@ -3078,7 +3147,8 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 55,
       "safetyIndex": 52,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2026
     },
     {
       "id": 71,
@@ -3122,7 +3192,8 @@
       "doctorsPerThousand": 1.9,
       "directFlightCities": 90,
       "safetyIndex": 47,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1960
     },
     {
       "id": 72,
@@ -3166,7 +3237,8 @@
       "doctorsPerThousand": 8.4,
       "directFlightCities": 40,
       "safetyIndex": 59,
-      "safetyConfidence": "low"
+      "safetyConfidence": "low",
+      "annualWorkHours": 1780
     },
     {
       "id": 73,
@@ -3210,7 +3282,8 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 45,
       "safetyIndex": 47,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1811
     },
     {
       "id": 74,
@@ -3254,7 +3327,8 @@
       "doctorsPerThousand": 0.5,
       "directFlightCities": 30,
       "safetyIndex": 40,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1920
     },
     {
       "id": 75,
@@ -3298,7 +3372,8 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 115,
       "safetyIndex": 84,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2200
     },
     {
       "id": 76,
@@ -3342,7 +3417,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 185,
       "safetyIndex": 82,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 2200
     },
     {
       "id": 77,
@@ -3386,7 +3462,8 @@
       "doctorsPerThousand": 0.9,
       "directFlightCities": 65,
       "safetyIndex": 77,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2150
     },
     {
       "id": 78,
@@ -3430,7 +3507,8 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 105,
       "safetyIndex": 72,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2100
     },
     {
       "id": 79,
@@ -3474,7 +3552,8 @@
       "doctorsPerThousand": 2.2,
       "directFlightCities": 75,
       "safetyIndex": 80,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2100
     },
     {
       "id": 80,
@@ -3518,7 +3597,8 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 60,
       "safetyIndex": 48,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1950
     },
     {
       "id": 81,
@@ -3562,7 +3642,8 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 70,
       "safetyIndex": 58,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2050
     },
     {
       "id": 82,
@@ -3606,7 +3687,8 @@
       "doctorsPerThousand": 4,
       "directFlightCities": 120,
       "safetyIndex": 63,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1898
     },
     {
       "id": 83,
@@ -3650,7 +3732,8 @@
       "doctorsPerThousand": 0.9,
       "directFlightCities": 55,
       "safetyIndex": 51,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2117
     },
     {
       "id": 84,
@@ -3694,7 +3777,8 @@
       "doctorsPerThousand": 0.9,
       "directFlightCities": 30,
       "safetyIndex": 54,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2117
     },
     {
       "id": 85,
@@ -3738,7 +3822,8 @@
       "doctorsPerThousand": 3.7,
       "directFlightCities": 0,
       "safetyIndex": 20,
-      "safetyConfidence": "low"
+      "safetyConfidence": "low",
+      "annualWorkHours": 1750
     },
     {
       "id": 86,
@@ -3782,7 +3867,8 @@
       "doctorsPerThousand": 3.3,
       "directFlightCities": 115,
       "safetyIndex": 57,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1838
     },
     {
       "id": 87,
@@ -3826,7 +3912,8 @@
       "doctorsPerThousand": 4.5,
       "directFlightCities": 90,
       "safetyIndex": 63,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1754
     },
     {
       "id": 88,
@@ -3870,7 +3957,8 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 65,
       "safetyIndex": 68,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1715
     },
     {
       "id": 89,
@@ -3914,7 +4002,8 @@
       "doctorsPerThousand": 3.3,
       "directFlightCities": 90,
       "safetyIndex": 59,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1780
     },
     {
       "id": 90,
@@ -3958,7 +4047,8 @@
       "doctorsPerThousand": 3.7,
       "directFlightCities": 145,
       "safetyIndex": 63,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1805
     },
     {
       "id": 91,
@@ -4002,7 +4092,8 @@
       "doctorsPerThousand": 3.9,
       "directFlightCities": 45,
       "safetyIndex": 68,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1700
     },
     {
       "id": 92,
@@ -4046,7 +4137,8 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 40,
       "safetyIndex": 75,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1624
     },
     {
       "id": 93,
@@ -4090,7 +4182,8 @@
       "doctorsPerThousand": 4.1,
       "directFlightCities": 185,
       "safetyIndex": 58,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1656
     },
     {
       "id": 94,
@@ -4134,7 +4227,8 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 65,
       "safetyIndex": 59,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1532
     },
     {
       "id": 95,
@@ -4178,7 +4272,8 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 260,
       "safetyIndex": 45,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 96,
@@ -4222,7 +4317,8 @@
       "doctorsPerThousand": 2.3,
       "directFlightCities": 135,
       "safetyIndex": 55,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 97,
@@ -4266,7 +4362,8 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 80,
       "safetyIndex": 47,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 98,
@@ -4310,7 +4407,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 75,
       "safetyIndex": 63,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 99,
@@ -4354,7 +4452,8 @@
       "doctorsPerThousand": 2,
       "directFlightCities": 145,
       "safetyIndex": 55,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 100,
@@ -4398,7 +4497,8 @@
       "doctorsPerThousand": 2.6,
       "directFlightCities": 90,
       "safetyIndex": 58,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1811
     },
     {
       "id": 101,
@@ -4442,7 +4542,8 @@
       "doctorsPerThousand": 3.2,
       "directFlightCities": 210,
       "safetyIndex": 72,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2170
     },
     {
       "id": 102,
@@ -4486,7 +4587,8 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 150,
       "safetyIndex": 77,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2170
     },
     {
       "id": 103,
@@ -4530,7 +4632,8 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 200,
       "safetyIndex": 74,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2170
     },
     {
       "id": 104,
@@ -4574,7 +4677,8 @@
       "doctorsPerThousand": 3.3,
       "directFlightCities": 140,
       "safetyIndex": 77,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2170
     },
     {
       "id": 105,
@@ -4618,7 +4722,8 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 150,
       "safetyIndex": 72,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2170
     },
     {
       "id": 106,
@@ -4662,7 +4767,8 @@
       "doctorsPerThousand": 2.6,
       "directFlightCities": 115,
       "safetyIndex": 81,
-      "safetyConfidence": "high"
+      "safetyConfidence": "high",
+      "annualWorkHours": 1607
     },
     {
       "id": 107,
@@ -4706,7 +4812,8 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 55,
       "safetyIndex": 82,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1607
     },
     {
       "id": 108,
@@ -4750,7 +4857,8 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 185,
       "safetyIndex": 77,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1901
     },
     {
       "id": 109,
@@ -4794,7 +4902,8 @@
       "doctorsPerThousand": 0.2,
       "directFlightCities": 35,
       "safetyIndex": 47,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2100
     },
     {
       "id": 110,
@@ -4838,7 +4947,8 @@
       "doctorsPerThousand": 0.7,
       "directFlightCities": 30,
       "safetyIndex": 41,
-      "safetyConfidence": "low"
+      "safetyConfidence": "low",
+      "annualWorkHours": 2100
     },
     {
       "id": 111,
@@ -4882,7 +4992,8 @@
       "doctorsPerThousand": 0.4,
       "directFlightCities": 15,
       "safetyIndex": 58,
-      "safetyConfidence": "low"
+      "safetyConfidence": "low",
+      "annualWorkHours": 2050
     },
     {
       "id": 112,
@@ -4926,7 +5037,8 @@
       "doctorsPerThousand": 0.8,
       "directFlightCities": 40,
       "safetyIndex": 67,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2024
     },
     {
       "id": 113,
@@ -4970,7 +5082,8 @@
       "doctorsPerThousand": 0.6,
       "directFlightCities": 15,
       "safetyIndex": 42,
-      "safetyConfidence": "low"
+      "safetyConfidence": "low",
+      "annualWorkHours": 2000
     },
     {
       "id": 114,
@@ -5014,7 +5127,8 @@
       "doctorsPerThousand": 0.5,
       "directFlightCities": 40,
       "safetyIndex": 32,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2200
     },
     {
       "id": 115,
@@ -5058,7 +5172,8 @@
       "doctorsPerThousand": 1,
       "directFlightCities": 55,
       "safetyIndex": 48,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1980
     },
     {
       "id": 116,
@@ -5102,7 +5217,8 @@
       "doctorsPerThousand": 0.3,
       "directFlightCities": 40,
       "safetyIndex": 53,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 2050
     },
     {
       "id": 117,
@@ -5146,7 +5262,8 @@
       "doctorsPerThousand": 3.3,
       "directFlightCities": 75,
       "safetyIndex": 57,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1900
     },
     {
       "id": 118,
@@ -5190,7 +5307,8 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 65,
       "safetyIndex": 54,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1950
     },
     {
       "id": 119,
@@ -5234,7 +5352,8 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 70,
       "safetyIndex": 58,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1920
     },
     {
       "id": 120,
@@ -5278,7 +5397,8 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 25,
       "safetyIndex": 59,
-      "safetyConfidence": "medium"
+      "safetyConfidence": "medium",
+      "annualWorkHours": 1980
     }
   ]
 }

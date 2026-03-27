@@ -8,7 +8,7 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-type Tab = "savings" | "ppp" | "housing" | "air" | "flights" | "safety";
+type Tab = "savings" | "ppp" | "housing" | "air" | "flights" | "safety" | "workhours";
 
 interface RankingContentProps {
   cities: City[];
@@ -50,13 +50,10 @@ export default function RankingContent({ cities }: RankingContentProps) {
   const getCityLabel = (city: City) => CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name;
   const getCountryLabel = (c: string) => COUNTRY_TRANSLATIONS[c]?.[locale] || c;
   const getProfessionLabel = (p: string) => PROFESSION_TRANSLATIONS[p]?.[locale] || p;
-  const getAqiLevel = (aqi: number) => {
-    if (aqi <= 50) return { key: "aqiGood", color: "text-green-500" };
-    if (aqi <= 100) return { key: "aqiModerate", color: "text-yellow-500" };
-    if (aqi <= 150) return { key: "aqiUSG", color: "text-orange-500" };
-    if (aqi <= 200) return { key: "aqiUnhealthy", color: "text-red-500" };
-    if (aqi <= 300) return { key: "aqiVeryUnhealthy", color: "text-purple-500" };
-    return { key: "aqiHazardous", color: "text-rose-600" };
+  const getAqiColor = (aqi: number) => {
+    if (aqi <= 50) return darkMode ? "text-emerald-400" : "text-emerald-600";
+    if (aqi <= 100) return darkMode ? "text-amber-400" : "text-amber-600";
+    return darkMode ? "text-red-400" : "text-red-500";
   };
 
   const convertAmount = (amount: number) => {
@@ -88,6 +85,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
     if (tab === "air") return a.city.airQuality - b.city.airQuality; // lower AQI = better
     if (tab === "flights") return b.city.directFlightCities - a.city.directFlightCities;
     if (tab === "safety") return b.city.safetyIndex - a.city.safetyIndex;
+    if (tab === "workhours") return a.city.annualWorkHours - b.city.annualWorkHours; // lower = better
     // housing: ascending years
     const aY = isFinite(a.yearsToHome) ? a.yearsToHome : 999999;
     const bY = isFinite(b.yearsToHome) ? b.yearsToHome : 999999;
@@ -101,6 +99,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
     { key: "air", label: t("rankTab_air") },
     { key: "flights", label: t("rankTab_flights") },
     { key: "safety", label: t("rankTab_safety") },
+    { key: "workhours", label: t("rankTab_workhours") },
   ];
 
   const headerCls = `sticky top-0 z-10 ${darkMode ? "bg-slate-800" : "bg-slate-100"}`;
@@ -166,10 +165,10 @@ export default function RankingContent({ cities }: RankingContentProps) {
         </div>
 
         {/* Tab selector */}
-        <div className="flex gap-1.5 flex-wrap mb-4">
+        <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 mb-4">
           {tabs.map(({ key, label }) => (
             <button key={key} onClick={() => setTab(key)}
-              className={`px-3 py-2 rounded-lg font-medium text-sm transition ${
+              className={`px-2 py-2 rounded-lg font-medium text-sm transition text-center ${
                 tab === key
                   ? "bg-blue-600 text-white"
                   : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -182,18 +181,20 @@ export default function RankingContent({ cities }: RankingContentProps) {
         {/* Table */}
         <div className={`rounded-xl shadow-md overflow-hidden ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[700px]">
+            <table className="w-full table-fixed">
               <thead>
                 <tr className={headerCls}>
-                  <th className={`${thCls} w-10`}>{t("rankCol_rank")}</th>
-                  <th className={`${thCls} w-44`}>{t("rankCol_city")}</th>
-                  <th className={`${thCls} w-32 hidden sm:table-cell`}>{t("rankCol_country")}</th>
+                  <th className={`${thCls} w-[8%]`}>{t("rankCol_rank")}</th>
+                  <th className={`${thCls} w-[22%]`}>{t("rankCol_city")}</th>
+                  <th className={`${thCls} w-[15%] hidden sm:table-cell`}>{t("rankCol_country")}</th>
                   {tab === "air" ? (
-                    <th className={thCls}>{t("rankCol_aqi")}</th>
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("rankCol_aqi")}</th>
                   ) : tab === "flights" ? (
-                    <th className={thCls}>{t("directFlights")}</th>
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("directFlights")}</th>
                   ) : tab === "safety" ? (
-                    <th className={thCls}>{t("safetyIndex")}</th>
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("safetyIndex")}</th>
+                  ) : tab === "workhours" ? (
+                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("annualWorkHours")}</th>
                   ) : (
                     <>
                       <th className={thCls}>{t("rankCol_income")}</th>
@@ -231,8 +232,8 @@ export default function RankingContent({ cities }: RankingContentProps) {
                       <td className={`${tdCls} hidden sm:table-cell`}>{getCountryLabel(item.city.country)}</td>
                       {tab === "air" ? (
                         <td className={tdCls}>
-                          <span className={`font-bold ${getAqiLevel(item.city.airQuality).color}`}>
-                            AQI {item.city.airQuality} · {t(getAqiLevel(item.city.airQuality).key)}
+                          <span className={`font-bold ${getAqiColor(item.city.airQuality)}`}>
+                            AQI {item.city.airQuality}
                           </span>
                         </td>
                       ) : tab === "flights" ? (
@@ -246,6 +247,12 @@ export default function RankingContent({ cities }: RankingContentProps) {
                           <span className={`font-bold ${item.city.safetyIndex >= 70 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.safetyIndex >= 40 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
                             {item.city.safetyIndex} / 100
                             {item.city.safetyConfidence === "low" && " *"}
+                          </span>
+                        </td>
+                      ) : tab === "workhours" ? (
+                        <td className={tdCls}>
+                          <span className={`font-bold ${item.city.annualWorkHours <= 1600 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.annualWorkHours <= 1900 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {item.city.annualWorkHours} {t("workHoursUnit")}
                           </span>
                         </td>
                       ) : (
