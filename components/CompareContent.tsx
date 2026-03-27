@@ -98,7 +98,7 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
     convertAmount, currencySymbol: s.currencySymbol, formatCurrency: fc,
     formatPrice: (amount: number) => fc(amount),
     getCost,
-    getClimate: (city: City) => CITY_CLIMATE[city.id] || { type: "temperate" as const, avgTempC: 15, annualRainMm: 800, sunshineHours: 2000 },
+    getClimate: (city: City) => CITY_CLIMATE[city.id] || { type: "temperate" as const, avgTempC: 15, annualRainMm: 800, sunshineHours: 2000, summerAvgC: 25, winterAvgC: 5, humidityPct: 65 },
     getAqiLevel: (aqi: number) => {
       if (aqi <= 50) return { key: "aqiGood", color: "text-green-300" };
       if (aqi <= 100) return { key: "aqiModerate", color: "text-yellow-300" };

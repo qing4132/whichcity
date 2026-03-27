@@ -9,6 +9,9 @@ export function getCityClimate(id: number): ClimateInfo {
       avgTempC: 15,
       annualRainMm: 800,
       sunshineHours: 2000,
+      summerAvgC: 25,
+      winterAvgC: 5,
+      humidityPct: 65,
     }
   );
 }

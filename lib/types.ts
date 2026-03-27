@@ -38,6 +38,9 @@ export interface ClimateInfo {
   avgTempC: number;
   annualRainMm: number;
   sunshineHours: number;
+  summerAvgC: number;
+  winterAvgC: number;
+  humidityPct: number;
 }
 
 export interface ExchangeRates {

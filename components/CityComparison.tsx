@@ -184,7 +184,7 @@ export default function CityComparison() {
   };
 
   const getClimate = (city: City): ClimateInfo =>
-    CITY_CLIMATE[city.id] || { type: "temperate" as const, avgTempC: 15, annualRainMm: 800, sunshineHours: 2000 };
+    CITY_CLIMATE[city.id] || { type: "temperate" as const, avgTempC: 15, annualRainMm: 800, sunshineHours: 2000, summerAvgC: 25, winterAvgC: 5, humidityPct: 65 };
 
   const getAqiLevel = (aqi: number): { key: string; color: string } => {
     if (aqi <= 50) return { key: "aqiGood", color: "text-green-300" };

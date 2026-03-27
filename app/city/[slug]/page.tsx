@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { City } from "@/lib/types";
 import { SLUG_TO_ID, CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
 import { loadCities, getCityById, getCityEnName, getCountryEnName } from "@/lib/dataLoader";
 import CityDetailContent from "@/components/CityDetailContent";
@@ -40,19 +41,9 @@ export default async function CityPage({ params }: Props) {
   const enName = getCityEnName(id);
   const country = getCountryEnName(city.country);
 
-  // Related comparison links
+  // Similar cities — Euclidean distance on 11 normalised metrics (SSG-time)
   const allCities = loadCities();
-  const related = POPULAR_PAIRS
-    .filter(([a, b]) => a === id || b === id)
-    .map(([a, b]) => (a === id ? b : a))
-    .slice(0, 6);
-  if (related.length < 6) {
-    const sameContinentIds = allCities
-      .filter((c) => c.continent === city.continent && c.id !== id && !related.includes(c.id))
-      .slice(0, 6 - related.length)
-      .map((c) => c.id);
-    related.push(...sameContinentIds);
-  }
+  const similarIds = computeSimilarIds(city, allCities);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -75,7 +66,45 @@ export default async function CityPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CityDetailContent city={city} relatedIds={related} slug={slug} allCities={allCities} />
+      <CityDetailContent city={city} similarIds={similarIds} slug={slug} allCities={allCities} />
     </>
   );
+}
+
+/** Compute the 6 most similar cities by Euclidean distance over normalised metrics */
+function computeSimilarIds(city: City, allCities: City[], topN = 6): number[] {
+  const vec = (c: City): number[] => [
+    c.averageIncome,
+    c.costModerate,
+    c.averageIncome - c.costModerate * 12,
+    c.annualWorkHours,
+    c.annualWorkHours > 0 ? c.averageIncome / c.annualWorkHours : 0,
+    c.housePrice,
+    c.airQuality,
+    c.safetyIndex,
+    c.doctorsPerThousand,
+    c.directFlightCities,
+    c.bigMacPrice ?? 0,
+  ];
+  const all = allCities.map(vec);
+  const dims = all[0].length;
+  const mins = Array(dims).fill(Infinity);
+  const maxs = Array(dims).fill(-Infinity);
+  for (const m of all) {
+    for (let i = 0; i < dims; i++) {
+      if (m[i] < mins[i]) mins[i] = m[i];
+      if (m[i] > maxs[i]) maxs[i] = m[i];
+    }
+  }
+  const norm = (v: number[]) => v.map((val, i) => {
+    const r = maxs[i] - mins[i];
+    return r > 0 ? (val - mins[i]) / r : 0.5;
+  });
+  const cur = norm(vec(city));
+  return allCities
+    .filter((c) => c.id !== city.id)
+    .map((c) => ({ id: c.id, dist: Math.sqrt(norm(vec(c)).reduce((s, v, i) => s + (v - cur[i]) ** 2, 0)) }))
+    .sort((a, b) => a.dist - b.dist)
+    .slice(0, topN)
+    .map((d) => d.id);
 }
