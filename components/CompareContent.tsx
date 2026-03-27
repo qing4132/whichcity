@@ -70,6 +70,9 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
     { label: t("climateType"), a: getClimateLabel(climateA.type, locale), b: getClimateLabel(climateB.type, locale), winner: "tie" },
     { label: t("avgTemp"), a: `${climateA.avgTempC.toFixed(1)}°C`, b: `${climateB.avgTempC.toFixed(1)}°C`, winner: "tie" },
     { label: t("sunshine"), a: `${Math.round(climateA.sunshineHours)} h`, b: `${Math.round(climateB.sunshineHours)} h`, winner: "tie" },
+    { label: t("annualWorkHours"), a: `${cityA.annualWorkHours} h`, b: `${cityB.annualWorkHours} h`, winner: cmp(cityA.annualWorkHours, cityB.annualWorkHours, true) },
+    { label: t("directFlights"), a: `${cityA.directFlightCities}`, b: `${cityB.directFlightCities}`, winner: cmp(cityA.directFlightCities, cityB.directFlightCities) },
+    { label: t("safetyIndex"), a: `${cityA.safetyIndex} / 100`, b: `${cityB.safetyIndex} / 100`, winner: cmp(cityA.safetyIndex, cityB.safetyIndex) },
   ];
 
   const winsA = rows.filter((r) => r.winner === "A").length;
@@ -225,7 +228,7 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
           <h3 className={`text-base sm:text-lg font-semibold mb-3 ${headingCls}`}>{t("dataSourcesTitle")}</h3>
           <p className={`text-sm mb-3 ${subCls}`}>{t("dataSourcesDesc")}</p>
           <div className={`space-y-1.5 text-xs ${subCls}`}>
-            {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc"].map((k) => (
+            {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc", "dataSafetySrc", "dataWorkHoursSrc"].map((k) => (
               <p key={k}>• {t(k)}</p>
             ))}
           </div>
