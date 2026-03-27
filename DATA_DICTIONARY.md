@@ -1,6 +1,6 @@
 # Data Dictionary — 数据字典
 
-> 最后审计：2026-03-27
+> 最后审计：2026-03-27 (v2 — 新增 9 个数据字段 + 3 个复合指标)
 
 本文档定义了项目中所有数据字段、计算公式、转换规则、分级标准和算法的完整技术规范。
 
@@ -34,6 +34,16 @@ interface City {
   annualWorkHours: number;             // 年工作时长 (小时)
   safetyIndex: number;                 // 安全指数 (0-100)
   safetyConfidence: "high"|"medium"|"low"; // 安全数据置信度
+  // v2 新增字段
+  monthlyRent: number;                 // 1居室市中心月租金 (USD)
+  paidLeaveDays: number;               // 法定带薪年假天数
+  internetSpeedMbps: number;           // 固定宽带下载速度 (Mbps)
+  hospitalBedsPerThousand: number;     // 每千人病床数
+  uhcCoverageIndex: number;            // UHC 服务覆盖指数 (0-100)
+  lifeExpectancy: number;              // 人均预期寿命 (年)
+  pressFreedomScore: number;           // 新闻自由度 (0-100, 越高越自由)
+  democracyIndex: number;              // 民主指数 (0-10)
+  corruptionPerceptionIndex: number;   // 清廉感知指数 (0-100, 越高越廉洁)
 }
 ```
 
@@ -68,21 +78,30 @@ interface ExchangeRates {
 
 ## 2. 数据来源与时效性
 
-| 字段 | 来源 | 更新周期 | 最后更新 |
-|------|------|---------|---------|
-| `averageIncome` | ERI/SalaryExpert, BLS, PayScale, OECD | 年度 | 2025 |
-| `professions{}` | 同上 + Robert Half, Hays, 智联招聘, JobStreet | 年度 | 2025（逐城逐职独立查询） |
-| `costModerate` | Numbeo, Expatistan, 各国统计局 | 年度 | 2024-2025 |
-| `costComfort/Budget/Minimal` | 基于 `costModerate` 乘系数 | 随 costModerate | — |
-| `bigMacPrice` | The Economist Big Mac Index | 半年 | 2025-01 |
-| `housePrice` | Global Property Guide, 各地房产指数 | 年度 | 2024-2025 |
-| `airQuality` | IQAir 2024, AQICN | 年度 | 2024 |
-| `doctorsPerThousand` | WHO GHO / World Bank (CC BY-4.0) | 不定期 | 2022-2024 |
-| `directFlightCities` | OAG Aviation, FlightConnections.com | 年度 | 2025 |
-| `annualWorkHours` | OECD Employment Outlook 2024, ILO ILOSTAT | 年度 | 2024 |
-| `safetyIndex` | Numbeo + UNODC + InterNations + Gallup | 年度 | 2024-2025 |
-| `ClimateInfo` | WMO 1991-2020 Normals, NOAA, 各国气象局 | 30年均值 | 2020 基准 |
-| `exchange-rates.json` | 静态 JSON | 手动 | — |
+| 字段 | 来源 | 粒度 | 更新周期 | 最后更新 |
+|------|------|------|---------|---------|
+| `averageIncome` | ERI/SalaryExpert, BLS, PayScale, OECD | 城市级 | 年度 | 2025 |
+| `professions{}` | 同上 + Robert Half, Hays, 智联招聘, JobStreet | 城市级 | 年度 | 2025（逐城逐职独立查询） |
+| `costModerate` | Numbeo, Expatistan, 各国统计局 | 城市级 | 年度 | 2024-2025 |
+| `costComfort/Budget/Minimal` | 基于 `costModerate` 乘系数 | — | 随 costModerate | — |
+| `bigMacPrice` | The Economist Big Mac Index | 国家级 | 半年 | 2025-01 |
+| `housePrice` | Global Property Guide, 各地房产指数 | 城市级 | 年度 | 2024-2025 |
+| `monthlyRent` | Numbeo Rent Index (1-bedroom city center) | 城市级 | 年度 | 2024-2025 |
+| `airQuality` | IQAir 2024, AQICN | 城市级 | 年度 | 2024 |
+| `doctorsPerThousand` | WHO GHO / World Bank (CC BY-4.0) | 城市级 | 不定期 | 2022-2024 |
+| `directFlightCities` | OAG Aviation, FlightConnections.com | 城市级 | 年度 | 2025 |
+| `annualWorkHours` | OECD Employment Outlook 2024, ILO ILOSTAT | 国家级 | 年度 | 2024 |
+| `paidLeaveDays` | OECD / 各国劳动法 | 国家级 | 不定期 | 2025 |
+| `internetSpeedMbps` | Ookla Speedtest Global Index | 城市级 | 季度 | 2025 |
+| `safetyIndex` | Numbeo + UNODC + InterNations + Gallup | 城市级 | 年度 | 2024-2025 |
+| `hospitalBedsPerThousand` | World Bank (SH.MED.BEDS.ZS) | 国家级 | 不定期 | 2022-2024 |
+| `uhcCoverageIndex` | WHO Global Health Observatory | 国家级 | 年度 | 2024 |
+| `lifeExpectancy` | World Bank (SP.DYN.LE00.IN) | 国家级 | 年度 | 2024 |
+| `pressFreedomScore` | RSF World Press Freedom Index | 国家级 | 年度 | 2024 |
+| `democracyIndex` | EIU Democracy Index | 国家级 | 年度 | 2024 |
+| `corruptionPerceptionIndex` | Transparency International CPI | 国家级 | 年度 | 2024 |
+| `ClimateInfo` | WMO 1991-2020 Normals, NOAA, 各国气象局 | 城市级 | 30年均值 | 2020 基准 |
+| `exchange-rates.json` | 静态 JSON | — | 手动 | — |
 
 ---
 
@@ -174,6 +193,76 @@ safetyIndex = 夜间安全感 × 0.40
 | 10% 外国人友好 | InterNations Expat Insider 2024 + Gallup 2023 | 综合评分 |
 
 **置信度**：当任一数据源缺失时标记为 `safetyConfidence: "low"`，前端在数值后显示 `*` 号。
+
+---
+
+## 5b. 生活压力指数计算方法 (Life Pressure Index)
+
+定义于 `lib/clientUtils.ts` 的 `computeLifePressure()`，运行时在客户端计算。
+
+**分数范围**：0-100，越高越轻松（压力越小）
+
+### 5b.1 四个子指标
+
+| 子指标 | 权重 | 方向 | 公式 |
+|--------|------|------|------|
+| 储蓄率 | 30% | 越高越好 | `(income − cost × 12) / income` |
+| 巨无霸购买力 | 25% | 越高越好 | `hourlyWage / bigMacPrice`（时薪能买几个巨无霸） |
+| 年工时 | 25% | 越低越好 | `annualWorkHours`（反向计分） |
+| 购房年限 | 20% | 越低越好 | `housePrice × 70 / savings`（反向计分） |
+
+### 5b.2 计算流程
+
+1. 对所有 120 城计算各子指标原始值
+2. 各子指标在 120 城中 min-max 归一化到 [0, 100]
+3. 反向指标（工时、购房年限）取 `100 − normalized`
+4. 加权求和：`SR×0.30 + BM×0.25 + WH×0.25 + YH×0.20`
+
+### 5b.3 特殊处理
+
+- `bigMacPrice = null` 的城市（8 座无麦当劳）：巨无霸权重重新分配至剩余 3 项（40%/33%/27%）
+- `savings ≤ 0` 的城市：购房年限 = Infinity，归一化后子分 = 0
+
+### 5b.4 数据依赖
+
+**全部从已有字段派生**，无需新增数据。受用户选择的职业和生活水平影响。
+
+---
+
+## 5c. 医疗保障指数计算方法 (Healthcare Security Index)
+
+定义于 `lib/clientUtils.ts` 的 `computeHealthcare()`。
+
+**分数范围**：0-100，越高保障越好
+
+| 子指标 | 权重 | 数据源 | 粒度 |
+|--------|------|--------|------|
+| 每千人医师数 | 35% | WHO / World Bank | 城市级（已有） |
+| 每千人病床数 | 25% | World Bank (SH.MED.BEDS.ZS) | 国家级（v2 新增） |
+| UHC 覆盖率 | 25% | WHO Global Health Observatory | 国家级（v2 新增） |
+| 预期寿命 | 15% | World Bank (SP.DYN.LE00.IN) | 国家级（v2 新增） |
+
+**计算**：各子指标 min-max 归一化到 [0, 100]，加权求和。
+
+---
+
+## 5d. 制度自由度指数计算方法 (Institutional Freedom Index)
+
+定义于 `lib/clientUtils.ts` 的 `computeInstitutionalFreedom()`。
+
+**分数范围**：0-100，越高越自由
+
+| 子指标 | 权重 | 原始范围 | 数据源 |
+|--------|------|---------|--------|
+| 新闻自由度 | 35% | 0-100 | RSF World Press Freedom Index 2024 |
+| 民主指数 | 35% | 0-10 → ×10 映射到 0-100 | EIU Democracy Index 2024 |
+| 清廉感知指数 | 30% | 0-100 | Transparency International CPI 2024 |
+
+**计算**：`press × 0.35 + democracy×10 × 0.35 + cpi × 0.30`
+
+三项数据均已在 0-100 量程（民主指数 ×10 后），直接加权求和，无需归一化。全部为国家级数据，同一国家的城市得分相同。
+
+**设计立场**：本产品认为新闻自由、民主制度和行政清廉是个体移居决策的重要参考因素。此为有意的价值取向，非中立立场。
 
 ---
 
@@ -289,15 +378,19 @@ const rankLower = (values, val) => {
 | 年收入 | 越高越好 | tierHigh |
 | 月消费 | 越低越好 | tierLow |
 | 年储蓄 | 越高越好 | tierHigh |
-| 年工时 | 越低越好 | tierLow |
-| 时薪 | 越高越好 | tierHigh |
-| 巨无霸指数 | 越低越好 | tierLow |
 | 房价 | 越低越好 | tierLow |
 | 购房年限 | 越低越好 | tierLow |
+| 月租金 | 越低越好 | tierLow |
+| 年工时 | 越低越好 | tierLow |
+| 时薪 | 越高越好 | tierHigh |
+| 带薪年假 | 越高越好 | tierHigh |
 | AQI | 越低越好 | tierLow |
-| 安全指数 | 越高越好 | tierHigh |
-| 医师密度 | 越高越好 | tierHigh |
+| 网速 | 越高越好 | tierHigh |
 | 直飞城市 | 越高越好 | tierHigh |
+| 生活压力指数 | 越高越好(轻松) | tierHigh |
+| 安全指数 | 越高越好 | tierHigh |
+| 医疗保障指数 | 越高越好 | tierHigh |
+| 制度自由指数 | 越高越好 | tierHigh |
 
 ---
 
@@ -450,6 +543,7 @@ export const CITY_CLIMATE: Record<number, ClimateInfo> = {
 | `add-safety.mjs` | Node.js | 添加安全指数 | 40/30/20/10 加权 |
 | `add-flights.mjs` | Node.js | 添加直飞城市数 | OAG + FlightConnections |
 | `add-workhours.mjs` | Node.js | 添加年工时 | OECD/ILO 国家级数据 |
+| `add-new-fields.mjs` | Node.js | 添加 v2 9 个新字段 | 租金、年假、网速、病床、UHC、寿命、新闻自由、民主、清廉 |
 | `add_doctors_data.py` | Python | 添加医师密度 | WHO/World Bank |
 | `add-climate-detail.mjs` | Node.js | 添加气候详情 | WMO/NOAA |
 | `add_20_asian_cities.py` | Python | 批量新增 20 亚洲城市 | 手查数据 |
@@ -470,3 +564,32 @@ export const CITY_CLIMATE: Record<number, ClimateInfo> = {
 | 5 | 汇率为静态快照 | 低 | `exchange-rates.json` 非实时，可能与实际汇率有偏差 |
 | 6 | bigMacPrice null 的城市 | — | 8 国无麦当劳，设计如此 |
 | 7 | 气候数据使用 30 年平均值 | — | WMO Climate Normals 1991-2020，设计如此 |
+| 8 | v2 国家级数据共 7 项 | 中 | paidLeaveDays, hospitalBedsPerThousand, uhcCoverageIndex, lifeExpectancy, pressFreedomScore, democracyIndex, corruptionPerceptionIndex 均为国家级，同一国家的城市共享同一数值 |
+| 9 | 带薪年假为法定最低值 | 低 | 实际年假可能因公司、工龄而更高；美国联邦法定为 0 天但多数雇主提供 10-15 天 |
+| 10 | 生活压力指数受用户选择影响 | — | 随职业和生活水平选项变化，非固定值；设计如此 |
+
+---
+
+## 15. 前端卡片布局 (v2)
+
+### 15.1 城市详情页 4 行布局
+
+```
+第一行 (2 中卡片 × 3 数据)：
+  [收支] 年收入 | 月成本 | 年储蓄
+  [住房] 房价/m² | 购房年限 | 月租金
+
+第二行 (2 中卡片 × 3 数据)：
+  [工作] 年工时 | 时薪 | 带薪年假
+  [环境与连接] AQI | 网速 | 直飞城市
+
+第三行 (4 小指标卡片，可点击展开)：
+  [生活压力] [体感安全] [医疗保障] [制度自由]
+
+第四行 (1 大卡片)：
+  [气候环境 — 不变]
+```
+
+### 15.2 排行榜页面 13 个 Tab
+
+savings | ppp | housing | rent | air | flights | safety | workhours | vacation | internet | lifePressure | healthcare | freedom

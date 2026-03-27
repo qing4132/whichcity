@@ -21,6 +21,16 @@ export interface City {
   annualWorkHours: number;
   safetyIndex: number;
   safetyConfidence: "high" | "medium" | "low";
+  // New fields (v2)
+  monthlyRent: number;
+  paidLeaveDays: number;
+  internetSpeedMbps: number;
+  hospitalBedsPerThousand: number;
+  uhcCoverageIndex: number;
+  lifeExpectancy: number;
+  pressFreedomScore: number;
+  democracyIndex: number;
+  corruptionPerceptionIndex: number;
 }
 
 export type CostTier = "comfort" | "moderate" | "budget" | "minimal";
