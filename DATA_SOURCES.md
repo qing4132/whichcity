@@ -28,6 +28,15 @@
 | `internetSpeedMbps` | Ookla Speedtest Global Index 2025 | 城市级 | 固定宽带下载速度（Mbps） |
 | `description` | AI 生成 | — | 城市简介文本 |
 
+### 安全指数子数据
+
+| 字段 | 来源 | 粒度 | 获取方式 |
+|------|------|------|----------|
+| `safetyNightSafety` | Numbeo Safety Index 2024-2025 | 城市级 | 直接使用 0-100 评分 |
+| `safetyViolentCrimeInv` | UNODC 杀人率数据 | 国家级 | 反向计分（犯罪率越低分越高） |
+| `safetyPropertyCrimeInv` | Numbeo Crime Index 2024-2025 | 城市级 | 反向计分 |
+| `safetyForeignerFriendly` | InterNations Expat Insider 2024 + Gallup 2023 | 国家级 | 综合评分 |
+
 ### 医疗保障指数子数据（v2 新增）
 
 | 字段 | 来源 | 粒度 | 获取方式 |
@@ -58,6 +67,8 @@ safetyIndex = 夜间安全感(Numbeo) × 0.40
             + 财产犯罪反向分(Numbeo Crime) × 0.20
             + 外国人友好度(InterNations/Gallup) × 0.10
 ```
+
+v2 起，4 项子指标（`safetyNightSafety`, `safetyViolentCrimeInv`, `safetyPropertyCrimeInv`, `safetyForeignerFriendly`）已直接存入 `cities.json`，可在城市详情页安全指数卡片中展开查看。
 
 ### 生活压力指数 (Life Pressure Index) — v2 新增
 
@@ -163,6 +174,7 @@ freedomIdx = 新闻自由度 × 0.35
 | 日期 | 内容 |
 |------|------|
 | 2026-03 | v2: 新增 9 个数据字段 (monthlyRent, paidLeaveDays, internetSpeedMbps, hospitalBedsPerThousand, uhcCoverageIndex, lifeExpectancy, pressFreedomScore, democracyIndex, corruptionPerceptionIndex) |
+| 2026-03 | v2: 安全指数 4 项子指标 (safetyNightSafety, safetyViolentCrimeInv, safetyPropertyCrimeInv, safetyForeignerFriendly) 存入 cities.json，安全卡片支持展开查看 |
 | 2026-03 | v2: 新增 3 个复合指标 (生活压力、医疗保障、制度自由度)，计算逻辑位于 lib/clientUtils.ts |
 | 2026-03 | v2: 城市详情页从 12 平铺卡片重构为 4 行分组布局 (2中+2中+4小+1大) |
 | 2026-03 | v2: 排行榜从 7 个 Tab 扩展为 13 个 Tab |

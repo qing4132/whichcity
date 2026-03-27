@@ -52,7 +52,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 45,
+      "safetyViolentCrimeInv": 55,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 78
     },
     {
       "id": 2,
@@ -106,7 +110,11 @@
       "lifeExpectancy": 81,
       "pressFreedomScore": 70,
       "democracyIndex": 8.54,
-      "corruptionPerceptionIndex": 71
+      "corruptionPerceptionIndex": 71,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 50,
+      "safetyForeignerFriendly": 82
     },
     {
       "id": 3,
@@ -160,7 +168,11 @@
       "lifeExpectancy": 84.5,
       "pressFreedomScore": 64,
       "democracyIndex": 8.33,
-      "corruptionPerceptionIndex": 73
+      "corruptionPerceptionIndex": 73,
+      "safetyNightSafety": 82,
+      "safetyViolentCrimeInv": 90,
+      "safetyPropertyCrimeInv": 88,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 4,
@@ -214,7 +226,11 @@
       "lifeExpectancy": 78.2,
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 72,
+      "safetyViolentCrimeInv": 82,
+      "safetyPropertyCrimeInv": 78,
+      "safetyForeignerFriendly": 42
     },
     {
       "id": 5,
@@ -268,7 +284,11 @@
       "lifeExpectancy": 78.2,
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 74,
+      "safetyViolentCrimeInv": 84,
+      "safetyPropertyCrimeInv": 80,
+      "safetyForeignerFriendly": 45
     },
     {
       "id": 6,
@@ -322,7 +342,11 @@
       "lifeExpectancy": 83.3,
       "pressFreedomScore": 65,
       "democracyIndex": 8.71,
-      "corruptionPerceptionIndex": 75
+      "corruptionPerceptionIndex": 75,
+      "safetyNightSafety": 65,
+      "safetyViolentCrimeInv": 72,
+      "safetyPropertyCrimeInv": 60,
+      "safetyForeignerFriendly": 85
     },
     {
       "id": 7,
@@ -376,7 +400,11 @@
       "lifeExpectancy": 83.9,
       "pressFreedomScore": 40,
       "democracyIndex": 6.02,
-      "corruptionPerceptionIndex": 83
+      "corruptionPerceptionIndex": 83,
+      "safetyNightSafety": 82,
+      "safetyViolentCrimeInv": 88,
+      "safetyPropertyCrimeInv": 80,
+      "safetyForeignerFriendly": 70
     },
     {
       "id": 8,
@@ -430,7 +458,11 @@
       "lifeExpectancy": 82.5,
       "pressFreedomScore": 68,
       "democracyIndex": 7.99,
-      "corruptionPerceptionIndex": 71
+      "corruptionPerceptionIndex": 71,
+      "safetyNightSafety": 45,
+      "safetyViolentCrimeInv": 58,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 9,
@@ -484,7 +516,11 @@
       "lifeExpectancy": 82,
       "pressFreedomScore": 72,
       "democracyIndex": 8.88,
-      "corruptionPerceptionIndex": 76
+      "corruptionPerceptionIndex": 76,
+      "safetyNightSafety": 60,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 58,
+      "safetyForeignerFriendly": 82
     },
     {
       "id": 10,
@@ -538,7 +574,11 @@
       "lifeExpectancy": 85.3,
       "pressFreedomScore": 16,
       "democracyIndex": 3.54,
-      "corruptionPerceptionIndex": 75
+      "corruptionPerceptionIndex": 75,
+      "safetyNightSafety": 78,
+      "safetyViolentCrimeInv": 85,
+      "safetyPropertyCrimeInv": 75,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 11,
@@ -592,7 +632,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 38,
+      "safetyViolentCrimeInv": 52,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 75
     },
     {
       "id": 12,
@@ -646,7 +690,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 30,
+      "safetyViolentCrimeInv": 48,
+      "safetyPropertyCrimeInv": 35,
+      "safetyForeignerFriendly": 78
     },
     {
       "id": 13,
@@ -700,7 +748,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 35,
+      "safetyViolentCrimeInv": 50,
+      "safetyPropertyCrimeInv": 40,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 14,
@@ -754,7 +806,11 @@
       "lifeExpectancy": 78.7,
       "pressFreedomScore": 26,
       "democracyIndex": 2.76,
-      "corruptionPerceptionIndex": 68
+      "corruptionPerceptionIndex": 68,
+      "safetyNightSafety": 85,
+      "safetyViolentCrimeInv": 88,
+      "safetyPropertyCrimeInv": 85,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 15,
@@ -808,7 +864,11 @@
       "lifeExpectancy": 81.5,
       "pressFreedomScore": 77,
       "democracyIndex": 8.88,
-      "corruptionPerceptionIndex": 79
+      "corruptionPerceptionIndex": 79,
+      "safetyNightSafety": 62,
+      "safetyViolentCrimeInv": 70,
+      "safetyPropertyCrimeInv": 52,
+      "safetyForeignerFriendly": 88
     },
     {
       "id": 16,
@@ -862,7 +922,11 @@
       "lifeExpectancy": 83.4,
       "pressFreedomScore": 82,
       "democracyIndex": 9.14,
-      "corruptionPerceptionIndex": 82
+      "corruptionPerceptionIndex": 82,
+      "safetyNightSafety": 80,
+      "safetyViolentCrimeInv": 85,
+      "safetyPropertyCrimeInv": 78,
+      "safetyForeignerFriendly": 75
     },
     {
       "id": 17,
@@ -916,7 +980,11 @@
       "lifeExpectancy": 83.4,
       "pressFreedomScore": 82,
       "democracyIndex": 9.14,
-      "corruptionPerceptionIndex": 82
+      "corruptionPerceptionIndex": 82,
+      "safetyNightSafety": 78,
+      "safetyViolentCrimeInv": 82,
+      "safetyPropertyCrimeInv": 75,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 18,
@@ -970,7 +1038,11 @@
       "lifeExpectancy": 80.6,
       "pressFreedomScore": 72,
       "democracyIndex": 8.8,
-      "corruptionPerceptionIndex": 78
+      "corruptionPerceptionIndex": 78,
+      "safetyNightSafety": 76,
+      "safetyViolentCrimeInv": 80,
+      "safetyPropertyCrimeInv": 72,
+      "safetyForeignerFriendly": 68
     },
     {
       "id": 19,
@@ -1024,7 +1096,11 @@
       "lifeExpectancy": 80.6,
       "pressFreedomScore": 72,
       "democracyIndex": 8.8,
-      "corruptionPerceptionIndex": 78
+      "corruptionPerceptionIndex": 78,
+      "safetyNightSafety": 58,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 70
     },
     {
       "id": 20,
@@ -1078,7 +1154,11 @@
       "lifeExpectancy": 83,
       "pressFreedomScore": 66,
       "democracyIndex": 8.07,
-      "corruptionPerceptionIndex": 60
+      "corruptionPerceptionIndex": 60,
+      "safetyNightSafety": 48,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 40,
+      "safetyForeignerFriendly": 80
     },
     {
       "id": 21,
@@ -1132,7 +1212,11 @@
       "lifeExpectancy": 83,
       "pressFreedomScore": 66,
       "democracyIndex": 8.07,
-      "corruptionPerceptionIndex": 60
+      "corruptionPerceptionIndex": 60,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 75
     },
     {
       "id": 22,
@@ -1186,7 +1270,11 @@
       "lifeExpectancy": 82.9,
       "pressFreedomScore": 56,
       "democracyIndex": 7.69,
-      "corruptionPerceptionIndex": 56
+      "corruptionPerceptionIndex": 56,
+      "safetyNightSafety": 52,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 45,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 23,
@@ -1240,7 +1328,11 @@
       "lifeExpectancy": 82.9,
       "pressFreedomScore": 56,
       "democracyIndex": 7.69,
-      "corruptionPerceptionIndex": 56
+      "corruptionPerceptionIndex": 56,
+      "safetyNightSafety": 50,
+      "safetyViolentCrimeInv": 60,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 68
     },
     {
       "id": 24,
@@ -1294,7 +1386,11 @@
       "lifeExpectancy": 81.4,
       "pressFreedomScore": 75,
       "democracyIndex": 7.64,
-      "corruptionPerceptionIndex": 73
+      "corruptionPerceptionIndex": 73,
+      "safetyNightSafety": 48,
+      "safetyViolentCrimeInv": 58,
+      "safetyPropertyCrimeInv": 45,
+      "safetyForeignerFriendly": 78
     },
     {
       "id": 25,
@@ -1348,7 +1444,11 @@
       "lifeExpectancy": 81.6,
       "pressFreedomScore": 70,
       "democracyIndex": 8.41,
-      "corruptionPerceptionIndex": 71
+      "corruptionPerceptionIndex": 71,
+      "safetyNightSafety": 72,
+      "safetyViolentCrimeInv": 78,
+      "safetyPropertyCrimeInv": 68,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 26,
@@ -1402,7 +1502,11 @@
       "lifeExpectancy": 78.3,
       "pressFreedomScore": 63,
       "democracyIndex": 7.97,
-      "corruptionPerceptionIndex": 57
+      "corruptionPerceptionIndex": 57,
+      "safetyNightSafety": 70,
+      "safetyViolentCrimeInv": 76,
+      "safetyPropertyCrimeInv": 65,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 27,
@@ -1456,7 +1560,11 @@
       "lifeExpectancy": 76.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.04,
-      "corruptionPerceptionIndex": 54
+      "corruptionPerceptionIndex": 54,
+      "safetyNightSafety": 62,
+      "safetyViolentCrimeInv": 72,
+      "safetyPropertyCrimeInv": 60,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 28,
@@ -1510,7 +1618,11 @@
       "lifeExpectancy": 81.1,
       "pressFreedomScore": 80,
       "democracyIndex": 8.03,
-      "corruptionPerceptionIndex": 61
+      "corruptionPerceptionIndex": 61,
+      "safetyNightSafety": 62,
+      "safetyViolentCrimeInv": 72,
+      "safetyPropertyCrimeInv": 52,
+      "safetyForeignerFriendly": 82
     },
     {
       "id": 29,
@@ -1564,7 +1676,11 @@
       "lifeExpectancy": 80.1,
       "pressFreedomScore": 58,
       "democracyIndex": 7.56,
-      "corruptionPerceptionIndex": 49
+      "corruptionPerceptionIndex": 49,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 50,
+      "safetyForeignerFriendly": 68
     },
     {
       "id": 30,
@@ -1618,7 +1734,11 @@
       "lifeExpectancy": 76,
       "pressFreedomScore": 22,
       "democracyIndex": 4.35,
-      "corruptionPerceptionIndex": 36
+      "corruptionPerceptionIndex": 36,
+      "safetyNightSafety": 52,
+      "safetyViolentCrimeInv": 58,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 31,
@@ -1672,7 +1792,11 @@
       "lifeExpectancy": 75,
       "pressFreedomScore": 33,
       "democracyIndex": 5.57,
-      "corruptionPerceptionIndex": 31
+      "corruptionPerceptionIndex": 31,
+      "safetyNightSafety": 28,
+      "safetyViolentCrimeInv": 35,
+      "safetyPropertyCrimeInv": 30,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 32,
@@ -1726,7 +1850,11 @@
       "lifeExpectancy": 75.3,
       "pressFreedomScore": 55,
       "democracyIndex": 6.78,
-      "corruptionPerceptionIndex": 36
+      "corruptionPerceptionIndex": 36,
+      "safetyNightSafety": 22,
+      "safetyViolentCrimeInv": 32,
+      "safetyPropertyCrimeInv": 25,
+      "safetyForeignerFriendly": 60
     },
     {
       "id": 33,
@@ -1780,7 +1908,11 @@
       "lifeExpectancy": 75.3,
       "pressFreedomScore": 55,
       "democracyIndex": 6.78,
-      "corruptionPerceptionIndex": 36
+      "corruptionPerceptionIndex": 36,
+      "safetyNightSafety": 25,
+      "safetyViolentCrimeInv": 35,
+      "safetyPropertyCrimeInv": 28,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 34,
@@ -1834,7 +1966,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 50,
+      "safetyViolentCrimeInv": 55,
+      "safetyPropertyCrimeInv": 45,
+      "safetyForeignerFriendly": 78
     },
     {
       "id": 35,
@@ -1888,7 +2024,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 75
     },
     {
       "id": 36,
@@ -1942,7 +2082,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 60,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 58,
+      "safetyForeignerFriendly": 80
     },
     {
       "id": 37,
@@ -1996,7 +2140,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 48,
+      "safetyViolentCrimeInv": 58,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 78
     },
     {
       "id": 38,
@@ -2050,7 +2198,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 52,
+      "safetyForeignerFriendly": 76
     },
     {
       "id": 39,
@@ -2104,7 +2256,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 52,
+      "safetyViolentCrimeInv": 60,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 78
     },
     {
       "id": 40,
@@ -2158,7 +2314,11 @@
       "lifeExpectancy": 82,
       "pressFreedomScore": 72,
       "democracyIndex": 8.88,
-      "corruptionPerceptionIndex": 76
+      "corruptionPerceptionIndex": 76,
+      "safetyNightSafety": 62,
+      "safetyViolentCrimeInv": 70,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 85
     },
     {
       "id": 41,
@@ -2212,7 +2372,11 @@
       "lifeExpectancy": 82,
       "pressFreedomScore": 72,
       "democracyIndex": 8.88,
-      "corruptionPerceptionIndex": 76
+      "corruptionPerceptionIndex": 76,
+      "safetyNightSafety": 58,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 80
     },
     {
       "id": 42,
@@ -2266,7 +2430,11 @@
       "lifeExpectancy": 83.3,
       "pressFreedomScore": 65,
       "democracyIndex": 8.71,
-      "corruptionPerceptionIndex": 75
+      "corruptionPerceptionIndex": 75,
+      "safetyNightSafety": 68,
+      "safetyViolentCrimeInv": 74,
+      "safetyPropertyCrimeInv": 62,
+      "safetyForeignerFriendly": 82
     },
     {
       "id": 43,
@@ -2320,7 +2488,11 @@
       "lifeExpectancy": 83.3,
       "pressFreedomScore": 65,
       "democracyIndex": 8.71,
-      "corruptionPerceptionIndex": 75
+      "corruptionPerceptionIndex": 75,
+      "safetyNightSafety": 70,
+      "safetyViolentCrimeInv": 75,
+      "safetyPropertyCrimeInv": 65,
+      "safetyForeignerFriendly": 80
     },
     {
       "id": 44,
@@ -2374,7 +2546,11 @@
       "lifeExpectancy": 82.1,
       "pressFreedomScore": 78,
       "democracyIndex": 9.61,
-      "corruptionPerceptionIndex": 85
+      "corruptionPerceptionIndex": 85,
+      "safetyNightSafety": 68,
+      "safetyViolentCrimeInv": 78,
+      "safetyPropertyCrimeInv": 65,
+      "safetyForeignerFriendly": 82
     },
     {
       "id": 45,
@@ -2428,7 +2604,11 @@
       "lifeExpectancy": 78.7,
       "pressFreedomScore": 40,
       "democracyIndex": 6.35,
-      "corruptionPerceptionIndex": 35
+      "corruptionPerceptionIndex": 35,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 60,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 46,
@@ -2482,7 +2662,11 @@
       "lifeExpectancy": 76.2,
       "pressFreedomScore": 47,
       "democracyIndex": 7.3,
-      "corruptionPerceptionIndex": 50
+      "corruptionPerceptionIndex": 50,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 50,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 47,
@@ -2536,7 +2720,11 @@
       "lifeExpectancy": 75.4,
       "pressFreedomScore": 15,
       "democracyIndex": 2.82,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 45,
+      "safetyViolentCrimeInv": 58,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 62
     },
     {
       "id": 48,
@@ -2590,7 +2778,11 @@
       "lifeExpectancy": 75.4,
       "pressFreedomScore": 15,
       "democracyIndex": 2.82,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 58,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 49,
@@ -2644,7 +2836,11 @@
       "lifeExpectancy": 70.8,
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
-      "corruptionPerceptionIndex": 39
+      "corruptionPerceptionIndex": 39,
+      "safetyNightSafety": 52,
+      "safetyViolentCrimeInv": 60,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 50,
@@ -2698,7 +2894,11 @@
       "lifeExpectancy": 70.8,
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
-      "corruptionPerceptionIndex": 39
+      "corruptionPerceptionIndex": 39,
+      "safetyNightSafety": 35,
+      "safetyViolentCrimeInv": 48,
+      "safetyPropertyCrimeInv": 38,
+      "safetyForeignerFriendly": 50
     },
     {
       "id": 51,
@@ -2752,7 +2952,11 @@
       "lifeExpectancy": 70.8,
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
-      "corruptionPerceptionIndex": 39
+      "corruptionPerceptionIndex": 39,
+      "safetyNightSafety": 28,
+      "safetyViolentCrimeInv": 42,
+      "safetyPropertyCrimeInv": 32,
+      "safetyForeignerFriendly": 48
     },
     {
       "id": 52,
@@ -2806,7 +3010,11 @@
       "lifeExpectancy": 61.4,
       "pressFreedomScore": 55,
       "democracyIndex": 5.05,
-      "corruptionPerceptionIndex": 32
+      "corruptionPerceptionIndex": 32,
+      "safetyNightSafety": 22,
+      "safetyViolentCrimeInv": 35,
+      "safetyPropertyCrimeInv": 25,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 53,
@@ -2860,7 +3068,11 @@
       "lifeExpectancy": 72,
       "pressFreedomScore": 14,
       "democracyIndex": 2.93,
-      "corruptionPerceptionIndex": 35
+      "corruptionPerceptionIndex": 35,
+      "safetyNightSafety": 38,
+      "safetyViolentCrimeInv": 52,
+      "safetyPropertyCrimeInv": 40,
+      "safetyForeignerFriendly": 45
     },
     {
       "id": 54,
@@ -2914,7 +3126,11 @@
       "lifeExpectancy": 76.7,
       "pressFreedomScore": 8,
       "democracyIndex": 1.96,
-      "corruptionPerceptionIndex": 24
+      "corruptionPerceptionIndex": 24,
+      "safetyNightSafety": 48,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 30
     },
     {
       "id": 55,
@@ -2968,7 +3184,11 @@
       "lifeExpectancy": 67.3,
       "pressFreedomScore": 27,
       "democracyIndex": 4.13,
-      "corruptionPerceptionIndex": 27
+      "corruptionPerceptionIndex": 27,
+      "safetyNightSafety": 18,
+      "safetyViolentCrimeInv": 30,
+      "safetyPropertyCrimeInv": 22,
+      "safetyForeignerFriendly": 40
     },
     {
       "id": 56,
@@ -3022,7 +3242,11 @@
       "lifeExpectancy": 67.3,
       "pressFreedomScore": 27,
       "democracyIndex": 4.13,
-      "corruptionPerceptionIndex": 27
+      "corruptionPerceptionIndex": 27,
+      "safetyNightSafety": 38,
+      "safetyViolentCrimeInv": 52,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 42
     },
     {
       "id": 57,
@@ -3076,7 +3300,11 @@
       "lifeExpectancy": 71.7,
       "pressFreedomScore": 50,
       "democracyIndex": 6.71,
-      "corruptionPerceptionIndex": 37
+      "corruptionPerceptionIndex": 37,
+      "safetyNightSafety": 40,
+      "safetyViolentCrimeInv": 52,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 58,
@@ -3130,7 +3358,11 @@
       "lifeExpectancy": 71.1,
       "pressFreedomScore": 42,
       "democracyIndex": 6.73,
-      "corruptionPerceptionIndex": 34
+      "corruptionPerceptionIndex": 34,
+      "safetyNightSafety": 38,
+      "safetyViolentCrimeInv": 48,
+      "safetyPropertyCrimeInv": 38,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 59,
@@ -3184,7 +3416,11 @@
       "lifeExpectancy": 83.7,
       "pressFreedomScore": 72,
       "democracyIndex": 8.09,
-      "corruptionPerceptionIndex": 63
+      "corruptionPerceptionIndex": 63,
+      "safetyNightSafety": 78,
+      "safetyViolentCrimeInv": 85,
+      "safetyPropertyCrimeInv": 78,
+      "safetyForeignerFriendly": 48
     },
     {
       "id": 60,
@@ -3238,7 +3474,11 @@
       "lifeExpectancy": 83.7,
       "pressFreedomScore": 72,
       "democracyIndex": 8.09,
-      "corruptionPerceptionIndex": 63
+      "corruptionPerceptionIndex": 63,
+      "safetyNightSafety": 75,
+      "safetyViolentCrimeInv": 82,
+      "safetyPropertyCrimeInv": 75,
+      "safetyForeignerFriendly": 42
     },
     {
       "id": 61,
@@ -3292,7 +3532,11 @@
       "lifeExpectancy": 81,
       "pressFreedomScore": 74,
       "democracyIndex": 8.99,
-      "corruptionPerceptionIndex": 68
+      "corruptionPerceptionIndex": 68,
+      "safetyNightSafety": 78,
+      "safetyViolentCrimeInv": 85,
+      "safetyPropertyCrimeInv": 78,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 62,
@@ -3346,7 +3590,11 @@
       "lifeExpectancy": 76.5,
       "pressFreedomScore": 60,
       "democracyIndex": 6.81,
-      "corruptionPerceptionIndex": 38
+      "corruptionPerceptionIndex": 38,
+      "safetyNightSafety": 32,
+      "safetyViolentCrimeInv": 42,
+      "safetyPropertyCrimeInv": 32,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 63,
@@ -3400,7 +3648,11 @@
       "lifeExpectancy": 80.2,
       "pressFreedomScore": 68,
       "democracyIndex": 8.28,
-      "corruptionPerceptionIndex": 67
+      "corruptionPerceptionIndex": 67,
+      "safetyNightSafety": 38,
+      "safetyViolentCrimeInv": 52,
+      "safetyPropertyCrimeInv": 40,
+      "safetyForeignerFriendly": 62
     },
     {
       "id": 64,
@@ -3454,7 +3706,11 @@
       "lifeExpectancy": 77.3,
       "pressFreedomScore": 48,
       "democracyIndex": 7.04,
-      "corruptionPerceptionIndex": 40
+      "corruptionPerceptionIndex": 40,
+      "safetyNightSafety": 25,
+      "safetyViolentCrimeInv": 38,
+      "safetyPropertyCrimeInv": 28,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 65,
@@ -3508,7 +3764,11 @@
       "lifeExpectancy": 76.5,
       "pressFreedomScore": 52,
       "democracyIndex": 6.09,
-      "corruptionPerceptionIndex": 36
+      "corruptionPerceptionIndex": 36,
+      "safetyNightSafety": 30,
+      "safetyViolentCrimeInv": 42,
+      "safetyPropertyCrimeInv": 32,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 66,
@@ -3562,7 +3822,11 @@
       "lifeExpectancy": 72.1,
       "pressFreedomScore": 18,
       "democracyIndex": 2.23,
-      "corruptionPerceptionIndex": 13
+      "corruptionPerceptionIndex": 13,
+      "safetyNightSafety": 12,
+      "safetyViolentCrimeInv": 18,
+      "safetyPropertyCrimeInv": 15,
+      "safetyForeignerFriendly": 42
     },
     {
       "id": 67,
@@ -3616,7 +3880,11 @@
       "lifeExpectancy": 64.9,
       "pressFreedomScore": 62,
       "democracyIndex": 7.05,
-      "corruptionPerceptionIndex": 43
+      "corruptionPerceptionIndex": 43,
+      "safetyNightSafety": 20,
+      "safetyViolentCrimeInv": 28,
+      "safetyPropertyCrimeInv": 20,
+      "safetyForeignerFriendly": 50
     },
     {
       "id": 68,
@@ -3670,7 +3938,11 @@
       "lifeExpectancy": 64.9,
       "pressFreedomScore": 62,
       "democracyIndex": 7.05,
-      "corruptionPerceptionIndex": 43
+      "corruptionPerceptionIndex": 43,
+      "safetyNightSafety": 32,
+      "safetyViolentCrimeInv": 45,
+      "safetyPropertyCrimeInv": 32,
+      "safetyForeignerFriendly": 62
     },
     {
       "id": 69,
@@ -3724,7 +3996,11 @@
       "lifeExpectancy": 75,
       "pressFreedomScore": 33,
       "democracyIndex": 5.57,
-      "corruptionPerceptionIndex": 31
+      "corruptionPerceptionIndex": 31,
+      "safetyNightSafety": 30,
+      "safetyViolentCrimeInv": 38,
+      "safetyPropertyCrimeInv": 30,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 70,
@@ -3778,7 +4054,11 @@
       "lifeExpectancy": 80.3,
       "pressFreedomScore": 70,
       "democracyIndex": 8.29,
-      "corruptionPerceptionIndex": 55
+      "corruptionPerceptionIndex": 55,
+      "safetyNightSafety": 48,
+      "safetyViolentCrimeInv": 55,
+      "safetyPropertyCrimeInv": 45,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 71,
@@ -3832,7 +4112,11 @@
       "lifeExpectancy": 78.5,
       "pressFreedomScore": 56,
       "democracyIndex": 7.18,
-      "corruptionPerceptionIndex": 36
+      "corruptionPerceptionIndex": 36,
+      "safetyNightSafety": 42,
+      "safetyViolentCrimeInv": 50,
+      "safetyPropertyCrimeInv": 40,
+      "safetyForeignerFriendly": 70
     },
     {
       "id": 72,
@@ -3886,7 +4170,11 @@
       "lifeExpectancy": 78.8,
       "pressFreedomScore": 7,
       "democracyIndex": 2.84,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 52
     },
     {
       "id": 73,
@@ -3940,7 +4228,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 42,
+      "safetyViolentCrimeInv": 50,
+      "safetyPropertyCrimeInv": 38,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 74,
@@ -3994,7 +4286,11 @@
       "lifeExpectancy": 75.2,
       "pressFreedomScore": 72,
       "democracyIndex": 7.39,
-      "corruptionPerceptionIndex": 44
+      "corruptionPerceptionIndex": 44,
+      "safetyNightSafety": 35,
+      "safetyViolentCrimeInv": 42,
+      "safetyPropertyCrimeInv": 32,
+      "safetyForeignerFriendly": 70
     },
     {
       "id": 75,
@@ -4048,7 +4344,11 @@
       "lifeExpectancy": 78.7,
       "pressFreedomScore": 26,
       "democracyIndex": 2.76,
-      "corruptionPerceptionIndex": 68
+      "corruptionPerceptionIndex": 68,
+      "safetyNightSafety": 85,
+      "safetyViolentCrimeInv": 88,
+      "safetyPropertyCrimeInv": 85,
+      "safetyForeignerFriendly": 68
     },
     {
       "id": 76,
@@ -4102,7 +4402,11 @@
       "lifeExpectancy": 80.2,
       "pressFreedomScore": 30,
       "democracyIndex": 3.19,
-      "corruptionPerceptionIndex": 58
+      "corruptionPerceptionIndex": 58,
+      "safetyNightSafety": 82,
+      "safetyViolentCrimeInv": 86,
+      "safetyPropertyCrimeInv": 82,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 77,
@@ -4156,7 +4460,11 @@
       "lifeExpectancy": 77.2,
       "pressFreedomScore": 15,
       "democracyIndex": 2.52,
-      "corruptionPerceptionIndex": 44
+      "corruptionPerceptionIndex": 44,
+      "safetyNightSafety": 78,
+      "safetyViolentCrimeInv": 82,
+      "safetyPropertyCrimeInv": 78,
+      "safetyForeignerFriendly": 60
     },
     {
       "id": 78,
@@ -4210,7 +4518,11 @@
       "lifeExpectancy": 77.6,
       "pressFreedomScore": 12,
       "democracyIndex": 2.08,
-      "corruptionPerceptionIndex": 52
+      "corruptionPerceptionIndex": 52,
+      "safetyNightSafety": 72,
+      "safetyViolentCrimeInv": 78,
+      "safetyPropertyCrimeInv": 72,
+      "safetyForeignerFriendly": 52
     },
     {
       "id": 79,
@@ -4264,7 +4576,11 @@
       "lifeExpectancy": 78.2,
       "pressFreedomScore": 28,
       "democracyIndex": 3.12,
-      "corruptionPerceptionIndex": 52
+      "corruptionPerceptionIndex": 52,
+      "safetyNightSafety": 80,
+      "safetyViolentCrimeInv": 85,
+      "safetyPropertyCrimeInv": 80,
+      "safetyForeignerFriendly": 62
     },
     {
       "id": 80,
@@ -4318,7 +4634,11 @@
       "lifeExpectancy": 78.9,
       "pressFreedomScore": 48,
       "democracyIndex": 4.16,
-      "corruptionPerceptionIndex": 24
+      "corruptionPerceptionIndex": 24,
+      "safetyNightSafety": 42,
+      "safetyViolentCrimeInv": 55,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 81,
@@ -4372,7 +4692,11 @@
       "lifeExpectancy": 74.5,
       "pressFreedomScore": 32,
       "democracyIndex": 3.41,
-      "corruptionPerceptionIndex": 47
+      "corruptionPerceptionIndex": 47,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 82,
@@ -4426,7 +4750,11 @@
       "lifeExpectancy": 82.6,
       "pressFreedomScore": 53,
       "democracyIndex": 7.84,
-      "corruptionPerceptionIndex": 62
+      "corruptionPerceptionIndex": 62,
+      "safetyNightSafety": 62,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 60,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 83,
@@ -4480,7 +4808,11 @@
       "lifeExpectancy": 70.8,
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
-      "corruptionPerceptionIndex": 39
+      "corruptionPerceptionIndex": 39,
+      "safetyNightSafety": 48,
+      "safetyViolentCrimeInv": 58,
+      "safetyPropertyCrimeInv": 45,
+      "safetyForeignerFriendly": 50
     },
     {
       "id": 84,
@@ -4534,7 +4866,11 @@
       "lifeExpectancy": 70.8,
       "pressFreedomScore": 31,
       "democracyIndex": 7.18,
-      "corruptionPerceptionIndex": 39
+      "corruptionPerceptionIndex": 39,
+      "safetyNightSafety": 52,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 50,
+      "safetyForeignerFriendly": 48
     },
     {
       "id": 85,
@@ -4588,7 +4924,11 @@
       "lifeExpectancy": 73.6,
       "pressFreedomScore": 44,
       "democracyIndex": 5.42,
-      "corruptionPerceptionIndex": 36
+      "corruptionPerceptionIndex": 36,
+      "safetyNightSafety": 15,
+      "safetyViolentCrimeInv": 20,
+      "safetyPropertyCrimeInv": 18,
+      "safetyForeignerFriendly": 45
     },
     {
       "id": 86,
@@ -4642,7 +4982,11 @@
       "lifeExpectancy": 74.2,
       "pressFreedomScore": 60,
       "democracyIndex": 6.4,
-      "corruptionPerceptionIndex": 46
+      "corruptionPerceptionIndex": 46,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 52,
+      "safetyForeignerFriendly": 50
     },
     {
       "id": 87,
@@ -4696,7 +5040,11 @@
       "lifeExpectancy": 73.6,
       "pressFreedomScore": 42,
       "democracyIndex": 6.53,
-      "corruptionPerceptionIndex": 45
+      "corruptionPerceptionIndex": 45,
+      "safetyNightSafety": 62,
+      "safetyViolentCrimeInv": 70,
+      "safetyPropertyCrimeInv": 60,
+      "safetyForeignerFriendly": 48
     },
     {
       "id": 88,
@@ -4750,7 +5098,11 @@
       "lifeExpectancy": 77.8,
       "pressFreedomScore": 55,
       "democracyIndex": 6.5,
-      "corruptionPerceptionIndex": 47
+      "corruptionPerceptionIndex": 47,
+      "safetyNightSafety": 68,
+      "safetyViolentCrimeInv": 75,
+      "safetyPropertyCrimeInv": 65,
+      "safetyForeignerFriendly": 52
     },
     {
       "id": 89,
@@ -4804,7 +5156,11 @@
       "lifeExpectancy": 75.4,
       "pressFreedomScore": 34,
       "democracyIndex": 6.02,
-      "corruptionPerceptionIndex": 36
+      "corruptionPerceptionIndex": 36,
+      "safetyNightSafety": 58,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 48
     },
     {
       "id": 90,
@@ -4858,7 +5214,11 @@
       "lifeExpectancy": 75.6,
       "pressFreedomScore": 40,
       "democracyIndex": 6.5,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 62,
+      "safetyViolentCrimeInv": 70,
+      "safetyPropertyCrimeInv": 58,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 91,
@@ -4912,7 +5272,11 @@
       "lifeExpectancy": 76.3,
       "pressFreedomScore": 56,
       "democracyIndex": 7.17,
-      "corruptionPerceptionIndex": 54
+      "corruptionPerceptionIndex": 54,
+      "safetyNightSafety": 68,
+      "safetyViolentCrimeInv": 75,
+      "safetyPropertyCrimeInv": 65,
+      "safetyForeignerFriendly": 50
     },
     {
       "id": 92,
@@ -4966,7 +5330,11 @@
       "lifeExpectancy": 81.3,
       "pressFreedomScore": 62,
       "democracyIndex": 7.96,
-      "corruptionPerceptionIndex": 56
+      "corruptionPerceptionIndex": 56,
+      "safetyNightSafety": 75,
+      "safetyViolentCrimeInv": 82,
+      "safetyPropertyCrimeInv": 75,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 93,
@@ -5020,7 +5388,11 @@
       "lifeExpectancy": 82,
       "pressFreedomScore": 78,
       "democracyIndex": 9.05,
-      "corruptionPerceptionIndex": 77
+      "corruptionPerceptionIndex": 77,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 82
     },
     {
       "id": 94,
@@ -5074,7 +5446,11 @@
       "lifeExpectancy": 81,
       "pressFreedomScore": 70,
       "democracyIndex": 8.54,
-      "corruptionPerceptionIndex": 71
+      "corruptionPerceptionIndex": 71,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 52,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 95,
@@ -5128,7 +5504,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 38,
+      "safetyViolentCrimeInv": 50,
+      "safetyPropertyCrimeInv": 40,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 96,
@@ -5182,7 +5562,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 50,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 97,
@@ -5236,7 +5620,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 40,
+      "safetyViolentCrimeInv": 52,
+      "safetyPropertyCrimeInv": 38,
+      "safetyForeignerFriendly": 78
     },
     {
       "id": 98,
@@ -5290,7 +5678,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 60,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 78
     },
     {
       "id": 99,
@@ -5344,7 +5736,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 50,
+      "safetyViolentCrimeInv": 58,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 75
     },
     {
       "id": 100,
@@ -5398,7 +5794,11 @@
       "lifeExpectancy": 77.5,
       "pressFreedomScore": 55,
       "democracyIndex": 7.85,
-      "corruptionPerceptionIndex": 69
+      "corruptionPerceptionIndex": 69,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 50,
+      "safetyForeignerFriendly": 75
     },
     {
       "id": 101,
@@ -5452,7 +5852,11 @@
       "lifeExpectancy": 78.2,
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 72,
+      "safetyViolentCrimeInv": 80,
+      "safetyPropertyCrimeInv": 75,
+      "safetyForeignerFriendly": 40
     },
     {
       "id": 102,
@@ -5506,7 +5910,11 @@
       "lifeExpectancy": 78.2,
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 78,
+      "safetyViolentCrimeInv": 85,
+      "safetyPropertyCrimeInv": 80,
+      "safetyForeignerFriendly": 42
     },
     {
       "id": 103,
@@ -5560,7 +5968,11 @@
       "lifeExpectancy": 78.2,
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 75,
+      "safetyViolentCrimeInv": 82,
+      "safetyPropertyCrimeInv": 78,
+      "safetyForeignerFriendly": 38
     },
     {
       "id": 104,
@@ -5614,7 +6026,11 @@
       "lifeExpectancy": 78.2,
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 78,
+      "safetyViolentCrimeInv": 85,
+      "safetyPropertyCrimeInv": 80,
+      "safetyForeignerFriendly": 40
     },
     {
       "id": 105,
@@ -5668,7 +6084,11 @@
       "lifeExpectancy": 78.2,
       "pressFreedomScore": 9,
       "democracyIndex": 2.12,
-      "corruptionPerceptionIndex": 42
+      "corruptionPerceptionIndex": 42,
+      "safetyNightSafety": 72,
+      "safetyViolentCrimeInv": 80,
+      "safetyPropertyCrimeInv": 75,
+      "safetyForeignerFriendly": 38
     },
     {
       "id": 106,
@@ -5722,7 +6142,11 @@
       "lifeExpectancy": 84.5,
       "pressFreedomScore": 64,
       "democracyIndex": 8.33,
-      "corruptionPerceptionIndex": 73
+      "corruptionPerceptionIndex": 73,
+      "safetyNightSafety": 80,
+      "safetyViolentCrimeInv": 88,
+      "safetyPropertyCrimeInv": 85,
+      "safetyForeignerFriendly": 52
     },
     {
       "id": 107,
@@ -5776,7 +6200,11 @@
       "lifeExpectancy": 84.5,
       "pressFreedomScore": 64,
       "democracyIndex": 8.33,
-      "corruptionPerceptionIndex": 73
+      "corruptionPerceptionIndex": 73,
+      "safetyNightSafety": 82,
+      "safetyViolentCrimeInv": 90,
+      "safetyPropertyCrimeInv": 88,
+      "safetyForeignerFriendly": 48
     },
     {
       "id": 108,
@@ -5830,7 +6258,11 @@
       "lifeExpectancy": 83.7,
       "pressFreedomScore": 72,
       "democracyIndex": 8.09,
-      "corruptionPerceptionIndex": 63
+      "corruptionPerceptionIndex": 63,
+      "safetyNightSafety": 78,
+      "safetyViolentCrimeInv": 85,
+      "safetyPropertyCrimeInv": 80,
+      "safetyForeignerFriendly": 45
     },
     {
       "id": 109,
@@ -5884,7 +6316,11 @@
       "lifeExpectancy": 69.8,
       "pressFreedomScore": 20,
       "democracyIndex": 3.18,
-      "corruptionPerceptionIndex": 22
+      "corruptionPerceptionIndex": 22,
+      "safetyNightSafety": 42,
+      "safetyViolentCrimeInv": 52,
+      "safetyPropertyCrimeInv": 40,
+      "safetyForeignerFriendly": 62
     },
     {
       "id": 110,
@@ -5938,7 +6374,11 @@
       "lifeExpectancy": 67.1,
       "pressFreedomScore": 10,
       "democracyIndex": 1.74,
-      "corruptionPerceptionIndex": 23
+      "corruptionPerceptionIndex": 23,
+      "safetyNightSafety": 35,
+      "safetyViolentCrimeInv": 48,
+      "safetyPropertyCrimeInv": 38,
+      "safetyForeignerFriendly": 48
     },
     {
       "id": 111,
@@ -5992,7 +6432,11 @@
       "lifeExpectancy": 68.9,
       "pressFreedomScore": 12,
       "democracyIndex": 2.14,
-      "corruptionPerceptionIndex": 28
+      "corruptionPerceptionIndex": 28,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 55
     },
     {
       "id": 112,
@@ -6046,7 +6490,11 @@
       "lifeExpectancy": 78.7,
       "pressFreedomScore": 40,
       "democracyIndex": 6.35,
-      "corruptionPerceptionIndex": 35
+      "corruptionPerceptionIndex": 35,
+      "safetyNightSafety": 65,
+      "safetyViolentCrimeInv": 72,
+      "safetyPropertyCrimeInv": 60,
+      "safetyForeignerFriendly": 72
     },
     {
       "id": 113,
@@ -6100,7 +6548,11 @@
       "lifeExpectancy": 71.1,
       "pressFreedomScore": 42,
       "democracyIndex": 6.73,
-      "corruptionPerceptionIndex": 34
+      "corruptionPerceptionIndex": 34,
+      "safetyNightSafety": 38,
+      "safetyViolentCrimeInv": 48,
+      "safetyPropertyCrimeInv": 35,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 114,
@@ -6154,7 +6606,11 @@
       "lifeExpectancy": 72.4,
       "pressFreedomScore": 30,
       "democracyIndex": 5.99,
-      "corruptionPerceptionIndex": 25
+      "corruptionPerceptionIndex": 25,
+      "safetyNightSafety": 28,
+      "safetyViolentCrimeInv": 38,
+      "safetyPropertyCrimeInv": 28,
+      "safetyForeignerFriendly": 42
     },
     {
       "id": 115,
@@ -6208,7 +6664,11 @@
       "lifeExpectancy": 77,
       "pressFreedomScore": 38,
       "democracyIndex": 6.14,
-      "corruptionPerceptionIndex": 34
+      "corruptionPerceptionIndex": 34,
+      "safetyNightSafety": 42,
+      "safetyViolentCrimeInv": 55,
+      "safetyPropertyCrimeInv": 42,
+      "safetyForeignerFriendly": 58
     },
     {
       "id": 116,
@@ -6262,7 +6722,11 @@
       "lifeExpectancy": 70.8,
       "pressFreedomScore": 55,
       "democracyIndex": 4.49,
-      "corruptionPerceptionIndex": 33
+      "corruptionPerceptionIndex": 33,
+      "safetyNightSafety": 48,
+      "safetyViolentCrimeInv": 60,
+      "safetyPropertyCrimeInv": 48,
+      "safetyForeignerFriendly": 65
     },
     {
       "id": 117,
@@ -6316,7 +6780,11 @@
       "lifeExpectancy": 73.2,
       "pressFreedomScore": 22,
       "democracyIndex": 3.08,
-      "corruptionPerceptionIndex": 39
+      "corruptionPerceptionIndex": 39,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 48
     },
     {
       "id": 118,
@@ -6370,7 +6838,11 @@
       "lifeExpectancy": 73.8,
       "pressFreedomScore": 18,
       "democracyIndex": 2.12,
-      "corruptionPerceptionIndex": 33
+      "corruptionPerceptionIndex": 33,
+      "safetyNightSafety": 52,
+      "safetyViolentCrimeInv": 62,
+      "safetyPropertyCrimeInv": 52,
+      "safetyForeignerFriendly": 45
     },
     {
       "id": 119,
@@ -6424,7 +6896,11 @@
       "lifeExpectancy": 73,
       "pressFreedomScore": 12,
       "democracyIndex": 2.68,
-      "corruptionPerceptionIndex": 23
+      "corruptionPerceptionIndex": 23,
+      "safetyNightSafety": 55,
+      "safetyViolentCrimeInv": 65,
+      "safetyPropertyCrimeInv": 55,
+      "safetyForeignerFriendly": 50
     },
     {
       "id": 120,
@@ -6478,7 +6954,11 @@
       "lifeExpectancy": 70.8,
       "pressFreedomScore": 58,
       "democracyIndex": 6.48,
-      "corruptionPerceptionIndex": 35
+      "corruptionPerceptionIndex": 35,
+      "safetyNightSafety": 58,
+      "safetyViolentCrimeInv": 68,
+      "safetyPropertyCrimeInv": 58,
+      "safetyForeignerFriendly": 40
     }
   ]
 }

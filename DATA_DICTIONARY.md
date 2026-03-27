@@ -34,6 +34,10 @@ interface City {
   annualWorkHours: number;             // 年工作时长 (小时)
   safetyIndex: number;                 // 安全指数 (0-100)
   safetyConfidence: "high"|"medium"|"low"; // 安全数据置信度
+  safetyNightSafety: number;           // 夜间安全感 (0-100)
+  safetyViolentCrimeInv: number;       // 暴力犯罪反向分 (0-100)
+  safetyPropertyCrimeInv: number;      // 财产犯罪反向分 (0-100)
+  safetyForeignerFriendly: number;     // 外国人友好度 (0-100)
   // v2 新增字段
   monthlyRent: number;                 // 1居室市中心月租金 (USD)
   paidLeaveDays: number;               // 法定带薪年假天数
@@ -94,6 +98,10 @@ interface ExchangeRates {
 | `paidLeaveDays` | OECD / 各国劳动法 | 国家级 | 不定期 | 2025 |
 | `internetSpeedMbps` | Ookla Speedtest Global Index | 城市级 | 季度 | 2025 |
 | `safetyIndex` | Numbeo + UNODC + InterNations + Gallup | 城市级 | 年度 | 2024-2025 |
+| `safetyNightSafety` | Numbeo Safety Index 2024-2025 | 城市级 | 年度 | 2024-2025 |
+| `safetyViolentCrimeInv` | UNODC 杀人率（反向计分） | 国家级 | 年度 | 2024 |
+| `safetyPropertyCrimeInv` | Numbeo Crime Index（反向计分） | 城市级 | 年度 | 2024-2025 |
+| `safetyForeignerFriendly` | InterNations Expat Insider 2024 + Gallup 2023 | 国家级 | 年度 | 2023-2024 |
 | `hospitalBedsPerThousand` | World Bank (SH.MED.BEDS.ZS) | 国家级 | 不定期 | 2022-2024 |
 | `uhcCoverageIndex` | WHO Global Health Observatory | 国家级 | 年度 | 2024 |
 | `lifeExpectancy` | World Bank (SP.DYN.LE00.IN) | 国家级 | 年度 | 2024 |
@@ -193,6 +201,8 @@ safetyIndex = 夜间安全感 × 0.40
 | 10% 外国人友好 | InterNations Expat Insider 2024 + Gallup 2023 | 综合评分 |
 
 **置信度**：当任一数据源缺失时标记为 `safetyConfidence: "low"`，前端在数值后显示 `*` 号。
+
+**子指标存储**：v2 起，4 项子指标（`safetyNightSafety`, `safetyViolentCrimeInv`, `safetyPropertyCrimeInv`, `safetyForeignerFriendly`）已直接存入 `cities.json`，可在城市详情页安全指数卡片中展开查看各子项得分与权重。
 
 ---
 
