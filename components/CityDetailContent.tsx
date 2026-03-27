@@ -6,7 +6,7 @@ import type { City, CostTier } from "@/lib/types";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
-import { getCityClimate, getCityEnName, getAqiLabel, getClimateLabel } from "@/lib/clientUtils";
+import { getCityClimate, getCityEnName, getClimateLabel } from "@/lib/clientUtils";
 import { CITY_INTROS } from "@/lib/cityIntros";
 import { useSettings } from "@/hooks/useSettings";
 
@@ -36,7 +36,6 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
   const cityName = CITY_NAME_TRANSLATIONS[id]?.[locale] || city.name;
   const countryName = COUNTRY_TRANSLATIONS[city.country]?.[locale] || city.country;
   const climate = getCityClimate(id);
-  const aqiLabel = getAqiLabel(city.airQuality, locale);
 
   const professions = city.professions ? Object.keys(city.professions) : [];
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
@@ -45,8 +44,6 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
   const tierCost = city[TIER_KEYS.find((tk) => tk.key === costTier)!.field];
   const annualExpense = tierCost * 12;
   const savings = income - annualExpense;
-  const savingsRate = income > 0 ? ((savings / income) * 100).toFixed(1) : "0";
-  const yearsToHome = savings > 0 ? ((city.housePrice * 70) / savings).toFixed(1) : "N/A";
 
   const headingCls = darkMode ? "text-slate-100" : "text-slate-800";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
@@ -70,7 +67,25 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
   const allFlights = allCities.map((c) => c.directFlightCities);
   const allSafety = allCities.map((c) => c.safetyIndex);
   const allWorkHours = allCities.map((c) => c.annualWorkHours);
-  const allBigMac = allCities.filter((c) => c.bigMacPrice !== null).map((c) => c.bigMacPrice as number);
+  const hourlyWage = city.annualWorkHours > 0 ? income / city.annualWorkHours : 0;
+  const allHourly = allCities.map((c, i) => c.annualWorkHours > 0 ? allIncomes[i] / c.annualWorkHours : 0);
+  const bigMacPrices = allCities.filter((c) => c.bigMacPrice !== null).map((c) => c.bigMacPrice as number);
+  const bigMacMedian = [...bigMacPrices].sort((a, b) => a - b)[Math.floor(bigMacPrices.length / 2)];
+  const bigMacRatio = city.bigMacPrice !== null && bigMacMedian > 0 ? city.bigMacPrice / bigMacMedian : null;
+  const allBigMacRatio = allCities.filter((c) => c.bigMacPrice !== null).map((c) => (c.bigMacPrice as number) / bigMacMedian);
+  const allYearsToHome = allCities.map((c, i) => { const sav = allIncomes[i] - allCosts[i] * 12; return sav > 0 ? (c.housePrice * 70) / sav : Infinity; });
+  const yearsVal = savings > 0 ? (city.housePrice * 70) / savings : Infinity;
+
+  // Ranking helper: 1-based rank (lower rank number = better)
+  const rankHigher = (values: number[], val: number) => {
+    const sorted = [...values].sort((a, b) => b - a);
+    return sorted.findIndex((v) => v <= val) + 1;
+  };
+  const rankLower = (values: number[], val: number) => {
+    const sorted = [...values].sort((a, b) => a - b);
+    return sorted.findIndex((v) => v >= val) + 1;
+  };
+  const n = allCities.length;
 
   // "good"=top25%, "bad"=bottom25%, "mid"=middle — higher-is-better: pct>=0.75=good; lower-is-better: pct<=0.25=good
   type Tier = "good" | "mid" | "bad";
@@ -145,19 +160,21 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
         )}
       </header>
 
-      {/* Key Stats — 10 cards, 5 per row */}
-      <section className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-10">
+      {/* Key Stats — 12 cards, 6 per row */}
+      <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
         {[
-          { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: t("perYear"), tier: tierHigh(allIncomes, income) },
-          { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: t("perMonth"), tier: tierLow(allCosts, tierCost) },
-          { label: t("yearlySavings"), value: formatCurrency(savings), sub: `${savingsRate}%`, tier: tierHigh(allSavings, savings) },
-          { label: t("housePrice"), value: formatCurrency(city.housePrice), sub: t("housePriceUnit"), tier: tierLow(allHouse, city.housePrice) },
-          { label: t("bigMac"), value: city.bigMacPrice !== null ? formatCurrency(city.bigMacPrice) : t("noMcDonalds"), sub: city.bigMacPrice !== null ? "" : "", tier: city.bigMacPrice !== null ? tierLow(allBigMac, city.bigMacPrice) : "mid" as Tier },
-          { label: t("annualWorkHours"), value: `${city.annualWorkHours}`, sub: t("workHoursUnit"), tier: tierLow(allWorkHours, city.annualWorkHours) },
-          { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: aqiLabel, tier: tierLow(allAqi, city.airQuality) },
-          { label: t("safetyIndex"), value: `${city.safetyIndex}${city.safetyConfidence === "low" ? " *" : ""}`, sub: t("safetyUnit"), tier: tierHigh(allSafety, city.safetyIndex) },
-          { label: t("doctorsPerThousand"), value: String(city.doctorsPerThousand), sub: t("doctorsUnit"), tier: tierHigh(allDoctors, city.doctorsPerThousand) },
-          { label: t("directFlights"), value: String(city.directFlightCities), sub: t("directFlightsUnit"), tier: tierHigh(allFlights, city.directFlightCities) },
+          { label: `💰 ${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: `#${rankHigher(allIncomes, income)} / ${n}`, tier: tierHigh(allIncomes, income) },
+          { label: `🛒 ${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: `#${rankLower(allCosts, tierCost)} / ${n}`, tier: tierLow(allCosts, tierCost) },
+          { label: `🏦 ${t("yearlySavings")}`, value: formatCurrency(savings), sub: `#${rankHigher(allSavings, savings)} / ${n}`, tier: tierHigh(allSavings, savings) },
+          { label: `⏰ ${t("annualWorkHours")}`, value: `${city.annualWorkHours}h`, sub: `#${rankLower(allWorkHours, city.annualWorkHours)} / ${n}`, tier: tierLow(allWorkHours, city.annualWorkHours) },
+          { label: `💵 ${t("hourlyWage")}`, value: formatCurrency(Math.round(hourlyWage * 100) / 100), sub: `#${rankHigher(allHourly, hourlyWage)} / ${n}`, tier: tierHigh(allHourly, hourlyWage) },
+          { label: `🍔 ${t("bigMacIndex")}`, value: bigMacRatio !== null ? `${bigMacRatio.toFixed(2)}x` : t("noMcDonalds"), sub: bigMacRatio !== null ? `#${rankLower(allBigMacRatio, bigMacRatio)} / ${allBigMacRatio.length}` : "—", tier: bigMacRatio !== null ? tierLow(allBigMacRatio, bigMacRatio) : "mid" as Tier },
+          { label: `🏠 ${t("housePrice")}`, value: `${formatCurrency(city.housePrice)}/m²`, sub: `#${rankLower(allHouse, city.housePrice)} / ${n}`, tier: tierLow(allHouse, city.housePrice) },
+          { label: `🔑 ${t("yearsToBuy")}`, value: isFinite(yearsVal) ? `${yearsVal.toFixed(1)}y` : "N/A", sub: isFinite(yearsVal) ? `#${rankLower(allYearsToHome.filter(isFinite), yearsVal)} / ${allYearsToHome.filter(isFinite).length}` : "—", tier: isFinite(yearsVal) ? tierLow(allYearsToHome.filter(isFinite), yearsVal) : "bad" as Tier },
+          { label: `🌬️ ${t("airQuality")}`, value: `AQI ${city.airQuality}`, sub: `#${rankLower(allAqi, city.airQuality)} / ${n}`, tier: tierLow(allAqi, city.airQuality) },
+          { label: `🛡️ ${t("safetyIndex")}`, value: `${city.safetyIndex}${city.safetyConfidence === "low" ? " *" : ""} / 100`, sub: `#${rankHigher(allSafety, city.safetyIndex)} / ${n}`, tier: tierHigh(allSafety, city.safetyIndex) },
+          { label: `🩺 ${t("doctorsPerThousand")}`, value: String(city.doctorsPerThousand), sub: `#${rankHigher(allDoctors, city.doctorsPerThousand)} / ${n}`, tier: tierHigh(allDoctors, city.doctorsPerThousand) },
+          { label: `✈️ ${t("directFlights")}`, value: String(city.directFlightCities), sub: `#${rankHigher(allFlights, city.directFlightCities)} / ${n}`, tier: tierHigh(allFlights, city.directFlightCities) },
         ].map((stat) => (
           <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)}`}>
             <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${subCls}`}>{stat.label}</p>
