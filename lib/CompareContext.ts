@@ -19,8 +19,8 @@ export interface CompareContextValue {
   formatCurrency: (amount: number) => string;
   formatPrice: (amount: number) => string;
   getCost: (city: City) => number;
-  getClimate: (city: City) => ClimateInfo;
-  getAqiLevel: (aqi: number) => { key: string; color: string };
+  getClimate: (city: City) => ClimateInfo | null;
+  getAqiLevel: (aqi: number | null) => { key: string; color: string };
 }
 
 export const CompareCtx = createContext<CompareContextValue>(null!);

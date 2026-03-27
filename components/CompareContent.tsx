@@ -39,9 +39,7 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
 
   const getCost = (city: City): number => {
-    if (costTier === "comfort") return city.costComfort;
     if (costTier === "budget") return city.costBudget;
-    if (costTier === "minimal") return city.costMinimal;
     return city.costModerate;
   };
 
@@ -52,8 +50,8 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
   const incomeB = activeProfession ? cityB.professions[activeProfession] || 0 : cityB.averageIncome;
   const savingsA = incomeA - costA * 12;
   const savingsB = incomeB - costB * 12;
-  const yearsA = savingsA > 0 ? ((cityA.housePrice * 70) / savingsA).toFixed(1) : "N/A";
-  const yearsB = savingsB > 0 ? ((cityB.housePrice * 70) / savingsB).toFixed(1) : "N/A";
+  const yearsA = cityA.housePrice !== null && savingsA > 0 ? ((cityA.housePrice * 70) / savingsA).toFixed(1) : "N/A";
+  const yearsB = cityB.housePrice !== null && savingsB > 0 ? ((cityB.housePrice * 70) / savingsB).toFixed(1) : "N/A";
 
   const cmp = (a: number, b: number, lower = false): "A" | "B" | "tie" =>
     a === b ? "tie" : lower ? (a < b ? "A" : "B") : (a > b ? "A" : "B");
@@ -62,16 +60,16 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
     { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, a: fc(incomeA), b: fc(incomeB), winner: cmp(incomeA, incomeB) },
     { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, a: fc(costA), b: fc(costB), winner: cmp(costA, costB, true) },
     { label: t("yearlySavings"), a: fc(savingsA), b: fc(savingsB), winner: cmp(savingsA, savingsB) },
-    { label: t("housePrice") + " " + t("housePriceUnit"), a: fc(cityA.housePrice), b: fc(cityB.housePrice), winner: cmp(cityA.housePrice, cityB.housePrice, true) },
+    { label: t("housePrice") + " " + t("housePriceUnit"), a: cityA.housePrice !== null ? fc(cityA.housePrice) : "—", b: cityB.housePrice !== null ? fc(cityB.housePrice) : "—", winner: cityA.housePrice !== null && cityB.housePrice !== null ? cmp(cityA.housePrice, cityB.housePrice, true) : "tie" },
     { label: t("yearsToBuy"), a: `${yearsA} ${t("insightYears")}`, b: `${yearsB} ${t("insightYears")}`, winner: yearsA !== "N/A" && yearsB !== "N/A" ? cmp(Number(yearsA), Number(yearsB), true) : "tie" },
-    { label: t("airQuality") + " (AQI)", a: `${cityA.airQuality} – ${getAqiLabel(cityA.airQuality, locale)}`, b: `${cityB.airQuality} – ${getAqiLabel(cityB.airQuality, locale)}`, winner: cmp(cityA.airQuality, cityB.airQuality, true) },
-    { label: t("doctorsPerThousand"), a: String(cityA.doctorsPerThousand), b: String(cityB.doctorsPerThousand), winner: cmp(cityA.doctorsPerThousand, cityB.doctorsPerThousand) },
+    { label: t("airQuality") + " (AQI)", a: cityA.airQuality !== null ? `${cityA.airQuality} – ${getAqiLabel(cityA.airQuality, locale)}` : "—", b: cityB.airQuality !== null ? `${cityB.airQuality} – ${getAqiLabel(cityB.airQuality, locale)}` : "—", winner: cityA.airQuality !== null && cityB.airQuality !== null ? cmp(cityA.airQuality, cityB.airQuality, true) : "tie" },
+    { label: t("doctorsPerThousand"), a: cityA.doctorsPerThousand !== null ? String(cityA.doctorsPerThousand) : "—", b: cityB.doctorsPerThousand !== null ? String(cityB.doctorsPerThousand) : "—", winner: cityA.doctorsPerThousand !== null && cityB.doctorsPerThousand !== null ? cmp(cityA.doctorsPerThousand, cityB.doctorsPerThousand) : "tie" },
     { label: t("bigMac"), a: cityA.bigMacPrice !== null ? fc(cityA.bigMacPrice) : t("noMcDonalds"), b: cityB.bigMacPrice !== null ? fc(cityB.bigMacPrice) : t("noMcDonalds"), winner: cityA.bigMacPrice !== null && cityB.bigMacPrice !== null ? cmp(cityA.bigMacPrice, cityB.bigMacPrice, true) : "tie" },
-    { label: t("climateType"), a: getClimateLabel(climateA.type, locale), b: getClimateLabel(climateB.type, locale), winner: "tie" },
-    { label: t("avgTemp"), a: `${climateA.avgTempC.toFixed(1)}°C`, b: `${climateB.avgTempC.toFixed(1)}°C`, winner: "tie" },
-    { label: t("sunshine"), a: `${Math.round(climateA.sunshineHours)} h`, b: `${Math.round(climateB.sunshineHours)} h`, winner: "tie" },
-    { label: t("annualWorkHours"), a: `${cityA.annualWorkHours} h`, b: `${cityB.annualWorkHours} h`, winner: cmp(cityA.annualWorkHours, cityB.annualWorkHours, true) },
-    { label: t("directFlights"), a: `${cityA.directFlightCities}`, b: `${cityB.directFlightCities}`, winner: cmp(cityA.directFlightCities, cityB.directFlightCities) },
+    { label: t("climateType"), a: climateA ? getClimateLabel(climateA.type, locale) : "—", b: climateB ? getClimateLabel(climateB.type, locale) : "—", winner: "tie" },
+    { label: t("avgTemp"), a: climateA ? `${climateA.avgTempC.toFixed(1)}°C` : "—", b: climateB ? `${climateB.avgTempC.toFixed(1)}°C` : "—", winner: "tie" },
+    { label: t("sunshine"), a: climateA ? `${Math.round(climateA.sunshineHours)} h` : "—", b: climateB ? `${Math.round(climateB.sunshineHours)} h` : "—", winner: "tie" },
+    { label: t("annualWorkHours"), a: cityA.annualWorkHours !== null ? `${cityA.annualWorkHours} h` : "—", b: cityB.annualWorkHours !== null ? `${cityB.annualWorkHours} h` : "—", winner: cityA.annualWorkHours !== null && cityB.annualWorkHours !== null ? cmp(cityA.annualWorkHours, cityB.annualWorkHours, true) : "tie" },
+    { label: t("directFlights"), a: cityA.directFlightCities !== null ? `${cityA.directFlightCities}` : "—", b: cityB.directFlightCities !== null ? `${cityB.directFlightCities}` : "—", winner: cityA.directFlightCities !== null && cityB.directFlightCities !== null ? cmp(cityA.directFlightCities, cityB.directFlightCities) : "tie" },
     { label: t("safetyIndex"), a: `${cityA.safetyIndex} / 100`, b: `${cityB.safetyIndex} / 100`, winner: cmp(cityA.safetyIndex, cityB.safetyIndex) },
   ];
 
@@ -98,8 +96,9 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
     convertAmount, currencySymbol: s.currencySymbol, formatCurrency: fc,
     formatPrice: (amount: number) => fc(amount),
     getCost,
-    getClimate: (city: City) => CITY_CLIMATE[city.id] || { type: "temperate" as const, avgTempC: 15, annualRainMm: 800, sunshineHours: 2000, summerAvgC: 25, winterAvgC: 5, humidityPct: 65 },
-    getAqiLevel: (aqi: number) => {
+    getClimate: (city: City) => CITY_CLIMATE[city.id] ?? null,
+    getAqiLevel: (aqi: number | null) => {
+      if (aqi === null) return { key: "noData", color: "text-slate-400" };
       if (aqi <= 50) return { key: "aqiGood", color: "text-green-300" };
       if (aqi <= 100) return { key: "aqiModerate", color: "text-yellow-300" };
       if (aqi <= 150) return { key: "aqiUSG", color: "text-orange-300" };
@@ -132,7 +131,7 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
               {professions.map(prof => <option key={prof} value={prof}>{s.getProfessionLabel(prof)}</option>)}
             </select>
             <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
-              {(["comfort", "moderate", "budget", "minimal"] as const).map(tier => (
+              {(["moderate", "budget"] as const).map(tier => (
                 <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
               ))}
             </select>

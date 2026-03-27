@@ -3,7 +3,7 @@ import { join } from "path";
 import type { City } from "./types";
 
 // Re-export shared utilities (avoids duplication with clientUtils)
-export { getCityClimate, getCityEnName, getCountryEnName, getAqiLabel, getClimateLabel, computeLifePressure, computeHealthcare, computeInstitutionalFreedom } from "./clientUtils";
+export { getCityClimate, getCityEnName, getCountryEnName, getAqiLabel, getClimateLabel, computeLifePressure } from "./clientUtils";
 
 let _cities: City[] | null = null;
 

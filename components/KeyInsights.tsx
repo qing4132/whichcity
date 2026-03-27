@@ -16,7 +16,7 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
     const annualCost = getCost(city) * 12;
     const savings = income - annualCost;
     const savingsRate = income > 0 ? (savings / income) * 100 : 0;
-    const yearsToHome = savings > 0 ? (city.housePrice * 70) / savings : Infinity;
+    const yearsToHome = city.housePrice !== null && savings > 0 ? (city.housePrice * 70) / savings : Infinity;
     return { city, income, savings, annualCost, monthlyCost: getCost(city), savingsRate, yearsToHome };
   });
 
@@ -27,14 +27,14 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
 
   const maxSavings = Math.max(...withMetrics.map(m => Math.max(0, m.savings)), 1);
   const maxYears = Math.max(...withMetrics.filter(m => isFinite(m.yearsToHome)).map(m => m.yearsToHome), 1);
-  const maxAqi = Math.max(...withMetrics.map(m => m.city.airQuality), 1);
-  const maxDoctors = Math.max(...withMetrics.map(m => m.city.doctorsPerThousand), 1);
+  const maxAqi = Math.max(...withMetrics.filter(m => m.city.airQuality !== null).map(m => m.city.airQuality as number), 1);
+  const maxDoctors = Math.max(...withMetrics.filter(m => m.city.doctorsPerThousand !== null).map(m => m.city.doctorsPerThousand as number), 1);
 
   const withScores = withMetrics.map(m => {
     const sv = maxSavings > 0 ? Math.max(0, m.savings) / maxSavings : 0;
     const af = isFinite(m.yearsToHome) && maxYears > 0 ? 1 - (m.yearsToHome / maxYears) : 0;
-    const aq = maxAqi > 0 ? 1 - (m.city.airQuality / maxAqi) : 0;
-    const doc = maxDoctors > 0 ? m.city.doctorsPerThousand / maxDoctors : 0;
+    const aq = m.city.airQuality !== null && maxAqi > 0 ? 1 - (m.city.airQuality / maxAqi) : 0;
+    const doc = m.city.doctorsPerThousand !== null && maxDoctors > 0 ? m.city.doctorsPerThousand / maxDoctors : 0;
     return { ...m, composite: sv * 0.35 + af * 0.30 + aq * 0.20 + doc * 0.15 };
   });
 
@@ -67,10 +67,10 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
               {isFinite(overallBest.yearsToHome) ? `${overallBest.yearsToHome.toFixed(1)} ${t("insightYears")}` : "—"}
             </span>
             <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${darkMode ? "bg-teal-900/60 text-teal-300" : "bg-teal-100 text-teal-700"}`}>
-              AQI {overallBest.city.airQuality}
+              {overallBest.city.airQuality !== null ? `AQI ${overallBest.city.airQuality}` : "—"}
             </span>
             <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${darkMode ? "bg-pink-900/60 text-pink-300" : "bg-pink-100 text-pink-700"}`}>
-              {overallBest.city.doctorsPerThousand} {t("doctorsUnit")}
+              {overallBest.city.doctorsPerThousand !== null ? `${overallBest.city.doctorsPerThousand} ${t("doctorsUnit")}` : "—"}
             </span>
           </div>
           <p className={`${subCls} mt-2`}>{t("insightCompositeNote")}</p>
@@ -94,7 +94,7 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
             {isFinite(fastestHome.yearsToHome) ? fastestHome.yearsToHome.toFixed(1) : "—"} {t("insightYears")}
           </p>
           <p className={subCls}>
-            {t("insightFor70sqm")} · {formatCurrency(fastestHome.city.housePrice)}{t("housePriceUnit")}
+            {t("insightFor70sqm")} · {fastestHome.city.housePrice !== null ? `${formatCurrency(fastestHome.city.housePrice)}${t("housePriceUnit")}` : "—"}
           </p>
         </div>
 
@@ -162,10 +162,10 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
                   {isFinite(item.yearsToHome) ? `${item.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("insightNegativeSavings")}
                 </span>
                 <span className="text-sm font-medium" style={{ color: getAqiLevel(item.city.airQuality).color }}>
-                  {item.city.airQuality} · {t(getAqiLevel(item.city.airQuality).key)}
+                  {item.city.airQuality !== null ? `${item.city.airQuality} · ${t(getAqiLevel(item.city.airQuality).key)}` : "—"}
                 </span>
                 <span className={`text-sm font-medium ${darkMode ? "text-pink-400" : "text-pink-600"}`}>
-                  {item.city.doctorsPerThousand}
+                  {item.city.doctorsPerThousand ?? "—"}
                 </span>
               </div>
             ))}

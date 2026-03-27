@@ -14,10 +14,10 @@
  *   - gpi-2025.json             — IEP Global Peace Index (1-5 scale)
  *   - gallup-law-order-2024.json — Gallup Law & Order Index (0-100)
  *
- * Confidence is auto-computed:
- *   "high"   = 0 null sub-fields
- *   "medium" = 1 null sub-field
- *   "low"    = 2+ null sub-fields
+ * Confidence is auto-computed (weight-sum based, aligned with healthcare & freedom):
+ *   Missing weight sum = 0      → "high"
+ *   Missing weight sum < 1/3    → "medium"
+ *   Missing weight sum >= 1/3   → "low"
  *
  * Special warnings (safetyWarning field):
  *   "active_conflict"      — active armed conflict zone
@@ -132,8 +132,10 @@ for (let i = 0; i < data.cities.length; i++) {
     { key: "gallup", val: normGallup[i], w: WEIGHTS.gallup },
   ];
 
-  // Count nulls for confidence
-  const nullCount = vals.filter(v => v.val === null).length;
+  // Confidence based on missing weight sum
+  const missingWeightSum = vals
+    .filter(v => v.val === null)
+    .reduce((s, v) => s + v.w, 0);
   const nonNull = vals.filter(v => v.val !== null);
 
   // Redistribute weights for missing sub-indicators
@@ -143,10 +145,10 @@ for (let i = 0; i < data.cities.length; i++) {
     composite += v.val * (v.w / totalWeight);
   }
 
-  // Auto-compute confidence
+  // Auto-compute confidence (aligned: weight-sum based)
   let confidence;
-  if (nullCount === 0) confidence = "high";
-  else if (nullCount === 1) confidence = "medium";
+  if (missingWeightSum === 0) confidence = "high";
+  else if (missingWeightSum < 1 / 3) confidence = "medium";
   else confidence = "low";
 
   // Write fields

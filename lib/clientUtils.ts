@@ -2,18 +2,8 @@ import type { ClimateInfo } from "./types";
 import { CITY_CLIMATE } from "./constants";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "./i18n";
 
-export function getCityClimate(id: number): ClimateInfo {
-  return (
-    CITY_CLIMATE[id] || {
-      type: "temperate" as const,
-      avgTempC: 15,
-      annualRainMm: 800,
-      sunshineHours: 2000,
-      summerAvgC: 25,
-      winterAvgC: 5,
-      humidityPct: 65,
-    }
-  );
+export function getCityClimate(id: number): ClimateInfo | null {
+  return CITY_CLIMATE[id] ?? null;
 }
 
 export function getCityEnName(id: number): string {
@@ -71,6 +61,7 @@ function minMaxNorm(values: number[], val: number): number {
 
 /** Life Pressure Index (0-100, higher = less pressure)
  * Savings rate 30% + Big Mac purchasing power 25% + Annual work hours (inv) 25% + Home purchase years (inv) 20%
+ * Returns { value, confidence } where confidence is weight-sum based.
  */
 export function computeLifePressure(
   city: City,
@@ -78,16 +69,20 @@ export function computeLifePressure(
   income: number,
   allIncomes: number[],
   costTierField: keyof City,
-): number {
+): { value: number; confidence: "high" | "medium" | "low" } {
   const tierCost = city[costTierField] as number;
   const savings = income - tierCost * 12;
   const savingsRate = income > 0 ? savings / income : 0;
 
   const bigMacPower = city.bigMacPrice !== null && city.bigMacPrice > 0
+    && city.annualWorkHours !== null && city.annualWorkHours > 0
     ? (income / city.annualWorkHours) / city.bigMacPrice
     : null;
 
-  const yearsToHome = savings > 0 ? (city.housePrice * 70) / savings : Infinity;
+  const yearsToHome = savings > 0 && city.housePrice !== null
+    ? (city.housePrice * 70) / savings : null;
+
+  const workHours = city.annualWorkHours;
 
   // Compute all values for normalization
   const allSavingsRates = allCities.map((c, i) => {
@@ -96,68 +91,60 @@ export function computeLifePressure(
     return inc > 0 ? (inc - cost * 12) / inc : 0;
   });
 
-  const bigMacCities = allCities.filter(c => c.bigMacPrice !== null && c.bigMacPrice > 0);
-  const bigMacIncomes = allCities.map((c, i) => c.bigMacPrice !== null && c.bigMacPrice > 0
-    ? (allIncomes[i] / c.annualWorkHours) / (c.bigMacPrice as number) : null).filter((v): v is number => v !== null);
+  const bigMacIncomes = allCities.map((c, i) =>
+    c.bigMacPrice !== null && c.bigMacPrice > 0 && c.annualWorkHours !== null && c.annualWorkHours > 0
+      ? (allIncomes[i] / c.annualWorkHours) / (c.bigMacPrice as number) : null
+  ).filter((v): v is number => v !== null);
 
-  const allWorkHours = allCities.map(c => c.annualWorkHours);
+  const allWorkHours = allCities.map(c => c.annualWorkHours).filter((v): v is number => v !== null);
 
   const allYearsToHome = allCities.map((c, i) => {
     const inc = allIncomes[i];
     const cost = c[costTierField] as number;
     const sav = inc - cost * 12;
-    return sav > 0 ? (c.housePrice * 70) / sav : Infinity;
-  }).filter(isFinite);
+    return sav > 0 && c.housePrice !== null ? (c.housePrice * 70) / sav : null;
+  }).filter((v): v is number => v !== null && isFinite(v));
 
-  // Normalize each sub-indicator
-  const srNorm = minMaxNorm(allSavingsRates, savingsRate); // higher = better
+  // Determine which sub-indicators are available
+  type Sub = { norm: number; w: number };
+  const subs: Sub[] = [];
+  let missingWeight = 0;
 
-  let bmNorm: number;
+  // Savings rate (30%) — always available if income > 0
+  subs.push({ norm: minMaxNorm(allSavingsRates, savingsRate), w: 0.30 });
+
+  // Big Mac purchasing power (25%)
   if (bigMacPower !== null) {
-    bmNorm = minMaxNorm(bigMacIncomes, bigMacPower); // higher = better
+    subs.push({ norm: minMaxNorm(bigMacIncomes, bigMacPower), w: 0.25 });
   } else {
-    // Redistribute weights: 40/33/27
-    const srPart = minMaxNorm(allSavingsRates, savingsRate) * 0.40;
-    const whPart = (100 - minMaxNorm(allWorkHours, city.annualWorkHours)) * 0.33;
-    const yhPart = isFinite(yearsToHome)
-      ? (100 - minMaxNorm(allYearsToHome, yearsToHome)) * 0.27
-      : 0;
-    return Math.round(srPart + whPart + yhPart);
+    missingWeight += 0.25;
   }
 
-  const whNorm = 100 - minMaxNorm(allWorkHours, city.annualWorkHours); // lower hours = better
-  const yhNorm = isFinite(yearsToHome)
-    ? 100 - minMaxNorm(allYearsToHome, yearsToHome) // fewer years = better
-    : 0;
+  // Work hours inverse (25%)
+  if (workHours !== null) {
+    subs.push({ norm: 100 - minMaxNorm(allWorkHours, workHours), w: 0.25 });
+  } else {
+    missingWeight += 0.25;
+  }
 
-  return Math.round(srNorm * 0.30 + bmNorm * 0.25 + whNorm * 0.25 + yhNorm * 0.20);
+  // Years to home inverse (20%)
+  if (yearsToHome !== null && isFinite(yearsToHome)) {
+    subs.push({ norm: 100 - minMaxNorm(allYearsToHome, yearsToHome), w: 0.20 });
+  } else {
+    missingWeight += 0.20;
+  }
+
+  // Confidence
+  let confidence: "high" | "medium" | "low";
+  if (missingWeight === 0) confidence = "high";
+  else if (missingWeight < 1 / 3) confidence = "medium";
+  else confidence = "low";
+
+  // Weighted sum with redistribution
+  const totalWeight = subs.reduce((s, v) => s + v.w, 0);
+  if (totalWeight === 0) return { value: 0, confidence: "low" };
+  const value = Math.round(subs.reduce((s, v) => s + v.norm * (v.w / totalWeight), 0));
+
+  return { value, confidence };
 }
 
-/** Healthcare Security Index (0-100, higher = better)
- * Doctors/1K 35% + Hospital beds/1K 25% + UHC coverage 25% + Life expectancy 15%
- */
-export function computeHealthcare(city: City, allCities: City[]): number {
-  const allDoctors = allCities.map(c => c.doctorsPerThousand);
-  const allBeds = allCities.map(c => c.hospitalBedsPerThousand);
-  const allUhc = allCities.map(c => c.uhcCoverageIndex);
-  const allLife = allCities.map(c => c.lifeExpectancy);
-
-  const docNorm = minMaxNorm(allDoctors, city.doctorsPerThousand);
-  const bedNorm = minMaxNorm(allBeds, city.hospitalBedsPerThousand);
-  const uhcNorm = minMaxNorm(allUhc, city.uhcCoverageIndex);
-  const lifeNorm = minMaxNorm(allLife, city.lifeExpectancy);
-
-  return Math.round(docNorm * 0.35 + bedNorm * 0.25 + uhcNorm * 0.25 + lifeNorm * 0.15);
-}
-
-/** Institutional Freedom Index (0-100, higher = freer)
- * Press freedom 35% + Democracy index (×10) 35% + CPI 30%
- */
-export function computeInstitutionalFreedom(city: City): number {
-  // All three are already on 0-100 scale (democracy is 0-10, multiply by 10)
-  const press = city.pressFreedomScore;
-  const democracy = city.democracyIndex * 10; // 0-10 → 0-100
-  const cpi = city.corruptionPerceptionIndex;
-
-  return Math.round(press * 0.35 + democracy * 0.35 + cpi * 0.30);
-}
