@@ -141,6 +141,7 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setCardDataUrl(null)}>
           <div className={`max-w-[640px] w-full rounded-xl p-4 ${darkMode ? "bg-slate-800" : "bg-white"} shadow-2xl`}
             onClick={e => e.stopPropagation()}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={cardDataUrl} alt="Share card" className="w-full rounded-lg" />
             <div className="flex gap-2 mt-3 justify-end">
               <button onClick={downloadCard}

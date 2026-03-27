@@ -39,7 +39,8 @@ export default function RankingContent({ cities }: RankingContentProps) {
     const savedTier = localStorage.getItem("costTier");
     if (savedTier && ["comfort", "moderate", "budget", "minimal"].includes(savedTier)) setCostTier(savedTier as CostTier);
     fetch("/data/exchange-rates.json").then(r => r.json()).then(setExchangeRates).catch(() => {});
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [professions.length]);
 
   const t = useCallback((key: string, params?: Record<string, string | number>) => {
     const template = TRANSLATIONS[locale]?.[key] || TRANSLATIONS.zh[key] || key;
