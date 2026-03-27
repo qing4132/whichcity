@@ -1,6 +1,6 @@
 # Architecture — 项目架构文档
 
-> 最后审计：2026-03-27
+> 最后审计：2026-06-04
 
 ---
 
@@ -75,6 +75,7 @@ citycompare/
 │   ├── add-flights.mjs           # 直飞城市数据添加
 │   ├── add-workhours.mjs         # 工作时长数据添加
 │   ├── add_aqi.py                # AQI 数据添加（含中→US EPA转换）
+│   ├── fix-asian-data.mjs        # 20亚洲城市costBudget + 8城AQI数据修正
 │   ├── add_doctors_data.py       # 医师密度数据添加
 │   ├── add_20_asian_cities.py    # 批量添加 20 座亚洲城市
 │   ├── translate-intros.mjs      # 城市介绍多语言翻译
@@ -167,7 +168,7 @@ citycompare/
 | `locale` | `"zh"\|"en"\|"ja"\|"es"` | `"zh"` | 所有页面 | 所有页面 |
 | `darkMode` | `"true"\|"false"` | `"false"` | 所有页面 | 所有页面 |
 | `selectedCurrency` | 货币代码 | `"USD"` | 所有页面 | 所有页面 |
-| `costTier` | `"comfort"\|"moderate"\|"budget"\|"minimal"` | `"moderate"` | 所有页面 | 所有页面 |
+| `costTier` | `"moderate"\|"budget"` | `"moderate"` | 所有页面 | 所有页面 |
 | `selectedProfession` | 职业键名 | 第一个 | 所有页面 | 所有页面 |
 | `selectedCities` | `JSON string[]` | `["1","3","4"]` | 仅首页 | 仅首页 |
 
@@ -256,16 +257,22 @@ citycompare/
 
 **路由**: `app/ranking/page.tsx`（服务端） → `RankingContent`（客户端，306行）
 
-**7 个排名 Tab**:
+**13 个排名 Tab**:
 | Tab 键 | 排序逻辑 | 好/中/差 阈值 |
 |--------|---------|--------------|
 | savings | `savings` 降序 | >0 / — / <0 |
 | ppp | `income/annualCost` 降序 | ≥1.5 / ≥1 / <1 |
 | housing | `yearsToHome` 升序 | ≤15y / finite / ∞ |
+| rent | `monthlyRent` 升序 | — |
 | air | `airQuality` 升序 | ≤50 / ≤100 / >100 |
 | flights | `directFlightCities` 降序 | ≥150 / ≥50 / <50 |
 | safety | `safetyIndex` 降序 | ≥70 / ≥40 / <40 |
 | workhours | `annualWorkHours` 升序 | ≤1600 / ≤1900 / >1900 |
+| vacation | `paidLeaveDays` 降序 | — |
+| internet | `internetSpeedMbps` 降序 | — |
+| lifePressure | 复合指数 升序 | — |
+| healthcare | 复合指数 降序 | — |
+| freedom | 复合指数 降序 | — |
 
 **⚠️ 注意**: RankingContent 未使用 `useSettings` hook，自行管理所有设置状态（与其他 3 个页面不一致）。
 
