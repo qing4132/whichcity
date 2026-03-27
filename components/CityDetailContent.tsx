@@ -77,8 +77,13 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
       value: `${safetyIndex}${city.safetyConfidence === "low" ? " *" : ""} / 100`,
       sub: `#${rankHigher(allSafety, safetyIndex)} / ${n}`,
       tier: tierHigh(allSafety, safetyIndex),
-      desc: t("safetyMethodNote"),
-      details: null,
+      desc: t("safetyDesc"),
+      details: [
+        { label: t("safetyNightSafety"), value: `${city.safetyNightSafety}`, weight: "40%" },
+        { label: t("safetyViolentCrime"), value: `${city.safetyViolentCrimeInv}`, weight: "30%" },
+        { label: t("safetyPropertyCrime"), value: `${city.safetyPropertyCrimeInv}`, weight: "20%" },
+        { label: t("safetyForeignerFriendly"), value: `${city.safetyForeignerFriendly}`, weight: "10%" },
+      ],
     },
     {
       key: "healthcare",

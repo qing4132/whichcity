@@ -167,6 +167,10 @@ for (const city of data.cities) {
   const score = Math.round(night * 0.4 + violInv * 0.3 + propInv * 0.2 + foreigner * 0.1);
   city.safetyIndex = score;
   city.safetyConfidence = confidence;
+  city.safetyNightSafety = night;
+  city.safetyViolentCrimeInv = violInv;
+  city.safetyPropertyCrimeInv = propInv;
+  city.safetyForeignerFriendly = foreigner;
   ok++;
 }
 

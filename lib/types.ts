@@ -21,6 +21,10 @@ export interface City {
   annualWorkHours: number;
   safetyIndex: number;
   safetyConfidence: "high" | "medium" | "low";
+  safetyNightSafety: number;
+  safetyViolentCrimeInv: number;
+  safetyPropertyCrimeInv: number;
+  safetyForeignerFriendly: number;
   // New fields (v2)
   monthlyRent: number;
   paidLeaveDays: number;
