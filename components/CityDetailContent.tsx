@@ -193,8 +193,8 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
               [t("climateType"), getClimateLabel(climate.type, locale)],
               [t("avgTemp"), `${climate.avgTempC.toFixed(1)}°C`],
               [t("tempRange"), `${(climate.summerAvgC - climate.winterAvgC).toFixed(1)}°C`],
-              [t("humidity"), `${climate.humidityPct}%`],
               [t("annualRain"), `${Math.round(climate.annualRainMm)} mm`],
+              [t("humidity"), `${climate.humidityPct}%`],
               [t("sunshine"), `${Math.round(climate.sunshineHours)} h`],
             ].map(([label, val]) => (
               <div key={label} className="text-center">
@@ -243,13 +243,13 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
               <div key={otherId} className={`rounded-xl border p-3 text-center ${sectionBg}`}>
                 <span className="text-2xl">{CITY_FLAG_EMOJIS[otherId] || "🏙️"}</span>
                 <p className={`text-sm font-semibold mt-1 ${headingCls}`}>{otherName}</p>
-                {advText && <p className={`text-xs mt-0.5 ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>{advText}</p>}
-                <div className="flex gap-1 mt-2 justify-center">
+                <p className={`text-xs h-8 flex items-center justify-center text-center leading-tight ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>{advText}</p>
+                <div className="flex gap-1 mt-1 justify-center">
                   <Link href={`/city/${otherSlug}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "border-blue-500/50 text-blue-300 hover:bg-blue-900/30" : "border-blue-300 text-blue-600 hover:bg-blue-50"}`}>
                     {t("viewCity")}
                   </Link>
                   <Link href={`/compare/${pair}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "border-amber-500/50 text-amber-300 hover:bg-amber-900/30" : "border-amber-300 text-amber-600 hover:bg-amber-50"}`}>
-                    VS
+                    {t("compareCity")}
                   </Link>
                 </div>
               </div>
