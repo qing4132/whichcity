@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { City, CostTier } from "@/lib/types";
@@ -31,7 +30,7 @@ type Tier = "good" | "mid" | "bad";
 function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, cardValCls, t, n, rankHigher,
   formatCurrency, city, income, tierCost, savings, yearsVal, hourlyWage,
   lifePressure, allLifePressure, healthcareIdx, allHealthcare, freedomIdx, allFreedom,
-  safetyIndex, allSafety, tierHigh,
+  safetyIndex, allSafety, tierHigh, tierLow, allCities, allIncomes, costTierField,
 }: {
   darkMode: boolean; headingCls: string; subCls: string; baseCard: string;
   cardBorder: (t: Tier) => string; cardValCls: (t: Tier) => string;
@@ -44,10 +43,10 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
   freedomIdx: number; allFreedom: number[];
   safetyIndex: number; allSafety: number[];
   tierHigh: (values: number[], val: number) => Tier;
+  tierLow: (values: number[], val: number) => Tier;
+  allCities: City[]; allIncomes: number[];
+  costTierField: "costComfort" | "costModerate" | "costBudget" | "costMinimal";
 }) {
-  const [expanded, setExpanded] = useState<string | null>(null);
-  const toggle = (key: string) => setExpanded(expanded === key ? null : key);
-
   const savingsRate = income > 0 ? Math.round((savings / income) * 100) : 0;
   const bigMacPower = city.bigMacPrice !== null && city.bigMacPrice > 0 && city.annualWorkHours > 0
     ? ((income / city.annualWorkHours) / city.bigMacPrice).toFixed(1)
@@ -56,6 +55,26 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
   const detailBg = darkMode ? "bg-slate-900/50" : "bg-slate-50";
   const detailBorder = darkMode ? "border-slate-700" : "border-slate-200";
 
+  // Sub-indicator ranking arrays
+  const allSavingsRate = allCities.map((c, i) => { const inc = allIncomes[i]; return inc > 0 ? Math.round(((inc - c[costTierField] * 12) / inc) * 100) : 0; });
+  const allBigMacPowerArr = allCities.filter(c => c.bigMacPrice !== null && c.bigMacPrice > 0 && c.annualWorkHours > 0).map(c => { const i = allCities.indexOf(c); return (allIncomes[i] / c.annualWorkHours) / (c.bigMacPrice as number); });
+  const allWorkHoursArr = allCities.map(c => c.annualWorkHours);
+  const allYearsValid = allCities.map((c, i) => { const s = allIncomes[i] - c[costTierField] * 12; return s > 0 ? (c.housePrice * 70) / s : Infinity; }).filter(isFinite);
+  const allNightSafety = allCities.map(c => c.safetyNightSafety);
+  const allViolentInv = allCities.map(c => c.safetyViolentCrimeInv);
+  const allPropertyInv = allCities.map(c => c.safetyPropertyCrimeInv);
+  const allForeignerF = allCities.map(c => c.safetyForeignerFriendly);
+  const allDoctorsArr = allCities.map(c => c.doctorsPerThousand);
+  const allBedsArr = allCities.map(c => c.hospitalBedsPerThousand);
+  const allUhcArr = allCities.map(c => c.uhcCoverageIndex);
+  const allLifeExpArr = allCities.map(c => c.lifeExpectancy);
+  const allPressArr = allCities.map(c => c.pressFreedomScore);
+  const allDemocracyArr = allCities.map(c => c.democracyIndex);
+  const allCpiArr = allCities.map(c => c.corruptionPerceptionIndex);
+  const lowSafety = city.safetyConfidence === "low";
+  const lsMark = lowSafety ? " *" : "";
+  const bigMacPowerNum = city.bigMacPrice !== null && city.bigMacPrice > 0 && city.annualWorkHours > 0 ? (income / city.annualWorkHours) / city.bigMacPrice : null;
+
   const indices = [
     {
       key: "lifePressure",
@@ -63,26 +82,24 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
       value: `${lifePressure} / 100`,
       sub: `#${rankHigher(allLifePressure, lifePressure)} / ${n}`,
       tier: tierHigh(allLifePressure, lifePressure),
-      desc: t("lifePressureDesc"),
       details: [
-        { label: t("savingsRateLabel"), value: `${savingsRate}%`, weight: "30%" },
-        { label: t("bigMacPower"), value: `${bigMacPower} ${t("bigMacUnit")}`, weight: "25%" },
-        { label: t("annualWorkHours"), value: `${city.annualWorkHours}h`, weight: "25%" },
-        { label: t("homePurchaseYears"), value: isFinite(yearsVal) ? `${yearsVal.toFixed(1)}y` : "N/A", weight: "20%" },
+        { label: t("savingsRateLabel"), value: `${savingsRate}%`, weight: "30%", tier: tierHigh(allSavingsRate, savingsRate) },
+        { label: t("bigMacPower"), value: `${bigMacPower} ${t("bigMacUnit")}`, weight: "25%", tier: bigMacPowerNum !== null ? tierHigh(allBigMacPowerArr, bigMacPowerNum) : "mid" as Tier },
+        { label: t("annualWorkHours"), value: `${city.annualWorkHours}h`, weight: "25%", tier: tierLow(allWorkHoursArr, city.annualWorkHours) },
+        { label: t("homePurchaseYears"), value: isFinite(yearsVal) ? `${yearsVal.toFixed(1)}y` : "N/A", weight: "20%", tier: isFinite(yearsVal) ? tierLow(allYearsValid, yearsVal) : "bad" as Tier },
       ],
     },
     {
       key: "safety",
       label: t("safetyIndex"),
-      value: `${safetyIndex}${city.safetyConfidence === "low" ? " *" : ""} / 100`,
+      value: `${safetyIndex}${lsMark} / 100`,
       sub: `#${rankHigher(allSafety, safetyIndex)} / ${n}`,
       tier: tierHigh(allSafety, safetyIndex),
-      desc: t("safetyDesc"),
       details: [
-        { label: t("safetyNightSafety"), value: `${city.safetyNightSafety}`, weight: "40%" },
-        { label: t("safetyViolentCrime"), value: `${city.safetyViolentCrimeInv}`, weight: "30%" },
-        { label: t("safetyPropertyCrime"), value: `${city.safetyPropertyCrimeInv}`, weight: "20%" },
-        { label: t("safetyForeignerFriendly"), value: `${city.safetyForeignerFriendly}`, weight: "10%" },
+        { label: t("safetyNightSafety"), value: `${city.safetyNightSafety}${lsMark}`, weight: "40%", tier: tierHigh(allNightSafety, city.safetyNightSafety) },
+        { label: t("safetyViolentCrime"), value: `${city.safetyViolentCrimeInv}${lsMark}`, weight: "30%", tier: tierHigh(allViolentInv, city.safetyViolentCrimeInv) },
+        { label: t("safetyPropertyCrime"), value: `${city.safetyPropertyCrimeInv}${lsMark}`, weight: "20%", tier: tierHigh(allPropertyInv, city.safetyPropertyCrimeInv) },
+        { label: t("safetyForeignerFriendly"), value: `${city.safetyForeignerFriendly}${lsMark}`, weight: "10%", tier: tierHigh(allForeignerF, city.safetyForeignerFriendly) },
       ],
     },
     {
@@ -91,12 +108,11 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
       value: `${healthcareIdx} / 100`,
       sub: `#${rankHigher(allHealthcare, healthcareIdx)} / ${n}`,
       tier: tierHigh(allHealthcare, healthcareIdx),
-      desc: t("healthcareDesc"),
       details: [
-        { label: t("doctorsPerThousand"), value: `${city.doctorsPerThousand}`, weight: "35%" },
-        { label: t("hospitalBeds"), value: `${city.hospitalBedsPerThousand}`, weight: "25%" },
-        { label: t("uhcCoverage"), value: `${city.uhcCoverageIndex}`, weight: "25%" },
-        { label: t("lifeExpectancy"), value: `${city.lifeExpectancy}y`, weight: "15%" },
+        { label: t("doctorsPerThousand"), value: `${city.doctorsPerThousand}`, weight: "35%", tier: tierHigh(allDoctorsArr, city.doctorsPerThousand) },
+        { label: t("hospitalBeds"), value: `${city.hospitalBedsPerThousand}`, weight: "25%", tier: tierHigh(allBedsArr, city.hospitalBedsPerThousand) },
+        { label: t("uhcCoverage"), value: `${city.uhcCoverageIndex}`, weight: "25%", tier: tierHigh(allUhcArr, city.uhcCoverageIndex) },
+        { label: t("lifeExpectancy"), value: `${city.lifeExpectancy}y`, weight: "15%", tier: tierHigh(allLifeExpArr, city.lifeExpectancy) },
       ],
     },
     {
@@ -105,11 +121,10 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
       value: `${freedomIdx} / 100`,
       sub: `#${rankHigher(allFreedom, freedomIdx)} / ${n}`,
       tier: tierHigh(allFreedom, freedomIdx),
-      desc: t("institutionalFreedomDesc"),
       details: [
-        { label: t("pressFreedom"), value: `${city.pressFreedomScore}`, weight: "35%" },
-        { label: t("democracyIdx"), value: `${city.democracyIndex}`, weight: "35%" },
-        { label: t("corruptionIdx"), value: `${city.corruptionPerceptionIndex}`, weight: "30%" },
+        { label: t("pressFreedom"), value: `${city.pressFreedomScore}`, weight: "35%", tier: tierHigh(allPressArr, city.pressFreedomScore) },
+        { label: t("democracyIdx"), value: `${city.democracyIndex}`, weight: "35%", tier: tierHigh(allDemocracyArr, city.democracyIndex) },
+        { label: t("corruptionIdx"), value: `${city.corruptionPerceptionIndex}`, weight: "30%", tier: tierHigh(allCpiArr, city.corruptionPerceptionIndex) },
       ],
     },
   ];
@@ -119,32 +134,23 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {indices.map((idx) => (
           <div key={idx.key}>
-            <button
-              onClick={() => toggle(idx.key)}
-              className={`w-full ${baseCard} ${cardBorder(idx.tier)} flex flex-col items-center justify-between cursor-pointer hover:shadow-md transition`}
-            >
+            <div className={`${baseCard} ${cardBorder(idx.tier)} flex flex-col items-center justify-between`}>
               <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>
-                {idx.label} {expanded === idx.key ? "▲" : "▼"}
+                {idx.label}
               </p>
               <p className={`text-xl font-extrabold my-1 ${cardValCls(idx.tier)}`}>{idx.value}</p>
               <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{idx.sub}</p>
-            </button>
-            {expanded === idx.key && (
-              <div className={`mt-1 rounded-lg border p-3 text-xs ${detailBg} ${detailBorder}`}>
-                {idx.details ? (
-                  <div className="space-y-1.5">
-                    {idx.details.map((d) => (
-                      <div key={d.label} className="flex justify-between">
-                        <span className={subCls}>{d.label} <span className="opacity-60">({d.weight})</span></span>
-                        <span className={`font-semibold ${headingCls}`}>{d.value}</span>
-                      </div>
-                    ))}
+            </div>
+            <div className={`mt-1 rounded-lg border p-3 text-xs ${detailBg} ${detailBorder}`}>
+              <div className="space-y-1.5">
+                {idx.details.map((d) => (
+                  <div key={d.label} className="flex justify-between">
+                    <span className={subCls}>{d.label} <span className="opacity-60">({d.weight})</span></span>
+                    <span className={`font-semibold ${cardValCls(d.tier)}`}>{d.value}</span>
                   </div>
-                ) : (
-                  <p className={subCls}>{idx.desc}</p>
-                )}
+                ))}
               </div>
-            )}
+            </div>
           </div>
         ))}
       </div>
@@ -302,40 +308,72 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
         )}
       </header>
 
-      {/* Row 1: 收支 + 住房 (2 medium cards, 3 data each) */}
-      <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-3">
-        {[
-          { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: `#${rankHigher(allIncomes, income)} / ${n}`, tier: tierHigh(allIncomes, income) },
-          { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: `#${rankLower(allCosts, tierCost)} / ${n}`, tier: tierLow(allCosts, tierCost) },
-          { label: t("yearlySavings"), value: formatCurrency(savings), sub: `#${rankHigher(allSavings, savings)} / ${n}`, tier: tierHigh(allSavings, savings) },
-          { label: t("housePrice"), value: `${formatCurrency(city.housePrice)}/m²`, sub: `#${rankLower(allHouse, city.housePrice)} / ${n}`, tier: tierLow(allHouse, city.housePrice) },
-          { label: t("yearsToBuy"), value: isFinite(yearsVal) ? `${yearsVal.toFixed(1)}y` : "N/A", sub: isFinite(yearsVal) ? `#${rankLower(allYearsToHome.filter(isFinite), yearsVal)} / ${allYearsToHome.filter(isFinite).length}` : "—", tier: isFinite(yearsVal) ? tierLow(allYearsToHome.filter(isFinite), yearsVal) : "bad" as Tier },
-          { label: t("monthlyRent"), value: formatCurrency(city.monthlyRent), sub: `#${rankLower(allRent, city.monthlyRent)} / ${n}`, tier: tierLow(allRent, city.monthlyRent) },
-        ].map((stat) => (
-          <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)} flex flex-col items-center justify-between`}>
-            <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
-            <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
-            <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
+      {/* Row 1: 收支 + 住房 (2 grouped cards, 3 data each) */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
+        <div className={`rounded-xl border p-2 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: `#${rankHigher(allIncomes, income)} / ${n}`, tier: tierHigh(allIncomes, income) },
+              { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: `#${rankLower(allCosts, tierCost)} / ${n}`, tier: tierLow(allCosts, tierCost) },
+              { label: t("yearlySavings"), value: formatCurrency(savings), sub: `#${rankHigher(allSavings, savings)} / ${n}`, tier: tierHigh(allSavings, savings) },
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
+                <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+                <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
+                <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <div className={`rounded-xl border p-2 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { label: t("housePrice"), value: `${formatCurrency(city.housePrice)}/m²`, sub: `#${rankLower(allHouse, city.housePrice)} / ${n}`, tier: tierLow(allHouse, city.housePrice) },
+              { label: t("yearsToBuy"), value: isFinite(yearsVal) ? `${yearsVal.toFixed(1)}y` : "N/A", sub: isFinite(yearsVal) ? `#${rankLower(allYearsToHome.filter(isFinite), yearsVal)} / ${allYearsToHome.filter(isFinite).length}` : "—", tier: isFinite(yearsVal) ? tierLow(allYearsToHome.filter(isFinite), yearsVal) : "bad" as Tier },
+              { label: t("monthlyRent"), value: formatCurrency(city.monthlyRent), sub: `#${rankLower(allRent, city.monthlyRent)} / ${n}`, tier: tierLow(allRent, city.monthlyRent) },
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
+                <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+                <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
+                <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* Row 2: 工作 + 环境与连接 (2 medium cards, 3 data each) */}
-      <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-3">
-        {[
-          { label: t("annualWorkHours"), value: `${city.annualWorkHours}h`, sub: `#${rankLower(allWorkHours, city.annualWorkHours)} / ${n}`, tier: tierLow(allWorkHours, city.annualWorkHours) },
-          { label: t("hourlyWage"), value: formatCurrency(Math.round(hourlyWage * 100) / 100), sub: `#${rankHigher(allHourly, hourlyWage)} / ${n}`, tier: tierHigh(allHourly, hourlyWage) },
-          { label: t("paidLeaveDays"), value: `${city.paidLeaveDays} ${t("paidLeaveDaysUnit")}`, sub: `#${rankHigher(allLeave, city.paidLeaveDays)} / ${n}`, tier: tierHigh(allLeave, city.paidLeaveDays) },
-          { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: `#${rankLower(allAqi, city.airQuality)} / ${n}`, tier: tierLow(allAqi, city.airQuality) },
-          { label: t("internetSpeed"), value: `${city.internetSpeedMbps} ${t("internetSpeedUnit")}`, sub: `#${rankHigher(allSpeed, city.internetSpeedMbps)} / ${n}`, tier: tierHigh(allSpeed, city.internetSpeedMbps) },
-          { label: t("directFlights"), value: String(city.directFlightCities), sub: `#${rankHigher(allFlights, city.directFlightCities)} / ${n}`, tier: tierHigh(allFlights, city.directFlightCities) },
-        ].map((stat) => (
-          <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)} flex flex-col items-center justify-between`}>
-            <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
-            <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
-            <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
+      {/* Row 2: 工作 + 环境与连接 (2 grouped cards, 3 data each) */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
+        <div className={`rounded-xl border p-2 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { label: t("annualWorkHours"), value: `${city.annualWorkHours}h`, sub: `#${rankLower(allWorkHours, city.annualWorkHours)} / ${n}`, tier: tierLow(allWorkHours, city.annualWorkHours) },
+              { label: t("hourlyWage"), value: formatCurrency(Math.round(hourlyWage * 100) / 100), sub: `#${rankHigher(allHourly, hourlyWage)} / ${n}`, tier: tierHigh(allHourly, hourlyWage) },
+              { label: t("paidLeaveDays"), value: `${city.paidLeaveDays} ${t("paidLeaveDaysUnit")}`, sub: `#${rankHigher(allLeave, city.paidLeaveDays)} / ${n}`, tier: tierHigh(allLeave, city.paidLeaveDays) },
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
+                <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+                <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
+                <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <div className={`rounded-xl border p-2 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: `#${rankLower(allAqi, city.airQuality)} / ${n}`, tier: tierLow(allAqi, city.airQuality) },
+              { label: t("internetSpeed"), value: `${city.internetSpeedMbps} ${t("internetSpeedUnit")}`, sub: `#${rankHigher(allSpeed, city.internetSpeedMbps)} / ${n}`, tier: tierHigh(allSpeed, city.internetSpeedMbps) },
+              { label: t("directFlights"), value: String(city.directFlightCities), sub: `#${rankHigher(allFlights, city.directFlightCities)} / ${n}`, tier: tierHigh(allFlights, city.directFlightCities) },
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
+                <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+                <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
+                <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Row 3: 4 index cards (expandable) */}
@@ -365,6 +403,10 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
         safetyIndex={city.safetyIndex}
         allSafety={allSafety}
         tierHigh={tierHigh}
+        tierLow={tierLow}
+        allCities={allCities}
+        allIncomes={allIncomes}
+        costTierField={costTierField}
       />
       
 
