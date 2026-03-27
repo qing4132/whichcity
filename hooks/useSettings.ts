@@ -23,7 +23,8 @@ export function useSettings() {
     const c = localStorage.getItem("selectedCurrency");
     if (c) setCurrencyState(c);
     const tier = localStorage.getItem("costTier");
-    if (tier && ["comfort", "moderate", "budget", "minimal"].includes(tier)) setCostTierState(tier as CostTier);
+    if (tier && ["moderate", "budget"].includes(tier)) setCostTierState(tier as CostTier);
+    else setCostTierState("moderate");
     const prof = localStorage.getItem("selectedProfession");
     if (prof) setProfessionState(prof);
 

@@ -86,7 +86,7 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
       <div className="bg-purple-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-purple-100 mb-1">{t("housePrice")}</p>
         <p className="text-base sm:text-lg font-bold text-white">
-          {`${formatCurrency(city.housePrice)}${t("housePriceUnit")}`}
+          {city.housePrice !== null ? `${formatCurrency(city.housePrice)}${t("housePriceUnit")}` : "—"}
         </p>
       </div>
 
@@ -94,7 +94,7 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
       <div className="bg-teal-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-teal-100 mb-1">{t("airQuality")}</p>
         <p className={`text-base sm:text-lg font-bold ${aqiLevel.color}`}>
-          AQI {city.airQuality} · {t(aqiLevel.key)}
+          {city.airQuality !== null ? `AQI ${city.airQuality} · ${t(aqiLevel.key)}` : "—"}
         </p>
       </div>
 
@@ -102,11 +102,12 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
       <div className="bg-pink-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-pink-100 mb-1">{t("doctorsPerThousand")}</p>
         <p className="text-base sm:text-lg font-bold text-white">
-          {city.doctorsPerThousand} {t("doctorsUnit")}
+          {city.doctorsPerThousand !== null ? `${city.doctorsPerThousand} ${t("doctorsUnit")}` : "—"}
         </p>
       </div>
 
       {/* Climate mini-cards */}
+      {climate && (
       <div className="mt-3 grid grid-cols-2 gap-1.5">
         <div className="bg-white bg-opacity-10 p-2 rounded-lg">
           <p className="text-[10px] text-white/60 mb-0.5">{t("climateType")}</p>
@@ -125,6 +126,7 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
           <p className="text-xs text-white font-semibold">{Math.round(climate.sunshineHours)} {t("unitH")}</p>
         </div>
       </div>
+      )}
 
       {/* Description */}
       <div className="mt-3 bg-white bg-opacity-10 p-3 rounded-lg">

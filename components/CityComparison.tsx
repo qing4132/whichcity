@@ -50,7 +50,8 @@ export default function CityComparison() {
     if (savedLocale && ["zh", "en", "ja", "es"].includes(savedLocale)) setLocale(savedLocale as Locale);
 
     const savedTier = url.tier || localStorage.getItem("costTier");
-    if (savedTier && ["comfort", "moderate", "budget", "minimal"].includes(savedTier)) setCostTier(savedTier as CostTier);
+    if (savedTier && ["moderate", "budget"].includes(savedTier)) setCostTier(savedTier as CostTier);
+    else setCostTier("moderate");
 
     const fetchData = async () => {
       try {
@@ -177,16 +178,15 @@ export default function CityComparison() {
 
   // ── Data helpers ──
   const getCost = (city: City): number => {
-    if (costTier === "comfort") return city.costComfort;
     if (costTier === "budget") return city.costBudget;
-    if (costTier === "minimal") return city.costMinimal;
     return city.costModerate;
   };
 
-  const getClimate = (city: City): ClimateInfo =>
-    CITY_CLIMATE[city.id] || { type: "temperate" as const, avgTempC: 15, annualRainMm: 800, sunshineHours: 2000, summerAvgC: 25, winterAvgC: 5, humidityPct: 65 };
+  const getClimate = (city: City): ClimateInfo | null =>
+    CITY_CLIMATE[city.id] ?? null;
 
-  const getAqiLevel = (aqi: number): { key: string; color: string } => {
+  const getAqiLevel = (aqi: number | null): { key: string; color: string } => {
+    if (aqi === null) return { key: "noData", color: "text-slate-400" };
     if (aqi <= 50) return { key: "aqiGood", color: "text-green-300" };
     if (aqi <= 100) return { key: "aqiModerate", color: "text-yellow-300" };
     if (aqi <= 150) return { key: "aqiUSG", color: "text-orange-300" };
@@ -301,7 +301,7 @@ export default function CityComparison() {
                 </select>
                 <select value={costTier} onChange={e => setCostTier(e.target.value as CostTier)}
                   className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                  {(["comfort", "moderate", "budget", "minimal"] as const).map(tier => (
+                  {(["moderate", "budget"] as const).map(tier => (
                     <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
                   ))}
                 </select>
