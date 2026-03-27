@@ -163,23 +163,23 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
       {/* Key Stats — 12 cards, 6 per row */}
       <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
         {[
-          { label: `💰 ${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: `#${rankHigher(allIncomes, income)} / ${n}`, tier: tierHigh(allIncomes, income) },
-          { label: `� ${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: `#${rankLower(allCosts, tierCost)} / ${n}`, tier: tierLow(allCosts, tierCost) },
-          { label: `💵 ${t("yearlySavings")}`, value: formatCurrency(savings), sub: `#${rankHigher(allSavings, savings)} / ${n}`, tier: tierHigh(allSavings, savings) },
-          { label: `⏰ ${t("annualWorkHours")}`, value: `${city.annualWorkHours}h`, sub: `#${rankLower(allWorkHours, city.annualWorkHours)} / ${n}`, tier: tierLow(allWorkHours, city.annualWorkHours) },
-          { label: `⏱️ ${t("hourlyWage")}`, value: formatCurrency(Math.round(hourlyWage * 100) / 100), sub: `#${rankHigher(allHourly, hourlyWage)} / ${n}`, tier: tierHigh(allHourly, hourlyWage) },
-          { label: `🍔 ${t("bigMacIndex")}`, value: bigMacRatio !== null ? `${bigMacRatio.toFixed(2)}x` : t("noMcDonalds"), sub: bigMacRatio !== null ? `#${rankLower(allBigMacRatio, bigMacRatio)} / ${allBigMacRatio.length}` : "—", tier: bigMacRatio !== null ? tierLow(allBigMacRatio, bigMacRatio) : "mid" as Tier },
-          { label: `🏠 ${t("housePrice")}`, value: `${formatCurrency(city.housePrice)}/m²`, sub: `#${rankLower(allHouse, city.housePrice)} / ${n}`, tier: tierLow(allHouse, city.housePrice) },
-          { label: `🏗️ ${t("yearsToBuy")}`, value: isFinite(yearsVal) ? `${yearsVal.toFixed(1)}y` : "N/A", sub: isFinite(yearsVal) ? `#${rankLower(allYearsToHome.filter(isFinite), yearsVal)} / ${allYearsToHome.filter(isFinite).length}` : "—", tier: isFinite(yearsVal) ? tierLow(allYearsToHome.filter(isFinite), yearsVal) : "bad" as Tier },
-          { label: `🌬️ ${t("airQuality")}`, value: `AQI ${city.airQuality}`, sub: `#${rankLower(allAqi, city.airQuality)} / ${n}`, tier: tierLow(allAqi, city.airQuality) },
-          { label: `🛡️ ${t("safetyIndex")}`, value: `${city.safetyIndex}${city.safetyConfidence === "low" ? " *" : ""} / 100`, sub: `#${rankHigher(allSafety, city.safetyIndex)} / ${n}`, tier: tierHigh(allSafety, city.safetyIndex) },
-          { label: `🏥 ${t("doctorsPerThousand")}`, value: String(city.doctorsPerThousand), sub: `#${rankHigher(allDoctors, city.doctorsPerThousand)} / ${n}`, tier: tierHigh(allDoctors, city.doctorsPerThousand) },
-          { label: `✈️ ${t("directFlights")}`, value: String(city.directFlightCities), sub: `#${rankHigher(allFlights, city.directFlightCities)} / ${n}`, tier: tierHigh(allFlights, city.directFlightCities) },
+          { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: `#${rankHigher(allIncomes, income)} / ${n}`, tier: tierHigh(allIncomes, income) },
+          { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: `#${rankLower(allCosts, tierCost)} / ${n}`, tier: tierLow(allCosts, tierCost) },
+          { label: t("yearlySavings"), value: formatCurrency(savings), sub: `#${rankHigher(allSavings, savings)} / ${n}`, tier: tierHigh(allSavings, savings) },
+          { label: t("annualWorkHours"), value: `${city.annualWorkHours}h`, sub: `#${rankLower(allWorkHours, city.annualWorkHours)} / ${n}`, tier: tierLow(allWorkHours, city.annualWorkHours) },
+          { label: t("hourlyWage"), value: formatCurrency(Math.round(hourlyWage * 100) / 100), sub: `#${rankHigher(allHourly, hourlyWage)} / ${n}`, tier: tierHigh(allHourly, hourlyWage) },
+          { label: t("bigMacIndex"), value: bigMacRatio !== null ? `${bigMacRatio.toFixed(2)}x` : t("noMcDonalds"), sub: bigMacRatio !== null ? `#${rankLower(allBigMacRatio, bigMacRatio)} / ${allBigMacRatio.length}` : "—", tier: bigMacRatio !== null ? tierLow(allBigMacRatio, bigMacRatio) : "mid" as Tier },
+          { label: t("housePrice"), value: `${formatCurrency(city.housePrice)}/m²`, sub: `#${rankLower(allHouse, city.housePrice)} / ${n}`, tier: tierLow(allHouse, city.housePrice) },
+          { label: t("yearsToBuy"), value: isFinite(yearsVal) ? `${yearsVal.toFixed(1)}y` : "N/A", sub: isFinite(yearsVal) ? `#${rankLower(allYearsToHome.filter(isFinite), yearsVal)} / ${allYearsToHome.filter(isFinite).length}` : "—", tier: isFinite(yearsVal) ? tierLow(allYearsToHome.filter(isFinite), yearsVal) : "bad" as Tier },
+          { label: t("airQuality"), value: `AQI ${city.airQuality}`, sub: `#${rankLower(allAqi, city.airQuality)} / ${n}`, tier: tierLow(allAqi, city.airQuality) },
+          { label: t("safetyIndex"), value: `${city.safetyIndex}${city.safetyConfidence === "low" ? " *" : ""} / 100`, sub: `#${rankHigher(allSafety, city.safetyIndex)} / ${n}`, tier: tierHigh(allSafety, city.safetyIndex) },
+          { label: t("doctorsPerThousand"), value: String(city.doctorsPerThousand), sub: `#${rankHigher(allDoctors, city.doctorsPerThousand)} / ${n}`, tier: tierHigh(allDoctors, city.doctorsPerThousand) },
+          { label: t("directFlights"), value: String(city.directFlightCities), sub: `#${rankHigher(allFlights, city.directFlightCities)} / ${n}`, tier: tierHigh(allFlights, city.directFlightCities) },
         ].map((stat) => (
-          <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)}`}>
-            <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${subCls}`}>{stat.label}</p>
-            <p className={`text-xl font-extrabold ${cardValCls(stat.tier)}`}>{stat.value}</p>
-            <p className={`text-xs mt-0.5 ${subCls}`}>{stat.sub}</p>
+          <div key={stat.label} className={`${baseCard} ${cardBorder(stat.tier)} flex flex-col items-center justify-between`}>
+            <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+            <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
+            <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
           </div>
         ))}
       </section>
