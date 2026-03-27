@@ -12,7 +12,7 @@ import { useSettings } from "@/hooks/useSettings";
 
 interface Props {
   city: City;
-  relatedIds: number[];
+  similarIds: number[];
   slug: string;
   allCities: City[];
 }
@@ -24,7 +24,7 @@ const TIER_KEYS: { key: CostTier; field: "costComfort" | "costModerate" | "costB
   { key: "minimal", field: "costMinimal", labelKey: "costTierMinimal" },
 ];
 
-export default function CityDetailContent({ city, relatedIds, slug, allCities }: Props) {
+export default function CityDetailContent({ city, similarIds, slug, allCities }: Props) {
   const s = useSettings();
   const router = useRouter();
   const { locale, darkMode, t, formatCurrency, costTier, profession } = s;
@@ -188,10 +188,12 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
       <section className="mb-10">
         <div className={`rounded-xl border p-6 ${sectionBg}`}>
           <h2 className={`text-xl font-bold mb-4 ${headingCls}`}>{t("climateEnv")}</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
               [t("climateType"), getClimateLabel(climate.type, locale)],
               [t("avgTemp"), `${climate.avgTempC.toFixed(1)}°C`],
+              [t("tempRange"), `${(climate.summerAvgC - climate.winterAvgC).toFixed(1)}°C`],
+              [t("humidity"), `${climate.humidityPct}%`],
               [t("annualRain"), `${Math.round(climate.annualRainMm)} mm`],
               [t("sunshine"), `${Math.round(climate.sunshineHours)} h`],
             ].map(([label, val]) => (
@@ -204,25 +206,53 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
         </div>
       </section>
 
-      {/* Compare with */}
+      {/* Similar Cities */}
       <section className="mb-10">
-        <h2 className={`text-2xl font-bold mb-4 ${headingCls}`}>{t("compareWith", { city: cityName })}</h2>
+        <h2 className={`text-2xl font-bold mb-4 ${headingCls}`}>{t("similarCities")}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {relatedIds.map((otherId) => {
+          {similarIds.map((otherId) => {
+            const other = allCities.find((c) => c.id === otherId);
+            if (!other) return null;
             const otherSlug = CITY_SLUGS[otherId];
             if (!otherSlug) return null;
             const otherName = CITY_NAME_TRANSLATIONS[otherId]?.[locale] || getCityEnName(otherId);
             const pair = [slug, otherSlug].sort().join("-vs-");
+
+            // Find the dimension where the other city beats this one by the largest margin
+            const dims: { key: string; cur: number; oth: number; higher: boolean }[] = [
+              { key: "avgIncome", cur: income, oth: activeProfession ? other.professions[activeProfession] || 0 : other.averageIncome, higher: true },
+              { key: "monthlyCost", cur: tierCost, oth: other[TIER_KEYS.find(tk => tk.key === costTier)!.field], higher: false },
+              { key: "yearlySavings", cur: savings, oth: (activeProfession ? other.professions[activeProfession] || 0 : other.averageIncome) - other[TIER_KEYS.find(tk => tk.key === costTier)!.field] * 12, higher: true },
+              { key: "annualWorkHours", cur: city.annualWorkHours, oth: other.annualWorkHours, higher: false },
+              { key: "housePrice", cur: city.housePrice, oth: other.housePrice, higher: false },
+              { key: "airQuality", cur: city.airQuality, oth: other.airQuality, higher: false },
+              { key: "safetyIndex", cur: city.safetyIndex, oth: other.safetyIndex, higher: true },
+              { key: "doctorsPerThousand", cur: city.doctorsPerThousand, oth: other.doctorsPerThousand, higher: true },
+              { key: "directFlights", cur: city.directFlightCities, oth: other.directFlightCities, higher: true },
+            ];
+            let bestAdv: { key: string; pct: number; higher: boolean } | null = null;
+            for (const d of dims) {
+              const better = d.higher ? d.oth > d.cur : d.oth < d.cur;
+              if (!better || d.cur === 0) continue;
+              const pct = Math.round(Math.abs(d.oth - d.cur) / Math.abs(d.cur) * 100);
+              if (!bestAdv || pct > bestAdv.pct) bestAdv = { key: d.key, pct, higher: d.higher };
+            }
+            const advText = bestAdv ? `${t(bestAdv.key)} ${bestAdv.higher ? "+" : "-"}${bestAdv.pct}%` : "";
+
             return (
-              <Link
-                key={otherId}
-                href={`/compare/${pair}`}
-                className={`rounded-xl border p-3 text-center transition ${sectionBg} hover:border-blue-400 hover:shadow`}
-              >
+              <div key={otherId} className={`rounded-xl border p-3 text-center ${sectionBg}`}>
                 <span className="text-2xl">{CITY_FLAG_EMOJIS[otherId] || "🏙️"}</span>
                 <p className={`text-sm font-semibold mt-1 ${headingCls}`}>{otherName}</p>
-                <p className="text-xs text-blue-600 mt-0.5">vs {cityName} →</p>
-              </Link>
+                {advText && <p className={`text-xs mt-0.5 ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>{advText}</p>}
+                <div className="flex gap-1 mt-2 justify-center">
+                  <Link href={`/city/${otherSlug}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "border-blue-500/50 text-blue-300 hover:bg-blue-900/30" : "border-blue-300 text-blue-600 hover:bg-blue-50"}`}>
+                    {t("viewCity")}
+                  </Link>
+                  <Link href={`/compare/${pair}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "border-amber-500/50 text-amber-300 hover:bg-amber-900/30" : "border-amber-300 text-amber-600 hover:bg-amber-50"}`}>
+                    VS
+                  </Link>
+                </div>
+              </div>
             );
           })}
         </div>
@@ -233,7 +263,7 @@ export default function CityDetailContent({ city, relatedIds, slug, allCities }:
         <h3 className={`text-base sm:text-lg font-semibold mb-3 ${headingCls}`}>{t("dataSourcesTitle")}</h3>
         <p className={`text-sm mb-3 ${subCls}`}>{t("dataSourcesDesc")}</p>
         <div className={`space-y-1.5 text-xs ${subCls}`}>
-          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc", "dataSafetySrc", "dataWorkHoursSrc"].map((k) => (
+          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataBigMacSrc", "dataClimateSrc", "dataClimateDetailSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc", "dataSafetySrc", "dataWorkHoursSrc"].map((k) => (
             <p key={k}>• {t(k)}</p>
           ))}
           <p className={`mt-2 italic`}>• {t("safetyMethodNote")}</p>
