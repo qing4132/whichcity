@@ -21,10 +21,11 @@ export interface City {
   annualWorkHours: number;
   safetyIndex: number;
   safetyConfidence: "high" | "medium" | "low";
-  safetyNightSafety: number;
-  safetyViolentCrimeInv: number;
-  safetyPropertyCrimeInv: number;
-  safetyForeignerFriendly: number;
+  numbeoSafetyIndex: number | null;    // Numbeo Safety Index (0-100)
+  homicideRateInv: number | null;      // UNODC homicide rate inverted (0-100)
+  gpiScoreInv: number | null;          // GPI score inverted (0-100)
+  gallupLawOrder: number | null;       // Gallup Law & Order Index (0-100)
+  safetyWarning?: "active_conflict" | "extreme_instability" | "data_blocked";
   // New fields (v2)
   monthlyRent: number;
   paidLeaveDays: number;
