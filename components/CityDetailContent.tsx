@@ -143,7 +143,6 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
               <p className={`text-xl font-extrabold my-1 ${cardValCls(idx.tier)}`}>
                 {idx.value}
                 {idx.confidence === "low" && <span className={`ml-1 text-xs font-normal ${darkMode ? "text-amber-400" : "text-amber-600"}`}>{t("confidenceLow")}</span>}
-                {idx.confidence === "medium" && <span className={`ml-1 text-xs font-normal ${subCls}`}>*</span>}
               </p>
               <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{idx.sub}</p>
             </div>
@@ -152,7 +151,7 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
                 {idx.details.map((d: any) => (
                   <div key={d.label} className="flex justify-between">
                     <span className={subCls}>{d.label} <span className="opacity-60">({d.weight})</span></span>
-                    <span className={`font-semibold ${d.missing ? subCls : cardValCls(d.tier)}`}>{d.value}{d.missing ? " *" : ""}</span>
+                    <span className={`font-semibold ${d.missing ? subCls : cardValCls(d.tier)}`}>{d.value}</span>
                   </div>
                 ))}
               </div>
