@@ -8,6 +8,7 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { computeLifePressure, getCityClimate, getCityEnName, getClimateLabel } from "@/lib/clientUtils";
 import { CITY_INTROS } from "@/lib/cityIntros";
+import { CITY_LANGUAGES } from "@/lib/cityLanguages";
 import { useSettings } from "@/hooks/useSettings";
 
 interface Props {
@@ -331,6 +332,25 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-8">
+
+      {/* Safety warning banner (full-width, above hero) */}
+      {city.safetyWarning && (
+        <div className={`rounded-lg px-4 py-2.5 mb-6 text-sm flex items-start gap-2 ${
+          city.safetyWarning === "active_conflict"
+            ? (darkMode ? "bg-red-900/40 text-red-300 border border-red-500/50" : "bg-red-50 text-red-700 border border-red-300")
+            : city.safetyWarning === "extreme_instability"
+              ? (darkMode ? "bg-orange-900/40 text-orange-300 border border-orange-500/50" : "bg-orange-50 text-orange-700 border border-orange-300")
+              : (darkMode ? "bg-amber-900/40 text-amber-300 border border-amber-500/50" : "bg-amber-50 text-amber-700 border border-amber-300")
+        }`}>
+          <span className="font-bold shrink-0">{t("safetyWarningTitle")}</span>
+          <span>{
+            city.safetyWarning === "active_conflict" ? t("safetyWarningConflict")
+              : city.safetyWarning === "extreme_instability" ? t("safetyWarningInstability")
+              : t("safetyWarningBlocked")
+          }</span>
+        </div>
+      )}
+
       {/* Hero */}
       <header className="mb-10">
         <div className="flex items-center gap-3 mb-2">
@@ -339,22 +359,19 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
             <h1 className={`text-3xl sm:text-4xl font-extrabold ${headingCls}`}>{cityName}</h1>
             <p className={`text-lg ${subCls}`}>{countryName}</p>
           </div>
-          {city.safetyWarning && (
-            <div className={`rounded-xl border-2 px-4 py-3 text-sm max-w-xs ${
-              city.safetyWarning === "active_conflict"
-                ? (darkMode ? "border-red-500 bg-red-900/30 text-red-300" : "border-red-400 bg-red-50 text-red-700")
-                : city.safetyWarning === "extreme_instability"
-                  ? (darkMode ? "border-orange-500 bg-orange-900/30 text-orange-300" : "border-orange-400 bg-orange-50 text-orange-700")
-                  : (darkMode ? "border-amber-500 bg-amber-900/30 text-amber-300" : "border-amber-400 bg-amber-50 text-amber-700")
-            }`}>
-              <p className="font-bold text-xs mb-1">{t("safetyWarningTitle")}</p>
-              <p className="leading-snug">{
-                city.safetyWarning === "active_conflict" ? t("safetyWarningConflict")
-                  : city.safetyWarning === "extreme_instability" ? t("safetyWarningInstability")
-                  : t("safetyWarningBlocked")
-              }</p>
-            </div>
-          )}
+          {(() => {
+            const langs = CITY_LANGUAGES[id] || [];
+            const show = langs.slice(0, 3);
+            const more = langs.length - show.length;
+            return langs.length > 0 ? (
+              <div className={`rounded-xl border px-4 py-3 text-sm max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
+                <p className={`font-bold text-xs mb-1 ${subCls}`}>🗣️ {t("officialLanguages")}</p>
+                <p className={`leading-snug font-medium ${headingCls}`}>
+                  {show.join(" · ")}{more > 0 && <span className={`ml-1 ${subCls}`}>+{more}</span>}
+                </p>
+              </div>
+            ) : null;
+          })()}
         </div>
         {CITY_INTROS[id] && (
           <p className={`mt-4 leading-relaxed text-sm sm:text-base ${subCls}`}>{CITY_INTROS[id][locale] || CITY_INTROS[id].zh}</p>
