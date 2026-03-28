@@ -114,7 +114,7 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
         { label: t("doctorsPerThousand"), value: city.doctorsPerThousand !== null ? `${city.doctorsPerThousand}` : "—", weight: "35%", tier: city.doctorsPerThousand !== null ? tierHigh(allDoctorsArr, city.doctorsPerThousand) : "mid" as Tier, missing: city.doctorsPerThousand === null },
         { label: t("hospitalBeds"), value: city.hospitalBedsPerThousand !== null ? `${city.hospitalBedsPerThousand}` : "—", weight: "25%", tier: city.hospitalBedsPerThousand !== null ? tierHigh(allBedsArr, city.hospitalBedsPerThousand) : "mid" as Tier, missing: city.hospitalBedsPerThousand === null },
         { label: t("uhcCoverage"), value: city.uhcCoverageIndex !== null ? `${city.uhcCoverageIndex}` : "—", weight: "25%", tier: city.uhcCoverageIndex !== null ? tierHigh(allUhcArr, city.uhcCoverageIndex) : "mid" as Tier, missing: city.uhcCoverageIndex === null },
-        { label: t("lifeExpectancy"), value: city.lifeExpectancy !== null ? `${city.lifeExpectancy} ${t("insightYears")}` : "—", weight: "15%", tier: city.lifeExpectancy !== null ? tierHigh(allLifeExpArr, city.lifeExpectancy) : "mid" as Tier, missing: city.lifeExpectancy === null },
+        { label: t("lifeExpectancy"), value: city.lifeExpectancy !== null ? `${city.lifeExpectancy} ${t("lifeExpectancyUnit")}` : "—", weight: "15%", tier: city.lifeExpectancy !== null ? tierHigh(allLifeExpArr, city.lifeExpectancy) : "mid" as Tier, missing: city.lifeExpectancy === null },
       ],
     },
     {
