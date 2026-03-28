@@ -366,7 +366,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
             const more = localized.length - show.length;
             return langs.length > 0 ? (
               <div className={`rounded-xl border px-4 py-3 text-sm max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
-                <p className={`font-bold text-xs mb-1 ${subCls}`}>🗣️ {t("officialLanguages")}</p>
+                <p className={`font-bold text-xs mb-1 ${subCls}`}>{t("officialLanguages")}</p>
                 <p className={`leading-snug font-medium ${headingCls}`}>
                   {show.join(" · ")}{more > 0 && <span className={`ml-1 ${subCls}`}>+{more}</span>}
                 </p>
