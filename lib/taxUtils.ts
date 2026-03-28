@@ -6,7 +6,7 @@
 import type { IncomeMode } from "./types";
 import {
   COUNTRY_TAX, CITY_TAX_OVERRIDES,
-  japanEmploymentDeduction,
+  japanEmploymentDeduction, koreanEmploymentDeduction,
   type TaxBracket, type SocialComponent, type CountryTax, type CityTaxOverride,
 } from "./taxData";
 
@@ -90,12 +90,27 @@ export function computeNetIncome(
     socialDeductions = calcSocial(grossLocal, tax.social, cityOverride?.socialOverrides);
   }
 
-  // 2. Taxable income
-  let taxableLocal = grossLocal - socialDeductions - tax.standardDeduction;
+  // 2. Employee deduction (percentage-based universal deductions)
+  let empDeduction = 0;
+  if (tax.employeeDeduction) {
+    const ed = tax.employeeDeduction;
+    const base = ed.afterSocial ? grossLocal - socialDeductions : grossLocal;
+    empDeduction = base * ed.rate;
+    if (ed.min !== undefined) empDeduction = Math.max(empDeduction, ed.min);
+    if (ed.max !== undefined) empDeduction = Math.min(empDeduction, ed.max);
+  }
 
-  // Japan special: employment income deduction
+  // 3. Taxable income
+  let taxableLocal = grossLocal - socialDeductions - tax.standardDeduction - empDeduction;
+
+  // Japan special: employment income deduction (replaces generic empDeduction)
   if (country === "日本") {
     taxableLocal = grossLocal - japanEmploymentDeduction(grossLocal) - socialDeductions - tax.standardDeduction;
+  }
+
+  // Korea special: employment income deduction (근로소득공제)
+  if (country === "韩国") {
+    taxableLocal = grossLocal - koreanEmploymentDeduction(grossLocal) - socialDeductions - tax.standardDeduction;
   }
 
   // Japan: add 10% resident tax separately
@@ -119,7 +134,12 @@ export function computeNetIncome(
   if (isExpat && tax.expatScheme) {
     const scheme = tax.expatScheme;
     if (scheme.type === "flat_rate" || scheme.type === "flat_rate_no_social") {
-      incomeTax = taxableLocal * (scheme.flatRate || 0);
+      if (scheme.incomeThreshold && taxableLocal > scheme.incomeThreshold) {
+        incomeTax = scheme.incomeThreshold * (scheme.flatRate || 0)
+                  + (taxableLocal - scheme.incomeThreshold) * (scheme.rateAboveThreshold || scheme.flatRate || 0);
+      } else {
+        incomeTax = taxableLocal * (scheme.flatRate || 0);
+      }
     } else if (scheme.type === "exemption_pct") {
       const reducedTaxable = taxableLocal * (1 - (scheme.exemptionPct || 0));
       incomeTax = calcProgressive(reducedTaxable, tax.brackets);

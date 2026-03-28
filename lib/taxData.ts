@@ -24,6 +24,8 @@ export interface ExpatScheme {
   type: "flat_rate" | "exemption_pct" | "no_social" | "flat_rate_no_social";
   flatRate?: number;
   exemptionPct?: number;
+  incomeThreshold?: number;      // local currency; above this, rateAboveThreshold applies
+  rateAboveThreshold?: number;
 }
 
 export interface CountryTax {
@@ -32,6 +34,13 @@ export interface CountryTax {
   social: SocialComponent[];
   usdToLocal: number;               // 1 USD = X local currency
   expatScheme?: ExpatScheme;
+  /** Universal employee deduction (e.g. France 10% frais, Germany Werbungskosten, Norway minstefradrag) */
+  employeeDeduction?: {
+    rate: number;           // percentage of base
+    min?: number;           // minimum deduction (local currency)
+    max?: number;           // cap (local currency)
+    afterSocial?: boolean;  // if true, base = gross − social (France)
+  };
   confidence: "high" | "medium" | "low";
   dataIsLikelyNet?: boolean;
 }
@@ -425,6 +434,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     ],
     standardDeduction: 0,
     social: [{ name: "combined", rate: 0.23 }], // CSG+CRDS+pension+etc simplified
+    employeeDeduction: { rate: 0.10, min: 472, max: 14171, afterSocial: true }, // 10% frais professionnels
     usdToLocal: 0.92,
     confidence: "high",
   },
@@ -436,7 +446,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
       { upTo: 277825, rate: 0.42 },
       { upTo: INF, rate: 0.45 },
     ],
-    standardDeduction: 0,
+    standardDeduction: 1230, // Werbungskostenpauschale (employee lump-sum)
     social: [
       { name: "pension", rate: 0.093, annualBaseCap: 90600 },
       { name: "health", rate: 0.0815, annualBaseCap: 62100 },
@@ -566,7 +576,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     standardDeduction: 5550,
     social: [{ name: "SS", rate: 0.0635, annualBaseCap: 56844 }],
     usdToLocal: 0.92,
-    expatScheme: { name: "Beckham Law", type: "flat_rate", flatRate: 0.24 },
+    expatScheme: { name: "Beckham Law", type: "flat_rate", flatRate: 0.24, incomeThreshold: 600000, rateAboveThreshold: 0.47 },
     confidence: "high",
   },
   "意大利": {
@@ -645,6 +655,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     ],
     standardDeduction: 48000,
     social: [{ name: "AM_bidrag", rate: 0.08 }],
+    employeeDeduction: { rate: 0.1065, max: 44800 }, // beskæftigelsesfradrag
     usdToLocal: 6.88,
     confidence: "high",
   },
@@ -674,6 +685,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
       { upTo: INF, rate: 0.396 },
     ],
     standardDeduction: 0,
+    employeeDeduction: { rate: 0.46, min: 4000, max: 104450 }, // minstefradrag
     social: [{ name: "trygdeavgift", rate: 0.079 }],
     usdToLocal: 10.8,
     confidence: "high",
@@ -1295,4 +1307,13 @@ export function japanEmploymentDeduction(grossJPY: number): number {
   if (grossJPY <= 6600000) return grossJPY * 0.20 + 440000;
   if (grossJPY <= 8500000) return grossJPY * 0.10 + 1100000;
   return 1950000;
+}
+
+/* ── Korea employment income deduction (근로소득공제) ─── */
+export function koreanEmploymentDeduction(grossKRW: number): number {
+  if (grossKRW <= 5_000_000) return grossKRW * 0.70;
+  if (grossKRW <= 15_000_000) return 3_500_000 + (grossKRW - 5_000_000) * 0.40;
+  if (grossKRW <= 45_000_000) return 7_500_000 + (grossKRW - 15_000_000) * 0.15;
+  if (grossKRW <= 100_000_000) return 12_000_000 + (grossKRW - 45_000_000) * 0.05;
+  return 14_750_000 + (grossKRW - 100_000_000) * 0.02;
 }
