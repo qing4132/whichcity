@@ -1,20 +1,20 @@
 # Architecture — 项目架构文档
 
-> 最后审计：2026-06-04
+> 最后审计：2026-03-28
 
 ---
 
 ## 1. 项目概述
 
-**City Compare** 是一个纯静态的全球城市生活比较网站，覆盖 120 座城市，提供薪资、生活成本、住房、空气质量、安全、医疗、交通等多维数据的可视化对比。
+**City Compare** 是一个纯静态的全球城市生活比较网站，覆盖 134 座城市，提供薪资、生活成本、住房、空气质量、安全、医疗、交通等多维数据的可视化对比。
 
 | 属性 | 值 |
 |---|---|
 | 技术栈 | Next.js 15 + React 18 + TypeScript + Tailwind CSS 3 + Recharts 3 |
 | 渲染策略 | 100% SSG（Static Site Generation），零 API 调用 |
-| 总生成页面 | ~187（120 城市 + ~60 对比 + 1 排行榜 + 1 首页 + sitemap + robots） |
+| 总生成页面 | ~216（134 城市 + 79 对比 + 1 排行榜 + 1 首页 + sitemap + robots） |
 | 国际化 | 4 语言（zh / en / ja / es），纯前端切换 |
-| 货币 | 10 种（USD / EUR / GBP / JPY / CNY / HKD / AUD / CAD / SGD / INR） |
+| 货币 | 30 种（USD / EUR / GBP / JPY / CNY / HKD / AUD / CAD / SGD / INR / THB / MYR / VND / PHP / IDR / PKR / EGP / TRY / BRL / MXN / ZAR / SEK / NOK / CHF / NZD / DKK / RUB / GEL / NGN / COP） |
 | 部署 | 静态导出，适用于 Vercel / Netlify / 任何静态托管 |
 | 后端/数据库 | **无**，全部数据以 JSON 文件形式内嵌 |
 
@@ -28,53 +28,54 @@ citycompare/
 │   ├── layout.tsx                # 根布局（HTML shell + 全局 metadata）
 │   ├── page.tsx                  # 首页 → 渲染 CityComparison
 │   ├── globals.css               # Tailwind 三层指令 + 少量全局样式
-│   ├── city/[slug]/page.tsx      # 城市详情页（SSG × 120）
-│   ├── compare/[pair]/page.tsx   # 双城对比页（SSG × ~60）
+│   ├─ city/[slug]/page.tsx      # 城市详情页（SSG × 134）
+│   ├─ compare/[pair]/page.tsx   # 双城对比页（SSG × 79）
 │   ├── ranking/page.tsx          # 排行榜页（SSG × 1）
 │   ├── sitemap.ts                # 动态 sitemap 生成
 │   └── robots.ts                 # robots.txt 生成
 │
 ├── components/                   # React 组件（全部 "use client"）
 │   ├── CityComparison.tsx        # 首页主组件（502行）⚠️ 最大组件
-│   ├── CityDetailContent.tsx     # 城市详情页主体（290行）
-│   ├── RankingContent.tsx        # 排行榜主体（306行）⚠️ 超300行限制
+│   ├─ CityDetailContent.tsx     # 城市详情页主体（545行）
+│   ├─ RankingContent.tsx        # 排行榜主体（408行）⚠️ 超300行限制
 │   ├── CompareContent.tsx        # 双城对比页主体（255行）
 │   ├── KeyInsights.tsx           # 综合评分 + 决策矩阵（177行）
-│   ├── ShareCard.tsx             # Canvas 分享卡片生成器（160行）
+│   └─ ShareCard.tsx             # Canvas 分享卡片生成器（161行）
 │   ├── ChartSection.tsx          # Recharts 图表区域（140行）
-│   ├── CityCard.tsx              # 首页城市信息卡片（136行）
+│   ├─ CityCard.tsx              # 首页城市信息卡片（138行）
 │   ├── PageShell.tsx             # 页面外壳（98行）⚠️ 未使用
 │   ├── CityLinks.tsx             # 城市/对比链接网格（90行）⚠️ 未使用
 │   └── DataSources.tsx           # 数据来源声明（37行）
 │
 ├── lib/                          # 数据层 + 工具函数
-│   ├── i18n.ts                   # 翻译字典 4 语言（1130行）⚠️ 最大文件
-│   ├── cityIntros.ts             # 城市介绍文本 120×4 语言（728行）
-│   ├── constants.ts              # 常量：地区分组 / emoji / 气候数据（182行）
-│   ├── citySlug.ts               # ID↔Slug 映射 + 热门对比对（69行）
+│   ├─ i18n.ts                   # 翻译字典 4 语言（1359行）⚠️ 最大文件
+│   ├─ cityIntros.ts             # 城市介绍文本 134×4 语言（818行）
+│   ├─ constants.ts              # 常量：地区分组 / emoji / 气候数据（200行）
+│   ├─ citySlug.ts               # ID↔Slug 映射 + 热门对比对（84行）
 │   ├── clientUtils.ts            # AQI/气候标签、城市英文名（55行）
 │   ├── types.ts                  # TypeScript 类型定义（45行）
 │   ├── CompareContext.ts         # React Context 类型定义（27行）
-│   └── dataLoader.ts             # 服务端 JSON 加载器（21行）
-│
+│   └── dataLoader.ts             # 服务端 JSON 加载器（21行）│   └─ types.ts                  # TypeScript 类型定义（67行）│
 ├── hooks/                        # React Hooks
 │   ├── useSettings.ts            # 子页面设置管理（localStorage 读写）
 │   └── useUrlState.ts            # URL query params 读写
 │
 ├── public/data/                  # 静态数据文件
-│   ├── cities.json               # 120 城市完整数据（核心）
-│   ├── exchange-rates.json       # 10 种货币汇率
-│   ├── professions.json          # 20 种职业列表
+│   ├─ cities.json               # 134 城市完整数据（核心）
+│   ├─ exchange-rates.json       # 30 种货币汇率
+│   ├─ professions.json          # 26 种职业列表
 │   ├── salaries.csv              # 薪资原始数据
 │   └── salary-summary.md         # 薪资数据校验摘要
 │
 ├── scripts/                      # 数据处理脚本（仅开发用）
 │   ├── update_salaries.py        # 薪资数据批量更新
 │   ├── add-climate-detail.mjs    # 气候详细数据添加
-│   ├── add-safety.mjs            # 安全指数数据添加
-│   ├── add-flights.mjs           # 直飞城市数据添加
-│   ├── add-workhours.mjs         # 工作时长数据添加
-│   ├── add_aqi.py                # AQI 数据添加（含中→US EPA转换）
+│   ├─ add-safety-v2.mjs         # 安全指数 v2（4 子指标加权）
+│   ├─ add-healthcare-index.mjs  # 医疗保障复合指数
+│   ├─ add-freedom-index.mjs     # 制度自由度复合指数
+│   ├─ batch-update-v3.mjs       # v3 批量更新脚本（134城×26职业）
+│   ├─ fix-asian-data.mjs        # 20亚洲城市costBudget + 8城AQI数据修正│   ├─ add-flights.mjs           # 直飞城市数据添加
+│   ├─ add-workhours.mjs         # 工作时长数据添加│   ├── add_aqi.py                # AQI 数据添加（含中→US EPA转换）
 │   ├── fix-asian-data.mjs        # 20亚洲城市costBudget + 8城AQI数据修正
 │   ├── add_doctors_data.py       # 医师密度数据添加
 │   ├── add_20_asian_cities.py    # 批量添加 20 座亚洲城市
@@ -116,7 +117,7 @@ citycompare/
     │ · ranking          │  │ · RankingContent.tsx    │
     │                    │  │   (汇率运行时加载)       │
     │ 输出: HTML/JSON    │  │ · useSettings.ts        │
-    │ (187 个静态页面)    │  │   (汇率运行时加载)       │
+    │ (~216 个静态页面)   │  │   (汇率运行时加载)       │
     └────────────────────┘  └─────────────────────────┘
               │                    │
               └───── localStorage ─┘
@@ -201,19 +202,19 @@ citycompare/
 **路由**: `app/city/[slug]/page.tsx`（服务端） → `CityDetailContent`（客户端，290行）
 
 **构建时计算**:
-- `generateStaticParams()`: 枚举 120 slug
+- `generateStaticParams()`: 枚举 134 slug
 - `generateMetadata()`: SEO title/description/canonical/OpenGraph
 - `computeSimilarIds()`: 11 维归一化欧氏距离，取最近 6 城
 - JSON-LD: Schema.org/Place + 5 个 PropertyValue
 
 **页面 5 个区块**:
 1. **Hero** — 旗帜 emoji + 城市名 + 国家名 + 城市介绍（`cityIntros.ts`）
-2. **12 指标卡片**（6×2）— 值 + 排名(`#N/120`) + 百分位边框着色
+2. **16 指标卡片**（4行布局）— 值 + 排名(`#N/134`) + 百分位边框着色
 3. **气候**（6 列）— 类型 / 均温 / 温差 / 降水 / 湿度 / 日照
 4. **相似城市**（6 列）— 优势维度 + 查看/对比链接
 5. **数据来源** + **页脚**
 
-**12 张指标卡片**:
+**12 张指标卡片** (Row 1-2, 各 6 张) + **4 张复合指数卡片** (Row 3):
 | # | 指标 | 计算方式 | 排序方向 |
 |---|------|---------|---------|
 | 1 | 年平均收入 | `professions[active] \|\| averageIncome` | 越高越好 |
@@ -224,8 +225,8 @@ citycompare/
 | 6 | 巨无霸指数 | `bigMacPrice / median(allBigMac)` | 越低越好 |
 | 7 | 平均房价 | `housePrice` (USD/m²) | 越低越好 |
 | 8 | 购房年限 | `housePrice×70 / annualSavings` | 越低越好 |
-| 9 | 空气质量 | `airQuality` (AQI) | 越低越好 |
-| 10 | 安全指数 | `safetyIndex` (/100) | 越高越好 |
+| 9 | 空气质量 | `airQuality` (AQI / AQI(CN)) | 越低越好 |
+| 10 | 安全指数 | `safetyIndex` | 越高越好 |
 | 11 | 每千人医生 | `doctorsPerThousand` | 越高越好 |
 | 12 | 直飞城市 | `directFlightCities` | 越高越好 |
 
@@ -253,7 +254,7 @@ citycompare/
 
 **特殊处理**: CompareContent 构建了一个临时 `CompareCtx.Provider` 供 KeyInsights 消费。
 
-### 4.4 排行榜 `/ranking` — 120 城大排名
+### 4.4 排行榜 `/ranking` — 134 城大排名
 
 **路由**: `app/ranking/page.tsx`（服务端） → `RankingContent`（客户端，306行）
 
@@ -270,7 +271,7 @@ citycompare/
 | workhours | `annualWorkHours` 升序 | ≤1600 / ≤1900 / >1900 |
 | vacation | `paidLeaveDays` 降序 | — |
 | internet | `internetSpeedMbps` 降序 | — |
-| lifePressure | 复合指数 升序 | — |
+| lifePressure | 复合指数 升序 | ≤35 / ≤65 / >65 |
 | healthcare | 复合指数 降序 | — |
 | freedom | 复合指数 降序 | — |
 
@@ -293,14 +294,14 @@ app/page.tsx
        └→ CityLinks ⚠️ import 但未渲染
 
 app/city/[slug]/page.tsx
-  └→ CityDetailContent (useSettings, 290行)
+  └→ CityDetailContent (useSettings, 545行)
 
 app/compare/[pair]/page.tsx
   └→ CompareContent (useSettings + 临时 CompareCtx.Provider, 255行)
        └→ KeyInsights
 
 app/ranking/page.tsx
-  └→ RankingContent (独立状态管理, 306行)
+  └→ RankingContent (独立状态管理, 408行)
 ```
 
 ### 5.2 未使用组件
@@ -317,11 +318,11 @@ app/ranking/page.tsx
 ### 6.1 翻译系统
 
 ```
-lib/i18n.ts (1130 行)
+lib/i18n.ts (1359 行)
 ├── TRANSLATIONS: Record<Locale, Record<string, string>>   ~130 keys × 4
-├── CITY_NAME_TRANSLATIONS: Record<number, Record<Locale, string>>  120 × 4
-├── COUNTRY_TRANSLATIONS: Record<string, Record<Locale, string>>    ~50 × 4
-├── PROFESSION_TRANSLATIONS: Record<string, Record<Locale, string>> 20 × 4
+├── CITY_NAME_TRANSLATIONS: Record<number, Record<Locale, string>>  134 × 4
+├── COUNTRY_TRANSLATIONS: Record<string, Record<Locale, string>>    ~55 × 4
+├── PROFESSION_TRANSLATIONS: Record<string, Record<Locale, string>> 26 × 4
 ├── CONTINENT_TRANSLATIONS: Record<string, Record<Locale, string>>  6 × 4
 └── LANGUAGE_LABELS: Record<Locale, string>   4 条
 ```
@@ -347,7 +348,7 @@ lib/i18n.ts (1130 行)
 | 双城对比 | "{nameA} vs {nameB}: Salary, Cost of Living & Quality of Life Comparison" | Article | `/compare/{pair}` |
 | 排行榜 | "Global City Rankings – Savings, Value Index & Housing" | 无 | `/ranking` |
 
-**sitemap.ts**: 动态生成，包含首页(1.0) + 排行榜(0.9) + 120 城市页(0.8) + ~60 对比页(0.7)。
+**sitemap.ts**: 动态生成，包含首页(1.0) + 排行榜(0.9) + 134 城市页(0.8) + 79 对比页(0.7)。
 
 **全部 SEO 元数据仅英文**，未做多语言 SEO（无 hreflang、无 locale 子路径）。
 
@@ -356,7 +357,7 @@ lib/i18n.ts (1130 行)
 ## 8. 构建与部署
 
 ```bash
-npm run build   # SSG 生成 ~187 静态页面
+npm run build   # SSG 生成 ~216 静态页面
 npm run dev      # 开发服务器 localhost:3000
 npm run lint     # ESLint 检查
 ```
@@ -364,8 +365,8 @@ npm run lint     # ESLint 检查
 | 属性 | 值 |
 |------|---|
 | 构建产物 | `.next/` 目录下的静态 HTML + JS chunks |
-| 城市详情页 | 120 个（from `CITY_SLUGS`） |
-| 对比页 | ~60 个（from `POPULAR_PAIRS` 去重） |
+| 城市详情页 | 134 个（from `CITY_SLUGS`） |
+| 对比页 | 79 个（from `POPULAR_PAIRS` 去重） |
 | 排行榜 | 1 个 |
 | 首页 | 1 个（CSR） |
 | 无 API Routes | ✓ |
@@ -400,8 +401,9 @@ npm run lint     # ESLint 检查
 | # | 问题 | 严重度 | 位置 | 说明 |
 |---|------|--------|------|------|
 | 1 | CityComparison.tsx 502 行 | **高** | 首页 | 超 RULES.md 300行限制 66%，承担选择器+状态+Context+UI全部职责 |
-| 2 | RankingContent.tsx 306 行 | 低 | 排行榜 | 略超限制，可接受 |
-| 3 | i18n.ts 1130 行 | **中** | lib | 4 语言在一个文件，难以维护 |
+| 2 | RankingContent.tsx 408 行 | **中** | 排行榜 | 超限制 36% |
+| 3 | CityDetailContent.tsx 545 行 | **高** | 城市详情 | 超限制 82%，v2 中大幅65扩展 |
+| 4 | i18n.ts 1359 行 | **中** | lib | 4 语言在一个文件，难以维护 |
 | 4 | 导航栏 4 处重复实现 | **中** | 4个页面组件 | CityComparison/CityDetailContent/CompareContent/RankingContent 各自实现 sticky 顶栏 |
 | 5 | ClimateInfo 默认回退 3 处重复 | 低 | clientUtils/CityComparison/CompareContent | 应统一到 `getCityClimate()` |
 | 6 | RankingContent 未用 useSettings | **中** | 排行榜 | 独立管理设置，与其他子页面不一致 |

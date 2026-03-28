@@ -67,10 +67,10 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
     { label: t("bigMac"), a: cityA.bigMacPrice !== null ? fc(cityA.bigMacPrice) : t("noMcDonalds"), b: cityB.bigMacPrice !== null ? fc(cityB.bigMacPrice) : t("noMcDonalds"), winner: cityA.bigMacPrice !== null && cityB.bigMacPrice !== null ? cmp(cityA.bigMacPrice, cityB.bigMacPrice, true) : "tie" },
     { label: t("climateType"), a: climateA ? getClimateLabel(climateA.type, locale) : "—", b: climateB ? getClimateLabel(climateB.type, locale) : "—", winner: "tie" },
     { label: t("avgTemp"), a: climateA ? `${climateA.avgTempC.toFixed(1)}°C` : "—", b: climateB ? `${climateB.avgTempC.toFixed(1)}°C` : "—", winner: "tie" },
-    { label: t("sunshine"), a: climateA ? `${Math.round(climateA.sunshineHours)} h` : "—", b: climateB ? `${Math.round(climateB.sunshineHours)} h` : "—", winner: "tie" },
-    { label: t("annualWorkHours"), a: cityA.annualWorkHours !== null ? `${cityA.annualWorkHours} h` : "—", b: cityB.annualWorkHours !== null ? `${cityB.annualWorkHours} h` : "—", winner: cityA.annualWorkHours !== null && cityB.annualWorkHours !== null ? cmp(cityA.annualWorkHours, cityB.annualWorkHours, true) : "tie" },
+    { label: t("sunshine"), a: climateA ? `${Math.round(climateA.sunshineHours)} ${t("unitH")}` : "—", b: climateB ? `${Math.round(climateB.sunshineHours)} ${t("unitH")}` : "—", winner: "tie" },
+    { label: t("annualWorkHours"), a: cityA.annualWorkHours !== null ? `${cityA.annualWorkHours} ${t("unitH")}` : "—", b: cityB.annualWorkHours !== null ? `${cityB.annualWorkHours} ${t("unitH")}` : "—", winner: cityA.annualWorkHours !== null && cityB.annualWorkHours !== null ? cmp(cityA.annualWorkHours, cityB.annualWorkHours, true) : "tie" },
     { label: t("directFlights"), a: cityA.directFlightCities !== null ? `${cityA.directFlightCities}` : "—", b: cityB.directFlightCities !== null ? `${cityB.directFlightCities}` : "—", winner: cityA.directFlightCities !== null && cityB.directFlightCities !== null ? cmp(cityA.directFlightCities, cityB.directFlightCities) : "tie" },
-    { label: t("safetyIndex"), a: `${cityA.safetyIndex} / 100`, b: `${cityB.safetyIndex} / 100`, winner: cmp(cityA.safetyIndex, cityB.safetyIndex) },
+    { label: t("safetyIndex"), a: cityA.safetyIndex.toFixed(1), b: cityB.safetyIndex.toFixed(1), winner: cmp(cityA.safetyIndex, cityB.safetyIndex) },
   ];
 
   const winsA = rows.filter((r) => r.winner === "A").length;

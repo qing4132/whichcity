@@ -94,7 +94,7 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
       <div className="bg-teal-500 bg-opacity-30 p-3 rounded-lg mb-3">
         <p className="text-xs text-teal-100 mb-1">{t("airQuality")}</p>
         <p className={`text-base sm:text-lg font-bold ${aqiLevel.color}`}>
-          {city.airQuality !== null ? `AQI ${city.airQuality} · ${t(aqiLevel.key)}` : "—"}
+          {city.airQuality !== null ? `${city.country === "\u4e2d\u56fd" ? "AQI (CN)" : "AQI"} ${city.airQuality} · ${t(aqiLevel.key)}` : "—"}
         </p>
       </div>
 

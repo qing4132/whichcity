@@ -59,7 +59,7 @@ function minMaxNorm(values: number[], val: number): number {
   return ((val - min) / (max - min)) * 100;
 }
 
-/** Life Pressure Index (0-100, higher = less pressure)
+/** Life Pressure Index (0-100, higher = more pressure)
  * Savings rate 30% + Big Mac purchasing power 25% + Annual work hours (inv) 25% + Home purchase years (inv) 20%
  * Returns { value, confidence } where confidence is weight-sum based.
  */
@@ -143,7 +143,9 @@ export function computeLifePressure(
   // Weighted sum with redistribution
   const totalWeight = subs.reduce((s, v) => s + v.w, 0);
   if (totalWeight === 0) return { value: 0, confidence: "low" };
-  const value = Math.round(subs.reduce((s, v) => s + v.norm * (v.w / totalWeight), 0));
+  const raw = Math.round(subs.reduce((s, v) => s + v.norm * (v.w / totalWeight), 0));
+  // Invert: higher value = more pressure
+  const value = 100 - raw;
 
   return { value, confidence };
 }

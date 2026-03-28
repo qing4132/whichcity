@@ -118,7 +118,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
     if (tab === "rent") return nullLast(a.city.monthlyRent, b.city.monthlyRent, true);
     if (tab === "vacation") return nullLast(a.city.paidLeaveDays, b.city.paidLeaveDays, false);
     if (tab === "internet") return nullLast(a.city.internetSpeedMbps, b.city.internetSpeedMbps, false);
-    if (tab === "lifePressure") return indexCache[b.idx].lifePressure - indexCache[a.idx].lifePressure;
+    if (tab === "lifePressure") return indexCache[a.idx].lifePressure - indexCache[b.idx].lifePressure;
     if (tab === "healthcare") return indexCache[b.idx].healthcare - indexCache[a.idx].healthcare;
     if (tab === "freedom") return indexCache[b.idx].freedom - indexCache[a.idx].freedom;
     // housing
@@ -286,7 +286,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
                       {tab === "air" ? (
                         <td className={tdCls}>
                           <span className={`font-bold ${getAqiColor(item.city.airQuality)}`}>
-                            {item.city.airQuality !== null ? `AQI ${item.city.airQuality}${item.city.aqiSource === "AQICN" ? " (AQICN)" : ""}` : "—"}
+                            {item.city.airQuality !== null ? `${item.city.country === "中国" ? "AQI (CN)" : "AQI"} ${item.city.airQuality}` : "—"}
                           </span>
                         </td>
                       ) : tab === "flights" ? (
@@ -300,7 +300,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
                       ) : tab === "safety" ? (
                         <td className={tdCls}>
                           <span className={`font-bold ${item.city.safetyIndex >= 70 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.safetyIndex >= 40 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {item.city.safetyIndex} / 100
+                            {item.city.safetyIndex.toFixed(1)}
                             {item.city.safetyConfidence === "low" && " *"}
                           </span>
                         </td>
@@ -338,22 +338,22 @@ export default function RankingContent({ cities }: RankingContentProps) {
                         </td>
                       ) : tab === "lifePressure" ? (
                         <td className={tdCls}>
-                          <span className={`font-bold ${indexCache[item.idx].lifePressure >= 65 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].lifePressure >= 35 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {indexCache[item.idx].lifePressure} / 100
+                          <span className={`font-bold ${indexCache[item.idx].lifePressure <= 35 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].lifePressure <= 65 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
+                            {indexCache[item.idx].lifePressure.toFixed(1)}
                             {indexCache[item.idx].lifePressureConf === "low" && " *"}
                           </span>
                         </td>
                       ) : tab === "healthcare" ? (
                         <td className={tdCls}>
                           <span className={`font-bold ${indexCache[item.idx].healthcare >= 65 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].healthcare >= 35 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {indexCache[item.idx].healthcare} / 100
+                            {indexCache[item.idx].healthcare.toFixed(1)}
                             {indexCache[item.idx].healthcareConf === "low" && " *"}
                           </span>
                         </td>
                       ) : tab === "freedom" ? (
                         <td className={tdCls}>
                           <span className={`font-bold ${indexCache[item.idx].freedom >= 65 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].freedom >= 35 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {indexCache[item.idx].freedom} / 100
+                            {indexCache[item.idx].freedom.toFixed(1)}
                             {indexCache[item.idx].freedomConf === "low" && " *"}
                           </span>
                         </td>

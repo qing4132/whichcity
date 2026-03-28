@@ -1,6 +1,6 @@
 # 数据来源与方法论 — 完整参考手册
 
-> **版本**: v3 — 2026-03-28  
+> **版本**: v4 — 2026-03-28  
 > **范围**: 本文档记录项目中 **每一份数据** 的来源、计算公式、特殊处理与新增操作指南。  
 > **原则**: 网站中呈现的每一项指标，均可在此文档内查到其来源链与计算方式。
 
@@ -11,14 +11,14 @@
 | 章节 | 内容 |
 |------|------|
 | [1. 数据总体架构](#1-数据总体架构) | 数据文件布局、流水线、依赖关系 |
-| [2. 城市基础字段](#2-城市基础字段120-座城市) | averageIncome、costModerate、costBudget 等 14 项 |
-| [3. 职业薪资](#3-职业薪资professions) | 20 个职业 × 120 城，来源与规范 |
+| [2. 城市基础字段](#2-城市基础字段134-座城市) | averageIncome、costModerate、costBudget 等 14 项 |
+| [3. 职业薪资](#3-职业薪资professions) | 26 个职业 × 134 城，来源与规范 |
 | [4. 安全指数](#4-安全指数safety-index) | 4 子指标 + 复合加权 + 特殊警告 |
 | [5. 医疗保障指数](#5-医疗保障指数healthcare-index) | 4 子指标 + 复合加权 |
 | [6. 制度自由度指数](#6-制度自由度指数freedom-index) | 3 子指标 + 复合加权 |
 | [7. 生活压力指数](#7-生活压力指数life-pressure-index) | 4 子指标 + 运行时计算 |
 | [8. 气候数据](#8-气候数据climate) | 7 个维度，硬编码在 constants.ts |
-| [9. 汇率与货币](#9-汇率与货币) | 25 种货币，前端展示换算 |
+| [9. 汇率与货币](#9-汇率与货币) | 30 种货币，前端展示换算 |
 | [10. 前端派生指标](#10-前端派生指标) | 所有页面上用公式实时计算的数值 |
 | [11. 排名与颜色系统](#11-排名与颜色系统) | 百分位、固定阈值、好/中/差规则 |
 | [12. 空值与特殊情况](#12-空值与特殊情况) | 哪些字段可为 null，前端如何处理 |
@@ -35,8 +35,8 @@
 
 ```
 public/data/
-  cities.json          ← 核心数据（120 城 × 42+ 字段），构建时读取 + 运行时 fetch
-  exchange-rates.json  ← 25 种货币汇率，运行时 fetch
+  cities.json          ← 核心数据（134 城 × 42+ 字段），构建时读取 + 运行时 fetch
+  exchange-rates.json  ← 30 种货币汇率，运行时 fetch
   professions.json     ← 职业列表元数据（名称/翻译），运行时 fetch
   salaries.csv         ← 参考快照，不参与运行
 
@@ -47,7 +47,7 @@ data/sources/
   gallup-law-order-2024.json  ← 盖洛普法治指数（国家级）
 
 lib/constants.ts
-  CITY_CLIMATE{}       ← 120 城气候参数（硬编码）
+  CITY_CLIMATE{}       ← 134 城气候参数（硬编码）
   REGIONS[]            ← 10 个地理分区（城市 ID 数组）
   CITY_FLAG_EMOJIS{}   ← 国旗 emoji
 ```
@@ -61,9 +61,9 @@ lib/constants.ts
 scripts/*.py / *.mjs          ← 数据采集 & 处理脚本（离线运行）
     │
     ▼
-public/data/cities.json        ← 唯一数据文件（120 座城市记录）
+public/data/cities.json        ← 唯一数据文件（134 座城市记录）
     │
-    ├─→ 构建时 (SSG): dataLoader.ts → readFileSync → 生成 187 个静态页面
+    ├─→ 构建时 (SSG): dataLoader.ts → readFileSync → 生成 ~216 个静态页面
     │     └→ 相似城市计算（11 维欧氏距离）
     │     └→ SEO metadata（title, description, JSON-LD）
     │
@@ -77,7 +77,7 @@ public/data/cities.json        ← 唯一数据文件（120 座城市记录）
 ```typescript
 interface City {
   // ── 基础标识 ──
-  id: number;                          // 1-120
+  id: number;                          // 1-139 (共 134 城市)
   name: string;                        // 中文城市名
   country: string;                     // 中文国家名
   continent: string;                   // 中文大洲名
@@ -86,7 +86,7 @@ interface City {
 
   // ── 收入与成本 ──
   averageIncome: number;               // 年平均收入 (USD)
-  professions: Record<string, number>; // 20 个职业年薪 (USD)
+  professions: Record<string, number>; // 26 个职业年薪 (USD)
   costModerate: number;                // 月生活成本-适度 (USD)
   costBudget: number;                  // 月生活成本-节俭 (USD)
   bigMacPrice: number | null;          // 巨无霸单价 (USD)
@@ -137,7 +137,7 @@ interface City {
 
 ---
 
-## 2. 城市基础字段（120 座城市）
+## 2. 城市基础字段（134 座城市）
 
 ### 2.1 averageIncome — 年平均收入 (USD)
 
@@ -145,7 +145,7 @@ interface City {
 |------|---|
 | 单位 | USD/年 |
 | 粒度 | 城市级 |
-| 范围 | ~$4,000 (哈瓦那) – ~$110,000 (旧金山) |
+| 范围 | ~$2,581 (加德满都) – ~$122,000 (圣何塞) |
 | 管理脚本 | `update_salaries.py` |
 
 **数据来源**:
@@ -157,7 +157,7 @@ interface City {
 - 中亚: HeadHunter.kz
 - 通用: ERI/SalaryExpert（employer-verified）、PayScale
 
-**定义**: 城市全行业中位数年薪（税前），由 20 个职业薪资取平均后设定。
+**定义**: 城市全行业中位数年薪（税前），由 26 个职业薪资取平均后设定。
 
 **汇率转换基准** (mid-2025):
 ```
@@ -227,16 +227,14 @@ KRW→USD: 0.00073   INR→USD: 0.012   THB→USD: 0.028
 | 来源 | The Economist Big Mac Index (2025-01) |
 | 数据 URL | https://github.com/TheEconomist/big-mac-data |
 | 粒度 | 国家级（麦当劳全国统一价） |
-| 可 null | 是 — 8 座城市所在国家无麦当劳 |
+| 可 null | 是 — 6 座城市所在国家无麦当劳 |
 
-**null 城市 (8 座)**:
+**null 城市 (6 座)**:
 | 城市 | ID | 原因 |
 |------|---|------|
 | 德黑兰 | 54 | 伊朗无麦当劳 |
-| 哈瓦那 | 72 | 古巴无麦当劳 |
 | 金边 | 109 | 柬埔寨无麦当劳 |
 | 仰光 | 110 | 缅甸无麦当劳 |
-| 万象 | 111 | 老挝无麦当劳 |
 | 达卡 | 114 | 孟加拉国无麦当劳 |
 | 加德满都 | 116 | 尼泊尔无麦当劳 |
 | 乌兰巴托 | 120 | 蒙古无麦当劳 |
@@ -282,7 +280,7 @@ KRW→USD: 0.00073   INR→USD: 0.012   THB→USD: 0.028
 
 | aqiSource | 城市数 | 方法 |
 |-----------|--------|------|
-| `EPA` | 112 | 直接采用 US EPA AirNow 3 年均值 (2023–2025) |
+| `EPA` | 126 | 直接采用 US EPA AirNow 3 年均值 (2023–2025) |
 | `iqair` | 8 | IQAir 2024 年度均值：PM2.5 年均浓度 → US EPA AQI 公式 |
 
 **IQAir → US EPA AQI 转换公式**:
@@ -324,12 +322,12 @@ PM2.5 35.5–55.4 µg/m³ → AQI = 101 + (PM2.5 − 35.5) × (49/19.9)
 |------|---|
 | 来源 | WHO Global Health Workforce Statistics / World Bank SH.MED.PHYS.ZS (CC BY-4.0) |
 | 粒度 | 以国家为基准，城市级调整 |
-| 范围 | 0.2 (内罗毕) – 8.4 (哈瓦那) |
+| 范围 | 0.2 (金边) – 7.0 (雅典) |
 | 管理脚本 | `add_doctors_data.py` |
 
 **城市级调整逻辑**:
 - 国家基准率 × 城市乘数
-- 重大医学中心城市（如波士顿、哈瓦那）: +20%~50%
+- 重大医学中心城市（如波士顿、维也纳）: +20%~50%
 - 首都/一线城市: +15%~30%
 - 医疗资源匮乏城市（如拉斯维加斯）: 低于国家均值
 
@@ -341,7 +339,7 @@ PM2.5 35.5–55.4 µg/m³ → AQI = 101 + (PM2.5 − 35.5) × (49/19.9)
 |------|---|
 | 来源 | OAG Aviation Analytics、FlightConnections.com、Wikipedia 机场条目 (2025) |
 | 定义 | 从该城市所有机场出发，可直飞抵达的不重复目的地城市数 |
-| 范围 | 0 (基辅/万象/达沃) – 390 (伦敦) |
+| 范围 | 0 (基辅) – 390 (伦敦) |
 | 管理脚本 | `add-flights.mjs` |
 
 **特殊规则**:
@@ -383,7 +381,7 @@ PM2.5 35.5–55.4 µg/m³ → AQI = 101 + (PM2.5 − 35.5) × (49/19.9)
 |------|---|
 | 来源 | Ookla Speedtest Global Index 2025 |
 | 粒度 | 城市级 |
-| 范围 | 5 (哈瓦那) – 250 (新加坡) |
+| 范围 | 20 (仰光) – 250 (新加坡/香港) |
 | 管理脚本 | `add-new-fields.mjs` |
 
 ---
@@ -410,13 +408,13 @@ PM2.5 35.5–55.4 µg/m³ → AQI = 101 + (PM2.5 − 35.5) × (49/19.9)
 
 | 属性 | 值 |
 |------|---|
-| 职业数 | 20 |
-| 城市数 | 120 |
-| 数据点 | 2,400 (20 × 120) |
+| 职业数 | 26 |
+| 城市数 | 134 |
+| 数据点 | 3,484 (26 × 134) |
 | 单位 | USD/年 (税前) |
-| 管理脚本 | `update_salaries.py` |
+| 管理脚本 | `update_salaries.py`, `batch-update-v3.mjs` |
 
-### 3.2 20 个职业清单
+### 3.2 26 个职业清单
 
 | # | 中文键名 | English |
 |---|---------|---------|
@@ -424,22 +422,28 @@ PM2.5 35.5–55.4 µg/m³ → AQI = 101 + (PM2.5 − 35.5) × (49/19.9)
 | 2 | 医生/医学博士 | Doctor/Physician |
 | 3 | 财务分析师 | Financial Analyst |
 | 4 | 市场经理 | Marketing Manager |
-| 5 | 项目经理 | Project Manager |
-| 6 | 平面设计师 | Graphic Designer |
-| 7 | 数据科学家 | Data Scientist |
-| 8 | 业务分析师 | Business Analyst |
-| 9 | 销售经理 | Sales Manager |
-| 10 | 人力资源经理 | HR Manager |
-| 11 | 教师 | Teacher |
-| 12 | 护士 | Nurse |
-| 13 | 律师 | Lawyer |
-| 14 | 建筑师 | Architect |
-| 15 | 厨师 | Chef |
-| 16 | 记者 | Journalist |
-| 17 | 机械工程师 | Mechanical Engineer |
-| 18 | 药剂师 | Pharmacist |
-| 19 | 会计师 | Accountant |
-| 20 | 公务员 | Civil Servant |
+| 5 | 平面设计师 | Graphic Designer |
+| 6 | 数据科学家 | Data Scientist |
+| 7 | 销售经理 | Sales Manager |
+| 8 | 人力资源经理 | Human Resources Manager |
+| 9 | 教师 | Teacher |
+| 10 | 护士 | Nurse |
+| 11 | 律师 | Lawyer |
+| 12 | 建筑师 | Architect |
+| 13 | 厨师 | Chef |
+| 14 | 记者 | Journalist |
+| 15 | 机械工程师 | Mechanical Engineer |
+| 16 | 药剂师 | Pharmacist |
+| 17 | 会计师 | Accountant |
+| 18 | 公务员 | Civil Servant |
+| 19 | 产品经理 | Product Manager |
+| 20 | UI/UX设计师 | UI/UX Designer |
+| 21 | 大学教授 | University Professor |
+| 22 | 牙医 | Dentist |
+| 23 | 家政服务人员 | Domestic Worker |
+| 24 | 摄影师 | Photographer |
+| 25 | 公交司机 | Bus Driver |
+| 26 | 电工 | Electrician |
 
 ### 3.3 数据来源（按地区）
 
@@ -460,7 +464,7 @@ PM2.5 35.5–55.4 µg/m³ → AQI = 101 + (PM2.5 − 35.5) × (49/19.9)
 
 ### 3.4 数据规则
 
-> **强制要求**: 每个城市每个职业 **必须独立查询真实薪资数据**——严禁使用参考城市乘以缩放系数批量生成。`update_salaries.py` 脚本中包含全部 120 城 × 20 职业的显式数值和来源注释。
+> **强制要求**: 每个城市每个职业 **必须独立查询真实薪资数据**——严禁使用参考城市乘以缩放系数批量生成。`update_salaries.py` 脚本中包含全部 134 城 × 26 职业的显式数值和来源注释。
 
 ### 3.5 前端使用
 
@@ -524,26 +528,24 @@ GPI=1.33（新加坡）→ 91.75 → round → 92
 
 ```
 missingWeight = null 子指标的权重之和
-if missingWeight == 0      → "high"   (116 座城市)
+if missingWeight == 0      → "high"   (133 座城市)
 if missingWeight < 1/3     → "medium" (0 座城市)
-if missingWeight >= 1/3    → "low"    (4 座城市)
+if missingWeight >= 1/3    → "low"    (1 座城市)
 ```
 
-**低置信度城市**: 哈瓦那 (72, 缺 Numbeo + Gallup)、蒙特哥湾 (74, 缺 Numbeo)、仰光 (110, 缺 Numbeo)、万象 (111, 缺 Numbeo)
+**低置信度城市**: 仰光 (110, 缺 Numbeo)
 
 ### 4.6 特殊安全警告
 
 | 城市 | ID | `safetyWarning` | 含义 |
 |------|---|-----------------|------|
 | 基辅 | 85 | `active_conflict` | 武装冲突中 |
-| 加拉加斯 | 66 | `extreme_instability` | 治理崩溃 |
-| 哈瓦那 | 72 | `data_blocked` | 信息封锁 |
 
 前端显示警告标识。
 
 ### 4.7 管理脚本
 
-`scripts/add-safety-v2.mjs` — 读取 4 个 data/sources/ JSON → 为 120 城计算安全指数 → 写入 cities.json
+`scripts/add-safety-v2.mjs` — 读取 4 个 data/sources/ JSON → 为 134 城计算安全指数 → 写入 cities.json
 
 ---
 
@@ -576,7 +578,7 @@ healthcareIndex = round(Σ(norm_sub × weight / totalNonNullWeight))
 
 ### 5.4 置信度
 
-与安全指数相同的规则。当前 120 城全部为 "high"（所有 4 个子指标均有数据）。
+与安全指数相同的规则。当前 134 城全部为 "high"（所有 4 个子指标均有数据）。
 
 ### 5.5 管理脚本
 
@@ -626,7 +628,7 @@ freedomIndex = round(
 | 子指标 | 权重 | 公式 | 方向 |
 |--------|------|------|------|
 | 储蓄率 | **30%** | `(income - cost×12) / income` | 越高越好 |
-| 巨无霸购买力 | **25%** | `(income / annualWorkHours) / bigMacPrice` | 越高越好 |
+| 时薪巨无霸购买力 | **25%** | `(income / annualWorkHours) / bigMacPrice` | 越高越好 |
 | 年工时反向 | **25%** | `100 - minMaxNorm(allWorkHours, hours)` | 工时越低 → 分越高 |
 | 购房年限反向 | **20%** | `100 - minMaxNorm(allYears, years)` | 年限越低 → 分越高 |
 
@@ -645,7 +647,7 @@ function minMaxNorm(values, val) {
 
 | 缺失子指标 | 触发条件 | 处理 |
 |-----------|---------|------|
-| 巨无霸购买力 (25%) | `bigMacPrice === null` 或 `annualWorkHours === null` | 权重重分配 |
+| 时薪巨无霸购买力 (25%) | `bigMacPrice === null` 或 `annualWorkHours === null` | 权重重分配 |
 | 年工时 (25%) | `annualWorkHours === null` | 权重重分配 |
 | 购房年限 (20%) | `savings ≤ 0` 或 `housePrice === null` | 权重重分配 |
 | 储蓄率 (30%) | `income ≤ 0` | 理论上不发生 |
@@ -711,12 +713,12 @@ value = round(Σ(sub.norm × sub.weight / totalWeight))
 
 `public/data/exchange-rates.json`
 
-### 9.2 支持的 25 种货币
+### 9.2 支持的 30 种货币
 
 ```
 USD EUR GBP JPY CNY HKD AUD CAD SGD INR
 THB MYR VND PHP IDR PKR EGP TRY BRL MXN
-ZAR SEK NOK CHF NZD
+ZAR SEK NOK CHF NZD DKK RUB GEL NGN COP
 ```
 
 ### 9.3 汇率基准
@@ -809,7 +811,7 @@ ppp = income / annualCost  // 倍数
 ```
 作为排行榜 Tab 使用。
 
-### 10.8 巨无霸购买力 (bigMacPower)
+### 10.8 时薪巨无霸购买力 (bigMacPower)
 
 ```javascript
 bigMacPower = (hourlyWage / bigMacPrice).toFixed(1)
@@ -966,11 +968,10 @@ cmp(a, b, lowerIsBetter = false) {
 
 | 字段 | null 城市数 | 具体城市 | 前端处理 |
 |------|-----------|---------|---------|
-| `bigMacPrice` | 8 | 德黑兰/哈瓦那/金边/仰光/万象/达卡/加德满都/乌兰巴托 | "无麦当劳" |
-| `numbeoSafetyIndex` | 4 | 哈瓦那/蒙特哥湾/仰光/万象 | 安全子权重重分配 |
-| `gallupLawOrder` | 1 | 哈瓦那 | 安全子权重重分配 |
+| `bigMacPrice` | 6 | 德黑兰/金边/仰光/达卡/加德满都/乌兰巴托 | "无麦当劳" |
+| `numbeoSafetyIndex` | 1 | 仰光 | 安全子权重重分配 |
 
-> 其他所有字段 (housePrice, airQuality, doctorsPerThousand, directFlightCities, annualWorkHours, monthlyRent, paidLeaveDays, internetSpeedMbps, 全部医疗/自由子指标) 在 120 城中均无 null。
+> 其他所有字段 (housePrice, airQuality, doctorsPerThousand, directFlightCities, annualWorkHours, monthlyRent, paidLeaveDays, internetSpeedMbps, gallupLawOrder, 全部医疗/自由子指标) 在 134 城中均无 null。
 
 ### 12.2 前端 null 处理规则
 
@@ -987,8 +988,8 @@ cmp(a, b, lowerIsBetter = false) {
 | 类型 | 字段 | 影响 |
 |------|------|------|
 | `aqiSource = "iqair"` | 8 座中国城市 | 前端可显示来源标识 |
-| `safetyWarning` | 3 座城市 | 前端显示特殊警告 |
-| `safetyConfidence = "low"` | 4 座城市 | 前端数值旁带 ⚠ 标记 |
+| `safetyWarning` | 1 座城市 | 前端显示特殊警告 |
+| `safetyConfidence = "low"` | 1 座城市 | 前端数值旁带 ⚠ 标记 |
 
 ---
 
@@ -1020,6 +1021,9 @@ cmp(a, b, lowerIsBetter = false) {
 第 4 阶段 — 修补脚本:
   └─ fix-asian-data.mjs        → 8 城 AQI 修正 + 20 城 costBudget 修正
 
+第 5 阶段 — 批量更新 (v3, 可替代第 1-4 阶段):
+  └─ batch-update-v3.mjs       → 134 城 × 26 职业完整数据批量写入
+
 附属脚本 (不修改 cities.json):
   ├─ add-climate-detail.mjs    → 修改 lib/constants.ts (CITY_CLIMATE)
   └─ translate-intros.mjs      → 生成 lib/cityIntros.ts
@@ -1029,7 +1033,7 @@ cmp(a, b, lowerIsBetter = false) {
 
 | 脚本 | 语言 | 读取 | 写入 | 说明 |
 |------|------|------|------|------|
-| `update_salaries.py` | Python | — | cities.json `.professions` | 120 城 × 20 职业薪资 |
+| `update_salaries.py` | Python | — | cities.json `.professions` | 134 城 × 26 职业薪资 |
 | `update_cost_tiers.py` | Python | — | cities.json `.costModerate/.costBudget` | 生活成本二档 |
 | `add_aqi.py` | Python | — | cities.json `.airQuality` | EPA AQI |
 | `add_doctors_data.py` | Python | — | cities.json `.doctorsPerThousand` | 医师密度 |
@@ -1039,6 +1043,7 @@ cmp(a, b, lowerIsBetter = false) {
 | `add-safety-v2.mjs` | Node | data/sources/*.json | cities.json (7 安全字段) | 安全指数 |
 | `add-healthcare-index.mjs` | Node | cities.json 子字段 | cities.json `.healthcareIndex` | 医疗指数 |
 | `add-freedom-index.mjs` | Node | cities.json 子字段 | cities.json `.freedomIndex` | 自由指数 |
+| `batch-update-v3.mjs` | Node | — | cities.json (完整数据) | v3 批量更新 134×26 |
 | `fix-asian-data.mjs` | Node | — | cities.json (AQI+cost修正) | 亚洲城市数据修正 |
 | `add-climate-detail.mjs` | Node | — | lib/constants.ts | 气候详情 |
 | `translate-intros.mjs` | Node | lib/cityIntros.ts | lib/cityIntros.ts | 翻译城市简介 |
@@ -1054,7 +1059,7 @@ cmp(a, b, lowerIsBetter = false) {
 
 **步骤**:
 
-1. **分配 ID**: 在 cities.json 中取 `max(id) + 1` = 121
+1. **分配 ID**: 在 cities.json 中取 `max(id) + 1` = 140
 2. **填写基础字段**:
    - `name`（中文）、`country`、`continent`、`currency`、`description`
    - `averageIncome`: 查 Numbeo/SalaryExpert 该城市中位收入
@@ -1069,7 +1074,7 @@ cmp(a, b, lowerIsBetter = false) {
    - `annualWorkHours`: 查 OECD/ILO 国家级数据
    - `paidLeaveDays`: 查国家劳动法
    - `internetSpeedMbps`: 查 Ookla Speedtest Global Index
-3. **填写 20 个职业薪资**: 在 `update_salaries.py` 中添加该城市的 20 条薪资，**逐个查询**
+3. **填写 26 个职业薪资**: 在 `update_salaries.py` 中添加该城市的 26 条薪资，**逐个查询**
 4. **填写医疗子指标**:
    - `hospitalBedsPerThousand`: World Bank
    - `uhcCoverageIndex`: WHO
@@ -1104,11 +1109,11 @@ cmp(a, b, lowerIsBetter = false) {
 
 1. 在 `public/data/professions.json` 中添加职业元数据 (id, name, nameZH)
 2. 在 `lib/i18n.ts` TRANSLATIONS 的 4 个 locale 中添加对应翻译 key
-3. 在 `update_salaries.py` 中为 **120 座城市** 各添加该职业的年薪数据
+3. 在 `update_salaries.py` 中为 **134 座城市** 各添加该职业的年薪数据
 4. 运行 `python scripts/update_salaries.py` 写入 cities.json
 5. 验证: `node scripts/check_data.js`（检查列表长度一致性）
 
-> **警告**: 添加职业会影响职业下拉菜单、professions.json 结构、以及所有涉及职业迭代的前端逻辑。确保所有 120 城都有该职业的数据。
+> **警告**: 添加职业会影响职业下拉菜单、professions.json 结构、以及所有涉及职业迭代的前端逻辑。确保所有 134 城都有该职业的数据。
 
 ---
 
@@ -1155,9 +1160,9 @@ cmp(a, b, lowerIsBetter = false) {
 | 3 | **美国带薪年假 = 0** | 联邦法律无规定，但实际雇主多提供 10-15 天 |
 | 4 | **汇率静态** | 不自动更新，大幅汇率变动后需手动刷新 |
 | 5 | **生活压力受偏好影响** | 因依赖用户选择的职业和消费层级，同一城市在不同用户间值不同 |
-| 6 | **气候硬编码** | 130+ 行 TypeScript 对象，更新不方便 |
-| 7 | **8 城无麦当劳** | 这些城市的巨无霸模式、生活压力指数巨无霸子项为空 |
-| 8 | **3 城安全警告** | 基辅/加拉加斯/哈瓦那有特殊情况标记 |
+| 6 | **气候硬编码** | 200+ 行 TypeScript 对象，更新不方便 |
+| 7 | **6 城无麦当劳** | 这些城市的巨无霸模式、生活压力指数巨无霸子项为空 |
+| 8 | **1 城安全警告** | 基辅有武装冲突标记 |
 | 9 | **城市描述为 AI 生成** | 可能包含不准确内容 |
 | 10 | **数据时效 2024–2025** | 经济波动可能导致数据过时 |
 
@@ -1167,6 +1172,7 @@ cmp(a, b, lowerIsBetter = false) {
 
 | 日期 | 内容 |
 |------|------|
+| 2026-06-07 | v4: 扩展至 134 城市 × 26 职业 (3,484 数据点)，新增 5 货币 (DKK/RUB/GEL/NGN/COP)，删除 5 城市 + 2 职业，新增 19 城市 + 8 职业 |
 | 2026-03-28 | v3: 数据来源文档重写为完整参考手册 |
 | 2026-03 | v2: 城市详情页 4 行分组布局，排行榜扩展至 13 Tab |
 | 2026-03 | 8 座中国城市 AQI 从 AQICN→IQAir PM2.5 年均转换 (`fix-asian-data.mjs`) |
