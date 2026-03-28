@@ -152,7 +152,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
 
         {/* Top bar */}
         <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
-          <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
+          <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
             <div className="flex items-center gap-2">
               <Link href="/"
                 className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -193,7 +193,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
             </div>
           </div>
         </div>
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+      <div className="max-w-6xl mx-auto px-4 py-4 sm:py-8">
 
         {/* Header */}
         <div className="text-center mb-6">
