@@ -347,7 +347,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
                   ? (darkMode ? "border-orange-500 bg-orange-900/30 text-orange-300" : "border-orange-400 bg-orange-50 text-orange-700")
                   : (darkMode ? "border-amber-500 bg-amber-900/30 text-amber-300" : "border-amber-400 bg-amber-50 text-amber-700")
             }`}>
-              <p className="font-bold text-xs uppercase mb-1">{t("safetyWarningTitle")}</p>
+              <p className="font-bold text-xs mb-1">{t("safetyWarningTitle")}</p>
               <p className="leading-snug">{
                 city.safetyWarning === "active_conflict" ? t("safetyWarningConflict")
                   : city.safetyWarning === "extreme_instability" ? t("safetyWarningInstability")
