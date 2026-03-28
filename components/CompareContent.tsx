@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { City, CostTier, ClimateInfo } from "@/lib/types";
+import type { City, CostTier, ClimateInfo, IncomeMode } from "@/lib/types";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES, CITY_CLIMATE } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, PROFESSION_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { getCityClimate, getAqiLabel, getClimateLabel } from "@/lib/clientUtils";
 import { CompareCtx, type CompareContextValue } from "@/lib/CompareContext";
 import { useSettings } from "@/hooks/useSettings";
+import { computeNetIncome } from "@/lib/taxUtils";
 import KeyInsights from "./KeyInsights";
 
 interface Props {
@@ -21,7 +22,7 @@ interface Props {
 export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
   const s = useSettings();
   const router = useRouter();
-  const { locale, darkMode, t, formatCurrency, costTier, profession, convertAmount } = s;
+  const { locale, darkMode, t, formatCurrency, costTier, profession, convertAmount, incomeMode } = s;
 
   if (!s.ready) return null;
 
@@ -46,8 +47,8 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
   const fc = formatCurrency;
   const costA = getCost(cityA);
   const costB = getCost(cityB);
-  const incomeA = activeProfession ? cityA.professions[activeProfession] || 0 : cityA.averageIncome;
-  const incomeB = activeProfession ? cityB.professions[activeProfession] || 0 : cityB.averageIncome;
+  const incomeA = computeNetIncome(activeProfession ? cityA.professions[activeProfession] || 0 : cityA.averageIncome, cityA.country, cityA.id, incomeMode).netUSD;
+  const incomeB = computeNetIncome(activeProfession ? cityB.professions[activeProfession] || 0 : cityB.averageIncome, cityB.country, cityB.id, incomeMode).netUSD;
   const savingsA = incomeA - costA * 12;
   const savingsB = incomeB - costB * 12;
   const yearsA = cityA.housePrice !== null && savingsA > 0 ? ((cityA.housePrice * 70) / savingsA).toFixed(1) : "N/A";
@@ -88,7 +89,7 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
 
   // Build a CompareContext so KeyInsights can work
   const ctxValue: CompareContextValue = {
-    darkMode, locale, costTier, baseCityId: String(idA), selectedProfession: activeProfession,
+    darkMode, locale, costTier, incomeMode, baseCityId: String(idA), selectedProfession: activeProfession,
     t, getCityLabel: (city: City) => CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name,
     getCountryLabel: (c: string) => COUNTRY_TRANSLATIONS[c]?.[locale] || c,
     getContinentLabel: (c: string) => c,
@@ -134,6 +135,11 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
               {(["moderate", "budget"] as const).map(tier => (
                 <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
               ))}
+            </select>
+            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+              <option value="gross">{t("incomeModeGross")}</option>
+              <option value="net">{t("incomeModeNet")}</option>
+              <option value="expatNet">{t("incomeModeExpatNet")}</option>
             </select>
             <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
               {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (

@@ -43,6 +43,7 @@ export interface City {
 
 export type CostTier = "moderate" | "budget";
 export type Locale = "zh" | "en" | "ja" | "es";
+export type IncomeMode = "gross" | "net" | "expatNet";
 export type ClimateType =
   | "tropical"
   | "temperate"

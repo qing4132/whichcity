@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import type { City, Locale, ExchangeRates, CostTier } from "@/lib/types";
+import type { City, Locale, ExchangeRates, CostTier, IncomeMode } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { computeLifePressure } from "@/lib/clientUtils";
+import { computeNetIncome, computeAllNetIncomes } from "@/lib/taxUtils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -22,6 +23,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
   const [selectedProfession, setSelectedProfession] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [costTier, setCostTier] = useState<CostTier>("moderate");
+  const [incomeMode, setIncomeMode] = useState<IncomeMode>("gross");
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
   const [tab, setTab] = useState<Tab>("savings");
 
@@ -40,6 +42,8 @@ export default function RankingContent({ cities }: RankingContentProps) {
     const savedTier = localStorage.getItem("costTier");
     if (savedTier && ["moderate", "budget"].includes(savedTier)) setCostTier(savedTier as CostTier);
     else setCostTier("moderate");
+    const savedIM = localStorage.getItem("incomeMode");
+    if (savedIM && ["gross", "net", "expatNet"].includes(savedIM)) setIncomeMode(savedIM as IncomeMode);
     fetch("/data/exchange-rates.json").then(r => r.json()).then(setExchangeRates).catch(() => {});
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [professions.length]);
@@ -73,7 +77,8 @@ export default function RankingContent({ cities }: RankingContentProps) {
 
   // Compute rankings
   const ranked = cities.map(city => {
-    const income = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const grossIncome = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const income = computeNetIncome(grossIncome, city.country, city.id, incomeMode).netUSD;
     const costKey = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
     const costTierField = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
     const annualCost = (city[costKey] as number) * 12;
@@ -177,6 +182,12 @@ export default function RankingContent({ cities }: RankingContentProps) {
                 {(["moderate", "budget"] as const).map(tier => (
                   <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
                 ))}
+              </select>
+              <select value={incomeMode} onChange={e => { const v = e.target.value as IncomeMode; setIncomeMode(v); localStorage.setItem("incomeMode", v); }}
+                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
+                <option value="gross">{t("incomeModeGross")}</option>
+                <option value="net">{t("incomeModeNet")}</option>
+                <option value="expatNet">{t("incomeModeExpatNet")}</option>
               </select>
               <select value={locale} onChange={e => { setLocale(e.target.value as Locale); localStorage.setItem("locale", e.target.value); }}
                 className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>

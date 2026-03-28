@@ -3,17 +3,21 @@
 import { useState, useRef, useCallback } from "react";
 import { useCompare } from "@/lib/CompareContext";
 import type { City } from "@/lib/types";
+import { computeNetIncome } from "@/lib/taxUtils";
 
 interface ShareCardProps {
   comparisonData: City[];
 }
 
 export default function ShareCard({ comparisonData }: ShareCardProps) {
-  const { darkMode, selectedProfession, t, getCityLabel, getProfessionLabel, formatCurrency, getCost } = useCompare();
+  const { darkMode, selectedProfession, incomeMode, t, getCityLabel, getProfessionLabel, formatCurrency, getCost } = useCompare();
   const [cardDataUrl, setCardDataUrl] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const getIncome = useCallback((city: City) => selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome, [selectedProfession]);
+  const getIncome = useCallback((city: City) => {
+    const gross = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    return computeNetIncome(gross, city.country, city.id, incomeMode).netUSD;
+  }, [selectedProfession, incomeMode]);
 
   const generateCard = useCallback(() => {
     const canvas = canvasRef.current;

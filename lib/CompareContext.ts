@@ -1,12 +1,13 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import type { City, Locale, CostTier, ClimateInfo } from "./types";
+import type { City, Locale, CostTier, ClimateInfo, IncomeMode } from "./types";
 
 export interface CompareContextValue {
   darkMode: boolean;
   locale: Locale;
   costTier: CostTier;
+  incomeMode: IncomeMode;
   baseCityId: string;
   selectedProfession: string;
   t: (key: string, params?: Record<string, string | number>) => string;
