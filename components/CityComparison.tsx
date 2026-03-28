@@ -274,12 +274,11 @@ export default function CityComparison() {
 
   return (
     <CompareCtx.Provider value={ctxValue}>
-      <div className={`min-h-screen py-4 sm:py-8 px-3 sm:px-4 transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
-        <div className="max-w-6xl mx-auto">
+      <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
 
           {/* ── Top Bar (switchers) ── */}
-          <div className={`sticky top-0 z-50 border-b px-4 py-2.5 -mx-3 sm:-mx-4 -mt-4 sm:-mt-8 mb-6 sm:mb-8 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
-            <div className="max-w-6xl mx-auto flex items-center justify-between gap-2 flex-wrap">
+          <div className={`sticky top-0 z-50 max-w-6xl mx-auto border-b px-4 py-2.5 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
+            <div className="flex items-center justify-between gap-2 flex-wrap">
               <div className="flex items-center gap-2">
                 <Link href="/"
                   className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -322,6 +321,7 @@ export default function CityComparison() {
               </div>
             </div>
           </div>
+        <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
 
           {/* ── Header ── */}
           <div className="text-center mb-8 sm:mb-10">
