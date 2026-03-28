@@ -8,7 +8,7 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { computeLifePressure, getCityClimate, getCityEnName, getClimateLabel } from "@/lib/clientUtils";
 import { CITY_INTROS } from "@/lib/cityIntros";
-import { CITY_LANGUAGES } from "@/lib/cityLanguages";
+import { CITY_LANGUAGES, LANGUAGE_NAME_TRANSLATIONS } from "@/lib/cityLanguages";
 import { useSettings } from "@/hooks/useSettings";
 
 interface Props {
@@ -361,8 +361,9 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
           </div>
           {(() => {
             const langs = CITY_LANGUAGES[id] || [];
-            const show = langs.slice(0, 3);
-            const more = langs.length - show.length;
+            const localized = langs.map(l => LANGUAGE_NAME_TRANSLATIONS[l]?.[locale] || l);
+            const show = localized.slice(0, 3);
+            const more = localized.length - show.length;
             return langs.length > 0 ? (
               <div className={`rounded-xl border px-4 py-3 text-sm max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
                 <p className={`font-bold text-xs mb-1 ${subCls}`}>🗣️ {t("officialLanguages")}</p>
