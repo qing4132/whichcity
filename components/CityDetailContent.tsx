@@ -368,6 +368,14 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
             <h1 className={`text-3xl sm:text-4xl font-extrabold ${headingCls}`}>{cityName}</h1>
             <p className={`text-lg ${subCls}`}>{countryName}</p>
           </div>
+          {incomeMode !== "gross" && (
+            <div className={`rounded-xl border px-4 py-3 text-sm max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
+              <p className={`font-bold text-xs mb-1 ${subCls}`}>{t("effectiveTaxRate", { rate: (taxResult.effectiveRate * 100).toFixed(1) })}</p>
+              <p className={`leading-snug font-medium ${headingCls}`}>
+                {taxResult.hasExpatScheme ? t("expatSchemeNote", { scheme: getExpatSchemeName(city.country) }) : t("taxDisclaimer")}
+              </p>
+            </div>
+          )}
           {(() => {
             const langs = CITY_LANGUAGES[id] || [];
             const localized = langs.map(l => LANGUAGE_NAME_TRANSLATIONS[l]?.[locale] || l);
@@ -421,17 +429,6 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
           </div>
         </div>
       </section>
-
-      {/* Tax info banner */}
-      {incomeMode !== "gross" && (
-        <div className={`text-xs rounded-lg px-3 py-1.5 mb-3 flex items-center gap-2 flex-wrap ${
-          darkMode ? "bg-slate-800/60 text-slate-400 border border-slate-700" : "bg-slate-100 text-slate-500 border border-slate-200"
-        }`}>
-          <span>{t("effectiveTaxRate", { rate: (taxResult.effectiveRate * 100).toFixed(1) })}</span>
-          {taxResult.hasExpatScheme && <span>· {t("expatSchemeNote", { scheme: getExpatSchemeName(city.country) })}</span>}
-          <span className="ml-auto opacity-70">{t("taxDisclaimer")}</span>
-        </div>
-      )}
 
       {/* Row 2: 工作 + 环境与连接 (2 grouped cards, 3 data each) */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
