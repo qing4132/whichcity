@@ -137,7 +137,7 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
         {indices.map((idx) => (
           <div key={idx.key}>
             <div className={`${baseCard} ${cardBorder(idx.tier)} flex flex-col items-center justify-between rounded-b-none`}>
-              <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>
+              <p className={`text-xs font-semibold tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>
                 {idx.label}
               </p>
               <p className={`text-xl font-extrabold my-1 ${cardValCls(idx.tier)}`}>
@@ -372,7 +372,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
               { label: t("yearlySavings"), value: formatCurrency(savings), sub: `#${rankHigher(allSavings, savings)} / ${n}`, tier: tierHigh(allSavings, savings) },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
-                <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+                <p className={`text-xs font-semibold tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
                 <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
                 <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
               </div>
@@ -387,7 +387,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
               { label: t("monthlyRent"), value: city.monthlyRent !== null ? formatCurrency(city.monthlyRent) : "\u2014", sub: city.monthlyRent !== null ? `#${rankLower(allRent, city.monthlyRent)} / ${n}` : `#${n} / ${n}`, tier: city.monthlyRent !== null ? tierLow(allRent, city.monthlyRent) : "mid" as Tier },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
-                <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+                <p className={`text-xs font-semibold tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
                 <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
                 <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
               </div>
@@ -406,7 +406,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
               { label: t("paidLeaveDays"), value: city.paidLeaveDays !== null ? `${city.paidLeaveDays} ${t("paidLeaveDaysUnit")}` : "—", sub: city.paidLeaveDays !== null ? `#${rankHigher(allLeave, city.paidLeaveDays)} / ${n}` : `#${n} / ${n}`, tier: city.paidLeaveDays !== null ? tierHigh(allLeave, city.paidLeaveDays) : "mid" as Tier },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
-                <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+                <p className={`text-xs font-semibold tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
                 <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
                 <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
               </div>
@@ -421,7 +421,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
               { label: t("directFlights"), value: city.directFlightCities !== null ? String(city.directFlightCities) : "—", sub: city.directFlightCities !== null ? `#${rankHigher(allFlights, city.directFlightCities)} / ${n}` : `#${n} / ${n}`, tier: city.directFlightCities !== null ? tierHigh(allFlights, city.directFlightCities) : "mid" as Tier },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
-                <p className={`text-xs font-semibold uppercase tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
+                <p className={`text-xs font-semibold tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
                 <p className={`text-xl font-extrabold my-1 ${cardValCls(stat.tier)}`}>{stat.value}</p>
                 <p className={`text-xs h-8 flex items-center justify-center text-center ${subCls}`}>{stat.sub}</p>
               </div>
@@ -481,7 +481,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
               [t("sunshine"), `${Math.round(climate.sunshineHours)} ${t("unitH")}`],
             ].map(([label, val]) => (
               <div key={label} className="text-center">
-                <p className={`text-xs font-semibold uppercase tracking-wide mb-1 ${subCls}`}>{label}</p>
+                <p className={`text-xs font-semibold tracking-wide mb-1 ${subCls}`}>{label}</p>
                 <p className={`text-lg font-bold ${headingCls}`}>{val}</p>
               </div>
             ))}
