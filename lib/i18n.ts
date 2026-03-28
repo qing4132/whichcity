@@ -91,7 +91,7 @@ export const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     taxDisclaimer: "税后为简化估算，仅供参考",
     taxNoData: "税后数据不可用",
     taxFreeNote: "该城市无个人所得税",
-    expatSchemeNote: "适用 {scheme}",
+    expatSchemeNote: "{scheme} 适用中",
     effectiveTaxRate: "参考综合税率",
     climate: "气候",
     climateCompare: "气候对比",
