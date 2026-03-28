@@ -197,7 +197,7 @@ safetyIndex = Numbeo Safety Index × 0.35
 | 20% GPI 转换分 | Vision of Humanity GPI 2025 | 1-5 → 0-100 转换 |
 | 15% 盖洛普法治 | Gallup Global Law & Order 2024 | 0-100，直接使用 |
 
-**置信度**：当任一数据源缺失时标记为 `safetyConfidence: "low"`，前端在数值后显示 `*` 号。当前仅 1 座城市（仰光）为 low。
+**置信度**：基于缺失子指标权重和判定 high/medium/low 三档。前端仅在 `low` 时显示 `⚠ 可信度低` 标注，`medium` 不做特殊显示。当前仅 1 座城市（仰光）为 low。
 
 **子指标存储**：v2 起，4 项子指标（`numbeoSafetyIndex`, `homicideRateInv`, `gpiScoreInv`, `gallupLawOrder`）已直接存入 `cities.json`，可在城市详情页安全指数卡片中展开查看各子项得分与权重。
 
@@ -228,7 +228,8 @@ safetyIndex = Numbeo Safety Index × 0.35
 ### 5b.3 特殊处理
 
 - `bigMacPrice = null` 的城市（6 座无麦当劳）：巨无霸权重重新分配至剩余 3 项（40%/33%/27%）
-- `savings ≤ 0` 的城市：购房年限 = Infinity，归一化后子分 = 0
+- `savings ≤ 0` 或 `housePrice = null` 的城市：购房年限无法计算，直接给最差分（norm = 0），**参与加权**，不跳过
+- `annualWorkHours = null` 的城市：工时权重重新分配至剩余项
 
 ### 5b.4 数据依赖
 

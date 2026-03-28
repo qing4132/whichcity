@@ -127,11 +127,11 @@ export function computeLifePressure(
     missingWeight += 0.25;
   }
 
-  // Years to home inverse (20%)
+  // Years to home inverse (20%) — N/A (unaffordable) = worst score
   if (yearsToHome !== null && isFinite(yearsToHome)) {
     subs.push({ norm: 100 - minMaxNorm(allYearsToHome, yearsToHome), w: 0.20 });
   } else {
-    missingWeight += 0.20;
+    subs.push({ norm: 0, w: 0.20 });
   }
 
   // Confidence

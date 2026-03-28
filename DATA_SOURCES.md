@@ -529,11 +529,12 @@ GPI=1.33（新加坡）→ 91.75 → round → 92
 ```
 missingWeight = null 子指标的权重之和
 if missingWeight == 0      → "high"   (133 座城市)
-if missingWeight < 1/3     → "medium" (0 座城市)
-if missingWeight >= 1/3    → "low"    (1 座城市)
+if missingWeight < 1/3     → "medium" (0 座城市)  — 前端不做特殊显示
+if missingWeight >= 1/3    → "low"    (1 座城市)  — 前端显示 "⚠ 可信度低"
 ```
 
 **低置信度城市**: 仰光 (110, 缺 Numbeo)
+**子指标缺失**: 缺失的子指标显示 "—"，不附加星号
 
 ### 4.6 特殊安全警告
 
@@ -649,23 +650,25 @@ function minMaxNorm(values, val) {
 |-----------|---------|------|
 | 时薪巨无霸购买力 (25%) | `bigMacPrice === null` 或 `annualWorkHours === null` | 权重重分配 |
 | 年工时 (25%) | `annualWorkHours === null` | 权重重分配 |
-| 购房年限 (20%) | `savings ≤ 0` 或 `housePrice === null` | 权重重分配 |
+| 购房年限 (20%) | `savings ≤ 0` 或 `housePrice === null` | **给最差分 (norm=0)**，正常参与加权 |
 | 储蓄率 (30%) | `income ≤ 0` | 理论上不发生 |
 
 ### 7.6 置信度
 
 ```
 missingWeight == 0      → "high"
-missingWeight < 0.333   → "medium"
-missingWeight >= 0.333  → "low"
+missingWeight < 0.333   → "medium"  — 前端不做特殊显示
+missingWeight >= 0.333  → "low"    — 前端显示 "⚠ 可信度低"
 ```
+
+> 注意：购房年限 N/A 不计入 missingWeight（给最差分而非跳过），因此只有巨无霸 + 工时同时缺失才会达到 low。
 
 ### 7.7 最终值
 
 ```javascript
 totalWeight = sum(non-null sub weights)
 value = round(Σ(sub.norm × sub.weight / totalWeight))
-// 范围: 0-100, 越高越轻松
+// 范围: 0-100, 越高压力越大
 ```
 
 ---
@@ -989,7 +992,7 @@ cmp(a, b, lowerIsBetter = false) {
 |------|------|------|
 | `aqiSource = "iqair"` | 8 座中国城市 | 前端可显示来源标识 |
 | `safetyWarning` | 1 座城市 | 前端显示特殊警告 |
-| `safetyConfidence = "low"` | 1 座城市 | 前端数值旁带 ⚠ 标记 |
+| `safetyConfidence = "low"` | 1 座城市 | 前端数值旁显示 `⚠ 可信度低` |
 
 ---
 
