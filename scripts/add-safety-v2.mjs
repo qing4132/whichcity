@@ -51,16 +51,20 @@ const CITY_EN_NAMES = {
   97: "Portland", 98: "San Diego", 99: "Las Vegas", 100: "Tampa",
   101: "Guangzhou", 102: "Shenzhen", 103: "Chengdu", 104: "Hangzhou",
   105: "Chongqing", 106: "Osaka", 107: "Nagoya", 108: "Incheon",
-  109: "Phnom Penh", 110: "Yangon", 111: "Vientiane", 112: "Chiang Mai",
-  113: "Davao", 114: "Dhaka", 115: "Colombo", 116: "Kathmandu",
+  109: "Phnom Penh", 110: "Yangon",
+  112: "Chiang Mai",
+  114: "Dhaka", 115: "Colombo", 116: "Kathmandu",
   117: "Almaty", 118: "Tashkent", 119: "Baku", 120: "Ulaanbaatar",
+  121: "Stockholm", 122: "Copenhagen", 123: "Helsinki", 124: "Oslo",
+  125: "Houston", 126: "Philadelphia", 127: "Calgary", 128: "Perth",
+  129: "Medellín", 130: "Tbilisi", 131: "Lagos", 132: "Moscow",
+  133: "San Jose US", 134: "Irvine", 135: "Ottawa",
+  136: "Luxembourg City", 137: "Tallinn", 138: "Fukuoka", 139: "Yokohama",
 };
 
 // ─── Special warnings for specific cities ─────────────────────────
 const SAFETY_WARNINGS = {
   85: "active_conflict",       // Kyiv — active armed conflict
-  66: "extreme_instability",   // Caracas — collapsed governance
-  72: "data_blocked",          // Havana — information blockade
 };
 
 // ─── Load source data ─────────────────────────────────────────────
