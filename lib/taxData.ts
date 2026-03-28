@@ -464,7 +464,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     standardDeduction: 5532, // general tax credit approximation
     social: [], // included in Box 1 rates
     usdToLocal: 0.92,
-    expatScheme: { name: "30% Ruling", type: "exemption_pct", exemptionPct: 0.30 },
+    expatScheme: { name: "expatScheme30Ruling", type: "exemption_pct", exemptionPct: 0.30 },
     confidence: "high",
   },
   "比利时": {
@@ -576,7 +576,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     standardDeduction: 5550,
     social: [{ name: "SS", rate: 0.0635, annualBaseCap: 56844 }],
     usdToLocal: 0.92,
-    expatScheme: { name: "Beckham Law", type: "flat_rate", flatRate: 0.24, incomeThreshold: 600000, rateAboveThreshold: 0.47 },
+    expatScheme: { name: "expatSchemeBeckham", type: "flat_rate", flatRate: 0.24, incomeThreshold: 600000, rateAboveThreshold: 0.47 },
     confidence: "high",
   },
   "意大利": {
@@ -588,7 +588,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     standardDeduction: 0,
     social: [{ name: "INPS", rate: 0.0919 }],
     usdToLocal: 0.92,
-    expatScheme: { name: "Impatriati", type: "exemption_pct", exemptionPct: 0.50 },
+    expatScheme: { name: "expatSchemeImpatriati", type: "exemption_pct", exemptionPct: 0.50 },
     confidence: "high",
   },
   "葡萄牙": {
@@ -606,7 +606,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     standardDeduction: 4104,
     social: [{ name: "SS", rate: 0.11 }],
     usdToLocal: 0.92,
-    expatScheme: { name: "NHR 2.0", type: "flat_rate", flatRate: 0.20 },
+    expatScheme: { name: "expatSchemeNHR", type: "flat_rate", flatRate: 0.20 },
     confidence: "high",
   },
   "希腊": {
@@ -797,7 +797,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
       { name: "employment", rate: 0.009 },
     ],
     usdToLocal: 1350,
-    expatScheme: { name: "19% Flat Rate", type: "flat_rate", flatRate: 0.19 },
+    expatScheme: { name: "expatScheme19Flat", type: "flat_rate", flatRate: 0.19 },
     confidence: "high",
   },
   "台湾": {
@@ -861,7 +861,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
       { name: "CPF", rate: 0.20, annualBaseCap: 6800 * 12 },
     ],
     usdToLocal: 1.34,
-    expatScheme: { name: "CPF Exemption", type: "no_social" },
+    expatScheme: { name: "expatSchemeCPF", type: "no_social" },
     confidence: "high",
   },
   "泰国": {
