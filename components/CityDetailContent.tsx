@@ -370,9 +370,9 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
           </div>
           {incomeMode !== "gross" && (
             <div className={`rounded-xl border px-4 py-3 text-sm max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
-              <p className={`font-bold text-xs mb-1 ${subCls}`}>{t("effectiveTaxRate", { rate: (taxResult.effectiveRate * 100).toFixed(1) })}</p>
+              <p className={`font-bold text-xs mb-1 ${subCls}`}>{t("effectiveTaxRate")}</p>
               <p className={`leading-snug font-medium ${headingCls}`}>
-                {taxResult.hasExpatScheme ? t("expatSchemeNote", { scheme: getExpatSchemeName(city.country) }) : t("taxDisclaimer")}
+                ~{(taxResult.effectiveRate * 100).toFixed(1)}%{taxResult.hasExpatScheme && ` · ${t("expatSchemeNote", { scheme: getExpatSchemeName(city.country) })}`}
               </p>
             </div>
           )}
