@@ -167,12 +167,22 @@ export function computeNetIncome(
   const netUSD = netLocal / tax.usdToLocal;
   const effectiveRate = grossUSD > 0 ? 1 - (netUSD / grossUSD) : 0;
 
-  return {
+  const expatResult: NetIncomeResult = {
     netUSD: Math.round(netUSD),
     effectiveRate: Math.max(0, Math.min(effectiveRate, 1)),
     confidence: tax.confidence,
     hasExpatScheme,
   };
+
+  // Expat schemes are optional — if normal net is better, use that instead
+  if (isExpat && hasExpatScheme) {
+    const normalResult = computeNetIncome(grossUSD, country, cityId, "net");
+    if (normalResult.netUSD > expatResult.netUSD) {
+      return { ...normalResult, hasExpatScheme: false };
+    }
+  }
+
+  return expatResult;
 }
 
 /* ── Batch helper: compute net income for an array of cities ── */
