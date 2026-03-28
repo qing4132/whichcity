@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import type { Locale, CostTier, ExchangeRates } from "@/lib/types";
+import type { Locale, CostTier, ExchangeRates, IncomeMode } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
 
 /** Lightweight settings hook for sub-pages (city detail, compare).
@@ -12,6 +12,7 @@ export function useSettings() {
   const [currency, setCurrencyState] = useState("USD");
   const [costTier, setCostTierState] = useState<CostTier>("moderate");
   const [profession, setProfessionState] = useState("");
+  const [incomeMode, setIncomeModeState] = useState<IncomeMode>("gross");
   const [rates, setRates] = useState<ExchangeRates | null>(null);
   const [ready, setReady] = useState(false);
 
@@ -27,6 +28,8 @@ export function useSettings() {
     else setCostTierState("moderate");
     const prof = localStorage.getItem("selectedProfession");
     if (prof) setProfessionState(prof);
+    const im = localStorage.getItem("incomeMode");
+    if (im && ["gross", "net", "expatNet"].includes(im)) setIncomeModeState(im as IncomeMode);
 
     fetch("/data/exchange-rates.json")
       .then((r) => r.json())
@@ -59,6 +62,11 @@ export function useSettings() {
   const setProfession = useCallback((p: string) => {
     setProfessionState(p);
     localStorage.setItem("selectedProfession", p);
+  }, []);
+
+  const setIncomeMode = useCallback((m: IncomeMode) => {
+    setIncomeModeState(m);
+    localStorage.setItem("incomeMode", m);
   }, []);
 
   const getProfessionLabel = useCallback(
@@ -111,6 +119,8 @@ export function useSettings() {
     setCostTier,
     profession,
     setProfession,
+    incomeMode,
+    setIncomeMode,
     getProfessionLabel,
     t,
     formatCurrency,

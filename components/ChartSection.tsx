@@ -5,6 +5,7 @@ import {
 } from "recharts";
 import { useCompare } from "@/lib/CompareContext";
 import type { City } from "@/lib/types";
+import { computeNetIncome } from "@/lib/taxUtils";
 
 interface ChartSectionProps {
   comparisonData: City[];
@@ -12,7 +13,7 @@ interface ChartSectionProps {
 
 export default function ChartSection({ comparisonData }: ChartSectionProps) {
   const ctx = useCompare();
-  const { darkMode, selectedProfession, t, getCityLabel, convertAmount, currencySymbol, formatCurrency, getCost, getClimate } = ctx;
+  const { darkMode, selectedProfession, incomeMode, t, getCityLabel, convertAmount, currencySymbol, formatCurrency, getCost, getClimate } = ctx;
 
   const fmtYAxis = (value: number): string => {
     const converted = convertAmount(value);
@@ -23,7 +24,8 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
   };
 
   const chartData = comparisonData.map((city) => {
-    const salary = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const grossSalary = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const salary = computeNetIncome(grossSalary, city.country, city.id, incomeMode).netUSD;
     const cityCost = getCost(city);
 
     return {

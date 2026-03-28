@@ -3,6 +3,7 @@
 import { useCompare } from "@/lib/CompareContext";
 import { CITY_FLAG_EMOJIS } from "@/lib/constants";
 import type { City } from "@/lib/types";
+import { computeNetIncome } from "@/lib/taxUtils";
 
 interface CityCardProps {
   city: City;
@@ -14,12 +15,13 @@ interface CityCardProps {
 export default function CityCard({ city, isBase, baseCity, onClick }: CityCardProps) {
   const ctx = useCompare();
   const {
-    costTier, selectedProfession,
+    costTier, selectedProfession, incomeMode,
     t, getCityLabel, getCountryLabel, getContinentLabel, getProfessionLabel,
     formatCurrency, formatPrice, getCost, getClimate, getAqiLevel,
   } = ctx;
 
-  const salary = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+  const grossSalary = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+  const salary = computeNetIncome(grossSalary, city.country, city.id, incomeMode).netUSD;
   const cityCost = getCost(city);
   const savings = salary - cityCost * 12;
   const climate = getClimate(city);

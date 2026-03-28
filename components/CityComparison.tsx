@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import type { City, CostTier, Locale, ClimateInfo, ExchangeRates } from "@/lib/types";
+import type { City, CostTier, Locale, ClimateInfo, ExchangeRates, IncomeMode } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, CONTINENT_TRANSLATIONS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES, CITY_CLIMATE, CITY_FLAG_EMOJIS, REGIONS, REGION_LABELS } from "@/lib/constants";
 import { CompareCtx, type CompareContextValue } from "@/lib/CompareContext";
@@ -23,6 +23,7 @@ export default function CityComparison() {
   const [baseCityId, setBaseCityId] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [costTier, setCostTier] = useState<CostTier>("moderate");
+  const [incomeMode, setIncomeMode] = useState<IncomeMode>("gross");
   const [searchTerm, setSearchTerm] = useState("");
   const [windowWidth, setWindowWidth] = useState(1200);
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
@@ -52,6 +53,9 @@ export default function CityComparison() {
     const savedTier = url.tier || localStorage.getItem("costTier");
     if (savedTier && ["moderate", "budget"].includes(savedTier)) setCostTier(savedTier as CostTier);
     else setCostTier("moderate");
+
+    const savedIM = localStorage.getItem("incomeMode");
+    if (savedIM && ["gross", "net", "expatNet"].includes(savedIM)) setIncomeMode(savedIM as IncomeMode);
 
     const fetchData = async () => {
       try {
@@ -255,7 +259,7 @@ export default function CityComparison() {
   const currencySymbol = exchangeRates?.symbols[selectedCurrency] || '$';
 
   const ctxValue: CompareContextValue = {
-    darkMode, locale, costTier, baseCityId, selectedProfession,
+    darkMode, locale, costTier, incomeMode, baseCityId, selectedProfession,
     t, getCityLabel, getCountryLabel, getContinentLabel, getProfessionLabel,
     convertAmount, currencySymbol, formatCurrency, formatPrice, getCost, getClimate, getAqiLevel,
   };
@@ -303,6 +307,12 @@ export default function CityComparison() {
                   {(["moderate", "budget"] as const).map(tier => (
                     <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
                   ))}
+                </select>
+                <select value={incomeMode} onChange={e => { const v = e.target.value as IncomeMode; setIncomeMode(v); localStorage.setItem("incomeMode", v); }}
+                  className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
+                  <option value="gross">{t("incomeModeGross")}</option>
+                  <option value="net">{t("incomeModeNet")}</option>
+                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
                 </select>
                 <select value={locale} onChange={e => setLocale(e.target.value as Locale)}
                   className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>

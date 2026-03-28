@@ -2,6 +2,7 @@
 
 import { useCompare } from "@/lib/CompareContext";
 import type { City } from "@/lib/types";
+import { computeNetIncome } from "@/lib/taxUtils";
 
 interface KeyInsightsProps {
   comparisonData: City[];
@@ -9,10 +10,11 @@ interface KeyInsightsProps {
 
 export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
   const ctx = useCompare();
-  const { darkMode, baseCityId, selectedProfession, t, getCityLabel, formatCurrency, getCost, getAqiLevel } = ctx;
+  const { darkMode, baseCityId, selectedProfession, incomeMode, t, getCityLabel, formatCurrency, getCost, getAqiLevel } = ctx;
 
   const withMetrics = comparisonData.map((city) => {
-    const income = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const grossIncome = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const income = computeNetIncome(grossIncome, city.country, city.id, incomeMode).netUSD;
     const annualCost = getCost(city) * 12;
     const savings = income - annualCost;
     const savingsRate = income > 0 ? (savings / income) * 100 : 0;

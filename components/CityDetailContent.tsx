@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { City, CostTier } from "@/lib/types";
+import type { City, CostTier, IncomeMode } from "@/lib/types";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
@@ -10,6 +10,7 @@ import { computeLifePressure, getCityClimate, getCityEnName, getClimateLabel } f
 import { CITY_INTROS } from "@/lib/cityIntros";
 import { CITY_LANGUAGES, LANGUAGE_NAME_TRANSLATIONS } from "@/lib/cityLanguages";
 import { useSettings } from "@/hooks/useSettings";
+import { computeNetIncome, computeAllNetIncomes, getExpatSchemeName } from "@/lib/taxUtils";
 
 interface Props {
   city: City;
@@ -167,7 +168,7 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
 export default function CityDetailContent({ city, similarIds, slug, allCities }: Props) {
   const s = useSettings();
   const router = useRouter();
-  const { locale, darkMode, t, formatCurrency, costTier, profession } = s;
+  const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode } = s;
 
   if (!s.ready) return null;
 
@@ -179,7 +180,9 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
 
   const professions = city.professions ? Object.keys(city.professions) : [];
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
-  const income = activeProfession ? city.professions[activeProfession] || 0 : city.averageIncome;
+  const grossIncome = activeProfession ? city.professions[activeProfession] || 0 : city.averageIncome;
+  const taxResult = computeNetIncome(grossIncome, city.country, city.id, incomeMode);
+  const income = taxResult.netUSD;
 
   const tierCost = city[TIER_KEYS.find((tk) => tk.key === costTier)!.field];
   const annualExpense = tierCost * 12;
@@ -198,7 +201,8 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
     const idx = sorted.findIndex((v) => v >= val);
     return idx === -1 ? 1 : idx / sorted.length;
   };
-  const allIncomes = allCities.map((c) => activeProfession ? c.professions[activeProfession] || 0 : c.averageIncome);
+  const allGrossIncomes = allCities.map((c) => activeProfession ? c.professions[activeProfession] || 0 : c.averageIncome);
+  const allIncomes = computeAllNetIncomes(allCities, allGrossIncomes, incomeMode);
   const allCosts = allCities.map((c) => c[TIER_KEYS.find((tk) => tk.key === costTier)!.field]);
   const allSavings = allCities.map((c, i) => allIncomes[i] - allCosts[i] * 12);
   const nn = (arr: (number | null)[]): number[] => arr.filter((v): v is number => v !== null);
@@ -316,6 +320,11 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
                 <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
               ))}
             </select>
+            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+              <option value="gross">{t("incomeModeGross")}</option>
+              <option value="net">{t("incomeModeNet")}</option>
+              <option value="expatNet">{t("incomeModeExpatNet")}</option>
+            </select>
             <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
               {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
                 <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
@@ -412,6 +421,17 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
           </div>
         </div>
       </section>
+
+      {/* Tax info banner */}
+      {incomeMode !== "gross" && (
+        <div className={`text-xs rounded-lg px-3 py-1.5 mb-3 flex items-center gap-2 flex-wrap ${
+          darkMode ? "bg-slate-800/60 text-slate-400 border border-slate-700" : "bg-slate-100 text-slate-500 border border-slate-200"
+        }`}>
+          <span>{t("effectiveTaxRate", { rate: (taxResult.effectiveRate * 100).toFixed(1) })}</span>
+          {taxResult.hasExpatScheme && <span>· {t("expatSchemeNote", { scheme: getExpatSchemeName(city.country) })}</span>}
+          <span className="ml-auto opacity-70">{t("taxDisclaimer")}</span>
+        </div>
+      )}
 
       {/* Row 2: 工作 + 环境与连接 (2 grouped cards, 3 data each) */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
@@ -520,10 +540,12 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
             const pair = [slug, otherSlug].sort().join("-vs-");
 
             // Find the dimension where the other city beats this one by the largest margin
+            const otherGross = activeProfession ? other.professions[activeProfession] || 0 : other.averageIncome;
+            const otherIncome = computeNetIncome(otherGross, other.country, other.id, incomeMode).netUSD;
             const dims: { key: string; cur: number; oth: number; higher: boolean }[] = [
-              { key: "avgIncome", cur: income, oth: activeProfession ? other.professions[activeProfession] || 0 : other.averageIncome, higher: true },
+              { key: "avgIncome", cur: income, oth: otherIncome, higher: true },
               { key: "monthlyCost", cur: tierCost, oth: other[TIER_KEYS.find(tk => tk.key === costTier)!.field], higher: false },
-              { key: "yearlySavings", cur: savings, oth: (activeProfession ? other.professions[activeProfession] || 0 : other.averageIncome) - other[TIER_KEYS.find(tk => tk.key === costTier)!.field] * 12, higher: true },
+              { key: "yearlySavings", cur: savings, oth: otherIncome - other[TIER_KEYS.find(tk => tk.key === costTier)!.field] * 12, higher: true },
               ...(city.annualWorkHours !== null && other.annualWorkHours !== null ? [{ key: "annualWorkHours", cur: city.annualWorkHours, oth: other.annualWorkHours, higher: false }] : []),
               ...(city.housePrice !== null && other.housePrice !== null ? [{ key: "housePrice", cur: city.housePrice, oth: other.housePrice, higher: false }] : []),
               ...(city.airQuality !== null && other.airQuality !== null ? [{ key: "airQuality", cur: city.airQuality, oth: other.airQuality, higher: false }] : []),
