@@ -2,8 +2,8 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import type { City } from "./types";
 
-// Re-export shared utilities (avoids duplication with clientUtils)
-export { getCityClimate, getCityEnName, getCountryEnName, getAqiLabel, getClimateLabel, computeLifePressure } from "./clientUtils";
+// Re-export shared utilities used by server pages
+export { getCityEnName, getCountryEnName } from "./clientUtils";
 
 let _cities: City[] | null = null;
 

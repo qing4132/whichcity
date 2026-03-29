@@ -197,12 +197,6 @@ export function computeAllNetIncomes(
   );
 }
 
-/* ── Check if a country has an expat scheme ── */
-
-export function countryHasExpatScheme(country: string): boolean {
-  return !!COUNTRY_TAX[country]?.expatScheme;
-}
-
 /* ── Get expat scheme display name ── */
 
 export function getExpatSchemeName(country: string): string {

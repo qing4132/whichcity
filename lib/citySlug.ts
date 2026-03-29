@@ -35,11 +35,6 @@ export const SLUG_TO_ID: Record<string, number> = Object.fromEntries(
   Object.entries(CITY_SLUGS).map(([id, slug]) => [slug, Number(id)])
 );
 
-/** Get all slugs for static generation */
-export function getAllCitySlugs(): string[] {
-  return Object.values(CITY_SLUGS);
-}
-
 /** Popular comparison pairs for static pre-generation (high search volume) */
 export const POPULAR_PAIRS: [number, number][] = [
   // US vs US
