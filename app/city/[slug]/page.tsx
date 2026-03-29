@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { City } from "@/lib/types";
 import { SLUG_TO_ID, CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
 import { loadCities, getCityById, getCityEnName, getCountryEnName } from "@/lib/dataLoader";
+import { computeLifePressure } from "@/lib/clientUtils";
 import CityDetailContent from "@/components/CityDetailContent";
 
 interface Props {
@@ -41,7 +42,7 @@ export default async function CityPage({ params }: Props) {
   const enName = getCityEnName(id);
   const country = getCountryEnName(city.country);
 
-  // Similar cities — Euclidean distance on 11 normalised metrics (SSG-time)
+  // Similar cities — Euclidean distance on 16 normalised dimensions (SSG-time)
   const allCities = loadCities();
   const similarIds = computeSimilarIds(city, allCities);
 
@@ -71,21 +72,43 @@ export default async function CityPage({ params }: Props) {
   );
 }
 
-/** Compute the 6 most similar cities by Euclidean distance over normalised metrics */
+/** Compute the 6 most similar cities by Euclidean distance over 16 normalised dimensions */
 function computeSimilarIds(city: City, allCities: City[], topN = 6): number[] {
-  const vec = (c: City): number[] => [
-    c.averageIncome,
-    c.costModerate,
-    c.averageIncome - c.costModerate * 12,
-    c.annualWorkHours,
-    c.annualWorkHours > 0 ? c.averageIncome / c.annualWorkHours : 0,
-    c.housePrice,
-    c.airQuality,
-    c.safetyIndex,
-    c.doctorsPerThousand,
-    c.directFlightCities,
-    c.bigMacPrice ?? 0,
-  ];
+  // Pre-compute life pressure for all cities using default settings (averageIncome + costModerate)
+  const defaultIncomes = allCities.map(c => c.averageIncome);
+  const lifePressures = allCities.map(c =>
+    computeLifePressure(c, allCities, c.averageIncome, defaultIncomes, "costModerate").value
+  );
+  const lpMap = new Map(allCities.map((c, i) => [c.id, lifePressures[i]]));
+
+  const vec = (c: City): number[] => {
+    const savings = c.averageIncome - c.costModerate * 12;
+    const hourlyWage = c.annualWorkHours !== null && c.annualWorkHours > 0 ? c.averageIncome / c.annualWorkHours : 0;
+    const yearsToBuy = c.housePrice !== null && savings > 0 ? (c.housePrice * 70) / savings : Infinity;
+    return [
+      // Row 1 Card 1: 收支
+      c.averageIncome,
+      c.costModerate,
+      savings,
+      // Row 1 Card 2: 住房
+      c.housePrice ?? 0,
+      isFinite(yearsToBuy) ? yearsToBuy : 999,
+      c.monthlyRent ?? 0,
+      // Row 2 Card 1: 工作
+      c.annualWorkHours ?? 0,
+      hourlyWage,
+      c.paidLeaveDays ?? 0,
+      // Row 2 Card 2: 环境与连接
+      c.airQuality ?? 0,
+      c.internetSpeedMbps ?? 0,
+      c.directFlightCities ?? 0,
+      // Row 3: 4 指标
+      lpMap.get(c.id) ?? 50,
+      c.healthcareIndex,
+      c.freedomIndex,
+      c.safetyIndex,
+    ];
+  };
   const all = allCities.map(vec);
   const dims = all[0].length;
   const mins = Array(dims).fill(Infinity);
