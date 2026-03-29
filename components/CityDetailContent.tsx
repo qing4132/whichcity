@@ -180,7 +180,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
 
   const professions = city.professions ? Object.keys(city.professions) : [];
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
-  const grossIncome = activeProfession ? city.professions[activeProfession] || 0 : city.averageIncome;
+  const grossIncome = activeProfession ? city.professions[activeProfession] || 0 : 0;
   const taxResult = computeNetIncome(grossIncome, city.country, city.id, incomeMode);
   const income = taxResult.netUSD;
 
@@ -201,7 +201,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
     const idx = sorted.findIndex((v) => v >= val);
     return idx === -1 ? 1 : idx / sorted.length;
   };
-  const allGrossIncomes = allCities.map((c) => activeProfession ? c.professions[activeProfession] || 0 : c.averageIncome);
+  const allGrossIncomes = allCities.map((c) => activeProfession ? c.professions[activeProfession] || 0 : 0);
   const allIncomes = computeAllNetIncomes(allCities, allGrossIncomes, incomeMode);
   const allCosts = allCities.map((c) => c[TIER_KEYS.find((tk) => tk.key === costTier)!.field]);
   const allSavings = allCities.map((c, i) => allIncomes[i] - allCosts[i] * 12);
@@ -537,7 +537,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
             const pair = [slug, otherSlug].sort().join("-vs-");
 
             // Find the dimension where the other city beats this one by the largest margin
-            const otherGross = activeProfession ? other.professions[activeProfession] || 0 : other.averageIncome;
+            const otherGross = activeProfession ? other.professions[activeProfession] || 0 : 0;
             const otherIncome = computeNetIncome(otherGross, other.country, other.id, incomeMode).netUSD;
             const dims: { key: string; cur: number; oth: number; higher: boolean }[] = [
               { key: "avgIncome", cur: income, oth: otherIncome, higher: true },

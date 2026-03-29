@@ -13,7 +13,7 @@ export default function KeyInsights({ comparisonData }: KeyInsightsProps) {
   const { darkMode, baseCityId, selectedProfession, incomeMode, t, getCityLabel, formatCurrency, getCost, getAqiLevel } = ctx;
 
   const withMetrics = comparisonData.map((city) => {
-    const grossIncome = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const grossIncome = selectedProfession ? city.professions[selectedProfession] || 0 : 0;
     const income = computeNetIncome(grossIncome, city.country, city.id, incomeMode).netUSD;
     const annualCost = getCost(city) * 12;
     const savings = income - annualCost;
