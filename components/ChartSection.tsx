@@ -24,8 +24,8 @@ export default function ChartSection({ comparisonData }: ChartSectionProps) {
   };
 
   const chartData = comparisonData.map((city) => {
-    const grossSalary = selectedProfession ? city.professions[selectedProfession] || 0 : 0;
-    const salary = computeNetIncome(grossSalary, city.country, city.id, incomeMode).netUSD;
+    const grossSalary = selectedProfession && city.professions[selectedProfession] != null ? city.professions[selectedProfession] : null;
+    const salary = grossSalary !== null ? computeNetIncome(grossSalary, city.country, city.id, incomeMode).netUSD : 0;
     const cityCost = getCost(city);
 
     return {

@@ -14,9 +14,9 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
   const [cardDataUrl, setCardDataUrl] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const getIncome = useCallback((city: City) => {
-    const gross = selectedProfession ? city.professions[selectedProfession] || 0 : 0;
-    return computeNetIncome(gross, city.country, city.id, incomeMode).netUSD;
+  const getIncome = useCallback((city: City): number | null => {
+    const gross = selectedProfession && city.professions[selectedProfession] != null ? city.professions[selectedProfession] : null;
+    return gross !== null ? computeNetIncome(gross, city.country, city.id, incomeMode).netUSD : null;
   }, [selectedProfession, incomeMode]);
 
   const generateCard = useCallback(() => {
@@ -56,10 +56,10 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
 
     // City data rows
     let y = 130;
-    const bestSavings = Math.max(...comparisonData.map(c => getIncome(c) - getCost(c) * 12));
+    const bestSavings = Math.max(...comparisonData.map(c => (getIncome(c) ?? 0) - getCost(c) * 12));
 
     for (const city of comparisonData) {
-      const income = getIncome(city);
+      const income = getIncome(city) ?? 0;
       const cost = getCost(city);
       const savings = income - cost * 12;
       const isBest = savings === bestSavings && savings > 0;

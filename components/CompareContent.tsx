@@ -47,20 +47,22 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
   const fc = formatCurrency;
   const costA = getCost(cityA);
   const costB = getCost(cityB);
-  const incomeA = computeNetIncome(activeProfession ? cityA.professions[activeProfession] || 0 : 0, cityA.country, cityA.id, incomeMode).netUSD;
-  const incomeB = computeNetIncome(activeProfession ? cityB.professions[activeProfession] || 0 : 0, cityB.country, cityB.id, incomeMode).netUSD;
-  const savingsA = incomeA - costA * 12;
-  const savingsB = incomeB - costB * 12;
-  const yearsA = cityA.housePrice !== null && savingsA > 0 ? ((cityA.housePrice * 70) / savingsA).toFixed(1) : "N/A";
-  const yearsB = cityB.housePrice !== null && savingsB > 0 ? ((cityB.housePrice * 70) / savingsB).toFixed(1) : "N/A";
+  const grossA = activeProfession && cityA.professions[activeProfession] != null ? cityA.professions[activeProfession] : null;
+  const grossB = activeProfession && cityB.professions[activeProfession] != null ? cityB.professions[activeProfession] : null;
+  const incomeA = grossA !== null ? computeNetIncome(grossA, cityA.country, cityA.id, incomeMode).netUSD : null;
+  const incomeB = grossB !== null ? computeNetIncome(grossB, cityB.country, cityB.id, incomeMode).netUSD : null;
+  const savingsA = incomeA !== null ? incomeA - costA * 12 : null;
+  const savingsB = incomeB !== null ? incomeB - costB * 12 : null;
+  const yearsA = cityA.housePrice !== null && savingsA !== null && savingsA > 0 ? ((cityA.housePrice * 70) / savingsA).toFixed(1) : "N/A";
+  const yearsB = cityB.housePrice !== null && savingsB !== null && savingsB > 0 ? ((cityB.housePrice * 70) / savingsB).toFixed(1) : "N/A";
 
   const cmp = (a: number, b: number, lower = false): "A" | "B" | "tie" =>
     a === b ? "tie" : lower ? (a < b ? "A" : "B") : (a > b ? "A" : "B");
 
   const rows: { label: string; a: string; b: string; winner: "A" | "B" | "tie" }[] = [
-    { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, a: fc(incomeA), b: fc(incomeB), winner: cmp(incomeA, incomeB) },
+    { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, a: incomeA !== null ? fc(incomeA) : "—", b: incomeB !== null ? fc(incomeB) : "—", winner: incomeA !== null && incomeB !== null ? cmp(incomeA, incomeB) : "tie" },
     { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, a: fc(costA), b: fc(costB), winner: cmp(costA, costB, true) },
-    { label: t("yearlySavings"), a: fc(savingsA), b: fc(savingsB), winner: cmp(savingsA, savingsB) },
+    { label: t("yearlySavings"), a: savingsA !== null ? fc(savingsA) : "—", b: savingsB !== null ? fc(savingsB) : "—", winner: savingsA !== null && savingsB !== null ? cmp(savingsA, savingsB) : "tie" },
     { label: t("housePrice") + " " + t("housePriceUnit"), a: cityA.housePrice !== null ? fc(cityA.housePrice) : "—", b: cityB.housePrice !== null ? fc(cityB.housePrice) : "—", winner: cityA.housePrice !== null && cityB.housePrice !== null ? cmp(cityA.housePrice, cityB.housePrice, true) : "tie" },
     { label: t("yearsToBuy"), a: `${yearsA} ${t("insightYears")}`, b: `${yearsB} ${t("insightYears")}`, winner: yearsA !== "N/A" && yearsB !== "N/A" ? cmp(Number(yearsA), Number(yearsB), true) : "tie" },
     { label: t("airQuality") + " (AQI)", a: cityA.airQuality !== null ? `${cityA.airQuality} – ${getAqiLabel(cityA.airQuality, locale)}` : "—", b: cityB.airQuality !== null ? `${cityB.airQuality} – ${getAqiLabel(cityB.airQuality, locale)}` : "—", winner: cityA.airQuality !== null && cityB.airQuality !== null ? cmp(cityA.airQuality, cityB.airQuality, true) : "tie" },

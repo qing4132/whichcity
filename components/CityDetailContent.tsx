@@ -180,13 +180,13 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
 
   const professions = city.professions ? Object.keys(city.professions) : [];
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
-  const grossIncome = activeProfession ? city.professions[activeProfession] || 0 : 0;
-  const taxResult = computeNetIncome(grossIncome, city.country, city.id, incomeMode);
-  const income = taxResult.netUSD;
+  const grossIncome = activeProfession && city.professions[activeProfession] != null ? city.professions[activeProfession] : null;
+  const taxResult = grossIncome !== null ? computeNetIncome(grossIncome, city.country, city.id, incomeMode) : null;
+  const income = taxResult?.netUSD ?? null;
 
   const tierCost = city[TIER_KEYS.find((tk) => tk.key === costTier)!.field];
   const annualExpense = tierCost * 12;
-  const savings = income - annualExpense;
+  const savings = income !== null ? income - annualExpense : null;
 
   const headingCls = darkMode ? "text-slate-100" : "text-slate-800";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
@@ -201,7 +201,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
     const idx = sorted.findIndex((v) => v >= val);
     return idx === -1 ? 1 : idx / sorted.length;
   };
-  const allGrossIncomes = allCities.map((c) => activeProfession ? c.professions[activeProfession] || 0 : 0);
+  const allGrossIncomes = allCities.map((c) => activeProfession && c.professions[activeProfession] != null ? c.professions[activeProfession] : 0);
   const allIncomes = computeAllNetIncomes(allCities, allGrossIncomes, incomeMode);
   const allCosts = allCities.map((c) => c[TIER_KEYS.find((tk) => tk.key === costTier)!.field]);
   const allSavings = allCities.map((c, i) => allIncomes[i] - allCosts[i] * 12);
@@ -212,14 +212,14 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
   const allFlights = nn(allCities.map((c) => c.directFlightCities));
   const allSafety = allCities.map((c) => c.safetyIndex);
   const allWorkHours = nn(allCities.map((c) => c.annualWorkHours));
-  const hourlyWage = city.annualWorkHours !== null && city.annualWorkHours > 0 ? income / city.annualWorkHours : 0;
+  const hourlyWage = city.annualWorkHours !== null && city.annualWorkHours > 0 && income !== null ? income / city.annualWorkHours : 0;
   const allHourly = allCities.map((c, i) => c.annualWorkHours !== null && c.annualWorkHours > 0 ? allIncomes[i] / c.annualWorkHours : 0);
   const bigMacPrices = allCities.filter((c) => c.bigMacPrice !== null).map((c) => c.bigMacPrice as number);
   const bigMacMedian = [...bigMacPrices].sort((a, b) => a - b)[Math.floor(bigMacPrices.length / 2)];
   const bigMacRatio = city.bigMacPrice !== null && bigMacMedian > 0 ? city.bigMacPrice / bigMacMedian : null;
   const allBigMacRatio = allCities.filter((c) => c.bigMacPrice !== null).map((c) => (c.bigMacPrice as number) / bigMacMedian);
   const allYearsToHome = allCities.map((c, i) => { const sav = allIncomes[i] - allCosts[i] * 12; return c.housePrice !== null && sav > 0 ? (c.housePrice * 70) / sav : Infinity; });
-  const yearsVal = city.housePrice !== null && savings > 0 ? (city.housePrice * 70) / savings : Infinity;
+  const yearsVal = city.housePrice !== null && savings !== null && savings > 0 ? (city.housePrice * 70) / savings : Infinity;
   // For ranking with ties: Infinity values get the worst rank
   const rankYearsToHome = (val: number) => {
     if (!isFinite(val)) return n;  // worst rank
@@ -368,7 +368,7 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
             <h1 className={`text-3xl sm:text-4xl font-extrabold ${headingCls}`}>{cityName}</h1>
             <p className={`text-lg ${subCls}`}>{countryName}</p>
           </div>
-          {incomeMode !== "gross" && (
+          {incomeMode !== "gross" && taxResult !== null && (
             <div className={`rounded-xl border px-4 py-3 text-sm max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
               <p className={`font-bold text-xs mb-1 ${subCls}`}>{t("effectiveTaxRate")}</p>
               <p className={`leading-snug font-medium ${headingCls}`}>
@@ -401,9 +401,9 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
         <div className={`rounded-xl border p-2 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
-              { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: formatCurrency(income), sub: `#${rankHigher(allIncomes, income)} / ${n}`, tier: tierHigh(allIncomes, income) },
+              { label: `${t("avgIncome")} (${s.getProfessionLabel(activeProfession)})`, value: income !== null ? formatCurrency(income) : "—", sub: income !== null ? `#${rankHigher(allIncomes, income)} / ${n}` : `#${n} / ${n}`, tier: income !== null ? tierHigh(allIncomes, income) : "mid" as Tier },
               { label: `${t("monthlyCost")} (${t(`costTier${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}`)})`, value: formatCurrency(tierCost), sub: `#${rankLower(allCosts, tierCost)} / ${n}`, tier: tierLow(allCosts, tierCost) },
-              { label: t("yearlySavings"), value: formatCurrency(savings), sub: `#${rankHigher(allSavings, savings)} / ${n}`, tier: tierHigh(allSavings, savings) },
+              { label: t("yearlySavings"), value: savings !== null ? formatCurrency(savings) : "—", sub: savings !== null ? `#${rankHigher(allSavings, savings)} / ${n}` : `#${n} / ${n}`, tier: savings !== null ? tierHigh(allSavings, savings) : "mid" as Tier },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center justify-between text-center p-3">
                 <p className={`text-xs font-semibold tracking-wide h-8 flex items-center justify-center text-center leading-tight ${subCls}`}>{stat.label}</p>
@@ -537,12 +537,12 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
             const pair = [slug, otherSlug].sort().join("-vs-");
 
             // Find the dimension where the other city beats this one by the largest margin
-            const otherGross = activeProfession ? other.professions[activeProfession] || 0 : 0;
-            const otherIncome = computeNetIncome(otherGross, other.country, other.id, incomeMode).netUSD;
+            const otherGross = activeProfession && other.professions[activeProfession] != null ? other.professions[activeProfession] : null;
+            const otherIncome = otherGross !== null ? computeNetIncome(otherGross, other.country, other.id, incomeMode).netUSD : null;
             const dims: { key: string; cur: number; oth: number; higher: boolean }[] = [
-              { key: "avgIncome", cur: income, oth: otherIncome, higher: true },
+              { key: "avgIncome", cur: income ?? 0, oth: otherIncome ?? 0, higher: true },
               { key: "monthlyCost", cur: tierCost, oth: other[TIER_KEYS.find(tk => tk.key === costTier)!.field], higher: false },
-              { key: "yearlySavings", cur: savings, oth: otherIncome - other[TIER_KEYS.find(tk => tk.key === costTier)!.field] * 12, higher: true },
+              { key: "yearlySavings", cur: savings ?? 0, oth: (otherIncome ?? 0) - other[TIER_KEYS.find(tk => tk.key === costTier)!.field] * 12, higher: true },
               ...(city.annualWorkHours !== null && other.annualWorkHours !== null ? [{ key: "annualWorkHours", cur: city.annualWorkHours, oth: other.annualWorkHours, higher: false }] : []),
               ...(city.housePrice !== null && other.housePrice !== null ? [{ key: "housePrice", cur: city.housePrice, oth: other.housePrice, higher: false }] : []),
               ...(city.airQuality !== null && other.airQuality !== null ? [{ key: "airQuality", cur: city.airQuality, oth: other.airQuality, higher: false }] : []),

@@ -20,8 +20,8 @@ export default function CityCard({ city, isBase, baseCity, onClick }: CityCardPr
     formatCurrency, formatPrice, getCost, getClimate, getAqiLevel,
   } = ctx;
 
-  const grossSalary = selectedProfession ? city.professions[selectedProfession] || 0 : 0;
-  const salary = computeNetIncome(grossSalary, city.country, city.id, incomeMode).netUSD;
+  const grossSalary = selectedProfession && city.professions[selectedProfession] != null ? city.professions[selectedProfession] : null;
+  const salary = grossSalary !== null ? computeNetIncome(grossSalary, city.country, city.id, incomeMode).netUSD : 0;
   const cityCost = getCost(city);
   const savings = salary - cityCost * 12;
   const climate = getClimate(city);
