@@ -7,12 +7,12 @@ import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i1
 /** Lightweight settings hook for sub-pages (city detail, compare).
  *  Reads/writes the same localStorage keys as CityComparison so values are shared. */
 export function useSettings() {
-  const [locale, setLocaleState] = useState<Locale>("zh");
+  const [locale, setLocaleState] = useState<Locale>("en");
   const [darkMode, setDarkModeState] = useState(false);
   const [currency, setCurrencyState] = useState("USD");
   const [costTier, setCostTierState] = useState<CostTier>("moderate");
-  const [profession, setProfessionState] = useState("");
-  const [incomeMode, setIncomeModeState] = useState<IncomeMode>("gross");
+  const [profession, setProfessionState] = useState("软件工程师");
+  const [incomeMode, setIncomeModeState] = useState<IncomeMode>("net");
   const [rates, setRates] = useState<ExchangeRates | null>(null);
   const [ready, setReady] = useState(false);
 

@@ -18,12 +18,12 @@ interface RankingContentProps {
 
 export default function RankingContent({ cities }: RankingContentProps) {
   const router = useRouter();
-  const [locale, setLocale] = useState<Locale>("zh");
+  const [locale, setLocale] = useState<Locale>("en");
   const [darkMode, setDarkMode] = useState(false);
   const [selectedProfession, setSelectedProfession] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [costTier, setCostTier] = useState<CostTier>("moderate");
-  const [incomeMode, setIncomeMode] = useState<IncomeMode>("gross");
+  const [incomeMode, setIncomeMode] = useState<IncomeMode>("net");
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
   const [tab, setTab] = useState<Tab>("savings");
 
