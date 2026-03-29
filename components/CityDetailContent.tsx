@@ -514,9 +514,9 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
               [t("humidity"), `${climate.humidityPct}%`],
               [t("sunshine"), `${Math.round(climate.sunshineHours)} ${t("unitH")}`],
             ].map(([label, val]) => (
-              <div key={label} className="text-center">
+              <div key={label} className="flex flex-col items-center justify-between text-center p-3">
                 <p className={`text-xs font-semibold tracking-wide mb-1 ${subCls}`}>{label}</p>
-                <p className={`text-lg font-bold ${headingCls}`}>{val}</p>
+                <p className={`text-xl font-extrabold my-1 ${headingCls}`}>{val}</p>
               </div>
             ))}
           </div>
