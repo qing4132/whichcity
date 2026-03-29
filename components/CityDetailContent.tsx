@@ -14,7 +14,6 @@ import { computeNetIncome, computeAllNetIncomes, getExpatSchemeName } from "@/li
 
 interface Props {
   city: City;
-  similarIds: number[];
   slug: string;
   allCities: City[];
 }
@@ -165,7 +164,7 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
   );
 }
 
-export default function CityDetailContent({ city, similarIds, slug, allCities }: Props) {
+export default function CityDetailContent({ city, slug, allCities }: Props) {
   const s = useSettings();
   const router = useRouter();
   const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode } = s;
@@ -242,6 +241,42 @@ export default function CityDetailContent({ city, similarIds, slug, allCities }:
   const allHealthcare = allCities.map(c => c.healthcareIndex);
   const freedomIdx = city.freedomIndex;
   const allFreedom = allCities.map(c => c.freedomIndex);
+
+  // Real-time similar cities: 16-dim normalised Euclidean distance
+  const similarIds = (() => {
+    const cityIdx = allCities.findIndex(c => c.id === city.id);
+    const vec = (i: number): number[] => {
+      const c = allCities[i];
+      const ytb = allYearsToHome[i];
+      return [
+        allIncomes[i], allCosts[i], allSavings[i],
+        c.housePrice ?? 0, isFinite(ytb) ? ytb : 999, c.monthlyRent ?? 0,
+        c.annualWorkHours ?? 0, allHourly[i], c.paidLeaveDays ?? 0,
+        c.airQuality ?? 0, c.internetSpeedMbps ?? 0, c.directFlightCities ?? 0,
+        allLifePressure[i], c.healthcareIndex, c.freedomIndex, c.safetyIndex,
+      ];
+    };
+    const all = allCities.map((_, i) => vec(i));
+    const dims = all[0].length;
+    const mins = Array(dims).fill(Infinity);
+    const maxs = Array(dims).fill(-Infinity);
+    for (const m of all) {
+      for (let d = 0; d < dims; d++) {
+        if (m[d] < mins[d]) mins[d] = m[d];
+        if (m[d] > maxs[d]) maxs[d] = m[d];
+      }
+    }
+    const norm = (v: number[]) => v.map((val, d) => {
+      const r = maxs[d] - mins[d];
+      return r > 0 ? (val - mins[d]) / r : 0.5;
+    });
+    const cur = norm(all[cityIdx]);
+    return allCities
+      .map((c, i) => ({ id: c.id, dist: i === cityIdx ? Infinity : Math.sqrt(norm(all[i]).reduce((s, v, d) => s + (v - cur[d]) ** 2, 0)) }))
+      .sort((a, b) => a.dist - b.dist)
+      .slice(0, 6)
+      .map(d => d.id);
+  })();
 
   // Ranking helper: 1-based rank with ties (lower rank number = better)
   // Tied values get the same rank; the next rank skips accordingly (e.g. 1,1,3)
