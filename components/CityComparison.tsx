@@ -23,13 +23,13 @@ export default function CityComparison() {
   const [baseCityId, setBaseCityId] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [costTier, setCostTier] = useState<CostTier>("moderate");
-  const [incomeMode, setIncomeMode] = useState<IncomeMode>("gross");
+  const [incomeMode, setIncomeMode] = useState<IncomeMode>("net");
   const [searchTerm, setSearchTerm] = useState("");
   const [windowWidth, setWindowWidth] = useState(1200);
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
   const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
   const [darkMode, setDarkMode] = useState(false);
-  const [locale, setLocale] = useState<Locale>("zh");
+  const [locale, setLocale] = useState<Locale>("en");
   const [shareToast, setShareToast] = useState(false);
   const comparisonRef = useRef<HTMLDivElement>(null);
   const urlInitRef = useRef(false);
