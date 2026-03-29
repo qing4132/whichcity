@@ -77,7 +77,7 @@ export default function RankingContent({ cities }: RankingContentProps) {
 
   // Compute rankings
   const ranked = cities.map(city => {
-    const grossIncome = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const grossIncome = selectedProfession ? city.professions[selectedProfession] || 0 : 0;
     const income = computeNetIncome(grossIncome, city.country, city.id, incomeMode).netUSD;
     const costKey = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
     const costTierField = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;

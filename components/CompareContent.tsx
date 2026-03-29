@@ -47,8 +47,8 @@ export default function CompareContent({ cityA, cityB, slugA, slugB }: Props) {
   const fc = formatCurrency;
   const costA = getCost(cityA);
   const costB = getCost(cityB);
-  const incomeA = computeNetIncome(activeProfession ? cityA.professions[activeProfession] || 0 : cityA.averageIncome, cityA.country, cityA.id, incomeMode).netUSD;
-  const incomeB = computeNetIncome(activeProfession ? cityB.professions[activeProfession] || 0 : cityB.averageIncome, cityB.country, cityB.id, incomeMode).netUSD;
+  const incomeA = computeNetIncome(activeProfession ? cityA.professions[activeProfession] || 0 : 0, cityA.country, cityA.id, incomeMode).netUSD;
+  const incomeB = computeNetIncome(activeProfession ? cityB.professions[activeProfession] || 0 : 0, cityB.country, cityB.id, incomeMode).netUSD;
   const savingsA = incomeA - costA * 12;
   const savingsB = incomeB - costB * 12;
   const yearsA = cityA.housePrice !== null && savingsA > 0 ? ((cityA.housePrice * 70) / savingsA).toFixed(1) : "N/A";

@@ -15,7 +15,7 @@ export default function ShareCard({ comparisonData }: ShareCardProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const getIncome = useCallback((city: City) => {
-    const gross = selectedProfession ? city.professions[selectedProfession] || 0 : city.averageIncome;
+    const gross = selectedProfession ? city.professions[selectedProfession] || 0 : 0;
     return computeNetIncome(gross, city.country, city.id, incomeMode).netUSD;
   }, [selectedProfession, incomeMode]);
 
