@@ -293,7 +293,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                               <span className="text-sm shrink-0">{getFlag(c)}</span>
                               <span className={`text-sm font-medium truncate ${headCls}`}>{getName(c)}</span>
                             </span>
-                            <span className={`shrink-0 text-sm ${darkMode ? "text-slate-400" : "text-slate-400"}`}>▾</span>
+                            <svg className={`shrink-0 w-5 h-5 ${darkMode ? "text-slate-400" : "text-slate-400"}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd"/></svg>
                           </div>
                         ) : (
                           /* ── Empty selector ── */
@@ -305,8 +305,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                                 : (darkMode ? "border-slate-600 hover:border-slate-500" : "border-slate-300 hover:border-slate-400")
                             }`} style={{ width: 240 }}
                           >
+                            <span className="shrink-0 w-5" />
                             <span className={`flex-1 text-sm text-center ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("chooseCity").replace(":", "")}</span>
-                            <span className={`shrink-0 text-sm ${darkMode ? "text-slate-400" : "text-slate-400"}`}>▾</span>
+                            <svg className={`shrink-0 w-5 h-5 ${darkMode ? "text-slate-400" : "text-slate-400"}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd"/></svg>
                           </div>
                         )}
                         {/* ── Dropdown ── */}
@@ -341,21 +342,21 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                     );
                   })}
                 </tr>
+              </thead>
+              <tbody>
                 {/* ── Wins summary row ── */}
-                <tr className={`border-b ${darkMode ? "border-slate-700/50 bg-slate-800/40" : "border-slate-100 bg-slate-50/50"}`}>
-                  <td className={`px-4 py-2 text-xs font-medium ${darkMode ? "text-slate-400" : "text-slate-500"}`} />
+                <tr className={`border-b ${darkMode ? "border-slate-700/50" : "border-slate-100"}`}>
+                  <td className={`px-4 py-2.5 font-medium whitespace-nowrap ${darkMode ? "text-slate-300" : "text-slate-700"}`} />
                   {visibleSlots.map((c, i) => (
-                    <td key={`wins-${i}`} className={`px-3 py-2 text-center text-xs font-semibold ${
+                    <td key={`wins-${i}`} className={`px-3 py-2.5 text-center ${
                       c && winCounts[i] > 0
-                        ? (darkMode ? "text-emerald-400" : "text-emerald-600")
+                        ? (darkMode ? "text-emerald-400 font-bold" : "text-emerald-600 font-bold")
                         : (darkMode ? "text-slate-500" : "text-slate-400")
                     }`}>
                       {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
                     </td>
                   ))}
                 </tr>
-              </thead>
-              <tbody>
                 {GROUP_KEYS.map(gk => {
                   const gRows = rows.filter(d => d.m.group === gk);
                   if (gRows.length === 0) return null;
