@@ -1,11 +1,8 @@
 "use client";
 
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
-} from "recharts";
 import type { City, CostTier, IncomeMode } from "@/lib/types";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES, CITY_COUNTRY } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
@@ -65,9 +62,6 @@ const GROUP_I18N: Record<string, string> = {
   income: "rankGroup_income", housing: "rankGroup_housing", work: "rankGroup_work",
   environment: "rankGroup_environment", index: "rankGroup_index",
 };
-
-/* ── City colors for chart bars/lines ── */
-const CITY_COLORS = ["#3b82f6", "#f59e0b", "#10b981", "#ef4444", "#8b5cf6"];
 
 /* ════════════════════════════════════════════ */
 export default function CompareContent({ initialCities, initialSlugs, allCities }: Props) {
@@ -132,57 +126,41 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     return map;
   }, [allCities, activeProfession, incomeMode]);
 
+  const rowCtx: RowCtx = useMemo(() => ({
+    fc: formatCurrency, t, costField, profession: activeProfession, incomeMode, allCities, allIncomes: allIncomesMap,
+  }), [formatCurrency, t, costField, activeProfession, incomeMode, allCities, allIncomesMap]);
+
+  /* ── Metric rows with winner detection ── */
+  const rows = useMemo(() => {
+    return METRICS.map(m => {
+      const vals = visibleCities.map(c => m.get(c, rowCtx));
+      const valid = vals.filter((v): v is number => v != null && isFinite(v));
+      let bestVal: number | null = null;
+      if (valid.length > 1) bestVal = m.lower ? Math.min(...valid) : Math.max(...valid);
+      return { m, vals, bestVal };
+    });
+  }, [visibleCities, rowCtx]);
+
+  /* ── Winner summary ── */
+  const winCounts = useMemo(() => {
+    const counts = new Map<number, number>();
+    visibleCities.forEach(c => counts.set(c.id, 0));
+    rows.forEach(({ vals, bestVal }) => {
+      if (bestVal == null) return;
+      if (!vals.some(v => v !== bestVal)) return;
+      vals.forEach((v, i) => { if (v === bestVal) counts.set(visibleCities[i].id, (counts.get(visibleCities[i].id) || 0) + 1); });
+    });
+    return counts;
+  }, [visibleCities, rows]);
+
   /* ── City helpers ── */
-  const getName = useCallback((c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name, [locale]);
+  const getName = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
   const getFlag = (c: City) => CITY_FLAG_EMOJIS[c.id] || "🏙️";
   const getCountry = (c: City) => {
     const zh = CITY_COUNTRY[c.id];
     if (zh) { const cn = COUNTRY_TRANSLATIONS[zh]; if (cn) return cn[locale] || zh; return zh; }
     return COUNTRY_TRANSLATIONS[c.country]?.[locale] || c.country;
   };
-
-  /* ── Metric value getter ── */
-  const getVal = useCallback((c: City, m: Metric): number | null => {
-    const ctx: RowCtx = { fc: formatCurrency, t, costField, profession: activeProfession, incomeMode, allCities, allIncomes: allIncomesMap };
-    return m.get(c, ctx);
-  }, [formatCurrency, t, costField, activeProfession, incomeMode, allCities, allIncomesMap]);
-
-  /* ── Metric formatter (for tooltip) ── */
-  const fmtVal = useCallback((v: number | null, m: Metric): string => {
-    const ctx: RowCtx = { fc: formatCurrency, t, costField, profession: activeProfession, incomeMode, allCities, allIncomes: allIncomesMap };
-    return m.fmt(v, ctx);
-  }, [formatCurrency, t, costField, activeProfession, incomeMode, allCities, allIncomesMap]);
-
-  /* ── Build chart data per group (uses visible cities only) ── */
-  const groupChartData = useMemo(() => {
-    const result: Record<string, { metric: string; key: string; lower?: boolean; [cityName: string]: string | number | boolean | undefined }[]> = {};
-    for (const gk of GROUP_KEYS) {
-      const ms = METRICS.filter(m => m.group === gk);
-      result[gk] = ms.map(m => {
-        const row: any = { metric: m.label(t), key: m.key, lower: m.lower };
-        visibleCities.forEach(c => { row[getName(c)] = getVal(c, m); });
-        return row;
-      });
-    }
-    return result;
-  }, [visibleCities, t, getName, getVal]);
-
-  /* ── Winner summary ── */
-  const winCounts = useMemo(() => {
-    const counts = new Map<number, number>();
-    visibleCities.forEach(c => counts.set(c.id, 0));
-    METRICS.forEach(m => {
-      const vals = visibleCities.map(c => getVal(c, m));
-      const valid = vals.filter((v): v is number => v != null && isFinite(v));
-      if (valid.length < 2) return;
-      const best = m.lower ? Math.min(...valid) : Math.max(...valid);
-      const winners = vals.filter(v => v === best);
-      if (winners.length < vals.length) {
-        vals.forEach((v, i) => { if (v === best) counts.set(visibleCities[i].id, (counts.get(visibleCities[i].id) || 0) + 1); });
-      }
-    });
-    return counts;
-  }, [visibleCities, getVal]);
 
   /* ── Slot search results ── */
   const slotResults = useMemo(() => {
@@ -221,35 +199,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   const headCls = darkMode ? "text-white" : "text-slate-900";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
 
-  const chartFg = darkMode ? "#e2e8f0" : "#334155";
-  const chartGrid = darkMode ? "#334155" : "#e2e8f0";
-  const tooltipBg = darkMode ? "#1e293b" : "#ffffff";
-  const tooltipBorder = darkMode ? "#475569" : "#e2e8f0";
-
-  /* ── Custom tooltip to properly format each metric ── */
-  const makeTooltipContent = useCallback((gk: string) => {
-    const ms = METRICS.filter(m => m.group === gk);
-    function ChartTooltip({ active, payload, label }: any) {
-      if (!active || !payload?.length) return null;
-      const metricKey = payload[0]?.payload?.key;
-      const metric = ms.find(m => m.key === metricKey);
-      return (
-        <div style={{ backgroundColor: tooltipBg, border: `1px solid ${tooltipBorder}`, borderRadius: 8, padding: "8px 12px", fontSize: 12 }}>
-          <p style={{ color: chartFg, fontWeight: 600, marginBottom: 4 }}>{label}</p>
-          {payload.map((entry: any) => (
-            <p key={entry.dataKey} style={{ color: entry.color, margin: "2px 0" }}>
-              {entry.name}: {metric ? fmtVal(entry.value, metric) : entry.value}
-            </p>
-          ))}
-        </div>
-      );
-    }
-    return ChartTooltip;
-  }, [chartFg, tooltipBg, tooltipBorder, fmtVal]);
-
   if (!s.ready) return null;
-
-  const cityNames = visibleCities.map(getName);
 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
@@ -313,7 +263,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                   } ${sectionBg} hover:shadow-md`}
                 >
                   <div className="flex items-center justify-center gap-1.5 mb-1">
-                    <span className="w-3 h-3 rounded-full inline-block" style={{ backgroundColor: CITY_COLORS[i] }} />
                     <span className="text-2xl">{getFlag(c)}</span>
                   </div>
                   <p className={`text-base font-bold ${headCls}`}>{getName(c)}</p>
@@ -358,35 +307,61 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           })}
         </div>
 
-        {/* ──── Vertical bar charts by group ──── */}
-        {GROUP_KEYS.map(gk => {
-          const data = groupChartData[gk];
-          if (!data || data.length === 0) return null;
-          return (
-            <section key={gk} className={`rounded-xl border p-4 sm:p-6 mb-6 ${sectionBg}`}>
-              <h2 className={`text-lg font-bold mb-4 ${headCls}`}>{t(GROUP_I18N[gk])}</h2>
-              <div style={{ width: "100%", height: 300 }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 40 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke={chartGrid} vertical={false} />
-                    <XAxis dataKey="metric" tick={{ fill: chartFg, fontSize: 10 }} angle={-15} textAnchor="end" interval={0} height={60} />
-                    <YAxis tick={{ fill: chartFg, fontSize: 11 }} tickFormatter={v => {
-                      const abs = Math.abs(v);
-                      if (abs >= 1_000_000) return `${(v / 1_000_000).toFixed(1)}M`;
-                      if (abs >= 1_000) return `${(v / 1_000).toFixed(0)}K`;
-                      return `${v}`;
-                    }} />
-                    <Tooltip content={makeTooltipContent(gk)} />
-                    <Legend wrapperStyle={{ fontSize: 12, color: chartFg, paddingTop: 8 }} />
-                    {cityNames.map((name, i) => (
-                      <Bar key={name} dataKey={name} fill={CITY_COLORS[i]} radius={[4, 4, 0, 0]} barSize={cols === 2 ? 28 : 22} />
-                    ))}
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </section>
-          );
-        })}
+        {/* ──── Comparison table ──── */}
+        <div className={`rounded-xl shadow-md overflow-hidden border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className={darkMode ? "bg-slate-800" : "bg-slate-100"}>
+                  <th className={`px-4 py-3 text-left text-xs font-semibold tracking-wide whitespace-nowrap ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                    {t("metric")}
+                  </th>
+                  {visibleCities.map(c => (
+                    <th key={c.id} className={`px-3 py-3 text-center text-xs font-semibold whitespace-nowrap ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
+                      {getFlag(c)} {getName(c)}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {GROUP_KEYS.map(gk => {
+                  const gRows = rows.filter(d => d.m.group === gk);
+                  if (gRows.length === 0) return null;
+                  const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
+                  const borderR = darkMode ? "border-slate-700/50" : "border-slate-100";
+                  const labelC = darkMode ? "text-slate-300" : "text-slate-700";
+                  const valC = darkMode ? "text-slate-200" : "text-slate-700";
+                  const bestC = darkMode ? "text-emerald-400 font-bold" : "text-emerald-600 font-bold";
+                  const dimC = darkMode ? "text-slate-500" : "text-slate-400";
+                  return [
+                    <tr key={`gh-${gk}`} className={groupBg}>
+                      <td colSpan={visibleCities.length + 1} className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                        {t(GROUP_I18N[gk])}
+                      </td>
+                    </tr>,
+                    ...gRows.map(({ m, vals, bestVal }) => (
+                      <tr key={m.key} className={`border-b ${borderR}`}>
+                        <td className={`px-4 py-2.5 font-medium whitespace-nowrap ${labelC}`}>
+                          {m.label(t)}
+                        </td>
+                        {vals.map((v, i) => {
+                          const formatted = m.fmt(v, rowCtx);
+                          const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
+                          const isNull = v == null;
+                          return (
+                            <td key={visibleCities[i].id} className={`px-3 py-2.5 text-center ${isNull ? dimC : isBest ? bestC : valC}`}>
+                              {formatted}{isBest && <span className="ml-1 text-xs">✓</span>}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    )),
+                  ];
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         {/* ──── City guide links ──── */}
         <div className="grid gap-3 mt-8" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
