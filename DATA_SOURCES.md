@@ -657,18 +657,16 @@ function minMaxNorm(values, val) {
 
 ```
 missingWeight == 0      → "high"
-missingWeight < 0.333   → "medium"  — 前端不做特殊显示
-missingWeight >= 0.333  → "low"    — 前端显示 "⚠ 可信度低"
+missingWeight < 0.333   → "medium"
+missingWeight >= 0.333  → "low"
 ```
-
-> 注意：购房年限 N/A 不计入 missingWeight（给最差分而非跳过），因此只有巨无霸 + 工时同时缺失才会达到 low。
 
 ### 7.7 最终值
 
 ```javascript
 totalWeight = sum(non-null sub weights)
 value = round(Σ(sub.norm × sub.weight / totalWeight))
-// 范围: 0-100, 越高压力越大
+// 范围: 0-100, 越高越轻松
 ```
 
 ---
