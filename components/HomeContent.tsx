@@ -99,7 +99,7 @@ export default function HomeContent() {
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/"
-              className={`text-xs px-2 py-1 rounded border font-semibold ${darkMode ? "bg-blue-900/40 border-blue-500/50 text-blue-300" : "bg-blue-50 border-blue-300 text-blue-700"}`}>
+              className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-blue-900/40 border-blue-500/50 text-blue-300" : "bg-blue-50 border-blue-300 text-blue-700"}`}>
               {t("navHome")}
             </Link>
             <Link href="/ranking"
