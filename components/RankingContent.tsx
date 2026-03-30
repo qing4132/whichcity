@@ -502,8 +502,8 @@ export default function RankingContent({ cities }: Props) {
                         tab === gTab
                           ? "bg-blue-600 text-white shadow-sm"
                           : gi === activeGroup
-                            ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-100 text-blue-700 hover:bg-blue-200")
-                            : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-200 text-slate-600 hover:bg-slate-300")
+                            ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-50 text-blue-700 hover:bg-blue-100")
+                            : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100/70 text-slate-600 hover:bg-slate-200")
                       }`}>
                       {t(TAB_I18N[gTab])}
                     </button>
@@ -520,8 +520,8 @@ export default function RankingContent({ cities }: Props) {
                   tab === gTab
                     ? "bg-indigo-600 text-white shadow-sm"
                     : activeGroup === 4
-                      ? (darkMode ? "bg-indigo-900/30 text-indigo-300 hover:bg-indigo-900/50" : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200")
-                      : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-200 text-slate-600 hover:bg-slate-300")
+                      ? (darkMode ? "bg-indigo-900/30 text-indigo-300 hover:bg-indigo-900/50" : "bg-indigo-50 text-indigo-700 hover:bg-indigo-100")
+                      : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100/70 text-slate-600 hover:bg-slate-200")
                 }`}>
                 {t(TAB_I18N[gTab])}
               </button>
@@ -533,7 +533,7 @@ export default function RankingContent({ cities }: Props) {
         <div className={`rounded-xl shadow-md overflow-hidden ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead>
+              <thead className="sticky top-[49px] z-40">
                 <tr className={headerBg}>
                   <th className={`${thBase} w-[52px] text-center`}>{t("rankCol_rank")}</th>
                   <th className={`${thBase} min-w-[120px]`}>{t("rankCol_city")}</th>

@@ -1,19 +1,19 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { SLUG_TO_ID, CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
-import { getCityById, getCityEnName, getCountryEnName } from "@/lib/dataLoader";
+import { getCityById, getCityEnName, loadCities } from "@/lib/dataLoader";
 import CompareContent from "@/components/CompareContent";
 
 interface Props {
   params: Promise<{ pair: string }>;
 }
 
-function parsePair(pair: string): [string, string] | null {
-  const m = pair.match(/^(.+)-vs-(.+)$/);
-  if (!m) return null;
-  const a = m[1], b = m[2];
-  if (SLUG_TO_ID[a] && SLUG_TO_ID[b] && a !== b) return [a, b];
-  return null;
+function parsePair(pair: string): string[] | null {
+  const parts = pair.split("-vs-");
+  if (parts.length < 2) return null;
+  const valid = parts.filter(s => SLUG_TO_ID[s]);
+  const unique = [...new Set(valid)];
+  return unique.length >= 2 ? unique : null;
 }
 
 export async function generateStaticParams() {
@@ -30,13 +30,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { pair } = await params;
   const slugs = parsePair(pair);
   if (!slugs) return { title: "Comparison Not Found" };
-  const [slugA, slugB] = slugs;
-  const nameA = getCityEnName(SLUG_TO_ID[slugA]);
-  const nameB = getCityEnName(SLUG_TO_ID[slugB]);
-  const title = `${nameA} vs ${nameB}: Salary, Cost of Living & Quality of Life Comparison`;
-  const cityA = getCityById(SLUG_TO_ID[slugA])!;
-  const cityB = getCityById(SLUG_TO_ID[slugB])!;
-  const description = `Compare ${nameA} and ${nameB}: income ($${Math.round(cityA.averageIncome / 1000)}K vs $${Math.round(cityB.averageIncome / 1000)}K), monthly cost ($${Math.round(cityA.costModerate)} vs $${Math.round(cityB.costModerate)}), housing, air quality, healthcare, and more.`;
+  const names = slugs.map(s => getCityEnName(SLUG_TO_ID[s]));
+  const title = `${names.join(" vs ")}: Salary, Cost of Living & Quality of Life Comparison`;
+  const cities = slugs.map(s => getCityById(SLUG_TO_ID[s])!);
+  const description = `Compare ${names.join(", ")}: income, monthly cost, housing, safety, healthcare, and more.`;
   return {
     title,
     description,
@@ -49,21 +46,16 @@ export default async function ComparePage({ params }: Props) {
   const { pair } = await params;
   const slugs = parsePair(pair);
   if (!slugs) notFound();
-  const [slugA, slugB] = slugs;
-  const idA = SLUG_TO_ID[slugA];
-  const idB = SLUG_TO_ID[slugB];
-  const cityA = getCityById(idA);
-  const cityB = getCityById(idB);
-  if (!cityA || !cityB) notFound();
-
-  const nameA = getCityEnName(idA);
-  const nameB = getCityEnName(idB);
+  const initialCities = slugs.map(s => getCityById(SLUG_TO_ID[s])!);
+  if (initialCities.some(c => !c)) notFound();
+  const allCities = loadCities();
+  const names = slugs.map(s => getCityEnName(SLUG_TO_ID[s]));
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: `${nameA} vs ${nameB}: City Comparison`,
-    description: `Detailed comparison of ${nameA} and ${nameB} across income, cost of living, housing, and quality of life metrics.`,
+    headline: `${names.join(" vs ")}: City Comparison`,
+    description: `Detailed comparison of ${names.join(", ")} across income, cost of living, housing, and quality of life metrics.`,
   };
 
   return (
@@ -72,7 +64,7 @@ export default async function ComparePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CompareContent cityA={cityA} cityB={cityB} slugA={slugA} slugB={slugB} />
+      <CompareContent initialCities={initialCities} initialSlugs={slugs} allCities={allCities} />
     </>
   );
 }
