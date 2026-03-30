@@ -140,6 +140,17 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     });
   }, [visibleSlots, rowCtx]);
 
+  /* ── Win counts per slot ── */
+  const winCounts = useMemo(() => {
+    const counts: number[] = visibleSlots.map(() => 0);
+    rows.forEach(({ vals, bestVal }) => {
+      if (bestVal == null) return;
+      if (!vals.some(v => v !== bestVal)) return;
+      vals.forEach((v, i) => { if (v === bestVal) counts[i]++; });
+    });
+    return counts;
+  }, [visibleSlots, rows]);
+
   /* ── City helpers ── */
   const getName = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
   const getFlag = (c: City) => CITY_FLAG_EMOJIS[c.id] || "🏙️";
@@ -253,15 +264,13 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           <div className="overflow-x-auto">
             <table className="w-full text-sm" style={{ tableLayout: "fixed" }}>
               <colgroup>
-                <col style={{ width: cols === 2 ? "35%" : "28%" }} />
+                <col style={{ width: cols === 2 ? "30%" : "22%" }} />
                 {visibleSlots.map((_, i) => <col key={i} />)}
               </colgroup>
               <thead>
                 {/* ── Selector row ── */}
                 <tr className={darkMode ? "bg-slate-800/80" : "bg-slate-50"}>
-                  <th className={`px-4 py-3 text-left text-xs font-semibold tracking-wide whitespace-nowrap ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                    {t("metric")}
-                  </th>
+                  <th className="px-4 py-3" />
                   {visibleSlots.map((c, i) => {
                     const isOpen = openSlot === i;
                     return (
@@ -270,39 +279,41 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                           /* ── Filled selector ── */
                           <div
                             onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
-                            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border cursor-pointer transition mx-auto max-w-[200px] ${
+                            className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border cursor-pointer transition ${
                               isOpen
                                 ? (darkMode ? "border-blue-500 bg-slate-700" : "border-blue-400 bg-blue-50")
                                 : (darkMode ? "border-slate-600 bg-slate-800 hover:border-slate-500" : "border-slate-200 bg-white hover:border-slate-400")
-                            }`}
+                            }`} style={{ width: 240 }}
                           >
-                            <span className="text-sm shrink-0">{getFlag(c)}</span>
-                            <span className={`text-sm font-medium truncate ${headCls}`}>{getName(c)}</span>
                             <button onClick={e => { e.stopPropagation(); clearSlot(i); }}
-                              className={`shrink-0 ml-auto w-4 h-4 rounded-full text-[10px] flex items-center justify-center ${darkMode ? "text-slate-500 hover:text-red-400" : "text-slate-400 hover:text-red-500"}`}>
+                              className={`shrink-0 w-5 h-5 rounded-full text-sm flex items-center justify-center ${darkMode ? "text-slate-400 hover:text-red-400" : "text-slate-400 hover:text-red-500"}`}>
                               ×
                             </button>
-                            <span className={`text-[10px] shrink-0 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>▾</span>
+                            <span className="flex-1 flex items-center justify-center gap-1.5 min-w-0">
+                              <span className="text-sm shrink-0">{getFlag(c)}</span>
+                              <span className={`text-sm font-medium truncate ${headCls}`}>{getName(c)}</span>
+                            </span>
+                            <span className={`shrink-0 text-sm ${darkMode ? "text-slate-400" : "text-slate-400"}`}>▾</span>
                           </div>
                         ) : (
                           /* ── Empty selector ── */
                           <div
                             onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
-                            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border border-dashed cursor-pointer transition mx-auto max-w-[200px] ${
+                            className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border border-dashed cursor-pointer transition ${
                               isOpen
                                 ? (darkMode ? "border-blue-500" : "border-blue-400")
                                 : (darkMode ? "border-slate-600 hover:border-slate-500" : "border-slate-300 hover:border-slate-400")
-                            }`}
+                            }`} style={{ width: 240 }}
                           >
-                            <span className={`text-sm truncate ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("chooseCity").replace(":", "")}</span>
-                            <span className={`text-[10px] shrink-0 ml-auto ${darkMode ? "text-slate-500" : "text-slate-400"}`}>▾</span>
+                            <span className={`flex-1 text-sm text-center ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("chooseCity").replace(":", "")}</span>
+                            <span className={`shrink-0 text-sm ${darkMode ? "text-slate-400" : "text-slate-400"}`}>▾</span>
                           </div>
                         )}
                         {/* ── Dropdown ── */}
                         {isOpen && (
                           <div className={`absolute z-50 mt-1 rounded-xl shadow-lg border overflow-hidden ${
                             darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-                          }`} style={{ left: "50%", transform: "translateX(-50%)", width: "240px" }}>
+                          }`} style={{ left: "50%", transform: "translateX(-50%)", width: 240 }}>
                             <input autoFocus value={slotSearch} onChange={e => setSlotSearch(e.target.value)}
                               placeholder={t("homeSearchPlaceholder")}
                               className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${
@@ -329,6 +340,19 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                       </th>
                     );
                   })}
+                </tr>
+                {/* ── Wins summary row ── */}
+                <tr className={`border-b ${darkMode ? "border-slate-700/50 bg-slate-800/40" : "border-slate-100 bg-slate-50/50"}`}>
+                  <td className={`px-4 py-2 text-xs font-medium ${darkMode ? "text-slate-400" : "text-slate-500"}`} />
+                  {visibleSlots.map((c, i) => (
+                    <td key={`wins-${i}`} className={`px-3 py-2 text-center text-xs font-semibold ${
+                      c && winCounts[i] > 0
+                        ? (darkMode ? "text-emerald-400" : "text-emerald-600")
+                        : (darkMode ? "text-slate-500" : "text-slate-400")
+                    }`}>
+                      {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
+                    </td>
+                  ))}
                 </tr>
               </thead>
               <tbody>
