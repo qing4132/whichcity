@@ -429,25 +429,44 @@ export default function RankingContent({ cities }: Props) {
           </p>
         </div>
 
-        {/* Grouped tab selector */}
-        <div className="mb-4 flex flex-wrap items-center gap-x-1 gap-y-1.5">
-          {GROUPS.map((group, gi) => (
-            <div key={group.labelKey} className="contents">
-              {gi > 0 && <span className={`mx-1 text-xs select-none ${darkMode ? "text-slate-600" : "text-slate-300"}`}>|</span>}
-              {group.tabs.map(gTab => (
-                <button key={gTab} onClick={() => handleTab(gTab)}
-                  className={`px-2.5 py-1.5 rounded-lg font-medium text-xs transition ${
-                    tab === gTab
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : gi === activeGroup
-                        ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-50 text-blue-700 hover:bg-blue-100")
-                        : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100 text-slate-600 hover:bg-slate-200")
-                  }`}>
-                  {t(TAB_I18N[gTab])}
-                </button>
+        {/* Grouped tab selector – 3 rows matching city detail layout */}
+        <div className="mb-4 space-y-1.5">
+          {/* Row 1: Income + Housing / Row 2: Work + Environment */}
+          {[[0, 1], [2, 3]].map((pair, ri) => (
+            <div key={ri} className="grid grid-cols-2 gap-2">
+              {pair.map(gi => (
+                <div key={GROUPS[gi].labelKey} className="grid grid-cols-3 gap-1">
+                  {GROUPS[gi].tabs.map(gTab => (
+                    <button key={gTab} onClick={() => handleTab(gTab)}
+                      className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${
+                        tab === gTab
+                          ? "bg-blue-600 text-white shadow-sm"
+                          : gi === activeGroup
+                            ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-50 text-blue-700 hover:bg-blue-100")
+                            : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100 text-slate-600 hover:bg-slate-200")
+                      }`}>
+                      {t(TAB_I18N[gTab])}
+                    </button>
+                  ))}
+                </div>
               ))}
             </div>
           ))}
+          {/* Row 3: Indexes – visually distinct */}
+          <div className={`grid grid-cols-4 gap-1 pt-1.5 border-t ${darkMode ? "border-slate-700/60" : "border-slate-200"}`}>
+            {GROUPS[4].tabs.map(gTab => (
+              <button key={gTab} onClick={() => handleTab(gTab)}
+                className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${
+                  tab === gTab
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : activeGroup === 4
+                      ? (darkMode ? "bg-indigo-900/30 text-indigo-300 hover:bg-indigo-900/50" : "bg-indigo-50 text-indigo-700 hover:bg-indigo-100")
+                      : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100 text-slate-600 hover:bg-slate-200")
+                }`}>
+                {t(TAB_I18N[gTab])}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Table */}
