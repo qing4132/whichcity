@@ -1,5 +1,5 @@
-import CityComparison from "@/components/CityComparison";
+import HomeContent from "@/components/HomeContent";
 
 export default function Home() {
-  return <CityComparison />;
+  return <HomeContent />;
 }
