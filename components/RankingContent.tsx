@@ -1,209 +1,422 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import type { City, Locale, ExchangeRates, CostTier, IncomeMode } from "@/lib/types";
-import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
+import { useMemo, useState } from "react";
+import type { City, CostTier, IncomeMode } from "@/lib/types";
+import { COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { computeLifePressure } from "@/lib/clientUtils";
-import { computeNetIncome, computeAllNetIncomes } from "@/lib/taxUtils";
+import { computeAllNetIncomes } from "@/lib/taxUtils";
+import { useSettings } from "@/hooks/useSettings";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-type Tab = "savings" | "ppp" | "housing" | "air" | "flights" | "safety" | "workhours" | "rent" | "vacation" | "internet" | "lifePressure" | "healthcare" | "freedom";
+/* ── Types ── */
 
-interface RankingContentProps {
-  cities: City[];
+type Tab =
+  | "income" | "expense" | "savings"
+  | "housePrice" | "housing" | "rent"
+  | "workhours" | "hourlyWage" | "vacation"
+  | "air" | "internet" | "flights"
+  | "lifePressure" | "safety" | "healthcare" | "freedom";
+
+type SubSort =
+  | "savingsRate" | "bigMacPower" | "subWorkHours" | "yearsToHome"
+  | "numbeo" | "homicide" | "gpi" | "gallup"
+  | "doctors" | "beds" | "uhc" | "lifeExp"
+  | "press" | "democracy" | "cpi"
+  | null;
+
+/* ── Config ── */
+
+const GROUPS: { labelKey: string; tabs: Tab[] }[] = [
+  { labelKey: "rankGroup_income", tabs: ["income", "expense", "savings"] },
+  { labelKey: "rankGroup_housing", tabs: ["housePrice", "housing", "rent"] },
+  { labelKey: "rankGroup_work", tabs: ["workhours", "hourlyWage", "vacation"] },
+  { labelKey: "rankGroup_environment", tabs: ["air", "internet", "flights"] },
+  { labelKey: "rankGroup_index", tabs: ["lifePressure", "safety", "healthcare", "freedom"] },
+];
+
+const INDEX_TABS = new Set<Tab>(["lifePressure", "safety", "healthcare", "freedom"]);
+
+const TAB_I18N: Record<Tab, string> = {
+  income: "rankTab_income", expense: "rankTab_expense", savings: "rankTab_savings",
+  housePrice: "rankTab_housePrice", housing: "rankTab_housing", rent: "rankTab_rent",
+  workhours: "rankTab_workhours", hourlyWage: "rankTab_hourlyWage", vacation: "rankTab_vacation",
+  air: "rankTab_air", internet: "rankTab_internet", flights: "rankTab_flights",
+  lifePressure: "rankTab_lifePressure", safety: "rankTab_safety",
+  healthcare: "rankTab_healthcare", freedom: "rankTab_freedom",
+};
+
+const tabGroupIdx = (tab: Tab) => GROUPS.findIndex(g => g.tabs.includes(tab));
+
+/* ── Helpers ── */
+
+type Tier = "good" | "mid" | "bad";
+
+function rankHigher(values: number[], val: number) {
+  const unique = [...new Set(values)].sort((a, b) => b - a);
+  let rank = 1;
+  for (const v of unique) { if (val >= v) return rank; rank += values.filter(x => x === v).length; }
+  return values.length;
 }
 
-export default function RankingContent({ cities }: RankingContentProps) {
+function rankLower(values: number[], val: number) {
+  const unique = [...new Set(values)].sort((a, b) => a - b);
+  let rank = 1;
+  for (const v of unique) { if (val <= v) return rank; rank += values.filter(x => x === v).length; }
+  return values.length;
+}
+
+function tierHigh(values: number[], val: number): Tier {
+  const r = rankHigher(values, val), n = values.length;
+  if (r <= n * 0.2) return "good"; if (r > n * 0.8) return "bad"; return "mid";
+}
+
+function tierLow(values: number[], val: number): Tier {
+  const r = rankLower(values, val), n = values.length;
+  if (r <= n * 0.2) return "good"; if (r > n * 0.8) return "bad"; return "mid";
+}
+
+function nullLast(aV: number | null, bV: number | null, ascending: boolean): number {
+  if (aV === null && bV === null) return 0;
+  if (aV === null) return 1; if (bV === null) return -1;
+  return ascending ? aV - bV : bV - aV;
+}
+
+/* ── Component ── */
+
+interface Props { cities: City[]; }
+
+export default function RankingContent({ cities }: Props) {
   const router = useRouter();
-  const [locale, setLocale] = useState<Locale>("en");
-  const [darkMode, setDarkMode] = useState(false);
-  const [selectedProfession, setSelectedProfession] = useState("");
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
-  const [costTier, setCostTier] = useState<CostTier>("moderate");
-  const [incomeMode, setIncomeMode] = useState<IncomeMode>("net");
-  const [exchangeRates, setExchangeRates] = useState<ExchangeRates | null>(null);
+  const s = useSettings();
+  const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode } = s;
   const [tab, setTab] = useState<Tab>("savings");
+  const [subSort, setSubSort] = useState<SubSort>(null);
 
   const professions = cities[0]?.professions ? Object.keys(cities[0].professions) : [];
+  const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
+  const costField = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
 
-  useEffect(() => {
-    const savedLocale = localStorage.getItem("locale");
-    if (savedLocale && ["zh", "en", "ja", "es"].includes(savedLocale)) setLocale(savedLocale as Locale);
-    const savedDark = localStorage.getItem("darkMode") === "true";
-    setDarkMode(savedDark);
-    const savedCur = localStorage.getItem("selectedCurrency");
-    if (savedCur) setSelectedCurrency(savedCur);
-    const savedProf = localStorage.getItem("selectedProfession");
-    if (savedProf && professions.includes(savedProf)) setSelectedProfession(savedProf);
-    else if (professions.length) setSelectedProfession(professions[0]);
-    const savedTier = localStorage.getItem("costTier");
-    if (savedTier && ["moderate", "budget"].includes(savedTier)) setCostTier(savedTier as CostTier);
-    else setCostTier("moderate");
-    const savedIM = localStorage.getItem("incomeMode");
-    if (savedIM && ["gross", "net", "expatNet"].includes(savedIM)) setIncomeMode(savedIM as IncomeMode);
-    fetch("/data/exchange-rates.json").then(r => r.json()).then(setExchangeRates).catch(() => {});
+  const selectCls = `text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
+  const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
+
+  const tierCls = (tier: Tier) =>
+    tier === "good" ? (darkMode ? "text-emerald-400" : "text-emerald-600")
+    : tier === "bad" ? (darkMode ? "text-rose-400" : "text-rose-500")
+    : (darkMode ? "text-slate-300" : "text-slate-700");
+
+  /* ── Compute data ── */
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [professions.length]);
+  const allIncomes = useMemo(() => {
+    const gross = cities.map(c => activeProfession && c.professions[activeProfession] != null ? c.professions[activeProfession] : 0);
+    return computeAllNetIncomes(cities, gross, incomeMode);
+  }, [cities, activeProfession, incomeMode]);
 
-  const t = useCallback((key: string, params?: Record<string, string | number>) => {
-    const template = TRANSLATIONS[locale]?.[key] || TRANSLATIONS.zh[key] || key;
-    if (!params) return template;
-    return Object.entries(params).reduce((acc, [k, v]) => acc.replaceAll(`{${k}}`, String(v)), template);
-  }, [locale]);
-
-  const getCityLabel = (city: City) => CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name;
-  const getCountryLabel = (c: string) => COUNTRY_TRANSLATIONS[c]?.[locale] || c;
-  const getProfessionLabel = (p: string) => PROFESSION_TRANSLATIONS[p]?.[locale] || p;
-  const getAqiColor = (aqi: number | null) => {
-    if (aqi === null) return darkMode ? "text-slate-500" : "text-slate-400";
-    if (aqi <= 50) return darkMode ? "text-emerald-400" : "text-emerald-600";
-    if (aqi <= 100) return darkMode ? "text-amber-400" : "text-amber-600";
-    return darkMode ? "text-red-400" : "text-red-500";
-  };
-
-  const convertAmount = (amount: number) => {
-    if (!exchangeRates) return amount;
-    return Math.round(amount * (exchangeRates.rates[selectedCurrency] || 1));
-  };
-
-  const formatCurrency = (amount: number) => {
-    if (!exchangeRates) return `$${Math.round(amount).toLocaleString()}`;
-    const symbol = exchangeRates.symbols[selectedCurrency] || selectedCurrency;
-    return `${symbol}${convertAmount(amount).toLocaleString()}`;
-  };
-
-  // Compute rankings
-  const ranked = cities.map(city => {
-    const grossIncome = selectedProfession && city.professions[selectedProfession] != null ? city.professions[selectedProfession] : null;
-    const income = grossIncome !== null ? computeNetIncome(grossIncome, city.country, city.id, incomeMode).netUSD : 0;
-    const costKey = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
-    const costTierField = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
-    const annualCost = (city[costKey] as number) * 12;
-    const savings = income - annualCost;
-    const savingsRate = income > 0 ? savings / income : 0;
+  const rows = useMemo(() => cities.map((city, i) => {
+    const income = allIncomes[i];
+    const cost = city[costField] as number;
+    const savings = income - cost * 12;
     const yearsToHome = city.housePrice !== null && savings > 0 ? (city.housePrice * 70) / savings : Infinity;
-    const ppp = annualCost > 0 ? income / annualCost : 0;
-    return { city, income, annualCost, savings, savingsRate, yearsToHome, ppp, costTierField };
-  });
-
-  // Pre-compute all incomes for index calculations
-  const allIncomes = ranked.map(r => r.income);
-  const costTierField = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
-
-  // Pre-compute indices for all cities
-  const indexCache = ranked.map((r, i) => {
-    const lp = computeLifePressure(r.city, cities, r.income, allIncomes, costTierField);
+    const hourlyWage = city.annualWorkHours !== null && city.annualWorkHours > 0 ? income / city.annualWorkHours : 0;
+    const savingsRate = income > 0 ? Math.round((savings / income) * 100) : 0;
+    const bigMacPower = city.bigMacPrice !== null && city.bigMacPrice > 0 && city.annualWorkHours !== null && city.annualWorkHours > 0
+      ? (income / city.annualWorkHours) / city.bigMacPrice : null;
+    const lp = computeLifePressure(city, cities, income, allIncomes, costField);
     return {
-      lifePressure: lp.value,
-      lifePressureConf: lp.confidence,
-      healthcare: r.city.healthcareIndex,
-      healthcareConf: r.city.healthcareConfidence,
-      freedom: r.city.freedomIndex,
-      freedomConf: r.city.freedomConfidence,
+      city, i, income, monthlyCost: cost, savings, yearsToHome, hourlyWage, savingsRate, bigMacPower,
+      housePrice: city.housePrice, monthlyRent: city.monthlyRent,
+      annualWorkHours: city.annualWorkHours, paidLeaveDays: city.paidLeaveDays,
+      airQuality: city.airQuality, internetSpeedMbps: city.internetSpeedMbps, directFlightCities: city.directFlightCities,
+      lifePressure: lp.value, lifePressureConf: lp.confidence,
+      safetyIndex: city.safetyIndex, safetyConf: city.safetyConfidence,
+      healthcareIndex: city.healthcareIndex, healthcareConf: city.healthcareConfidence,
+      freedomIndex: city.freedomIndex, freedomConf: city.freedomConfidence,
+      numbeoSafety: city.numbeoSafetyIndex, homicideInv: city.homicideRateInv,
+      gpiInv: city.gpiScoreInv, gallupLO: city.gallupLawOrder,
+      doctors: city.doctorsPerThousand, beds: city.hospitalBedsPerThousand,
+      uhc: city.uhcCoverageIndex, lifeExpectancy: city.lifeExpectancy,
+      pressFreedom: city.pressFreedomScore, democracy: city.democracyIndex,
+      cpi: city.corruptionPerceptionIndex,
     };
-  });
+  }), [cities, allIncomes, costField]);
 
-  const nullLast = (aV: number | null, bV: number | null, lower: boolean): number => {
-    if (aV === null && bV === null) return 0;
-    if (aV === null) return 1;
-    if (bV === null) return -1;
-    return lower ? aV - bV : bV - aV;
+  /* ── Ranking arrays for tier coloring ── */
+  const nn = (arr: (number | null)[]): number[] => arr.filter((v): v is number => v !== null);
+  const V = useMemo(() => ({
+    income: rows.map(r => r.income),
+    monthlyCost: rows.map(r => r.monthlyCost),
+    savings: rows.map(r => r.savings),
+    housePrice: nn(rows.map(r => r.housePrice)),
+    yearsToHome: rows.map(r => r.yearsToHome).filter(isFinite),
+    monthlyRent: nn(rows.map(r => r.monthlyRent)),
+    workHours: nn(rows.map(r => r.annualWorkHours)),
+    hourlyWage: rows.filter(r => r.hourlyWage > 0).map(r => r.hourlyWage),
+    paidLeave: nn(rows.map(r => r.paidLeaveDays)),
+    air: nn(rows.map(r => r.airQuality)),
+    internet: nn(rows.map(r => r.internetSpeedMbps)),
+    flights: nn(rows.map(r => r.directFlightCities)),
+    lp: rows.map(r => r.lifePressure),
+    safety: rows.map(r => r.safetyIndex),
+    hc: rows.map(r => r.healthcareIndex),
+    freedom: rows.map(r => r.freedomIndex),
+    savingsRate: rows.map(r => r.savingsRate),
+    bigMac: nn(rows.map(r => r.bigMacPower)),
+    numbeo: nn(rows.map(r => r.numbeoSafety)),
+    homicide: nn(rows.map(r => r.homicideInv)),
+    gpi: nn(rows.map(r => r.gpiInv)),
+    gallup: nn(rows.map(r => r.gallupLO)),
+    doctors: nn(rows.map(r => r.doctors)),
+    beds: nn(rows.map(r => r.beds)),
+    uhc: nn(rows.map(r => r.uhc)),
+    lifeExp: nn(rows.map(r => r.lifeExpectancy)),
+    press: nn(rows.map(r => r.pressFreedom)),
+    demo: nn(rows.map(r => r.democracy)),
+    cpi: nn(rows.map(r => r.cpi)),
+  }), [rows]);
+
+  /* ── Sort ── */
+  const sorted = useMemo(() => {
+    const key = subSort || tab;
+    return [...rows].sort((a, b) => {
+      switch (key) {
+        case "income": return b.income - a.income;
+        case "expense": return a.monthlyCost - b.monthlyCost;
+        case "savings": return b.savings - a.savings;
+        case "housePrice": return nullLast(a.housePrice, b.housePrice, true);
+        case "housing": {
+          const ay = isFinite(a.yearsToHome) ? a.yearsToHome : 999999;
+          const by = isFinite(b.yearsToHome) ? b.yearsToHome : 999999;
+          return ay - by;
+        }
+        case "rent": return nullLast(a.monthlyRent, b.monthlyRent, true);
+        case "workhours": return nullLast(a.annualWorkHours, b.annualWorkHours, true);
+        case "hourlyWage": return b.hourlyWage - a.hourlyWage;
+        case "vacation": return nullLast(a.paidLeaveDays, b.paidLeaveDays, false);
+        case "air": return nullLast(a.airQuality, b.airQuality, true);
+        case "internet": return nullLast(a.internetSpeedMbps, b.internetSpeedMbps, false);
+        case "flights": return nullLast(a.directFlightCities, b.directFlightCities, false);
+        case "lifePressure": return a.lifePressure - b.lifePressure;
+        case "safety": return b.safetyIndex - a.safetyIndex;
+        case "healthcare": return b.healthcareIndex - a.healthcareIndex;
+        case "freedom": return b.freedomIndex - a.freedomIndex;
+        case "savingsRate": return b.savingsRate - a.savingsRate;
+        case "bigMacPower": return nullLast(a.bigMacPower, b.bigMacPower, false);
+        case "subWorkHours": return nullLast(a.annualWorkHours, b.annualWorkHours, true);
+        case "yearsToHome": {
+          const ay = isFinite(a.yearsToHome) ? a.yearsToHome : 999999;
+          const by = isFinite(b.yearsToHome) ? b.yearsToHome : 999999;
+          return ay - by;
+        }
+        case "numbeo": return nullLast(a.numbeoSafety, b.numbeoSafety, false);
+        case "homicide": return nullLast(a.homicideInv, b.homicideInv, false);
+        case "gpi": return nullLast(a.gpiInv, b.gpiInv, false);
+        case "gallup": return nullLast(a.gallupLO, b.gallupLO, false);
+        case "doctors": return nullLast(a.doctors, b.doctors, false);
+        case "beds": return nullLast(a.beds, b.beds, false);
+        case "uhc": return nullLast(a.uhc, b.uhc, false);
+        case "lifeExp": return nullLast(a.lifeExpectancy, b.lifeExpectancy, false);
+        case "press": return nullLast(a.pressFreedom, b.pressFreedom, false);
+        case "democracy": return nullLast(a.democracy, b.democracy, false);
+        case "cpi": return nullLast(a.cpi, b.cpi, false);
+        default: return 0;
+      }
+    });
+  }, [rows, tab, subSort]);
+
+  /* ── Tab handlers ── */
+  const handleTab = (newTab: Tab) => { setTab(newTab); setSubSort(null); };
+  const handleSubSort = (ss: SubSort) => setSubSort(prev => prev === ss ? null : ss);
+
+  const activeGroup = tabGroupIdx(tab);
+  const isIndex = INDEX_TABS.has(tab);
+  const sortKey = subSort || tab;
+
+  /* ── Rendering helpers ── */
+  const getCityLabel = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
+  const getCountryLabel = (c: string) => COUNTRY_TRANSLATIONS[c]?.[locale] || c;
+  const fmtN = (v: number | null, unit = "", decimals = 0) =>
+    v !== null ? `${decimals > 0 ? v.toFixed(decimals) : v}${unit ? " " + unit : ""}` : "\u2014";
+
+  const thBase = `px-3 py-2.5 text-left text-xs font-semibold tracking-wide whitespace-nowrap ${darkMode ? "text-slate-400" : "text-slate-500"}`;
+  const tdBase = "px-3 py-2.5 text-sm";
+  const headerBg = darkMode ? "bg-slate-800" : "bg-slate-100";
+
+  const sortArrow = (key: string) => sortKey === key ? " \u25bc" : "";
+
+  /* ── Sub-sort column header ── */
+  const SubTh = ({ sk, label, weight, className = "" }: { sk: SubSort; label: string; weight?: string; className?: string }) => (
+    <th className={`${thBase} cursor-pointer hover:underline ${className}`}
+      onClick={() => sk === null ? setSubSort(null) : handleSubSort(sk)}>
+      {label}{weight && <span className="opacity-50 ml-0.5">({weight})</span>}{sortArrow(sk === null ? tab : (sk as string))}
+    </th>
+  );
+
+  /* ── Tier-colored cell ── */
+  const TC = ({ val, formatted, vals, higher, conf }: {
+    val: number | null; formatted: string; vals: number[]; higher: boolean; conf?: string;
+  }) => {
+    if (val === null || (typeof val === "number" && !isFinite(val)))
+      return <td className={`${tdBase} ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{formatted}</td>;
+    const tier = higher ? tierHigh(vals, val) : tierLow(vals, val);
+    return (
+      <td className={`${tdBase} font-semibold ${tierCls(tier)}`}>
+        {formatted}{conf === "low" && <span className={`ml-1 text-xs font-normal ${darkMode ? "text-amber-400" : "text-amber-600"}`}>*</span>}
+      </td>
+    );
   };
 
-  const sorted = [...ranked.map((r, i) => ({ ...r, idx: i }))].sort((a, b) => {
-    if (tab === "savings") return b.savings - a.savings;
-    if (tab === "ppp") return b.ppp - a.ppp;
-    if (tab === "air") return nullLast(a.city.airQuality, b.city.airQuality, true);
-    if (tab === "flights") return nullLast(a.city.directFlightCities, b.city.directFlightCities, false);
-    if (tab === "safety") return b.city.safetyIndex - a.city.safetyIndex;
-    if (tab === "workhours") return nullLast(a.city.annualWorkHours, b.city.annualWorkHours, true);
-    if (tab === "rent") return nullLast(a.city.monthlyRent, b.city.monthlyRent, true);
-    if (tab === "vacation") return nullLast(a.city.paidLeaveDays, b.city.paidLeaveDays, false);
-    if (tab === "internet") return nullLast(a.city.internetSpeedMbps, b.city.internetSpeedMbps, false);
-    if (tab === "lifePressure") return indexCache[a.idx].lifePressure - indexCache[b.idx].lifePressure;
-    if (tab === "healthcare") return indexCache[b.idx].healthcare - indexCache[a.idx].healthcare;
-    if (tab === "freedom") return indexCache[b.idx].freedom - indexCache[a.idx].freedom;
-    // housing
-    const aY = isFinite(a.yearsToHome) ? a.yearsToHome : 999999;
-    const bY = isFinite(b.yearsToHome) ? b.yearsToHome : 999999;
-    return aY - bY;
-  });
+  /* ── Column headers ── */
+  const renderHeaders = () => {
+    if (isIndex) {
+      switch (tab) {
+        case "lifePressure": return (<>
+          <SubTh sk={null} label={t("lifePressureIndex")} />
+          <SubTh sk="savingsRate" label={t("savingsRateLabel")} weight="30%" />
+          <SubTh sk="bigMacPower" label={t("bigMacPower")} weight="25%" />
+          <SubTh sk="subWorkHours" label={t("annualWorkHours")} weight="25%" />
+          <SubTh sk="yearsToHome" label={t("homePurchaseYears")} weight="20%" />
+        </>);
+        case "safety": return (<>
+          <SubTh sk={null} label={t("safetyIndex")} />
+          <SubTh sk="numbeo" label={t("safetyNumbeo")} weight="35%" />
+          <SubTh sk="homicide" label={t("safetyHomicide")} weight="30%" />
+          <SubTh sk="gpi" label={t("safetyGpi")} weight="20%" />
+          <SubTh sk="gallup" label={t("safetyGallup")} weight="15%" />
+        </>);
+        case "healthcare": return (<>
+          <SubTh sk={null} label={t("healthcareIndex")} />
+          <SubTh sk="doctors" label={t("doctorsPerThousand")} weight="35%" />
+          <SubTh sk="beds" label={t("hospitalBeds")} weight="25%" />
+          <SubTh sk="uhc" label={t("uhcCoverage")} weight="25%" />
+          <SubTh sk="lifeExp" label={t("lifeExpectancy")} weight="15%" />
+        </>);
+        case "freedom": return (<>
+          <SubTh sk={null} label={t("institutionalFreedom")} />
+          <SubTh sk="press" label={t("pressFreedom")} weight="35%" />
+          <SubTh sk="democracy" label={t("democracyIdx")} weight="35%" />
+          <SubTh sk="cpi" label={t("corruptionIdx")} weight="30%" />
+        </>);
+      }
+    }
+    const group = GROUPS[activeGroup];
+    return group.tabs.map(gTab => (
+      <th key={gTab} className={`${thBase} cursor-pointer hover:underline`}
+        onClick={() => handleTab(gTab)}>
+        {t(TAB_I18N[gTab]).replace(/^[^\s]+\s/, "")}{sortArrow(gTab)}
+      </th>
+    ));
+  };
 
-  const tabs: { key: Tab; label: string }[] = [
-    { key: "savings", label: t("rankTab_savings") },
-    { key: "ppp", label: t("rankTab_ppp") },
-    { key: "housing", label: t("rankTab_housing") },
-    { key: "rent", label: t("rankTab_rent") },
-    { key: "air", label: t("rankTab_air") },
-    { key: "flights", label: t("rankTab_flights") },
-    { key: "safety", label: t("rankTab_safety") },
-    { key: "workhours", label: t("rankTab_workhours") },
-    { key: "vacation", label: t("rankTab_vacation") },
-    { key: "internet", label: t("rankTab_internet") },
-    { key: "lifePressure", label: t("rankTab_lifePressure") },
-    { key: "healthcare", label: t("rankTab_healthcare") },
-    { key: "freedom", label: t("rankTab_freedom") },
-  ];
+  /* ── Row cells ── */
+  const renderCells = (r: typeof rows[0]) => {
+    if (isIndex) {
+      switch (tab) {
+        case "lifePressure": return (<>
+          <TC val={r.lifePressure} formatted={r.lifePressure.toFixed(1)} vals={V.lp} higher={false} conf={r.lifePressureConf} />
+          <TC val={r.savingsRate} formatted={`${r.savingsRate}%`} vals={V.savingsRate} higher={true} />
+          <TC val={r.bigMacPower} formatted={r.bigMacPower !== null ? r.bigMacPower.toFixed(1) : "\u2014"} vals={V.bigMac} higher={true} />
+          <TC val={r.annualWorkHours} formatted={r.annualWorkHours !== null ? `${r.annualWorkHours} ${t("unitH")}` : "\u2014"} vals={V.workHours} higher={false} />
+          <TC val={isFinite(r.yearsToHome) ? r.yearsToHome : null} formatted={isFinite(r.yearsToHome) ? `${r.yearsToHome.toFixed(1)} ${t("insightYears")}` : "\u2014"} vals={V.yearsToHome} higher={false} />
+        </>);
+        case "safety": return (<>
+          <TC val={r.safetyIndex} formatted={r.safetyIndex.toFixed(1)} vals={V.safety} higher={true} conf={r.safetyConf} />
+          <TC val={r.numbeoSafety} formatted={fmtN(r.numbeoSafety)} vals={V.numbeo} higher={true} />
+          <TC val={r.homicideInv} formatted={fmtN(r.homicideInv)} vals={V.homicide} higher={true} />
+          <TC val={r.gpiInv} formatted={fmtN(r.gpiInv)} vals={V.gpi} higher={true} />
+          <TC val={r.gallupLO} formatted={fmtN(r.gallupLO)} vals={V.gallup} higher={true} />
+        </>);
+        case "healthcare": return (<>
+          <TC val={r.healthcareIndex} formatted={r.healthcareIndex.toFixed(1)} vals={V.hc} higher={true} conf={r.healthcareConf} />
+          <TC val={r.doctors} formatted={fmtN(r.doctors, "", 1)} vals={V.doctors} higher={true} />
+          <TC val={r.beds} formatted={fmtN(r.beds, "", 1)} vals={V.beds} higher={true} />
+          <TC val={r.uhc} formatted={fmtN(r.uhc)} vals={V.uhc} higher={true} />
+          <TC val={r.lifeExpectancy} formatted={fmtN(r.lifeExpectancy, t("lifeExpectancyUnit"), 1)} vals={V.lifeExp} higher={true} />
+        </>);
+        case "freedom": return (<>
+          <TC val={r.freedomIndex} formatted={r.freedomIndex.toFixed(1)} vals={V.freedom} higher={true} conf={r.freedomConf} />
+          <TC val={r.pressFreedom} formatted={fmtN(r.pressFreedom)} vals={V.press} higher={true} />
+          <TC val={r.democracy} formatted={fmtN(r.democracy, "", 1)} vals={V.demo} higher={true} />
+          <TC val={r.cpi} formatted={fmtN(r.cpi)} vals={V.cpi} higher={true} />
+        </>);
+      }
+    }
+    const g = activeGroup;
+    if (g === 0) return (<>
+      <TC val={r.income} formatted={formatCurrency(r.income)} vals={V.income} higher={true} />
+      <TC val={r.monthlyCost} formatted={formatCurrency(r.monthlyCost)} vals={V.monthlyCost} higher={false} />
+      <TC val={r.savings} formatted={formatCurrency(r.savings)} vals={V.savings} higher={true} />
+    </>);
+    if (g === 1) return (<>
+      <TC val={r.housePrice} formatted={r.housePrice !== null ? `${formatCurrency(r.housePrice)}/m\u00b2` : "\u2014"} vals={V.housePrice} higher={false} />
+      <TC val={isFinite(r.yearsToHome) ? r.yearsToHome : null} formatted={isFinite(r.yearsToHome) ? `${r.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("rankNoSavings")} vals={V.yearsToHome} higher={false} />
+      <TC val={r.monthlyRent} formatted={r.monthlyRent !== null ? formatCurrency(r.monthlyRent) : "\u2014"} vals={V.monthlyRent} higher={false} />
+    </>);
+    if (g === 2) return (<>
+      <TC val={r.annualWorkHours} formatted={r.annualWorkHours !== null ? `${r.annualWorkHours} ${t("unitH")}` : "\u2014"} vals={V.workHours} higher={false} />
+      <TC val={r.hourlyWage > 0 ? r.hourlyWage : null} formatted={r.hourlyWage > 0 ? formatCurrency(Math.round(r.hourlyWage * 100) / 100) : "\u2014"} vals={V.hourlyWage} higher={true} />
+      <TC val={r.paidLeaveDays} formatted={r.paidLeaveDays !== null ? `${r.paidLeaveDays} ${t("paidLeaveDaysUnit")}` : "\u2014"} vals={V.paidLeave} higher={true} />
+    </>);
+    if (g === 3) return (<>
+      <TC val={r.airQuality} formatted={r.airQuality !== null ? `AQI ${r.airQuality}` : "\u2014"} vals={V.air} higher={false} />
+      <TC val={r.internetSpeedMbps} formatted={r.internetSpeedMbps !== null ? `${r.internetSpeedMbps} Mbps` : "\u2014"} vals={V.internet} higher={true} />
+      <TC val={r.directFlightCities} formatted={r.directFlightCities !== null ? `${r.directFlightCities} ${t("directFlightsUnit")}` : "\u2014"} vals={V.flights} higher={true} />
+    </>);
+    return null;
+  };
 
-  const headerCls = `sticky top-0 z-10 ${darkMode ? "bg-slate-800" : "bg-slate-100"}`;
-  const thCls = `px-3 py-2.5 text-left text-xs font-semibold uppercase tracking-wide ${darkMode ? "text-slate-400" : "text-slate-500"}`;
-  const tdCls = `px-3 py-2.5 text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`;
-
+  /* ── JSX ── */
+  if (!s.ready) return null;
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
 
-        {/* Top bar */}
-        <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
-          <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
-            <div className="flex items-center gap-2">
-              <Link href="/"
-                className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
-                {t("navHome")}
-              </Link>
-              <Link href="/ranking"
-                className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
-                {t("navRanking")}
-              </Link>
-              <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
-                className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
-                {t("navRandomCity")}
-              </button>
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <select value={selectedProfession} onChange={e => { setSelectedProfession(e.target.value); localStorage.setItem("selectedProfession", e.target.value); }}
-                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                {professions.map(p => <option key={p} value={p}>{getProfessionLabel(p)}</option>)}
-              </select>
-              <select value={costTier} onChange={e => { const v = e.target.value as CostTier; setCostTier(v); localStorage.setItem("costTier", v); }}
-                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                {(["moderate", "budget"] as const).map(tier => (
-                  <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
-                ))}
-              </select>
-              <select value={incomeMode} onChange={e => { const v = e.target.value as IncomeMode; setIncomeMode(v); localStorage.setItem("incomeMode", v); }}
-                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                <option value="gross">{t("incomeModeGross")}</option>
-                <option value="net">{t("incomeModeNet")}</option>
-                <option value="expatNet">{t("incomeModeExpatNet")}</option>
-              </select>
-              <select value={locale} onChange={e => { setLocale(e.target.value as Locale); localStorage.setItem("locale", e.target.value); }}
-                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                {(Object.keys(LANGUAGE_LABELS) as Locale[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
-              </select>
-              <select value={selectedCurrency} onChange={e => { setSelectedCurrency(e.target.value); localStorage.setItem("selectedCurrency", e.target.value); }}
-                className={`text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`}>
-                {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-              </select>
-              <button onClick={() => { setDarkMode(!darkMode); localStorage.setItem("darkMode", JSON.stringify(!darkMode)); }}
-                className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
-                {darkMode ? "☀️" : "🌙"}
-              </button>
-            </div>
+      {/* Top bar */}
+      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+        <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
+          <div className="flex items-center gap-2">
+            <Link href="/" className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
+              {t("navHome")}
+            </Link>
+            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+              {t("navRanking")}
+            </Link>
+            <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              {t("navRandomCity")}
+            </button>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+              {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
+            </select>
+            <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+              {(["moderate", "budget"] as const).map(tier => (
+                <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
+              ))}
+            </select>
+            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+              <option value="gross">{t("incomeModeGross")}</option>
+              <option value="net">{t("incomeModeNet")}</option>
+              <option value="expatNet">{t("incomeModeExpatNet")}</option>
+            </select>
+            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+              {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
+                <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
+              ))}
+            </select>
+            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+              {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+            </select>
+            <button onClick={() => s.setDarkMode(!darkMode)}
+              className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
+              {darkMode ? "\u2600\ufe0f" : "\ud83c\udf19"}
+            </button>
           </div>
         </div>
+      </div>
+
       <div className="max-w-6xl mx-auto px-4 py-4 sm:py-8">
 
         {/* Header */}
@@ -216,195 +429,65 @@ export default function RankingContent({ cities }: RankingContentProps) {
           </p>
         </div>
 
-        {/* Tab selector */}
-        <div className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-13 gap-1.5 mb-4">
-          {tabs.map(({ key, label }) => (
-            <button key={key} onClick={() => setTab(key)}
-              className={`px-2 py-2 rounded-lg font-medium text-sm transition text-center ${
-                tab === key
-                  ? "bg-blue-600 text-white"
-                  : darkMode ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}>
-              {label}
-            </button>
+        {/* Grouped tab selector */}
+        <div className="mb-4 space-y-2">
+          {GROUPS.map((group, gi) => (
+            <div key={group.labelKey} className="flex items-center gap-1.5 flex-wrap">
+              <span className={`text-xs font-bold w-12 shrink-0 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
+                {t(group.labelKey)}
+              </span>
+              {group.tabs.map(gTab => (
+                <button key={gTab} onClick={() => handleTab(gTab)}
+                  className={`px-2.5 py-1.5 rounded-lg font-medium text-xs transition ${
+                    tab === gTab
+                      ? "bg-blue-600 text-white shadow-sm"
+                      : gi === activeGroup
+                        ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-50 text-blue-700 hover:bg-blue-100")
+                        : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100 text-slate-600 hover:bg-slate-200")
+                  }`}>
+                  {t(TAB_I18N[gTab])}
+                </button>
+              ))}
+            </div>
           ))}
         </div>
 
         {/* Table */}
         <div className={`rounded-xl shadow-md overflow-hidden ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
           <div className="overflow-x-auto">
-            <table className="w-full table-fixed">
+            <table className="w-full">
               <thead>
-                <tr className={headerCls}>
-                  <th className={`${thCls} w-[8%]`}>{t("rankCol_rank")}</th>
-                  <th className={`${thCls} w-[22%]`}>{t("rankCol_city")}</th>
-                  <th className={`${thCls} w-[15%] hidden sm:table-cell`}>{t("rankCol_country")}</th>
-                  {tab === "air" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("rankCol_aqi")}</th>
-                  ) : tab === "flights" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("directFlights")}</th>
-                  ) : tab === "safety" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("safetyIndex")}</th>
-                  ) : tab === "workhours" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("annualWorkHours")}</th>
-                  ) : tab === "rent" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("monthlyRent")}</th>
-                  ) : tab === "vacation" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("paidLeaveDays")}</th>
-                  ) : tab === "internet" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("internetSpeed")}</th>
-                  ) : tab === "lifePressure" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("lifePressureIndex")}</th>
-                  ) : tab === "healthcare" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("healthcareIndex")}</th>
-                  ) : tab === "freedom" ? (
-                    <th className={`${thCls} w-[55%] sm:w-[55%]`}>{t("institutionalFreedom")}</th>
-                  ) : (
-                    <>
-                      <th className={thCls}>{t("rankCol_income")}</th>
-                      {tab === "savings" && <th className={thCls}>{t("rankCol_expense")}</th>}
-                      <th className={thCls}>
-                        {tab === "ppp" ? t("rankCol_ppp") : tab === "housing" ? t("rankCol_homeYears") : t("rankCol_savings")}
-                      </th>
-                      <th className={thCls}>{t("rankCol_savingsRate")}</th>
-                      {tab === "housing" && <th className={thCls}>{t("housePrice")}</th>}
-                    </>
-                  )}
+                <tr className={headerBg}>
+                  <th className={`${thBase} w-[52px] text-center`}>{t("rankCol_rank")}</th>
+                  <th className={`${thBase} min-w-[120px]`}>{t("rankCol_city")}</th>
+                  <th className={`${thBase} hidden sm:table-cell min-w-[80px]`}>{t("rankCol_country")}</th>
+                  {renderHeaders()}
                 </tr>
               </thead>
               <tbody>
-                {sorted.map((item, idx) => {
-                  const slug = CITY_SLUGS[item.city.id];
+                {sorted.map((r, idx) => {
+                  const slug = CITY_SLUGS[r.city.id];
                   const isTop3 = idx < 3;
-                  const rankBadge = isTop3 ? ["🥇", "🥈", "🥉"][idx] : `${idx + 1}`;
+                  const badge = isTop3 ? ["\ud83e\udd47", "\ud83e\udd48", "\ud83e\udd49"][idx] : `${idx + 1}`;
                   return (
-                    <tr key={item.city.id}
-                      className={`${idx < sorted.length - 1 ? (darkMode ? "border-b border-slate-700/50" : "border-b border-slate-100") : ""} ${
-                        isTop3 ? (darkMode ? "bg-blue-900/10" : "bg-blue-50/50") : ""
+                    <tr key={r.city.id}
+                      className={`${
+                        idx < sorted.length - 1 ? (darkMode ? "border-b border-slate-700/50" : "border-b border-slate-100") : ""
+                      } ${isTop3 ? (darkMode ? "bg-blue-900/10" : "bg-blue-50/50") : ""
                       } hover:${darkMode ? "bg-slate-700/30" : "bg-slate-50"} transition`}>
-                      <td className={`${tdCls} font-bold text-center`}>{rankBadge}</td>
-                      <td className={tdCls}>
-                        <span className="mr-1.5">{CITY_FLAG_EMOJIS[item.city.id] || "🏙️"}</span>
+                      <td className={`${tdBase} font-bold text-center ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{badge}</td>
+                      <td className={tdBase}>
+                        <span className="mr-1.5">{CITY_FLAG_EMOJIS[r.city.id] || "\ud83c\udfd9\ufe0f"}</span>
                         {slug ? (
                           <Link href={`/city/${slug}`} className={`font-semibold hover:underline ${darkMode ? "text-blue-400" : "text-blue-600"}`}>
-                            {getCityLabel(item.city)}
+                            {getCityLabel(r.city)}
                           </Link>
                         ) : (
-                          <span className="font-semibold">{getCityLabel(item.city)}</span>
+                          <span className="font-semibold">{getCityLabel(r.city)}</span>
                         )}
                       </td>
-                      <td className={`${tdCls} hidden sm:table-cell`}>{getCountryLabel(item.city.country)}</td>
-                      {tab === "air" ? (
-                        <td className={tdCls}>
-                          <span className={`font-bold ${getAqiColor(item.city.airQuality)}`}>
-                            {item.city.airQuality !== null ? `${item.city.country === "中国" ? "AQI (CN)" : "AQI"} ${item.city.airQuality}` : "—"}
-                          </span>
-                        </td>
-                      ) : tab === "flights" ? (
-                        <td className={tdCls}>
-                          {item.city.directFlightCities !== null ? (
-                          <span className={`font-bold ${item.city.directFlightCities >= 150 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.directFlightCities >= 50 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {item.city.directFlightCities} {t("directFlightsUnit")}
-                          </span>
-                          ) : <span className={darkMode ? "text-slate-500" : "text-slate-400"}>—</span>}
-                        </td>
-                      ) : tab === "safety" ? (
-                        <td className={tdCls}>
-                          <span className={`font-bold ${item.city.safetyIndex >= 70 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.safetyIndex >= 40 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {item.city.safetyIndex.toFixed(1)}
-                            {item.city.safetyConfidence === "low" && " *"}
-                          </span>
-                        </td>
-                      ) : tab === "workhours" ? (
-                        <td className={tdCls}>
-                          {item.city.annualWorkHours !== null ? (
-                          <span className={`font-bold ${item.city.annualWorkHours <= 1600 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.annualWorkHours <= 1900 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {item.city.annualWorkHours} {t("workHoursUnit")}
-                          </span>
-                          ) : <span className={darkMode ? "text-slate-500" : "text-slate-400"}>—</span>}
-                        </td>
-                      ) : tab === "rent" ? (
-                        <td className={tdCls}>
-                          {item.city.monthlyRent !== null ? (
-                          <span className={`font-bold ${item.city.monthlyRent <= 500 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.monthlyRent <= 1500 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {formatCurrency(item.city.monthlyRent)}
-                          </span>
-                          ) : <span className={darkMode ? "text-slate-500" : "text-slate-400"}>—</span>}
-                        </td>
-                      ) : tab === "vacation" ? (
-                        <td className={tdCls}>
-                          {item.city.paidLeaveDays !== null ? (
-                          <span className={`font-bold ${item.city.paidLeaveDays >= 20 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.paidLeaveDays >= 10 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {item.city.paidLeaveDays} {t("paidLeaveDaysUnit")}
-                          </span>
-                          ) : <span className={darkMode ? "text-slate-500" : "text-slate-400"}>—</span>}
-                        </td>
-                      ) : tab === "internet" ? (
-                        <td className={tdCls}>
-                          {item.city.internetSpeedMbps !== null ? (
-                          <span className={`font-bold ${item.city.internetSpeedMbps >= 150 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.city.internetSpeedMbps >= 50 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {item.city.internetSpeedMbps} Mbps
-                          </span>
-                          ) : <span className={darkMode ? "text-slate-500" : "text-slate-400"}>—</span>}
-                        </td>
-                      ) : tab === "lifePressure" ? (
-                        <td className={tdCls}>
-                          <span className={`font-bold ${indexCache[item.idx].lifePressure <= 35 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].lifePressure <= 65 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {indexCache[item.idx].lifePressure.toFixed(1)}
-                            {indexCache[item.idx].lifePressureConf === "low" && " *"}
-                          </span>
-                        </td>
-                      ) : tab === "healthcare" ? (
-                        <td className={tdCls}>
-                          <span className={`font-bold ${indexCache[item.idx].healthcare >= 65 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].healthcare >= 35 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {indexCache[item.idx].healthcare.toFixed(1)}
-                            {indexCache[item.idx].healthcareConf === "low" && " *"}
-                          </span>
-                        </td>
-                      ) : tab === "freedom" ? (
-                        <td className={tdCls}>
-                          <span className={`font-bold ${indexCache[item.idx].freedom >= 65 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : indexCache[item.idx].freedom >= 35 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                            {indexCache[item.idx].freedom.toFixed(1)}
-                            {indexCache[item.idx].freedomConf === "low" && " *"}
-                          </span>
-                        </td>
-                      ) : (
-                        <>
-                          <td className={tdCls}>{formatCurrency(item.income)}</td>
-                          {tab === "savings" && <td className={tdCls}>{formatCurrency(item.annualCost)}</td>}
-                          <td className={tdCls}>
-                            {tab === "ppp" ? (
-                              <span className={`font-bold ${item.ppp >= 1.5 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : item.ppp >= 1 ? (darkMode ? "text-amber-400" : "text-amber-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                                {item.ppp > 0 ? item.ppp.toFixed(2) + "x" : "—"}
-                              </span>
-                            ) : tab === "housing" ? (
-                              <span className={`font-bold ${
-                                isFinite(item.yearsToHome) && item.yearsToHome <= 15
-                                  ? (darkMode ? "text-emerald-400" : "text-emerald-600")
-                                  : isFinite(item.yearsToHome)
-                                    ? (darkMode ? "text-amber-400" : "text-amber-600")
-                                    : (darkMode ? "text-red-400" : "text-red-500")
-                              }`}>
-                                {isFinite(item.yearsToHome) ? `${item.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("rankNoSavings")}
-                              </span>
-                            ) : (
-                              <span className={`font-bold ${item.savings > 0 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-red-400" : "text-red-500")}`}>
-                                {formatCurrency(item.savings)}
-                              </span>
-                            )}
-                          </td>
-                          <td className={tdCls}>
-                            <span className={item.savingsRate > 0 ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-red-400" : "text-red-500")}>
-                              {item.income > 0 ? `${Math.round(item.savingsRate * 100)}%` : "—"}
-                            </span>
-                          </td>
-                          {tab === "housing" && (
-                            <td className={tdCls}>
-                              {item.city.housePrice !== null ? `${formatCurrency(item.city.housePrice)}${t("housePriceUnit")}` : "—"}
-                            </td>
-                          )}
-                        </>
-                      )}
+                      <td className={`${tdBase} hidden sm:table-cell ${darkMode ? "text-slate-400" : "text-slate-500"}`}>{getCountryLabel(r.city.country)}</td>
+                      {renderCells(r)}
                     </tr>
                   );
                 })}
