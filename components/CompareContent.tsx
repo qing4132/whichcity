@@ -1,8 +1,12 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart,
+  PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend,
+} from "recharts";
 import type { City, CostTier, IncomeMode } from "@/lib/types";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES, CITY_COUNTRY } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
@@ -63,6 +67,9 @@ const GROUP_I18N: Record<string, string> = {
   environment: "rankGroup_environment", index: "rankGroup_index",
 };
 
+/* ── City colors for chart bars/lines ── */
+const CITY_COLORS = ["#3b82f6", "#f59e0b", "#10b981", "#ef4444", "#8b5cf6"];
+
 /* ════════════════════════════════════════════ */
 export default function CompareContent({ initialCities, initialSlugs, allCities }: Props) {
   const router = useRouter();
@@ -99,29 +106,67 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     return map;
   }, [allCities, activeProfession, incomeMode]);
 
-  const rowCtx: RowCtx = useMemo(() => ({
-    fc: formatCurrency, t, costField, profession: activeProfession, incomeMode, allCities, allIncomes: allIncomesMap,
-  }), [formatCurrency, t, costField, activeProfession, incomeMode, allCities, allIncomesMap]);
-
-  /* ── Metric rows with winner detection ── */
-  const rows = useMemo(() => {
-    return METRICS.map(m => {
-      const vals = cities.map(c => m.get(c, rowCtx));
-      const valid = vals.filter((v): v is number => v != null && isFinite(v));
-      let bestVal: number | null = null;
-      if (valid.length > 1) bestVal = m.lower ? Math.min(...valid) : Math.max(...valid);
-      return { m, vals, bestVal };
-    });
-  }, [cities, rowCtx]);
-
   /* ── City helpers ── */
-  const getName = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
+  const getName = useCallback((c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name, [locale]);
   const getFlag = (c: City) => CITY_FLAG_EMOJIS[c.id] || "🏙️";
   const getCountry = (c: City) => {
     const zh = CITY_COUNTRY[c.id];
     if (zh) { const cn = COUNTRY_TRANSLATIONS[zh]; if (cn) return cn[locale] || zh; return zh; }
     return COUNTRY_TRANSLATIONS[c.country]?.[locale] || c.country;
   };
+
+  /* ── Metric value getter ── */
+  const getVal = useCallback((c: City, m: Metric): number | null => {
+    const ctx: RowCtx = { fc: formatCurrency, t, costField, profession: activeProfession, incomeMode, allCities, allIncomes: allIncomesMap };
+    return m.get(c, ctx);
+  }, [formatCurrency, t, costField, activeProfession, incomeMode, allCities, allIncomesMap]);
+
+  /* ── Build chart data per group ── */
+  const groupChartData = useMemo(() => {
+    const result: Record<string, { metric: string; key: string; lower?: boolean; [cityName: string]: string | number | boolean | undefined }[]> = {};
+    for (const gk of GROUP_KEYS) {
+      const ms = METRICS.filter(m => m.group === gk);
+      result[gk] = ms.map(m => {
+        const row: any = { metric: m.label(t), key: m.key, lower: m.lower };
+        cities.forEach(c => {
+          row[getName(c)] = getVal(c, m);
+        });
+        return row;
+      });
+    }
+    return result;
+  }, [cities, t, getName, getVal]);
+
+  /* ── Radar chart data (indexes) ── */
+  const radarData = useMemo(() => {
+    const indexMetrics = METRICS.filter(m => m.group === "index");
+    return indexMetrics.map(m => {
+      const row: any = { metric: m.label(t), key: m.key };
+      cities.forEach(c => {
+        const v = getVal(c, m);
+        // For radar: invert life pressure (lower is better) so high = good
+        row[getName(c)] = v != null ? (m.lower ? Math.max(0, 100 - v) : v) : 0;
+      });
+      return row;
+    });
+  }, [cities, t, getName, getVal]);
+
+  /* ── Winner summary ── */
+  const winCounts = useMemo(() => {
+    const counts = new Map<number, number>();
+    cities.forEach(c => counts.set(c.id, 0));
+    METRICS.forEach(m => {
+      const vals = cities.map(c => getVal(c, m));
+      const valid = vals.filter((v): v is number => v != null && isFinite(v));
+      if (valid.length < 2) return;
+      const best = m.lower ? Math.min(...valid) : Math.max(...valid);
+      const winners = vals.filter(v => v === best);
+      if (winners.length < vals.length) {
+        vals.forEach((v, i) => { if (v === best) counts.set(cities[i].id, (counts.get(cities[i].id) || 0) + 1); });
+      }
+    });
+    return counts;
+  }, [cities, getVal]);
 
   /* ── Add-city search ── */
   const addResults = useMemo(() => {
@@ -173,7 +218,14 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
   const canAdd = cities.length < 5;
 
+  const chartFg = darkMode ? "#e2e8f0" : "#334155";
+  const chartGrid = darkMode ? "#334155" : "#e2e8f0";
+  const tooltipBg = darkMode ? "#1e293b" : "#ffffff";
+  const tooltipBorder = darkMode ? "#475569" : "#e2e8f0";
+
   if (!s.ready) return null;
+
+  const cityNames = cities.map(getName);
 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
@@ -222,51 +274,46 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
 
         {/* ──── City header cards ──── */}
-        <div className="mb-6" ref={addRef}>
+        <div className="mb-8" ref={addRef}>
           <div className="overflow-x-auto">
             <div className="inline-flex gap-3" style={{ minWidth: "100%" }}>
-            {cities.map((c, i) => {
-              const wins = rows.filter(d => d.bestVal != null && d.vals[i] != null && d.vals[i] === d.bestVal && rows.some(r => r.vals.filter(v => v === d.bestVal).length < r.vals.length ? true : d === r)).length;
-              const realWins = rows.filter(d => {
-                if (d.bestVal == null || d.vals[i] == null) return false;
-                if (d.vals[i] !== d.bestVal) return false;
-                // only count as win if not every city has the same value
-                return d.vals.some(v => v !== d.bestVal);
-              }).length;
-              return (
-                <div key={c.id} className={`rounded-xl border p-4 text-center relative flex-1 min-w-[140px] ${sectionBg}`}>
-                  {cities.length > 2 && (
-                    <button onClick={() => removeCity(i)}
-                      className={`absolute top-2 right-2 w-5 h-5 rounded-full text-xs flex items-center justify-center transition ${darkMode ? "bg-slate-700 text-slate-400 hover:bg-red-900/50 hover:text-red-300" : "bg-slate-100 text-slate-400 hover:bg-red-50 hover:text-red-500"}`}>
-                      ×
-                    </button>
-                  )}
-                  <div className="text-3xl mb-1">{getFlag(c)}</div>
-                  <Link href={`/city/${CITY_SLUGS[c.id]}`} className={`text-base font-bold hover:underline ${headCls}`}>
-                    {getName(c)}
-                  </Link>
-                  <p className={`text-xs ${subCls}`}>{getCountry(c)}</p>
-                  {realWins > 0 && (
-                    <p className={`text-xs font-semibold mt-1.5 ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>
-                      ✓ {t("winsIn", { name: "", count: realWins }).replace(/^\s*/, "")}
-                    </p>
-                  )}
-                </div>
-              );
-            })}
-            {/* Add city button (just the button, no dropdown inside overflow) */}
-            {canAdd && (
-              <button onClick={() => setAddOpen(!addOpen)}
-                className={`min-w-[52px] rounded-xl border-2 border-dashed flex items-center justify-center text-2xl transition ${
-                  darkMode ? "border-slate-600 text-slate-500 hover:border-blue-500 hover:text-blue-400"
-                           : "border-slate-300 text-slate-400 hover:border-blue-400 hover:text-blue-500"
-                }`}>
-                +
-              </button>
-            )}
+              {cities.map((c, i) => {
+                const wins = winCounts.get(c.id) || 0;
+                return (
+                  <div key={c.id} className={`rounded-xl border p-4 text-center relative flex-1 min-w-[140px] ${sectionBg}`}>
+                    {cities.length > 2 && (
+                      <button onClick={() => removeCity(i)}
+                        className={`absolute top-2 right-2 w-5 h-5 rounded-full text-xs flex items-center justify-center transition ${darkMode ? "bg-slate-700 text-slate-400 hover:bg-red-900/50 hover:text-red-300" : "bg-slate-100 text-slate-400 hover:bg-red-50 hover:text-red-500"}`}>
+                        ×
+                      </button>
+                    )}
+                    <div className="flex items-center justify-center gap-1.5 mb-1">
+                      <span className="w-3 h-3 rounded-full inline-block" style={{ backgroundColor: CITY_COLORS[i] }} />
+                      <span className="text-2xl">{getFlag(c)}</span>
+                    </div>
+                    <Link href={`/city/${CITY_SLUGS[c.id]}`} className={`text-base font-bold hover:underline ${headCls}`}>
+                      {getName(c)}
+                    </Link>
+                    <p className={`text-xs ${subCls}`}>{getCountry(c)}</p>
+                    {wins > 0 && (
+                      <p className={`text-xs font-semibold mt-1.5 ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>
+                        ✓ {t("winsIn", { name: "", count: wins }).replace(/^\s*/, "")}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+              {canAdd && (
+                <button onClick={() => setAddOpen(!addOpen)}
+                  className={`min-w-[52px] rounded-xl border-2 border-dashed flex items-center justify-center text-2xl transition ${
+                    darkMode ? "border-slate-600 text-slate-500 hover:border-blue-500 hover:text-blue-400"
+                             : "border-slate-300 text-slate-400 hover:border-blue-400 hover:text-blue-500"
+                  }`}>
+                  +
+                </button>
+              )}
             </div>
           </div>
-          {/* Add city dropdown – outside the overflow container so it won't be clipped */}
           {addOpen && canAdd && (
             <div className={`mt-3 w-72 rounded-xl shadow-lg border ${
               darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
@@ -296,61 +343,64 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           )}
         </div>
 
-        {/* ──── Comparison table ──── */}
-        <div className={`rounded-xl shadow-md overflow-hidden border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className={darkMode ? "bg-slate-800" : "bg-slate-100"}>
-                  <th className={`px-4 py-3 text-left text-xs font-semibold tracking-wide whitespace-nowrap ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                    {t("metric")}
-                  </th>
-                  {cities.map(c => (
-                    <th key={c.id} className={`px-3 py-3 text-center text-xs font-semibold whitespace-nowrap ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-                      {getFlag(c)} {getName(c)}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {GROUP_KEYS.map(gk => {
-                  const gRows = rows.filter(d => d.m.group === gk);
-                  if (gRows.length === 0) return null;
-                  const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
-                  const borderR = darkMode ? "border-slate-700/50" : "border-slate-100";
-                  const labelC = darkMode ? "text-slate-300" : "text-slate-700";
-                  const valC = darkMode ? "text-slate-200" : "text-slate-700";
-                  const bestC = darkMode ? "text-emerald-400 font-bold" : "text-emerald-600 font-bold";
-                  const dimC = darkMode ? "text-slate-500" : "text-slate-400";
-                  return [
-                    <tr key={`gh-${gk}`} className={groupBg}>
-                      <td colSpan={cities.length + 1} className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                        {t(GROUP_I18N[gk])}
-                      </td>
-                    </tr>,
-                    ...gRows.map(({ m, vals, bestVal }) => (
-                      <tr key={m.key} className={`border-b ${borderR}`}>
-                        <td className={`px-4 py-2.5 font-medium whitespace-nowrap ${labelC}`}>
-                          {m.label(t)}
-                        </td>
-                        {vals.map((v, i) => {
-                          const formatted = m.fmt(v, rowCtx);
-                          const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
-                          const isNull = v == null;
-                          return (
-                            <td key={cities[i].id} className={`px-3 py-2.5 text-center ${isNull ? dimC : isBest ? bestC : valC}`}>
-                              {formatted}{isBest && <span className="ml-1 text-xs">✓</span>}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    )),
-                  ];
-                })}
-              </tbody>
-            </table>
+        {/* ──── Charts by group ──── */}
+        {GROUP_KEYS.filter(gk => gk !== "index").map(gk => {
+          const data = groupChartData[gk];
+          if (!data || data.length === 0) return null;
+          const barHeight = Math.max(50, cities.length * 28);
+          const chartHeight = data.length * barHeight + 40;
+          return (
+            <section key={gk} className={`rounded-xl border p-4 sm:p-6 mb-6 ${sectionBg}`}>
+              <h2 className={`text-lg font-bold mb-4 ${headCls}`}>{t(GROUP_I18N[gk])}</h2>
+              <div style={{ width: "100%", height: chartHeight }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={data} layout="vertical" margin={{ top: 5, right: 30, left: 10, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke={chartGrid} horizontal={false} />
+                    <XAxis type="number" tick={{ fill: chartFg, fontSize: 11 }} tickFormatter={v => {
+                      const abs = Math.abs(v);
+                      if (abs >= 1_000_000) return `${(v / 1_000_000).toFixed(1)}M`;
+                      if (abs >= 1_000) return `${(v / 1_000).toFixed(0)}K`;
+                      return `${v}`;
+                    }} />
+                    <YAxis dataKey="metric" type="category" width={120} tick={{ fill: chartFg, fontSize: 11 }} />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: tooltipBg, border: `1px solid ${tooltipBorder}`, borderRadius: 8, fontSize: 12 }}
+                      labelStyle={{ color: chartFg, fontWeight: 600 }}
+                      itemStyle={{ color: chartFg }}
+                      formatter={(value: number) => value != null ? formatCurrency(value) : "—"}
+                    />
+                    {cityNames.map((name, i) => (
+                      <Bar key={name} dataKey={name} fill={CITY_COLORS[i]} radius={[0, 4, 4, 0]} barSize={20} />
+                    ))}
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </section>
+          );
+        })}
+
+        {/* ──── Radar chart: Indexes ──── */}
+        <section className={`rounded-xl border p-4 sm:p-6 mb-6 ${sectionBg}`}>
+          <h2 className={`text-lg font-bold mb-4 ${headCls}`}>{t(GROUP_I18N["index"])}</h2>
+          <div style={{ width: "100%", height: 380 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
+                <PolarGrid stroke={chartGrid} />
+                <PolarAngleAxis dataKey="metric" tick={{ fill: chartFg, fontSize: 11 }} />
+                <PolarRadiusAxis tick={{ fill: chartFg, fontSize: 10 }} domain={[0, 100]} />
+                {cityNames.map((name, i) => (
+                  <Radar key={name} name={name} dataKey={name} stroke={CITY_COLORS[i]} fill={CITY_COLORS[i]} fillOpacity={0.15} strokeWidth={2} />
+                ))}
+                <Legend wrapperStyle={{ fontSize: 12, color: chartFg }} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: tooltipBg, border: `1px solid ${tooltipBorder}`, borderRadius: 8, fontSize: 12 }}
+                  labelStyle={{ color: chartFg, fontWeight: 600 }}
+                  itemStyle={{ color: chartFg }}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
           </div>
-        </div>
+        </section>
 
         {/* ──── City guide links ──── */}
         <div className="grid gap-3 mt-8" style={{ gridTemplateColumns: `repeat(${Math.min(cities.length, 3)}, minmax(0, 1fr))` }}>
