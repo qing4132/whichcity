@@ -613,24 +613,6 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
         </div>
       </section>
 
-      {/* Data Sources */}
-      <section className={`rounded-xl border p-4 sm:p-6 mb-10 ${sectionBg}`}>
-        <h3 className={`text-base sm:text-lg font-semibold mb-3 ${headingCls}`}>{t("dataSourcesTitle")}</h3>
-        <p className={`text-sm mb-3 ${subCls}`}>{t("dataSourcesDesc")}</p>
-        <div className={`space-y-1.5 text-xs ${subCls}`}>
-          {["dataSalarySrc", "dataCostSrc", "dataHouseSrc", "dataRentSrc", "dataBigMacSrc", "dataClimateSrc", "dataClimateDetailSrc", "dataAqiSrc", "dataDoctorSrc", "dataFlightSrc", "dataSafetySrc", "dataWorkHoursSrc", "dataLeaveSrc", "dataSpeedSrc", "dataBedsSrc", "dataUhcSrc", "dataLifeExpSrc", "dataPressSrc", "dataDemocracySrc", "dataCpiSrc"].map((k) => (
-            <p key={k}>• {t(k)}</p>
-          ))}
-          <p className={`mt-2 italic`}>• {t("safetyMethodNote")}</p>
-          <p className="italic">• {t("lifePressureMethod")}</p>
-          <p className="italic">• {t("healthcareMethod")}</p>
-          <p className="italic">• {t("freedomMethod")}</p>
-        </div>
-        <div className={`mt-4 pt-3 border-t ${borderRow}`}>
-          <p className={`text-xs ${subCls}`}>{t("dataSourcesDisclaimer")}</p>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
