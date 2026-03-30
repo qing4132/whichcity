@@ -34,9 +34,8 @@ export function useSettings() {
     fetch("/data/exchange-rates.json")
       .then((r) => r.json())
       .then(setRates)
-      .catch(() => {});
-
-    setReady(true);
+      .catch(() => {})
+      .finally(() => setReady(true));
   }, []);
 
   const setLocale = useCallback((l: Locale) => {

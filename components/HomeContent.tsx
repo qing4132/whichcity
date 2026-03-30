@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import type { CostTier, IncomeMode } from "@/lib/types";
 import { CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES, CITY_COUNTRY } from "@/lib/constants";
-import { CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
+import { CITY_SLUGS } from "@/lib/citySlug";
 import { useSettings } from "@/hooks/useSettings";
 
 /* ── Static city list for search (no fetch needed) ── */
@@ -61,17 +61,6 @@ export default function HomeContent() {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
-
-  /* ── Random compare pair from popular pairs ── */
-  const randomCompare = () => {
-    const pair = POPULAR_PAIRS[Math.floor(Math.random() * POPULAR_PAIRS.length)];
-    const slugA = CITY_SLUGS[pair[0]];
-    const slugB = CITY_SLUGS[pair[1]];
-    if (slugA && slugB) {
-      const sorted = [slugA, slugB].sort().join("-vs-");
-      router.push(`/compare/${sorted}`);
-    }
-  };
 
   /* ── Random city ── */
   const randomCity = () => {
@@ -198,14 +187,6 @@ export default function HomeContent() {
             </div>
           )}
         </div>
-
-        {/* Quick action – proper pill button */}
-        <button onClick={randomCompare}
-          className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
-            darkMode ? "border-blue-500/40 text-blue-300 hover:bg-blue-900/30" : "border-blue-300 text-blue-600 hover:bg-blue-50"
-          }`}>
-          🎲 {t("homeCardCompare")}
-        </button>
 
         {/* Popular cities */}
         <div className="flex flex-wrap justify-center gap-x-4 gap-y-1.5 mt-5 max-w-lg">
