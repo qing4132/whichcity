@@ -430,12 +430,10 @@ export default function RankingContent({ cities }: Props) {
         </div>
 
         {/* Grouped tab selector */}
-        <div className="mb-4 space-y-2">
+        <div className="mb-4 flex flex-wrap items-center gap-x-1 gap-y-1.5">
           {GROUPS.map((group, gi) => (
-            <div key={group.labelKey} className="flex items-center gap-1.5 flex-wrap">
-              <span className={`text-xs font-bold w-12 shrink-0 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
-                {t(group.labelKey)}
-              </span>
+            <div key={group.labelKey} className="contents">
+              {gi > 0 && <span className={`mx-1 text-xs select-none ${darkMode ? "text-slate-600" : "text-slate-300"}`}>|</span>}
               {group.tabs.map(gTab => (
                 <button key={gTab} onClick={() => handleTab(gTab)}
                   className={`px-2.5 py-1.5 rounded-lg font-medium text-xs transition ${

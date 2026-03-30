@@ -51,28 +51,39 @@ export function getClimateLabel(type: string, locale: string = "en"): string {
 
 import type { City } from "./types";
 
-/** Min-max normalize a value within a set of values to [0, 100] */
-function minMaxNorm(values: number[], val: number): number {
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  if (max === min) return 50;
-  return ((val - min) / (max - min)) * 100;
+/** Clamp a value into [lo, hi] and normalize to [0, 100] using fixed anchors.
+ *  Values outside the range are clamped. */
+function anchoredNorm(lo: number, hi: number, val: number): number {
+  if (hi === lo) return 50;
+  const clamped = Math.max(lo, Math.min(hi, val));
+  return ((clamped - lo) / (hi - lo)) * 100;
 }
 
 /** Life Pressure Index (0-100, higher = more pressure)
- * Savings rate 30% + Big Mac purchasing power 25% + Annual work hours (inv) 25% + Home purchase years (inv) 20%
- * Returns { value, confidence } where confidence is weight-sum based.
+ *
+ * Uses **fixed anchor scales** so that the score is absolute and comparable
+ * across cost tiers and professions.  Switching from "budget" to "moderate"
+ * will never paradoxically lower the pressure of the same city.
+ *
+ * Savings rate 30% + Big Mac purchasing power 25% + Annual work hours (inv) 25%
+ * + Home purchase years (inv) 20%.
+ *
+ * Anchor ranges (derived from dataset extremes with a safety margin):
+ *   savings rate : -0.30 (worst)  … 0.85 (best)
+ *   big-mac/hour :  1.0  (worst)  … 22.0 (best)
+ *   work hours   :  2500 (worst)  … 1200 (best)
+ *   years-to-buy :  120  (worst)  …  3   (best)
  */
 export function computeLifePressure(
   city: City,
-  allCities: City[],
+  _allCities: City[],
   income: number,
-  allIncomes: number[],
+  _allIncomes: number[],
   costTierField: keyof City,
 ): { value: number; confidence: "high" | "medium" | "low" } {
   const tierCost = city[costTierField] as number;
   const savings = income - tierCost * 12;
-  const savingsRate = income > 0 ? savings / income : 0;
+  const savingsRate = income > 0 ? savings / income : -0.30;
 
   const bigMacPower = city.bigMacPrice !== null && city.bigMacPrice > 0
     && city.annualWorkHours !== null && city.annualWorkHours > 0
@@ -84,52 +95,32 @@ export function computeLifePressure(
 
   const workHours = city.annualWorkHours;
 
-  // Compute all values for normalization
-  const allSavingsRates = allCities.map((c, i) => {
-    const inc = allIncomes[i];
-    const cost = c[costTierField] as number;
-    return inc > 0 ? (inc - cost * 12) / inc : 0;
-  });
-
-  const bigMacIncomes = allCities.map((c, i) =>
-    c.bigMacPrice !== null && c.bigMacPrice > 0 && c.annualWorkHours !== null && c.annualWorkHours > 0
-      ? (allIncomes[i] / c.annualWorkHours) / (c.bigMacPrice as number) : null
-  ).filter((v): v is number => v !== null);
-
-  const allWorkHours = allCities.map(c => c.annualWorkHours).filter((v): v is number => v !== null);
-
-  const allYearsToHome = allCities.map((c, i) => {
-    const inc = allIncomes[i];
-    const cost = c[costTierField] as number;
-    const sav = inc - cost * 12;
-    return sav > 0 && c.housePrice !== null ? (c.housePrice * 70) / sav : null;
-  }).filter((v): v is number => v !== null && isFinite(v));
-
   // Determine which sub-indicators are available
   type Sub = { norm: number; w: number };
   const subs: Sub[] = [];
   let missingWeight = 0;
 
-  // Savings rate (30%) — always available if income > 0
-  subs.push({ norm: minMaxNorm(allSavingsRates, savingsRate), w: 0.30 });
+  // Savings rate (30%) — anchored -0.30 … 0.85
+  subs.push({ norm: anchoredNorm(-0.30, 0.85, savingsRate), w: 0.30 });
 
-  // Big Mac purchasing power (25%)
+  // Big Mac purchasing power (25%) — anchored 1.0 … 22.0
   if (bigMacPower !== null) {
-    subs.push({ norm: minMaxNorm(bigMacIncomes, bigMacPower), w: 0.25 });
+    subs.push({ norm: anchoredNorm(1.0, 22.0, bigMacPower), w: 0.25 });
   } else {
     missingWeight += 0.25;
   }
 
-  // Work hours inverse (25%)
+  // Work hours inverse (25%) — anchored 2500 (worst) … 1200 (best)
   if (workHours !== null) {
-    subs.push({ norm: 100 - minMaxNorm(allWorkHours, workHours), w: 0.25 });
+    subs.push({ norm: 100 - anchoredNorm(1200, 2500, workHours), w: 0.25 });
   } else {
     missingWeight += 0.25;
   }
 
-  // Years to home inverse (20%) — N/A (unaffordable) = worst score
+  // Years to home inverse (20%) — anchored 120 (worst) … 3 (best)
+  // N/A (unaffordable) = worst score
   if (yearsToHome !== null && isFinite(yearsToHome)) {
-    subs.push({ norm: 100 - minMaxNorm(allYearsToHome, yearsToHome), w: 0.20 });
+    subs.push({ norm: 100 - anchoredNorm(3, 120, yearsToHome), w: 0.20 });
   } else {
     subs.push({ norm: 0, w: 0.20 });
   }
