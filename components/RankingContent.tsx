@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { City, CostTier, IncomeMode } from "@/lib/types";
 import { COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS } from "@/lib/constants";
@@ -92,8 +92,15 @@ export default function RankingContent({ cities }: Props) {
   const router = useRouter();
   const s = useSettings();
   const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode } = s;
-  const [tab, setTab] = useState<Tab>("savings");
+  const [tab, setTabState] = useState<Tab>("income");
   const [subSort, setSubSort] = useState<SubSort>(null);
+
+  // Persist tab in localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("rankingTab");
+    if (saved && Object.keys(TAB_I18N).includes(saved)) setTabState(saved as Tab);
+  }, []);
+  const setTab = (t: Tab) => { setTabState(t); localStorage.setItem("rankingTab", t); };
 
   const professions = cities[0]?.professions ? Object.keys(cities[0].professions) : [];
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
@@ -439,7 +446,7 @@ export default function RankingContent({ cities }: Props) {
             <Link href="/" className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
               {t("navHome")}
             </Link>
-            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border font-semibold ${darkMode ? "bg-amber-900/40 border-amber-500/50 text-amber-300" : "bg-amber-50 border-amber-300 text-amber-700"}`}>
               {t("navRanking")}
             </Link>
             <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
