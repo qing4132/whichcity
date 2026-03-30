@@ -234,6 +234,61 @@ export default function RankingContent({ cities }: Props) {
   const isIndex = INDEX_TABS.has(tab);
   const sortKey = subSort || tab;
 
+  /* ── Compute display ranks (dense — ties get same rank) ── */
+  const displayRanks = useMemo(() => {
+    const ranks: number[] = new Array(sorted.length);
+    if (sorted.length === 0) return ranks;
+    ranks[0] = 1;
+    for (let i = 1; i < sorted.length; i++) {
+      // Compare the sort-determining values of adjacent rows
+      const a = sorted[i - 1];
+      const b = sorted[i];
+      let same = false;
+      const key = subSort || tab;
+      const getVal = (r: typeof sorted[0]): number | null => {
+        switch (key) {
+          case "income": return r.income;
+          case "expense": return r.monthlyCost;
+          case "savings": return r.savings;
+          case "housePrice": return r.housePrice;
+          case "housing": return isFinite(r.yearsToHome) ? Math.round(r.yearsToHome * 10) : null;
+          case "rent": return r.monthlyRent;
+          case "workhours": return r.annualWorkHours;
+          case "hourlyWage": return r.hourlyWage > 0 ? Math.round(r.hourlyWage * 100) : null;
+          case "vacation": return r.paidLeaveDays;
+          case "air": return r.airQuality;
+          case "internet": return r.internetSpeedMbps;
+          case "flights": return r.directFlightCities;
+          case "lifePressure": return Math.round(r.lifePressure * 10);
+          case "safety": return Math.round(r.safetyIndex * 10);
+          case "healthcare": return Math.round(r.healthcareIndex * 10);
+          case "freedom": return Math.round(r.freedomIndex * 10);
+          case "savingsRate": return r.savingsRate;
+          case "bigMacPower": return r.bigMacPower !== null ? Math.round(r.bigMacPower * 10) : null;
+          case "subWorkHours": return r.annualWorkHours;
+          case "yearsToHome": return isFinite(r.yearsToHome) ? Math.round(r.yearsToHome * 10) : null;
+          case "numbeo": return r.numbeoSafety;
+          case "homicide": return r.homicideInv;
+          case "gpi": return r.gpiInv;
+          case "gallup": return r.gallupLO;
+          case "doctors": return r.doctors !== null ? Math.round(r.doctors * 10) : null;
+          case "beds": return r.beds !== null ? Math.round(r.beds * 10) : null;
+          case "uhc": return r.uhc;
+          case "lifeExp": return r.lifeExpectancy !== null ? Math.round(r.lifeExpectancy * 10) : null;
+          case "press": return r.pressFreedom;
+          case "democracy": return r.democracy !== null ? Math.round(r.democracy * 10) : null;
+          case "cpi": return r.cpi;
+          default: return null;
+        }
+      };
+      const va = getVal(a);
+      const vb = getVal(b);
+      same = va !== null && vb !== null && va === vb;
+      ranks[i] = same ? ranks[i - 1] : i + 1;
+    }
+    return ranks;
+  }, [sorted, tab, subSort]);
+
   /* ── Rendering helpers ── */
   const getCityLabel = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
   const getCountryLabel = (c: string) => COUNTRY_TRANSLATIONS[c]?.[locale] || c;
@@ -243,26 +298,31 @@ export default function RankingContent({ cities }: Props) {
   const thBase = `px-3 py-2.5 text-left text-xs font-semibold tracking-wide whitespace-nowrap ${darkMode ? "text-slate-400" : "text-slate-500"}`;
   const tdBase = "px-3 py-2.5 text-sm";
   const headerBg = darkMode ? "bg-slate-800" : "bg-slate-100";
+  const sortColBg = darkMode ? "bg-blue-900/20" : "bg-blue-50/60";
 
-  const sortArrow = (key: string) => sortKey === key ? " \u25bc" : "";
+  const sortArrow = (_key: string) => "";
 
   /* ── Sub-sort column header ── */
-  const SubTh = ({ sk, label, weight, className = "" }: { sk: SubSort; label: string; weight?: string; className?: string }) => (
-    <th className={`${thBase} cursor-pointer hover:underline ${className}`}
-      onClick={() => sk === null ? setSubSort(null) : handleSubSort(sk)}>
-      {label}{weight && <span className="opacity-50 ml-0.5">({weight})</span>}{sortArrow(sk === null ? tab : (sk as string))}
-    </th>
-  );
+  const SubTh = ({ sk, label, weight, className = "" }: { sk: SubSort; label: string; weight?: string; className?: string }) => {
+    const isActive = sk === null ? (subSort === null) : (sortKey === sk);
+    return (
+      <th className={`${thBase} cursor-pointer hover:underline ${isActive ? sortColBg : ""} ${className}`}
+        onClick={() => sk === null ? setSubSort(null) : handleSubSort(sk)}>
+        {label}{weight && <span className="opacity-50 ml-0.5">({weight})</span>}{sortArrow(sk === null ? tab : (sk as string))}
+      </th>
+    );
+  };
 
   /* ── Tier-colored cell ── */
-  const TC = ({ val, formatted, vals, higher, conf }: {
-    val: number | null; formatted: string; vals: number[]; higher: boolean; conf?: string;
+  const TC = ({ val, formatted, vals, higher, conf, active }: {
+    val: number | null; formatted: string; vals: number[]; higher: boolean; conf?: string; active?: boolean;
   }) => {
+    const bg = active ? sortColBg : "";
     if (val === null || (typeof val === "number" && !isFinite(val)))
-      return <td className={`${tdBase} ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{formatted}</td>;
+      return <td className={`${tdBase} ${bg} ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{formatted}</td>;
     const tier = higher ? tierHigh(vals, val) : tierLow(vals, val);
     return (
-      <td className={`${tdBase} font-semibold ${tierCls(tier)}`}>
+      <td className={`${tdBase} ${bg} font-semibold ${tierCls(tier)}`}>
         {formatted}{conf === "low" && <span className={`ml-1 text-xs font-normal ${darkMode ? "text-amber-400" : "text-amber-600"}`}>*</span>}
       </td>
     );
@@ -303,7 +363,7 @@ export default function RankingContent({ cities }: Props) {
     }
     const group = GROUPS[activeGroup];
     return group.tabs.map(gTab => (
-      <th key={gTab} className={`${thBase} cursor-pointer hover:underline`}
+      <th key={gTab} className={`${thBase} cursor-pointer hover:underline ${sortKey === gTab ? sortColBg : ""}`}
         onClick={() => handleTab(gTab)}>
         {t(TAB_I18N[gTab]).replace(/^[^\s]+\s/, "")}{sortArrow(gTab)}
       </th>
@@ -315,54 +375,54 @@ export default function RankingContent({ cities }: Props) {
     if (isIndex) {
       switch (tab) {
         case "lifePressure": return (<>
-          <TC val={r.lifePressure} formatted={r.lifePressure.toFixed(1)} vals={V.lp} higher={false} conf={r.lifePressureConf} />
-          <TC val={r.savingsRate} formatted={`${r.savingsRate}%`} vals={V.savingsRate} higher={true} />
-          <TC val={r.bigMacPower} formatted={r.bigMacPower !== null ? r.bigMacPower.toFixed(1) : "\u2014"} vals={V.bigMac} higher={true} />
-          <TC val={r.annualWorkHours} formatted={r.annualWorkHours !== null ? `${r.annualWorkHours} ${t("unitH")}` : "\u2014"} vals={V.workHours} higher={false} />
-          <TC val={isFinite(r.yearsToHome) ? r.yearsToHome : null} formatted={isFinite(r.yearsToHome) ? `${r.yearsToHome.toFixed(1)} ${t("insightYears")}` : "\u2014"} vals={V.yearsToHome} higher={false} />
+          <TC val={r.lifePressure} formatted={r.lifePressure.toFixed(1)} vals={V.lp} higher={false} conf={r.lifePressureConf} active={sortKey === "lifePressure"} />
+          <TC val={r.savingsRate} formatted={`${r.savingsRate}%`} vals={V.savingsRate} higher={true} active={sortKey === "savingsRate"} />
+          <TC val={r.bigMacPower} formatted={r.bigMacPower !== null ? r.bigMacPower.toFixed(1) : "\u2014"} vals={V.bigMac} higher={true} active={sortKey === "bigMacPower"} />
+          <TC val={r.annualWorkHours} formatted={r.annualWorkHours !== null ? `${r.annualWorkHours} ${t("unitH")}` : "\u2014"} vals={V.workHours} higher={false} active={sortKey === "subWorkHours"} />
+          <TC val={isFinite(r.yearsToHome) ? r.yearsToHome : null} formatted={isFinite(r.yearsToHome) ? `${r.yearsToHome.toFixed(1)} ${t("insightYears")}` : "\u2014"} vals={V.yearsToHome} higher={false} active={sortKey === "yearsToHome"} />
         </>);
         case "safety": return (<>
-          <TC val={r.safetyIndex} formatted={r.safetyIndex.toFixed(1)} vals={V.safety} higher={true} conf={r.safetyConf} />
-          <TC val={r.numbeoSafety} formatted={fmtN(r.numbeoSafety)} vals={V.numbeo} higher={true} />
-          <TC val={r.homicideInv} formatted={fmtN(r.homicideInv)} vals={V.homicide} higher={true} />
-          <TC val={r.gpiInv} formatted={fmtN(r.gpiInv)} vals={V.gpi} higher={true} />
-          <TC val={r.gallupLO} formatted={fmtN(r.gallupLO)} vals={V.gallup} higher={true} />
+          <TC val={r.safetyIndex} formatted={r.safetyIndex.toFixed(1)} vals={V.safety} higher={true} conf={r.safetyConf} active={sortKey === "safety"} />
+          <TC val={r.numbeoSafety} formatted={fmtN(r.numbeoSafety)} vals={V.numbeo} higher={true} active={sortKey === "numbeo"} />
+          <TC val={r.homicideInv} formatted={fmtN(r.homicideInv)} vals={V.homicide} higher={true} active={sortKey === "homicide"} />
+          <TC val={r.gpiInv} formatted={fmtN(r.gpiInv)} vals={V.gpi} higher={true} active={sortKey === "gpi"} />
+          <TC val={r.gallupLO} formatted={fmtN(r.gallupLO)} vals={V.gallup} higher={true} active={sortKey === "gallup"} />
         </>);
         case "healthcare": return (<>
-          <TC val={r.healthcareIndex} formatted={r.healthcareIndex.toFixed(1)} vals={V.hc} higher={true} conf={r.healthcareConf} />
-          <TC val={r.doctors} formatted={fmtN(r.doctors, "", 1)} vals={V.doctors} higher={true} />
-          <TC val={r.beds} formatted={fmtN(r.beds, "", 1)} vals={V.beds} higher={true} />
-          <TC val={r.uhc} formatted={fmtN(r.uhc)} vals={V.uhc} higher={true} />
-          <TC val={r.lifeExpectancy} formatted={fmtN(r.lifeExpectancy, t("lifeExpectancyUnit"), 1)} vals={V.lifeExp} higher={true} />
+          <TC val={r.healthcareIndex} formatted={r.healthcareIndex.toFixed(1)} vals={V.hc} higher={true} conf={r.healthcareConf} active={sortKey === "healthcare"} />
+          <TC val={r.doctors} formatted={fmtN(r.doctors, "", 1)} vals={V.doctors} higher={true} active={sortKey === "doctors"} />
+          <TC val={r.beds} formatted={fmtN(r.beds, "", 1)} vals={V.beds} higher={true} active={sortKey === "beds"} />
+          <TC val={r.uhc} formatted={fmtN(r.uhc)} vals={V.uhc} higher={true} active={sortKey === "uhc"} />
+          <TC val={r.lifeExpectancy} formatted={fmtN(r.lifeExpectancy, t("lifeExpectancyUnit"), 1)} vals={V.lifeExp} higher={true} active={sortKey === "lifeExp"} />
         </>);
         case "freedom": return (<>
-          <TC val={r.freedomIndex} formatted={r.freedomIndex.toFixed(1)} vals={V.freedom} higher={true} conf={r.freedomConf} />
-          <TC val={r.pressFreedom} formatted={fmtN(r.pressFreedom)} vals={V.press} higher={true} />
-          <TC val={r.democracy} formatted={fmtN(r.democracy, "", 1)} vals={V.demo} higher={true} />
-          <TC val={r.cpi} formatted={fmtN(r.cpi)} vals={V.cpi} higher={true} />
+          <TC val={r.freedomIndex} formatted={r.freedomIndex.toFixed(1)} vals={V.freedom} higher={true} conf={r.freedomConf} active={sortKey === "freedom"} />
+          <TC val={r.pressFreedom} formatted={fmtN(r.pressFreedom)} vals={V.press} higher={true} active={sortKey === "press"} />
+          <TC val={r.democracy} formatted={fmtN(r.democracy, "", 1)} vals={V.demo} higher={true} active={sortKey === "democracy"} />
+          <TC val={r.cpi} formatted={fmtN(r.cpi)} vals={V.cpi} higher={true} active={sortKey === "cpi"} />
         </>);
       }
     }
     const g = activeGroup;
     if (g === 0) return (<>
-      <TC val={r.income} formatted={formatCurrency(r.income)} vals={V.income} higher={true} />
-      <TC val={r.monthlyCost} formatted={formatCurrency(r.monthlyCost)} vals={V.monthlyCost} higher={false} />
-      <TC val={r.savings} formatted={formatCurrency(r.savings)} vals={V.savings} higher={true} />
+      <TC val={r.income} formatted={formatCurrency(r.income)} vals={V.income} higher={true} active={sortKey === "income"} />
+      <TC val={r.monthlyCost} formatted={formatCurrency(r.monthlyCost)} vals={V.monthlyCost} higher={false} active={sortKey === "expense"} />
+      <TC val={r.savings} formatted={formatCurrency(r.savings)} vals={V.savings} higher={true} active={sortKey === "savings"} />
     </>);
     if (g === 1) return (<>
-      <TC val={r.housePrice} formatted={r.housePrice !== null ? `${formatCurrency(r.housePrice)}/m\u00b2` : "\u2014"} vals={V.housePrice} higher={false} />
-      <TC val={isFinite(r.yearsToHome) ? r.yearsToHome : null} formatted={isFinite(r.yearsToHome) ? `${r.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("rankNoSavings")} vals={V.yearsToHome} higher={false} />
-      <TC val={r.monthlyRent} formatted={r.monthlyRent !== null ? formatCurrency(r.monthlyRent) : "\u2014"} vals={V.monthlyRent} higher={false} />
+      <TC val={r.housePrice} formatted={r.housePrice !== null ? `${formatCurrency(r.housePrice)}/m\u00b2` : "\u2014"} vals={V.housePrice} higher={false} active={sortKey === "housePrice"} />
+      <TC val={isFinite(r.yearsToHome) ? r.yearsToHome : null} formatted={isFinite(r.yearsToHome) ? `${r.yearsToHome.toFixed(1)} ${t("insightYears")}` : t("rankNoSavings")} vals={V.yearsToHome} higher={false} active={sortKey === "housing"} />
+      <TC val={r.monthlyRent} formatted={r.monthlyRent !== null ? formatCurrency(r.monthlyRent) : "\u2014"} vals={V.monthlyRent} higher={false} active={sortKey === "rent"} />
     </>);
     if (g === 2) return (<>
-      <TC val={r.annualWorkHours} formatted={r.annualWorkHours !== null ? `${r.annualWorkHours} ${t("unitH")}` : "\u2014"} vals={V.workHours} higher={false} />
-      <TC val={r.hourlyWage > 0 ? r.hourlyWage : null} formatted={r.hourlyWage > 0 ? formatCurrency(Math.round(r.hourlyWage * 100) / 100) : "\u2014"} vals={V.hourlyWage} higher={true} />
-      <TC val={r.paidLeaveDays} formatted={r.paidLeaveDays !== null ? `${r.paidLeaveDays} ${t("paidLeaveDaysUnit")}` : "\u2014"} vals={V.paidLeave} higher={true} />
+      <TC val={r.annualWorkHours} formatted={r.annualWorkHours !== null ? `${r.annualWorkHours} ${t("unitH")}` : "\u2014"} vals={V.workHours} higher={false} active={sortKey === "workhours"} />
+      <TC val={r.hourlyWage > 0 ? r.hourlyWage : null} formatted={r.hourlyWage > 0 ? formatCurrency(Math.round(r.hourlyWage * 100) / 100) : "\u2014"} vals={V.hourlyWage} higher={true} active={sortKey === "hourlyWage"} />
+      <TC val={r.paidLeaveDays} formatted={r.paidLeaveDays !== null ? `${r.paidLeaveDays} ${t("paidLeaveDaysUnit")}` : "\u2014"} vals={V.paidLeave} higher={true} active={sortKey === "vacation"} />
     </>);
     if (g === 3) return (<>
-      <TC val={r.airQuality} formatted={r.airQuality !== null ? `AQI ${r.airQuality}` : "\u2014"} vals={V.air} higher={false} />
-      <TC val={r.internetSpeedMbps} formatted={r.internetSpeedMbps !== null ? `${r.internetSpeedMbps} Mbps` : "\u2014"} vals={V.internet} higher={true} />
-      <TC val={r.directFlightCities} formatted={r.directFlightCities !== null ? `${r.directFlightCities} ${t("directFlightsUnit")}` : "\u2014"} vals={V.flights} higher={true} />
+      <TC val={r.airQuality} formatted={r.airQuality !== null ? `AQI ${r.airQuality}` : "\u2014"} vals={V.air} higher={false} active={sortKey === "air"} />
+      <TC val={r.internetSpeedMbps} formatted={r.internetSpeedMbps !== null ? `${r.internetSpeedMbps} Mbps` : "\u2014"} vals={V.internet} higher={true} active={sortKey === "internet"} />
+      <TC val={r.directFlightCities} formatted={r.directFlightCities !== null ? `${r.directFlightCities} ${t("directFlightsUnit")}` : "\u2014"} vals={V.flights} higher={true} active={sortKey === "flights"} />
     </>);
     return null;
   };
@@ -453,7 +513,7 @@ export default function RankingContent({ cities }: Props) {
             </div>
           ))}
           {/* Row 3: Indexes – visually distinct */}
-          <div className={`grid grid-cols-4 gap-1 pt-1.5 border-t ${darkMode ? "border-slate-700/60" : "border-slate-200"}`}>
+          <div className="grid grid-cols-4 gap-1 pt-1">
             {GROUPS[4].tabs.map(gTab => (
               <button key={gTab} onClick={() => handleTab(gTab)}
                 className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${
@@ -484,8 +544,9 @@ export default function RankingContent({ cities }: Props) {
               <tbody>
                 {sorted.map((r, idx) => {
                   const slug = CITY_SLUGS[r.city.id];
-                  const isTop3 = idx < 3;
-                  const badge = isTop3 ? ["\ud83e\udd47", "\ud83e\udd48", "\ud83e\udd49"][idx] : `${idx + 1}`;
+                  const rank = displayRanks[idx];
+                  const isTop3 = rank <= 3;
+                  const badge = rank === 1 ? "\ud83e\udd47" : rank === 2 ? "\ud83e\udd48" : rank === 3 ? "\ud83e\udd49" : `${rank}`;
                   return (
                     <tr key={r.city.id}
                       className={`${
