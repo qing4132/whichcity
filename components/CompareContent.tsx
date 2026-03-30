@@ -140,18 +140,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     });
   }, [filledCities, rowCtx]);
 
-  /* ── Winner summary ── */
-  const winCounts = useMemo(() => {
-    const counts = new Map<number, number>();
-    filledCities.forEach(c => counts.set(c.id, 0));
-    rows.forEach(({ vals, bestVal }) => {
-      if (bestVal == null) return;
-      if (!vals.some(v => v !== bestVal)) return;
-      vals.forEach((v, i) => { if (v === bestVal) counts.set(filledCities[i].id, (counts.get(filledCities[i].id) || 0) + 1); });
-    });
-    return counts;
-  }, [filledCities, rows]);
-
   /* ── City helpers ── */
   const getName = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
   const getFlag = (c: City) => CITY_FLAG_EMOJIS[c.id] || "🏙️";
@@ -190,7 +178,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     setOpenSlot(null); setSlotSearch("");
     const validSlugs = ns.filter((s): s is string => s !== null);
     if (validSlugs.length >= 2) {
-      router.replace(`/compare/${[...validSlugs].sort().join("-vs-")}`, { scroll: false });
+      window.history.replaceState(null, "", `/compare/${[...validSlugs].sort().join("-vs-")}`);
     }
   };
 
@@ -201,7 +189,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     setSlots(nc); setSlugs(ns);
     const validSlugs = ns.filter((s): s is string => s !== null);
     if (validSlugs.length >= 2) {
-      router.replace(`/compare/${[...validSlugs].sort().join("-vs-")}`, { scroll: false });
+      window.history.replaceState(null, "", `/compare/${[...validSlugs].sort().join("-vs-")}`);
     }
   };
 
@@ -274,10 +262,14 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                       isOpen
                         ? (darkMode ? "border-blue-500" : "border-blue-400")
                         : (darkMode ? "border-slate-600" : "border-slate-300")
-                    } hover:shadow-md min-h-[120px] flex flex-col items-center justify-center`}
+                    } hover:shadow-md`}
                   >
-                    <span className={`text-2xl mb-1 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>+</span>
-                    <p className={`text-xs ${darkMode ? "text-blue-400" : "text-blue-500"}`}>{t("chooseCity").replace(":", "")}</p>
+                    <div className="flex items-center justify-center gap-1.5 mb-1">
+                      <span className={`text-2xl ${darkMode ? "text-slate-500" : "text-slate-400"}`}>+</span>
+                    </div>
+                    <p className={`text-base font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>&nbsp;</p>
+                    <p className={`text-xs ${darkMode ? "text-slate-600" : "text-slate-300"}`}>&nbsp;</p>
+                    <p className={`text-[10px] mt-2 ${darkMode ? "text-blue-400" : "text-blue-500"}`}>{t("chooseCity").replace(":", "")}</p>
                   </div>
                   {isOpen && (
                     <div className={`absolute z-50 left-0 right-0 mt-1 rounded-xl shadow-lg border overflow-hidden ${
@@ -310,7 +302,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               );
             }
             /* ── Filled slot ── */
-            const wins = winCounts.get(c.id) || 0;
             return (
               <div key={`slot-${i}`} className="relative" ref={el => { slotRefs.current[i] = el; }}>
                 <div
@@ -330,11 +321,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                   </div>
                   <p className={`text-base font-bold ${headCls}`}>{getName(c)}</p>
                   <p className={`text-xs ${subCls}`}>{getCountry(c)}</p>
-                  {wins > 0 && (
-                    <p className={`text-xs font-semibold mt-1.5 ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>
-                      ✓ {t("winsIn", { name: "", count: wins }).replace(/^\s*/, "")}
-                    </p>
-                  )}
                   <p className={`text-[10px] mt-2 ${darkMode ? "text-blue-400" : "text-blue-500"}`}>▾ {t("chooseCity").replace(":", "")}</p>
                 </div>  
                 {/* ── Slot dropdown ── */}
@@ -414,7 +400,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                           const isNull = v == null;
                           return (
                             <td key={filledCities[i].id} className={`px-3 py-2.5 text-center ${isNull ? dimC : isBest ? bestC : valC}`}>
-                              {formatted}{isBest && <span className="ml-1 text-xs">✓</span>}
+                              {formatted}
                             </td>
                           );
                         })}
