@@ -178,7 +178,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
       {/* ──── Top bar ──── */}
-      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+      <div className={`border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -187,6 +187,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
             <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
               {t("navRanking")}
             </Link>
+            <button onClick={() => { const allSlugs = Object.values(CITY_SLUGS); router.push(`/city/${allSlugs[Math.floor(Math.random() * allSlugs.length)]}`); }}
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              {t("navRandomCity")}
+            </button>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
@@ -218,8 +222,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
 
         {/* ──── City header cards ──── */}
-        <div className="mb-6 overflow-x-auto">
-          <div className="inline-flex gap-3" style={{ minWidth: "100%" }}>
+        <div className="mb-6" ref={addRef}>
+          <div className="overflow-x-auto">
+            <div className="inline-flex gap-3" style={{ minWidth: "100%" }}>
             {cities.map((c, i) => {
               const wins = rows.filter(d => d.bestVal != null && d.vals[i] != null && d.vals[i] === d.bestVal && rows.some(r => r.vals.filter(v => v === d.bestVal).length < r.vals.length ? true : d === r)).length;
               const realWins = rows.filter(d => {
@@ -249,53 +254,53 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 </div>
               );
             })}
-            {/* Add city button */}
+            {/* Add city button (just the button, no dropdown inside overflow) */}
             {canAdd && (
-              <div ref={addRef} className="relative flex items-stretch min-w-[52px]">
-                <button onClick={() => setAddOpen(!addOpen)}
-                  className={`w-full rounded-xl border-2 border-dashed flex items-center justify-center text-2xl transition ${
-                    darkMode ? "border-slate-600 text-slate-500 hover:border-blue-500 hover:text-blue-400"
-                             : "border-slate-300 text-slate-400 hover:border-blue-400 hover:text-blue-500"
-                  }`}>
-                  +
-                </button>
-                {addOpen && (
-                  <div className={`absolute top-full mt-2 left-0 w-64 rounded-xl shadow-lg border z-50 ${
-                    darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-                  }`}>
-                    <input autoFocus value={addSearch} onChange={e => setAddSearch(e.target.value)}
-                      placeholder={t("homeSearchPlaceholder")}
-                      className={`w-full px-3 py-2 text-sm border-b rounded-t-xl focus:outline-none ${
-                        darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
-                                 : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
-                      }`} />
-                    <div className="max-h-48 overflow-y-auto">
-                      {addResults.map(c => (
-                        <button key={c.id} onClick={() => addCity(c)}
-                          className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
-                            darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
-                          }`}>
-                          <span>{CITY_FLAG_EMOJIS[c.id] || "🏙️"}</span>
-                          <span className="font-medium">{getName(c)}</span>
-                          <span className={`text-xs ml-auto ${subCls}`}>{getCountry(c)}</span>
-                        </button>
-                      ))}
-                      {addSearch.trim() && addResults.length === 0 && (
-                        <p className={`px-3 py-2 text-xs ${subCls}`}>{t("homeNoResults")}</p>
-                      )}
-                    </div>
-                  </div>
+              <button onClick={() => setAddOpen(!addOpen)}
+                className={`min-w-[52px] rounded-xl border-2 border-dashed flex items-center justify-center text-2xl transition ${
+                  darkMode ? "border-slate-600 text-slate-500 hover:border-blue-500 hover:text-blue-400"
+                           : "border-slate-300 text-slate-400 hover:border-blue-400 hover:text-blue-500"
+                }`}>
+                +
+              </button>
+            )}
+            </div>
+          </div>
+          {/* Add city dropdown – outside the overflow container so it won't be clipped */}
+          {addOpen && canAdd && (
+            <div className={`mt-3 w-72 rounded-xl shadow-lg border ${
+              darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
+            }`}>
+              <input autoFocus value={addSearch} onChange={e => setAddSearch(e.target.value)}
+                placeholder={t("homeSearchPlaceholder")}
+                className={`w-full px-3 py-2 text-sm border-b rounded-t-xl focus:outline-none ${
+                  darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
+                           : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
+                }`} />
+              <div className="max-h-48 overflow-y-auto">
+                {addResults.map(c => (
+                  <button key={c.id} onClick={() => addCity(c)}
+                    className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
+                      darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
+                    }`}>
+                    <span>{CITY_FLAG_EMOJIS[c.id] || "🏙️"}</span>
+                    <span className="font-medium">{getName(c)}</span>
+                    <span className={`text-xs ml-auto ${subCls}`}>{getCountry(c)}</span>
+                  </button>
+                ))}
+                {addSearch.trim() && addResults.length === 0 && (
+                  <p className={`px-3 py-2 text-xs ${subCls}`}>{t("homeNoResults")}</p>
                 )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* ──── Comparison table ──── */}
         <div className={`rounded-xl shadow-md overflow-hidden border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="sticky top-[49px] z-40">
+              <thead>
                 <tr className={darkMode ? "bg-slate-800" : "bg-slate-100"}>
                   <th className={`px-4 py-3 text-left text-xs font-semibold tracking-wide whitespace-nowrap ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
                     {t("metric")}

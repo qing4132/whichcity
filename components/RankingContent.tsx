@@ -433,7 +433,7 @@ export default function RankingContent({ cities }: Props) {
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
 
       {/* Top bar */}
-      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+      <div className={`border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border font-semibold transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -533,7 +533,7 @@ export default function RankingContent({ cities }: Props) {
         <div className={`rounded-xl shadow-md overflow-hidden ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="sticky top-[49px] z-40">
+              <thead>
                 <tr className={headerBg}>
                   <th className={`${thBase} w-[52px] text-center`}>{t("rankCol_rank")}</th>
                   <th className={`${thBase} min-w-[120px]`}>{t("rankCol_city")}</th>
