@@ -129,16 +129,16 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     fc: formatCurrency, t, costField, profession: activeProfession, incomeMode, allCities, allIncomes: allIncomesMap,
   }), [formatCurrency, t, costField, activeProfession, incomeMode, allCities, allIncomesMap]);
 
-  /* ── Metric rows with winner detection ── */
+  /* ── Metric rows with winner detection (uses all visible slots including empty) ── */
   const rows = useMemo(() => {
     return METRICS.map(m => {
-      const vals = filledCities.map(c => m.get(c, rowCtx));
+      const vals = visibleSlots.map(c => c ? m.get(c, rowCtx) : null);
       const valid = vals.filter((v): v is number => v != null && isFinite(v));
       let bestVal: number | null = null;
       if (valid.length > 1) bestVal = m.lower ? Math.min(...valid) : Math.max(...valid);
       return { m, vals, bestVal };
     });
-  }, [filledCities, rowCtx]);
+  }, [visibleSlots, rowCtx]);
 
   /* ── City helpers ── */
   const getName = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
@@ -248,129 +248,87 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
       <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
 
-        {/* ──── City selector cards (Apple-style fixed slots) ──── */}
-        <div className="grid gap-3 mb-8" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
-          {visibleSlots.map((c, i) => {
-            const isOpen = openSlot === i;
-            if (c === null) {
-              /* ── Empty slot ── */
-              return (
-                <div key={`slot-${i}`} className="relative" ref={el => { slotRefs.current[i] = el; }}>
-                  <div
-                    onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
-                    className={`rounded-xl border-2 border-dashed p-4 text-center cursor-pointer transition ${
-                      isOpen
-                        ? (darkMode ? "border-blue-500" : "border-blue-400")
-                        : (darkMode ? "border-slate-600" : "border-slate-300")
-                    } hover:shadow-md`}
-                  >
-                    <div className="flex items-center justify-center gap-1.5 mb-1">
-                      <span className={`text-2xl ${darkMode ? "text-slate-500" : "text-slate-400"}`}>+</span>
-                    </div>
-                    <p className={`text-base font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>&nbsp;</p>
-                    <p className={`text-xs ${darkMode ? "text-slate-600" : "text-slate-300"}`}>&nbsp;</p>
-                    <p className={`text-[10px] mt-2 ${darkMode ? "text-blue-400" : "text-blue-500"}`}>{t("chooseCity").replace(":", "")}</p>
-                  </div>
-                  {isOpen && (
-                    <div className={`absolute z-50 left-0 right-0 mt-1 rounded-xl shadow-lg border overflow-hidden ${
-                      darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-                    }`}>
-                      <input autoFocus value={slotSearch} onChange={e => setSlotSearch(e.target.value)}
-                        placeholder={t("homeSearchPlaceholder")}
-                        className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${
-                          darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
-                                   : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
-                        }`} />
-                      <div className="max-h-52 overflow-y-auto">
-                        {slotResults.map(rc => (
-                          <button key={rc.id} onClick={() => switchCity(i, rc)}
-                            className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
-                              darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
-                            }`}>
-                            <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
-                            <span className="font-medium truncate">{getName(rc)}</span>
-                            <span className={`text-xs ml-auto shrink-0 ${subCls}`}>{getCountry(rc)}</span>
-                          </button>
-                        ))}
-                        {slotSearch.trim() && slotResults.length === 0 && (
-                          <p className={`px-3 py-2 text-xs ${subCls}`}>{t("homeNoResults")}</p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            }
-            /* ── Filled slot ── */
-            return (
-              <div key={`slot-${i}`} className="relative" ref={el => { slotRefs.current[i] = el; }}>
-                <div
-                  onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
-                  className={`rounded-xl border p-4 text-center cursor-pointer transition ring-2 ${
-                    isOpen
-                      ? (darkMode ? "ring-blue-500 border-blue-500" : "ring-blue-400 border-blue-400")
-                      : "ring-transparent"
-                  } ${sectionBg} hover:shadow-md`}
-                >
-                  <button onClick={e => { e.stopPropagation(); clearSlot(i); }}
-                    className={`absolute top-2 right-2 w-5 h-5 rounded-full text-xs flex items-center justify-center transition ${darkMode ? "bg-slate-700 text-slate-400 hover:bg-red-900/50 hover:text-red-300" : "bg-slate-100 text-slate-400 hover:bg-red-50 hover:text-red-500"}`}>
-                    ×
-                  </button>
-                  <div className="flex items-center justify-center gap-1.5 mb-1">
-                    <span className="text-2xl">{getFlag(c)}</span>
-                  </div>
-                  <p className={`text-base font-bold ${headCls}`}>{getName(c)}</p>
-                  <p className={`text-xs ${subCls}`}>{getCountry(c)}</p>
-                  <p className={`text-[10px] mt-2 ${darkMode ? "text-blue-400" : "text-blue-500"}`}>▾ {t("chooseCity").replace(":", "")}</p>
-                </div>  
-                {/* ── Slot dropdown ── */}
-                {isOpen && (
-                  <div className={`absolute z-50 left-0 right-0 mt-1 rounded-xl shadow-lg border overflow-hidden ${
-                    darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-                  }`}>
-                    <input autoFocus value={slotSearch} onChange={e => setSlotSearch(e.target.value)}
-                      placeholder={t("homeSearchPlaceholder")}
-                      className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${
-                        darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
-                                 : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
-                      }`} />
-                    <div className="max-h-52 overflow-y-auto">
-                      {slotResults.map(rc => (
-                        <button key={rc.id} onClick={() => switchCity(i, rc)}
-                          className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
-                            darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
-                          }`}>
-                          <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
-                          <span className="font-medium truncate">{getName(rc)}</span>
-                          <span className={`text-xs ml-auto shrink-0 ${subCls}`}>{getCountry(rc)}</span>
-                        </button>
-                      ))}
-                      {slotSearch.trim() && slotResults.length === 0 && (
-                        <p className={`px-3 py-2 text-xs ${subCls}`}>{t("homeNoResults")}</p>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* ──── Comparison table ──── */}
-        {filledCities.length >= 2 && (
+        {/* ──── Comparison table with integrated city selectors ──── */}
         <div className={`rounded-xl shadow-md overflow-hidden border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm" style={{ tableLayout: "fixed" }}>
+              <colgroup>
+                <col style={{ width: cols === 2 ? "35%" : "28%" }} />
+                {visibleSlots.map((_, i) => <col key={i} />)}
+              </colgroup>
               <thead>
-                <tr className={darkMode ? "bg-slate-800" : "bg-slate-100"}>
+                {/* ── Selector row ── */}
+                <tr className={darkMode ? "bg-slate-800/80" : "bg-slate-50"}>
                   <th className={`px-4 py-3 text-left text-xs font-semibold tracking-wide whitespace-nowrap ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
                     {t("metric")}
                   </th>
-                  {filledCities.map(c => (
-                    <th key={c.id} className={`px-3 py-3 text-center text-xs font-semibold whitespace-nowrap ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-                      {getFlag(c)} {getName(c)}
-                    </th>
-                  ))}
+                  {visibleSlots.map((c, i) => {
+                    const isOpen = openSlot === i;
+                    return (
+                      <th key={`sel-${i}`} className="px-2 py-3 text-center relative" ref={el => { slotRefs.current[i] = el as HTMLDivElement | null; }}>
+                        {c ? (
+                          /* ── Filled selector ── */
+                          <div
+                            onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
+                            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border cursor-pointer transition mx-auto max-w-[200px] ${
+                              isOpen
+                                ? (darkMode ? "border-blue-500 bg-slate-700" : "border-blue-400 bg-blue-50")
+                                : (darkMode ? "border-slate-600 bg-slate-800 hover:border-slate-500" : "border-slate-200 bg-white hover:border-slate-400")
+                            }`}
+                          >
+                            <span className="text-sm shrink-0">{getFlag(c)}</span>
+                            <span className={`text-sm font-medium truncate ${headCls}`}>{getName(c)}</span>
+                            <button onClick={e => { e.stopPropagation(); clearSlot(i); }}
+                              className={`shrink-0 ml-auto w-4 h-4 rounded-full text-[10px] flex items-center justify-center ${darkMode ? "text-slate-500 hover:text-red-400" : "text-slate-400 hover:text-red-500"}`}>
+                              ×
+                            </button>
+                            <span className={`text-[10px] shrink-0 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>▾</span>
+                          </div>
+                        ) : (
+                          /* ── Empty selector ── */
+                          <div
+                            onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
+                            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border border-dashed cursor-pointer transition mx-auto max-w-[200px] ${
+                              isOpen
+                                ? (darkMode ? "border-blue-500" : "border-blue-400")
+                                : (darkMode ? "border-slate-600 hover:border-slate-500" : "border-slate-300 hover:border-slate-400")
+                            }`}
+                          >
+                            <span className={`text-sm truncate ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("chooseCity").replace(":", "")}</span>
+                            <span className={`text-[10px] shrink-0 ml-auto ${darkMode ? "text-slate-500" : "text-slate-400"}`}>▾</span>
+                          </div>
+                        )}
+                        {/* ── Dropdown ── */}
+                        {isOpen && (
+                          <div className={`absolute z-50 mt-1 rounded-xl shadow-lg border overflow-hidden ${
+                            darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
+                          }`} style={{ left: "50%", transform: "translateX(-50%)", width: "240px" }}>
+                            <input autoFocus value={slotSearch} onChange={e => setSlotSearch(e.target.value)}
+                              placeholder={t("homeSearchPlaceholder")}
+                              className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${
+                                darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
+                                         : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
+                              }`} />
+                            <div className="max-h-52 overflow-y-auto">
+                              {slotResults.map(rc => (
+                                <button key={rc.id} onClick={() => switchCity(i, rc)}
+                                  className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
+                                    darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
+                                  }`}>
+                                  <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
+                                  <span className="font-medium truncate">{getName(rc)}</span>
+                                  <span className={`text-xs ml-auto shrink-0 ${subCls}`}>{getCountry(rc)}</span>
+                                </button>
+                              ))}
+                              {slotSearch.trim() && slotResults.length === 0 && (
+                                <p className={`px-3 py-2 text-xs ${subCls}`}>{t("homeNoResults")}</p>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </th>
+                    );
+                  })}
                 </tr>
               </thead>
               <tbody>
@@ -385,7 +343,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                   const dimC = darkMode ? "text-slate-500" : "text-slate-400";
                   return [
                     <tr key={`gh-${gk}`} className={groupBg}>
-                      <td colSpan={filledCities.length + 1} className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                      <td colSpan={visibleSlots.length + 1} className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
                         {t(GROUP_I18N[gk])}
                       </td>
                     </tr>,
@@ -395,11 +353,13 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                           {m.label(t)}
                         </td>
                         {vals.map((v, i) => {
+                          const slot = visibleSlots[i];
+                          if (!slot) return <td key={`empty-${i}`} className={`px-3 py-2.5 text-center ${dimC}`}>—</td>;
                           const formatted = m.fmt(v, rowCtx);
                           const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
                           const isNull = v == null;
                           return (
-                            <td key={filledCities[i].id} className={`px-3 py-2.5 text-center ${isNull ? dimC : isBest ? bestC : valC}`}>
+                            <td key={slot.id} className={`px-3 py-2.5 text-center ${isNull ? dimC : isBest ? bestC : valC}`}>
                               {formatted}
                             </td>
                           );
@@ -412,7 +372,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
             </table>
           </div>
         </div>
-        )}
 
         {/* ──── City guide links ──── */}
         {filledCities.length > 0 && (
