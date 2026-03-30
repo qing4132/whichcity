@@ -4,8 +4,8 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { CostTier, IncomeMode } from "@/lib/types";
-import { CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
-import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES } from "@/lib/constants";
+import { CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
+import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES, CITY_COUNTRY } from "@/lib/constants";
 import { CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
 import { useSettings } from "@/hooks/useSettings";
 
@@ -32,9 +32,18 @@ export default function HomeContent() {
     return CITY_LIST.filter(c => {
       const names = CITY_NAME_TRANSLATIONS[c.id];
       if (!names) return false;
-      return Object.values(names).some(n => n.toLowerCase().includes(q))
-        || c.slug.replace(/-/g, " ").includes(q);
-    }).slice(0, 8);
+      // Match city name in any locale
+      if (Object.values(names).some(n => n.toLowerCase().includes(q))) return true;
+      // Match slug
+      if (c.slug.replace(/-/g, " ").includes(q)) return true;
+      // Match country name in any locale
+      const countryZh = CITY_COUNTRY[c.id];
+      if (countryZh) {
+        const countryNames = COUNTRY_TRANSLATIONS[countryZh];
+        if (countryNames && Object.values(countryNames).some(n => n.toLowerCase().includes(q))) return true;
+      }
+      return false;
+    });
   }, [search]);
 
   /* ── Close dropdown on outside click ── */
@@ -67,6 +76,10 @@ export default function HomeContent() {
   };
 
   const getCityName = (id: number) => CITY_NAME_TRANSLATIONS[id]?.[locale] || CITY_NAME_TRANSLATIONS[id]?.en || "";
+  const getCountryName = (id: number) => {
+    const zh = CITY_COUNTRY[id];
+    return zh ? (COUNTRY_TRANSLATIONS[zh]?.[locale] || zh) : "";
+  };
 
   const selectCls = `text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
   const professions = Object.keys(PROFESSION_TRANSLATIONS);
@@ -131,7 +144,7 @@ export default function HomeContent() {
           {t("appTitle")}
         </h1>
         <p className={`text-base sm:text-lg text-center max-w-lg mb-8 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-          {t("appSubtitle", { count: CITY_LIST.length })}
+          {t("appSubtitle")}
         </p>
 
         {/* Search bar */}
@@ -154,9 +167,10 @@ export default function HomeContent() {
           {/* Dropdown */}
           {focused && search.trim() && results.length > 0 && (
             <div ref={dropRef}
-              className={`absolute top-full mt-1 w-full rounded-xl shadow-lg border overflow-hidden z-50 ${
+              className={`absolute top-full mt-1 w-full rounded-xl shadow-lg border overflow-y-auto z-50 ${
                 darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-              }`}>
+              }`}
+              style={{ maxHeight: "min(360px, 50vh)" }}>
               {results.map(c => (
                 <Link key={c.id} href={`/city/${c.slug}`}
                   onClick={() => { setSearch(""); setFocused(false); }}
@@ -165,6 +179,7 @@ export default function HomeContent() {
                   }`}>
                   <span>{c.flag}</span>
                   <span className="font-medium">{getCityName(c.id)}</span>
+                  <span className={`text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{getCountryName(c.id)}</span>
                 </Link>
               ))}
             </div>
@@ -179,40 +194,17 @@ export default function HomeContent() {
           )}
         </div>
 
-        {/* Action cards */}
-        <div className="grid grid-cols-3 gap-3 w-full max-w-lg">
-          <Link href="/ranking"
-            className={`flex flex-col items-center gap-2 p-4 rounded-xl border text-center transition group ${
-              darkMode
-                ? "bg-slate-800/60 border-slate-700 hover:bg-slate-800 hover:border-amber-500/50"
-                : "bg-white border-slate-200 hover:border-amber-400 hover:shadow-md"
-            }`}>
-            <span className="text-2xl">🏆</span>
-            <span className={`text-xs font-bold ${darkMode ? "text-amber-300" : "text-amber-700"}`}>{t("homeCardRanking")}</span>
-          </Link>
-          <button onClick={randomCity}
-            className={`flex flex-col items-center gap-2 p-4 rounded-xl border text-center transition group ${
-              darkMode
-                ? "bg-slate-800/60 border-slate-700 hover:bg-slate-800 hover:border-emerald-500/50"
-                : "bg-white border-slate-200 hover:border-emerald-400 hover:shadow-md"
-            }`}>
-            <span className="text-2xl">🎲</span>
-            <span className={`text-xs font-bold ${darkMode ? "text-emerald-300" : "text-emerald-700"}`}>{t("homeCardRandomCity")}</span>
-          </button>
+        {/* Quick actions – compact text links, not duplicating nav */}
+        <div className={`flex items-center gap-4 text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
           <button onClick={randomCompare}
-            className={`flex flex-col items-center gap-2 p-4 rounded-xl border text-center transition group ${
-              darkMode
-                ? "bg-slate-800/60 border-slate-700 hover:bg-slate-800 hover:border-blue-500/50"
-                : "bg-white border-slate-200 hover:border-blue-400 hover:shadow-md"
-            }`}>
-            <span className="text-2xl">⚖️</span>
-            <span className={`text-xs font-bold ${darkMode ? "text-blue-300" : "text-blue-700"}`}>{t("homeCardCompare")}</span>
+            className={`transition ${darkMode ? "hover:text-blue-400" : "hover:text-blue-600"}`}>
+            ⚖️ {t("homeCardCompare")}
           </button>
         </div>
 
         {/* Stats line */}
         <p className={`mt-8 text-xs text-center ${darkMode ? "text-slate-600" : "text-slate-400"}`}>
-          {CITY_LIST.length} {t("homeCities")} · 26 {t("homeProfessions")} · 16 {t("homeDataPoints")} · 4 {t("homeIndexes")}
+          100+ {t("homeCities")} · 26 {t("homeProfessions")} · 16 {t("homeDataPoints")} · 4 {t("homeIndexes")}
         </p>
       </div>
     </div>
