@@ -92,14 +92,12 @@ export default function RankingContent({ cities }: Props) {
   const router = useRouter();
   const s = useSettings();
   const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode } = s;
-  const [tab, setTabState] = useState<Tab>("income");
-  const [subSort, setSubSort] = useState<SubSort>(null);
-
-  // Persist tab in localStorage
-  useEffect(() => {
+  const [tab, setTabState] = useState<Tab>(() => {
+    if (typeof window === "undefined") return "income";
     const saved = localStorage.getItem("rankingTab");
-    if (saved && Object.keys(TAB_I18N).includes(saved)) setTabState(saved as Tab);
-  }, []);
+    return saved && Object.keys(TAB_I18N).includes(saved) ? (saved as Tab) : "income";
+  });
+  const [subSort, setSubSort] = useState<SubSort>(null);
   const setTab = (t: Tab) => { setTabState(t); localStorage.setItem("rankingTab", t); };
 
   const professions = cities[0]?.professions ? Object.keys(cities[0].professions) : [];
