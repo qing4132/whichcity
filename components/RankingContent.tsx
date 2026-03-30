@@ -502,8 +502,8 @@ export default function RankingContent({ cities }: Props) {
                         tab === gTab
                           ? "bg-blue-600 text-white shadow-sm"
                           : gi === activeGroup
-                            ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-50 text-blue-700 hover:bg-blue-100")
-                            : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100 text-slate-600 hover:bg-slate-200")
+                            ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-100 text-blue-700 hover:bg-blue-200")
+                            : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-200 text-slate-600 hover:bg-slate-300")
                       }`}>
                       {t(TAB_I18N[gTab])}
                     </button>
@@ -513,15 +513,15 @@ export default function RankingContent({ cities }: Props) {
             </div>
           ))}
           {/* Row 3: Indexes – visually distinct */}
-          <div className="grid grid-cols-4 gap-1 pt-1">
+          <div className="grid grid-cols-4 gap-1">
             {GROUPS[4].tabs.map(gTab => (
               <button key={gTab} onClick={() => handleTab(gTab)}
                 className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${
                   tab === gTab
                     ? "bg-indigo-600 text-white shadow-sm"
                     : activeGroup === 4
-                      ? (darkMode ? "bg-indigo-900/30 text-indigo-300 hover:bg-indigo-900/50" : "bg-indigo-50 text-indigo-700 hover:bg-indigo-100")
-                      : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100 text-slate-600 hover:bg-slate-200")
+                      ? (darkMode ? "bg-indigo-900/30 text-indigo-300 hover:bg-indigo-900/50" : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200")
+                      : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-200 text-slate-600 hover:bg-slate-300")
                 }`}>
                 {t(TAB_I18N[gTab])}
               </button>

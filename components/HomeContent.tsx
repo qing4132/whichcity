@@ -15,6 +15,10 @@ const CITY_LIST = Object.entries(CITY_SLUGS).map(([idStr, slug]) => {
   return { id, slug, flag: CITY_FLAG_EMOJIS[id] || "🏙️" };
 });
 
+const POPULAR_HOME = ["new-york", "london", "tokyo", "singapore", "paris", "sydney"]
+  .map(slug => CITY_LIST.find(c => c.slug === slug))
+  .filter((c): c is NonNullable<typeof c> => c !== undefined);
+
 export default function HomeContent() {
   const router = useRouter();
   const s = useSettings();
@@ -94,9 +98,10 @@ export default function HomeContent() {
       <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
-            <span className={`text-xs px-2 py-1 rounded border font-semibold ${darkMode ? "bg-blue-900/40 border-blue-500/50 text-blue-300" : "bg-blue-50 border-blue-300 text-blue-700"}`}>
+            <Link href="/"
+              className={`text-xs px-2 py-1 rounded border font-semibold ${darkMode ? "bg-blue-900/40 border-blue-500/50 text-blue-300" : "bg-blue-50 border-blue-300 text-blue-700"}`}>
               {t("navHome")}
-            </span>
+            </Link>
             <Link href="/ranking"
               className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
               {t("navRanking")}
@@ -137,18 +142,18 @@ export default function HomeContent() {
       </div>
 
       {/* Main – vertically centered */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 -mt-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 -mt-16">
 
         {/* Hero */}
         <h1 className={`text-4xl sm:text-5xl font-extrabold tracking-tight text-center mb-3 ${darkMode ? "text-white" : "text-slate-900"}`}>
           {t("appTitle")}
         </h1>
-        <p className={`text-base sm:text-lg text-center max-w-lg mb-8 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+        <p className={`text-base sm:text-lg text-center max-w-lg mb-6 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
           {t("appSubtitle")}
         </p>
 
         {/* Search bar */}
-        <div className="relative w-full max-w-md mb-10">
+        <div className="relative w-full max-w-md mb-5">
           <input
             ref={inputRef}
             type="text"
@@ -194,17 +199,27 @@ export default function HomeContent() {
           )}
         </div>
 
-        {/* Quick actions – compact text links, not duplicating nav */}
-        <div className={`flex items-center gap-4 text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
-          <button onClick={randomCompare}
-            className={`transition ${darkMode ? "hover:text-blue-400" : "hover:text-blue-600"}`}>
-            ⚖️ {t("homeCardCompare")}
-          </button>
+        {/* Quick action – proper pill button */}
+        <button onClick={randomCompare}
+          className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
+            darkMode ? "border-blue-500/40 text-blue-300 hover:bg-blue-900/30" : "border-blue-300 text-blue-600 hover:bg-blue-50"
+          }`}>
+          🎲 {t("homeCardCompare")}
+        </button>
+
+        {/* Popular cities */}
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1.5 mt-5 max-w-lg">
+          {POPULAR_HOME.map(c => (
+            <Link key={c.id} href={`/city/${c.slug}`}
+              className={`text-xs transition ${darkMode ? "text-slate-400 hover:text-blue-400" : "text-slate-500 hover:text-blue-600"}`}>
+              {c.flag} {getCityName(c.id)}
+            </Link>
+          ))}
         </div>
 
         {/* Stats line */}
-        <p className={`mt-8 text-xs text-center ${darkMode ? "text-slate-600" : "text-slate-400"}`}>
-          100+ {t("homeCities")} · 26 {t("homeProfessions")} · 16 {t("homeDataPoints")} · 4 {t("homeIndexes")}
+        <p className={`mt-5 text-xs text-center ${darkMode ? "text-slate-600" : "text-slate-400"}`}>
+          100+ {t("homeCities")} · 20+ {t("homeProfessions")} · {t("homeDataCoverage")}
         </p>
       </div>
     </div>
