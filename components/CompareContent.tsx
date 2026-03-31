@@ -358,9 +358,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       </div>
 
         {/* ──── Comparison data ──── */}
-        <div className={`rounded-t-none rounded-b-xl shadow-md overflow-hidden border border-t-0 p-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+        <div className={`rounded-t-none rounded-b-xl shadow-md overflow-hidden border border-t-0 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           {/* Wins summary */}
-          <div className={`flex mb-3`}>
+          <div className={`flex px-4 py-2 ${darkMode ? "border-slate-700/50" : "border-slate-100"}`}>
             {visibleSlots.map((c, i) => (
               <div key={`wins-${i}`} className={`flex-1 text-center text-xs font-semibold ${
                 c && winCounts[i] > 0
@@ -371,50 +371,62 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </div>
             ))}
           </div>
-          {/* Metric grid */}
-          <div className={`grid gap-x-3 gap-y-1`} style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
-            {(() => {
-              const allRows = GROUP_KEYS.flatMap(gk => rows.filter(d => d.m.group === gk));
-              const bestC = darkMode ? "text-emerald-400" : "text-emerald-600";
-              const valC = darkMode ? "text-slate-200" : "text-slate-700";
-              const dimC = darkMode ? "text-slate-500" : "text-slate-400";
-              const lblC = darkMode ? "text-slate-500" : "text-slate-400";
-              return allRows.map(({ m, vals, bestVal }) => (
-                <React.Fragment key={m.key}>
-                  {vals.map((v, i) => {
-                    const slot = visibleSlots[i];
-                    const label = m.label(t);
-                    if (!slot) return (
-                      <div key={`empty-${i}`} className="flex flex-col items-center text-center pt-3 pb-1">
-                        <p className={`text-[10px] font-semibold tracking-wide mb-0.5 ${lblC}`}>{label}</p>
-                        <p className={`text-sm font-extrabold ${dimC}`}>—</p>
-                      </div>
-                    );
-                    if (m.key === "climateType") {
-                      const cl = getCityClimate(slot.id);
-                      return (
-                        <div key={slot.id} className="flex flex-col items-center text-center pt-3 pb-1">
-                          <p className={`text-[10px] font-semibold tracking-wide mb-0.5 ${lblC}`}>{label}</p>
-                          <p className={`text-sm font-extrabold ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</p>
-                        </div>
-                      );
-                    }
-                    const formatted = m.fmt(v, rowCtx);
-                    const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
-                    const isNull = v == null;
-                    return (
-                      <div key={slot.id} className="flex flex-col items-center text-center pt-3 pb-1">
-                        <p className={`text-[10px] font-semibold tracking-wide mb-0.5 ${lblC}`}>{label}</p>
-                        <p className={`text-sm font-extrabold ${isNull ? dimC : isBest ? bestC : valC}`}>
-                          {formatted}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </React.Fragment>
-              ));
-            })()}
-          </div>
+          {/* Grouped metrics */}
+          {GROUP_KEYS.map(gk => {
+            const gRows = rows.filter(d => d.m.group === gk);
+            if (gRows.length === 0) return null;
+            const bestC = darkMode ? "text-emerald-400" : "text-emerald-600";
+            const valC = darkMode ? "text-slate-100" : "text-slate-800";
+            const dimC = darkMode ? "text-slate-600" : "text-slate-300";
+            const lblC = darkMode ? "text-slate-500" : "text-slate-400";
+            return (
+              <div key={gk}>
+                {/* Group divider */}
+                <div className={`px-4 py-1.5 ${darkMode ? "bg-slate-700/30" : "bg-slate-50"}`}>
+                  <p className={`text-[11px] font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                    {t(GROUP_I18N[gk])}
+                  </p>
+                </div>
+                {/* Metric cells grid */}
+                <div className={`grid gap-x-2 gap-y-0 px-4 py-2`} style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+                  {gRows.map(({ m, vals, bestVal }) => (
+                    <React.Fragment key={m.key}>
+                      {vals.map((v, i) => {
+                        const slot = visibleSlots[i];
+                        const label = m.label(t);
+                        if (!slot) return (
+                          <div key={`empty-${i}`} className="flex flex-col items-center text-center py-2">
+                            <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
+                            <p className={`text-lg font-bold ${dimC}`}>—</p>
+                          </div>
+                        );
+                        if (m.key === "climateType") {
+                          const cl = getCityClimate(slot.id);
+                          return (
+                            <div key={slot.id} className="flex flex-col items-center text-center py-2">
+                              <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
+                              <p className={`text-lg font-bold ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</p>
+                            </div>
+                          );
+                        }
+                        const formatted = m.fmt(v, rowCtx);
+                        const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
+                        const isNull = v == null;
+                        return (
+                          <div key={slot.id} className="flex flex-col items-center text-center py-2">
+                            <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
+                            <p className={`text-lg font-bold ${isNull ? dimC : isBest ? bestC : valC}`}>
+                              {formatted}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* ──── Climate & Environment (standalone section, no win highlighting) ──── */}
