@@ -643,7 +643,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
                     </p>
                   ))}
                 </div>
-                <Link href={`/compare/${pair}`} className={`inline-block text-xs px-3 py-1 mt-1 rounded border transition ${darkMode ? "border-amber-500/50 text-amber-300 hover:bg-amber-900/30" : "border-amber-300 text-amber-600 hover:bg-amber-50"}`}>
+                <Link href={`/compare/${pair}`} className={`inline-block text-xs px-3 py-1 mt-1 rounded border transition ${darkMode ? "border-violet-500/50 text-violet-300 hover:bg-violet-900/30" : "border-violet-300 text-violet-600 hover:bg-violet-50"}`}>
                   {t("compareCity")}
                 </Link>
               </div>

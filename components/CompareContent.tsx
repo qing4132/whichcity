@@ -31,26 +31,26 @@ type RowCtx = {
 
 type Metric = {
   key: string;
-  label: (t: RowCtx["t"]) => string;
+  label: (t: RowCtx["t"], ctx?: RowCtx) => string;
   get: (c: City, ctx: RowCtx) => number | null;
-  fmt: (v: number | null, ctx: RowCtx) => string;
+  fmt: (v: number | null, ctx: RowCtx, c?: City) => string;
   lower?: boolean; // lower is better
   group: string;
 };
 
 /* ── 16 metrics (12 data + 4 indexes), grouped ── */
 const METRICS: Metric[] = [
-  { key: "income",   group: "income",      label: t => t("avgIncome"),              get: (c, x) => x.allIncomes.get(c.id) ?? null, fmt: (v, x) => v != null ? x.fc(v) : "—" },
-  { key: "expense",  group: "income",      label: t => t("monthlyCost"),            get: (c, x) => c[x.costField] as number | null, fmt: (v, x) => v != null ? x.fc(v) : "—", lower: true },
+  { key: "income",   group: "income",      label: (t, x) => x ? `${t("avgIncome")} (${x.profession})` : t("avgIncome"),              get: (c, x) => x.allIncomes.get(c.id) ?? null, fmt: (v, x) => v != null ? x.fc(v) : "—" },
+  { key: "expense",  group: "income",      label: (t, x) => { const tier = x?.costField === "costBudget" ? "budget" : "moderate"; return `${t("monthlyCost")} (${t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)})`; },            get: (c, x) => c[x.costField] as number | null, fmt: (v, x) => v != null ? x.fc(v) : "—", lower: true },
   { key: "savings",  group: "income",      label: t => t("yearlySavings"),          get: (c, x) => { const inc = x.allIncomes.get(c.id); const cost = c[x.costField] as number; return inc != null ? inc - cost * 12 : null; }, fmt: (v, x) => v != null ? x.fc(v) : "—" },
-  { key: "house",    group: "housing",     label: t => t("housePrice"),             get: c => c.housePrice,                          fmt: (v, x) => v != null ? x.fc(v) : "—", lower: true },
+  { key: "house",    group: "housing",     label: t => t("housePrice"),             get: c => c.housePrice,                          fmt: (v, x) => v != null ? `${x.fc(v)}/m²` : "—", lower: true },
   { key: "rent",     group: "housing",     label: t => t("monthlyRent"),            get: c => c.monthlyRent,                         fmt: (v, x) => v != null ? x.fc(v) : "—", lower: true },
   { key: "years",    group: "housing",     label: t => t("yearsToBuy"),             get: (c, x) => { const inc = x.allIncomes.get(c.id); const cost = c[x.costField] as number; const sav = inc != null ? inc - cost * 12 : 0; return c.housePrice != null && sav > 0 ? (c.housePrice * 70) / sav : null; }, fmt: (v, x) => v != null ? `${v.toFixed(1)} ${x.t("insightYears")}` : "—", lower: true },
   { key: "work",     group: "work",        label: t => t("annualWorkHours"),        get: c => c.annualWorkHours,                     fmt: (v, x) => v != null ? `${v} ${x.t("unitH")}` : "—", lower: true },
   { key: "wage",     group: "work",        label: t => t("hourlyWage"),             get: (c, x) => { const inc = x.allIncomes.get(c.id); return inc != null && c.annualWorkHours != null && c.annualWorkHours > 0 ? inc / c.annualWorkHours : null; }, fmt: (v, x) => v != null ? x.fc(Math.round(v * 100) / 100) : "—" },
   { key: "vacation", group: "work",        label: t => t("paidLeaveDays"),          get: c => c.paidLeaveDays,                       fmt: (v, x) => v != null ? `${v} ${x.t("paidLeaveDaysUnit")}` : "—" },
-  { key: "air",      group: "environment", label: t => t("airQuality") + " AQI",    get: c => c.airQuality,                          fmt: v => v != null ? `${v}` : "—", lower: true },
-  { key: "internet", group: "environment", label: t => t("internetSpeed"),           get: c => c.internetSpeedMbps,                   fmt: v => v != null ? `${v} Mbps` : "—" },
+  { key: "air",      group: "environment", label: t => t("airQuality"),              get: c => c.airQuality,                          fmt: (v, _x, c) => v != null ? `${c?.country === "中国" ? "AQI (CN)" : "AQI"} ${v}` : "—", lower: true },
+  { key: "internet", group: "environment", label: t => t("internetSpeed"),           get: c => c.internetSpeedMbps,                   fmt: (v, x) => v != null ? `${v} ${x.t("internetSpeedUnit")}` : "—" },
   { key: "flights",  group: "environment", label: t => t("directFlights"),           get: c => c.directFlightCities,                  fmt: v => v != null ? `${v}` : "—" },
   { key: "lp",       group: "index",       label: t => t("lifePressureIndex"),       get: (c, x) => { const inc = x.allIncomes.get(c.id) ?? 0; const allInc = x.allCities.map(cc => x.allIncomes.get(cc.id) ?? 0); return computeLifePressure(c, x.allCities, inc, allInc, x.costField).value; }, fmt: v => v != null ? v.toFixed(1) : "—", lower: true },
   { key: "safety",   group: "index",       label: t => t("safetyIndex"),             get: c => c.safetyIndex,                         fmt: v => v != null ? v.toFixed(1) : "—" },
@@ -146,8 +146,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   }, [allCities, activeProfession, incomeMode]);
 
   const rowCtx: RowCtx = useMemo(() => ({
-    fc: formatCurrency, t, costField, profession: activeProfession, incomeMode, allCities, allIncomes: allIncomesMap,
-  }), [formatCurrency, t, costField, activeProfession, incomeMode, allCities, allIncomesMap]);
+    fc: formatCurrency, t, costField, profession: s.getProfessionLabel(activeProfession), incomeMode, allCities, allIncomes: allIncomesMap,
+  }), [formatCurrency, t, costField, activeProfession, incomeMode, allCities, allIncomesMap, s]);
 
   /* ── Metric rows with winner detection (uses all visible slots including empty) ── */
   const rows = useMemo(() => {
@@ -405,7 +405,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                   <div key={`col-${i}`} className={i < visibleSlots.length - 1 ? `border-r ${dividerCls} pr-4` : "pl-0"}>
                     {gRows.map(({ m, vals, bestVal }) => {
                       const v = vals[i];
-                      const label = m.label(t);
+                      const label = m.label(t, rowCtx);
                       if (!slot) return (
                         <div key={m.key} className="flex flex-col items-center text-center py-2">
                           <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
@@ -421,7 +421,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                           </div>
                         );
                       }
-                      const formatted = m.fmt(v, rowCtx);
+                      const formatted = m.fmt(v, rowCtx, slot);
                       const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
                       const isNull = v == null;
                       return (
