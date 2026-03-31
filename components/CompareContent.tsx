@@ -284,7 +284,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
       {/* ── City selector (sticky) ── */}
-      <div className={`sticky z-40 rounded-t-xl shadow-md border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
+      <div className="sticky z-40" style={{ top: navH }}>
+        <div className={`absolute -top-2 left-0 right-0 h-2 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} />
+        <div className={`rounded-t-xl shadow-md border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
@@ -355,9 +357,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </div>
             );
           })}
+        </div>
       </div>
-      {/* ── Wins summary (not sticky) ── */}
-      <div className={`rounded-b-xl shadow-md border border-t ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+      {/* ── Wins summary (not sticky, no gap) ── */}
+      <div className={`-mt-px rounded-b-xl shadow-md border border-t ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
         <div className="grid" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
           {visibleSlots.map((c, i) => {
             const winDivider = i < visibleSlots.length - 1 ? `border-r ${darkMode ? "border-slate-700" : "border-slate-200"}` : "";
@@ -395,9 +398,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 </p>
               </div>
               {/* Per-city columns with dividers */}
-              <div className="grid" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+              <div className="grid px-4 py-2" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
                 {visibleSlots.map((slot, i) => (
-                  <div key={`col-${i}`} className={`px-4 py-2 ${i < visibleSlots.length - 1 ? `border-r ${dividerCls}` : ""}`}>
+                  <div key={`col-${i}`} className={i < visibleSlots.length - 1 ? `border-r ${dividerCls} pr-4` : "pl-0"}>
                     {gRows.map(({ m, vals, bestVal }) => {
                       const v = vals[i];
                       const label = m.label(t);
@@ -469,7 +472,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                   const c = slot;
                   const items = c ? climateItems(c) : null;
                   const cl = c ? getCityClimate(c.id) : null;
-                  if (!c || !items) return <div key={`clim-empty-${ci}`} />;
+                  if (!c || !items) return (
+                    <div key={`clim-empty-${ci}`} className="flex flex-col items-center justify-center">
+                      <p className={`text-lg font-bold ${darkMode ? "text-slate-600" : "text-slate-300"}`}>—</p>
+                    </div>
+                  );
                   return (
                     <div key={c.id} className={ci < visibleSlots.length - 1 ? `border-r ${dividerCls} pr-4` : ""}>
                       {/* Data grid */}
@@ -510,18 +517,16 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         })()}
 
         {/* ──── City guide links ──── */}
-        {filledCities.length > 0 && (
-        <div className="grid gap-3 mt-8" style={{ gridTemplateColumns: `repeat(${filledCities.length}, minmax(0, 1fr))` }}>
-          {filledCities.map(c => (
+        <div className="grid gap-3 mt-8" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+          {visibleSlots.map((c, i) => c ? (
             <Link key={c.id} href={`/city/${CITY_SLUGS[c.id]}`}
               className={`rounded-xl border p-4 transition ${sectionBg} hover:border-blue-400 hover:shadow`}>
               <p className="text-2xl mb-1">{getFlag(c)}</p>
-              <p className={`font-bold ${headCls}`}>{getName(c)} {t("cityGuide")}</p>
-              <p className={`text-xs ${subCls}`}>{getCountry(c)} · {t("cityGuideDesc")}</p>
+              <p className={`font-bold ${headCls}`}>{getName(c)}</p>
+              <p className={`text-xs mt-0.5 ${subCls}`}>{getCountry(c)} · {t("cityGuideDesc")}</p>
             </Link>
-          ))}
+          ) : <div key={`guide-empty-${i}`} />)}
         </div>
-        )}
 
         {/* ──── Footer ──── */}
         <footer className={`mt-10 border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
