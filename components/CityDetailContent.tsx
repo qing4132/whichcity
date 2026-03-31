@@ -243,8 +243,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
   const freedomIdx = city.freedomIndex;
   const allFreedom = allCities.map(c => c.freedomIndex);
 
-  // Real-time similar cities: 22-dim normalised Euclidean distance
-  const CLIMATE_NUM: Record<string, number> = { tropical: 0, arid: 1, mediterranean: 2, oceanic: 3, temperate: 4, continental: 5 };
+  // Real-time similar cities: 21-dim normalised Euclidean distance
   const similarIds = (() => {
     const cityIdx = allCities.findIndex(c => c.id === city.id);
     const vec = (i: number): number[] => {
@@ -257,7 +256,6 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
         c.annualWorkHours ?? 0, allHourly[i], c.paidLeaveDays ?? 0,
         c.airQuality ?? 0, c.internetSpeedMbps ?? 0, c.directFlightCities ?? 0,
         allLifePressure[i], c.healthcareIndex, c.freedomIndex, c.safetyIndex,
-        cl ? CLIMATE_NUM[cl.type] ?? 3 : 3,
         cl?.avgTempC ?? 15,
         cl ? cl.summerAvgC - cl.winterAvgC : 15,
         cl?.annualRainMm ?? 800,
