@@ -357,16 +357,23 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           })}
       </div>
       {/* ── Wins summary (not sticky) ── */}
-      <div className={`rounded-b-xl shadow-md border border-t px-4 py-2 flex ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
-          {visibleSlots.map((c, i) => (
-            <div key={`wins-${i}`} className={`flex-1 text-center text-xs font-semibold ${
-              c && winCounts[i] > 0
-                ? (darkMode ? "text-emerald-400" : "text-emerald-600")
-                : (darkMode ? "text-slate-500" : "text-slate-400")
-            }`}>
-              {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
-            </div>
-          ))}
+      <div className={`rounded-b-xl shadow-md border border-t ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+        <div className="grid" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+          {visibleSlots.map((c, i) => {
+            const winDivider = i < visibleSlots.length - 1 ? `border-r ${darkMode ? "border-slate-700" : "border-slate-200"}` : "";
+            const winValC = c && winCounts[i] > 0
+              ? (darkMode ? "text-emerald-400" : "text-emerald-600")
+              : (darkMode ? "text-slate-600" : "text-slate-300");
+            return (
+              <div key={`wins-${i}`} className={`flex flex-col items-center text-center px-4 py-2 ${winDivider}`}>
+                <p className={`text-xs mb-0.5 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("compareLeading")}</p>
+                <p className={`text-lg font-bold ${winValC}`}>
+                  {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
         {/* ──── Per-group cards ──── */}
@@ -444,8 +451,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               [t("sunshine"), `${Math.round(cl.sunshineHours)} ${t("unitH")}`],
             ];
           };
-          const n = filledCities.length;
-          const gridCls = n === 1 ? "grid-cols-3 sm:grid-cols-6" : n === 2 ? "grid-cols-3" : "grid-cols-2";
           const hasCharts = filledCities.some(c => getCityClimate(c.id)?.monthlyHighC);
           const dividerCls = darkMode ? "border-slate-700" : "border-slate-200";
           return (
@@ -459,15 +464,16 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
             {/* Per-city columns: data + chart in same column for alignment */}
             <div className="p-4">
-              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
-                {filledCities.map((c, ci) => {
-                  const items = climateItems(c);
-                  const cl = getCityClimate(c.id);
-                  if (!items) return <div key={c.id} />;
+              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+                {visibleSlots.map((slot, ci) => {
+                  const c = slot;
+                  const items = c ? climateItems(c) : null;
+                  const cl = c ? getCityClimate(c.id) : null;
+                  if (!c || !items) return <div key={`clim-empty-${ci}`} />;
                   return (
-                    <div key={c.id} className={ci < n - 1 ? `border-r ${dividerCls} pr-4` : ""}>
+                    <div key={c.id} className={ci < visibleSlots.length - 1 ? `border-r ${dividerCls} pr-4` : ""}>
                       {/* Data grid */}
-                      <div className={`grid ${gridCls} gap-1`}>
+                      <div className="grid grid-cols-2 gap-1">
                         {items.map(([label, val]) => (
                           <div key={label} className="flex flex-col items-center text-center p-2">
                             <p className={`text-[10px] font-semibold tracking-wide mb-0.5 ${subCls}`}>{label}</p>
