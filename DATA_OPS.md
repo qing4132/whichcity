@@ -6,8 +6,8 @@
 
 ```
 public/data/
-  cities.json          ← 134 cities × 42 fields (runtime, fetched by browser)
-  exchange-rates.json  ← 30 currencies (auto-updated daily via GitHub Actions)
+  cities.json          ← 134 cities (runtime, fetched by browser)
+  exchange-rates.json  ← 30 currencies stored, 10 selectable in UI (auto-updated daily)
 
 lib/
   constants.ts         ← CITY_CLIMATE (134 entries), REGIONS, CITY_FLAG_EMOJIS, CITY_COUNTRY, POPULAR_CURRENCIES
@@ -25,7 +25,7 @@ lib/
 
 **Location**: `public/data/cities.json`
 **Structure**: `{ "cities": [ { id, name, country, continent, averageIncome, professions: {...}, costModerate, costBudget, ... } ] }`
-**134 cities, 42 fields per city** (see lib/types.ts for full schema).
+**134 cities** (see lib/types.ts for full schema).
 
 ### How to Update Salary Data
 
@@ -73,7 +73,7 @@ These are pre-computed composite indices stored in `cities.json`.
 
 ### How to Add a New City
 
-1. Add entry to `cities.json` with all 42 fields (use `null` for unavailable data).
+1. Add entry to `cities.json` with all required fields (use `null` for unavailable data).
 2. Add to `lib/constants.ts`:
    - `CITY_CLIMATE[id] = { type, avgTempC, ... }`
    - `CITY_FLAG_EMOJIS[id] = "🇽🇽"`
@@ -154,7 +154,7 @@ id: {
 
 **Structure**: `{ "rates": { "EUR": 0.92, ... }, "symbols": { "EUR": "€", ... } }`
 
-**30 currencies**: USD, EUR, GBP, JPY, CNY, HKD, AUD, CAD, SGD, INR, THB, MYR, VND, PHP, IDR, PKR, EGP, TRY, BRL, MXN, ZAR, SEK, NOK, CHF, NZD, DKK, RUB, GEL, NGN, COP
+**30 currencies stored** (USD, EUR, GBP, JPY, CNY, HKD, AUD, CAD, SGD, INR, THB, MYR, VND, PHP, IDR, PKR, EGP, TRY, BRL, MXN, ZAR, SEK, NOK, CHF, NZD, DKK, RUB, GEL, NGN, COP). **10 selectable in UI** (POPULAR_CURRENCIES in constants.ts): USD, EUR, GBP, JPY, CNY, HKD, AUD, CAD, SGD, INR.
 
 **To update**: Automated via GitHub Actions (daily cron). The workflow runs `scripts/update-rates.mjs`, which fetches latest rates from ExchangeRate-API and commits changes. Can also be triggered manually from the Actions tab. See `.github/workflows/update-exchange-rates.yml`.
 

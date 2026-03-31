@@ -145,7 +145,7 @@ export default function MethodologyContent() {
   function renderZh() {
     return (<>
       <H2 id="data-overview">📊 数据总览</H2>
-      <P>本站覆盖全球 134 座城市，涵盖 42 项原始数据字段和 4 项综合指数。所有薪资和费用均以美元 (USD) 为基准存储和计算，用户可在界面上选择 30 种货币显示。</P>
+      <P>本站覆盖全球 134 座城市，涵盖 23 类原始数据和 4 项综合指数。所有薪资和费用均以美元 (USD) 为基准存储和计算，用户可在界面上选择 10 种主流货币显示。</P>
       <Table headers={["数据类别", "来源", "粒度", "数据年份"]} rows={[
         ["薪资（26 种职业）", "ERI / SalaryExpert、BLS (美)、PayScale、OECD、Robert Half、Hays、智联招聘、JobStreet", "城市 × 职业", "2024–2025"],
         ["生活成本（标准/节俭）", "Numbeo、Expatistan、各国统计局", "城市", "2024–2025"],
@@ -169,7 +169,7 @@ export default function MethodologyContent() {
         ["民主指数", "EIU Democracy Index", "国家", "2024"],
         ["清廉指数", "Transparency International CPI", "国家", "2024"],
         ["气候（月度）", "WMO 1991–2020 常年值、NOAA、各国气象局", "城市", "1991–2020 基准"],
-        ["汇率（30 种）", "ExchangeRate-API（每日自动更新）", "—", "每日"],
+        ["汇率（10 种可选）", "ExchangeRate-API（每日自动更新）", "—", "每日"],
       ]} />
       <Warn>所有数据均为该来源的官方公开数据或经授权引用数据。薪资数据为税前年薪中位数估算，不代表个人实际收入。</Warn>
 
@@ -269,7 +269,7 @@ export default function MethodologyContent() {
       <Warn>税后计算为简化估算，仅供参考。未考虑：个人免税额差异、家庭状况、投资收入、地方附加税（除美国州税/加拿大省税外）、时间限制（如荷兰 30% 规则最多 5 年）等因素。请以当地税务机关或专业税务顾问意见为准。</Warn>
 
       <H2 id="ranking">🏅 排名系统</H2>
-      <P>排名页提供 5 大类共 22 项指标的全球城市排行，用户可切换职业和消费档位。</P>
+      <P>排名页提供 5 大类共 16 项指标的全球城市排行，用户可切换职业和消费档位。</P>
       <P><strong>排名规则</strong>：使用密集排名（Dense Ranking）——并列排名相同，后续跳跃。例如：若两城并列第 1，下一名为第 3。</P>
       <P><strong>排序方向</strong>：高优型（收入、储蓄、安全等）按降序排列；低优型（支出、AQI、工时等）按升序排列。缺失数据排在最后。</P>
       <P><strong>配色规则</strong>：每项指标的第 1 名获得金色🥇标记。综合指数（生活压力、安全等）使用可展开的子指标详情。</P>
@@ -296,7 +296,7 @@ export default function MethodologyContent() {
       <H3>AQI (CN) 标注</H3>
       <P>中国大陆城市的 AQI 使用中国国标，界面中标注为 "AQI (CN)"，其余城市使用 US EPA 标准标注为 "AQI"。两种标准在不同污染物浓度下的数值差异较大。</P>
       <H3>货币转换</H3>
-      <P>界面上的所有金额均可换算为 30 种货币显示。汇率通过 ExchangeRate-API 每日自动更新。</P>
+      <P>界面上的所有金额均可换算为 10 种主流货币显示。汇率通过 ExchangeRate-API 每日自动更新。</P>
       <H3>缺失数据显示</H3>
       <P>缺失数据统一显示为 "—"。</P>
 
@@ -348,7 +348,7 @@ export default function MethodologyContent() {
   function renderEn() {
     return (<>
       <H2 id="data-overview">📊 Data Overview</H2>
-      <P>This site covers 134 cities worldwide with 42 raw data fields and 4 composite indices. All salaries and costs are stored and computed in USD. Users can display values in 30 currencies.</P>
+      <P>This site covers 134 cities worldwide with 23 data categories and 4 composite indices. All salaries and costs are stored and computed in USD. Users can display values in 10 major currencies.</P>
       <Table headers={["Category", "Source", "Granularity", "Data Year"]} rows={[
         ["Salaries (26 professions)", "ERI / SalaryExpert, BLS (US), PayScale, OECD, Robert Half, Hays, Zhilian, JobStreet", "City × Profession", "2024–2025"],
         ["Cost of Living (Standard/Budget)", "Numbeo, Expatistan, National Statistics Offices", "City", "2024–2025"],
@@ -372,7 +372,7 @@ export default function MethodologyContent() {
         ["Democracy Index", "EIU Democracy Index", "Country", "2024"],
         ["Corruption Perception", "Transparency International CPI", "Country", "2024"],
         ["Climate (Monthly)", "WMO Normals 1991–2020, NOAA, National Met Agencies", "City", "1991–2020 baseline"],
-        ["Exchange Rates (30)", "ExchangeRate-API (auto-updated daily)", "—", "Daily"],
+        ["Exchange Rates (10 selectable)", "ExchangeRate-API (auto-updated daily)", "—", "Daily"],
       ]} />
       <Warn>All data comes from official public sources or authorized data. Salary figures are median gross annual estimates, not individual offers.</Warn>
 
@@ -458,7 +458,7 @@ export default function MethodologyContent() {
       <Warn>Tax calculations are simplified estimates. Not considered: personal allowance variations, family status, investment income, employer-side contributions, time limits on expat schemes. Consult a qualified tax advisor for personal advice.</Warn>
 
       <H2 id="ranking">🏅 Ranking System</H2>
-      <P>22 metrics across 5 categories. Dense ranking with ties (e.g., 1,1,3). Higher-is-better metrics sorted descending; lower-is-better sorted ascending. Missing values sorted last.</P>
+      <P>16 metrics across 5 categories. Dense ranking with ties (e.g., 1,1,3). Higher-is-better metrics sorted descending; lower-is-better sorted ascending. Missing values sorted last.</P>
 
       <H2 id="compare">⚖️ City Comparison</H2>
       <P>Compare 2–3 cities across 16 data metrics + 6 climate metrics. Winner = best value per row (max for higher-is-better, min for lower-is-better). Ties: all matching cities win. "Leading" count excludes climate metrics. Winner values shown in green.</P>
@@ -478,7 +478,7 @@ export default function MethodologyContent() {
       <H3>Confidence Labels</H3>
       <P>"⚠ Low confidence": 3+ sub-indicators missing. "Partial data missing": 1–2 missing. Missing sub-indicators marked with * in expanded view.</P>
       <H3>Currency Conversion</H3>
-      <P>All amounts convertible to 30 currencies. Rates auto-updated daily via ExchangeRate-API.</P>
+      <P>All amounts convertible to 10 major currencies. Rates auto-updated daily via ExchangeRate-API.</P>
       <H3>Missing Data</H3>
       <P>Displayed as "—" throughout.</P>
 
@@ -530,7 +530,7 @@ export default function MethodologyContent() {
   function renderJa() {
     return (<>
       <H2 id="data-overview">📊 データ概要</H2>
-      <P>本サイトは世界134都市をカバーし、42項目の生データと4つの総合指数を提供します。すべての給与とコストはUSD基準で保存・計算され、30通貨で表示可能です。</P>
+      <P>本サイトは世界134都市をカバーし、23カテゴリのデータと4つの総合指数を提供します。すべての給与とコストはUSD基準で保存・計算され、10種の主要通貨で表示可能です。</P>
       <Table headers={["カテゴリ", "ソース", "粒度", "データ年"]} rows={[
         ["給与（26職種）", "ERI/SalaryExpert, BLS, PayScale, OECD, Robert Half, Hays, 智联招聘, JobStreet", "都市×職種", "2024–2025"],
         ["生活費（標準/節約）", "Numbeo, Expatistan, 各国統計局", "都市", "2024–2025"],
@@ -549,7 +549,7 @@ export default function MethodologyContent() {
         ["安全指数（4コンポーネント）", "Numbeo, UNODC, IEP, Gallup", "都市/国", "2024–2025"],
         ["制度的自由（3コンポーネント）", "RSF, EIU, TI", "国", "2024"],
         ["気候（月次）", "WMO 1991–2020, 各国気象局", "都市", "1991–2020基準"],
-        ["為替レート（30通貨）", "ExchangeRate-API（毎日自動更新）", "—", "毎日"],
+        ["為替レート（10通貨選択可）", "ExchangeRate-API（毎日自動更新）", "—", "毎日"],
       ]} />
 
       <H2 id="income">💰 収入データ</H2>
@@ -577,7 +577,7 @@ export default function MethodologyContent() {
       <P>79か国/地域の税制をカバー。累進税率、社会保険料、就業控除を含む簡易推定。外国人優遇：オランダ30%ルーリング、スペインベッカム法、イタリアImpatriati、ポルトガルNHR 2.0、ポーランド19%、シンガポールCPF免除。</P>
 
       <H2 id="ranking">🏅 ランキング</H2>
-      <P>22指標を5カテゴリで密集ランキング。同点はタイ処理。欠損は最後尾。</P>
+      <P>16指標を5カテゴリで密集ランキング。同点はタイ処理。欠損は最後尾。</P>
 
       <H2 id="compare">⚖️ 都市比較</H2>
       <P>2–3都市を16データ+6気候指標で比較。行ごとに最良値の都市が勝ち（緑色表示）。気候指標は勝敗に含まず。</P>
@@ -603,7 +603,7 @@ export default function MethodologyContent() {
   function renderEs() {
     return (<>
       <H2 id="data-overview">📊 Visión general de datos</H2>
-      <P>Este sitio cubre 134 ciudades con 42 campos de datos y 4 índices compuestos. Todos los salarios se almacenan en USD. Se pueden mostrar en 30 monedas.</P>
+      <P>Este sitio cubre 134 ciudades con 23 categorías de datos y 4 índices compuestos. Todos los salarios se almacenan en USD. Se pueden mostrar en 10 monedas principales.</P>
       <Table headers={["Categoría", "Fuente", "Granularidad", "Año"]} rows={[
         ["Salarios (26 profesiones)", "ERI/SalaryExpert, BLS, PayScale, OECD, Robert Half, Hays, Zhilian, JobStreet", "Ciudad × Profesión", "2024–2025"],
         ["Coste de vida (Estándar/Económico)", "Numbeo, Expatistan, Oficinas Nacionales de Estadística", "Ciudad", "2024–2025"],
@@ -622,7 +622,7 @@ export default function MethodologyContent() {
         ["Índice de seguridad (4 comp.)", "Numbeo, ONUDD, IEP, Gallup", "Ciudad/País", "2024–2025"],
         ["Libertad institucional (3 comp.)", "RSF, EIU, TI", "País", "2024"],
         ["Clima (mensual)", "OMM 1991–2020, servicios meteorológicos", "Ciudad", "Base 1991–2020"],
-        ["Tipos de cambio (30)", "ExchangeRate-API (actualizado diariamente)", "—", "Diario"],
+        ["Tipos de cambio (10 seleccionables)", "ExchangeRate-API (actualizado diariamente)", "—", "Diario"],
       ]} />
 
       <H2 id="income">💰 Datos salariales</H2>
@@ -650,7 +650,7 @@ export default function MethodologyContent() {
       <P>Motor fiscal cubre 79 países/territorios. Incluye: tramos progresivos, cotizaciones sociales, deducciones laborales. Esquemas para expatriados: Holanda 30% Ruling, España Ley Beckham, Italia Impatriati, Portugal NHR 2.0, Polonia 19%, Singapur exención CPF.</P>
 
       <H2 id="ranking">🏅 Sistema de ranking</H2>
-      <P>22 indicadores en 5 categorías. Ranking denso con empates. Datos faltantes al final.</P>
+      <P>16 indicadores en 5 categorías. Ranking denso con empates. Datos faltantes al final.</P>
 
       <H2 id="compare">⚖️ Comparación de ciudades</H2>
       <P>Comparar 2–3 ciudades en 16 datos + 6 clima. Ganador = mejor valor por fila (verde). Indicadores climáticos excluidos del recuento de victorias.</P>
