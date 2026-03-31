@@ -628,7 +628,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
             return (
               <div key={otherId} className={`rounded-xl border p-3 text-center ${sectionBg}`}>
                 <span className="text-2xl">{CITY_FLAG_EMOJIS[otherId] || "🏙️"}</span>
-                <p className={`text-sm font-semibold mt-1 ${headingCls}`}>{otherName}</p>
+                <Link href={`/city/${otherSlug}`} className={`block text-sm font-semibold mt-1 ${headingCls} hover:underline`}>{otherName}</Link>
                 <div className="min-h-[3.5rem] flex flex-col items-center justify-center mt-1">
                   {highlights.map((h, idx) => (
                     <p key={idx} className={`text-[11px] leading-snug ${h.adv ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-rose-400" : "text-rose-500")}`}>
@@ -636,14 +636,9 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
                     </p>
                   ))}
                 </div>
-                <div className="flex gap-1 mt-1 justify-center">
-                  <Link href={`/city/${otherSlug}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "border-blue-500/50 text-blue-300 hover:bg-blue-900/30" : "border-blue-300 text-blue-600 hover:bg-blue-50"}`}>
-                    {t("viewCity")}
-                  </Link>
-                  <Link href={`/compare/${pair}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "border-amber-500/50 text-amber-300 hover:bg-amber-900/30" : "border-amber-300 text-amber-600 hover:bg-amber-50"}`}>
-                    {t("compareCity")}
-                  </Link>
-                </div>
+                <Link href={`/compare/${pair}`} className={`inline-block text-xs px-3 py-1 mt-1 rounded border transition ${darkMode ? "border-amber-500/50 text-amber-300 hover:bg-amber-900/30" : "border-amber-300 text-amber-600 hover:bg-amber-50"}`}>
+                  {t("compareCity")}
+                </Link>
               </div>
             );
           })}
