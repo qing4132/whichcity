@@ -117,7 +117,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [s.ready]);
 
   useEffect(() => {
     const h = (e: MouseEvent) => {
