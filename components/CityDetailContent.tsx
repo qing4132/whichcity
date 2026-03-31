@@ -11,6 +11,7 @@ import { CITY_INTROS } from "@/lib/cityIntros";
 import { CITY_LANGUAGES, LANGUAGE_NAME_TRANSLATIONS } from "@/lib/cityLanguages";
 import { useSettings } from "@/hooks/useSettings";
 import { computeNetIncome, computeAllNetIncomes, getExpatSchemeName } from "@/lib/taxUtils";
+import ClimateChart from "./ClimateChart";
 
 interface Props {
   city: City;
@@ -555,6 +556,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
               </div>
             ))}
           </div>
+          <ClimateChart climate={climate} locale={locale} darkMode={darkMode} t={t} />
         </div>
       </section>
       )}

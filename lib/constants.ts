@@ -63,13 +63,13 @@ export const CITY_FLAG_EMOJIS: Record<number, string> = {
 };
 
 export const CITY_CLIMATE: Record<number, ClimateInfo> = {
-  1:  { type: "continental", avgTempC: 12.9, annualRainMm: 1268, sunshineHours: 2535, summerAvgC: 24.7, winterAvgC: 0.4, humidityPct: 63 },
-  2:  { type: "oceanic", avgTempC: 11.3, annualRainMm: 602, sunshineHours: 1633, summerAvgC: 18.7, winterAvgC: 5.2, humidityPct: 79 },
-  3:  { type: "temperate", avgTempC: 15.8, annualRainMm: 1530, sunshineHours: 1877, summerAvgC: 26.9, winterAvgC: 5.4, humidityPct: 63 },
+  1:  { type: "continental", avgTempC: 12.9, annualRainMm: 1268, sunshineHours: 2535, summerAvgC: 24.7, winterAvgC: 0.4, humidityPct: 63, monthlyHighC: [3, 5, 10, 18, 24, 29, 32, 31, 26, 19, 12, 6], monthlyLowC: [-3, -2, 2, 8, 13, 19, 22, 21, 17, 10, 5, 0], monthlyRainMm: [93, 79, 111, 114, 106, 112, 117, 113, 109, 112, 102, 102] },
+  2:  { type: "oceanic", avgTempC: 11.3, annualRainMm: 602, sunshineHours: 1633, summerAvgC: 18.7, winterAvgC: 5.2, humidityPct: 79, monthlyHighC: [8, 9, 12, 15, 18, 22, 24, 24, 20, 16, 11, 8], monthlyLowC: [2, 2, 4, 6, 9, 12, 14, 14, 11, 8, 5, 3], monthlyRainMm: [55, 41, 42, 44, 49, 45, 45, 50, 49, 69, 59, 55] },
+  3:  { type: "temperate", avgTempC: 15.8, annualRainMm: 1530, sunshineHours: 1877, summerAvgC: 26.9, winterAvgC: 5.4, humidityPct: 63, monthlyHighC: [10, 10, 14, 19, 23, 26, 29, 31, 27, 22, 17, 12], monthlyLowC: [1, 2, 5, 10, 15, 19, 23, 24, 21, 15, 9, 4], monthlyRainMm: [52, 56, 118, 125, 138, 168, 154, 168, 210, 198, 93, 51] },
   4:  { type: "continental", avgTempC: 13.0, annualRainMm: 577, sunshineHours: 2671, summerAvgC: 26.7, winterAvgC: -3.1, humidityPct: 53 },
   5:  { type: "temperate", avgTempC: 16.1, annualRainMm: 1166, sunshineHours: 1778, summerAvgC: 28.6, winterAvgC: 4.2, humidityPct: 77 },
   6:  { type: "oceanic", avgTempC: 18.4, annualRainMm: 1214, sunshineHours: 2592, summerAvgC: 23.5, winterAvgC: 13, humidityPct: 65 },
-  7:  { type: "tropical", avgTempC: 27.0, annualRainMm: 2340, sunshineHours: 2022, summerAvgC: 28.3, winterAvgC: 26, humidityPct: 84 },
+  7:  { type: "tropical", avgTempC: 27.0, annualRainMm: 2340, sunshineHours: 2022, summerAvgC: 28.3, winterAvgC: 26, humidityPct: 84, monthlyHighC: [30, 31, 31, 32, 32, 31, 31, 31, 31, 31, 31, 30], monthlyLowC: [23, 23, 24, 24, 25, 25, 25, 24, 24, 24, 24, 23], monthlyRainMm: [198, 113, 174, 179, 172, 162, 159, 176, 170, 197, 254, 287] },
   8:  { type: "oceanic", avgTempC: 12.3, annualRainMm: 641, sunshineHours: 1662, summerAvgC: 20.5, winterAvgC: 4.9, humidityPct: 78 },
   9:  { type: "continental", avgTempC: 9.4, annualRainMm: 831, sunshineHours: 2066, summerAvgC: 22.3, winterAvgC: -5.5, humidityPct: 71 },
   10: { type: "tropical", avgTempC: 23.3, annualRainMm: 2399, sunshineHours: 1836, summerAvgC: 29, winterAvgC: 16.3, humidityPct: 78 },

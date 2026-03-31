@@ -60,6 +60,9 @@ export interface ClimateInfo {
   summerAvgC: number;
   winterAvgC: number;
   humidityPct: number;
+  monthlyHighC?: number[];
+  monthlyLowC?: number[];
+  monthlyRainMm?: number[];
 }
 
 export interface ExchangeRates {
