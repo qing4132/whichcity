@@ -208,10 +208,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     const ns = [...slugs]; ns[slotIdx] = slug;
     setSlots(nc); setSlugs(ns);
     setOpenSlot(null); setSlotSearch("");
-    const validSlugs = ns.filter((s): s is string => s !== null);
-    if (validSlugs.length >= 2) {
-      window.history.replaceState(null, "", `/compare/${[...validSlugs].sort().join("-vs-")}`);
-    }
+    syncUrl(ns);
   };
 
   /* ── Clear a slot ── */
@@ -219,10 +216,18 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     const nc = [...slots]; nc[slotIdx] = null;
     const ns = [...slugs]; ns[slotIdx] = null;
     setSlots(nc); setSlugs(ns);
+    syncUrl(ns);
+  };
+
+  /* ── Sync URL to reflect current city selection ── */
+  const syncUrl = (ns: (string | null)[]) => {
     const validSlugs = ns.filter((s): s is string => s !== null);
-    if (validSlugs.length >= 2) {
-      window.history.replaceState(null, "", `/compare/${[...validSlugs].sort().join("-vs-")}`);
-    }
+    const path = validSlugs.length >= 2
+      ? `/compare/${[...validSlugs].sort().join("-vs-")}`
+      : validSlugs.length === 1
+        ? `/compare/${validSlugs[0]}`
+        : "/compare";
+    window.history.replaceState(null, "", path);
   };
 
   /* ── Style tokens ── */
@@ -297,14 +302,17 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 {c ? (
                   /* ── Filled selector ── */
                   <div
+                    role="combobox" aria-expanded={isOpen} aria-haspopup="listbox" aria-label={getName(c)}
+                    tabIndex={0}
                     onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
+                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } } }}
                     className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border cursor-pointer transition ${
                       isOpen
                         ? (darkMode ? "border-blue-500 bg-slate-700" : "border-blue-400 bg-blue-50")
                         : (darkMode ? "border-slate-600 bg-slate-800 hover:border-slate-500" : "border-slate-200 bg-white hover:border-slate-400")
                     }`} style={{ maxWidth: 240, width: "100%" }}
                   >
-                    <button onClick={e => { e.stopPropagation(); clearSlot(i); }}
+                    <button onClick={e => { e.stopPropagation(); clearSlot(i); }} aria-label={t("remove")}
                       className={`shrink-0 w-5 h-5 rounded-full text-sm flex items-center justify-center ${darkMode ? "text-slate-400 hover:text-red-400" : "text-slate-400 hover:text-red-500"}`}>
                       ×
                     </button>
@@ -317,7 +325,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 ) : (
                   /* ── Empty selector ── */
                   <div
+                    role="combobox" aria-expanded={isOpen} aria-haspopup="listbox" aria-label={t("chooseCity")}
+                    tabIndex={0}
                     onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
+                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } } }}
                     className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border border-dashed cursor-pointer transition ${
                       isOpen
                         ? (darkMode ? "border-blue-500" : "border-blue-400")
@@ -340,9 +351,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                         darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
                                  : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
                       }`} />
-                    <div className="max-h-52 overflow-y-auto">
+                    <div className="max-h-52 overflow-y-auto" role="listbox">
                       {slotResults.map(rc => (
-                        <button key={rc.id} onClick={() => switchCity(i, rc)}
+                        <button key={rc.id} onClick={() => switchCity(i, rc)} role="option"
                           className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
                             darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
                           }`}>

@@ -13,5 +13,8 @@ html {
 }
 
 body {
-  background-color: #f8f9fa;
+  background-color: #f8fafc; /* slate-50 */
+}
+html.dark body {
+  background-color: #020617; /* slate-950 */
 }

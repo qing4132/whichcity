@@ -41,11 +41,15 @@ export function useSettings() {
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l);
     localStorage.setItem("locale", l);
+    document.documentElement.lang = l;
   }, []);
 
   const setDarkMode = useCallback((d: boolean) => {
     setDarkModeState(d);
     localStorage.setItem("darkMode", JSON.stringify(d));
+    const el = document.documentElement;
+    el.classList.toggle("dark", d);
+    el.style.colorScheme = d ? "dark" : "light";
   }, []);
 
   const setCurrency = useCallback((c: string) => {

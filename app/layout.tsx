@@ -21,7 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement;var l=localStorage.getItem('locale');if(l&&['zh','en','ja','es'].indexOf(l)!==-1)d.lang=l;if(localStorage.getItem('darkMode')==='true'){d.classList.add('dark');d.style.colorScheme='dark'}}catch(e){}})()`
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
