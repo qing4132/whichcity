@@ -284,7 +284,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
       {/* ── City selector (table header) ── */}
-      <div className={`sticky z-40 rounded-t-xl border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
+      <div className={`sticky z-40 rounded-xl shadow-md border px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
@@ -357,77 +357,76 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           })}
       </div>
 
-        {/* ──── Comparison data ──── */}
-        <div className={`rounded-t-none rounded-b-xl shadow-md overflow-hidden border border-t-0 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
-          {/* Wins summary */}
-          <div className={`flex px-4 py-2 ${darkMode ? "border-slate-700/50" : "border-slate-100"}`}>
-            {visibleSlots.map((c, i) => (
-              <div key={`wins-${i}`} className={`flex-1 text-center text-xs font-semibold ${
-                c && winCounts[i] > 0
-                  ? (darkMode ? "text-emerald-400" : "text-emerald-600")
-                  : (darkMode ? "text-slate-500" : "text-slate-400")
-              }`}>
-                {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
+        {/* ──── Wins summary ──── */}
+        <div className={`rounded-xl shadow-md border px-4 py-2 mt-4 flex ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+          {visibleSlots.map((c, i) => (
+            <div key={`wins-${i}`} className={`flex-1 text-center text-xs font-semibold ${
+              c && winCounts[i] > 0
+                ? (darkMode ? "text-emerald-400" : "text-emerald-600")
+                : (darkMode ? "text-slate-500" : "text-slate-400")
+            }`}>
+              {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
+            </div>
+          ))}
+        </div>
+
+        {/* ──── Per-group cards ──── */}
+        {GROUP_KEYS.map(gk => {
+          const gRows = rows.filter(d => d.m.group === gk);
+          if (gRows.length === 0) return null;
+          const bestC = darkMode ? "text-emerald-400" : "text-emerald-600";
+          const valC = darkMode ? "text-slate-100" : "text-slate-800";
+          const dimC = darkMode ? "text-slate-600" : "text-slate-300";
+          const lblC = darkMode ? "text-slate-500" : "text-slate-400";
+          const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
+          return (
+            <div key={gk} className={`rounded-xl shadow-md overflow-hidden border mt-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+              {/* Group header */}
+              <div className={groupBg}>
+                <p className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                  {t(GROUP_I18N[gk])}
+                </p>
               </div>
-            ))}
-          </div>
-          {/* Grouped metrics */}
-          {GROUP_KEYS.map(gk => {
-            const gRows = rows.filter(d => d.m.group === gk);
-            if (gRows.length === 0) return null;
-            const bestC = darkMode ? "text-emerald-400" : "text-emerald-600";
-            const valC = darkMode ? "text-slate-100" : "text-slate-800";
-            const dimC = darkMode ? "text-slate-600" : "text-slate-300";
-            const lblC = darkMode ? "text-slate-500" : "text-slate-400";
-            return (
-              <div key={gk}>
-                {/* Group divider */}
-                <div className={`px-4 py-1.5 ${darkMode ? "bg-slate-700/30" : "bg-slate-50"}`}>
-                  <p className={`text-[11px] font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                    {t(GROUP_I18N[gk])}
-                  </p>
-                </div>
-                {/* Metric cells grid */}
-                <div className={`grid gap-x-2 gap-y-0 px-4 py-2`} style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
-                  {gRows.map(({ m, vals, bestVal }) => (
-                    <React.Fragment key={m.key}>
-                      {vals.map((v, i) => {
-                        const slot = visibleSlots[i];
-                        const label = m.label(t);
-                        if (!slot) return (
-                          <div key={`empty-${i}`} className="flex flex-col items-center text-center py-2">
-                            <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
-                            <p className={`text-lg font-bold ${dimC}`}>—</p>
-                          </div>
-                        );
-                        if (m.key === "climateType") {
-                          const cl = getCityClimate(slot.id);
-                          return (
-                            <div key={slot.id} className="flex flex-col items-center text-center py-2">
-                              <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
-                              <p className={`text-lg font-bold ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</p>
-                            </div>
-                          );
-                        }
-                        const formatted = m.fmt(v, rowCtx);
-                        const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
-                        const isNull = v == null;
+              {/* Metric cells grid */}
+              <div className={`grid gap-x-2 gap-y-0 px-4 py-2`} style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+                {gRows.map(({ m, vals, bestVal }) => (
+                  <React.Fragment key={m.key}>
+                    {vals.map((v, i) => {
+                      const slot = visibleSlots[i];
+                      const label = m.label(t);
+                      if (!slot) return (
+                        <div key={`empty-${i}`} className="flex flex-col items-center text-center py-2">
+                          <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
+                          <p className={`text-lg font-bold ${dimC}`}>—</p>
+                        </div>
+                      );
+                      if (m.key === "climateType") {
+                        const cl = getCityClimate(slot.id);
                         return (
                           <div key={slot.id} className="flex flex-col items-center text-center py-2">
                             <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
-                            <p className={`text-lg font-bold ${isNull ? dimC : isBest ? bestC : valC}`}>
-                              {formatted}
-                            </p>
+                            <p className={`text-lg font-bold ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</p>
                           </div>
                         );
-                      })}
-                    </React.Fragment>
-                  ))}
-                </div>
+                      }
+                      const formatted = m.fmt(v, rowCtx);
+                      const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
+                      const isNull = v == null;
+                      return (
+                        <div key={slot.id} className="flex flex-col items-center text-center py-2">
+                          <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
+                          <p className={`text-lg font-bold ${isNull ? dimC : isBest ? bestC : valC}`}>
+                            {formatted}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </React.Fragment>
+                ))}
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
 
         {/* ──── Climate & Environment (standalone section, no win highlighting) ──── */}
         {filledCities.length > 0 && (() => {
@@ -450,7 +449,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           const hasCharts = filledCities.some(c => getCityClimate(c.id)?.monthlyHighC);
           const dividerCls = darkMode ? "border-slate-700" : "border-slate-200";
           return (
-          <div className={`rounded-xl shadow-md overflow-hidden border mt-6 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+          <div className={`rounded-xl shadow-md overflow-hidden border mt-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
             {/* Section header */}
             <div className={groupBg}>
               <p className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
