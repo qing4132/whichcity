@@ -378,26 +378,36 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               const bestC = darkMode ? "text-emerald-400" : "text-emerald-600";
               const valC = darkMode ? "text-slate-200" : "text-slate-700";
               const dimC = darkMode ? "text-slate-500" : "text-slate-400";
+              const lblC = darkMode ? "text-slate-500" : "text-slate-400";
               return allRows.map(({ m, vals, bestVal }) => (
                 <React.Fragment key={m.key}>
-                  {/* Label spans all columns */}
-                  <div className="col-span-full" style={{ gridColumn: `1 / -1` }}>
-                    <p className={`text-[10px] font-semibold tracking-wide pt-2 pb-0.5 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{m.label(t)}</p>
-                  </div>
-                  {/* Values */}
                   {vals.map((v, i) => {
                     const slot = visibleSlots[i];
-                    if (!slot) return <div key={`empty-${i}`} className={`text-center py-0.5 ${dimC}`}>—</div>;
+                    const label = m.label(t);
+                    if (!slot) return (
+                      <div key={`empty-${i}`} className="flex flex-col items-center text-center pt-3 pb-1">
+                        <p className={`text-[10px] font-semibold tracking-wide mb-0.5 ${lblC}`}>{label}</p>
+                        <p className={`text-sm font-extrabold ${dimC}`}>—</p>
+                      </div>
+                    );
                     if (m.key === "climateType") {
                       const cl = getCityClimate(slot.id);
-                      return <div key={slot.id} className={`text-center text-sm font-extrabold py-0.5 ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</div>;
+                      return (
+                        <div key={slot.id} className="flex flex-col items-center text-center pt-3 pb-1">
+                          <p className={`text-[10px] font-semibold tracking-wide mb-0.5 ${lblC}`}>{label}</p>
+                          <p className={`text-sm font-extrabold ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</p>
+                        </div>
+                      );
                     }
                     const formatted = m.fmt(v, rowCtx);
                     const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
                     const isNull = v == null;
                     return (
-                      <div key={slot.id} className={`text-center text-sm font-extrabold py-0.5 ${isNull ? dimC : isBest ? bestC : valC}`}>
-                        {formatted}
+                      <div key={slot.id} className="flex flex-col items-center text-center pt-3 pb-1">
+                        <p className={`text-[10px] font-semibold tracking-wide mb-0.5 ${lblC}`}>{label}</p>
+                        <p className={`text-sm font-extrabold ${isNull ? dimC : isBest ? bestC : valC}`}>
+                          {formatted}
+                        </p>
                       </div>
                     );
                   })}
