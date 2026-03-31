@@ -10,10 +10,9 @@ interface Props {
 
 function parsePair(pair: string): string[] | null {
   const parts = pair.split("-vs-");
-  if (parts.length < 2) return null;
-  const valid = parts.filter(s => SLUG_TO_ID[s]);
+  const valid = parts.filter(s => SLUG_TO_ID[s] != null);
   const unique = [...new Set(valid)];
-  return unique.length >= 2 ? unique : null;
+  return unique.length >= 1 ? unique : null;
 }
 
 export async function generateStaticParams() {
