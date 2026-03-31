@@ -250,7 +250,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
               {t("navRandomCity")}
             </button>
-            <Link href="/compare"
+            <Link href="/compare" onClick={e => e.preventDefault()}
               className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-violet-900/40 border-violet-500/50 text-violet-300" : "bg-violet-50 border-violet-300 text-violet-700"}`}>
               {t("navCompare")}
             </Link>
