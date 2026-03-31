@@ -612,13 +612,14 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
               ] : []),
             ];
             // Compute % difference for each dimension, split into advantages & disadvantages
-            const scored: { key: string; pct: number; adv: boolean }[] = [];
+            const scored: { key: string; pct: number; adv: boolean; sign: string }[] = [];
             for (const d of dims) {
               if (d.cur === 0) continue;
               const pct = Math.round(Math.abs(d.oth - d.cur) / Math.abs(d.cur) * 100);
               if (pct === 0) continue;
               const better = d.higher ? d.oth > d.cur : d.oth < d.cur;
-              scored.push({ key: d.key, pct, adv: better });
+              const sign = d.oth > d.cur ? "+" : "-";
+              scored.push({ key: d.key, pct, adv: better, sign });
             }
             scored.sort((a, b) => b.pct - a.pct);
             const top2Adv = scored.filter(s => s.adv).slice(0, 2);
@@ -632,7 +633,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
                 <div className="min-h-[3.5rem] flex flex-col items-center justify-center mt-1">
                   {highlights.map((h, idx) => (
                     <p key={idx} className={`text-[11px] leading-snug ${h.adv ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-rose-400" : "text-rose-500")}`}>
-                      {t(h.key)} {h.pct}% {h.adv ? "↑" : "↓"}
+                      {t(h.key)} {h.sign}{h.pct}%
                     </p>
                   ))}
                 </div>
