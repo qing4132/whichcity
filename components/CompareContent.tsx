@@ -417,53 +417,56 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
         {/* ──── Climate & Environment (standalone section, no win highlighting) ──── */}
         {filledCities.length > 0 && (() => {
-          const climateRows = rows.filter(d => d.m.group === CLIMATE_GROUP_KEY);
-          if (climateRows.length === 0) return null;
           const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
-          const borderR = darkMode ? "border-slate-700/50" : "border-slate-100";
-          const labelC = darkMode ? "text-slate-300" : "text-slate-700";
-          const valC = darkMode ? "text-slate-200" : "text-slate-700";
-          const dimC = darkMode ? "text-slate-500" : "text-slate-400";
+          /* Build per-city climate items */
+          const climateItems = (c: City) => {
+            const cl = getCityClimate(c.id);
+            if (!cl) return null;
+            return [
+              [t("climateType"), getClimateLabel(cl.type, locale)],
+              [t("avgTemp"), `${cl.avgTempC.toFixed(1)}°C`],
+              [t("tempRange"), `${(cl.summerAvgC - cl.winterAvgC).toFixed(1)}°C`],
+              [t("annualRain"), `${Math.round(cl.annualRainMm)} mm`],
+              [t("humidity"), `${cl.humidityPct}%`],
+              [t("sunshine"), `${Math.round(cl.sunshineHours)} ${t("unitH")}`],
+            ];
+          };
+          const n = filledCities.length;
+          const gridCls = n === 1 ? "grid-cols-3 sm:grid-cols-6" : n === 2 ? "grid-cols-3" : "grid-cols-2";
           return (
           <div className={`rounded-xl shadow-md overflow-hidden border mt-6 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm" style={{ tableLayout: "fixed" }}>
-                <colgroup>
-                  <col style={{ width: cols === 2 ? "30%" : "22%" }} />
-                  {visibleSlots.map((_, i) => <col key={i} />)}
-                </colgroup>
-                <thead>
-                  <tr className={groupBg}>
-                    <th colSpan={visibleSlots.length + 1} className={`px-4 py-2 text-xs font-bold tracking-wider uppercase text-left ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                      {t(GROUP_I18N[CLIMATE_GROUP_KEY])}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {climateRows.map(({ m, vals }) => (
-                    <tr key={m.key} className={`border-b ${borderR}`}>
-                      <td className={`px-4 py-2.5 font-medium whitespace-nowrap ${labelC}`}>
-                        {m.label(t)}
-                      </td>
-                      {vals.map((v, i) => {
-                        const slot = visibleSlots[i];
-                        if (!slot) return <td key={`empty-${i}`} className={`px-3 py-2.5 text-center ${dimC}`}>—</td>;
-                        if (m.key === "climateType") {
-                          const cl = getCityClimate(slot.id);
-                          return <td key={slot.id} className={`px-3 py-2.5 text-center ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</td>;
-                        }
-                        const formatted = m.fmt(v, rowCtx);
-                        const isNull = v == null;
-                        return (
-                          <td key={slot.id} className={`px-3 py-2.5 text-center ${isNull ? dimC : valC}`}>
-                            {formatted}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            {/* Section header */}
+            <div className={groupBg}>
+              <p className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                {t(GROUP_I18N[CLIMATE_GROUP_KEY])}
+              </p>
+            </div>
+
+            {/* Climate data grids */}
+            <div className="p-4">
+              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
+                {filledCities.map((c, ci) => {
+                  const items = climateItems(c);
+                  if (!items) return <div key={c.id} />;
+                  return (
+                    <div key={c.id} className={ci < n - 1 ? `border-r ${darkMode ? "border-slate-700" : "border-slate-200"} pr-4` : ""}>
+                      {n > 1 && (
+                        <p className={`text-xs font-semibold text-center mb-2 ${headCls}`}>
+                          {CITY_FLAG_EMOJIS[c.id] || "🏙️"} {getName(c)}
+                        </p>
+                      )}
+                      <div className={`grid ${gridCls} gap-1`}>
+                        {items.map(([label, val]) => (
+                          <div key={label} className="flex flex-col items-center text-center p-2">
+                            <p className={`text-[10px] font-semibold tracking-wide mb-0.5 ${subCls}`}>{label}</p>
+                            <p className={`text-sm font-extrabold ${headCls}`}>{val}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Monthly climate charts */}
