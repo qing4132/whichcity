@@ -224,10 +224,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
-      {/* ──── Sticky header: nav + city selector ──── */}
-      <div className="sticky top-0 z-50">
-      {/* ── Top bar ── */}
-      <div className={`border-b px-4 py-2.5 ${navBg}`}>
+      {/* ──── Top bar ──── */}
+      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -272,9 +270,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         </div>
       </div>
 
-      {/* ── City selector bar ── */}
-      <div className={`border-b px-4 py-2 ${navBg}`}>
-        <div className="max-w-6xl mx-auto px-4 flex items-center gap-2">
+      <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
+      {/* ── City selector (table header) ── */}
+      <div className={`sticky z-40 rounded-t-xl border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: 0 }}>
           <div className="shrink-0" style={{ width: cols === 2 ? "30%" : "22%" }} />
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
@@ -346,14 +344,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </div>
             );
           })}
-        </div>
       </div>
-      </div>{/* end sticky header */}
-
-      <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
 
         {/* ──── Comparison table ──── */}
-        <div className={`rounded-xl shadow-md overflow-hidden border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+        <div className={`rounded-t-none rounded-b-xl shadow-md overflow-hidden border border-t-0 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           <div className="overflow-x-auto">
             <table className="w-full text-sm" style={{ tableLayout: "fixed" }}>
               <colgroup>
