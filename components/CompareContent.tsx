@@ -64,7 +64,8 @@ const METRICS: Metric[] = [
   { key: "sunshine", group: "climate",    label: t => t("sunshine"),                get: c => getCityClimate(c.id)?.sunshineHours ?? null, fmt: (v, x) => v != null ? `${Math.round(v)} ${x.t("unitH")}` : "—" },
 ];
 
-const GROUP_KEYS = ["income", "housing", "work", "environment", "index", "climate"] as const;
+const GROUP_KEYS = ["income", "housing", "work", "environment", "index"] as const;
+const CLIMATE_GROUP_KEY = "climate";
 const GROUP_I18N: Record<string, string> = {
   income: "rankGroup_income", housing: "rankGroup_housing", work: "rankGroup_work",
   environment: "rankGroup_environment", index: "rankGroup_index", climate: "climateEnv",
@@ -147,10 +148,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     });
   }, [visibleSlots, rowCtx]);
 
-  /* ── Win counts per slot ── */
+  /* ── Win counts per slot (exclude climate) ── */
   const winCounts = useMemo(() => {
     const counts: number[] = visibleSlots.map(() => 0);
-    rows.forEach(({ vals, bestVal }) => {
+    rows.forEach(({ m, vals, bestVal }) => {
+      if (m.group === CLIMATE_GROUP_KEY) return;
       if (bestVal == null) return;
       if (!vals.some(v => v !== bestVal)) return;
       vals.forEach((v, i) => { if (v === bestVal) counts[i]++; });
@@ -223,7 +225,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
       {/* ──── Top bar ──── */}
-      <div className={`border-b px-4 py-2.5 ${navBg}`}>
+      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -413,28 +415,93 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           </div>
         </div>
 
-        {/* ──── Monthly climate charts ──── */}
-        {filledCities.length > 0 && filledCities.some(c => getCityClimate(c.id)?.monthlyHighC) && (
-        <div className={`rounded-xl shadow-md border mt-6 p-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
-          <h3 className={`text-xs font-bold tracking-wider uppercase mb-2 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-            {t("climateChart")}
-          </h3>
-          <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${filledCities.length}, minmax(0, 1fr))` }}>
-            {filledCities.map(c => {
-              const cl = getCityClimate(c.id);
-              if (!cl) return <div key={c.id} />;
-              return (
-                <div key={c.id}>
-                  <p className={`text-xs font-semibold text-center mb-2 ${headCls}`}>
-                    {CITY_FLAG_EMOJIS[c.id] || "🏙️"} {getName(c)}
-                  </p>
-                  <ClimateChart climate={cl} locale={locale} darkMode={darkMode} t={t} hideTitle />
-                </div>
-              );
-            })}
+        {/* ──── Climate & Environment (standalone section, no win highlighting) ──── */}
+        {filledCities.length > 0 && (() => {
+          const climateRows = rows.filter(d => d.m.group === CLIMATE_GROUP_KEY);
+          if (climateRows.length === 0) return null;
+          const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
+          const borderR = darkMode ? "border-slate-700/50" : "border-slate-100";
+          const labelC = darkMode ? "text-slate-300" : "text-slate-700";
+          const valC = darkMode ? "text-slate-200" : "text-slate-700";
+          const dimC = darkMode ? "text-slate-500" : "text-slate-400";
+          return (
+          <div className={`rounded-xl shadow-md overflow-hidden border mt-6 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm" style={{ tableLayout: "fixed" }}>
+                <colgroup>
+                  <col style={{ width: cols === 2 ? "30%" : "22%" }} />
+                  {visibleSlots.map((_, i) => <col key={i} />)}
+                </colgroup>
+                <thead>
+                  <tr className={groupBg}>
+                    <th colSpan={visibleSlots.length + 1} className={`px-4 py-2 text-xs font-bold tracking-wider uppercase text-left ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                      {t(GROUP_I18N[CLIMATE_GROUP_KEY])}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {climateRows.map(({ m, vals }) => (
+                    <tr key={m.key} className={`border-b ${borderR}`}>
+                      <td className={`px-4 py-2.5 font-medium whitespace-nowrap ${labelC}`}>
+                        {m.label(t)}
+                      </td>
+                      {vals.map((v, i) => {
+                        const slot = visibleSlots[i];
+                        if (!slot) return <td key={`empty-${i}`} className={`px-3 py-2.5 text-center ${dimC}`}>—</td>;
+                        if (m.key === "climateType") {
+                          const cl = getCityClimate(slot.id);
+                          return <td key={slot.id} className={`px-3 py-2.5 text-center ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</td>;
+                        }
+                        const formatted = m.fmt(v, rowCtx);
+                        const isNull = v == null;
+                        return (
+                          <td key={slot.id} className={`px-3 py-2.5 text-center ${isNull ? dimC : valC}`}>
+                            {formatted}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Monthly climate charts */}
+            {filledCities.some(c => getCityClimate(c.id)?.monthlyHighC) && (
+            <div className="p-4">
+              <h3 className={`text-xs font-bold tracking-wider uppercase mb-2 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                {t("climateChart")}
+              </h3>
+              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${filledCities.length}, minmax(0, 1fr))` }}>
+                {filledCities.map(c => {
+                  const cl = getCityClimate(c.id);
+                  if (!cl) return <div key={c.id} />;
+                  return (
+                    <div key={c.id}>
+                      <p className={`text-xs font-semibold text-center mb-2 ${headCls}`}>
+                        {CITY_FLAG_EMOJIS[c.id] || "🏙️"} {getName(c)}
+                      </p>
+                      <ClimateChart climate={cl} locale={locale} darkMode={darkMode} t={t} hideTitle hideLegend />
+                    </div>
+                  );
+                })}
+              </div>
+              {/* Shared legend */}
+              <div className={`flex items-center justify-center gap-4 mt-3 text-[10px] ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                <span className="flex items-center gap-1">
+                  <span className="inline-block w-3 h-2 rounded-sm" style={{ background: darkMode ? "#fbbf24" : "#f59e0b" }} />
+                  {t("chartTempLegend")}
+                </span>
+                <span className="flex items-center gap-1">
+                  <span className="inline-block w-3 h-2 rounded-sm" style={{ background: darkMode ? "#38bdf8" : "#0ea5e9" }} />
+                  {t("chartRainLegend")}
+                </span>
+              </div>
+            </div>
+            )}
           </div>
-        </div>
-        )}
+          );
+        })()}
 
         {/* ──── City guide links ──── */}
         {filledCities.length > 0 && (

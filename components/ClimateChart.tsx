@@ -16,9 +16,10 @@ interface Props {
   darkMode: boolean;
   t: (key: string) => string;
   hideTitle?: boolean;
+  hideLegend?: boolean;
 }
 
-export default function ClimateChart({ climate, locale, darkMode, t, hideTitle }: Props) {
+export default function ClimateChart({ climate, locale, darkMode, t, hideTitle, hideLegend }: Props) {
   const { monthlyHighC, monthlyLowC, monthlyRainMm } = climate;
   if (!monthlyHighC || !monthlyLowC || !monthlyRainMm) return null;
 
@@ -140,6 +141,7 @@ export default function ClimateChart({ climate, locale, darkMode, t, hideTitle }
         </div>
 
         {/* Legend */}
+        {!hideLegend && (
         <div className={`flex items-center justify-center gap-4 mt-3 text-[10px] ${labelCls}`}>
           <span className="flex items-center gap-1">
             <span className="inline-block w-3 h-2 rounded-sm" style={{ background: tempBg }} />
@@ -150,6 +152,7 @@ export default function ClimateChart({ climate, locale, darkMode, t, hideTitle }
             {t("chartRainLegend")}
           </span>
         </div>
+        )}
       </div>
     </div>
   );
