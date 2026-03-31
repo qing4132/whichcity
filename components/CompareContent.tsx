@@ -106,15 +106,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   const [openSlot, setOpenSlot] = useState<number | null>(null);
   const [slotSearch, setSlotSearch] = useState("");
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const navRef = useRef<HTMLDivElement | null>(null);
-  const [navH, setNavH] = useState(0);
-
-  useEffect(() => {
-    if (!navRef.current) return;
-    const ro = new ResizeObserver(([e]) => setNavH(e.contentRect.height));
-    ro.observe(navRef.current);
-    return () => ro.disconnect();
-  }, []);
 
   useEffect(() => {
     const h = (e: MouseEvent) => {
@@ -233,8 +224,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
-      {/* ──── Top bar ──── */}
-      <div ref={navRef} className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+      {/* ──── Sticky header: nav + city selector ──── */}
+      <div className="sticky top-0 z-50">
+      {/* ── Top bar ── */}
+      <div className={`border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -279,8 +272,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         </div>
       </div>
 
-      {/* ──── Sticky city selector bar ──── */}
-      <div className={`sticky z-40 border-b px-4 py-2 ${navBg}`} style={{ top: navH }}>
+      {/* ── City selector bar ── */}
+      <div className={`border-b px-4 py-2 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center gap-2">
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
@@ -354,6 +347,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           })}
         </div>
       </div>
+      </div>{/* end sticky header */}
 
       <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
 
