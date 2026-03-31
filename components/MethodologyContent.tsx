@@ -46,6 +46,7 @@ export default function MethodologyContent() {
         { id: "detail", label: "城市详情" },
         { id: "display", label: "显示规则" },
         { id: "disclaimer", label: "免责声明" },
+        { id: "feedback", label: "反馈与源码" },
       ],
       sections: renderZh(),
     },
@@ -66,6 +67,7 @@ export default function MethodologyContent() {
         { id: "detail", label: "City Detail Page" },
         { id: "display", label: "Display Rules" },
         { id: "disclaimer", label: "Disclaimers" },
+        { id: "feedback", label: "Feedback" },
       ],
       sections: renderEn(),
     },
@@ -86,6 +88,7 @@ export default function MethodologyContent() {
         { id: "detail", label: "都市詳細" },
         { id: "display", label: "表示ルール" },
         { id: "disclaimer", label: "免責事項" },
+        { id: "feedback", label: "フィードバック" },
       ],
       sections: renderJa(),
     },
@@ -106,6 +109,7 @@ export default function MethodologyContent() {
         { id: "detail", label: "Página de detalle" },
         { id: "display", label: "Reglas de visualización" },
         { id: "disclaimer", label: "Descargos" },
+        { id: "feedback", label: "Comentarios" },
       ],
       sections: renderEs(),
     },
@@ -334,7 +338,7 @@ export default function MethodologyContent() {
 
       <P>最后更新：2026 年 3 月</P>
 
-      <H3>反馈与源码</H3>
+      <H2 id="feedback">💬 反馈与源码</H2>
       <P>本站开源于 <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>。如有数据纠错或功能建议，欢迎 <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>提交 Issue</a> 或发送邮件至 <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>。</P>
     </>);
   }
@@ -516,7 +520,7 @@ export default function MethodologyContent() {
 
       <P>Last updated: March 2026</P>
 
-      <H3>Feedback & Source Code</H3>
+      <H2 id="feedback">💬 Feedback & Source Code</H2>
       <P>This site is open-source on <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>. For data corrections or feature suggestions, please <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>open an issue</a> or email <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>.</P>
     </>);
   }
@@ -589,7 +593,7 @@ export default function MethodologyContent() {
       <P>すべてのデータは参考情報であり、投資・移民・雇用・税務アドバイスではありません。給与は中央値推定であり実際と異なります。税後計算は簡易モデルです。為替レートは静的スナップショットです。総合指数は公開データに基づく合成指標であり公式評価ではありません。中国本土のAQIは中国基準で米国EPA基準と直接比較できません。都市の分類は地理的・実質的行政管轄に基づき、領土主権に関する立場を表しません。港澳台のデータはそれぞれの統計機関から取得しています。本サイトのデータに基づく決定から生じるいかなる損失についても責任を負いません。</P>
       <P>最終更新：2026年3月</P>
 
-      <H3>フィードバックとソースコード</H3>
+      <H2 id="feedback">💬 フィードバックとソースコード</H2>
       <P>本サイトは <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a> でオープンソースです。データの訂正や機能の提案は <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>Issue</a> または <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>メール</a>でお願いします。</P>
     </>);
   }
@@ -662,7 +666,7 @@ export default function MethodologyContent() {
       <P>Todos los datos son solo de referencia y no constituyen asesoramiento de inversión, inmigración, empleo o fiscal. Los salarios son estimaciones medianas brutas. Los cálculos fiscales son modelos simplificados. Los tipos de cambio son instantáneas estáticas. Los índices compuestos son indicadores sintéticos, no evaluaciones oficiales. El AQI de China continental usa estándar chino, no comparable directamente con EPA. La clasificación de ciudades es geográfica y administrativa, sin representar posiciones sobre soberanía. Los datos de Hong Kong, Macao y Taiwán provienen de sus autoridades estadísticas respectivas. Este sitio no asume responsabilidad por decisiones basadas en estos datos.</P>
       <P>Última actualización: marzo 2026</P>
 
-      <H3>Comentarios y código fuente</H3>
+      <H2 id="feedback">💬 Comentarios y código fuente</H2>
       <P>Este sitio es de código abierto en <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>. Para correcciones o sugerencias, <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>abre un issue</a> o envía un correo a <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>.</P>
     </>);
   }
