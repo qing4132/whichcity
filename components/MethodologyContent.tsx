@@ -11,7 +11,10 @@ import { useSettings } from "@/hooks/useSettings";
 
 export default function MethodologyContent() {
   const router = useRouter();
-  const { locale, darkMode, t } = useSettings();
+  const s = useSettings();
+  const { locale, darkMode, t } = s;
+  const professions = Object.keys(PROFESSION_TRANSLATIONS);
+  if (!s.ready) return null;
 
   const bg = darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900";
   const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
@@ -23,10 +26,6 @@ export default function MethodologyContent() {
   const tableBorder = darkMode ? "border-slate-700" : "border-slate-200";
   const tableHead = darkMode ? "bg-slate-700/50" : "bg-slate-50";
   const warnBg = darkMode ? "bg-amber-900/30 border-amber-700 text-amber-200" : "bg-amber-50 border-amber-200 text-amber-800";
-
-  const s = useSettings();
-  const professions = Object.keys(PROFESSION_TRANSLATIONS);
-  if (!s.ready) return null;
 
   const content: Record<string, { title: string; toc: { id: string; label: string }[]; sections: JSX.Element }> = {
     zh: {
