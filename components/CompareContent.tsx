@@ -283,9 +283,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       </div>
 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
-      {/* ── City selector (sticky) ── */}
-      <div className={`sticky z-40 pt-2 pb-0 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} style={{ top: navH }}>
-        <div className={`rounded-xl shadow-md border px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+      {/* ── City selector (sticky, flat top flush with nav) ── */}
+      <div className={`sticky z-40 rounded-b-xl shadow-md border border-t-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
@@ -356,7 +355,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </div>
             );
           })}
-        </div>
       </div>
 
       {/* ── Wins summary (standalone card) ── */}
