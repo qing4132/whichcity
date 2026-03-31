@@ -451,6 +451,10 @@ export default function RankingContent({ cities }: Props) {
               className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
               {t("navRandomCity")}
             </button>
+            <Link href="/compare"
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>
+              {t("navCompare")}
+            </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
