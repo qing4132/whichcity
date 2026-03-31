@@ -106,6 +106,15 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   const [openSlot, setOpenSlot] = useState<number | null>(null);
   const [slotSearch, setSlotSearch] = useState("");
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const [navH, setNavH] = useState(0);
+
+  useEffect(() => {
+    if (!navRef.current) return;
+    const ro = new ResizeObserver(([e]) => setNavH(e.contentRect.height));
+    ro.observe(navRef.current);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     const h = (e: MouseEvent) => {
@@ -225,7 +234,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
       {/* ──── Top bar ──── */}
-      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+      <div ref={navRef} className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -270,9 +279,85 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         </div>
       </div>
 
+      {/* ──── Sticky city selector bar ──── */}
+      <div className={`sticky z-40 border-b px-4 py-2 ${navBg}`} style={{ top: navH }}>
+        <div className="max-w-6xl mx-auto px-4 flex items-center gap-2">
+          {visibleSlots.map((c, i) => {
+            const isOpen = openSlot === i;
+            return (
+              <div key={`sel-${i}`} className="flex-1 flex justify-center relative" ref={el => { slotRefs.current[i] = el as HTMLDivElement | null; }}>
+                {c ? (
+                  /* ── Filled selector ── */
+                  <div
+                    onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
+                    className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border cursor-pointer transition ${
+                      isOpen
+                        ? (darkMode ? "border-blue-500 bg-slate-700" : "border-blue-400 bg-blue-50")
+                        : (darkMode ? "border-slate-600 bg-slate-800 hover:border-slate-500" : "border-slate-200 bg-white hover:border-slate-400")
+                    }`} style={{ maxWidth: 240, width: "100%" }}
+                  >
+                    <button onClick={e => { e.stopPropagation(); clearSlot(i); }}
+                      className={`shrink-0 w-5 h-5 rounded-full text-sm flex items-center justify-center ${darkMode ? "text-slate-400 hover:text-red-400" : "text-slate-400 hover:text-red-500"}`}>
+                      ×
+                    </button>
+                    <span className="flex-1 flex items-center justify-center gap-1.5 min-w-0">
+                      <span className="text-sm shrink-0">{getFlag(c)}</span>
+                      <span className={`text-sm font-medium truncate ${headCls}`}>{getName(c)}</span>
+                    </span>
+                    <svg className={`shrink-0 w-5 h-5 ${darkMode ? "text-slate-400" : "text-slate-400"}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd"/></svg>
+                  </div>
+                ) : (
+                  /* ── Empty selector ── */
+                  <div
+                    onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
+                    className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border border-dashed cursor-pointer transition ${
+                      isOpen
+                        ? (darkMode ? "border-blue-500" : "border-blue-400")
+                        : (darkMode ? "border-slate-600 hover:border-slate-500" : "border-slate-300 hover:border-slate-400")
+                    }`} style={{ maxWidth: 240, width: "100%" }}
+                  >
+                    <span className="shrink-0 w-5" />
+                    <span className={`flex-1 text-sm text-center ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("chooseCity").replace(":", "")}</span>
+                    <svg className={`shrink-0 w-5 h-5 ${darkMode ? "text-slate-400" : "text-slate-400"}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd"/></svg>
+                  </div>
+                )}
+                {/* ── Dropdown ── */}
+                {isOpen && (
+                  <div className={`absolute z-50 mt-1 rounded-xl shadow-lg border overflow-hidden ${
+                    darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
+                  }`} style={{ top: "100%", left: "50%", transform: "translateX(-50%)", width: 240 }}>
+                    <input autoFocus value={slotSearch} onChange={e => setSlotSearch(e.target.value)}
+                      placeholder={t("homeSearchPlaceholder")}
+                      className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${
+                        darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
+                                 : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
+                      }`} />
+                    <div className="max-h-52 overflow-y-auto">
+                      {slotResults.map(rc => (
+                        <button key={rc.id} onClick={() => switchCity(i, rc)}
+                          className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
+                            darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
+                          }`}>
+                          <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
+                          <span className="font-medium truncate">{getName(rc)}</span>
+                          <span className={`text-xs ml-auto shrink-0 ${subCls}`}>{getCountry(rc)}</span>
+                        </button>
+                      ))}
+                      {slotSearch.trim() && slotResults.length === 0 && (
+                        <p className={`px-3 py-2 text-xs ${subCls}`}>{t("homeNoResults")}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
 
-        {/* ──── Comparison table with integrated city selectors ──── */}
+        {/* ──── Comparison table ──── */}
         <div className={`rounded-xl shadow-md overflow-hidden border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           <div className="overflow-x-auto">
             <table className="w-full text-sm" style={{ tableLayout: "fixed" }}>
@@ -280,82 +365,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 <col style={{ width: cols === 2 ? "30%" : "22%" }} />
                 {visibleSlots.map((_, i) => <col key={i} />)}
               </colgroup>
-              <thead>
-                {/* ── Selector row ── */}
-                <tr className={darkMode ? "bg-slate-800/80" : "bg-slate-50"}>
-                  <th className="px-4 py-3" />
-                  {visibleSlots.map((c, i) => {
-                    const isOpen = openSlot === i;
-                    return (
-                      <th key={`sel-${i}`} className="px-2 py-3 text-center relative" ref={el => { slotRefs.current[i] = el as HTMLDivElement | null; }}>
-                        {c ? (
-                          /* ── Filled selector ── */
-                          <div
-                            onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
-                            className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border cursor-pointer transition ${
-                              isOpen
-                                ? (darkMode ? "border-blue-500 bg-slate-700" : "border-blue-400 bg-blue-50")
-                                : (darkMode ? "border-slate-600 bg-slate-800 hover:border-slate-500" : "border-slate-200 bg-white hover:border-slate-400")
-                            }`} style={{ width: 240 }}
-                          >
-                            <button onClick={e => { e.stopPropagation(); clearSlot(i); }}
-                              className={`shrink-0 w-5 h-5 rounded-full text-sm flex items-center justify-center ${darkMode ? "text-slate-400 hover:text-red-400" : "text-slate-400 hover:text-red-500"}`}>
-                              ×
-                            </button>
-                            <span className="flex-1 flex items-center justify-center gap-1.5 min-w-0">
-                              <span className="text-sm shrink-0">{getFlag(c)}</span>
-                              <span className={`text-sm font-medium truncate ${headCls}`}>{getName(c)}</span>
-                            </span>
-                            <svg className={`shrink-0 w-5 h-5 ${darkMode ? "text-slate-400" : "text-slate-400"}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd"/></svg>
-                          </div>
-                        ) : (
-                          /* ── Empty selector ── */
-                          <div
-                            onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
-                            className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border border-dashed cursor-pointer transition ${
-                              isOpen
-                                ? (darkMode ? "border-blue-500" : "border-blue-400")
-                                : (darkMode ? "border-slate-600 hover:border-slate-500" : "border-slate-300 hover:border-slate-400")
-                            }`} style={{ width: 240 }}
-                          >
-                            <span className="shrink-0 w-5" />
-                            <span className={`flex-1 text-sm text-center ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("chooseCity").replace(":", "")}</span>
-                            <svg className={`shrink-0 w-5 h-5 ${darkMode ? "text-slate-400" : "text-slate-400"}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd"/></svg>
-                          </div>
-                        )}
-                        {/* ── Dropdown ── */}
-                        {isOpen && (
-                          <div className={`absolute z-50 mt-1 rounded-xl shadow-lg border overflow-hidden ${
-                            darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-                          }`} style={{ left: "50%", transform: "translateX(-50%)", width: 240 }}>
-                            <input autoFocus value={slotSearch} onChange={e => setSlotSearch(e.target.value)}
-                              placeholder={t("homeSearchPlaceholder")}
-                              className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${
-                                darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
-                                         : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
-                              }`} />
-                            <div className="max-h-52 overflow-y-auto">
-                              {slotResults.map(rc => (
-                                <button key={rc.id} onClick={() => switchCity(i, rc)}
-                                  className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
-                                    darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
-                                  }`}>
-                                  <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
-                                  <span className="font-medium truncate">{getName(rc)}</span>
-                                  <span className={`text-xs ml-auto shrink-0 ${subCls}`}>{getCountry(rc)}</span>
-                                </button>
-                              ))}
-                              {slotSearch.trim() && slotResults.length === 0 && (
-                                <p className={`px-3 py-2 text-xs ${subCls}`}>{t("homeNoResults")}</p>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                      </th>
-                    );
-                  })}
-                </tr>
-              </thead>
               <tbody>
                 {/* ── Wins summary row ── */}
                 <tr className={`border-b ${darkMode ? "border-slate-700/50" : "border-slate-100"}`}>
