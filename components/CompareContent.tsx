@@ -306,7 +306,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 {c ? (
                   /* ── Filled selector ── */
                   <div
-                    role="combobox" aria-expanded={isOpen} aria-haspopup="listbox" aria-label={getName(c)}
+                    role="combobox" aria-expanded={isOpen} aria-haspopup="listbox" aria-controls={`slot-list-${i}`} aria-label={getName(c)}
                     tabIndex={0}
                     onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
                     onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } } }}
@@ -329,7 +329,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 ) : (
                   /* ── Empty selector ── */
                   <div
-                    role="combobox" aria-expanded={isOpen} aria-haspopup="listbox" aria-label={t("chooseCity")}
+                    role="combobox" aria-expanded={isOpen} aria-haspopup="listbox" aria-controls={`slot-list-${i}`} aria-label={t("chooseCity")}
                     tabIndex={0}
                     onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
                     onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } } }}
@@ -355,9 +355,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                         darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
                                  : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
                       }`} />
-                    <div className="max-h-52 overflow-y-auto" role="listbox">
+                    <div className="max-h-52 overflow-y-auto" role="listbox" id={`slot-list-${i}`}>
                       {slotResults.map(rc => (
-                        <button key={rc.id} onClick={() => switchCity(i, rc)} role="option"
+                        <button key={rc.id} onClick={() => switchCity(i, rc)} role="option" aria-selected={false}
                           className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
                             darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
                           }`}>
