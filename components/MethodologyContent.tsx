@@ -46,7 +46,7 @@ export default function MethodologyContent() {
         { id: "detail", label: "城市详情" },
         { id: "display", label: "显示规则" },
         { id: "disclaimer", label: "免责声明" },
-        { id: "feedback", label: "反馈与源码" },
+        { id: "feedback", label: "反馈源码" },
       ],
       sections: renderZh(),
     },
@@ -338,7 +338,7 @@ export default function MethodologyContent() {
 
       <P>最后更新：2026 年 3 月</P>
 
-      <H2 id="feedback">💬 反馈与源码</H2>
+      <H2 id="feedback">💬 反馈源码</H2>
       <P>本站开源于 <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>。如有数据纠错或功能建议，欢迎 <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>提交 Issue</a> 或发送邮件至 <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>。</P>
     </>);
   }
