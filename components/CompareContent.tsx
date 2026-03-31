@@ -106,6 +106,18 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   const [openSlot, setOpenSlot] = useState<number | null>(null);
   const [slotSearch, setSlotSearch] = useState("");
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const [navH, setNavH] = useState(0);
+
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const measure = () => setNavH(el.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     const h = (e: MouseEvent) => {
@@ -225,7 +237,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
       {/* ──── Top bar ──── */}
-      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+      <div ref={navRef} className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -272,7 +284,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
       {/* ── City selector (table header) ── */}
-      <div className={`sticky z-40 rounded-t-xl border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: 0 }}>
+      <div className={`sticky z-40 rounded-t-xl border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
           <div className="shrink-0" style={{ width: cols === 2 ? "30%" : "22%" }} />
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
