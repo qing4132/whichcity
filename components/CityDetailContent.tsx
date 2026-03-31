@@ -611,20 +611,31 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
                 { key: "sunshine", cur: curCl.sunshineHours, oth: othCl.sunshineHours, higher: true },
               ] : []),
             ];
-            let bestAdv: { key: string; pct: number; higher: boolean } | null = null;
+            // Compute % difference for each dimension, split into advantages & disadvantages
+            const scored: { key: string; pct: number; adv: boolean }[] = [];
             for (const d of dims) {
-              const better = d.higher ? d.oth > d.cur : d.oth < d.cur;
-              if (!better || d.cur === 0) continue;
+              if (d.cur === 0) continue;
               const pct = Math.round(Math.abs(d.oth - d.cur) / Math.abs(d.cur) * 100);
-              if (!bestAdv || pct > bestAdv.pct) bestAdv = { key: d.key, pct, higher: d.higher };
+              if (pct === 0) continue;
+              const better = d.higher ? d.oth > d.cur : d.oth < d.cur;
+              scored.push({ key: d.key, pct, adv: better });
             }
-            const advText = bestAdv ? `${t(bestAdv.key)} ${bestAdv.higher ? "+" : "-"}${bestAdv.pct}%` : "";
+            scored.sort((a, b) => b.pct - a.pct);
+            const top2Adv = scored.filter(s => s.adv).slice(0, 2);
+            const top1Dis = scored.filter(s => !s.adv).slice(0, 1);
+            const highlights = [...top2Adv, ...top1Dis];
 
             return (
               <div key={otherId} className={`rounded-xl border p-3 text-center ${sectionBg}`}>
                 <span className="text-2xl">{CITY_FLAG_EMOJIS[otherId] || "🏙️"}</span>
                 <p className={`text-sm font-semibold mt-1 ${headingCls}`}>{otherName}</p>
-                <p className={`text-xs h-8 flex items-center justify-center text-center leading-tight ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>{advText}</p>
+                <div className="min-h-[3.5rem] flex flex-col items-center justify-center mt-1">
+                  {highlights.map((h, idx) => (
+                    <p key={idx} className={`text-[11px] leading-snug ${h.adv ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-rose-400" : "text-rose-500")}`}>
+                      {t(h.key)} {h.pct}% {h.adv ? "↑" : "↓"}
+                    </p>
+                  ))}
+                </div>
                 <div className="flex gap-1 mt-1 justify-center">
                   <Link href={`/city/${otherSlug}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "border-blue-500/50 text-blue-300 hover:bg-blue-900/30" : "border-blue-300 text-blue-600 hover:bg-blue-50"}`}>
                     {t("viewCity")}
