@@ -654,9 +654,8 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
 
       {/* Footer */}
       <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
-        <p><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">Email</a></p>
-        <p className="mt-1">{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
+        <p>{t("dataSourcesDisclaimer")}</p>
+        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
       </footer>
       </div>
     </div>
