@@ -17,9 +17,12 @@ interface Props {
   t: (key: string) => string;
   hideTitle?: boolean;
   hideLegend?: boolean;
+  sharedTempMin?: number;
+  sharedTempMax?: number;
+  sharedRainCeil?: number;
 }
 
-export default function ClimateChart({ climate, locale, darkMode, t, hideTitle, hideLegend }: Props) {
+export default function ClimateChart({ climate, locale, darkMode, t, hideTitle, hideLegend, sharedTempMin, sharedTempMax, sharedRainCeil }: Props) {
   const { monthlyHighC, monthlyLowC, monthlyRainMm } = climate;
   if (!monthlyHighC || !monthlyLowC || !monthlyRainMm) return null;
 
@@ -29,13 +32,13 @@ export default function ClimateChart({ climate, locale, darkMode, t, hideTitle, 
   const allTemps = [...monthlyHighC, ...monthlyLowC];
   const tempMin = Math.min(...allTemps);
   const tempMax = Math.max(...allTemps);
-  const padMin = Math.floor(tempMin / 5) * 5 - 5;
-  const padMax = Math.ceil(tempMax / 5) * 5 + 5;
+  const padMin = sharedTempMin ?? (Math.floor(tempMin / 5) * 5 - 5);
+  const padMax = sharedTempMax ?? (Math.ceil(tempMax / 5) * 5 + 5);
   const tempRange = padMax - padMin;
 
   // Rain max for scaling
   const rainMax = Math.max(...monthlyRainMm);
-  const rainCeil = Math.ceil(rainMax / 50) * 50 || 50;
+  const rainCeil = sharedRainCeil ?? (Math.ceil(rainMax / 50) * 50 || 50);
 
   // Chart height
   const TEMP_H = 160;

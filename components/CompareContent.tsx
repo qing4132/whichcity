@@ -458,6 +458,15 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           };
           const hasCharts = filledCities.some(c => getCityClimate(c.id)?.monthlyHighC);
           const dividerCls = darkMode ? "border-slate-700" : "border-slate-200";
+
+          // Compute shared Y-axis scale across all compared cities
+          const allClimates = filledCities.map(c => getCityClimate(c.id)).filter(Boolean) as NonNullable<ReturnType<typeof getCityClimate>>[];
+          const allTempsFlat = allClimates.flatMap(cl => [...(cl.monthlyHighC ?? []), ...(cl.monthlyLowC ?? [])]);
+          const allRainFlat = allClimates.flatMap(cl => cl.monthlyRainMm ?? []);
+          const sharedTempMin = allTempsFlat.length ? Math.floor(Math.min(...allTempsFlat) / 5) * 5 - 5 : undefined;
+          const sharedTempMax = allTempsFlat.length ? Math.ceil(Math.max(...allTempsFlat) / 5) * 5 + 5 : undefined;
+          const sharedRainCeil = allRainFlat.length ? (Math.ceil(Math.max(...allRainFlat) / 50) * 50 || 50) : undefined;
+
           return (
           <div className={`rounded-xl shadow-md overflow-hidden border mt-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
             {/* Section header */}
@@ -493,7 +502,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                       {/* Chart */}
                       {cl?.monthlyHighC && (
                         <div className="mt-3">
-                          <ClimateChart climate={cl} locale={locale} darkMode={darkMode} t={t} hideTitle hideLegend />
+                          <ClimateChart climate={cl} locale={locale} darkMode={darkMode} t={t} hideTitle hideLegend
+                            sharedTempMin={sharedTempMin} sharedTempMax={sharedTempMax} sharedRainCeil={sharedRainCeil} />
                         </div>
                       )}
                     </div>
