@@ -49,12 +49,21 @@ export default function ClimateChart({ climate, locale, darkMode, t }: Props) {
   const labelCls = darkMode ? "text-slate-400" : "text-slate-500";
   const borderCls = darkMode ? "border-slate-700" : "border-slate-200";
 
+  // Colors matching site theme
+  const tempGrad = darkMode
+    ? "linear-gradient(to bottom, #fdba74, #c2410c)"
+    : "linear-gradient(to bottom, #fb923c, #ea580c)";
+  const tempHighCls = darkMode ? "text-orange-300" : "text-orange-600";
+  const tempLowCls = darkMode ? "text-orange-400" : "text-orange-500";
+  const tempLegendBg = darkMode ? "#fdba74" : "#fb923c";
+  const rainBg = darkMode ? "#60a5fa" : "#3b82f6";
+
   return (
-    <div className="mt-4">
-      <h3 className={`text-sm font-semibold mb-3 ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
-        {t("climateChart") || (locale === "zh" ? "月度气温与降水" : locale === "ja" ? "月別気温・降水量" : locale === "es" ? "Temperatura y precipitación mensual" : "Monthly Temperature & Rainfall")}
+    <div className={`mt-6 pt-5 border-t ${borderCls}`}>
+      <h3 className={`text-xs font-semibold tracking-wide mb-3 ${labelCls}`}>
+        {t("climateChart")}
       </h3>
-      <div className={`rounded-lg border p-4 ${darkMode ? "bg-slate-900/50 border-slate-700" : "bg-white border-slate-200"}`}>
+      <div>
         {/* Temperature chart */}
         <div className="flex items-end gap-0">
           {/* Y-axis labels */}
@@ -77,21 +86,16 @@ export default function ClimateChart({ climate, locale, darkMode, t }: Props) {
                 const barH = botY - topY;
                 return (
                   <div key={m} className="flex-1 flex flex-col items-center relative" style={{ height: TEMP_H }}>
-                    {/* High temp label */}
-                    <span className="absolute text-[10px] font-bold text-red-500" style={{ top: topY - 14 }}>{high}</span>
-                    {/* Bar */}
+                    <span className={`absolute text-[10px] font-bold ${tempHighCls}`} style={{ top: topY - 14 }}>{high}</span>
                     <div
                       className="absolute w-[60%] rounded-sm"
                       style={{
                         top: topY,
                         height: Math.max(barH, 2),
-                        background: darkMode
-                          ? "linear-gradient(to bottom, #f87171, #991b1b)"
-                          : "linear-gradient(to bottom, #ef4444, #b91c1c)",
+                        background: tempGrad,
                       }}
                     />
-                    {/* Low temp label */}
-                    <span className="absolute text-[10px] font-bold text-red-400" style={{ top: botY + 2 }}>{low}</span>
+                    <span className={`absolute text-[10px] font-bold ${tempLowCls}`} style={{ top: botY + 2 }}>{low}</span>
                   </div>
                 );
               })}
@@ -113,7 +117,7 @@ export default function ClimateChart({ climate, locale, darkMode, t }: Props) {
                     className="w-[55%] rounded-t-sm"
                     style={{
                       height: rainH(monthlyRainMm[i]),
-                      background: darkMode ? "#60a5fa" : "#93c5fd",
+                      background: rainBg,
                     }}
                   />
                 </div>
@@ -136,16 +140,15 @@ export default function ClimateChart({ climate, locale, darkMode, t }: Props) {
         </div>
 
         {/* Legend */}
-        <div className={`flex items-center justify-center gap-4 mt-3 pt-2 border-t text-[10px] ${borderCls} ${labelCls}`}>
+        <div className={`flex items-center justify-center gap-4 mt-3 text-[10px] ${labelCls}`}>
           <span className="flex items-center gap-1">
-            <span className="inline-block w-3 h-2 rounded-sm" style={{ background: darkMode ? "#f87171" : "#ef4444" }} />
-            {locale === "zh" ? "气温 (°C)" : locale === "ja" ? "気温 (°C)" : locale === "es" ? "Temp. (°C)" : "Temp. (°C)"}
+            <span className="inline-block w-3 h-2 rounded-sm" style={{ background: tempLegendBg }} />
+            {t("chartTempLegend")}
           </span>
           <span className="flex items-center gap-1">
-            <span className="inline-block w-3 h-2 rounded-sm" style={{ background: darkMode ? "#60a5fa" : "#93c5fd" }} />
-            {locale === "zh" ? "降水 (mm)" : locale === "ja" ? "降水量 (mm)" : locale === "es" ? "Precip. (mm)" : "Rainfall (mm)"}
+            <span className="inline-block w-3 h-2 rounded-sm" style={{ background: rainBg }} />
+            {t("chartRainLegend")}
           </span>
-          <span>{locale === "zh" ? "来源: NOAA" : locale === "ja" ? "出典: NOAA" : locale === "es" ? "Fuente: NOAA" : "Source: NOAA"}</span>
         </div>
       </div>
     </div>
