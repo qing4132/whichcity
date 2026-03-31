@@ -275,6 +275,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       {/* ── City selector bar ── */}
       <div className={`border-b px-4 py-2 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center gap-2">
+          <div className="shrink-0" style={{ width: cols === 2 ? "30%" : "22%" }} />
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
