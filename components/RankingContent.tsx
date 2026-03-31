@@ -586,9 +586,11 @@ export default function RankingContent({ cities }: Props) {
       </div>
 
       {/* Footer */}
-      <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
+      <footer className={`px-4 py-6 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
+        <div className={`max-w-6xl mx-auto border-t pt-6 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
         <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
+        </div>
       </footer>
     </div>
   );

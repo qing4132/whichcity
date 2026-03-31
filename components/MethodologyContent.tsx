@@ -333,6 +333,9 @@ export default function MethodologyContent() {
       <P>本站不承担因使用本站数据做出的任何决策所导致的直接或间接损失。使用本站即表示您同意上述免责条款。</P>
 
       <P>最后更新：2026 年 3 月</P>
+
+      <H3>反馈与源码</H3>
+      <P>本站开源于 <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>。如有数据纠错或功能建议，欢迎 <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>提交 Issue</a> 或发送邮件至 <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>。</P>
     </>);
   }
 
@@ -512,6 +515,9 @@ export default function MethodologyContent() {
       <P>This site assumes no liability for direct or indirect losses resulting from decisions made based on this data. By using this site, you agree to these terms.</P>
 
       <P>Last updated: March 2026</P>
+
+      <H3>Feedback & Source Code</H3>
+      <P>This site is open-source on <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>. For data corrections or feature suggestions, please <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>open an issue</a> or email <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>.</P>
     </>);
   }
 
@@ -582,6 +588,9 @@ export default function MethodologyContent() {
       <H2 id="disclaimer">⚠️ 免責事項</H2>
       <P>すべてのデータは参考情報であり、投資・移民・雇用・税務アドバイスではありません。給与は中央値推定であり実際と異なります。税後計算は簡易モデルです。為替レートは静的スナップショットです。総合指数は公開データに基づく合成指標であり公式評価ではありません。中国本土のAQIは中国基準で米国EPA基準と直接比較できません。都市の分類は地理的・実質的行政管轄に基づき、領土主権に関する立場を表しません。港澳台のデータはそれぞれの統計機関から取得しています。本サイトのデータに基づく決定から生じるいかなる損失についても責任を負いません。</P>
       <P>最終更新：2026年3月</P>
+
+      <H3>フィードバックとソースコード</H3>
+      <P>本サイトは <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a> でオープンソースです。データの訂正や機能の提案は <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>Issue</a> または <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>メール</a>でお願いします。</P>
     </>);
   }
 
@@ -652,6 +661,9 @@ export default function MethodologyContent() {
       <H2 id="disclaimer">⚠️ Descargos de responsabilidad</H2>
       <P>Todos los datos son solo de referencia y no constituyen asesoramiento de inversión, inmigración, empleo o fiscal. Los salarios son estimaciones medianas brutas. Los cálculos fiscales son modelos simplificados. Los tipos de cambio son instantáneas estáticas. Los índices compuestos son indicadores sintéticos, no evaluaciones oficiales. El AQI de China continental usa estándar chino, no comparable directamente con EPA. La clasificación de ciudades es geográfica y administrativa, sin representar posiciones sobre soberanía. Los datos de Hong Kong, Macao y Taiwán provienen de sus autoridades estadísticas respectivas. Este sitio no asume responsabilidad por decisiones basadas en estos datos.</P>
       <P>Última actualización: marzo 2026</P>
+
+      <H3>Comentarios y código fuente</H3>
+      <P>Este sitio es de código abierto en <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>. Para correcciones o sugerencias, <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>abre un issue</a> o envía un correo a <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>.</P>
     </>);
   }
 
@@ -710,12 +722,6 @@ export default function MethodologyContent() {
         {/* Content */}
         <div>{sections}</div>
       </div>
-
-      {/* Footer */}
-      <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
-        <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
-      </footer>
     </div>
   );
 }
