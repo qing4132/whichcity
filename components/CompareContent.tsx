@@ -433,6 +433,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           };
           const n = filledCities.length;
           const gridCls = n === 1 ? "grid-cols-3 sm:grid-cols-6" : n === 2 ? "grid-cols-3" : "grid-cols-2";
+          const hasCharts = filledCities.some(c => getCityClimate(c.id)?.monthlyHighC);
+          const dividerCls = darkMode ? "border-slate-700" : "border-slate-200";
           return (
           <div className={`rounded-xl shadow-md overflow-hidden border mt-6 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
             {/* Section header */}
@@ -442,19 +444,22 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </p>
             </div>
 
-            {/* Climate data grids */}
+            {/* Per-city columns: data + chart in same column for alignment */}
             <div className="p-4">
               <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
                 {filledCities.map((c, ci) => {
                   const items = climateItems(c);
+                  const cl = getCityClimate(c.id);
                   if (!items) return <div key={c.id} />;
                   return (
-                    <div key={c.id} className={ci < n - 1 ? `border-r ${darkMode ? "border-slate-700" : "border-slate-200"} pr-4` : ""}>
+                    <div key={c.id} className={ci < n - 1 ? `border-r ${dividerCls} pr-4` : ""}>
+                      {/* City name */}
                       {n > 1 && (
                         <p className={`text-xs font-semibold text-center mb-2 ${headCls}`}>
                           {CITY_FLAG_EMOJIS[c.id] || "🏙️"} {getName(c)}
                         </p>
                       )}
+                      {/* Data grid */}
                       <div className={`grid ${gridCls} gap-1`}>
                         {items.map(([label, val]) => (
                           <div key={label} className="flex flex-col items-center text-center p-2">
@@ -463,33 +468,18 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                           </div>
                         ))}
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Monthly climate charts */}
-            {filledCities.some(c => getCityClimate(c.id)?.monthlyHighC) && (
-            <div className="p-4">
-              <h3 className={`text-xs font-bold tracking-wider uppercase mb-2 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                {t("climateChart")}
-              </h3>
-              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${filledCities.length}, minmax(0, 1fr))` }}>
-                {filledCities.map(c => {
-                  const cl = getCityClimate(c.id);
-                  if (!cl) return <div key={c.id} />;
-                  return (
-                    <div key={c.id}>
-                      <p className={`text-xs font-semibold text-center mb-2 ${headCls}`}>
-                        {CITY_FLAG_EMOJIS[c.id] || "🏙️"} {getName(c)}
-                      </p>
-                      <ClimateChart climate={cl} locale={locale} darkMode={darkMode} t={t} hideTitle hideLegend />
+                      {/* Chart */}
+                      {cl?.monthlyHighC && (
+                        <div className="mt-3">
+                          <ClimateChart climate={cl} locale={locale} darkMode={darkMode} t={t} hideTitle hideLegend />
+                        </div>
+                      )}
                     </div>
                   );
                 })}
               </div>
               {/* Shared legend */}
+              {hasCharts && (
               <div className={`flex items-center justify-center gap-4 mt-3 text-[10px] ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
                 <span className="flex items-center gap-1">
                   <span className="inline-block w-3 h-2 rounded-sm" style={{ background: darkMode ? "#fbbf24" : "#f59e0b" }} />
@@ -500,8 +490,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                   {t("chartRainLegend")}
                 </span>
               </div>
+              )}
             </div>
-            )}
           </div>
           );
         })()}

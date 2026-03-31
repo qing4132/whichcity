@@ -68,7 +68,7 @@ export default function ClimateChart({ climate, locale, darkMode, t, hideTitle, 
         {/* Temperature chart */}
         <div className="flex items-end gap-0">
           {/* Y-axis labels */}
-          <div className="flex flex-col justify-between shrink-0 pr-1" style={{ height: TEMP_H }}>
+          <div className="flex flex-col justify-between shrink-0" style={{ height: TEMP_H, width: 28 }}>
             <span className={`text-[10px] leading-none ${labelCls}`}>{padMax}°</span>
             <span className={`text-[10px] leading-none ${labelCls}`}>{Math.round((padMax + padMin) / 2)}°</span>
             <span className={`text-[10px] leading-none ${labelCls}`}>{padMin}°</span>
@@ -106,7 +106,7 @@ export default function ClimateChart({ climate, locale, darkMode, t, hideTitle, 
 
         {/* Rainfall chart */}
         <div className="flex items-end gap-0 mt-3">
-          <div className="flex flex-col justify-between shrink-0 pr-1" style={{ height: RAIN_H }}>
+          <div className="flex flex-col justify-between shrink-0" style={{ height: RAIN_H, width: 28 }}>
             <span className={`text-[10px] leading-none ${labelCls}`}>{rainCeil}</span>
             <span className={`text-[10px] leading-none ${labelCls}`}>0</span>
           </div>
