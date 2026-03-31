@@ -362,9 +362,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           {/* Wins summary */}
           <div className={`flex border-b ${darkMode ? "border-slate-700/50" : "border-slate-100"}`}>
             {visibleSlots.map((c, i) => (
-              <div key={`wins-${i}`} className={`flex-1 px-3 py-2.5 text-center text-sm ${
+              <div key={`wins-${i}`} className={`flex-1 px-3 py-2 text-center text-xs font-semibold ${
                 c && winCounts[i] > 0
-                  ? (darkMode ? "text-emerald-400 font-bold" : "text-emerald-600 font-bold")
+                  ? (darkMode ? "text-emerald-400" : "text-emerald-600")
                   : (darkMode ? "text-slate-500" : "text-slate-400")
               }`}>
                 {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
@@ -390,23 +390,23 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 </div>
                 {/* Metrics */}
                 {gRows.map(({ m, vals, bestVal }) => (
-                  <div key={m.key} className={`border-b ${borderR}`}>
+                  <div key={m.key} className={`border-b ${borderR} px-4 py-2.5`}>
                     {/* Metric label */}
-                    <p className={`px-4 pt-2 pb-0.5 text-xs font-medium ${labelC}`}>{m.label(t)}</p>
+                    <p className={`text-[11px] tracking-wide mb-1 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{m.label(t)}</p>
                     {/* Values row */}
                     <div className="flex">
                       {vals.map((v, i) => {
                         const slot = visibleSlots[i];
-                        if (!slot) return <div key={`empty-${i}`} className={`flex-1 px-3 pb-2 text-center text-sm ${dimC}`}>—</div>;
+                        if (!slot) return <div key={`empty-${i}`} className={`flex-1 text-center text-base font-semibold ${dimC}`}>—</div>;
                         if (m.key === "climateType") {
                           const cl = getCityClimate(slot.id);
-                          return <div key={slot.id} className={`flex-1 px-3 pb-2 text-center text-sm ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</div>;
+                          return <div key={slot.id} className={`flex-1 text-center text-base font-semibold ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</div>;
                         }
                         const formatted = m.fmt(v, rowCtx);
                         const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
                         const isNull = v == null;
                         return (
-                          <div key={slot.id} className={`flex-1 px-3 pb-2 text-center text-sm ${isNull ? dimC : isBest ? bestC : valC}`}>
+                          <div key={slot.id} className={`flex-1 text-center text-base font-semibold ${isNull ? dimC : isBest ? bestC : valC}`}>
                             {formatted}
                           </div>
                         );
@@ -457,12 +457,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                   if (!items) return <div key={c.id} />;
                   return (
                     <div key={c.id} className={ci < n - 1 ? `border-r ${dividerCls} pr-4` : ""}>
-                      {/* City name */}
-                      {n > 1 && (
-                        <p className={`text-xs font-semibold text-center mb-2 ${headCls}`}>
-                          {CITY_FLAG_EMOJIS[c.id] || "🏙️"} {getName(c)}
-                        </p>
-                      )}
                       {/* Data grid */}
                       <div className={`grid ${gridCls} gap-1`}>
                         {items.map(([label, val]) => (
