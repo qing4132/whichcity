@@ -170,7 +170,7 @@ export default function MethodologyContent() {
         ["民主指数", "EIU Democracy Index", "国家", "2024"],
         ["清廉指数", "Transparency International CPI", "国家", "2024"],
         ["气候（月度）", "WMO 1991–2020 常年值、NOAA、各国气象局", "城市", "1991–2020 基准"],
-        ["汇率（30 种）", "静态快照", "—", "2026 年 3 月"],
+        ["汇率（30 种）", "ExchangeRate-API（每日自动更新）", "—", "每日"],
       ]} />
       <Warn>所有数据均为该来源的官方公开数据或经授权引用数据。薪资数据为税前年薪中位数估算，不代表个人实际收入。</Warn>
 
@@ -297,7 +297,7 @@ export default function MethodologyContent() {
       <H3>AQI (CN) 标注</H3>
       <P>中国大陆城市的 AQI 使用中国国标，界面中标注为 "AQI (CN)"，其余城市使用 US EPA 标准标注为 "AQI"。两种标准在不同污染物浓度下的数值差异较大。</P>
       <H3>货币转换</H3>
-      <P>界面上的所有金额均可换算为 30 种货币显示。汇率为静态快照（2026 年 3 月），不实时更新。</P>
+      <P>界面上的所有金额均可换算为 30 种货币显示。汇率通过 ExchangeRate-API 每日自动更新。</P>
       <H3>缺失数据显示</H3>
       <P>缺失数据统一显示为 "—"。</P>
 
@@ -310,7 +310,7 @@ export default function MethodologyContent() {
       <P>税后收入计算为简化模型，未考虑全部免税额、家庭状况、投资收入、雇主代缴、地方附加税等因素。外籍优惠方案有时间限制和资格要求，本站未做资格验证。请咨询专业税务顾问获取个人建议。</P>
 
       <H3>汇率声明</H3>
-      <P>汇率为静态快照，不代表实时市场汇率。汇率波动可能导致显示金额与实际兑换金额存在差异。</P>
+      <P>汇率通过 ExchangeRate-API 每日自动更新，但不代表实时市场汇率。汇率波动可能导致显示金额与实际兑换金额存在差异。</P>
 
       <H3>指数与排名</H3>
       <P>综合指数（生活压力、安全、医疗、自由）为本站基于公开数据计算的合成指标，不代表任何官方评级。排名方法论基于公开数据源，权重分配反映编辑判断。不同权重可能产生不同排名。</P>
@@ -373,7 +373,7 @@ export default function MethodologyContent() {
         ["Democracy Index", "EIU Democracy Index", "Country", "2024"],
         ["Corruption Perception", "Transparency International CPI", "Country", "2024"],
         ["Climate (Monthly)", "WMO Normals 1991–2020, NOAA, National Met Agencies", "City", "1991–2020 baseline"],
-        ["Exchange Rates (30)", "Static snapshot", "—", "March 2026"],
+        ["Exchange Rates (30)", "ExchangeRate-API (auto-updated daily)", "—", "Daily"],
       ]} />
       <Warn>All data comes from official public sources or authorized data. Salary figures are median gross annual estimates, not individual offers.</Warn>
 
@@ -479,7 +479,7 @@ export default function MethodologyContent() {
       <H3>Confidence Labels</H3>
       <P>"⚠ Low confidence": 3+ sub-indicators missing. "Partial data missing": 1–2 missing. Missing sub-indicators marked with * in expanded view.</P>
       <H3>Currency Conversion</H3>
-      <P>All amounts convertible to 30 currencies. Rates are a static snapshot (March 2026), not real-time.</P>
+      <P>All amounts convertible to 30 currencies. Rates auto-updated daily via ExchangeRate-API.</P>
       <H3>Missing Data</H3>
       <P>Displayed as "—" throughout.</P>
 
@@ -492,7 +492,7 @@ export default function MethodologyContent() {
       <P>After-tax calculations are simplified models. Not considered: full personal allowances, family status, investment income, employer contributions, local surcharges (except US state/Canadian provincial tax), time limits on expat schemes. Consult a qualified tax advisor.</P>
 
       <H3>Exchange Rates</H3>
-      <P>Static snapshot, not real-time. Currency fluctuations may cause displayed amounts to differ from actual conversion rates.</P>
+      <P>Rates auto-updated daily via ExchangeRate-API, but do not represent real-time market rates. Currency fluctuations may cause displayed amounts to differ from actual conversion rates.</P>
 
       <H3>Indices & Rankings</H3>
       <P>Composite indices (life pressure, safety, healthcare, freedom) are synthetic indicators calculated from public data, not official ratings. Ranking methodology reflects editorial weight choices; different weights would produce different rankings.</P>
@@ -550,7 +550,7 @@ export default function MethodologyContent() {
         ["安全指数（4コンポーネント）", "Numbeo, UNODC, IEP, Gallup", "都市/国", "2024–2025"],
         ["制度的自由（3コンポーネント）", "RSF, EIU, TI", "国", "2024"],
         ["気候（月次）", "WMO 1991–2020, 各国気象局", "都市", "1991–2020基準"],
-        ["為替レート（30通貨）", "静的スナップショット", "—", "2026年3月"],
+        ["為替レート（30通貨）", "ExchangeRate-API（毎日自動更新）", "—", "毎日"],
       ]} />
 
       <H2 id="income">💰 収入データ</H2>
@@ -590,7 +590,7 @@ export default function MethodologyContent() {
       <P>上位20%→緑、下位20%→赤、中間→灰色。信頼度ラベル：欠損3+→低信頼。通貨は静的レート。欠損は「—」表示。</P>
 
       <H2 id="disclaimer">⚠️ 免責事項</H2>
-      <P>すべてのデータは参考情報であり、投資・移民・雇用・税務アドバイスではありません。給与は中央値推定であり実際と異なります。税後計算は簡易モデルです。為替レートは静的スナップショットです。総合指数は公開データに基づく合成指標であり公式評価ではありません。中国本土のAQIは中国基準で米国EPA基準と直接比較できません。都市の分類は地理的・実質的行政管轄に基づき、領土主権に関する立場を表しません。港澳台のデータはそれぞれの統計機関から取得しています。本サイトのデータに基づく決定から生じるいかなる損失についても責任を負いません。</P>
+      <P>すべてのデータは参考情報であり、投資・移民・雇用・税務アドバイスではありません。給与は中央値推定であり実際と異なります。税後計算は簡易モデルです。為替レートは毎日自動更新されますがリアルタイムではありません。総合指数は公開データに基づく合成指標であり公式評価ではありません。中国本土のAQIは中国基準で米国EPA基準と直接比較できません。都市の分類は地理的・実質的行政管轄に基づき、領土主権に関する立場を表しません。港澳台のデータはそれぞれの統計機関から取得しています。本サイトのデータに基づく決定から生じるいかなる損失についても責任を負いません。</P>
       <P>最終更新：2026年3月</P>
 
       <H2 id="feedback">💬 フィードバックとソースコード</H2>
@@ -623,7 +623,7 @@ export default function MethodologyContent() {
         ["Índice de seguridad (4 comp.)", "Numbeo, ONUDD, IEP, Gallup", "Ciudad/País", "2024–2025"],
         ["Libertad institucional (3 comp.)", "RSF, EIU, TI", "País", "2024"],
         ["Clima (mensual)", "OMM 1991–2020, servicios meteorológicos", "Ciudad", "Base 1991–2020"],
-        ["Tipos de cambio (30)", "Instantánea estática", "—", "Marzo 2026"],
+        ["Tipos de cambio (30)", "ExchangeRate-API (actualizado diariamente)", "—", "Diario"],
       ]} />
 
       <H2 id="income">💰 Datos salariales</H2>
@@ -663,7 +663,7 @@ export default function MethodologyContent() {
       <P>Top 20% → verde, Bottom 20% → rojo, medio → gris. Confianza: 3+ faltantes → baja. Moneda con tasa estática. Faltantes: "—".</P>
 
       <H2 id="disclaimer">⚠️ Descargos de responsabilidad</H2>
-      <P>Todos los datos son solo de referencia y no constituyen asesoramiento de inversión, inmigración, empleo o fiscal. Los salarios son estimaciones medianas brutas. Los cálculos fiscales son modelos simplificados. Los tipos de cambio son instantáneas estáticas. Los índices compuestos son indicadores sintéticos, no evaluaciones oficiales. El AQI de China continental usa estándar chino, no comparable directamente con EPA. La clasificación de ciudades es geográfica y administrativa, sin representar posiciones sobre soberanía. Los datos de Hong Kong, Macao y Taiwán provienen de sus autoridades estadísticas respectivas. Este sitio no asume responsabilidad por decisiones basadas en estos datos.</P>
+      <P>Todos los datos son solo de referencia y no constituyen asesoramiento de inversión, inmigración, empleo o fiscal. Los salarios son estimaciones medianas brutas. Los cálculos fiscales son modelos simplificados. Los tipos de cambio se actualizan diariamente pero no son en tiempo real. Los índices compuestos son indicadores sintéticos, no evaluaciones oficiales. El AQI de China continental usa estándar chino, no comparable directamente con EPA. La clasificación de ciudades es geográfica y administrativa, sin representar posiciones sobre soberanía. Los datos de Hong Kong, Macao y Taiwán provienen de sus autoridades estadísticas respectivas. Este sitio no asume responsabilidad por decisiones basadas en estos datos.</P>
       <P>Última actualización: marzo 2026</P>
 
       <H2 id="feedback">💬 Comentarios y código fuente</H2>
