@@ -283,10 +283,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       </div>
 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
-      {/* ── City selector (sticky) ── */}
+      {/* ── City selector + wins card ── */}
       <div className="sticky z-40" style={{ top: navH }}>
-        <div className={`absolute -top-2 left-0 right-0 h-2 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} />
-        <div className={`rounded-t-xl shadow-md border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+        {/* Full-rect page-bg behind rounded card to mask corner bleed */}
+        <div className={`absolute inset-0 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} />
+        <div className={`relative rounded-t-xl shadow-md border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
@@ -359,16 +360,16 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           })}
         </div>
       </div>
-      {/* ── Wins summary (not sticky, no gap) ── */}
-      <div className={`-mt-px rounded-b-xl shadow-md border border-t ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
-        <div className="grid" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+      {/* ── Wins summary (not sticky) ── */}
+      <div className={`-mt-px rounded-b-xl shadow-md border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+        <div className="grid px-4 py-2" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
           {visibleSlots.map((c, i) => {
-            const winDivider = i < visibleSlots.length - 1 ? `border-r ${darkMode ? "border-slate-700" : "border-slate-200"}` : "";
+            const winDivider = i < visibleSlots.length - 1 ? `border-r ${darkMode ? "border-slate-700" : "border-slate-200"} pr-4` : "";
             const winValC = c && winCounts[i] > 0
               ? (darkMode ? "text-emerald-400" : "text-emerald-600")
               : (darkMode ? "text-slate-600" : "text-slate-300");
             return (
-              <div key={`wins-${i}`} className={`flex flex-col items-center text-center px-4 py-2 ${winDivider}`}>
+              <div key={`wins-${i}`} className={`flex flex-col items-center text-center py-2 ${winDivider}`}>
                 <p className={`text-xs mb-0.5 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("compareLeading")}</p>
                 <p className={`text-lg font-bold ${winValC}`}>
                   {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
