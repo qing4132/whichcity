@@ -444,7 +444,7 @@ export default function RankingContent({ cities }: Props) {
             <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
               {t("navHome")}
             </Link>
-            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-600 border-slate-400 text-amber-300" : "bg-slate-200 border-slate-400 text-amber-700"}`}>
+            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-amber-900/40 border-amber-500/50 text-amber-300" : "bg-amber-50 border-amber-300 text-amber-700"}`}>
               {t("navRanking")}
             </Link>
             <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
@@ -454,10 +454,6 @@ export default function RankingContent({ cities }: Props) {
             <Link href="/compare"
               className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>
               {t("navCompare")}
-            </Link>
-            <Link href="/methodology"
-              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-cyan-300 hover:bg-slate-700" : "bg-white border-slate-300 text-cyan-700 hover:bg-cyan-50"}`}>
-              {t("navMethodology")}
             </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
@@ -591,8 +587,8 @@ export default function RankingContent({ cities }: Props) {
 
       {/* Footer */}
       <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
-        <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a></p>
+        <p><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">Email</a></p>
+        <p className="mt-1">{t("dataSourcesDisclaimer")}</p>
         <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
       </footer>
     </div>

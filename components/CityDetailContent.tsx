@@ -356,10 +356,6 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
               className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>
               {t("navCompare")}
             </Link>
-            <Link href="/methodology"
-              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-cyan-300 hover:bg-slate-700" : "bg-white border-slate-300 text-cyan-700 hover:bg-cyan-50"}`}>
-              {t("navMethodology")}
-            </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
@@ -658,15 +654,9 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
 
       {/* Footer */}
       <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
-        <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a></p>
+        <p><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">Email</a></p>
+        <p className="mt-1">{t("dataSourcesDisclaimer")}</p>
         <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
-        <p className="mt-1">
-          {t("feedbackText")}{" "}
-          <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub Issues</a>
-          {" / "}
-          <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">Email</a>
-        </p>
       </footer>
       </div>
     </div>

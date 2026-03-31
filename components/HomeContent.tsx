@@ -88,7 +88,7 @@ export default function HomeContent() {
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/"
-              className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-600 border-slate-400 text-blue-300" : "bg-slate-200 border-slate-400 text-blue-700"}`}>
+              className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-blue-900/40 border-blue-500/50 text-blue-300" : "bg-blue-50 border-blue-300 text-blue-700"}`}>
               {t("navHome")}
             </Link>
             <Link href="/ranking"
@@ -102,10 +102,6 @@ export default function HomeContent() {
             <Link href="/compare"
               className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>
               {t("navCompare")}
-            </Link>
-            <Link href="/methodology"
-              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-cyan-300 hover:bg-slate-700" : "bg-white border-slate-300 text-cyan-700 hover:bg-cyan-50"}`}>
-              {t("navMethodology")}
             </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
@@ -214,8 +210,8 @@ export default function HomeContent() {
 
       {/* Footer */}
       <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
-        <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a></p>
+        <p><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">Email</a></p>
+        <p className="mt-1">{t("dataSourcesDisclaimer")}</p>
         <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
       </footer>
     </div>
