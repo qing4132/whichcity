@@ -284,7 +284,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
       {/* ── City selector (sticky, standalone) ── */}
-      <div className={`sticky z-40 rounded-xl shadow-md border px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH + 8 }}>
+      <div className={`sticky z-40 rounded-b-xl shadow-md border border-t-0 px-4 pt-4 pb-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH, background: `linear-gradient(to bottom, ${darkMode ? "#0f172a" : "#f8fafc"} 0px, ${darkMode ? "#0f172a" : "#f8fafc"} 8px, ${darkMode ? "#1e293b" : "#ffffff"} 8px)` }}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
