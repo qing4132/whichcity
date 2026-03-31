@@ -283,7 +283,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       </div>
 
       {/* ── City selector (full-width sticky layer) ── */}
-      <div className={`sticky z-40 py-2 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} style={{ top: navH }}>
+      <div className={`sticky z-40 pt-2 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} style={{ top: navH }}>
         <div className="max-w-6xl mx-auto px-4">
           <div className={`rounded-xl shadow-md border px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           {visibleSlots.map((c, i) => {
@@ -519,7 +519,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         })()}
 
         {/* ──── City guide links ──── */}
-        <div className="grid gap-3 mt-8" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+        <div className="grid gap-3 mt-4" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
           {visibleSlots.map((c, i) => c ? (
             <Link key={c.id} href={`/city/${CITY_SLUGS[c.id]}`}
               className={`rounded-xl border p-4 transition ${sectionBg} hover:border-blue-400 hover:shadow`}>
