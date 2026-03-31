@@ -582,16 +582,34 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
             // Find the dimension where the other city beats this one by the largest margin
             const otherGross = activeProfession && other.professions[activeProfession] != null ? other.professions[activeProfession] : null;
             const otherIncome = otherGross !== null ? computeNetIncome(otherGross, other.country, other.id, incomeMode).netUSD : null;
+            const otherHourly = other.annualWorkHours !== null && other.annualWorkHours > 0 && otherIncome !== null ? otherIncome / other.annualWorkHours : 0;
+            const otherLP = computeLifePressure(other, allCities, otherIncome ?? 0, allIncomes, costTierField).value;
+            const curCl = getCityClimate(city.id);
+            const othCl = getCityClimate(otherId);
             const dims: { key: string; cur: number; oth: number; higher: boolean }[] = [
               { key: "avgIncome", cur: income ?? 0, oth: otherIncome ?? 0, higher: true },
               { key: "monthlyCost", cur: tierCost, oth: other[TIER_KEYS.find(tk => tk.key === costTier)!.field], higher: false },
               { key: "yearlySavings", cur: savings ?? 0, oth: (otherIncome ?? 0) - other[TIER_KEYS.find(tk => tk.key === costTier)!.field] * 12, higher: true },
+              ...(city.monthlyRent !== null && other.monthlyRent !== null ? [{ key: "monthlyRent", cur: city.monthlyRent, oth: other.monthlyRent, higher: false }] : []),
               ...(city.annualWorkHours !== null && other.annualWorkHours !== null ? [{ key: "annualWorkHours", cur: city.annualWorkHours, oth: other.annualWorkHours, higher: false }] : []),
+              ...(hourlyWage > 0 && otherHourly > 0 ? [{ key: "hourlyWage", cur: hourlyWage, oth: otherHourly, higher: true }] : []),
+              ...(city.paidLeaveDays !== null && other.paidLeaveDays !== null ? [{ key: "paidLeaveDays", cur: city.paidLeaveDays, oth: other.paidLeaveDays, higher: true }] : []),
               ...(city.housePrice !== null && other.housePrice !== null ? [{ key: "housePrice", cur: city.housePrice, oth: other.housePrice, higher: false }] : []),
               ...(city.airQuality !== null && other.airQuality !== null ? [{ key: "airQuality", cur: city.airQuality, oth: other.airQuality, higher: false }] : []),
+              ...(city.internetSpeedMbps !== null && other.internetSpeedMbps !== null ? [{ key: "internetSpeed", cur: city.internetSpeedMbps, oth: other.internetSpeedMbps, higher: true }] : []),
+              ...(city.directFlightCities !== null && other.directFlightCities !== null ? [{ key: "directFlights", cur: city.directFlightCities, oth: other.directFlightCities, higher: true }] : []),
+              { key: "lifePressureIndex", cur: lifePressure, oth: otherLP, higher: false },
+              { key: "healthcareIndex", cur: city.healthcareIndex, oth: other.healthcareIndex, higher: true },
+              { key: "freedomIndex", cur: city.freedomIndex, oth: other.freedomIndex, higher: true },
               { key: "safetyIndex", cur: city.safetyIndex, oth: other.safetyIndex, higher: true },
               ...(city.doctorsPerThousand !== null && other.doctorsPerThousand !== null ? [{ key: "doctorsPerThousand", cur: city.doctorsPerThousand, oth: other.doctorsPerThousand, higher: true }] : []),
-              ...(city.directFlightCities !== null && other.directFlightCities !== null ? [{ key: "directFlights", cur: city.directFlightCities, oth: other.directFlightCities, higher: true }] : []),
+              ...(curCl && othCl ? [
+                { key: "avgTemp", cur: curCl.avgTempC, oth: othCl.avgTempC, higher: true },
+                { key: "tempRange", cur: curCl.summerAvgC - curCl.winterAvgC, oth: othCl.summerAvgC - othCl.winterAvgC, higher: false },
+                { key: "annualRain", cur: curCl.annualRainMm, oth: othCl.annualRainMm, higher: false },
+                { key: "humidity", cur: curCl.humidityPct, oth: othCl.humidityPct, higher: false },
+                { key: "sunshine", cur: curCl.sunshineHours, oth: othCl.sunshineHours, higher: true },
+              ] : []),
             ];
             let bestAdv: { key: string; pct: number; higher: boolean } | null = null;
             for (const d of dims) {
