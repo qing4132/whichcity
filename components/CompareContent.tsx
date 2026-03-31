@@ -283,9 +283,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       </div>
 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
-      {/* ── City selector (table header) ── */}
-      <div className={`sticky z-40 rounded-xl shadow-md border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
-        <div className="px-4 py-3 flex items-center gap-2">
+      {/* ── City selector (sticky) ── */}
+      <div className={`sticky z-40 rounded-t-xl shadow-md border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
@@ -356,26 +355,18 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </div>
             );
           })}
-        </div>
-        {/* Wins + city links */}
-        <div className={`flex border-t px-4 py-2 ${darkMode ? "border-gray-700" : "border-gray-100"}`}>
+      </div>
+      {/* ── Wins summary (not sticky) ── */}
+      <div className={`rounded-b-xl shadow-md border border-t px-4 py-2 flex ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           {visibleSlots.map((c, i) => (
-            <div key={`wins-${i}`} className="flex-1 flex flex-col items-center gap-0.5">
-              <span className={`text-xs font-semibold ${
-                c && winCounts[i] > 0
-                  ? (darkMode ? "text-emerald-400" : "text-emerald-600")
-                  : (darkMode ? "text-slate-500" : "text-slate-400")
-              }`}>
-                {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
-              </span>
-              {c && (
-                <Link href={`/city/${CITY_SLUGS[c.id]}`} className={`text-[10px] hover:underline ${darkMode ? "text-blue-400" : "text-blue-500"}`}>
-                  {getName(c)} {t("cityGuide")} →
-                </Link>
-              )}
+            <div key={`wins-${i}`} className={`flex-1 text-center text-xs font-semibold ${
+              c && winCounts[i] > 0
+                ? (darkMode ? "text-emerald-400" : "text-emerald-600")
+                : (darkMode ? "text-slate-500" : "text-slate-400")
+            }`}>
+              {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
             </div>
           ))}
-        </div>
       </div>
 
         {/* ──── Per-group cards ──── */}
@@ -512,7 +503,19 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           );
         })()}
 
-
+        {/* ──── City guide links ──── */}
+        {filledCities.length > 0 && (
+        <div className="grid gap-3 mt-8" style={{ gridTemplateColumns: `repeat(${filledCities.length}, minmax(0, 1fr))` }}>
+          {filledCities.map(c => (
+            <Link key={c.id} href={`/city/${CITY_SLUGS[c.id]}`}
+              className={`rounded-xl border p-4 transition ${sectionBg} hover:border-blue-400 hover:shadow`}>
+              <p className="text-2xl mb-1">{getFlag(c)}</p>
+              <p className={`font-bold ${headCls}`}>{getName(c)} {t("cityGuide")}</p>
+              <p className={`text-xs ${subCls}`}>{getCountry(c)} · {t("cityGuideDesc")}</p>
+            </Link>
+          ))}
+        </div>
+        )}
 
         {/* ──── Footer ──── */}
         <footer className={`mt-10 border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
