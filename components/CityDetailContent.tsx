@@ -337,7 +337,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
   const baseCard = "rounded-xl border p-4 text-center " + (darkMode ? "bg-slate-800" : "bg-white");
 
   return (
-    <div className={`min-h-screen ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
+    <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
       {/* Top Bar — same style as homepage */}
       <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
@@ -357,7 +357,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
               {t("navCompare")}
             </Link>
             <Link href="/methodology"
-              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-cyan-300 hover:bg-slate-700" : "bg-white border-slate-300 text-cyan-700 hover:bg-cyan-50"}`}>
               {t("navMethodology")}
             </Link>
           </div>

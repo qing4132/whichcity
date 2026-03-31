@@ -438,13 +438,13 @@ export default function RankingContent({ cities }: Props) {
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
 
       {/* Top bar */}
-      <div className={`border-b px-4 py-2.5 ${navBg}`}>
+      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
               {t("navHome")}
             </Link>
-            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-amber-900/40 border-amber-500/50 text-amber-300" : "bg-amber-50 border-amber-300 text-amber-700"}`}>
+            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-600 border-slate-400 text-amber-300" : "bg-slate-200 border-slate-400 text-amber-700"}`}>
               {t("navRanking")}
             </Link>
             <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
@@ -456,7 +456,7 @@ export default function RankingContent({ cities }: Props) {
               {t("navCompare")}
             </Link>
             <Link href="/methodology"
-              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-cyan-300 hover:bg-slate-700" : "bg-white border-slate-300 text-cyan-700 hover:bg-cyan-50"}`}>
               {t("navMethodology")}
             </Link>
           </div>
@@ -588,6 +588,13 @@ export default function RankingContent({ cities }: Props) {
         </div>
 
       </div>
+
+      {/* Footer */}
+      <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
+        <p>{t("dataSourcesDisclaimer")}</p>
+        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a></p>
+        <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
+      </footer>
     </div>
   );
 }

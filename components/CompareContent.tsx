@@ -256,11 +256,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               {t("navRandomCity")}
             </button>
             <Link href="/compare" onClick={e => e.preventDefault()}
-              className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-violet-900/40 border-violet-500/50 text-violet-300" : "bg-violet-50 border-violet-300 text-violet-700"}`}>
+              className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-600 border-slate-400 text-violet-300" : "bg-slate-200 border-slate-400 text-violet-700"}`}>
               {t("navCompare")}
             </Link>
             <Link href="/methodology"
-              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-cyan-300 hover:bg-slate-700" : "bg-white border-slate-300 text-cyan-700 hover:bg-cyan-50"}`}>
               {t("navMethodology")}
             </Link>
           </div>

@@ -2,13 +2,20 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import type { CostTier, IncomeMode } from "@/lib/types";
+import { POPULAR_CURRENCIES } from "@/lib/constants";
+import { CITY_SLUGS } from "@/lib/citySlug";
+import { LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
 import { useSettings } from "@/hooks/useSettings";
 
 export default function MethodologyContent() {
+  const router = useRouter();
   const { locale, darkMode, t } = useSettings();
 
   const bg = darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900";
   const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
+  const selectCls = `text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
   const cardBg = darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
   const headCls = darkMode ? "text-white" : "text-slate-900";
@@ -18,6 +25,7 @@ export default function MethodologyContent() {
   const warnBg = darkMode ? "bg-amber-900/30 border-amber-700 text-amber-200" : "bg-amber-50 border-amber-200 text-amber-800";
 
   const s = useSettings();
+  const professions = Object.keys(PROFESSION_TRANSLATIONS);
   if (!s.ready) return null;
 
   const content: Record<string, { title: string; toc: { id: string; label: string }[]; sections: JSX.Element }> = {
@@ -651,11 +659,39 @@ export default function MethodologyContent() {
     <div className={`min-h-screen transition-colors ${bg}`}>
       {/* Nav */}
       <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
-        <div className="max-w-4xl mx-auto flex items-center gap-2 flex-wrap">
-          <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>{t("navHome")}</Link>
-          <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>{t("navRanking")}</Link>
-          <Link href="/compare" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>{t("navCompare")}</Link>
-          <span className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-emerald-900/40 border-emerald-500/50 text-emerald-300" : "bg-emerald-50 border-emerald-300 text-emerald-700"}`}>{t("navMethodology")}</span>
+        <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
+          <div className="flex items-center gap-2">
+            <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>{t("navHome")}</Link>
+            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>{t("navRanking")}</Link>
+            <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              {t("navRandomCity")}
+            </button>
+            <Link href="/compare" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>{t("navCompare")}</Link>
+            <span className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-600 border-slate-400 text-cyan-300" : "bg-slate-200 border-slate-400 text-cyan-700"}`}>{t("navMethodology")}</span>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+              {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
+            </select>
+            <select value={s.costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+              {(["moderate", "budget"] as const).map(tier => <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>)}
+            </select>
+            <select value={s.incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+              <option value="gross">{t("incomeModeGross")}</option>
+              <option value="net">{t("incomeModeNet")}</option>
+              <option value="expatNet">{t("incomeModeExpatNet")}</option>
+            </select>
+            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+              {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
+            </select>
+            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+              {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+            </select>
+            <button onClick={() => s.setDarkMode(!darkMode)} className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
+              {darkMode ? "☀️" : "🌙"}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -675,6 +711,18 @@ export default function MethodologyContent() {
         {/* Content */}
         <div>{sections}</div>
       </div>
+
+      {/* Footer */}
+      <footer className={`border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
+        <p>{t("dataSourcesDisclaimer")}</p>
+        <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
+        <p className="mt-1">
+          {t("feedbackText")}{" "}
+          <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub Issues</a>
+          {" / "}
+          <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">Email</a>
+        </p>
+      </footer>
     </div>
   );
 }
