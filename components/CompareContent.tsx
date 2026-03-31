@@ -9,7 +9,8 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { useSettings } from "@/hooks/useSettings";
 import { computeNetIncome } from "@/lib/taxUtils";
-import { computeLifePressure } from "@/lib/clientUtils";
+import { computeLifePressure, getCityClimate, getClimateLabel } from "@/lib/clientUtils";
+import ClimateChart from "./ClimateChart";
 
 /* ── Types ── */
 interface Props {
@@ -55,12 +56,18 @@ const METRICS: Metric[] = [
   { key: "safety",   group: "index",       label: t => t("safetyIndex"),             get: c => c.safetyIndex,                         fmt: v => v != null ? v.toFixed(1) : "—" },
   { key: "health",   group: "index",       label: t => t("healthcareIndex"),         get: c => c.healthcareIndex,                     fmt: v => v != null ? v.toFixed(1) : "—" },
   { key: "freedom",  group: "index",       label: t => t("institutionalFreedom"),    get: c => c.freedomIndex,                        fmt: v => v != null ? v.toFixed(1) : "—" },
+  { key: "climateType", group: "climate", label: t => t("climateType"),             get: c => getCityClimate(c.id) ? 1 : null,       fmt: () => "—" },
+  { key: "avgTemp",  group: "climate",    label: t => t("avgTemp"),                 get: c => getCityClimate(c.id)?.avgTempC ?? null, fmt: v => v != null ? `${v.toFixed(1)}°C` : "—" },
+  { key: "tempRange",group: "climate",    label: t => t("tempRange"),               get: c => { const cl = getCityClimate(c.id); return cl ? cl.summerAvgC - cl.winterAvgC : null; }, fmt: v => v != null ? `${v.toFixed(1)}°C` : "—", lower: true },
+  { key: "rain",     group: "climate",    label: t => t("annualRain"),              get: c => getCityClimate(c.id)?.annualRainMm ?? null, fmt: v => v != null ? `${Math.round(v)} mm` : "—" },
+  { key: "humidity", group: "climate",    label: t => t("humidity"),                get: c => getCityClimate(c.id)?.humidityPct ?? null, fmt: v => v != null ? `${v}%` : "—", lower: true },
+  { key: "sunshine", group: "climate",    label: t => t("sunshine"),                get: c => getCityClimate(c.id)?.sunshineHours ?? null, fmt: (v, x) => v != null ? `${Math.round(v)} ${x.t("unitH")}` : "—" },
 ];
 
-const GROUP_KEYS = ["income", "housing", "work", "environment", "index"] as const;
+const GROUP_KEYS = ["income", "housing", "work", "environment", "index", "climate"] as const;
 const GROUP_I18N: Record<string, string> = {
   income: "rankGroup_income", housing: "rankGroup_housing", work: "rankGroup_work",
-  environment: "rankGroup_environment", index: "rankGroup_index",
+  environment: "rankGroup_environment", index: "rankGroup_index", climate: "climateEnv",
 };
 
 /* ════════════════════════════════════════════ */
@@ -384,6 +391,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                         {vals.map((v, i) => {
                           const slot = visibleSlots[i];
                           if (!slot) return <td key={`empty-${i}`} className={`px-3 py-2.5 text-center ${dimC}`}>—</td>;
+                          if (m.key === "climateType") {
+                            const cl = getCityClimate(slot.id);
+                            return <td key={slot.id} className={`px-3 py-2.5 text-center ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</td>;
+                          }
                           const formatted = m.fmt(v, rowCtx);
                           const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
                           const isNull = v == null;
@@ -401,6 +412,29 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
             </table>
           </div>
         </div>
+
+        {/* ──── Monthly climate charts ──── */}
+        {filledCities.length > 0 && filledCities.some(c => getCityClimate(c.id)?.monthlyHighC) && (
+        <div className={`rounded-xl shadow-md border mt-6 p-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+          <h3 className={`text-xs font-bold tracking-wider uppercase mb-2 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+            {t("climateChart")}
+          </h3>
+          <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${filledCities.length}, minmax(0, 1fr))` }}>
+            {filledCities.map(c => {
+              const cl = getCityClimate(c.id);
+              if (!cl) return <div key={c.id} />;
+              return (
+                <div key={c.id}>
+                  <p className={`text-xs font-semibold text-center mb-2 ${headCls}`}>
+                    {CITY_FLAG_EMOJIS[c.id] || "🏙️"} {getName(c)}
+                  </p>
+                  <ClimateChart climate={cl} locale={locale} darkMode={darkMode} t={t} hideTitle />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        )}
 
         {/* ──── City guide links ──── */}
         {filledCities.length > 0 && (

@@ -15,9 +15,10 @@ interface Props {
   locale: Locale;
   darkMode: boolean;
   t: (key: string) => string;
+  hideTitle?: boolean;
 }
 
-export default function ClimateChart({ climate, locale, darkMode, t }: Props) {
+export default function ClimateChart({ climate, locale, darkMode, t, hideTitle }: Props) {
   const { monthlyHighC, monthlyLowC, monthlyRainMm } = climate;
   if (!monthlyHighC || !monthlyLowC || !monthlyRainMm) return null;
 
@@ -56,10 +57,12 @@ export default function ClimateChart({ climate, locale, darkMode, t }: Props) {
   const rainBg = darkMode ? "#38bdf8" : "#0ea5e9";
 
   return (
-    <div className={`mt-6 pt-5 border-t ${borderCls}`}>
+    <div className={hideTitle ? "" : `mt-6 pt-5 border-t ${borderCls}`}>
+      {!hideTitle && (
       <h3 className={`text-xs font-semibold tracking-wide mb-3 ${labelCls}`}>
         {t("climateChart")}
       </h3>
+      )}
       <div>
         {/* Temperature chart */}
         <div className="flex items-end gap-0">
