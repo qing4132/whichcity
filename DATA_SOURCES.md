@@ -688,6 +688,9 @@ value = round(Σ(sub.norm × sub.weight / totalWeight))
 | `summerAvgC` | 夏季平均温 (°C) | 见下文定义 |
 | `winterAvgC` | 冬季平均温 (°C) | 见下文定义 |
 | `humidityPct` | 年平均相对湿度 (%) | WMO / 各国气象局 |
+| `monthlyHighC` | 12 个月日均最高温 (°C) | 各国气象局 Climate Normals |
+| `monthlyLowC` | 12 个月日均最低温 (°C) | 各国气象局 Climate Normals |
+| `monthlyRainMm` | 12 个月月均降水 (mm) | 各国气象局 Climate Normals |
 
 ### 8.3 季节定义
 
@@ -702,9 +705,89 @@ value = round(Σ(sub.norm × sub.weight / totalWeight))
 "tropical" | "temperate" | "continental" | "arid" | "mediterranean" | "oceanic"
 ```
 
-### 8.5 管理脚本
+### 8.5 月度数据来源（按地区）
 
-`scripts/add-climate-detail.mjs` — 为 CITY_CLIMATE 添加 summerAvgC/winterAvgC/humidityPct 三个字段（写入 constants.ts）。
+> 月度数据（`monthlyHighC`、`monthlyLowC`、`monthlyRainMm`）均来自各国国家气象局发布的 Climate Normals（气候标准值），基准期 1991–2020。数据点总计 134 城 × 36 = **4,824 个值**。
+
+| 地区 | 城市数 | 气象局 / 数据源 |
+|------|--------|---------------|
+| 美国 | 20 | NWS / NOAA Climate Normals 1991-2020 (各站点: Central Park, LAX, O'Hare, MIA Intl 等) |
+| 加拿大 | 5 | ECCC (Environment & Climate Change Canada) Normals (Pearson, YVR, Trudeau, YYC, YOW) |
+| 英国 | 2 | Met Office (Heathrow, Belfast Intl) |
+| 法国 | 1 | Météo-France (Paris-Montsouris) |
+| 德国 | 2 | DWD (München-Stadt, Berlin-Tempelhof) |
+| 西班牙 | 2 | AEMET (Barcelona-Fabra, Madrid-Retiro) |
+| 意大利 | 2 | Aeronautica Militare (Milano-Linate, Roma-Ciampino) |
+| 瑞士 | 2 | MeteoSchweiz (Zürich-Fluntern, Genève-Cointrin) |
+| 荷兰 | 1 | KNMI (Schiphol) |
+| 比利时 | 1 | IRM (Uccle) |
+| 奥地利 | 1 | ZAMG (Wien-Hohe Warte) |
+| 捷克 | 1 | CHMI (Praha-Klementinum) |
+| 波兰 | 1 | IMGW (Warszawa-Okęcie) |
+| 葡萄牙 | 1 | IPMA (Lisboa-Geofísico) |
+| 希腊 | 1 | HNMS (Athens-Hellinikon) |
+| 土耳其 | 1 | MGM (Istanbul-Sarıyer) |
+| 爱尔兰 | 1 | Met Éireann (Dublin Airport) |
+| 瑞典 | 1 | SMHI (Stockholm) |
+| 丹麦 | 1 | DMI (København) |
+| 芬兰 | 1 | FMI (Helsinki-Vantaa) |
+| 挪威 | 1 | MET (Oslo-Blindern) |
+| 爱沙尼亚 | 1 | EMHI (Tallinn-Harku) |
+| 卢森堡 | 1 | MeteoLux |
+| 东欧 6 国 | 7 | UHMS (基辅), ANM (布加勒斯特), NIMH (索非亚), DHMZ (萨格勒布), RHMZ (贝尔格莱德), OMSZ (布达佩斯), SHMU (布拉迪斯拉发), ARSO (卢布尔雅那) |
+| 俄罗斯 | 1 | Roshydromet (Moscow VVC) |
+| 格鲁吉亚 | 1 | Sakartvelos meteorologia (Tbilisi) |
+| 日本 | 5 | JMA (Tokyo, Osaka, Nagoya, Fukuoka, Yokohama) |
+| 中国 | 6 | CMA (Beijing, Shanghai, Guangzhou, Shenzhen, Chengdu, Hangzhou, Chongqing) |
+| 韩国 | 3 | KMA (Seoul, Busan, Incheon) |
+| 台湾 | 1 | CWA (Taipei) |
+| 香港 | 1 | HKO (Hong Kong Observatory) |
+| 新加坡 | 1 | MSS (Changi) |
+| 泰国 | 2 | TMD (Bangkok, Chiang Mai) |
+| 马来西亚 | 1 | MetMalaysia (KL-Subang) |
+| 越南 | 2 | NCHMF (Ho Chi Minh, Hanoi) |
+| 印度尼西亚 | 1 | BMKG (Jakarta) |
+| 菲律宾 | 1 | PAGASA (Manila) |
+| 柬埔寨 | 1 | MoWRAM (Phnom Penh) |
+| 缅甸 | 1 | DMH (Yangon) |
+| 孟加拉国 | 1 | BMD (Dhaka) |
+| 斯里兰卡 | 1 | DoM (Colombo) |
+| 尼泊尔 | 1 | DHM (Kathmandu) |
+| 印度 | 4 | IMD (New Delhi, Mumbai, Bangalore, Hyderabad, Pune) |
+| 巴基斯坦 | 2 | PMD (Karachi, Islamabad) |
+| 伊朗 | 1 | IRIMO (Tehran-Mehrabad) |
+| 哈萨克斯坦 | 1 | Kazhydromet (Almaty) |
+| 乌兹别克斯坦 | 1 | Uzhydromet (Tashkent) |
+| 阿塞拜疆 | 1 | ANAS (Baku) |
+| 蒙古 | 1 | NAMHEM (Ulaanbaatar) |
+| 阿联酋 | 2 | NCMS (Dubai, Abu Dhabi) |
+| 卡塔尔 | 1 | QMD (Doha) |
+| 巴林 | 1 | Bahrain Met (Manama) |
+| 沙特 | 1 | PME (Riyadh) |
+| 阿曼 | 1 | Oman Met (Muscat) |
+| 黎巴嫩 | 1 | DGCA (Beirut) |
+| 约旦 | 1 | JMD (Amman) |
+| 以色列 | 1 | IMS (Tel Aviv) |
+| 澳大利亚 | 4 | BOM (Sydney, Melbourne, Brisbane, Perth) |
+| 新西兰 | 1 | MetService (Auckland) |
+| 墨西哥 | 2 | SMN (Mexico City, Guadalajara) |
+| 巴西 | 2 | INMET (São Paulo, Rio) |
+| 阿根廷 | 1 | SMN (Buenos Aires) |
+| 智利 | 1 | DMC (Santiago) |
+| 哥伦比亚 | 2 | IDEAM (Bogotá, Medellín) |
+| 秘鲁 | 1 | SENAMHI (Lima) |
+| 哥斯达黎加 | 1 | IMN (San José) |
+| 巴拿马 | 1 | ETESA (Panama City) |
+| 波多黎各 | 1 | NWS (San Juan) |
+| 肯尼亚 | 1 | KMD (Nairobi) |
+| 埃及 | 1 | EMA (Cairo) |
+| 南非 | 2 | SAWS (Johannesburg, Cape Town) |
+| 尼日利亚 | 1 | NiMet (Lagos) |
+
+### 8.6 管理脚本
+
+- `scripts/add-climate-detail.mjs` — 为 CITY_CLIMATE 添加 summerAvgC/winterAvgC/humidityPct 三个字段（写入 constants.ts）。
+- `scripts/add-monthly-climate.mjs` — 为 134 城添加 monthlyHighC/monthlyLowC/monthlyRainMm 三个月度数组（写入 constants.ts）。
 
 ---
 
@@ -1026,7 +1109,8 @@ cmp(a, b, lowerIsBetter = false) {
   └─ batch-update-v3.mjs       → 134 城 × 26 职业完整数据批量写入
 
 附属脚本 (不修改 cities.json):
-  ├─ add-climate-detail.mjs    → 修改 lib/constants.ts (CITY_CLIMATE)
+  ├─ add-climate-detail.mjs    → 修改 lib/constants.ts (CITY_CLIMATE 季节/湿度)
+  ├─ add-monthly-climate.mjs   → 修改 lib/constants.ts (CITY_CLIMATE 月度气温/降水)
   └─ translate-intros.mjs      → 生成 lib/cityIntros.ts
 ```
 
@@ -1046,7 +1130,8 @@ cmp(a, b, lowerIsBetter = false) {
 | `add-freedom-index.mjs` | Node | cities.json 子字段 | cities.json `.freedomIndex` | 自由指数 |
 | `batch-update-v3.mjs` | Node | — | cities.json (完整数据) | v3 批量更新 134×26 |
 | `fix-asian-data.mjs` | Node | — | cities.json (AQI+cost修正) | 亚洲城市数据修正 |
-| `add-climate-detail.mjs` | Node | — | lib/constants.ts | 气候详情 |
+| `add-climate-detail.mjs` | Node | — | lib/constants.ts | 气候详情 (季节均温/湿度) |
+| `add-monthly-climate.mjs` | Node | — | lib/constants.ts | 月度气温/降水 (134城×36值) |
 | `translate-intros.mjs` | Node | lib/cityIntros.ts | lib/cityIntros.ts | 翻译城市简介 |
 | `add_20_asian_cities.py` | Python | — | cities.json (添加 ID 101-120) | 批量加城市 (历史) |
 | `check_data.js` | Node | cities.json | stdout | 完整性校验 |
