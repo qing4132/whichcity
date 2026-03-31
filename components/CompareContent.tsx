@@ -285,7 +285,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
       {/* ── City selector (table header) ── */}
       <div className={`sticky z-40 rounded-t-xl border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
-          <div className="shrink-0" style={{ width: cols === 2 ? "30%" : "22%" }} />
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
@@ -358,71 +357,66 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           })}
       </div>
 
-        {/* ──── Comparison table ──── */}
+        {/* ──── Comparison data ──── */}
         <div className={`rounded-t-none rounded-b-xl shadow-md overflow-hidden border border-t-0 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm" style={{ tableLayout: "fixed" }}>
-              <colgroup>
-                <col style={{ width: cols === 2 ? "30%" : "22%" }} />
-                {visibleSlots.map((_, i) => <col key={i} />)}
-              </colgroup>
-              <tbody>
-                {/* ── Wins summary row ── */}
-                <tr className={`border-b ${darkMode ? "border-slate-700/50" : "border-slate-100"}`}>
-                  <td className={`px-4 py-2.5 font-medium whitespace-nowrap ${darkMode ? "text-slate-300" : "text-slate-700"}`} />
-                  {visibleSlots.map((c, i) => (
-                    <td key={`wins-${i}`} className={`px-3 py-2.5 text-center ${
-                      c && winCounts[i] > 0
-                        ? (darkMode ? "text-emerald-400 font-bold" : "text-emerald-600 font-bold")
-                        : (darkMode ? "text-slate-500" : "text-slate-400")
-                    }`}>
-                      {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
-                    </td>
-                  ))}
-                </tr>
-                {GROUP_KEYS.map(gk => {
-                  const gRows = rows.filter(d => d.m.group === gk);
-                  if (gRows.length === 0) return null;
-                  const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
-                  const borderR = darkMode ? "border-slate-700/50" : "border-slate-100";
-                  const labelC = darkMode ? "text-slate-300" : "text-slate-700";
-                  const valC = darkMode ? "text-slate-200" : "text-slate-700";
-                  const bestC = darkMode ? "text-emerald-400 font-bold" : "text-emerald-600 font-bold";
-                  const dimC = darkMode ? "text-slate-500" : "text-slate-400";
-                  return [
-                    <tr key={`gh-${gk}`} className={groupBg}>
-                      <td colSpan={visibleSlots.length + 1} className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
-                        {t(GROUP_I18N[gk])}
-                      </td>
-                    </tr>,
-                    ...gRows.map(({ m, vals, bestVal }) => (
-                      <tr key={m.key} className={`border-b ${borderR}`}>
-                        <td className={`px-4 py-2.5 font-medium whitespace-nowrap ${labelC}`}>
-                          {m.label(t)}
-                        </td>
-                        {vals.map((v, i) => {
-                          const slot = visibleSlots[i];
-                          if (!slot) return <td key={`empty-${i}`} className={`px-3 py-2.5 text-center ${dimC}`}>—</td>;
-                          if (m.key === "climateType") {
-                            const cl = getCityClimate(slot.id);
-                            return <td key={slot.id} className={`px-3 py-2.5 text-center ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</td>;
-                          }
-                          const formatted = m.fmt(v, rowCtx);
-                          const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
-                          const isNull = v == null;
-                          return (
-                            <td key={slot.id} className={`px-3 py-2.5 text-center ${isNull ? dimC : isBest ? bestC : valC}`}>
-                              {formatted}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    )),
-                  ];
-                })}
-              </tbody>
-            </table>
+          {/* Wins summary */}
+          <div className={`flex border-b ${darkMode ? "border-slate-700/50" : "border-slate-100"}`}>
+            {visibleSlots.map((c, i) => (
+              <div key={`wins-${i}`} className={`flex-1 px-3 py-2.5 text-center text-sm ${
+                c && winCounts[i] > 0
+                  ? (darkMode ? "text-emerald-400 font-bold" : "text-emerald-600 font-bold")
+                  : (darkMode ? "text-slate-500" : "text-slate-400")
+              }`}>
+                {c ? t("winsIn", { name: "", count: winCounts[i] }).replace(/^\s*/, "") : "—"}
+              </div>
+            ))}
           </div>
+          {GROUP_KEYS.map(gk => {
+            const gRows = rows.filter(d => d.m.group === gk);
+            if (gRows.length === 0) return null;
+            const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
+            const borderR = darkMode ? "border-slate-700/50" : "border-slate-100";
+            const labelC = darkMode ? "text-slate-300" : "text-slate-700";
+            const valC = darkMode ? "text-slate-200" : "text-slate-700";
+            const bestC = darkMode ? "text-emerald-400 font-bold" : "text-emerald-600 font-bold";
+            const dimC = darkMode ? "text-slate-500" : "text-slate-400";
+            return (
+              <div key={gk}>
+                {/* Group header */}
+                <div className={`px-4 py-2 ${groupBg}`}>
+                  <p className={`text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                    {t(GROUP_I18N[gk])}
+                  </p>
+                </div>
+                {/* Metrics */}
+                {gRows.map(({ m, vals, bestVal }) => (
+                  <div key={m.key} className={`border-b ${borderR}`}>
+                    {/* Metric label */}
+                    <p className={`px-4 pt-2 pb-0.5 text-xs font-medium ${labelC}`}>{m.label(t)}</p>
+                    {/* Values row */}
+                    <div className="flex">
+                      {vals.map((v, i) => {
+                        const slot = visibleSlots[i];
+                        if (!slot) return <div key={`empty-${i}`} className={`flex-1 px-3 pb-2 text-center text-sm ${dimC}`}>—</div>;
+                        if (m.key === "climateType") {
+                          const cl = getCityClimate(slot.id);
+                          return <div key={slot.id} className={`flex-1 px-3 pb-2 text-center text-sm ${cl ? valC : dimC}`}>{cl ? getClimateLabel(cl.type, locale) : "—"}</div>;
+                        }
+                        const formatted = m.fmt(v, rowCtx);
+                        const isBest = bestVal != null && v != null && v === bestVal && vals.some(vv => vv !== bestVal);
+                        const isNull = v == null;
+                        return (
+                          <div key={slot.id} className={`flex-1 px-3 pb-2 text-center text-sm ${isNull ? dimC : isBest ? bestC : valC}`}>
+                            {formatted}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </div>
 
         {/* ──── Climate & Environment (standalone section, no win highlighting) ──── */}
