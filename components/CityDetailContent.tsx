@@ -621,9 +621,11 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
               const sign = d.oth > d.cur ? "+" : "-";
               scored.push({ key: d.key, pct, adv: better, sign });
             }
+            const climateKeys = new Set(["avgTemp", "tempRange", "annualRain", "humidity", "sunshine"]);
             scored.sort((a, b) => b.pct - a.pct);
-            const top2Adv = scored.filter(s => s.adv).slice(0, 2);
-            const top1Dis = scored.filter(s => !s.adv).slice(0, 1);
+            const nonClimate = scored.filter(s => !climateKeys.has(s.key));
+            const top2Adv = nonClimate.filter(s => s.adv).slice(0, 2);
+            const top1Dis = nonClimate.filter(s => !s.adv).slice(0, 1);
             const highlights = [...top2Adv, ...top1Dis];
 
             return (
