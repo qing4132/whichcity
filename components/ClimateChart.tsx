@@ -51,7 +51,7 @@ export default function ClimateChart({ climate, locale, darkMode, t }: Props) {
 
   // Colors — amber (warmth) + sky (water), harmonious with slate theme
   const tempBg = darkMode ? "#fbbf24" : "#f59e0b";
-  const tempHighCls = darkMode ? "text-amber-300" : "text-amber-700";
+  const tempHighCls = darkMode ? "text-amber-400" : "text-amber-600";
   const tempLowCls = darkMode ? "text-amber-400" : "text-amber-600";
   const rainBg = darkMode ? "#38bdf8" : "#0ea5e9";
 
