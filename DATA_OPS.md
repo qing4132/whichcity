@@ -7,7 +7,7 @@
 ```
 public/data/
   cities.json          ← 134 cities × 42 fields (runtime, fetched by browser)
-  exchange-rates.json  ← 30 currencies (runtime, fetched by browser)
+  exchange-rates.json  ← 30 currencies (auto-updated daily via GitHub Actions)
 
 lib/
   constants.ts         ← CITY_CLIMATE (134 entries), REGIONS, CITY_FLAG_EMOJIS, CITY_COUNTRY, POPULAR_CURRENCIES
@@ -156,7 +156,7 @@ id: {
 
 **30 currencies**: USD, EUR, GBP, JPY, CNY, HKD, AUD, CAD, SGD, INR, THB, MYR, VND, PHP, IDR, PKR, EGP, TRY, BRL, MXN, ZAR, SEK, NOK, CHF, NZD, DKK, RUB, GEL, NGN, COP
 
-**To update**: Manually edit the JSON file with current rates. This is a static snapshot — not fetched in real-time.
+**To update**: Automated via GitHub Actions (daily cron). The workflow runs `scripts/update-rates.mjs`, which fetches latest rates from ExchangeRate-API and commits changes. Can also be triggered manually from the Actions tab. See `.github/workflows/update-exchange-rates.yml`.
 
 ## i18n
 
@@ -199,7 +199,7 @@ npm run build             # Full build validation
 9. [ ] Update internet speeds
 10. [ ] Update direct flight counts
 11. [ ] Update Big Mac prices (The Economist Jan edition)
-12. [ ] Update exchange rates in exchange-rates.json
+12. [x] ~~Update exchange rates~~ (automated daily via GitHub Actions)
 13. [ ] Update tax brackets in taxData.ts (check for law changes)
 14. [ ] Update `dataLastUpdated` string in i18n.ts (all 4 locales)
 15. [ ] Run `npx tsc --noEmit` and `npm run build`
