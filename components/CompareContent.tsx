@@ -259,6 +259,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-violet-900/40 border-violet-500/50 text-violet-300" : "bg-violet-50 border-violet-300 text-violet-700"}`}>
               {t("navCompare")}
             </Link>
+            <Link href="/methodology"
+              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+              {t("navMethodology")}
+            </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
@@ -558,6 +562,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         {/* ──── Footer ──── */}
         <footer className={`mt-10 border-t px-4 py-6 text-center text-xs ${darkMode ? "border-slate-700 text-slate-500" : "border-slate-200 text-slate-400"}`}>
           <p>{t("dataSourcesDisclaimer")}</p>
+          <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a></p>
           <p className="mt-1 font-medium">{t("dataLastUpdated")}</p>
           <p className="mt-1">
             {t("feedbackText")}{" "}
