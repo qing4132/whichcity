@@ -282,9 +282,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
-      {/* ── City selector (sticky, flat top flush with nav) ── */}
-      <div className={`sticky z-40 rounded-b-xl shadow-md border border-t-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH }}>
+      {/* ── City selector (full-width sticky layer) ── */}
+      <div className={`sticky z-40 py-2 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} style={{ top: navH }}>
+        <div className="max-w-6xl mx-auto px-4">
+          <div className={`rounded-xl shadow-md border px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
@@ -355,8 +356,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </div>
             );
           })}
+          </div>
+        </div>
       </div>
 
+      <div className="max-w-6xl mx-auto px-4">
       {/* ── Wins summary (standalone card) ── */}
       <div className={`rounded-xl shadow-md overflow-hidden border mt-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
         <div className="grid px-4 py-2" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
