@@ -283,9 +283,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       </div>
 
       <div className="max-w-6xl mx-auto px-4 pt-6 sm:pt-8">
-      {/* ── City selector + wins card ── */}
-      <div className={`sticky z-40 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} style={{ top: navH }}>
-        <div className={`rounded-t-xl shadow-md border border-b-0 px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+      {/* ── City selector (sticky, standalone) ── */}
+      <div className={`sticky z-40 rounded-xl shadow-md border px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`} style={{ top: navH + 8 }}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
@@ -356,10 +355,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </div>
             );
           })}
-        </div>
       </div>
-      {/* ── Wins summary (not sticky) ── */}
-      <div className={`-mt-px rounded-b-xl shadow-md border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
+
+      {/* ── Wins summary (standalone card) ── */}
+      <div className={`rounded-xl shadow-md overflow-hidden border mt-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
         <div className="grid px-4 py-2" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
           {visibleSlots.map((c, i) => {
             const winDivider = i < visibleSlots.length - 1 ? `border-r ${darkMode ? "border-slate-700" : "border-slate-200"} pr-4` : "";
