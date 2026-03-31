@@ -221,7 +221,7 @@ export default function MethodologyContent() {
         ["购房年数（反向）", "20%", "越低越好", "3 年 ~ 120 年"],
       ]} />
       <P>每个子指标使用锚定归一化而非 min-max：先将原始值 clamp 到锚定范围内，再线性映射到 0–100。最终结果 = 100 − 加权和（反转：数值越大压力越大）。</P>
-      <P><strong>缺失数据处理</strong>：若某子指标数据缺失（如巨无霸价格为 null），该子指标得分取 50（中位值），权重保持不变。可信度根据缺失数量评定：0 缺失 → high，1–2 缺失 → medium，3+ 缺失 → low。</P>
+      <P><strong>缺失数据处理</strong>：若某子指标数据缺失（如巨无霸价格为 null），该子指标不参与计算，其权重按比例重新分配给其他可用子指标。可信度根据缺失量评定：0 缺失 → high，1–2 缺失 → medium，3+ 缺失 → low。</P>
 
       <H3>2. 安全指数（越高越安全）</H3>
       <Table headers={["子指标", "权重", "来源"]} rows={[
@@ -414,7 +414,7 @@ export default function MethodologyContent() {
         ["Years to Buy Home (inverted)", "20%", "Lower = better", "3 ~ 120 years"],
       ]} />
       <P>Uses anchored normalization (not min-max): values clamped to anchor range, then linearly scaled to 0–100. Final = 100 − weighted sum (inverted: higher = more pressure).</P>
-      <P><strong>Missing data</strong>: Missing sub-indicators default to score 50 (midpoint). Confidence: 0 missing = high, 1–2 = medium, 3+ = low.</P>
+      <P><strong>Missing data</strong>: Missing sub-indicators are excluded and their weights redistributed proportionally to available sub-indicators. Confidence: 0 missing = high, 1–2 = medium, 3+ = low.</P>
 
       <H3>2. Safety Index (higher = safer)</H3>
       <Table headers={["Sub-indicator", "Weight", "Source"]} rows={[
