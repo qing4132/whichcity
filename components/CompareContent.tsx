@@ -342,7 +342,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
             return (
-              <div key={`sel-${i}`} className="flex-1 flex justify-center relative" ref={el => { slotRefs.current[i] = el as HTMLDivElement | null; }}>
+              <div key={`sel-${i}`} className="flex-1 min-w-0 flex justify-center relative" ref={el => { slotRefs.current[i] = el as HTMLDivElement | null; }}>
                 {c ? (
                   /* ── Filled selector ── */
                   <div
