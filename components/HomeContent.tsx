@@ -87,7 +87,7 @@ export default function HomeContent() {
     <div className={`min-h-screen flex flex-col transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
 
       {/* Top bar */}
-      <div className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+      <div className={`sticky top-0 z-50 border-b py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/"
@@ -110,7 +110,7 @@ export default function HomeContent() {
           <div className="flex items-center gap-2 flex-wrap">
             <button onClick={() => setNavOpen(v => !v)}
               className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
-              {navOpen ? "✕" : "⚙️"}
+              <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
             </button>
             <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
@@ -213,7 +213,7 @@ export default function HomeContent() {
         </div>
 
         {/* Popular cities */}
-        <div className="grid grid-cols-3 gap-x-4 gap-y-1.5 mt-5 max-w-lg w-full justify-items-center">
+        <div className="grid grid-cols-3 gap-x-4 gap-y-1.5 mt-5 max-w-xs w-full justify-items-center">
           {POPULAR_HOME.map(c => (
             <Link key={c.id} href={`/city/${c.slug}`}
               className={`text-xs transition ${darkMode ? "text-slate-400 hover:text-blue-400" : "text-slate-500 hover:text-blue-600"}`}>

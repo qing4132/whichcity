@@ -243,7 +243,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
       {/* ──── Top bar ──── */}
-      <div ref={navRef} className={`sticky top-0 z-50 border-b px-4 py-2.5 ${navBg}`}>
+      <div ref={navRef} className={`sticky top-0 z-50 border-b py-2.5 ${navBg}`}>
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
@@ -264,7 +264,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
           <div className="flex items-center gap-2 flex-wrap">
             <button onClick={() => setNavOpen(v => !v)}
               className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
-              {navOpen ? "✕" : "⚙️"}
+              <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
             </button>
             <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
@@ -510,6 +510,13 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                   );
                   return (
                     <div key={c.id} className={ci < visibleSlots.length - 1 && cols > 2 ? `border-r ${dividerCls} pr-4` : ""}>
+                      {/* City name label (mobile stacked) */}
+                      {cols <= 2 && (
+                        <>
+                          {ci > 0 && <hr className={`my-3 ${dividerCls}`} />}
+                          <p className={`text-sm font-bold text-center mb-2 ${headCls}`}>{getFlag(c)} {getName(c)}</p>
+                        </>
+                      )}
                       {/* Data grid */}
                       <div className="grid grid-cols-2 gap-1">
                         {items.map(([label, val]) => (
@@ -525,6 +532,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                           <ClimateChart climate={cl} locale={locale} darkMode={darkMode} t={t} hideTitle hideLegend
                             sharedTempMin={sharedTempMin} sharedTempMax={sharedTempMax} sharedRainCeil={sharedRainCeil} />
                         </div>
+                      )}
+                      {/* City name label below chart (desktop columns) */}
+                      {cols > 2 && (
+                        <p className={`text-xs font-semibold text-center mt-2 ${subCls}`}>{getFlag(c)} {getName(c)}</p>
                       )}
                     </div>
                   );
