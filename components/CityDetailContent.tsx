@@ -170,6 +170,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
   const s = useSettings();
   const router = useRouter();
   const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode } = s;
+  const [navOpen, setNavOpen] = useState(false);
 
   if (!s.ready) return null;
 
@@ -195,7 +196,6 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
   const borderRow = darkMode ? "border-slate-700" : "border-slate-100";
   const selectCls = `text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
   const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
-  const [navOpen, setNavOpen] = useState(false);
 
   // Percentile ranking: compute where this city stands for each metric
   const pct = (values: number[], val: number) => {
