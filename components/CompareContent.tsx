@@ -105,6 +105,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   /* ── City-switcher dropdown state ── */
   const [openSlot, setOpenSlot] = useState<number | null>(null);
   const [slotSearch, setSlotSearch] = useState("");
+  const [hlIdx, setHlIdx] = useState(-1);
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
   const navRef = useRef<HTMLDivElement | null>(null);
   const [navH, setNavH] = useState(0);
@@ -198,7 +199,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       if (zh) { const cn = COUNTRY_TRANSLATIONS[zh]; if (cn && Object.values(cn).some(n => n.toLowerCase().includes(q))) return true; }
       return false;
     });
+    setHlIdx(-1);
     return q ? filtered.slice(0, 8) : filtered.slice(0, 20);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openSlot, slotSearch, slots, allCities]);
 
   /* ── Switch city in a slot ── */
@@ -208,7 +211,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     const nc = [...slots]; nc[slotIdx] = city;
     const ns = [...slugs]; ns[slotIdx] = slug;
     setSlots(nc); setSlugs(ns);
-    setOpenSlot(null); setSlotSearch("");
+    setOpenSlot(null); setSlotSearch(""); setHlIdx(-1);
     syncUrl(ns);
   };
 
@@ -347,11 +350,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                     tabIndex={0}
                     onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
                     onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } } }}
-                    className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border cursor-pointer transition ${
+                    className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border cursor-pointer transition w-full ${
                       isOpen
                         ? (darkMode ? "border-blue-500 bg-slate-700" : "border-blue-400 bg-blue-50")
                         : (darkMode ? "border-slate-600 bg-slate-800 hover:border-slate-500" : "border-slate-200 bg-white hover:border-slate-400")
-                    }`} style={{ maxWidth: 240, width: "100%" }}
+                    }`}
                   >
                     <button onClick={e => { e.stopPropagation(); clearSlot(i); }} aria-label={t("remove")}
                       className={`shrink-0 w-5 h-5 rounded-full text-sm flex items-center justify-center ${darkMode ? "text-slate-400 hover:text-red-400" : "text-slate-400 hover:text-red-500"}`}>
@@ -370,11 +373,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                     tabIndex={0}
                     onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
                     onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } } }}
-                    className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border border-dashed cursor-pointer transition ${
+                    className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border border-dashed cursor-pointer transition w-full ${
                       isOpen
                         ? (darkMode ? "border-blue-500" : "border-blue-400")
                         : (darkMode ? "border-slate-600 hover:border-slate-500" : "border-slate-300 hover:border-slate-400")
-                    }`} style={{ maxWidth: 240, width: "100%" }}
+                    }`}
                   >
                     <span className="shrink-0 w-5" />
                     <span className={`flex-1 text-sm text-center ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("chooseCity").replace(":", "")}</span>
@@ -383,24 +386,33 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 )}
                 {/* ── Dropdown ── */}
                 {isOpen && (
-                  <div className={`absolute z-50 mt-1 rounded-xl shadow-lg border overflow-hidden ${
+                  <div className={`absolute z-50 mt-1 left-0 right-0 rounded-xl shadow-lg border overflow-hidden ${
                     darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-                  }`} style={{ top: "100%", left: "50%", transform: "translateX(-50%)", width: 240, maxWidth: "calc(100vw - 2rem)" }}>
+                  }`} style={{ top: "100%" }}>
                     <input autoFocus value={slotSearch} onChange={e => setSlotSearch(e.target.value)}
+                      onKeyDown={e => {
+                        if (!slotResults.length) return;
+                        if (e.key === "ArrowDown") { e.preventDefault(); setHlIdx(j => (j + 1) % slotResults.length); }
+                        else if (e.key === "ArrowUp") { e.preventDefault(); setHlIdx(j => (j - 1 + slotResults.length) % slotResults.length); }
+                        else if (e.key === "Enter" && hlIdx >= 0 && hlIdx < slotResults.length) { e.preventDefault(); switchCity(i, slotResults[hlIdx]); }
+                        else if (e.key === "Escape") { setOpenSlot(null); setSlotSearch(""); setHlIdx(-1); }
+                      }}
                       placeholder={t("homeSearchPlaceholder")}
                       className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${
                         darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
                                  : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
                       }`} />
                     <div className="max-h-52 overflow-y-auto" role="listbox" id={`slot-list-${i}`}>
-                      {slotResults.map(rc => (
-                        <button key={rc.id} onClick={() => switchCity(i, rc)} role="option" aria-selected={false}
+                      {slotResults.map((rc, ri) => (
+                        <button key={rc.id} onClick={() => switchCity(i, rc)} onMouseEnter={() => setHlIdx(ri)} role="option" aria-selected={ri === hlIdx}
                           className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${
-                            darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
+                            ri === hlIdx
+                              ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-slate-700")
+                              : (darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700")
                           }`}>
                           <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
                           <span className="font-medium truncate">{getName(rc)}</span>
-                          <span className={`text-xs ml-auto shrink-0 ${subCls}`}>{getCountry(rc)}</span>
+                          <span className={`text-xs ml-auto shrink-0 hidden sm:inline ${subCls}`}>{getCountry(rc)}</span>
                         </button>
                       ))}
                       {slotSearch.trim() && slotResults.length === 0 && (
@@ -608,7 +620,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         </div>
 
         {/* ──── Footer ──── */}
-        <footer className={`mt-10 py-6 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
+        <footer className={`mt-6 py-6 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
           <div className={`max-w-6xl mx-auto border-t pt-6 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
           <p>{t("dataSourcesDisclaimer")}</p>
           <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
