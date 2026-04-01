@@ -91,7 +91,7 @@ interface Props { cities: City[]; }
 export default function RankingContent({ cities }: Props) {
   const router = useRouter();
   const s = useSettings();
-  const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode } = s;
+  const { locale, darkMode, themeMode, t, formatCurrency, costTier, profession, incomeMode } = s;
   const [tab, setTabState] = useState<Tab>(() => {
     if (typeof window === "undefined") return "income";
     const saved = localStorage.getItem("rankingTab");
@@ -483,10 +483,11 @@ export default function RankingContent({ cities }: Props) {
             <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
             </select>
-            <button onClick={() => s.setDarkMode(!darkMode)}
-              className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
-              {darkMode ? "\u2600\ufe0f" : "\ud83c\udf19"}
-            </button>
+            <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto"|"light"|"dark")} className={selectCls}>
+              <option value="auto">{t("themeAuto")}</option>
+              <option value="light">{t("dayMode")}</option>
+              <option value="dark">{t("nightMode")}</option>
+            </select>
           </div>
         </div>
       </div>

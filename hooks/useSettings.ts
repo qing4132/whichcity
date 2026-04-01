@@ -4,10 +4,13 @@ import { useState, useEffect, useCallback } from "react";
 import type { Locale, CostTier, ExchangeRates, IncomeMode } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
 
+export type ThemeMode = "auto" | "light" | "dark";
+
 /** Lightweight settings hook for sub-pages (city detail, compare).
  *  Reads/writes the same localStorage keys as CityComparison so values are shared. */
 export function useSettings() {
   const [locale, setLocaleState] = useState<Locale>("en");
+  const [themeMode, setThemeModeState] = useState<ThemeMode>("auto");
   const [darkMode, setDarkModeState] = useState(false);
   const [currency, setCurrencyState] = useState("USD");
   const [costTier, setCostTierState] = useState<CostTier>("moderate");
@@ -16,11 +19,39 @@ export function useSettings() {
   const [rates, setRates] = useState<ExchangeRates | null>(null);
   const [ready, setReady] = useState(false);
 
+  /* ── Resolve effective dark mode from themeMode + system preference ── */
+  const applyTheme = useCallback((mode: ThemeMode) => {
+    let dark: boolean;
+    if (mode === "auto") {
+      dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    } else {
+      dark = mode === "dark";
+    }
+    setDarkModeState(dark);
+    const el = document.documentElement;
+    el.classList.toggle("dark", dark);
+    el.style.colorScheme = dark ? "dark" : "light";
+  }, []);
+
   useEffect(() => {
     const l = localStorage.getItem("locale");
     if (l && ["zh", "en", "ja", "es"].includes(l)) setLocaleState(l as Locale);
-    const d = localStorage.getItem("darkMode");
-    if (d === "true") setDarkModeState(true);
+
+    // Theme: migrate from old boolean darkMode to new themeMode
+    const saved = localStorage.getItem("themeMode");
+    let mode: ThemeMode = "auto";
+    if (saved && ["auto", "light", "dark"].includes(saved)) {
+      mode = saved as ThemeMode;
+    } else {
+      // migrate old key
+      const old = localStorage.getItem("darkMode");
+      if (old === "true") mode = "dark";
+      else if (old === "false") mode = "light";
+      // else keep auto
+    }
+    setThemeModeState(mode);
+    applyTheme(mode);
+
     const c = localStorage.getItem("selectedCurrency");
     if (c) setCurrencyState(c);
     const tier = localStorage.getItem("costTier");
@@ -36,7 +67,16 @@ export function useSettings() {
       .then(setRates)
       .catch(() => {})
       .finally(() => setReady(true));
-  }, []);
+  }, [applyTheme]);
+
+  /* ── Listen for system theme changes when in auto mode ── */
+  useEffect(() => {
+    if (themeMode !== "auto") return;
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const handler = () => applyTheme("auto");
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [themeMode, applyTheme]);
 
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l);
@@ -44,13 +84,11 @@ export function useSettings() {
     document.documentElement.lang = l;
   }, []);
 
-  const setDarkMode = useCallback((d: boolean) => {
-    setDarkModeState(d);
-    localStorage.setItem("darkMode", JSON.stringify(d));
-    const el = document.documentElement;
-    el.classList.toggle("dark", d);
-    el.style.colorScheme = d ? "dark" : "light";
-  }, []);
+  const setThemeMode = useCallback((m: ThemeMode) => {
+    setThemeModeState(m);
+    localStorage.setItem("themeMode", m);
+    applyTheme(m);
+  }, [applyTheme]);
 
   const setCurrency = useCallback((c: string) => {
     setCurrencyState(c);
@@ -115,7 +153,8 @@ export function useSettings() {
     locale,
     setLocale,
     darkMode,
-    setDarkMode,
+    themeMode,
+    setThemeMode,
     currency,
     setCurrency,
     costTier,

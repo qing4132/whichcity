@@ -13,7 +13,7 @@ import { useSettings } from "@/hooks/useSettings";
 export default function MethodologyContent() {
   const router = useRouter();
   const s = useSettings();
-  const { locale, darkMode, t } = s;
+  const { locale, darkMode, themeMode, t } = s;
   const professions = Object.keys(PROFESSION_TRANSLATIONS);
   const [navOpen, setNavOpen] = useState(false);
   if (!s.ready) return null;
@@ -966,9 +966,11 @@ export default function MethodologyContent() {
             <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
             </select>
-            <button onClick={() => s.setDarkMode(!darkMode)} className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
-              {darkMode ? "☀️" : "🌙"}
-            </button>
+            <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto"|"light"|"dark")} className={selectCls}>
+              <option value="auto">{t("themeAuto")}</option>
+              <option value="light">{t("dayMode")}</option>
+              <option value="dark">{t("nightMode")}</option>
+            </select>
           </div>
         </div>
       </div>
