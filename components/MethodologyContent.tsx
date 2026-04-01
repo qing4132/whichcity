@@ -330,7 +330,7 @@ export default function MethodologyContent() {
       <P>数据更新周期约为每年一次。城市详情页底部标注的是最近一次数据更新时间。各数据来源的版本年份见「数据总览」表格。在两次更新之间，真实数据可能已发生变化。</P>
 
       <H3>版权与许可</H3>
-      <P>本站设计和代码开源于 GitHub。数据来源的版权归各原始发布机构所有。World Bank 数据遵循 CC BY-4.0 协议。Numbeo 数据基于其公开页面。The Economist Big Mac Index 数据遵循其编辑许可。</P>
+      <P>数据来源的版权归各原始发布机构所有。World Bank 数据遵循 CC BY-4.0 协议。Numbeo 数据基于其公开页面。The Economist Big Mac Index 数据遵循其编辑许可。</P>
 
       <H3>法律</H3>
       <P>本站不承担因使用本站数据做出的任何决策所导致的直接或间接损失。使用本站即表示您同意上述免责条款。</P>
@@ -512,7 +512,7 @@ export default function MethodologyContent() {
       <P>Data is updated approximately annually. The last update date is shown in page footers. Source version years are listed in the Data Overview table. Between updates, real-world conditions may have changed.</P>
 
       <H3>Copyright & License</H3>
-      <P>Site design and code are open-source on GitHub. Data source copyrights belong to their original publishers. World Bank data: CC BY-4.0. Numbeo data based on public pages. The Economist Big Mac Index under editorial license.</P>
+      <P>Data source copyrights belong to their original publishers. World Bank data: CC BY-4.0. Numbeo data based on public pages. The Economist Big Mac Index under editorial license.</P>
 
       <H3>Legal</H3>
       <P>This site assumes no liability for direct or indirect losses resulting from decisions made based on this data. By using this site, you agree to these terms.</P>
@@ -714,7 +714,7 @@ export default function MethodologyContent() {
       <P>データ更新は年1回程度。各データソースのバージョン年はデータ概要表を参照。更新間に実際のデータが変化している可能性があります。</P>
 
       <H3>著作権とライセンス</H3>
-      <P>サイトのデザインとコードはGitHubでオープンソース。データソースの著作権は各発行機関に帰属。World BankデータはCC BY-4.0。NumbeoデータはNumbeoの公開ページに基づく。The Economist Big Mac IndexはThe Economistの編集ライセンスに準拠。</P>
+      <P>データソースの著作権は各発行機関に帰属。World BankデータはCC BY-4.0。NumbeoデータはNumbeoの公開ページに基づく。The Economist Big Mac IndexはThe Economistの編集ライセンスに準拠。</P>
 
       <H3>法的事項</H3>
       <P>本サイトのデータに基づく決定から生じる直接的・間接的損失について一切の責任を負いません。本サイトの利用により上記の免責条項に同意したものとみなされます。</P>
@@ -916,7 +916,7 @@ export default function MethodologyContent() {
       <P>Los datos se actualizan aproximadamente una vez al año. Los años de versión de cada fuente se indican en la tabla de datos general. Entre actualizaciones, los datos reales pueden haber cambiado.</P>
 
       <H3>Derechos de autor y licencias</H3>
-      <P>El diseño y código del sitio son de código abierto en GitHub. Los derechos de autor de las fuentes de datos pertenecen a sus respectivas instituciones. Datos del Banco Mundial bajo CC BY-4.0. Datos de Numbeo basados en sus páginas públicas. Big Mac Index de The Economist bajo su licencia editorial.</P>
+      <P>Los derechos de autor de las fuentes de datos pertenecen a sus respectivas instituciones. Datos del Banco Mundial bajo CC BY-4.0. Datos de Numbeo basados en sus páginas públicas. Big Mac Index de The Economist bajo su licencia editorial.</P>
 
       <H3>Legal</H3>
       <P>Este sitio no asume responsabilidad por pérdidas directas o indirectas resultantes de decisiones basadas en estos datos. El uso de este sitio implica la aceptación de estos términos.</P>
