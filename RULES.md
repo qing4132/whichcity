@@ -14,7 +14,7 @@
 - No "future-proofing" design
 
 ## Complexity Limits
-- File < 300 lines
+- File < 300 lines (exception: data/i18n/translation files, large page components)
 - Function < 50 lines
 - Avoid deep nesting
 - Avoid multi-level indirection
