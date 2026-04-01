@@ -110,10 +110,10 @@ export default function HomeContent() {
             </div>
             <div className="flex items-center gap-2">
               <button onClick={() => setNavOpen(v => !v)}
-                className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+                className={`md:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
                 <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
               </button>
-              <div className="hidden sm:flex items-center gap-2">
+              <div className="hidden md:flex items-center gap-2">
                 <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
                   {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
                 </select>
@@ -144,7 +144,7 @@ export default function HomeContent() {
             </div>
           </div>
           {/* Mobile collapsible panel – outside flex, no flex-line issues */}
-          <div className={`sm:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+          <div className={`md:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
             <div className="overflow-hidden min-h-0">
               <div className="flex items-center gap-2 flex-wrap pt-2">
                 <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
