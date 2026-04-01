@@ -1118,7 +1118,7 @@ export const TRANSLATIONS: Record<Locale, Record<string, string>> = {
     dataWorkHoursSrc: "Horas de trabajo anuales: OECD Employment Outlook 2024, OIT ILOSTAT (promedio nacional de todas las industrias, no específico por profesión)",
     navHome: "Inicio",
     navRanking: "Ranking",
-    navRandomCity: "Ciudad Aleatoria",
+    navRandomCity: "Ciudad al Azar",
     navCompare: "Comparar",
     navMethodology: "Sobre los datos",
     homeSearchPlaceholder: "Buscar una ciudad…",
