@@ -428,7 +428,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 pb-4">
+      <div className="max-w-6xl mx-auto px-4">
       {/* ── Wins summary (standalone card) ── */}
       <div className={`rounded-xl shadow-md overflow-hidden border mt-4 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
         <div className="grid px-4 py-2" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>

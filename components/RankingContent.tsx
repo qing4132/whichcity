@@ -528,7 +528,7 @@ export default function RankingContent({ cities }: Props) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-4 sm:py-8">
+      <div className="max-w-6xl mx-auto px-4 pt-4 sm:pt-8">
 
         {/* Header */}
         <div className="text-center mb-6">
