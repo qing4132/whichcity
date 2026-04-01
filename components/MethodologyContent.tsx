@@ -934,44 +934,74 @@ export default function MethodologyContent() {
     <div className={`min-h-screen transition-colors ${bg}`}>
       {/* Nav */}
       <div className={`sticky top-0 z-50 border-b py-2.5 ${navBg}`}>
-        <div className="max-w-6xl mx-auto px-4 flex items-center justify-between gap-x-2 flex-wrap">
-          <div className="flex items-center gap-2">
-            <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>{t("navHome")}</Link>
-            <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>{t("navRanking")}</Link>
-            <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
-              className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
-              {t("navRandomCity")}
-            </button>
-            <Link href="/compare" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>{t("navCompare")}</Link>
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>{t("navHome")}</Link>
+              <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>{t("navRanking")}</Link>
+              <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+                className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
+                {t("navRandomCity")}
+              </button>
+              <Link href="/compare" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>{t("navCompare")}</Link>
+            </div>
+            <div className="flex items-center gap-2">
+              <button onClick={() => setNavOpen(v => !v)}
+                className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+                <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+              </button>
+              <div className="hidden sm:flex items-center gap-2">
+                <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+                  {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
+                </select>
+                <select value={s.costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+                  {(["moderate", "budget"] as const).map(tier => <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>)}
+                </select>
+                <select value={s.incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+                  <option value="gross">{t("incomeModeGross")}</option>
+                  <option value="net">{t("incomeModeNet")}</option>
+                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
+                </select>
+                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+                  {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
+                </select>
+                <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+                </select>
+                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto"|"light"|"dark")} className={selectCls}>
+                  <option value="auto">{t("themeAuto")}</option>
+                  <option value="light">{t("dayMode")}</option>
+                  <option value="dark">{t("nightMode")}</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <button onClick={() => setNavOpen(v => !v)}
-            className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
-            <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-          </button>
-          <div className={`basis-full sm:basis-auto grid sm:flex sm:items-center sm:gap-2 transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-            <div className="overflow-hidden sm:overflow-visible min-h-0 flex items-center gap-2 flex-wrap pt-2 sm:pt-0">
-            <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
-              {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
-            </select>
-            <select value={s.costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
-              {(["moderate", "budget"] as const).map(tier => <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>)}
-            </select>
-            <select value={s.incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
-              <option value="gross">{t("incomeModeGross")}</option>
-              <option value="net">{t("incomeModeNet")}</option>
-              <option value="expatNet">{t("incomeModeExpatNet")}</option>
-            </select>
-            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
-              {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
-            </select>
-            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
-              {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-            </select>
-            <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto"|"light"|"dark")} className={selectCls}>
-              <option value="auto">{t("themeAuto")}</option>
-              <option value="light">{t("dayMode")}</option>
-              <option value="dark">{t("nightMode")}</option>
-            </select>
+          <div className={`sm:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+            <div className="overflow-hidden min-h-0">
+              <div className="flex items-center gap-2 flex-wrap pt-2">
+                <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+                  {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
+                </select>
+                <select value={s.costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+                  {(["moderate", "budget"] as const).map(tier => <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>)}
+                </select>
+                <select value={s.incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+                  <option value="gross">{t("incomeModeGross")}</option>
+                  <option value="net">{t("incomeModeNet")}</option>
+                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
+                </select>
+                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+                  {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
+                </select>
+                <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
+                </select>
+                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto"|"light"|"dark")} className={selectCls}>
+                  <option value="auto">{t("themeAuto")}</option>
+                  <option value="light">{t("dayMode")}</option>
+                  <option value="dark">{t("nightMode")}</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
