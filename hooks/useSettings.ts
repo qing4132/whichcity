@@ -6,12 +6,28 @@ import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i1
 
 export type ThemeMode = "auto" | "light" | "dark";
 
+/* ── Helper: read saved themeMode from localStorage (works on client only) ── */
+function readSavedThemeMode(): ThemeMode {
+  if (typeof window === "undefined") return "auto";
+  const saved = localStorage.getItem("themeMode");
+  if (saved && ["auto", "light", "dark"].includes(saved)) return saved as ThemeMode;
+  const old = localStorage.getItem("darkMode");
+  if (old === "true") return "dark";
+  if (old === "false") return "light";
+  return "auto";
+}
+
 /** Lightweight settings hook for sub-pages (city detail, compare).
  *  Reads/writes the same localStorage keys as CityComparison so values are shared. */
 export function useSettings() {
   const [locale, setLocaleState] = useState<Locale>("en");
-  const [themeMode, setThemeModeState] = useState<ThemeMode>("auto");
-  const [darkMode, setDarkModeState] = useState(false);
+  // Initialize from localStorage/DOM so client-side navigations never flash
+  const [themeMode, setThemeModeState] = useState<ThemeMode>(readSavedThemeMode);
+  const [darkMode, setDarkModeState] = useState(() =>
+    typeof document !== "undefined"
+      ? document.documentElement.classList.contains("dark")
+      : false,
+  );
   const [currency, setCurrencyState] = useState("USD");
   const [costTier, setCostTierState] = useState<CostTier>("moderate");
   const [profession, setProfessionState] = useState("软件工程师");
@@ -37,18 +53,9 @@ export function useSettings() {
     const l = localStorage.getItem("locale");
     if (l && ["zh", "en", "ja", "es"].includes(l)) setLocaleState(l as Locale);
 
-    // Theme: migrate from old boolean darkMode to new themeMode
-    const saved = localStorage.getItem("themeMode");
-    let mode: ThemeMode = "auto";
-    if (saved && ["auto", "light", "dark"].includes(saved)) {
-      mode = saved as ThemeMode;
-    } else {
-      // migrate old key
-      const old = localStorage.getItem("darkMode");
-      if (old === "true") mode = "dark";
-      else if (old === "false") mode = "light";
-      // else keep auto
-    }
+    // Theme: read saved mode (already initialized via readSavedThemeMode,
+    // but re-read here to ensure DOM is in sync after SSR hydration)
+    const mode = readSavedThemeMode();
     setThemeModeState(mode);
     applyTheme(mode);
 
@@ -67,6 +74,12 @@ export function useSettings() {
       .then(setRates)
       .catch(() => {})
       .finally(() => setReady(true));
+
+    // Enable CSS transitions after React has painted the correct theme.
+    // This removes the flash-guard overlay and unblocks transition animations.
+    requestAnimationFrame(() => {
+      document.documentElement.classList.add("theme-ready");
+    });
   }, [applyTheme]);
 
   /* ── Listen for system theme changes when in auto mode ── */
