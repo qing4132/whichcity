@@ -412,7 +412,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                           }`}>
                           <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
                           <span className="font-medium truncate">{getName(rc)}</span>
-                          <span className={`text-xs ml-auto shrink-0 hidden sm:inline ${subCls}`}>{getCountry(rc)}</span>
+                          <span className={`text-xs ml-auto shrink-0 hidden md:inline ${subCls}`}>{getCountry(rc)}</span>
                         </button>
                       ))}
                       {slotSearch.trim() && slotResults.length === 0 && (
