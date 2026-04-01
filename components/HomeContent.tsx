@@ -27,6 +27,7 @@ export default function HomeContent() {
   const [search, setSearch] = useState("");
   const [focused, setFocused] = useState(false);
   const [hlIdx, setHlIdx] = useState(-1);
+  const [navOpen, setNavOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropRef = useRef<HTMLDivElement>(null);
 
@@ -107,25 +108,29 @@ export default function HomeContent() {
             </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+            <button onClick={() => setNavOpen(v => !v)}
+              className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+              {navOpen ? "✕" : "⚙️"}
+            </button>
+            <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
             </select>
-            <select value={s.costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+            <select value={s.costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(["moderate", "budget"] as const).map(tier => (
                 <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
               ))}
             </select>
-            <select value={s.incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+            <select value={s.incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               <option value="gross">{t("incomeModeGross")}</option>
               <option value="net">{t("incomeModeNet")}</option>
               <option value="expatNet">{t("incomeModeExpatNet")}</option>
             </select>
-            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
                 <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
               ))}
             </select>
-            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
             </select>
             <button onClick={() => s.setDarkMode(!darkMode)}
@@ -208,7 +213,7 @@ export default function HomeContent() {
         </div>
 
         {/* Popular cities */}
-        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1.5 mt-5 max-w-lg">
+        <div className="grid grid-cols-3 gap-x-4 gap-y-1.5 mt-5 max-w-lg w-full justify-items-center">
           {POPULAR_HOME.map(c => (
             <Link key={c.id} href={`/city/${c.slug}`}
               className={`text-xs transition ${darkMode ? "text-slate-400 hover:text-blue-400" : "text-slate-500 hover:text-blue-600"}`}>
