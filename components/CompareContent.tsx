@@ -329,10 +329,12 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       </div>
 
       {/* ── City selector (full-width sticky layer) ── */}
-      <div className="sticky z-40 py-2" style={{ top: navH }}>
-        {/* Full-bleed cover: hides scrolled content behind the entire sticky band */}
-        <div className={`absolute inset-0 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} />
+      <div className="sticky z-40 pt-2" style={{ top: navH }}>
+        {/* Top cover: hides scrolled content in the pt-2 gap between nav and card */}
+        <div className={`absolute inset-x-0 top-0 h-2 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} />
         <div className="max-w-6xl mx-auto px-4 relative">
+          {/* Cover behind card area to block scrolled content shadows on sides and corners */}
+          <div className={`absolute inset-0 ${darkMode ? "bg-slate-950" : "bg-slate-50"}`} />
           <div className={`relative rounded-xl shadow-md border px-4 py-3 flex items-center gap-2 ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
           {visibleSlots.map((c, i) => {
             const isOpen = openSlot === i;
