@@ -14,7 +14,36 @@ html {
 
 body {
   background-color: #f8fafc; /* slate-50 */
+  color: #0f172a; /* slate-900 */
 }
 html.dark body {
   background-color: #020617; /* slate-950 */
+  color: #f1f5f9; /* slate-100 */
+}
+
+/* ── Theme flash prevention ──
+   A full-viewport overlay that matches the resolved theme color.
+   Covers any flashing content during the gap between
+   the hydration script (sets html.dark) and React state catch-up. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  background-color: #f8fafc;
+}
+html.dark body::before {
+  background-color: #020617;
+}
+html.theme-ready body::before {
+  display: none;
+}
+
+/* Block all transitions during initial hydration so the
+   overlay removal and class reconciliation are instant. */
+html:not(.theme-ready) *,
+html:not(.theme-ready) *::before,
+html:not(.theme-ready) *::after {
+  transition: none !important;
 }
