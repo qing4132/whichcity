@@ -26,6 +26,7 @@ export default function HomeContent() {
 
   const [search, setSearch] = useState("");
   const [focused, setFocused] = useState(false);
+  const [hlIdx, setHlIdx] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropRef = useRef<HTMLDivElement>(null);
 
@@ -33,6 +34,7 @@ export default function HomeContent() {
   const results = useMemo(() => {
     if (!search.trim()) return [];
     const q = search.toLowerCase();
+    setHlIdx(-1);
     return CITY_LIST.filter(c => {
       const names = CITY_NAME_TRANSLATIONS[c.id];
       if (!names) return false;
@@ -153,6 +155,16 @@ export default function HomeContent() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             onFocus={() => setFocused(true)}
+            onKeyDown={e => {
+              if (!focused || !results.length) return;
+              if (e.key === "ArrowDown") { e.preventDefault(); setHlIdx(i => (i + 1) % results.length); }
+              else if (e.key === "ArrowUp") { e.preventDefault(); setHlIdx(i => (i - 1 + results.length) % results.length); }
+              else if (e.key === "Enter" && hlIdx >= 0 && hlIdx < results.length) {
+                e.preventDefault(); setSearch(""); setFocused(false);
+                router.push(`/city/${results[hlIdx].slug}`);
+              }
+              else if (e.key === "Escape") { setFocused(false); }
+            }}
             placeholder={t("homeSearchPlaceholder")}
             className={`w-full px-4 py-3 rounded-xl text-sm border-2 transition focus:outline-none ${
               darkMode
@@ -169,11 +181,14 @@ export default function HomeContent() {
                 darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
               }`}
               style={{ maxHeight: "min(360px, 50vh)" }}>
-              {results.map(c => (
+              {results.map((c, i) => (
                 <Link key={c.id} href={`/city/${c.slug}`}
                   onClick={() => { setSearch(""); setFocused(false); }}
+                  onMouseEnter={() => setHlIdx(i)}
                   className={`flex items-center gap-2 px-4 py-2.5 text-sm transition ${
-                    darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700"
+                    i === hlIdx
+                      ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-slate-700")
+                      : (darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700")
                   }`}>
                   <span>{c.flag}</span>
                   <span className="font-medium">{getCityName(c.id)}</span>
