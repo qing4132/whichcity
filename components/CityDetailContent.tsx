@@ -618,7 +618,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
       )}
 
       {/* Similar Cities */}
-      <section className="mb-10">
+      <section>
         <h2 className={`text-2xl font-bold mb-4 ${headingCls}`}>{t("similarCities")}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {similarIds.map((otherId) => {
