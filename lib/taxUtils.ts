@@ -5,7 +5,7 @@
 
 import type { IncomeMode } from "./types";
 import {
-  COUNTRY_TAX, CITY_TAX_OVERRIDES,
+  COUNTRY_TAX, CITY_TAX_OVERRIDES, COUNTRY_CURRENCY_CODE,
   japanEmploymentDeduction, koreanEmploymentDeduction,
   type TaxBracket, type SocialComponent, type CountryTax, type CityTaxOverride,
 } from "./taxData";
@@ -60,6 +60,7 @@ export function computeNetIncome(
   country: string,
   cityId: number,
   mode: IncomeMode = "net",
+  dailyRates?: Record<string, number>,
 ): NetIncomeResult {
   if (mode === "gross") {
     return { netUSD: grossUSD, effectiveRate: 0, confidence: "high", hasExpatScheme: false };
@@ -80,7 +81,11 @@ export function computeNetIncome(
     return { netUSD: grossUSD, effectiveRate: 0, confidence: "low", hasExpatScheme };
   }
 
-  const grossLocal = grossUSD * tax.usdToLocal;
+  // Resolve exchange rate: prefer daily rate, fall back to taxData static rate
+  const currencyCode = COUNTRY_CURRENCY_CODE[country];
+  const fxRate = (currencyCode && dailyRates?.[currencyCode]) || tax.usdToLocal;
+
+  const grossLocal = grossUSD * fxRate;
 
   // 1. Social deductions
   let socialDeductions = 0;
@@ -164,7 +169,7 @@ export function computeNetIncome(
 
   // 5. Net income
   const netLocal = grossLocal - socialDeductions - incomeTax - localTax - residentTax;
-  const netUSD = netLocal / tax.usdToLocal;
+  const netUSD = netLocal / fxRate;
   const effectiveRate = grossUSD > 0 ? 1 - (netUSD / grossUSD) : 0;
 
   const expatResult: NetIncomeResult = {
@@ -176,7 +181,7 @@ export function computeNetIncome(
 
   // Expat schemes are optional — if normal net is better, use that instead
   if (isExpat && hasExpatScheme) {
-    const normalResult = computeNetIncome(grossUSD, country, cityId, "net");
+    const normalResult = computeNetIncome(grossUSD, country, cityId, "net", dailyRates);
     if (normalResult.netUSD > expatResult.netUSD) {
       return { ...normalResult, hasExpatScheme: false };
     }
@@ -191,9 +196,10 @@ export function computeAllNetIncomes(
   cities: { country: string; id: number }[],
   grossIncomes: number[],
   mode: IncomeMode,
+  dailyRates?: Record<string, number>,
 ): number[] {
   return cities.map((city, i) =>
-    computeNetIncome(grossIncomes[i], city.country, city.id, mode).netUSD
+    computeNetIncome(grossIncomes[i], city.country, city.id, mode, dailyRates).netUSD
   );
 }
 

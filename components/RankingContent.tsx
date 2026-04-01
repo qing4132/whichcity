@@ -117,8 +117,8 @@ export default function RankingContent({ cities }: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const allIncomes = useMemo(() => {
     const gross = cities.map(c => activeProfession && c.professions[activeProfession] != null ? c.professions[activeProfession] : 0);
-    return computeAllNetIncomes(cities, gross, incomeMode);
-  }, [cities, activeProfession, incomeMode]);
+    return computeAllNetIncomes(cities, gross, incomeMode, s.rates?.rates);
+  }, [cities, activeProfession, incomeMode, s.rates]);
 
   const rows = useMemo(() => cities.map((city, i) => {
     const income = allIncomes[i];

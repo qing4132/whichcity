@@ -253,7 +253,7 @@ export default function MethodologyContent() {
       <H2 id="tax">🧾 税后计算</H2>
       <P>税后收入计算引擎覆盖 79 个国家/地区的税制，包括累进税率、社保缴纳、就业扣除等。</P>
       <H3>计算流程</H3>
-      <P>1. 税前 USD → 当地货币（按税表基准汇率，而非每日市场汇率，以保证税率档位稳定）→ 2. 扣除社保/公积金 → 3. 扣除职工费用（如法国 10%、德国 Werbungskosten）→ 4. 计算应税所得 → 5. 套用累进税率 → 6. 扣除地方税（美国各州、加拿大各省）→ 7. 得到税后当地货币 → USD。</P>
+      <P>1. 税前 USD → 当地货币（按每日更新汇率，拉取失败时回退到上次成功的汇率）→ 2. 扣除社保/公积金 → 3. 扣除职工费用（如法国 10%、德国 Werbungskosten）→ 4. 计算应税所得 → 5. 套用累进税率 → 6. 扣除地方税（美国各州、加拿大各省）→ 7. 得到税后当地货币 → USD。</P>
       <P>日本特殊处理：额外加计 10% 住民税，使用独立的《给与所得控除》扣除表。韩国特殊处理：使用独立的《근로소득공제》扣除表。</P>
       <H3>外籍人士优惠方案</H3>
       <P>当用户选择「外籍税后」模式时，以下国家会自动应用当地的外籍优惠政策。若优惠后税后收入反而低于普通税后，系统自动回退到普通税后。</P>
@@ -444,7 +444,7 @@ export default function MethodologyContent() {
       <H2 id="tax">🧾 Tax Calculations</H2>
       <P>Tax engine covers 79 countries/territories with progressive brackets, social contributions, and employment deductions.</P>
       <H3>Calculation Flow</H3>
-      <P>Gross USD → Local currency (using a fixed reference rate tied to the tax bracket definitions, not the daily market rate, to keep bracket thresholds stable) → Social deductions → Employment deductions → Taxable income → Progressive brackets → Local/state tax → Net local → Net USD.</P>
+      <P>Gross USD → Local currency (using daily auto-updated exchange rates; falls back to last successful rate if API is unavailable) → Social deductions → Employment deductions → Taxable income → Progressive brackets → Local/state tax → Net local → Net USD.</P>
       <P>Special: Japan adds 10% resident tax + employment income deduction schedule. Korea uses 근로소득공제 schedule.</P>
       <H3>Expatriate Tax Schemes</H3>
       <Table headers={["Country", "Scheme", "Type", "Details"]} rows={[
@@ -638,7 +638,7 @@ export default function MethodologyContent() {
       <H2 id="tax">🧾 税後計算</H2>
       <P>税後収入計算エンジンは79か国/地域の税制をカバー。累進税率、社会保険料、就業控除を含む。</P>
       <H3>計算フロー</H3>
-      <P>1. 税前USD → 現地通貨（税表基準レートで換算。日々の市場レートではなく、税率区分の安定性を確保するため固定）→ 2. 社会保険/年金控除 → 3. 就業控除（フランス10%、ドイツWerbungskosten等）→ 4. 課税所得計算 → 5. 累進税率適用 → 6. 地方税（米国州税、カナダ州税）→ 7. 税後現地通貨 → USD。</P>
+      <P>1. 税前USD → 現地通貨（毎日自動更新レートを使用。API失敗時は前回のレートにフォールバック）→ 2. 社会保険/年金控除 → 3. 就業控除（フランス10%、ドイツWerbungskosten等）→ 4. 課税所得計算 → 5. 累進税率適用 → 6. 地方税（米国州税、カナダ州税）→ 7. 税後現地通貨 → USD。</P>
       <P>日本特殊処理：住民税10%追加、独自の給与所得控除表を使用。韓国特殊処理：独自の근로소득공제表を使用。</P>
       <H3>外国人優遇税制</H3>
       <P>「外国人税後」モード選択時、以下の国で外国人優遇策を自動適用。優遇後の税後収入が通常税後より低い場合は自動的に通常税後にフォールバック。</P>
@@ -840,7 +840,7 @@ export default function MethodologyContent() {
       <H2 id="tax">🧾 Cálculo fiscal</H2>
       <P>Motor fiscal cubre 79 países/territorios con tramos progresivos, cotizaciones sociales y deducciones laborales.</P>
       <H3>Flujo de cálculo</H3>
-      <P>1. Bruto USD → Moneda local (tipo de cambio de referencia vinculado a los tramos fiscales, no el tipo de mercado diario, para mantener estables los umbrales de los tramos) → 2. Cotizaciones sociales → 3. Deducciones laborales (Francia 10%, Alemania Werbungskosten) → 4. Base imponible → 5. Tramos progresivos → 6. Impuestos locales (estados de EE.UU., provincias de Canadá) → 7. Neto en moneda local → USD.</P>
+      <P>1. Bruto USD → Moneda local (tipo de cambio diario actualizado automáticamente; si la API no está disponible, se usa el último tipo exitoso) → 2. Cotizaciones sociales → 3. Deducciones laborales (Francia 10%, Alemania Werbungskosten) → 4. Base imponible → 5. Tramos progresivos → 6. Impuestos locales (estados de EE.UU., provincias de Canadá) → 7. Neto en moneda local → USD.</P>
       <P>Japón: impuesto de residencia 10% adicional + tabla de deducción de ingresos de empleo. Corea: tabla de 근로소득공제.</P>
       <H3>Regímenes para expatriados</H3>
       <P>En modo «Neto expatriado», se aplican automáticamente los siguientes regímenes. Si el neto con régimen es menor que el neto normal, se revierte automáticamente al cálculo normal.</P>

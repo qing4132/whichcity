@@ -139,11 +139,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     const map = new Map<number, number>();
     allCities.forEach(c => {
       const gross = activeProfession && c.professions[activeProfession] != null ? c.professions[activeProfession] : 0;
-      const net = computeNetIncome(gross, c.country, c.id, incomeMode).netUSD;
+      const net = computeNetIncome(gross, c.country, c.id, incomeMode, s.rates?.rates).netUSD;
       map.set(c.id, net);
     });
     return map;
-  }, [allCities, activeProfession, incomeMode]);
+  }, [allCities, activeProfession, incomeMode, s.rates]);
 
   const rowCtx: RowCtx = useMemo(() => ({
     fc: formatCurrency, t, costField, profession: s.getProfessionLabel(activeProfession), incomeMode, allCities, allIncomes: allIncomesMap,

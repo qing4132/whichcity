@@ -181,7 +181,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
   const professions = city.professions ? Object.keys(city.professions) : [];
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
   const grossIncome = activeProfession && city.professions[activeProfession] != null ? city.professions[activeProfession] : null;
-  const taxResult = grossIncome !== null ? computeNetIncome(grossIncome, city.country, city.id, incomeMode) : null;
+  const taxResult = grossIncome !== null ? computeNetIncome(grossIncome, city.country, city.id, incomeMode, s.rates?.rates) : null;
   const income = taxResult?.netUSD ?? null;
 
   const tierCost = city[TIER_KEYS.find((tk) => tk.key === costTier)!.field];
@@ -202,7 +202,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
     return idx === -1 ? 1 : idx / sorted.length;
   };
   const allGrossIncomes = allCities.map((c) => activeProfession && c.professions[activeProfession] != null ? c.professions[activeProfession] : 0);
-  const allIncomes = computeAllNetIncomes(allCities, allGrossIncomes, incomeMode);
+  const allIncomes = computeAllNetIncomes(allCities, allGrossIncomes, incomeMode, s.rates?.rates);
   const allCosts = allCities.map((c) => c[TIER_KEYS.find((tk) => tk.key === costTier)!.field]);
   const allSavings = allCities.map((c, i) => allIncomes[i] - allCosts[i] * 12);
   const nn = (arr: (number | null)[]): number[] => arr.filter((v): v is number => v !== null);
@@ -585,7 +585,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
 
             // Find the dimension where the other city beats this one by the largest margin
             const otherGross = activeProfession && other.professions[activeProfession] != null ? other.professions[activeProfession] : null;
-            const otherIncome = otherGross !== null ? computeNetIncome(otherGross, other.country, other.id, incomeMode).netUSD : null;
+            const otherIncome = otherGross !== null ? computeNetIncome(otherGross, other.country, other.id, incomeMode, s.rates?.rates).netUSD : null;
             const otherHourly = other.annualWorkHours !== null && other.annualWorkHours > 0 && otherIncome !== null ? otherIncome / other.annualWorkHours : 0;
             const otherLP = computeLifePressure(other, allCities, otherIncome ?? 0, allIncomes, costTierField).value;
             const curCl = getCityClimate(city.id);

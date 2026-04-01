@@ -1317,3 +1317,31 @@ export function koreanEmploymentDeduction(grossKRW: number): number {
   if (grossKRW <= 100_000_000) return 12_000_000 + (grossKRW - 45_000_000) * 0.05;
   return 14_750_000 + (grossKRW - 100_000_000) * 0.02;
 }
+
+/* ── Country → ISO currency code mapping ─────────────── */
+// Used to look up daily exchange rates for tax calculations.
+// Keys match COUNTRY_TAX keys (Chinese country names from cities.json).
+export const COUNTRY_CURRENCY_CODE: Record<string, string> = {
+  "阿联酋": "AED", "卡塔尔": "QAR", "巴林": "BHD", "阿曼": "OMR", "沙特阿拉伯": "SAR",
+  "中国香港": "HKD", "俄罗斯": "RUB", "乌克兰": "UAH", "格鲁吉亚": "GEL",
+  "保加利亚": "BGN", "罗马尼亚": "RON", "匈牙利": "HUF", "塞尔维亚": "RSD",
+  "哈萨克斯坦": "KZT", "乌兹别克斯坦": "UZS", "阿塞拜疆": "AZN", "蒙古": "MNT",
+  "爱沙尼亚": "EUR", "美国": "USD", "加拿大": "CAD", "波多黎各": "USD",
+  "墨西哥": "MXN", "巴西": "BRL", "哥伦比亚": "COP", "智利": "CLP",
+  "秘鲁": "PEN", "阿根廷": "ARS", "哥斯达黎加": "CRC", "巴拿马": "USD",
+  "英国": "GBP", "爱尔兰": "EUR", "德国": "EUR", "法国": "EUR",
+  "荷兰": "EUR", "比利时": "EUR", "奥地利": "EUR", "瑞士": "CHF",
+  "卢森堡": "EUR", "西班牙": "EUR", "意大利": "EUR", "葡萄牙": "EUR",
+  "希腊": "EUR", "捷克": "CZK", "波兰": "PLN", "斯洛伐克": "EUR",
+  "斯洛文尼亚": "EUR", "克罗地亚": "EUR", "芬兰": "EUR", "瑞典": "SEK",
+  "丹麦": "DKK", "挪威": "NOK",
+  "日本": "JPY", "韩国": "KRW", "中国": "CNY", "台湾": "TWD",
+  "印度": "INR", "巴基斯坦": "PKR", "孟加拉国": "BDT", "斯里兰卡": "LKR",
+  "尼泊尔": "NPR",
+  "泰国": "THB", "马来西亚": "MYR", "越南": "VND", "菲律宾": "PHP",
+  "印度尼西亚": "IDR", "新加坡": "SGD", "柬埔寨": "USD", "缅甸": "MMK",
+  "澳大利亚": "AUD", "新西兰": "NZD",
+  "南非": "ZAR", "肯尼亚": "KES", "尼日利亚": "NGN", "埃及": "EGP",
+  "以色列": "ILS", "土耳其": "TRY", "黎巴嫩": "LBP", "约旦": "JOD",
+  "伊朗": "IRR",
+};
