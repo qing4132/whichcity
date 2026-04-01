@@ -89,10 +89,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     return arr.slice(0, 3);
   });
 
-  /* ── Responsive columns: 2 on < 640px, else 3 ── */
+  /* ── Responsive columns: 2 on < md(768px), else 3 ── */
   const [cols, setCols] = useState(3);
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 640px)");
+    const mq = window.matchMedia("(max-width: 767px)");
     const handler = () => setCols(mq.matches ? 2 : 3);
     handler();
     mq.addEventListener("change", handler);
