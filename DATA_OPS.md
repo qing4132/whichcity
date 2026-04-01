@@ -34,14 +34,14 @@ lib/
 3. `averageIncome` should be the median across professions, or use the most representative profession.
 4. Run `npx tsc --noEmit` to validate.
 
-**Historical script**: `scripts/update_salaries.py` (Python) — batch update profession salaries. May need adaptation for new data format.
+**Historical script**: `_archive/scripts/update_salaries.py` (Python) — batch update profession salaries. May need adaptation for new data format.
 
 ### How to Update Cost of Living
 
 1. Edit `costModerate` and `costBudget` in `cities.json`.
 2. Budget is typically 60–75% of moderate.
 
-**Historical script**: `scripts/update_cost_tiers.py`
+**Historical script**: `_archive/scripts/update_cost_tiers.py`
 
 ### How to Update Safety/Healthcare/Freedom Indices
 
@@ -49,15 +49,15 @@ These are pre-computed composite indices stored in `cities.json`.
 
 **Safety Index** (4 sub-indicators, weights: 35/30/20/15):
 - Fields: `safetyIndex`, `safetyConfidence`, `numbeoSafetyIndex`, `homicideRateInv`, `gpiScoreInv`, `gallupLawOrder`
-- Script: `scripts/add-safety-v2.mjs` (reads sub-indicators, computes weighted composite)
+- Script: `_archive/scripts/add-safety-v2.mjs` (reads sub-indicators, computes weighted composite)
 
 **Healthcare Index** (4 sub-indicators, weights: 35/25/25/15):
 - Fields: `healthcareIndex`, `healthcareConfidence`, `doctorsPerThousand`, `hospitalBedsPerThousand`, `uhcCoverageIndex`, `lifeExpectancy`
-- Script: `scripts/add-healthcare-index.mjs`
+- Script: `_archive/scripts/add-healthcare-index.mjs`
 
 **Freedom Index** (3 sub-indicators, weights: 35/35/30):
 - Fields: `freedomIndex`, `freedomConfidence`, `pressFreedomScore`, `democracyIndex`, `corruptionPerceptionIndex`
-- Script: `scripts/add-freedom-index.mjs`
+- Script: `_archive/scripts/add-freedom-index.mjs`
 
 **Missing data handling**: When a sub-indicator is `null`, its weight is redistributed proportionally to available sub-indicators. `confidence` is set to:
 - `"high"`: all sub-indicators present
@@ -69,7 +69,7 @@ These are pre-computed composite indices stored in `cities.json`.
 - Field: `airQuality` (number), `aqiSource` ("EPA" or "AQICN")
 - China mainland cities: use AQI (CN) values directly. Set `aqiSource` to `"AQICN"` or omit.
 - Others: use US EPA AQI.
-- **Script**: `scripts/add_aqi.py`
+- **Script**: `_archive/scripts/add_aqi.py`
 
 ### How to Add a New City
 
@@ -110,7 +110,7 @@ id: {
 
 **Scripts**:
 - `scripts/add-monthly-climate.mjs` — batch add monthly temp/rain data (134 cities)
-- `scripts/add-climate-detail.mjs` — add summary fields (avgTemp, summer/winter, humidity, sunshine)
+- `_archive/scripts/add-climate-detail.mjs` — add summary fields (avgTemp, summer/winter, humidity, sunshine)
 
 **Data sources**: WMO Climate Normals 1991–2020, NOAA NCEI, national met agencies.
 
