@@ -98,6 +98,7 @@ export default function RankingContent({ cities }: Props) {
     return saved && Object.keys(TAB_I18N).includes(saved) ? (saved as Tab) : "income";
   });
   const [subSort, setSubSort] = useState<SubSort>(null);
+  const [navOpen, setNavOpen] = useState(false);
   const setTab = (t: Tab) => { setTabState(t); localStorage.setItem("rankingTab", t); };
 
   const professions = cities[0]?.professions ? Object.keys(cities[0].professions) : [];
@@ -457,25 +458,29 @@ export default function RankingContent({ cities }: Props) {
             </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+            <button onClick={() => setNavOpen(v => !v)}
+              className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+              {navOpen ? "✕" : "⚙️"}
+            </button>
+            <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
             </select>
-            <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+            <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(["moderate", "budget"] as const).map(tier => (
                 <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
               ))}
             </select>
-            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               <option value="gross">{t("incomeModeGross")}</option>
               <option value="net">{t("incomeModeNet")}</option>
               <option value="expatNet">{t("incomeModeExpatNet")}</option>
             </select>
-            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
                 <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
               ))}
             </select>
-            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
             </select>
             <button onClick={() => s.setDarkMode(!darkMode)}
@@ -502,7 +507,7 @@ export default function RankingContent({ cities }: Props) {
         <div className="mb-4 space-y-1.5">
           {/* Row 1: Income + Housing / Row 2: Work + Environment */}
           {[[0, 1], [2, 3]].map((pair, ri) => (
-            <div key={ri} className="grid grid-cols-2 gap-2">
+            <div key={ri} className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {pair.map(gi => (
                 <div key={GROUPS[gi].labelKey} className="grid grid-cols-3 gap-1">
                   {GROUPS[gi].tabs.map(gTab => (

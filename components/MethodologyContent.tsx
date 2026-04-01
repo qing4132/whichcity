@@ -1,6 +1,7 @@
 "use client";
 /* eslint-disable react/no-unescaped-entities */
 
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { CostTier, IncomeMode } from "@/lib/types";
@@ -14,6 +15,7 @@ export default function MethodologyContent() {
   const s = useSettings();
   const { locale, darkMode, t } = s;
   const professions = Object.keys(PROFESSION_TRANSLATIONS);
+  const [navOpen, setNavOpen] = useState(false);
   if (!s.ready) return null;
 
   const bg = darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900";
@@ -943,21 +945,25 @@ export default function MethodologyContent() {
             <Link href="/compare" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>{t("navCompare")}</Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+            <button onClick={() => setNavOpen(v => !v)}
+              className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+              {navOpen ? "✕" : "⚙️"}
+            </button>
+            <select value={s.profession} onChange={e => s.setProfession(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
             </select>
-            <select value={s.costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+            <select value={s.costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(["moderate", "budget"] as const).map(tier => <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>)}
             </select>
-            <select value={s.incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+            <select value={s.incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               <option value="gross">{t("incomeModeGross")}</option>
               <option value="net">{t("incomeModeNet")}</option>
               <option value="expatNet">{t("incomeModeExpatNet")}</option>
             </select>
-            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
             </select>
-            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
             </select>
             <button onClick={() => s.setDarkMode(!darkMode)} className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>

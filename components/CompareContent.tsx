@@ -108,6 +108,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
   const navRef = useRef<HTMLDivElement | null>(null);
   const [navH, setNavH] = useState(0);
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const el = navRef.current;
@@ -261,23 +262,27 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
             </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+            <button onClick={() => setNavOpen(v => !v)}
+              className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+              {navOpen ? "✕" : "⚙️"}
+            </button>
+            <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
             </select>
-            <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+            <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(["moderate", "budget"] as const).map(tier => (
                 <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
               ))}
             </select>
-            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               <option value="gross">{t("incomeModeGross")}</option>
               <option value="net">{t("incomeModeNet")}</option>
               <option value="expatNet">{t("incomeModeExpatNet")}</option>
             </select>
-            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
             </select>
-            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
             </select>
             <button onClick={() => s.setDarkMode(!darkMode)} className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
@@ -344,7 +349,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                 {isOpen && (
                   <div className={`absolute z-50 mt-1 rounded-xl shadow-lg border overflow-hidden ${
                     darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-                  }`} style={{ top: "100%", left: "50%", transform: "translateX(-50%)", width: 240 }}>
+                  }`} style={{ top: "100%", left: "50%", transform: "translateX(-50%)", width: 240, maxWidth: "calc(100vw - 2rem)" }}>
                     <input autoFocus value={slotSearch} onChange={e => setSlotSearch(e.target.value)}
                       placeholder={t("homeSearchPlaceholder")}
                       className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${
@@ -493,7 +498,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
             {/* Per-city columns: data + chart in same column for alignment */}
             <div className="p-4">
-              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+              <div className="grid gap-4" style={{ gridTemplateColumns: cols <= 2 ? '1fr' : `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
                 {visibleSlots.map((slot, ci) => {
                   const c = slot;
                   const items = c ? climateItems(c) : null;
@@ -504,7 +509,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                     </div>
                   );
                   return (
-                    <div key={c.id} className={ci < visibleSlots.length - 1 ? `border-r ${dividerCls} pr-4` : ""}>
+                    <div key={c.id} className={ci < visibleSlots.length - 1 && cols > 2 ? `border-r ${dividerCls} pr-4` : ""}>
                       {/* Data grid */}
                       <div className="grid grid-cols-2 gap-1">
                         {items.map(([label, val]) => (

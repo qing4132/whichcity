@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { City, CostTier, IncomeMode } from "@/lib/types";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES } from "@/lib/constants";
@@ -194,6 +195,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
   const borderRow = darkMode ? "border-slate-700" : "border-slate-100";
   const selectCls = `text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
   const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
+  const [navOpen, setNavOpen] = useState(false);
 
   // Percentile ranking: compute where this city stands for each metric
   const pct = (values: number[], val: number) => {
@@ -358,25 +360,29 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
             </Link>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
+            <button onClick={() => setNavOpen(v => !v)}
+              className={`sm:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+              {navOpen ? "✕" : "⚙️"}
+            </button>
+            <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {professions.map(prof => <option key={prof} value={prof}>{s.getProfessionLabel(prof)}</option>)}
             </select>
-            <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
+            <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(["moderate", "budget"] as const).map(tier => (
                 <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
               ))}
             </select>
-            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
+            <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               <option value="gross">{t("incomeModeGross")}</option>
               <option value="net">{t("incomeModeNet")}</option>
               <option value="expatNet">{t("incomeModeExpatNet")}</option>
             </select>
-            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+            <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
                 <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
               ))}
             </select>
-            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
+            <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={`${selectCls} ${navOpen ? '' : 'hidden'} sm:block`}>
               {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
             </select>
             <button onClick={() => s.setDarkMode(!darkMode)} className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-slate-800 border-slate-600 text-yellow-300" : "bg-white border-slate-300 text-slate-600"}`}>
@@ -408,14 +414,16 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
 
       {/* Hero */}
       <header className="mb-10">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-4xl">{flag}</span>
-          <div className="flex-1">
-            <h1 className={`text-3xl sm:text-4xl font-extrabold ${headingCls}`}>{cityName}</h1>
-            <p className={`text-lg ${subCls}`}>{countryName}</p>
+        <div className="flex flex-wrap items-center gap-3 mb-2">
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <span className="text-4xl shrink-0">{flag}</span>
+            <div className="min-w-0">
+              <h1 className={`text-3xl sm:text-4xl font-extrabold ${headingCls}`}>{cityName}</h1>
+              <p className={`text-lg ${subCls}`}>{countryName}</p>
+            </div>
           </div>
           {incomeMode !== "gross" && taxResult !== null && (
-            <div className={`rounded-xl border px-4 py-3 text-sm max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
+            <div className={`rounded-xl border px-4 py-3 text-sm w-full sm:w-auto sm:max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
               <p className={`font-bold text-xs mb-1 ${subCls}`}>{t("effectiveTaxRate")}</p>
               <p className={`leading-snug font-medium ${headingCls}`}>
                 ~{(taxResult.effectiveRate * 100).toFixed(1)}%{taxResult.hasExpatScheme && ` · ${t("expatSchemeNote", { scheme: t(getExpatSchemeName(city.country)) })}`}
@@ -428,7 +436,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
             const show = localized.slice(0, 3);
             const more = localized.length - show.length;
             return langs.length > 0 ? (
-              <div className={`rounded-xl border px-4 py-3 text-sm max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
+              <div className={`rounded-xl border px-4 py-3 text-sm w-full sm:w-auto sm:max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
                 <p className={`font-bold text-xs mb-1 ${subCls}`}>{t("officialLanguages")}</p>
                 <p className={`leading-snug font-medium ${headingCls}`}>
                   {show.join(" · ")}{more > 0 && <span className={`ml-1 ${subCls}`}>+{more}</span>}
