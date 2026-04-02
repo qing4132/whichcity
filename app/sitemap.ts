@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
 
-const BASE_URL = "https://citycompare.app";
+const BASE_URL = "https://whichcity.run";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();

@@ -3,15 +3,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "City Compare – Global Salary & Cost of Living Comparison",
-    template: "%s | City Compare",
+    default: "WhichCity – Global Salary & Cost of Living Comparison",
+    template: "%s | WhichCity",
   },
   description:
     "Compare 100+ cities worldwide by salary, cost of living, housing prices, air quality, healthcare density. Find the best city for your career and lifestyle.",
-  metadataBase: new URL("https://citycompare.app"),
+  metadataBase: new URL("https://whichcity.run"),
   openGraph: {
     type: "website",
-    siteName: "City Compare",
+    siteName: "WhichCity",
   },
 };
 

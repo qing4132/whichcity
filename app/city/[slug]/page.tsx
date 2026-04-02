@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!city) return { title: "City Not Found" };
   const enName = getCityEnName(id);
   const country = getCountryEnName(city.country);
-  const title = `${enName} Cost of Living, Salary & Quality of Life – City Compare`;
+  const title = `${enName} Cost of Living, Salary & Quality of Life – WhichCity`;
   const description = `${enName}, ${country}: Average salary $${Math.round(city.averageIncome / 1000)}K, monthly cost $${Math.round(city.costModerate).toLocaleString()}, house price $${Math.round(city.housePrice).toLocaleString()}/m², AQI ${city.airQuality}, ${city.doctorsPerThousand} doctors/1K. Compare with 100+ global cities.`;
   return {
     title,
