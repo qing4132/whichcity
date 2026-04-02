@@ -1,6 +1,6 @@
-# City Compare
+# WhichCity
 
-全球城市对比工具 — Next.js 15 + TypeScript + Tailwind CSS + Recharts
+全球城市对比工具（whichcity.run）— Next.js 15 + TypeScript + Tailwind CSS + Recharts
 
 ## Architecture
 

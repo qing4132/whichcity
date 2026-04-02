@@ -1,4 +1,4 @@
-# 🌍 City Compare — 全球城市对比
+# 🌍 WhichCity — 全球城市对比
 
 [中文](#中文) | [English](#english) | [日本語](#日本語) | [Español](#español)
 
@@ -26,8 +26,8 @@
 ### 快速开始
 
 ```bash
-git clone https://github.com/qing4132/citycompare.git
-cd citycompare
+git clone https://github.com/qing4132/whichcity.git
+cd whichcity
 npm install
 npm run dev
 ```
@@ -66,8 +66,8 @@ A Next.js-based global city comparison tool. Compare cities across income, livin
 ### Quick Start
 
 ```bash
-git clone https://github.com/qing4132/citycompare.git
-cd citycompare
+git clone https://github.com/qing4132/whichcity.git
+cd whichcity
 npm install
 npm run dev
 ```
@@ -106,8 +106,8 @@ Next.js ベースのグローバル都市比較ツール。収入・生活費・
 ### クイックスタート
 
 ```bash
-git clone https://github.com/qing4132/citycompare.git
-cd citycompare
+git clone https://github.com/qing4132/whichcity.git
+cd whichcity
 npm install
 npm run dev
 ```
@@ -146,8 +146,8 @@ Herramienta de comparación global de ciudades basada en Next.js. Compara ciudad
 ### Inicio Rápido
 
 ```bash
-git clone https://github.com/qing4132/citycompare.git
-cd citycompare
+git clone https://github.com/qing4132/whichcity.git
+cd whichcity
 npm install
 npm run dev
 ```

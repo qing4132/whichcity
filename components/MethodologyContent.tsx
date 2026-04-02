@@ -340,7 +340,7 @@ export default function MethodologyContent() {
       <P>最后更新：2026 年 3 月</P>
 
       <H2 id="feedback">💬 反馈源码</H2>
-      <P>本站开源于 <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>。如有数据纠错或功能建议，欢迎 <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>提交 Issue</a> 或发送邮件至 <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>。</P>
+      <P>本站开源于 <a href="https://github.com/qing4132/whichcity" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>。如有数据纠错或功能建议，欢迎 <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>提交 Issue</a> 或发送邮件至 <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>。</P>
     </>);
   }
 
@@ -522,7 +522,7 @@ export default function MethodologyContent() {
       <P>Last updated: March 2026</P>
 
       <H2 id="feedback">💬 Feedback & Source Code</H2>
-      <P>This site is open-source on <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>. For data corrections or feature suggestions, please <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>open an issue</a> or email <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>.</P>
+      <P>This site is open-source on <a href="https://github.com/qing4132/whichcity" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>. For data corrections or feature suggestions, please <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>open an issue</a> or email <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>.</P>
     </>);
   }
 
@@ -724,7 +724,7 @@ export default function MethodologyContent() {
       <P>最終更新：2026年3月</P>
 
       <H2 id="feedback">💬 フィードバックとソースコード</H2>
-      <P>本サイトは <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a> でオープンソースです。データの訂正や機能の提案は <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>Issue</a> または <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>メール</a>でお願いします。</P>
+      <P>本サイトは <a href="https://github.com/qing4132/whichcity" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a> でオープンソースです。データの訂正や機能の提案は <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>Issue</a> または <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>メール</a>でお願いします。</P>
     </>);
   }
 
@@ -926,7 +926,7 @@ export default function MethodologyContent() {
       <P>Última actualización: marzo 2026</P>
 
       <H2 id="feedback">💬 Comentarios y código fuente</H2>
-      <P>Este sitio es de código abierto en <a href="https://github.com/qing4132/citycompare" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>. Para correcciones o sugerencias, <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>abre un issue</a> o envía un correo a <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>.</P>
+      <P>Este sitio es de código abierto en <a href="https://github.com/qing4132/whichcity" target="_blank" rel="noopener noreferrer" className={linkCls}>GitHub</a>. Para correcciones o sugerencias, <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className={linkCls}>abre un issue</a> o envía un correo a <a href="mailto:qing4132@users.noreply.github.com" className={linkCls}>qing4132@users.noreply.github.com</a>.</P>
     </>);
   }
 
@@ -1028,7 +1028,7 @@ export default function MethodologyContent() {
       <footer className={`px-4 py-5 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
         <div className={`max-w-5xl mx-auto border-t pt-4 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/citycompare/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
+        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
         </div>
       </footer>
     </div>
