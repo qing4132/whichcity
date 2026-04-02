@@ -652,7 +652,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
               ...(city.directFlightCities !== null && other.directFlightCities !== null ? [{ key: "directFlights", cur: city.directFlightCities, oth: other.directFlightCities, higher: true }] : []),
               { key: "lifePressureIndex", cur: lifePressure, oth: otherLP, higher: false },
               { key: "healthcareIndex", cur: city.healthcareIndex, oth: other.healthcareIndex, higher: true },
-              { key: "freedomIndex", cur: city.freedomIndex, oth: other.freedomIndex, higher: true },
+              { key: "institutionalFreedom", cur: city.freedomIndex, oth: other.freedomIndex, higher: true },
               { key: "safetyIndex", cur: city.safetyIndex, oth: other.safetyIndex, higher: true },
               ...(city.doctorsPerThousand !== null && other.doctorsPerThousand !== null ? [{ key: "doctorsPerThousand", cur: city.doctorsPerThousand, oth: other.doctorsPerThousand, higher: true }] : []),
               ...(curCl && othCl ? [
