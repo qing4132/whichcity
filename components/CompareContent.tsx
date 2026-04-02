@@ -604,10 +604,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                             sharedTempMin={sharedTempMin} sharedTempMax={sharedTempMax} sharedRainCeil={sharedRainCeil} />
                         </div>
                       )}
-                      {/* City name label below chart (side-by-side mode) */}
-                      {climateCols >= 2 && (
-                        <p className={`text-xs font-semibold text-center mt-2 ${subCls}`}>{getFlag(c)} {getName(c)}</p>
-                      )}
                     </div>
                   );
                 })}
