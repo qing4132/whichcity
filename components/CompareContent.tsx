@@ -89,14 +89,19 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     return arr.slice(0, 3);
   });
 
-  /* ── Responsive columns: 2 on < 1080px, else 3 ── */
+  /* ── Responsive columns: ≥1080 → 3, ≥744 → 2, <744 → 1 ── */
   const [cols, setCols] = useState(3);
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 1079px)");
-    const handler = () => setCols(mq.matches ? 2 : 3);
+    const mqWide = window.matchMedia("(min-width: 1080px)");
+    const mqMid = window.matchMedia("(min-width: 744px)");
+    const handler = () => setCols(mqWide.matches ? 3 : mqMid.matches ? 2 : 1);
     handler();
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    mqWide.addEventListener("change", handler);
+    mqMid.addEventListener("change", handler);
+    return () => {
+      mqWide.removeEventListener("change", handler);
+      mqMid.removeEventListener("change", handler);
+    };
   }, []);
 
   const visibleSlots = slots.slice(0, cols);
@@ -560,7 +565,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
             {/* Per-city columns: data + chart in same column for alignment */}
             <div className="p-4">
-              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+              <div className="grid gap-4" style={{ gridTemplateColumns: cols >= 2 ? `repeat(${visibleSlots.length}, minmax(0, 1fr))` : '1fr' }}>
                 {visibleSlots.map((slot, ci) => {
                   const c = slot;
                   const items = c ? climateItems(c) : null;
@@ -571,8 +576,14 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                     </div>
                   );
                   return (
-                    <div key={c.id} className={ci < visibleSlots.length - 1 ? `border-r ${dividerCls} pr-4` : ""}>
-                      {/* Data grid */}
+                    <div key={c.id} className={ci < visibleSlots.length - 1 && cols >= 2 ? `border-r ${dividerCls} pr-4` : ""}>
+                      {/* City name label (stacked mode) */}
+                      {cols === 1 && (
+                        <>
+                          {ci > 0 && <hr className={`my-3 ${dividerCls}`} />}
+                          <p className={`text-sm font-bold text-center mb-2 ${headCls}`}>{getFlag(c)} {getName(c)}</p>
+                        </>
+                      )}
                       <div className="grid grid-cols-2 gap-1">
                         {items.map(([label, val]) => (
                           <div key={label} className="flex flex-col items-center text-center p-2">
@@ -588,8 +599,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                             sharedTempMin={sharedTempMin} sharedTempMax={sharedTempMax} sharedRainCeil={sharedRainCeil} />
                         </div>
                       )}
-                      {/* City name label below chart */}
-                      <p className={`text-xs font-semibold text-center mt-2 ${subCls}`}>{getFlag(c)} {getName(c)}</p>
+                      {/* City name label below chart (side-by-side mode) */}
+                      {cols >= 2 && (
+                        <p className={`text-xs font-semibold text-center mt-2 ${subCls}`}>{getFlag(c)} {getName(c)}</p>
+                      )}
                     </div>
                   );
                 })}
