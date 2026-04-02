@@ -81,6 +81,8 @@ export default function HomeContent() {
   const professions = Object.keys(PROFESSION_TRANSLATIONS);
   const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
 
+  useEffect(() => { document.title = "WhichCity"; }, [locale]);
+
   if (!s.ready) return null;
 
   return (

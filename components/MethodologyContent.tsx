@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable react/no-unescaped-entities */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { CostTier, IncomeMode } from "@/lib/types";
@@ -16,6 +16,8 @@ export default function MethodologyContent() {
   const { locale, darkMode, themeMode, t } = s;
   const professions = Object.keys(PROFESSION_TRANSLATIONS);
   const [navOpen, setNavOpen] = useState(false);
+  useEffect(() => { document.title = `${t("navMethodology")} | WhichCity`; }, [locale]);
+
   if (!s.ready) return null;
 
   const bg = darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900";

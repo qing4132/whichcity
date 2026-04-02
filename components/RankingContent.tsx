@@ -434,6 +434,8 @@ export default function RankingContent({ cities }: Props) {
   };
 
   /* ── JSX ── */
+  useEffect(() => { document.title = `${t("navRanking")} | WhichCity`; }, [locale]);
+
   if (!s.ready) return null;
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>

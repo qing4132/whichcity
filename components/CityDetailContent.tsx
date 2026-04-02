@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { City, CostTier, IncomeMode } from "@/lib/types";
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES } from "@/lib/constants";
@@ -172,11 +172,13 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
   const { locale, darkMode, themeMode, t, formatCurrency, costTier, profession, incomeMode } = s;
   const [navOpen, setNavOpen] = useState(false);
 
+  const cityName = CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name;
+  useEffect(() => { document.title = `${cityName} | WhichCity`; }, [locale, cityName]);
+
   if (!s.ready) return null;
 
   const id = city.id;
-  const flag = CITY_FLAG_EMOJIS[id] || "🏙️";
-  const cityName = CITY_NAME_TRANSLATIONS[id]?.[locale] || city.name;
+  const flag = CITY_FLAG_EMOJIS[id] || "🏤️";
   const countryName = COUNTRY_TRANSLATIONS[city.country]?.[locale] || city.country;
   const climate = getCityClimate(id);
 

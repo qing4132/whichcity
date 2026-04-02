@@ -223,7 +223,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     syncUrl(ns);
   };
 
-  /* ── Sync URL and title to reflect current city selection ── */
+  /* ── Sync URL to reflect current city selection ── */
   const syncUrl = (ns: (string | null)[]) => {
     const validSlugs = ns.filter((s): s is string => s !== null);
     const path = validSlugs.length >= 2
@@ -232,7 +232,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         ? `/compare/${validSlugs[0]}`
         : "/compare";
     window.history.replaceState(null, "", path);
-    // Update browser tab title
+  };
+
+  /* ── Sync browser tab title on city or locale change ── */
+  useEffect(() => {
+    const validSlugs = slugs.filter((s): s is string => s !== null);
     const cityNames = validSlugs.map(sl => {
       const id = Object.entries(CITY_SLUGS).find(([, v]) => v === sl)?.[0];
       return id ? (CITY_NAME_TRANSLATIONS[Number(id)]?.[locale] || sl) : sl;
@@ -242,7 +246,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       : cityNames.length === 1
         ? `${cityNames[0]} | WhichCity`
         : `${t("navCompare")} | WhichCity`;
-  };
+  }, [slugs, locale]);
 
   /* ── Style tokens ── */
   const selectCls = `text-xs rounded px-1.5 py-1 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
