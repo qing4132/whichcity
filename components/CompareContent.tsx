@@ -560,7 +560,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
             {/* Per-city columns: data + chart in same column for alignment */}
             <div className="p-4">
-              <div className="grid gap-4" style={{ gridTemplateColumns: cols <= 2 ? '1fr' : `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
+              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
                 {visibleSlots.map((slot, ci) => {
                   const c = slot;
                   const items = c ? climateItems(c) : null;
@@ -571,14 +571,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                     </div>
                   );
                   return (
-                    <div key={c.id} className={ci < visibleSlots.length - 1 && cols > 2 ? `border-r ${dividerCls} pr-4` : ""}>
-                      {/* City name label (mobile stacked) */}
-                      {cols <= 2 && (
-                        <>
-                          {ci > 0 && <hr className={`my-3 ${dividerCls}`} />}
-                          <p className={`text-sm font-bold text-center mb-2 ${headCls}`}>{getFlag(c)} {getName(c)}</p>
-                        </>
-                      )}
+                    <div key={c.id} className={ci < visibleSlots.length - 1 ? `border-r ${dividerCls} pr-4` : ""}>
                       {/* Data grid */}
                       <div className="grid grid-cols-2 gap-1">
                         {items.map(([label, val]) => (
@@ -595,10 +588,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                             sharedTempMin={sharedTempMin} sharedTempMax={sharedTempMax} sharedRainCeil={sharedRainCeil} />
                         </div>
                       )}
-                      {/* City name label below chart (desktop columns) */}
-                      {cols > 2 && (
-                        <p className={`text-xs font-semibold text-center mt-2 ${subCls}`}>{getFlag(c)} {getName(c)}</p>
-                      )}
+                      {/* City name label below chart */}
+                      <p className={`text-xs font-semibold text-center mt-2 ${subCls}`}>{getFlag(c)} {getName(c)}</p>
                     </div>
                   );
                 })}
