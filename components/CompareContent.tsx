@@ -89,12 +89,17 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
     return arr.slice(0, 3);
   });
 
-  /* ── Responsive columns: ≥1080 → 3, ≥744 → 2, <744 → 1 ── */
+  /* ── Responsive columns: ≥1080 → 3, <1080 → 2 ── */
   const [cols, setCols] = useState(3);
+  /* ── Climate columns: ≥1080 → 3, ≥744 → 2, <744 → 1 ── */
+  const [climateCols, setClimateCols] = useState(3);
   useEffect(() => {
     const mqWide = window.matchMedia("(min-width: 1080px)");
     const mqMid = window.matchMedia("(min-width: 744px)");
-    const handler = () => setCols(mqWide.matches ? 3 : mqMid.matches ? 2 : 1);
+    const handler = () => {
+      setCols(mqWide.matches ? 3 : 2);
+      setClimateCols(mqWide.matches ? 3 : mqMid.matches ? 2 : 1);
+    };
     handler();
     mqWide.addEventListener("change", handler);
     mqMid.addEventListener("change", handler);
@@ -286,10 +291,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
             </div>
             <div className="flex items-center gap-2">
               <button onClick={() => setNavOpen(v => !v)}
-                className={`md:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+                className={`min-[1080px]:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
                 <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
               </button>
-              <div className="hidden md:flex items-center gap-2">
+              <div className="hidden min-[1080px]:flex items-center gap-2">
                 <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
                   {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
                 </select>
@@ -317,7 +322,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
               </div>
             </div>
           </div>
-          <div className={`md:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+          <div className={`min-[1080px]:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
             <div className="overflow-hidden min-h-0">
               <div className="flex items-center gap-2 flex-wrap pt-2">
                 <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
@@ -431,7 +436,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                           }`}>
                           <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
                           <span className="font-medium truncate">{getName(rc)}</span>
-                          <span className={`text-xs ml-auto shrink-0 hidden md:inline ${subCls}`}>{getCountry(rc)}</span>
+                          <span className={`text-xs ml-auto shrink-0 hidden min-[1080px]:inline ${subCls}`}>{getCountry(rc)}</span>
                         </button>
                       ))}
                       {slotSearch.trim() && slotResults.length === 0 && (
@@ -565,7 +570,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
 
             {/* Per-city columns: data + chart in same column for alignment */}
             <div className="p-4">
-              <div className="grid gap-4" style={{ gridTemplateColumns: cols >= 2 ? `repeat(${visibleSlots.length}, minmax(0, 1fr))` : '1fr' }}>
+              <div className="grid gap-4" style={{ gridTemplateColumns: climateCols >= 2 ? `repeat(${visibleSlots.length}, minmax(0, 1fr))` : '1fr' }}>
                 {visibleSlots.map((slot, ci) => {
                   const c = slot;
                   const items = c ? climateItems(c) : null;
@@ -576,9 +581,9 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                     </div>
                   );
                   return (
-                    <div key={c.id} className={ci < visibleSlots.length - 1 && cols >= 2 ? `border-r ${dividerCls} pr-4` : ""}>
+                    <div key={c.id} className={ci < visibleSlots.length - 1 && climateCols >= 2 ? `border-r ${dividerCls} pr-4` : ""}>
                       {/* City name label (stacked mode) */}
-                      {cols === 1 && (
+                      {climateCols === 1 && (
                         <>
                           {ci > 0 && <hr className={`my-3 ${dividerCls}`} />}
                           <p className={`text-sm font-bold text-center mb-2 ${headCls}`}>{getFlag(c)} {getName(c)}</p>
@@ -600,7 +605,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
                         </div>
                       )}
                       {/* City name label below chart (side-by-side mode) */}
-                      {cols >= 2 && (
+                      {climateCols >= 2 && (
                         <p className={`text-xs font-semibold text-center mt-2 ${subCls}`}>{getFlag(c)} {getName(c)}</p>
                       )}
                     </div>
