@@ -21,7 +21,8 @@
 - 🌡️ **气候信息** — 气候类型、月度温度/降水图表、日照时数
 - 🔒 **安全/医疗/自由指数** — 多子指标加权综合评分
 - 🏆 **城市排行榜** — 按收入、性价比、生活压力等维度排名
-- 🌙 **深色模式** — 自动跟随系统 / 手动切换
+- � **自选模式** — 多选指标自定义综合排名，支持气候条件筛选
+- �🌙 **深色模式** — 自动跟随系统 / 手动切换
 
 ### 快速开始
 
@@ -61,7 +62,8 @@ A Next.js-based global city comparison tool. Compare cities across income, livin
 - 🌡️ **Climate data** — type, monthly temp/rain charts, sunshine hours
 - 🔒 **Safety / Healthcare / Freedom indices** — weighted composite scores
 - 🏆 **City rankings** — by income, value, life pressure, and more
-- 🌙 **Dark mode** — auto / light / dark
+- � **Custom mode** — multi-select metrics for composite ranking with climate filtering
+- �🌙 **Dark mode** — auto / light / dark
 
 ### Quick Start
 
@@ -101,7 +103,8 @@ Next.js ベースのグローバル都市比較ツール。収入・生活費・
 - 🌡️ **気候データ** — 気候タイプ・月別気温/降水チャート・日照時間
 - 🔒 **安全/医療/自由指数** — 複数指標の加重スコア
 - 🏆 **都市ランキング** — 収入・コスパ・生活圧力などで順位付け
-- 🌙 **ダークモード** — 自動 / ライト / ダーク
+- � **カスタムモード** — 指標を複数選択して総合ランキング、気候条件でフィルタリング
+- �🌙 **ダークモード** — 自動 / ライト / ダーク
 
 ### クイックスタート
 
@@ -141,7 +144,8 @@ Herramienta de comparación global de ciudades basada en Next.js. Compara ciudad
 - 🌡️ **Datos climáticos** — tipo, gráficos mensuales de temp./lluvia, horas de sol
 - 🔒 **Índices de seguridad / salud / libertad** — puntajes compuestos ponderados
 - 🏆 **Rankings de ciudades** — por ingreso, valor, presión de vida y más
-- 🌙 **Modo oscuro** — auto / claro / oscuro
+- � **Modo personalizado** — selección múltiple de métricas para ranking compuesto con filtro climático
+- �🌙 **Modo oscuro** — auto / claro / oscuro
 
 ### Inicio Rápido
 

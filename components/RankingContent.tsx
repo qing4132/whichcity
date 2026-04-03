@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { City, CostTier, IncomeMode } from "@/lib/types";
+import type { City, CostTier, IncomeMode, ClimateType } from "@/lib/types";
 import { COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
-import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS } from "@/lib/constants";
+import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS, CITY_CLIMATE } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
-import { computeLifePressure } from "@/lib/clientUtils";
+import { computeLifePressure, getCityClimate } from "@/lib/clientUtils";
 import { computeAllNetIncomes } from "@/lib/taxUtils";
 import { useSettings } from "@/hooks/useSettings";
 import Link from "next/link";
@@ -48,7 +48,79 @@ const TAB_I18N: Record<Tab, string> = {
   healthcare: "rankTab_healthcare", freedom: "rankTab_freedom",
 };
 
+/* ── Tab "higher is better" map (true = higher is better, false = lower is better) ── */
+const TAB_HIGHER: Record<Tab, boolean> = {
+  income: true, expense: false, savings: true,
+  housePrice: false, housing: false, rent: false,
+  workhours: false, hourlyWage: true, vacation: true,
+  air: false, internet: true, flights: true,
+  lifePressure: false, safety: true, healthcare: true, freedom: true,
+};
+
 const tabGroupIdx = (tab: Tab) => GROUPS.findIndex(g => g.tabs.includes(tab));
+
+/* ── Climate filter config ── */
+const CLIMATE_TYPES: ClimateType[] = ["tropical", "temperate", "continental", "arid", "mediterranean", "oceanic"];
+const CLIMATE_TYPE_I18N: Record<ClimateType, string> = {
+  tropical: "climTropical", temperate: "climTemperate", continental: "climContinental",
+  arid: "climArid", mediterranean: "climMediterranean", oceanic: "climOceanic",
+};
+
+type ClimTier = 0 | 1 | 2;
+interface ClimDim { key: string; labelKey: string; tiers: { labelKey: string; test: (v: number) => boolean }[] }
+
+/* Compute p33/p66 percentile thresholds from actual data */
+const _climIds = Object.keys(CITY_CLIMATE).map(Number);
+const _climVals = (fn: (c: (typeof CITY_CLIMATE)[number]) => number) =>
+  _climIds.map(id => fn(CITY_CLIMATE[id])).filter(v => v != null && isFinite(v)).sort((a, b) => a - b);
+const _pct = (arr: number[], p: number) => arr[Math.min(Math.floor(arr.length * p), arr.length - 1)];
+const _round = (v: number, d = 0) => Math.round(v * 10 ** d) / 10 ** d;
+
+const _tempArr = _climVals(c => c.avgTempC);
+const _diffArr = _climVals(c => c.summerAvgC - c.winterAvgC);
+const _humArr = _climVals(c => c.humidityPct);
+const _sunArr = _climVals(c => c.sunshineHours);
+
+const _tLo = _round(_pct(_tempArr, 1 / 3));
+const _tHi = _round(_pct(_tempArr, 2 / 3));
+const _dLo = _round(_pct(_diffArr, 1 / 3));
+const _dHi = _round(_pct(_diffArr, 2 / 3));
+const _hLo = _round(_pct(_humArr, 1 / 3));
+const _hHi = _round(_pct(_humArr, 2 / 3));
+const _sLo = _round(_pct(_sunArr, 1 / 3));
+const _sHi = _round(_pct(_sunArr, 2 / 3));
+
+const _mkTiers = (lo: number, hi: number, keys: [string, string, string]): ClimDim["tiers"] => [
+  { labelKey: keys[0], test: v => v < lo },
+  { labelKey: keys[1], test: v => v >= lo && v <= hi },
+  { labelKey: keys[2], test: v => v > hi },
+];
+
+const CLIM_DIMS: ClimDim[] = [
+  { key: "temp", labelKey: "climTemp",
+    tiers: _mkTiers(_tLo, _tHi, ["climTempLo", "climTempMid", "climTempHi"]) },
+  { key: "diff", labelKey: "climTempDiff",
+    tiers: _mkTiers(_dLo, _dHi, ["climDiffLo", "climDiffMid", "climDiffHi"]) },
+  { key: "rain", labelKey: "climRain",
+    tiers: _mkTiers(600, 1200, ["climRainLo", "climRainMid", "climRainHi"]) },
+  { key: "humidity", labelKey: "climHumidity",
+    tiers: _mkTiers(_hLo, _hHi, ["climHumLo", "climHumMid", "climHumHi"]) },
+  { key: "sun", labelKey: "climSun",
+    tiers: _mkTiers(_sLo, _sHi, ["climSunLo", "climSunMid", "climSunHi"]) },
+];
+
+const climDimVal = (cityId: number, dimKey: string): number | null => {
+  const c = getCityClimate(cityId);
+  if (!c) return null;
+  switch (dimKey) {
+    case "temp": return c.avgTempC;
+    case "diff": return c.summerAvgC - c.winterAvgC;
+    case "rain": return c.annualRainMm;
+    case "humidity": return c.humidityPct;
+    case "sun": return c.sunshineHours;
+    default: return null;
+  }
+};
 
 /* ── Helpers ── */
 
@@ -99,6 +171,11 @@ export default function RankingContent({ cities }: Props) {
   });
   const [subSort, setSubSort] = useState<SubSort>(null);
   const [navOpen, setNavOpen] = useState(false);
+  const [composite, setComposite] = useState(false);
+  const [customTabs, setCustomTabs] = useState<Set<Tab>>(new Set());
+  const [climTypeFilter, setClimTypeFilter] = useState<Set<ClimateType>>(new Set());
+  const [climDimFilter, setClimDimFilter] = useState<Record<string, Set<ClimTier>>>({});
+  const [climOpen, setClimOpen] = useState(false);
   const setTab = (t: Tab) => { setTabState(t); localStorage.setItem("rankingTab", t); };
 
   const professions = cities[0]?.professions ? Object.keys(cities[0].professions) : [];
@@ -183,8 +260,58 @@ export default function RankingContent({ cities }: Props) {
     cpi: nn(rows.map(r => r.cpi)),
   }), [rows]);
 
+  /* ── Composite scoring ── */
+  /* ── Tab value accessor for composite scoring ── */
+  const tabVal = (r: typeof rows[0], tb: Tab): number | null => {
+    switch (tb) {
+      case "income": return r.income;
+      case "expense": return r.monthlyCost;
+      case "savings": return r.savings;
+      case "housePrice": return r.housePrice;
+      case "housing": return isFinite(r.yearsToHome) ? r.yearsToHome : null;
+      case "rent": return r.monthlyRent;
+      case "workhours": return r.annualWorkHours;
+      case "hourlyWage": return r.hourlyWage > 0 ? r.hourlyWage : null;
+      case "vacation": return r.paidLeaveDays;
+      case "air": return r.airQuality;
+      case "internet": return r.internetSpeedMbps;
+      case "flights": return r.directFlightCities;
+      case "lifePressure": return r.lifePressure;
+      case "safety": return r.safetyIndex;
+      case "healthcare": return r.healthcareIndex;
+      case "freedom": return r.freedomIndex;
+    }
+  };
+
+  const compositeScores = useMemo(() => {
+    if (!composite || customTabs.size === 0) return null;
+    const active = [...customTabs];
+    const ranges = active.map(tb => {
+      const vals = rows.map(r => tabVal(r, tb)).filter((v): v is number => v !== null && isFinite(v));
+      return { min: Math.min(...vals), max: Math.max(...vals), higher: TAB_HIGHER[tb] };
+    });
+    return rows.map(r => {
+      let sum = 0, count = 0;
+      active.forEach((tb, ti) => {
+        const v = tabVal(r, tb);
+        if (v === null || !isFinite(v)) return;
+        const { min, max, higher } = ranges[ti];
+        if (max === min) { sum += 50; count++; return; }
+        const norm = ((v - min) / (max - min)) * 100;
+        sum += higher ? norm : (100 - norm);
+        count++;
+      });
+      return count > 0 ? sum / count : -1;
+    });
+  }, [composite, customTabs, rows]);
+
   /* ── Sort ── */
   const sorted = useMemo(() => {
+    if (composite && compositeScores) {
+      const indexed = rows.map((r, i) => ({ r, s: compositeScores[i] }));
+      indexed.sort((a, b) => b.s - a.s);
+      return indexed.map(x => x.r);
+    }
     const key = subSort || tab;
     return [...rows].sort((a, b) => {
       switch (key) {
@@ -230,11 +357,66 @@ export default function RankingContent({ cities }: Props) {
         default: return 0;
       }
     });
-  }, [rows, tab, subSort]);
+  }, [rows, tab, subSort, composite, compositeScores]);
+
+  /* ── Climate filtering ── */
+  const hasClimFilter = climTypeFilter.size > 0 || Object.values(climDimFilter).some(s => s.size > 0);
+  const filtered = useMemo(() => {
+    if (!hasClimFilter) return sorted;
+    return sorted.filter(r => {
+      const clim = getCityClimate(r.city.id);
+      if (!clim) return false;
+      if (climTypeFilter.size > 0 && !climTypeFilter.has(clim.type)) return false;
+      for (const dim of CLIM_DIMS) {
+        const sel = climDimFilter[dim.key];
+        if (!sel || sel.size === 0) continue;
+        const v = climDimVal(r.city.id, dim.key);
+        if (v === null) return false;
+        const matchesTier = [...sel].some(ti => dim.tiers[ti].test(v));
+        if (!matchesTier) return false;
+      }
+      return true;
+    });
+  }, [sorted, climTypeFilter, climDimFilter, hasClimFilter]);
+
+  const toggleClimType = (ct: ClimateType) => {
+    setClimTypeFilter(prev => {
+      const next = new Set(prev);
+      if (next.has(ct)) next.delete(ct); else next.add(ct);
+      return next;
+    });
+  };
+  const toggleClimDim = (dimKey: string, tier: ClimTier) => {
+    setClimDimFilter(prev => {
+      const cur = prev[dimKey] || new Set<ClimTier>();
+      const next = new Set(cur);
+      if (next.has(tier)) next.delete(tier); else next.add(tier);
+      return { ...prev, [dimKey]: next };
+    });
+  };
+  const clearClimFilter = () => { setClimTypeFilter(new Set()); setClimDimFilter({}); };
 
   /* ── Tab handlers ── */
-  const handleTab = (newTab: Tab) => { setTab(newTab); setSubSort(null); };
+  const handleTab = (newTab: Tab) => {
+    if (composite) {
+      setCustomTabs(prev => {
+        const next = new Set(prev);
+        if (next.has(newTab)) next.delete(newTab);
+        else next.add(newTab);
+        return next;
+      });
+    } else {
+      setTab(newTab); setSubSort(null);
+    }
+  };
   const handleSubSort = (ss: SubSort) => setSubSort(prev => prev === ss ? null : ss);
+  const toggleComposite = () => {
+    setComposite(v => {
+      if (v) { clearClimFilter(); setClimOpen(false); }
+      return !v;
+    });
+    setSubSort(null);
+  };
 
   const activeGroup = tabGroupIdx(tab);
   const isIndex = INDEX_TABS.has(tab);
@@ -242,13 +424,21 @@ export default function RankingContent({ cities }: Props) {
 
   /* ── Compute display ranks (dense — ties get same rank) ── */
   const displayRanks = useMemo(() => {
-    const ranks: number[] = new Array(sorted.length);
-    if (sorted.length === 0) return ranks;
+    const ranks: number[] = new Array(filtered.length);
+    if (filtered.length === 0) return ranks;
     ranks[0] = 1;
-    for (let i = 1; i < sorted.length; i++) {
+    for (let i = 1; i < filtered.length; i++) {
+      if (composite && compositeScores) {
+        const ai = rows.indexOf(filtered[i - 1]);
+        const bi = rows.indexOf(filtered[i]);
+        const va = ai >= 0 ? Math.round(compositeScores[ai] * 10) : null;
+        const vb = bi >= 0 ? Math.round(compositeScores[bi] * 10) : null;
+        ranks[i] = (va !== null && vb !== null && va === vb) ? ranks[i - 1] : i + 1;
+        continue;
+      }
       // Compare the sort-determining values of adjacent rows
-      const a = sorted[i - 1];
-      const b = sorted[i];
+      const a = filtered[i - 1];
+      const b = filtered[i];
       let same = false;
       const key = subSort || tab;
       const getVal = (r: typeof sorted[0]): number | null => {
@@ -293,7 +483,7 @@ export default function RankingContent({ cities }: Props) {
       ranks[i] = same ? ranks[i - 1] : i + 1;
     }
     return ranks;
-  }, [sorted, tab, subSort]);
+  }, [filtered, tab, subSort, composite, compositeScores, rows]);
 
   /* ── Rendering helpers ── */
   const getCityLabel = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
@@ -336,6 +526,15 @@ export default function RankingContent({ cities }: Props) {
 
   /* ── Column headers ── */
   const renderHeaders = () => {
+    if (composite) {
+      const activeTabs = GROUPS.flatMap(g => g.tabs).filter(t => customTabs.has(t));
+      return (<>
+        <th className={`${thBase} ${sortColBg}`}>{t("compositeScore")}</th>
+        {activeTabs.map(ct => (
+          <th key={ct} className={thBase}>{t(TAB_I18N[ct]).replace(/^[^\s]+\s/, "")}</th>
+        ))}
+      </>);
+    }
     if (isIndex) {
       switch (tab) {
         case "lifePressure": return (<>
@@ -377,7 +576,49 @@ export default function RankingContent({ cities }: Props) {
   };
 
   /* ── Row cells ── */
+  const tabValsMap: Record<Tab, number[]> = {
+    income: V.income, expense: V.monthlyCost, savings: V.savings,
+    housePrice: V.housePrice, housing: V.yearsToHome, rent: V.monthlyRent,
+    workhours: V.workHours, hourlyWage: V.hourlyWage, vacation: V.paidLeave,
+    air: V.air, internet: V.internet, flights: V.flights,
+    lifePressure: V.lp, safety: V.safety, healthcare: V.hc, freedom: V.freedom,
+  };
+
+  const fmtTabVal = (r: typeof rows[0], tb: Tab): string => {
+    switch (tb) {
+      case "income": return formatCurrency(r.income);
+      case "expense": return formatCurrency(r.monthlyCost);
+      case "savings": return formatCurrency(r.savings);
+      case "housePrice": return r.housePrice !== null ? `${formatCurrency(r.housePrice)}/m\u00b2` : "\u2014";
+      case "housing": return isFinite(r.yearsToHome) ? `${r.yearsToHome.toFixed(1)} ${t("insightYears")}` : "\u2014";
+      case "rent": return r.monthlyRent !== null ? formatCurrency(r.monthlyRent) : "\u2014";
+      case "workhours": return r.annualWorkHours !== null ? `${r.annualWorkHours} ${t("unitH")}` : "\u2014";
+      case "hourlyWage": return r.hourlyWage > 0 ? formatCurrency(Math.round(r.hourlyWage * 100) / 100) : "\u2014";
+      case "vacation": return r.paidLeaveDays !== null ? `${r.paidLeaveDays} ${t("paidLeaveDaysUnit")}` : "\u2014";
+      case "air": return r.airQuality !== null ? `AQI ${r.airQuality}` : "\u2014";
+      case "internet": return r.internetSpeedMbps !== null ? `${r.internetSpeedMbps} Mbps` : "\u2014";
+      case "flights": return r.directFlightCities !== null ? `${r.directFlightCities}` : "\u2014";
+      case "lifePressure": return r.lifePressure.toFixed(1);
+      case "safety": return r.safetyIndex.toFixed(1);
+      case "healthcare": return r.healthcareIndex.toFixed(1);
+      case "freedom": return r.freedomIndex.toFixed(1);
+    }
+  };
+
   const renderCells = (r: typeof rows[0]) => {
+    if (composite && compositeScores) {
+      const idx = rows.indexOf(r);
+      const score = idx >= 0 ? compositeScores[idx] : -1;
+      const allScores = compositeScores.filter(s => s >= 0);
+      const activeTabs = GROUPS.flatMap(g => g.tabs).filter(ct => customTabs.has(ct));
+      return (<>
+        <TC val={score >= 0 ? score : null} formatted={score >= 0 ? score.toFixed(1) : "\u2014"} vals={allScores} higher={true} active />
+        {activeTabs.map(ct => {
+          const v = tabVal(r, ct);
+          return <TC key={ct} val={v} formatted={fmtTabVal(r, ct)} vals={tabValsMap[ct]} higher={TAB_HIGHER[ct]} />;
+        })}
+      </>);
+    }
     if (isIndex) {
       switch (tab) {
         case "lifePressure": return (<>
@@ -542,47 +783,158 @@ export default function RankingContent({ cities }: Props) {
           </p>
         </div>
 
-        {/* Grouped tab selector – 3 rows matching city detail layout */}
+        {/* Grouped tab selector */}
         <div className="mb-4 space-y-1.5">
+          {/* Custom mode toggle */}
+          <div className="flex gap-1.5">
+            <button onClick={toggleComposite}
+              className={`${composite ? "flex-1" : "w-full"} py-2 rounded-lg font-semibold text-sm text-center border ${
+                composite
+                  ? "bg-amber-500 text-white shadow-sm border-amber-500"
+                  : (darkMode ? "bg-amber-900/30 text-amber-300/60 hover:bg-amber-900/50 border-amber-500/30" : "bg-amber-50 text-amber-700/50 hover:bg-amber-100 border-amber-200")
+              }`}>
+              {t("customModeBtn")}
+            </button>
+            {composite && (
+              <button onClick={() => setClimOpen(v => !v)}
+                className={`px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap border ${
+                  climOpen || hasClimFilter
+                    ? (darkMode ? "bg-emerald-900/40 text-emerald-300 border-emerald-500/50" : "bg-emerald-50 text-emerald-700 border-emerald-200")
+                    : (darkMode ? "bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700" : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200")
+                }`}>
+                {t("climateFilter")}{hasClimFilter ? ` · ${t("climFilterCount").replace("{count}", String(filtered.length)).replace("{total}", String(sorted.length))}` : ""}
+              </button>
+            )}
+            {composite && (
+              <button onClick={() => setCustomTabs(new Set())} disabled={customTabs.size === 0}
+                className={`px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap ${
+                  customTabs.size === 0
+                    ? (darkMode ? "bg-slate-800 text-slate-600" : "bg-slate-100 text-slate-300")
+                    : (darkMode ? "bg-slate-700 text-slate-300 hover:bg-slate-600" : "bg-slate-200 text-slate-600 hover:bg-slate-300")
+                }`}>
+                {t("clear")}
+              </button>
+            )}
+          </div>
+          {/* Climate filter panel – animated expand/collapse */}
+          <div className={`grid transition-all duration-300 ease-in-out ${climOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+            <div className="overflow-hidden">
+              <div className={`rounded-xl p-3 space-y-1.5 ${darkMode ? "bg-slate-800/50 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
+                {/* Header + clear */}
+                <div className="flex items-center justify-between">
+                  <div className={`text-xs font-semibold ${darkMode ? "text-emerald-400" : "text-emerald-700"}`}>
+                    {t("climateFilter")}
+                  </div>
+                  {hasClimFilter && (
+                    <button onClick={clearClimFilter}
+                      className={`text-xs underline ${darkMode ? "text-slate-400 hover:text-slate-300" : "text-slate-500 hover:text-slate-700"}`}>
+                      {t("clear")}
+                    </button>
+                  )}
+                </div>
+                {/* Climate type */}
+                <div className="flex items-center gap-2">
+                  <div className={`text-xs font-medium shrink-0 w-16 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>{t("climType")}</div>
+                  <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 flex-1">
+                    {CLIMATE_TYPES.map(ct => {
+                      const sel = climTypeFilter.has(ct);
+                      return (
+                        <button key={ct} onClick={() => toggleClimType(ct)}
+                          className={`py-1.5 rounded-lg font-medium text-xs transition text-center truncate ${
+                            sel
+                              ? "bg-emerald-500 text-white shadow-sm"
+                              : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100/70 text-slate-600 hover:bg-slate-200")
+                          }`}>
+                          {t(CLIMATE_TYPE_I18N[ct])}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+                {/* Continuous dimensions */}
+                {CLIM_DIMS.map(dim => (
+                  <div key={dim.key} className="flex items-center gap-2">
+                    <div className={`text-xs font-medium shrink-0 w-16 ${darkMode ? "text-slate-400" : "text-slate-500"}`}>{t(dim.labelKey)}</div>
+                    <div className="grid grid-cols-3 gap-1 flex-1">
+                      {dim.tiers.map((tier, ti) => {
+                        const sel = climDimFilter[dim.key]?.has(ti as ClimTier);
+                        return (
+                          <button key={ti} onClick={() => toggleClimDim(dim.key, ti as ClimTier)}
+                            className={`py-1.5 rounded-lg font-medium text-xs transition text-center truncate ${
+                              sel
+                                ? "bg-emerald-500 text-white shadow-sm"
+                                : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100/70 text-slate-600 hover:bg-slate-200")
+                            }`}>
+                            {t(tier.labelKey)}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
           {/* Row 1: Income + Housing / Row 2: Work + Environment */}
           {[[0, 1], [2, 3]].map((pair, ri) => (
             <div key={ri} className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {pair.map(gi => (
                 <div key={GROUPS[gi].labelKey} className="grid grid-cols-3 gap-1">
-                  {GROUPS[gi].tabs.map(gTab => (
-                    <button key={gTab} onClick={() => handleTab(gTab)}
-                      className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${
-                        tab === gTab
-                          ? "bg-blue-600 text-white shadow-sm"
-                          : gi === activeGroup
-                            ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-50 text-blue-700 hover:bg-blue-100")
-                            : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100/70 text-slate-600 hover:bg-slate-200")
-                      }`}>
-                      {t(TAB_I18N[gTab])}
-                    </button>
-                  ))}
+                  {GROUPS[gi].tabs.map(gTab => {
+                    const selected = composite ? customTabs.has(gTab) : tab === gTab;
+                    return (
+                      <button key={gTab} onClick={() => handleTab(gTab)}
+                        className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${
+                          composite
+                            ? (selected
+                                ? "bg-amber-500 text-white shadow-sm"
+                                : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700 opacity-50" : "bg-slate-100/70 text-slate-500 hover:bg-slate-200 opacity-50"))
+                            : (selected
+                                ? "bg-blue-600 text-white shadow-sm"
+                                : gi === activeGroup
+                                  ? (darkMode ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-blue-50 text-blue-700 hover:bg-blue-100")
+                                  : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100/70 text-slate-600 hover:bg-slate-200"))
+                        }`}>
+                        {t(TAB_I18N[gTab])}
+                      </button>
+                    );
+                  })}
                 </div>
               ))}
             </div>
           ))}
           {/* Row 3: Indexes – visually distinct */}
           <div className="grid grid-cols-4 gap-1">
-            {GROUPS[4].tabs.map(gTab => (
-              <button key={gTab} onClick={() => handleTab(gTab)}
-                className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${
-                  tab === gTab
-                    ? "bg-indigo-600 text-white shadow-sm"
-                    : activeGroup === 4
-                      ? (darkMode ? "bg-indigo-900/30 text-indigo-300 hover:bg-indigo-900/50" : "bg-indigo-50 text-indigo-700 hover:bg-indigo-100")
-                      : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100/70 text-slate-600 hover:bg-slate-200")
-                }`}>
-                {t(TAB_I18N[gTab])}
-              </button>
-            ))}
+            {GROUPS[4].tabs.map(gTab => {
+              const selected = composite ? customTabs.has(gTab) : tab === gTab;
+              return (
+                <button key={gTab} onClick={() => handleTab(gTab)}
+                  className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${
+                    composite
+                      ? (selected
+                          ? "bg-amber-500 text-white shadow-sm"
+                          : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700 opacity-50" : "bg-slate-100/70 text-slate-500 hover:bg-slate-200 opacity-50"))
+                      : (selected
+                          ? "bg-indigo-600 text-white shadow-sm"
+                          : activeGroup === 4
+                            ? (darkMode ? "bg-indigo-900/30 text-indigo-300 hover:bg-indigo-900/50" : "bg-indigo-50 text-indigo-700 hover:bg-indigo-100")
+                            : (darkMode ? "bg-slate-800 text-slate-400 hover:bg-slate-700" : "bg-slate-100/70 text-slate-600 hover:bg-slate-200"))
+                  }`}>
+                  {t(TAB_I18N[gTab])}
+                </button>
+              );
+            })}
           </div>
         </div>
 
+
+
         {/* Table */}
+        {composite && customTabs.size === 0 ? (
+          <div className={`rounded-xl py-16 text-center ${darkMode ? "bg-gray-800 border border-gray-700 text-slate-400" : "bg-white border border-gray-100 text-slate-400"}`}>
+            <p className="text-lg">{t("customModeHint")}</p>
+          </div>
+        ) : (
         <div className={`rounded-xl shadow-md overflow-hidden ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-100"}`}>
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -595,7 +947,7 @@ export default function RankingContent({ cities }: Props) {
                 </tr>
               </thead>
               <tbody>
-                {sorted.map((r, idx) => {
+                {filtered.map((r, idx) => {
                   const slug = CITY_SLUGS[r.city.id];
                   const rank = displayRanks[idx];
                   const isTop3 = rank <= 3;
@@ -603,7 +955,7 @@ export default function RankingContent({ cities }: Props) {
                   return (
                     <tr key={r.city.id}
                       className={`${
-                        idx < sorted.length - 1 ? (darkMode ? "border-b border-slate-700/50" : "border-b border-slate-100") : ""
+                        idx < filtered.length - 1 ? (darkMode ? "border-b border-slate-700/50" : "border-b border-slate-100") : ""
                       } ${isTop3 ? (darkMode ? "bg-blue-900/10" : "bg-blue-50/50") : ""
                       } hover:${darkMode ? "bg-slate-700/30" : "bg-slate-50"} transition`}>
                       <td className={`${tdBase} font-bold text-center ${darkMode ? "text-slate-300" : "text-slate-600"}`}>{badge}</td>
@@ -626,10 +978,9 @@ export default function RankingContent({ cities }: Props) {
             </table>
           </div>
         </div>
+        )}
 
       </div>
-
-      {/* Footer */}
       <footer className={`px-4 py-5 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
         <div className={`max-w-5xl mx-auto border-t pt-4 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
