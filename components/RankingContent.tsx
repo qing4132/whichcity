@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useDeferredValue, useMemo, useState } from "react";
 import type { City, CostTier, IncomeMode, ClimateType } from "@/lib/types";
 import { COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS, CITY_CLIMATE } from "@/lib/constants";
@@ -172,7 +172,9 @@ export default function RankingContent({ cities }: Props) {
   const [subSort, setSubSort] = useState<SubSort>(null);
   const [navOpen, setNavOpen] = useState(false);
   const [composite, setComposite] = useState(false);
+  const deferredComposite = useDeferredValue(composite);
   const [customTabs, setCustomTabs] = useState<Set<Tab>>(new Set());
+  const deferredCustomTabs = useDeferredValue(customTabs);
   const [climTypeFilter, setClimTypeFilter] = useState<Set<ClimateType>>(new Set());
   const [climDimFilter, setClimDimFilter] = useState<Record<string, Set<ClimTier>>>({});
   const [climOpen, setClimOpen] = useState(false);
@@ -284,8 +286,8 @@ export default function RankingContent({ cities }: Props) {
   };
 
   const compositeScores = useMemo(() => {
-    if (!composite || customTabs.size === 0) return null;
-    const active = [...customTabs];
+    if (!deferredComposite || deferredCustomTabs.size === 0) return null;
+    const active = [...deferredCustomTabs];
     const ranges = active.map(tb => {
       const vals = rows.map(r => tabVal(r, tb)).filter((v): v is number => v !== null && isFinite(v));
       return { min: Math.min(...vals), max: Math.max(...vals), higher: TAB_HIGHER[tb] };
@@ -303,11 +305,11 @@ export default function RankingContent({ cities }: Props) {
       });
       return count > 0 ? sum / count : -1;
     });
-  }, [composite, customTabs, rows]);
+  }, [deferredComposite, deferredCustomTabs, rows]);
 
   /* ── Sort ── */
   const sorted = useMemo(() => {
-    if (composite && compositeScores) {
+    if (deferredComposite && compositeScores) {
       const indexed = rows.map((r, i) => ({ r, s: compositeScores[i] }));
       indexed.sort((a, b) => b.s - a.s);
       return indexed.map(x => x.r);
@@ -357,7 +359,7 @@ export default function RankingContent({ cities }: Props) {
         default: return 0;
       }
     });
-  }, [rows, tab, subSort, composite, compositeScores]);
+  }, [rows, tab, subSort, deferredComposite, compositeScores]);
 
   /* ── Climate filtering ── */
   const hasClimFilter = climTypeFilter.size > 0 || Object.values(climDimFilter).some(s => s.size > 0);
@@ -411,10 +413,8 @@ export default function RankingContent({ cities }: Props) {
   };
   const handleSubSort = (ss: SubSort) => setSubSort(prev => prev === ss ? null : ss);
   const toggleComposite = () => {
-    setComposite(v => {
-      if (v) { clearClimFilter(); setClimOpen(false); }
-      return !v;
-    });
+    if (composite) { clearClimFilter(); setClimOpen(false); }
+    setComposite(v => !v);
     setSubSort(null);
   };
 
@@ -428,7 +428,7 @@ export default function RankingContent({ cities }: Props) {
     if (filtered.length === 0) return ranks;
     ranks[0] = 1;
     for (let i = 1; i < filtered.length; i++) {
-      if (composite && compositeScores) {
+      if (deferredComposite && compositeScores) {
         const ai = rows.indexOf(filtered[i - 1]);
         const bi = rows.indexOf(filtered[i]);
         const va = ai >= 0 ? Math.round(compositeScores[ai] * 10) : null;
@@ -483,7 +483,7 @@ export default function RankingContent({ cities }: Props) {
       ranks[i] = same ? ranks[i - 1] : i + 1;
     }
     return ranks;
-  }, [filtered, tab, subSort, composite, compositeScores, rows]);
+  }, [filtered, tab, subSort, deferredComposite, compositeScores, rows]);
 
   /* ── Rendering helpers ── */
   const getCityLabel = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
@@ -526,8 +526,8 @@ export default function RankingContent({ cities }: Props) {
 
   /* ── Column headers ── */
   const renderHeaders = () => {
-    if (composite) {
-      const activeTabs = GROUPS.flatMap(g => g.tabs).filter(t => customTabs.has(t));
+    if (deferredComposite) {
+      const activeTabs = GROUPS.flatMap(g => g.tabs).filter(t => deferredCustomTabs.has(t));
       return (<>
         <th className={`${thBase} ${sortColBg}`}>{t("compositeScore")}</th>
         {activeTabs.map(ct => (
@@ -606,11 +606,11 @@ export default function RankingContent({ cities }: Props) {
   };
 
   const renderCells = (r: typeof rows[0]) => {
-    if (composite && compositeScores) {
+    if (deferredComposite && compositeScores) {
       const idx = rows.indexOf(r);
       const score = idx >= 0 ? compositeScores[idx] : -1;
       const allScores = compositeScores.filter(s => s >= 0);
-      const activeTabs = GROUPS.flatMap(g => g.tabs).filter(ct => customTabs.has(ct));
+      const activeTabs = GROUPS.flatMap(g => g.tabs).filter(ct => deferredCustomTabs.has(ct));
       return (<>
         <TC val={score >= 0 ? score : null} formatted={score >= 0 ? score.toFixed(1) : "\u2014"} vals={allScores} higher={true} active />
         {activeTabs.map(ct => {
@@ -703,10 +703,10 @@ export default function RankingContent({ cities }: Props) {
             </div>
             <div className="flex items-center gap-2">
               <button onClick={() => setNavOpen(v => !v)}
-                className={`md:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
+                className={`min-[1080px]:hidden text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
                 <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
               </button>
-              <div className="hidden md:flex items-center gap-2">
+              <div className="hidden min-[1080px]:flex items-center gap-2">
                 <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
                   {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
                 </select>
@@ -736,7 +736,7 @@ export default function RankingContent({ cities }: Props) {
               </div>
             </div>
           </div>
-          <div className={`md:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+          <div className={`min-[1080px]:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
             <div className="overflow-hidden min-h-0">
               <div className="flex items-center gap-2 flex-wrap pt-2">
                 <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
@@ -785,17 +785,22 @@ export default function RankingContent({ cities }: Props) {
 
         {/* Grouped tab selector */}
         <div className="mb-4 space-y-1.5">
-          {/* Custom mode toggle */}
-          <div className="flex gap-1.5">
+          {/* === Custom mode row === */}
+          {/* Wide (≥sm): single flex row */}
+          <div className="hidden sm:flex gap-1.5">
             <button onClick={toggleComposite}
-              className={`${composite ? "flex-1" : "w-full"} py-2 rounded-lg font-semibold text-sm text-center border ${
+              className={`flex-1 py-2 rounded-lg font-semibold text-sm text-center border transition-colors duration-200 ${
                 composite
                   ? "bg-amber-500 text-white shadow-sm border-amber-500"
                   : (darkMode ? "bg-amber-900/30 text-amber-300/60 hover:bg-amber-900/50 border-amber-500/30" : "bg-amber-50 text-amber-700/50 hover:bg-amber-100 border-amber-200")
               }`}>
               {t("customModeBtn")}
             </button>
-            {composite && (
+            <div className="overflow-hidden flex gap-1.5" style={{
+              maxWidth: composite ? 400 : 0,
+              opacity: composite ? 1 : 0,
+              transition: "max-width 300ms ease-in-out, opacity 200ms ease-in-out",
+            }}>
               <button onClick={() => setClimOpen(v => !v)}
                 className={`px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap border ${
                   climOpen || hasClimFilter
@@ -804,8 +809,6 @@ export default function RankingContent({ cities }: Props) {
                 }`}>
                 {t("climateFilter")}{hasClimFilter ? ` · ${t("climFilterCount").replace("{count}", String(filtered.length)).replace("{total}", String(sorted.length))}` : ""}
               </button>
-            )}
-            {composite && (
               <button onClick={() => setCustomTabs(new Set())} disabled={customTabs.size === 0}
                 className={`px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap ${
                   customTabs.size === 0
@@ -814,11 +817,49 @@ export default function RankingContent({ cities }: Props) {
                 }`}>
                 {t("clear")}
               </button>
-            )}
+            </div>
           </div>
-          {/* Climate filter panel – animated expand/collapse */}
-          <div className={`grid transition-all duration-300 ease-in-out ${climOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-            <div className="overflow-hidden">
+          {/* Narrow (<sm): two rows */}
+          <div className="sm:hidden">
+            <button onClick={toggleComposite}
+              className={`w-full py-2 rounded-lg font-semibold text-sm text-center border transition-colors duration-200 ${
+                composite
+                  ? "bg-amber-500 text-white shadow-sm border-amber-500"
+                  : (darkMode ? "bg-amber-900/30 text-amber-300/60 hover:bg-amber-900/50 border-amber-500/30" : "bg-amber-50 text-amber-700/50 hover:bg-amber-100 border-amber-200")
+              }`}>
+              {t("customModeBtn")}
+            </button>
+            <div className="overflow-hidden" style={{
+              maxHeight: composite ? 48 : 0,
+              opacity: composite ? 1 : 0,
+              transition: "max-height 300ms ease-in-out, opacity 200ms ease-in-out",
+            }}>
+              <div className="flex gap-1.5 pt-1.5">
+                <button onClick={() => setClimOpen(v => !v)}
+                  className={`flex-1 py-2 rounded-lg text-xs font-medium text-center border ${
+                    climOpen || hasClimFilter
+                      ? (darkMode ? "bg-emerald-900/40 text-emerald-300 border-emerald-500/50" : "bg-emerald-50 text-emerald-700 border-emerald-200")
+                      : (darkMode ? "bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700" : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200")
+                  }`}>
+                  {t("climateFilter")}{hasClimFilter ? ` · ${t("climFilterCount").replace("{count}", String(filtered.length)).replace("{total}", String(sorted.length))}` : ""}
+                </button>
+                <button onClick={() => setCustomTabs(new Set())} disabled={customTabs.size === 0}
+                  className={`px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap ${
+                    customTabs.size === 0
+                      ? (darkMode ? "bg-slate-800 text-slate-600" : "bg-slate-100 text-slate-300")
+                      : (darkMode ? "bg-slate-700 text-slate-300 hover:bg-slate-600" : "bg-slate-200 text-slate-600 hover:bg-slate-300")
+                  }`}>
+                  {t("clear")}
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* === Climate filter panel === */}
+          <div className="overflow-hidden" style={{
+            maxHeight: climOpen ? 500 : 0,
+            opacity: climOpen ? 1 : 0,
+            transition: "max-height 300ms ease-in-out, opacity 200ms ease-in-out",
+          }}>
               <div className={`rounded-xl p-3 space-y-1.5 ${darkMode ? "bg-slate-800/50 border border-slate-700" : "bg-slate-50 border border-slate-200"}`}>
                 {/* Header + clear */}
                 <div className="flex items-center justify-between">
@@ -873,7 +914,6 @@ export default function RankingContent({ cities }: Props) {
                   </div>
                 ))}
               </div>
-            </div>
           </div>
           {/* Row 1: Income + Housing / Row 2: Work + Environment */}
           {[[0, 1], [2, 3]].map((pair, ri) => (
