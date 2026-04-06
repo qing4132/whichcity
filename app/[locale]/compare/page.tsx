@@ -7,7 +7,12 @@ export const metadata: Metadata = {
   description: "Compare cities by income, cost of living, housing, safety, healthcare and more.",
 };
 
-export default function CompareIndexPage() {
+interface Props {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function CompareIndexPage({ params }: Props) {
+  const { locale } = await params;
   const allCities = loadCities();
-  return <CompareContent initialCities={[]} initialSlugs={[]} allCities={allCities} />;
+  return <CompareContent initialCities={[]} initialSlugs={[]} allCities={allCities} locale={locale} />;
 }

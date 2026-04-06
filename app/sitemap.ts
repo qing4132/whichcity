@@ -1,26 +1,49 @@
 import type { MetadataRoute } from "next";
 import { CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
+import { LOCALES } from "@/lib/i18nRouting";
 
 const BASE_URL = "https://whichcity.run";
+
+function alternates(path: string) {
+  const languages: Record<string, string> = {};
+  for (const loc of LOCALES) {
+    languages[loc] = `${BASE_URL}/${loc}${path}`;
+  }
+  languages["x-default"] = `${BASE_URL}/en${path}`;
+  return { languages };
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
 
-  // Home
-  const routes: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
-    { url: `${BASE_URL}/ranking`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/methodology`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-  ];
+  const routes: MetadataRoute.Sitemap = [];
+
+  // Static pages
+  const staticPaths = ["", "/ranking", "/methodology"];
+  for (const loc of LOCALES) {
+    for (const path of staticPaths) {
+      routes.push({
+        url: `${BASE_URL}/${loc}${path}`,
+        lastModified: now,
+        changeFrequency: path === "" ? "weekly" : path === "/ranking" ? "weekly" : "monthly",
+        priority: path === "" ? 1.0 : path === "/ranking" ? 0.9 : 0.6,
+        alternates: alternates(path),
+      });
+    }
+  }
 
   // City pages
   for (const slug of Object.values(CITY_SLUGS)) {
-    routes.push({
-      url: `${BASE_URL}/city/${slug}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    });
+    const path = `/city/${slug}`;
+    for (const loc of LOCALES) {
+      routes.push({
+        url: `${BASE_URL}/${loc}${path}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.8,
+        alternates: alternates(path),
+      });
+    }
   }
 
   // Compare pages
@@ -29,12 +52,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const pair = [CITY_SLUGS[a], CITY_SLUGS[b]].sort().join("-vs-");
     if (seen.has(pair)) continue;
     seen.add(pair);
-    routes.push({
-      url: `${BASE_URL}/compare/${pair}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    });
+    const path = `/compare/${pair}`;
+    for (const loc of LOCALES) {
+      routes.push({
+        url: `${BASE_URL}/${loc}${path}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+        alternates: alternates(path),
+      });
+    }
   }
 
   return routes;

@@ -17,6 +17,7 @@ interface Props {
   initialCities: City[];
   initialSlugs: string[];
   allCities: City[];
+  locale: string;
 }
 
 type RowCtx = {
@@ -72,9 +73,9 @@ const GROUP_I18N: Record<string, string> = {
 };
 
 /* ════════════════════════════════════════════ */
-export default function CompareContent({ initialCities, initialSlugs, allCities }: Props) {
+export default function CompareContent({ initialCities, initialSlugs, allCities, locale: urlLocale }: Props) {
   const router = useRouter();
-  const s = useSettings();
+  const s = useSettings(urlLocale);
   const { locale, darkMode, themeMode, t, formatCurrency, costTier, profession, incomeMode } = s;
 
   /* ── Fixed 3 slots (2 on narrow), allow empty ── */
@@ -237,10 +238,10 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
   const syncUrl = (ns: (string | null)[]) => {
     const validSlugs = ns.filter((s): s is string => s !== null);
     const path = validSlugs.length >= 2
-      ? `/compare/${[...validSlugs].sort().join("-vs-")}`
+      ? `/${locale}/compare/${[...validSlugs].sort().join("-vs-")}`
       : validSlugs.length === 1
-        ? `/compare/${validSlugs[0]}`
-        : "/compare";
+        ? `/${locale}/compare/${validSlugs[0]}`
+        : `/${locale}/compare`;
     window.history.replaceState(null, "", path);
   };
 
@@ -274,17 +275,17 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
+              <Link href={`/${locale}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
                 {t("navHome")}
               </Link>
-              <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+              <Link href={`/${locale}/ranking`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
                 {t("navRanking")}
               </Link>
-              <button onClick={() => { const allSlugs = Object.values(CITY_SLUGS); router.push(`/city/${allSlugs[Math.floor(Math.random() * allSlugs.length)]}`); }}
+              <button onClick={() => { const allSlugs = Object.values(CITY_SLUGS); router.push(`/${locale}/city/${allSlugs[Math.floor(Math.random() * allSlugs.length)]}`); }}
                 className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
                 {t("navRandomCity")}
               </button>
-              <Link href="/compare" onClick={e => e.preventDefault()}
+              <Link href={`/${locale}/compare`} onClick={e => e.preventDefault()}
                 className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-violet-900/40 border-violet-500/50 text-violet-300" : "bg-violet-50 border-violet-300 text-violet-700"}`}>
                 {t("navCompare")}
               </Link>
@@ -630,7 +631,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
         {filledCities.length > 0 && (
         <div className="grid gap-3 mt-4" style={{ gridTemplateColumns: `repeat(${visibleSlots.length}, minmax(0, 1fr))` }}>
           {visibleSlots.map((c, i) => c ? (
-            <Link key={c.id} href={`/city/${CITY_SLUGS[c.id]}`}
+            <Link key={c.id} href={`/${locale}/city/${CITY_SLUGS[c.id]}`}
               className={`rounded-xl border p-4 transition ${sectionBg} hover:border-blue-400 hover:shadow`}>
               <p className="text-2xl mb-1">{getFlag(c)}</p>
               <p className={`font-bold ${headCls}`}>{getName(c)}</p>
@@ -646,7 +647,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities 
       <footer className={`px-4 py-5 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
         <div className={`max-w-5xl mx-auto border-t pt-4 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
+        <p className="mt-1"><a href={`/${locale}/methodology`} className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
         </div>
       </footer>
     </div>

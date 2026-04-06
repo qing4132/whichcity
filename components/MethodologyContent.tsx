@@ -10,9 +10,9 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import { LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
 import { useSettings } from "@/hooks/useSettings";
 
-export default function MethodologyContent() {
+export default function MethodologyContent({ locale: urlLocale }: { locale: string }) {
   const router = useRouter();
-  const s = useSettings();
+  const s = useSettings(urlLocale);
   const { locale, darkMode, themeMode, t } = s;
   const professions = Object.keys(PROFESSION_TRANSLATIONS);
   const [navOpen, setNavOpen] = useState(false);
@@ -952,13 +952,13 @@ export default function MethodologyContent() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>{t("navHome")}</Link>
-              <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>{t("navRanking")}</Link>
-              <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+              <Link href={`/${locale}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>{t("navHome")}</Link>
+              <Link href={`/${locale}/ranking`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>{t("navRanking")}</Link>
+              <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/${locale}/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
                 className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
                 {t("navRandomCity")}
               </button>
-              <Link href="/compare" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>{t("navCompare")}</Link>
+              <Link href={`/${locale}/compare`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>{t("navCompare")}</Link>
             </div>
             <div className="flex items-center gap-2">
               <button onClick={() => setNavOpen(v => !v)}
@@ -1043,7 +1043,7 @@ export default function MethodologyContent() {
       <footer className={`px-4 py-5 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
         <div className={`max-w-5xl mx-auto border-t pt-4 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
+        <p className="mt-1"><a href={`/${locale}/methodology`} className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
         </div>
       </footer>
     </div>

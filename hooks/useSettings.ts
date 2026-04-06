@@ -18,9 +18,12 @@ function readSavedThemeMode(): ThemeMode {
 }
 
 /** Lightweight settings hook for sub-pages (city detail, compare).
- *  Reads/writes the same localStorage keys as CityComparison so values are shared. */
-export function useSettings() {
-  const [locale, setLocaleState] = useState<Locale>("en");
+ *  Reads/writes the same localStorage keys as CityComparison so values are shared.
+ *  When urlLocale is provided (from URL param), it takes precedence over localStorage. */
+export function useSettings(urlLocale?: string) {
+  const [locale, setLocaleState] = useState<Locale>(
+    urlLocale && ["zh", "en", "ja", "es"].includes(urlLocale) ? urlLocale as Locale : "en"
+  );
   // Initialize from localStorage/DOM so client-side navigations never flash
   const [themeMode, setThemeModeState] = useState<ThemeMode>(readSavedThemeMode);
   const [darkMode, setDarkModeState] = useState(() =>
@@ -50,8 +53,13 @@ export function useSettings() {
   }, []);
 
   useEffect(() => {
-    const l = localStorage.getItem("locale");
-    if (l && ["zh", "en", "ja", "es"].includes(l)) setLocaleState(l as Locale);
+    // When urlLocale is set (from URL), use it directly; otherwise fall back to localStorage
+    if (!urlLocale) {
+      const l = localStorage.getItem("locale");
+      if (l && ["zh", "en", "ja", "es"].includes(l)) setLocaleState(l as Locale);
+    }
+    // Sync localStorage with the active locale
+    localStorage.setItem("locale", urlLocale || locale);
 
     // Theme: read saved mode (already initialized via readSavedThemeMode,
     // but re-read here to ensure DOM is in sync after SSR hydration)
@@ -95,6 +103,13 @@ export function useSettings() {
     setLocaleState(l);
     localStorage.setItem("locale", l);
     document.documentElement.lang = l;
+    // Navigate to the new locale URL
+    const path = window.location.pathname;
+    const segments = path.split("/");
+    if (segments.length >= 2 && ["zh", "en", "ja", "es"].includes(segments[1])) {
+      segments[1] = l;
+      window.location.pathname = segments.join("/");
+    }
   }, []);
 
   const setThemeMode = useCallback((m: ThemeMode) => {

@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import type { City } from "@/lib/types";
 import { SLUG_TO_ID, CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
 import { loadCities, getCityById, getCityEnName, getCountryEnName } from "@/lib/dataLoader";
+import { LOCALES } from "@/lib/i18nRouting";
 import CityDetailContent from "@/components/CityDetailContent";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -14,7 +15,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const id = SLUG_TO_ID[slug];
   if (!id) return { title: "City Not Found" };
   const city = getCityById(id);
@@ -27,12 +28,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     openGraph: { title, description, type: "article" },
-    alternates: { canonical: `/city/${slug}` },
+    alternates: {
+      canonical: `/${locale}/city/${slug}`,
+      languages: Object.fromEntries(LOCALES.map(l => [l, `/${l}/city/${slug}`])),
+    },
   };
 }
 
 export default async function CityPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const id = SLUG_TO_ID[slug];
   if (!id) notFound();
   const city = getCityById(id);
@@ -65,7 +69,7 @@ export default async function CityPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CityDetailContent city={city} slug={slug} allCities={allCities} />
+      <CityDetailContent city={city} slug={slug} allCities={allCities} locale={locale} />
     </>
   );
 }

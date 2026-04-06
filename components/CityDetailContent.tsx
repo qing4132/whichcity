@@ -18,6 +18,7 @@ interface Props {
   city: City;
   slug: string;
   allCities: City[];
+  locale: string;
 }
 
 const TIER_KEYS: { key: CostTier; field: "costModerate" | "costBudget"; labelKey: string }[] = [
@@ -166,8 +167,8 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
   );
 }
 
-export default function CityDetailContent({ city, slug, allCities }: Props) {
-  const s = useSettings();
+export default function CityDetailContent({ city, slug, allCities, locale: urlLocale }: Props) {
+  const s = useSettings(urlLocale);
   const router = useRouter();
   const { locale, darkMode, themeMode, t, formatCurrency, costTier, profession, incomeMode } = s;
   const [navOpen, setNavOpen] = useState(false);
@@ -347,17 +348,17 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Link href="/" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
+              <Link href={`/${locale}`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
                 {t("navHome")}
               </Link>
-              <Link href="/ranking" className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
+              <Link href={`/${locale}/ranking`} className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
                 {t("navRanking")}
               </Link>
-              <button onClick={() => { const slugs = Object.values(CITY_SLUGS).filter(s => s !== slug); router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
+              <button onClick={() => { const slugs = Object.values(CITY_SLUGS).filter(s => s !== slug); router.push(`/${locale}/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
                 className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
                 {t("navRandomCity")}
               </button>
-              <Link href={`/compare/${slug}`}
+              <Link href={`/${locale}/compare/${slug}`}
                 className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>
                 {t("navCompare")}
               </Link>
@@ -683,7 +684,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
             return (
               <div key={otherId} className={`rounded-xl border shadow-sm p-3 text-center ${sectionBg}`}>
                 <span className="text-2xl">{CITY_FLAG_EMOJIS[otherId] || "🏙️"}</span>
-                <Link href={`/city/${otherSlug}`} className={`block text-sm font-semibold mt-1 ${headingCls} hover:underline`}>{otherName}</Link>
+                <Link href={`/${locale}/city/${otherSlug}`} className={`block text-sm font-semibold mt-1 ${headingCls} hover:underline`}>{otherName}</Link>
                 <div className="min-h-[3.5rem] flex flex-col items-center justify-center mt-1">
                   {highlights.map((h, idx) => (
                     <p key={idx} className={`text-[11px] leading-snug ${h.adv ? (darkMode ? "text-emerald-400" : "text-emerald-600") : (darkMode ? "text-rose-400" : "text-rose-500")}`}>
@@ -691,7 +692,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
                     </p>
                   ))}
                 </div>
-                <Link href={`/compare/${pair}`} className={`inline-block text-xs px-3 py-1 mt-1 rounded border transition ${darkMode ? "border-violet-500/50 text-violet-300 hover:bg-violet-900/30" : "border-violet-300 text-violet-600 hover:bg-violet-50"}`}>
+                <Link href={`/${locale}/compare/${pair}`} className={`inline-block text-xs px-3 py-1 mt-1 rounded border transition ${darkMode ? "border-violet-500/50 text-violet-300 hover:bg-violet-900/30" : "border-violet-300 text-violet-600 hover:bg-violet-50"}`}>
                   {t("compareCity")}
                 </Link>
               </div>
@@ -706,7 +707,7 @@ export default function CityDetailContent({ city, slug, allCities }: Props) {
       <footer className={`px-4 py-5 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
         <div className={`max-w-5xl mx-auto border-t pt-4 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
+        <p className="mt-1"><a href={`/${locale}/methodology`} className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
         </div>
       </footer>
     </div>

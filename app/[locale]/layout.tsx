@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import { LOCALES } from "@/lib/i18nRouting";
+import type { Locale } from "@/lib/types";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
+
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
 
 export const metadata: Metadata = {
   title: {
@@ -18,13 +25,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface Props {
   children: React.ReactNode;
-}) {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = await params;
+  if (!LOCALES.includes(locale as Locale)) notFound();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-WW9GZ4ZF2C" />
         <script
@@ -34,7 +45,7 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement;var l=localStorage.getItem('locale');if(l&&['zh','en','ja','es'].indexOf(l)!==-1)d.lang=l;var m=localStorage.getItem('themeMode');if(!m||['auto','light','dark'].indexOf(m)===-1){var o=localStorage.getItem('darkMode');m=o==='true'?'dark':o==='false'?'light':'auto'}var dk=m==='dark'||(m==='auto'&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(dk){d.classList.add('dark');d.style.colorScheme='dark'}}catch(e){}})()`
+            __html: `(function(){try{var d=document.documentElement;var m=localStorage.getItem('themeMode');if(!m||['auto','light','dark'].indexOf(m)===-1){var o=localStorage.getItem('darkMode');m=o==='true'?'dark':o==='false'?'light':'auto'}var dk=m==='dark'||(m==='auto'&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(dk){d.classList.add('dark');d.style.colorScheme='dark'}}catch(e){}})()`
           }}
         />
       </head>

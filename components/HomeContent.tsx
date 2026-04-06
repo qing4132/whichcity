@@ -19,9 +19,9 @@ const POPULAR_HOME = ["new-york", "london", "tokyo", "singapore", "paris", "sydn
   .map(slug => CITY_LIST.find(c => c.slug === slug))
   .filter((c): c is NonNullable<typeof c> => c !== undefined);
 
-export default function HomeContent() {
+export default function HomeContent({ locale: urlLocale }: { locale: string }) {
   const router = useRouter();
-  const s = useSettings();
+  const s = useSettings(urlLocale);
   const { locale, darkMode, themeMode, t } = s;
 
   const [search, setSearch] = useState("");
@@ -68,7 +68,7 @@ export default function HomeContent() {
   /* ── Random city ── */
   const randomCity = () => {
     const slugs = Object.values(CITY_SLUGS);
-    router.push(`/city/${slugs[Math.floor(Math.random() * slugs.length)]}`);
+    router.push(`/${locale}/city/${slugs[Math.floor(Math.random() * slugs.length)]}`);
   };
 
   const getCityName = (id: number) => CITY_NAME_TRANSLATIONS[id]?.[locale] || CITY_NAME_TRANSLATIONS[id]?.en || "";
@@ -93,11 +93,11 @@ export default function HomeContent() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Link href="/"
+              <Link href={`/${locale}`}
                 className={`text-xs px-2 py-1 rounded border ${darkMode ? "bg-blue-900/40 border-blue-500/50 text-blue-300" : "bg-blue-50 border-blue-300 text-blue-700"}`}>
                 {t("navHome")}
               </Link>
-              <Link href="/ranking"
+              <Link href={`/${locale}/ranking`}
                 className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
                 {t("navRanking")}
               </Link>
@@ -105,7 +105,7 @@ export default function HomeContent() {
                 className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
                 {t("navRandomCity")}
               </button>
-              <Link href="/compare"
+              <Link href={`/${locale}/compare`}
                 className={`text-xs px-2 py-1 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>
                 {t("navCompare")}
               </Link>
@@ -206,7 +206,7 @@ export default function HomeContent() {
               else if (e.key === "ArrowUp") { e.preventDefault(); setHlIdx(i => (i - 1 + results.length) % results.length); }
               else if (e.key === "Enter" && hlIdx >= 0 && hlIdx < results.length) {
                 e.preventDefault(); setSearch(""); setFocused(false);
-                router.push(`/city/${results[hlIdx].slug}`);
+                router.push(`/${locale}/city/${results[hlIdx].slug}`);
               }
               else if (e.key === "Escape") { setFocused(false); }
             }}
@@ -227,7 +227,7 @@ export default function HomeContent() {
               }`}
               style={{ maxHeight: "min(360px, 50vh)" }}>
               {results.map((c, i) => (
-                <Link key={c.id} href={`/city/${c.slug}`}
+                <Link key={c.id} href={`/${locale}/city/${c.slug}`}
                   onClick={() => { setSearch(""); setFocused(false); }}
                   onMouseEnter={() => setHlIdx(i)}
                   className={`flex items-center gap-2 px-4 py-2.5 text-sm transition ${
@@ -255,7 +255,7 @@ export default function HomeContent() {
         {/* Popular cities */}
         <div className="grid grid-cols-3 gap-x-4 gap-y-1.5 mt-5 max-w-xs w-full justify-items-center">
           {POPULAR_HOME.map(c => (
-            <Link key={c.id} href={`/city/${c.slug}`}
+            <Link key={c.id} href={`/${locale}/city/${c.slug}`}
               className={`text-xs transition ${darkMode ? "text-slate-400 hover:text-blue-400" : "text-slate-500 hover:text-blue-600"}`}>
               {c.flag} {getCityName(c.id)}
             </Link>
@@ -272,7 +272,7 @@ export default function HomeContent() {
       <footer className={`px-4 py-5 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
         <div className={`max-w-5xl mx-auto border-t pt-4 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
         <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href="/methodology" className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
+        <p className="mt-1"><a href={`/${locale}/methodology`} className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
         </div>
       </footer>
     </div>
