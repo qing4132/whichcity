@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Inter } from "next/font/google";
 import { LOCALES } from "@/lib/i18nRouting";
 import type { Locale } from "@/lib/types";
+import { TRANSLATIONS } from "@/lib/i18n";
 import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -11,23 +12,26 @@ export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: "WhichCity – Global Salary & Cost of Living Comparison",
-    template: "%s | WhichCity",
-  },
-  description:
-    "Compare 100+ cities worldwide by salary, cost of living, housing prices, air quality, healthcare density. Find the best city for your career and lifestyle.",
-  metadataBase: new URL("https://whichcity.run"),
-  openGraph: {
-    type: "website",
-    siteName: "WhichCity",
-  },
-};
-
 interface Props {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = (key: string) => TRANSLATIONS[locale as Locale]?.[key] || TRANSLATIONS.en[key] || key;
+  return {
+    title: {
+      default: t("metaSiteTitle"),
+      template: "%s | WhichCity",
+    },
+    description: t("metaSiteDesc"),
+    metadataBase: new URL("https://whichcity.run"),
+    openGraph: {
+      type: "website",
+      siteName: "WhichCity",
+    },
+  };
 }
 
 export default async function LocaleLayout({ children, params }: Props) {

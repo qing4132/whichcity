@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import type { City } from "@/lib/types";
+import type { City, Locale } from "@/lib/types";
 import { SLUG_TO_ID, CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
-import { loadCities, getCityById, getCityEnName, getCountryEnName } from "@/lib/dataLoader";
+import { loadCities, getCityById, getCityEnName, getCountryEnName, getCityLocaleName, getCountryLocaleName } from "@/lib/dataLoader";
 import { LOCALES } from "@/lib/i18nRouting";
+import { TRANSLATIONS } from "@/lib/i18n";
 import CityDetailContent from "@/components/CityDetailContent";
 
 interface Props {
@@ -16,14 +17,23 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  const loc = locale as Locale;
   const id = SLUG_TO_ID[slug];
   if (!id) return { title: "City Not Found" };
   const city = getCityById(id);
   if (!city) return { title: "City Not Found" };
-  const enName = getCityEnName(id);
-  const country = getCountryEnName(city.country);
-  const title = `${enName} Cost of Living, Salary & Quality of Life – WhichCity`;
-  const description = `${enName}, ${country}: Average salary $${Math.round(city.averageIncome / 1000)}K, monthly cost $${Math.round(city.costModerate).toLocaleString()}, house price $${Math.round(city.housePrice).toLocaleString()}/m², AQI ${city.airQuality}, ${city.doctorsPerThousand} doctors/1K. Compare with 100+ global cities.`;
+  const cityName = getCityLocaleName(id, loc);
+  const country = getCountryLocaleName(city.country, loc);
+  const t = (key: string) => TRANSLATIONS[loc]?.[key] || TRANSLATIONS.en[key] || key;
+  const title = t("metaCityTitle").replace("{city}", cityName);
+  const description = t("metaCityDesc")
+    .replace("{city}", cityName)
+    .replace("{country}", country)
+    .replace("{salary}", String(Math.round(city.averageIncome / 1000)))
+    .replace("{cost}", Math.round(city.costModerate).toLocaleString())
+    .replace("{house}", Math.round(city.housePrice).toLocaleString())
+    .replace("{aqi}", String(city.airQuality))
+    .replace("{doctors}", String(city.doctorsPerThousand));
   return {
     title,
     description,

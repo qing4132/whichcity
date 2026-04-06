@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { Locale } from "@/lib/types";
 import { SLUG_TO_ID, CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
-import { getCityById, getCityEnName, loadCities } from "@/lib/dataLoader";
+import { getCityById, getCityEnName, getCityLocaleName, loadCities } from "@/lib/dataLoader";
 import { LOCALES } from "@/lib/i18nRouting";
+import { TRANSLATIONS } from "@/lib/i18n";
 import CompareContent from "@/components/CompareContent";
 
 interface Props {
@@ -28,12 +30,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, pair } = await params;
+  const loc = locale as Locale;
   const slugs = parsePair(pair);
   if (!slugs) return { title: "Comparison Not Found" };
-  const names = slugs.map(s => getCityEnName(SLUG_TO_ID[s]));
-  const title = `${names.join(" vs ")}: Salary, Cost of Living & Quality of Life Comparison`;
-  const cities = slugs.map(s => getCityById(SLUG_TO_ID[s])!);
-  const description = `Compare ${names.join(", ")}: income, monthly cost, housing, safety, healthcare, and more.`;
+  const t = (key: string) => TRANSLATIONS[loc]?.[key] || TRANSLATIONS.en[key] || key;
+  const names = slugs.map(s => getCityLocaleName(SLUG_TO_ID[s], loc));
+  const title = t("metaCompareTitle").replace("{cities}", names.join(" vs "));
+  const description = t("metaCompareDesc").replace("{cities}", names.join(loc === "zh" || loc === "ja" ? "、" : ", "));
   return {
     title,
     description,

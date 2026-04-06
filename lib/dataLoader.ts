@@ -3,7 +3,7 @@ import { join } from "path";
 import type { City } from "./types";
 
 // Re-export shared utilities used by server pages
-export { getCityEnName, getCountryEnName } from "./clientUtils";
+export { getCityEnName, getCountryEnName, getCityLocaleName, getCountryLocaleName } from "./clientUtils";
 
 let _cities: City[] | null = null;
 

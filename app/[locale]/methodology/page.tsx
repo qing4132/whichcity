@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { LOCALES } from "@/lib/i18nRouting";
+import { TRANSLATIONS } from "@/lib/i18n";
+import type { Locale } from "@/lib/types";
 import MethodologyContent from "@/components/MethodologyContent";
 
 interface Props {
@@ -8,10 +10,13 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
+  const loc = locale as Locale;
+  const t = (key: string) => TRANSLATIONS[loc]?.[key] || TRANSLATIONS.en[key] || key;
+  const title = t("metaMethodTitle");
+  const description = t("metaMethodDesc");
   return {
-    title: "Methodology, Data Sources & Disclaimer",
-    description:
-      "Complete documentation of WhichCity's data sources, calculation methods, index formulas, display rules, and legal disclaimers.",
+    title,
+    description,
     alternates: {
       canonical: `/${locale}/methodology`,
       languages: Object.fromEntries(LOCALES.map(l => [l, `/${l}/methodology`])),

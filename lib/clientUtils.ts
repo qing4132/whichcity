@@ -1,4 +1,4 @@
-import type { ClimateInfo } from "./types";
+import type { ClimateInfo, Locale } from "./types";
 import { CITY_CLIMATE } from "./constants";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "./i18n";
 
@@ -12,6 +12,14 @@ export function getCityEnName(id: number): string {
 
 export function getCountryEnName(zhName: string): string {
   return COUNTRY_TRANSLATIONS[zhName]?.en || zhName;
+}
+
+export function getCityLocaleName(id: number, locale: Locale): string {
+  return CITY_NAME_TRANSLATIONS[id]?.[locale] || CITY_NAME_TRANSLATIONS[id]?.en || "";
+}
+
+export function getCountryLocaleName(zhName: string, locale: Locale): string {
+  return COUNTRY_TRANSLATIONS[zhName]?.[locale] || COUNTRY_TRANSLATIONS[zhName]?.en || zhName;
 }
 
 const AQI_LABELS: Record<string, Record<string, string>> = {
