@@ -8,6 +8,7 @@ import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
 import { computeLifePressure, getCityClimate, getCityEnName, getClimateLabel } from "@/lib/clientUtils";
+import { trackEvent } from "@/lib/analytics";
 import { CITY_INTROS } from "@/lib/cityIntros";
 import { CITY_LANGUAGES, LANGUAGE_NAME_TRANSLATIONS } from "@/lib/cityLanguages";
 import { useSettings } from "@/hooks/useSettings";
@@ -175,6 +176,7 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
 
   const cityName = CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name;
   useEffect(() => { document.title = `${cityName} | WhichCity`; }, [locale, cityName]);
+  useEffect(() => { trackEvent("city_view", { city_slug: slug }); }, [slug]);
 
   if (!s.ready) return null;
 

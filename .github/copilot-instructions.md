@@ -5,9 +5,12 @@
 ## Architecture
 
 - `app/` — Next.js App Router pages (thin wrappers calling components)
+- `app/[locale]/*/opengraph-image.tsx` — dynamic OG images for home, city, compare, ranking (Satori + next/og)
+- `app/fonts/NotoSansSC-Bold.ttf` — CJK font used by OG image generation
 - `components/` — 5 page components + ClimateChart
 - `hooks/useSettings.ts` — global settings (profession, locale, theme, currency, etc.)
 - `lib/` — data, i18n, tax computation, types, constants
+- `lib/analytics.ts` — GA4 event tracking helper (`trackEvent`)
 - `public/data/` — cities.json (134 cities), exchange-rates.json (auto-updated daily)
 - `scripts/` — active maintenance scripts
 - `_archive/` — historical scripts, old components, reports (do not delete)

@@ -8,6 +8,7 @@ import { CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS, COUNT
 import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES, CITY_COUNTRY } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { useSettings } from "@/hooks/useSettings";
+import { trackEvent } from "@/lib/analytics";
 
 /* ── Static city list for search (no fetch needed) ── */
 const CITY_LIST = Object.entries(CITY_SLUGS).map(([idStr, slug]) => {
@@ -57,7 +58,7 @@ export default function HomeContent({ locale: urlLocale }: { locale: string }) {
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropRef.current && !dropRef.current.contains(e.target as Node) &&
-          inputRef.current && !inputRef.current.contains(e.target as Node)) {
+        inputRef.current && !inputRef.current.contains(e.target as Node)) {
         setFocused(false);
       }
     };
@@ -68,7 +69,9 @@ export default function HomeContent({ locale: urlLocale }: { locale: string }) {
   /* ── Random city ── */
   const randomCity = () => {
     const slugs = Object.values(CITY_SLUGS);
-    router.push(`/${locale}/city/${slugs[Math.floor(Math.random() * slugs.length)]}`);
+    const slug = slugs[Math.floor(Math.random() * slugs.length)];
+    trackEvent("random_city", { city_slug: slug });
+    router.push(`/${locale}/city/${slug}`);
   };
 
   const getCityName = (id: number) => CITY_NAME_TRANSLATIONS[id]?.[locale] || CITY_NAME_TRANSLATIONS[id]?.en || "";
@@ -140,7 +143,7 @@ export default function HomeContent({ locale: urlLocale }: { locale: string }) {
                 <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
                   {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
                 </select>
-                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto"|"light"|"dark")} className={selectCls}>
+                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto" | "light" | "dark")} className={selectCls}>
                   <option value="auto">{t("themeAuto")}</option>
                   <option value="light">{t("dayMode")}</option>
                   <option value="dark">{t("nightMode")}</option>
@@ -176,7 +179,7 @@ export default function HomeContent({ locale: urlLocale }: { locale: string }) {
                 <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
                   {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
                 </select>
-                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto"|"light"|"dark")} className={selectCls}>
+                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto" | "light" | "dark")} className={selectCls}>
                   <option value="auto">{t("themeAuto")}</option>
                   <option value="light">{t("dayMode")}</option>
                   <option value="dark">{t("nightMode")}</option>
@@ -217,30 +220,27 @@ export default function HomeContent({ locale: urlLocale }: { locale: string }) {
               else if (e.key === "Escape") { setFocused(false); }
             }}
             placeholder={t("homeSearchPlaceholder")}
-            className={`w-full px-4 py-3 rounded-xl text-sm border-2 transition focus:outline-none ${
-              darkMode
+            className={`w-full px-4 py-3 rounded-xl text-sm border-2 transition focus:outline-none ${darkMode
                 ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500 focus:border-blue-500"
                 : "bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-            }`}
+              }`}
           />
-          <svg className={`absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? "text-slate-500" : "text-slate-400"}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <svg className={`absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? "text-slate-500" : "text-slate-400"}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
 
           {/* Dropdown */}
           {focused && search.trim() && results.length > 0 && (
             <div ref={dropRef}
-              className={`absolute top-full mt-1 w-full rounded-xl shadow-lg border overflow-y-auto z-50 ${
-                darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
-              }`}
+              className={`absolute top-full mt-1 w-full rounded-xl shadow-lg border overflow-y-auto z-50 ${darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-slate-200"
+                }`}
               style={{ maxHeight: "min(360px, 50vh)" }}>
               {results.map((c, i) => (
                 <Link key={c.id} href={`/${locale}/city/${c.slug}`}
-                  onClick={() => { setSearch(""); setFocused(false); }}
+                  onClick={() => { trackEvent("search_city", { city_slug: c.slug }); setSearch(""); setFocused(false); }}
                   onMouseEnter={() => setHlIdx(i)}
-                  className={`flex items-center gap-2 px-4 py-2.5 text-sm transition ${
-                    i === hlIdx
+                  className={`flex items-center gap-2 px-4 py-2.5 text-sm transition ${i === hlIdx
                       ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-slate-700")
                       : (darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700")
-                  }`}>
+                    }`}>
                   <span>{c.flag}</span>
                   <span className="font-medium">{getCityName(c.id)}</span>
                   <span className={`text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{getCountryName(c.id)}</span>
@@ -250,9 +250,8 @@ export default function HomeContent({ locale: urlLocale }: { locale: string }) {
           )}
           {focused && search.trim() && results.length === 0 && (
             <div ref={dropRef}
-              className={`absolute top-full mt-1 w-full rounded-xl shadow-lg border z-50 px-4 py-3 text-sm ${
-                darkMode ? "bg-slate-800 border-slate-600 text-slate-400" : "bg-white border-slate-200 text-slate-500"
-              }`}>
+              className={`absolute top-full mt-1 w-full rounded-xl shadow-lg border z-50 px-4 py-3 text-sm ${darkMode ? "bg-slate-800 border-slate-600 text-slate-400" : "bg-white border-slate-200 text-slate-500"
+                }`}>
               {t("homeNoResults")}
             </div>
           )}
@@ -277,8 +276,8 @@ export default function HomeContent({ locale: urlLocale }: { locale: string }) {
       {/* Footer */}
       <footer className={`px-4 py-5 text-center text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
         <div className={`max-w-5xl mx-auto border-t pt-4 ${darkMode ? "border-slate-700" : "border-slate-200"}`}>
-        <p>{t("dataSourcesDisclaimer")}</p>
-        <p className="mt-1"><a href={`/${locale}/methodology`} className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
+          <p>{t("dataSourcesDisclaimer")}</p>
+          <p className="mt-1"><a href={`/${locale}/methodology`} className="underline hover:text-blue-500">{t("navMethodology")}</a> · <a href="https://github.com/qing4132/whichcity/issues" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">GitHub</a> · <a href="mailto:qing4132@users.noreply.github.com" className="underline hover:text-blue-500">{t("footerFeedback")}</a></p>
         </div>
       </footer>
     </div>

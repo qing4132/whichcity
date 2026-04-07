@@ -8,6 +8,7 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import { computeLifePressure, getCityClimate } from "@/lib/clientUtils";
 import { computeAllNetIncomes } from "@/lib/taxUtils";
 import { useSettings } from "@/hooks/useSettings";
+import { trackEvent } from "@/lib/analytics";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -453,6 +454,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
 
   /* ── Tab handlers ── */
   const handleTab = (newTab: Tab) => {
+    trackEvent("ranking_tab", { tab: newTab });
     if (composite) {
       setCustomTabs(prev => {
         const next = new Set(prev);

@@ -10,6 +10,7 @@ import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@
 import { useSettings } from "@/hooks/useSettings";
 import { computeNetIncome } from "@/lib/taxUtils";
 import { computeLifePressure, getCityClimate, getClimateLabel } from "@/lib/clientUtils";
+import { trackEvent } from "@/lib/analytics";
 import ClimateChart from "./ClimateChart";
 
 /* ── Types ── */
@@ -219,6 +220,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
   const switchCity = (slotIdx: number, city: City) => {
     const slug = CITY_SLUGS[city.id];
     if (!slug) return;
+    trackEvent("compare_city", { city_slug: slug });
     const nc = [...slots]; nc[slotIdx] = city;
     const ns = [...slugs]; ns[slotIdx] = slug;
     setSlots(nc); setSlugs(ns);
