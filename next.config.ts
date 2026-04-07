@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
-    "/*": ["./public/fonts/**/*"],
+    "/*": ["./public/fonts/**/*", "./public/data/**/*"],
   },
 };
 
