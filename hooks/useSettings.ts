@@ -1,10 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import type { Locale, CostTier, ExchangeRates, IncomeMode } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
 
 export type ThemeMode = "auto" | "light" | "dark";
+
+/* ── Module-level cache so exchange rates survive client-side navigations ── */
+let cachedRates: ExchangeRates | null = null;
 
 /* ── Helper: read saved themeMode from localStorage (works on client only) ── */
 function readSavedThemeMode(): ThemeMode {
@@ -21,6 +25,7 @@ function readSavedThemeMode(): ThemeMode {
  *  Reads/writes the same localStorage keys as CityComparison so values are shared.
  *  When urlLocale is provided (from URL param), it takes precedence over localStorage. */
 export function useSettings(urlLocale?: string) {
+  const router = useRouter();
   const [locale, setLocaleState] = useState<Locale>(
     urlLocale && ["zh", "en", "ja", "es"].includes(urlLocale) ? urlLocale as Locale : "en"
   );
@@ -36,8 +41,8 @@ export function useSettings(urlLocale?: string) {
   const [profession, setProfessionState] = useState("软件工程师");
   const [incomeMode, setIncomeModeState] = useState<IncomeMode>("net");
   const [salaryMultiplier, setSalaryMultiplierState] = useState(1.0);
-  const [rates, setRates] = useState<ExchangeRates | null>(null);
-  const [ready, setReady] = useState(false);
+  const [rates, setRates] = useState<ExchangeRates | null>(() => cachedRates);
+  const [ready, setReady] = useState(() => cachedRates !== null);
 
   /* ── Resolve effective dark mode from themeMode + system preference ── */
   const applyTheme = useCallback((mode: ThemeMode) => {
@@ -80,11 +85,16 @@ export function useSettings(urlLocale?: string) {
     const sm = localStorage.getItem("salaryMultiplier");
     if (sm) { const n = parseFloat(sm); if (n >= 0.5 && n <= 3.0) setSalaryMultiplierState(n); }
 
-    fetch("/data/exchange-rates.json")
-      .then((r) => r.json())
-      .then(setRates)
-      .catch(() => {})
-      .finally(() => setReady(true));
+    if (cachedRates) {
+      setRates(cachedRates);
+      setReady(true);
+    } else {
+      fetch("/data/exchange-rates.json")
+        .then((r) => r.json())
+        .then((data) => { cachedRates = data; setRates(data); })
+        .catch(() => { })
+        .finally(() => setReady(true));
+    }
 
     // Enable CSS transitions after React has painted the correct theme.
     // This removes the flash-guard overlay and unblocks transition animations.
@@ -102,18 +112,25 @@ export function useSettings(urlLocale?: string) {
     return () => mq.removeEventListener("change", handler);
   }, [themeMode, applyTheme]);
 
+  /* ── Sync locale when URL changes (soft navigation) ── */
+  useEffect(() => {
+    if (urlLocale && ["zh", "en", "ja", "es"].includes(urlLocale)) {
+      setLocaleState(urlLocale as Locale);
+    }
+  }, [urlLocale]);
+
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l);
     localStorage.setItem("locale", l);
     document.documentElement.lang = l;
-    // Navigate to the new locale URL
+    // Soft-navigate to the new locale URL
     const path = window.location.pathname;
     const segments = path.split("/");
     if (segments.length >= 2 && ["zh", "en", "ja", "es"].includes(segments[1])) {
       segments[1] = l;
-      window.location.pathname = segments.join("/");
+      router.push(segments.join("/"));
     }
-  }, []);
+  }, [router]);
 
   const setThemeMode = useCallback((m: ThemeMode) => {
     setThemeModeState(m);

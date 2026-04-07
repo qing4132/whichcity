@@ -4,14 +4,15 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { City, CostTier, IncomeMode } from "@/lib/types";
-import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES, CITY_COUNTRY } from "@/lib/constants";
+import { CITY_FLAG_EMOJIS, CITY_COUNTRY } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
-import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
+import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
 import { useSettings } from "@/hooks/useSettings";
 import { computeNetIncome } from "@/lib/taxUtils";
 import { computeLifePressure, getCityClimate, getClimateLabel } from "@/lib/clientUtils";
 import { trackEvent } from "@/lib/analytics";
 import ClimateChart from "./ClimateChart";
+import NavBar from "./NavBar";
 
 /* ── Types ── */
 interface Props {
@@ -77,7 +78,7 @@ const GROUP_I18N: Record<string, string> = {
 export default function CompareContent({ initialCities, initialSlugs, allCities, locale: urlLocale }: Props) {
   const router = useRouter();
   const s = useSettings(urlLocale);
-  const { locale, darkMode, themeMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
+  const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
 
   /* ── Fixed 3 slots (2 on narrow), allow empty ── */
   const [slots, setSlots] = useState<(City | null)[]>(() => {
@@ -121,7 +122,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
   const navRef = useRef<HTMLDivElement | null>(null);
   const [navH, setNavH] = useState(0);
-  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const el = navRef.current;
@@ -263,7 +263,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
 
   /* ── Style tokens ── */
   const selectCls = `text-xs rounded px-1.5 py-1 h-7 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
-  const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
   const sectionBg = darkMode ? "bg-slate-800/50 border-slate-700" : "bg-white border-slate-200";
   const headCls = darkMode ? "text-white" : "text-slate-900";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
@@ -272,97 +271,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
-      {/* ──── Top bar ──── */}
-      <div ref={navRef} className={`sticky top-0 z-50 border-b py-2.5 ${navBg}`}>
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <Link href={`/${locale}`} className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
-                {t("navHome")}
-              </Link>
-              <Link href={`/${locale}/ranking`} className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
-                {t("navRanking")}
-              </Link>
-              <button onClick={() => { const allSlugs = Object.values(CITY_SLUGS); router.push(`/${locale}/city/${allSlugs[Math.floor(Math.random() * allSlugs.length)]}`); }}
-                className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
-                {t("navRandomCity")}
-              </button>
-              <Link href={`/${locale}/compare`} onClick={e => e.preventDefault()}
-                className={`text-xs px-2 h-7 inline-flex items-center rounded border ${darkMode ? "bg-violet-900/40 border-violet-500/50 text-violet-300" : "bg-violet-50 border-violet-300 text-violet-700"}`}>
-                {t("navCompare")}
-              </Link>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={() => setNavOpen(v => !v)}
-                className={`min-[1080px]:hidden text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
-                <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-              </button>
-              <div className="hidden min-[1080px]:flex items-center gap-2">
-                <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
-                  {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
-                </select>
-                <select value={s.salaryMultiplier} onChange={e => s.setSalaryMultiplier(parseFloat(e.target.value))} className={selectCls} title={t("salaryMultiplier")}>
-                  {[0.5, 0.7, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0].map(m => <option key={m} value={m}>×{m.toFixed(1)}</option>)}
-                </select>
-                <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
-                  {(["moderate", "budget"] as const).map(tier => (
-                    <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
-                  ))}
-                </select>
-                <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
-                  <option value="gross">{t("incomeModeGross")}</option>
-                  <option value="net">{t("incomeModeNet")}</option>
-                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
-                </select>
-                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
-                  {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
-                </select>
-                <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
-                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-                </select>
-                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto" | "light" | "dark")} className={selectCls}>
-                  <option value="auto">{t("themeAuto")}</option>
-                  <option value="light">{t("dayMode")}</option>
-                  <option value="dark">{t("nightMode")}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className={`min-[1080px]:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-            <div className="overflow-hidden min-h-0">
-              <div className="flex items-center gap-2 flex-wrap pt-2">
-                <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
-                  {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
-                </select>
-                <select value={s.salaryMultiplier} onChange={e => s.setSalaryMultiplier(parseFloat(e.target.value))} className={selectCls} title={t("salaryMultiplier")}>
-                  {[0.5, 0.7, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0].map(m => <option key={m} value={m}>×{m.toFixed(1)}</option>)}
-                </select>
-                <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
-                  {(["moderate", "budget"] as const).map(tier => (
-                    <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
-                  ))}
-                </select>
-                <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
-                  <option value="gross">{t("incomeModeGross")}</option>
-                  <option value="net">{t("incomeModeNet")}</option>
-                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
-                </select>
-                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
-                  {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
-                </select>
-                <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
-                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-                </select>
-                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto" | "light" | "dark")} className={selectCls}>
-                  <option value="auto">{t("themeAuto")}</option>
-                  <option value="light">{t("dayMode")}</option>
-                  <option value="dark">{t("nightMode")}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <NavBar ref={navRef} s={s} activePage="compare" professionValue={activeProfession} professions={professions} showShare />
 
       {/* ── City selector (full-width sticky layer) ── */}
       <div className="sticky z-40 pt-2" style={{ top: navH }}>
@@ -384,8 +293,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
                       onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
                       onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } } }}
                       className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border cursor-pointer transition w-full ${isOpen
-                          ? (darkMode ? "border-blue-500 bg-slate-700" : "border-blue-400 bg-blue-50")
-                          : (darkMode ? "border-slate-600 bg-slate-800 hover:border-slate-500" : "border-slate-200 bg-white hover:border-slate-400")
+                        ? (darkMode ? "border-blue-500 bg-slate-700" : "border-blue-400 bg-blue-50")
+                        : (darkMode ? "border-slate-600 bg-slate-800 hover:border-slate-500" : "border-slate-200 bg-white hover:border-slate-400")
                         }`}
                     >
                       <button onClick={e => { e.stopPropagation(); clearSlot(i); }} aria-label={t("remove")}
@@ -406,8 +315,8 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
                       onClick={() => { if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } }}
                       onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { setOpenSlot(null); setSlotSearch(""); } else { setOpenSlot(i); setSlotSearch(""); } } }}
                       className={`inline-flex items-center gap-1 px-2 py-2 rounded-lg border border-dashed cursor-pointer transition w-full ${isOpen
-                          ? (darkMode ? "border-blue-500" : "border-blue-400")
-                          : (darkMode ? "border-slate-600 hover:border-slate-500" : "border-slate-300 hover:border-slate-400")
+                        ? (darkMode ? "border-blue-500" : "border-blue-400")
+                        : (darkMode ? "border-slate-600 hover:border-slate-500" : "border-slate-300 hover:border-slate-400")
                         }`}
                     >
                       <span className="shrink-0 w-5" />
@@ -429,14 +338,14 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
                         }}
                         placeholder={t("homeSearchPlaceholder")}
                         className={`w-full px-3 py-2 text-sm border-b focus:outline-none ${darkMode ? "bg-slate-800 border-slate-600 text-white placeholder-slate-500"
-                            : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
+                          : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
                           }`} />
                       <div className="max-h-52 overflow-y-auto" role="listbox" id={`slot-list-${i}`}>
                         {slotResults.map((rc, ri) => (
                           <button key={rc.id} onClick={() => switchCity(i, rc)} onMouseEnter={() => setHlIdx(ri)} role="option" aria-selected={ri === hlIdx}
                             className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition ${ri === hlIdx
-                                ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-slate-700")
-                                : (darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700")
+                              ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-slate-700")
+                              : (darkMode ? "hover:bg-slate-700 text-slate-200" : "hover:bg-blue-50 text-slate-700")
                               }`}>
                             <span>{CITY_FLAG_EMOJIS[rc.id] || "🏙️"}</span>
                             <span className="font-medium truncate">{getName(rc)}</span>

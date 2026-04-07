@@ -4,9 +4,10 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { City, CostTier, IncomeMode } from "@/lib/types";
-import { CITY_FLAG_EMOJIS, POPULAR_CURRENCIES } from "@/lib/constants";
+import { CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
-import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
+import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
+import NavBar from "./NavBar";
 import { computeLifePressure, getCityClimate, getCityEnName, getClimateLabel } from "@/lib/clientUtils";
 import { trackEvent } from "@/lib/analytics";
 import { CITY_INTROS } from "@/lib/cityIntros";
@@ -171,8 +172,7 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
 export default function CityDetailContent({ city, slug, allCities, locale: urlLocale }: Props) {
   const s = useSettings(urlLocale);
   const router = useRouter();
-  const { locale, darkMode, themeMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
-  const [navOpen, setNavOpen] = useState(false);
+  const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
 
   const cityName = CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name;
   useEffect(() => { document.title = `${cityName} | WhichCity`; }, [locale, cityName]);
@@ -199,8 +199,7 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
   const sectionBg = darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200";
   const borderRow = darkMode ? "border-slate-700" : "border-slate-100";
-  const selectCls = `text-xs rounded px-1.5 py-1 h-7 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
-  const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
+
 
   // Percentile ranking: compute where this city stands for each metric
   const pct = (values: number[], val: number) => {
@@ -345,111 +344,17 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
-      {/* Top Bar — same style as homepage */}
-      <div className={`sticky top-0 z-50 border-b py-2.5 ${navBg}`}>
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <Link href={`/${locale}`} className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
-                {t("navHome")}
-              </Link>
-              <Link href={`/${locale}/ranking`} className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-amber-300 hover:bg-slate-700" : "bg-white border-slate-300 text-amber-700 hover:bg-amber-50"}`}>
-                {t("navRanking")}
-              </Link>
-              <button onClick={() => { const slugs = Object.values(CITY_SLUGS).filter(s => s !== slug); router.push(`/${locale}/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
-                className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
-                {t("navRandomCity")}
-              </button>
-              <Link href={`/${locale}/compare/${slug}`}
-                className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>
-                {t("navCompare")}
-              </Link>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={() => setNavOpen(v => !v)}
-                className={`min-[1080px]:hidden text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
-                <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-              </button>
-              <div className="hidden min-[1080px]:flex items-center gap-2">
-                <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
-                  {professions.map(prof => <option key={prof} value={prof}>{s.getProfessionLabel(prof)}</option>)}
-                </select>
-                <select value={s.salaryMultiplier} onChange={e => s.setSalaryMultiplier(parseFloat(e.target.value))} className={selectCls} title={t("salaryMultiplier")}>
-                  {[0.5, 0.7, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0].map(m => <option key={m} value={m}>×{m.toFixed(1)}</option>)}
-                </select>
-                <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
-                  {(["moderate", "budget"] as const).map(tier => (
-                    <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
-                  ))}
-                </select>
-                <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
-                  <option value="gross">{t("incomeModeGross")}</option>
-                  <option value="net">{t("incomeModeNet")}</option>
-                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
-                </select>
-                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
-                  {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
-                    <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
-                  ))}
-                </select>
-                <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
-                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-                </select>
-                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto" | "light" | "dark")} className={selectCls}>
-                  <option value="auto">{t("themeAuto")}</option>
-                  <option value="light">{t("dayMode")}</option>
-                  <option value="dark">{t("nightMode")}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className={`min-[1080px]:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-            <div className="overflow-hidden min-h-0">
-              <div className="flex items-center gap-2 flex-wrap pt-2">
-                <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
-                  {professions.map(prof => <option key={prof} value={prof}>{s.getProfessionLabel(prof)}</option>)}
-                </select>
-                <select value={s.salaryMultiplier} onChange={e => s.setSalaryMultiplier(parseFloat(e.target.value))} className={selectCls} title={t("salaryMultiplier")}>
-                  {[0.5, 0.7, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0].map(m => <option key={m} value={m}>×{m.toFixed(1)}</option>)}
-                </select>
-                <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
-                  {(["moderate", "budget"] as const).map(tier => (
-                    <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
-                  ))}
-                </select>
-                <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
-                  <option value="gross">{t("incomeModeGross")}</option>
-                  <option value="net">{t("incomeModeNet")}</option>
-                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
-                </select>
-                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
-                  {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
-                    <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
-                  ))}
-                </select>
-                <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
-                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-                </select>
-                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto" | "light" | "dark")} className={selectCls}>
-                  <option value="auto">{t("themeAuto")}</option>
-                  <option value="light">{t("dayMode")}</option>
-                  <option value="dark">{t("nightMode")}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <NavBar s={s} professionValue={activeProfession} professions={professions} compareHref={`/${locale}/compare/${slug}`} excludeSlug={slug} showShare />
 
       <div className="max-w-6xl mx-auto px-4 pt-8">
 
         {/* Safety warning banner (full-width, above hero) */}
         {city.safetyWarning && (
           <div className={`rounded-lg px-4 py-2.5 mb-6 text-sm flex items-start gap-2 ${city.safetyWarning === "active_conflict"
-              ? (darkMode ? "bg-red-900/40 text-red-300 border border-red-500/50" : "bg-red-50 text-red-700 border border-red-300")
-              : city.safetyWarning === "extreme_instability"
-                ? (darkMode ? "bg-orange-900/40 text-orange-300 border border-orange-500/50" : "bg-orange-50 text-orange-700 border border-orange-300")
-                : (darkMode ? "bg-amber-900/40 text-amber-300 border border-amber-500/50" : "bg-amber-50 text-amber-700 border border-amber-300")
+            ? (darkMode ? "bg-red-900/40 text-red-300 border border-red-500/50" : "bg-red-50 text-red-700 border border-red-300")
+            : city.safetyWarning === "extreme_instability"
+              ? (darkMode ? "bg-orange-900/40 text-orange-300 border border-orange-500/50" : "bg-orange-50 text-orange-700 border border-orange-300")
+              : (darkMode ? "bg-amber-900/40 text-amber-300 border border-amber-500/50" : "bg-amber-50 text-amber-700 border border-amber-300")
             }`}>
             <span className="font-bold shrink-0">{t("safetyWarningTitle")}</span>
             <span>{

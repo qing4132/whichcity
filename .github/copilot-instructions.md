@@ -7,7 +7,7 @@
 - `app/` — Next.js App Router pages (thin wrappers calling components)
 - `app/[locale]/*/opengraph-image.tsx` — dynamic OG images for home, city, compare, ranking (Satori + next/og)
 - `public/fonts/NotoSansSC-Bold.ttf` — CJK font used by OG image generation
-- `components/` — 5 page components + ClimateChart
+- `components/` — 5 page components + NavBar + ClimateChart
 - `hooks/useSettings.ts` — global settings (profession, locale, theme, currency, etc.)
 - `lib/` — data, i18n, tax computation, types, constants
 - `lib/analytics.ts` — GA4 event tracking helper (`trackEvent`)
@@ -18,7 +18,8 @@
 ## Key Data
 
 - 134 cities, 26 professions, 10 currencies, 4 locales (zh/en/ja/es)
-- Nav breakpoint: `min-[1080px]:` for nav collapse across all 5 page components
+- Nav breakpoint: `min-[1080px]:` for hamburger menu collapse (NavBar component)
+- Nav text breakpoint: `min-[420px]:` for responsive nav button labels (en/es shorter text on small screens)
 - Compare layout breakpoint: `md:` (768px) for 2/3 column switch
 - Content-level breakpoint: `sm:` (640px) for grids, text sizing
 - Ranking page: accordion buttons (climate filter + tab selection), single/multi select mode, localStorage persistence

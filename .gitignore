@@ -12,6 +12,7 @@
 
 # Next.js
 /.next/
+/.next-dev-*/
 /out/
 
 # Production

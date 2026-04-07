@@ -2,8 +2,8 @@
 
 import { useEffect, useDeferredValue, useMemo, useRef, useState } from "react";
 import type { City, CostTier, IncomeMode, ClimateType } from "@/lib/types";
-import { COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS, LANGUAGE_LABELS } from "@/lib/i18n";
-import { POPULAR_CURRENCIES, CITY_FLAG_EMOJIS, CITY_CLIMATE } from "@/lib/constants";
+import { COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
+import { CITY_FLAG_EMOJIS, CITY_CLIMATE } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { computeLifePressure, getCityClimate } from "@/lib/clientUtils";
 import { computeAllNetIncomes } from "@/lib/taxUtils";
@@ -11,6 +11,7 @@ import { useSettings } from "@/hooks/useSettings";
 import { trackEvent } from "@/lib/analytics";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import NavBar from "./NavBar";
 
 /* ── Types ── */
 
@@ -175,7 +176,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const s = useSettings(urlLocale);
-  const { locale, darkMode, themeMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
+  const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
 
   /* ── URL ↔ State sync ── */
   const validTab = (v: string | null): v is Tab => v !== null && Object.keys(TAB_I18N).includes(v);
@@ -200,7 +201,6 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
     if (urlSub && ["savingsRate", "bigMacPower", "subWorkHours", "yearsToHome", "numbeo", "homicide", "gpi", "gallup", "doctors", "beds", "uhc", "lifeExp", "press", "democracy", "cpi"].includes(urlSub)) return urlSub as SubSort;
     return null;
   });
-  const [navOpen, setNavOpen] = useState(false);
   const [composite, setCompositeState] = useState(() => {
     if (urlMode === "multi") return true;
     if (urlMode === "single") return false;
@@ -313,7 +313,6 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
   }, [tab, subSort, composite, customTabs, climTypeFilter, climDimFilter, locale, router]);
 
   const selectCls = `text-xs rounded px-1.5 py-1 h-7 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
-  const navBg = darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200";
 
   const tierCls = (tier: Tier) =>
     tier === "good" ? (darkMode ? "text-emerald-400" : "text-emerald-600")
@@ -822,101 +821,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
 
-      {/* Top bar */}
-      <div className={`sticky top-0 z-50 border-b py-2.5 ${navBg}`}>
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <Link href={`/${locale}`} className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700" : "bg-white border-slate-300 text-blue-700 hover:bg-blue-50"}`}>
-                {t("navHome")}
-              </Link>
-              <Link href={`/${locale}/ranking`} className={`text-xs px-2 h-7 inline-flex items-center rounded border ${darkMode ? "bg-amber-900/40 border-amber-500/50 text-amber-300" : "bg-amber-50 border-amber-300 text-amber-700"}`}>
-                {t("navRanking")}
-              </Link>
-              <button onClick={() => { const slugs = Object.values(CITY_SLUGS); router.push(`/${locale}/city/${slugs[Math.floor(Math.random() * slugs.length)]}`); }}
-                className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-emerald-300 hover:bg-slate-700" : "bg-white border-slate-300 text-emerald-700 hover:bg-emerald-50"}`}>
-                {t("navRandomCity")}
-              </button>
-              <Link href={`/${locale}/compare`}
-                className={`text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-violet-300 hover:bg-slate-700" : "bg-white border-slate-300 text-violet-700 hover:bg-violet-50"}`}>
-                {t("navCompare")}
-              </Link>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={() => setNavOpen(v => !v)}
-                className={`min-[1080px]:hidden text-xs px-2 h-7 inline-flex items-center rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-300" : "bg-white border-slate-300 text-slate-500"}`}>
-                <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${navOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-              </button>
-              <div className="hidden min-[1080px]:flex items-center gap-2">
-                <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
-                  {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
-                </select>
-                <select value={s.salaryMultiplier} onChange={e => s.setSalaryMultiplier(parseFloat(e.target.value))} className={selectCls} title={t("salaryMultiplier")}>
-                  {[0.5, 0.7, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0].map(m => <option key={m} value={m}>×{m.toFixed(1)}</option>)}
-                </select>
-                <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
-                  {(["moderate", "budget"] as const).map(tier => (
-                    <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
-                  ))}
-                </select>
-                <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
-                  <option value="gross">{t("incomeModeGross")}</option>
-                  <option value="net">{t("incomeModeNet")}</option>
-                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
-                </select>
-                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
-                  {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
-                    <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
-                  ))}
-                </select>
-                <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
-                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-                </select>
-                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto" | "light" | "dark")} className={selectCls}>
-                  <option value="auto">{t("themeAuto")}</option>
-                  <option value="light">{t("dayMode")}</option>
-                  <option value="dark">{t("nightMode")}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className={`min-[1080px]:hidden grid transition-[grid-template-rows] duration-300 ease-in-out ${navOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-            <div className="overflow-hidden min-h-0">
-              <div className="flex items-center gap-2 flex-wrap pt-2">
-                <select value={activeProfession} onChange={e => s.setProfession(e.target.value)} className={selectCls}>
-                  {professions.map(p => <option key={p} value={p}>{s.getProfessionLabel(p)}</option>)}
-                </select>
-                <select value={s.salaryMultiplier} onChange={e => s.setSalaryMultiplier(parseFloat(e.target.value))} className={selectCls} title={t("salaryMultiplier")}>
-                  {[0.5, 0.7, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0].map(m => <option key={m} value={m}>×{m.toFixed(1)}</option>)}
-                </select>
-                <select value={costTier} onChange={e => s.setCostTier(e.target.value as CostTier)} className={selectCls}>
-                  {(["moderate", "budget"] as const).map(tier => (
-                    <option key={tier} value={tier}>{t(`costTier${tier.charAt(0).toUpperCase()}${tier.slice(1)}`)}</option>
-                  ))}
-                </select>
-                <select value={incomeMode} onChange={e => s.setIncomeMode(e.target.value as IncomeMode)} className={selectCls}>
-                  <option value="gross">{t("incomeModeGross")}</option>
-                  <option value="net">{t("incomeModeNet")}</option>
-                  <option value="expatNet">{t("incomeModeExpatNet")}</option>
-                </select>
-                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
-                  {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => (
-                    <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>
-                  ))}
-                </select>
-                <select value={s.currency} onChange={e => s.setCurrency(e.target.value)} className={selectCls}>
-                  {POPULAR_CURRENCIES.map(cur => <option key={cur} value={cur}>{cur}</option>)}
-                </select>
-                <select value={themeMode} onChange={e => s.setThemeMode(e.target.value as "auto" | "light" | "dark")} className={selectCls}>
-                  <option value="auto">{t("themeAuto")}</option>
-                  <option value="light">{t("dayMode")}</option>
-                  <option value="dark">{t("nightMode")}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <NavBar s={s} activePage="ranking" professionValue={activeProfession} professions={professions} showShare />
 
       <div className="max-w-6xl mx-auto px-4 pt-4 sm:pt-8">
 
@@ -935,8 +840,8 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
           {/* Climate filter button */}
           <button onClick={() => { setClimOpen(v => !v); setTabsExpanded(false); }}
             className={`order-1 py-2 px-3 rounded-lg text-xs font-medium transition-colors flex items-center ${climOpen
-                ? (darkMode ? "bg-emerald-900/40 text-emerald-300 ring-1 ring-emerald-500/50" : "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200")
-                : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100 text-slate-500")
+              ? (darkMode ? "bg-emerald-900/40 text-emerald-300 ring-1 ring-emerald-500/50" : "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200")
+              : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100 text-slate-500")
               }`}>
             <span className="w-4 shrink-0" />
             <span className="flex-1 min-w-0 truncate text-center">
@@ -971,8 +876,8 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
                 <div className="flex justify-end gap-0.5 text-xs">
                   <button onClick={clearClimFilter}
                     className={`px-2 py-0.5 transition-colors ${hasClimFilter
-                        ? (darkMode ? "text-emerald-400 font-semibold" : "text-emerald-600 font-semibold")
-                        : (darkMode ? "text-slate-600" : "text-slate-400")
+                      ? (darkMode ? "text-emerald-400 font-semibold" : "text-emerald-600 font-semibold")
+                      : (darkMode ? "text-slate-600" : "text-slate-400")
                       }`}>
                     {t("clear")}
                   </button>
@@ -985,8 +890,8 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
                       return (
                         <button key={ct} onClick={() => toggleClimType(ct)}
                           className={`py-1.5 rounded-lg font-medium text-xs transition text-center truncate ${sel
-                              ? "bg-emerald-500 text-white shadow-sm"
-                              : (darkMode ? "bg-slate-700 text-slate-400" : "bg-slate-100 text-slate-600")
+                            ? "bg-emerald-500 text-white shadow-sm"
+                            : (darkMode ? "bg-slate-700 text-slate-400" : "bg-slate-100 text-slate-600")
                             }`}>
                           {t(CLIMATE_TYPE_I18N[ct])}
                         </button>
@@ -1003,8 +908,8 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
                         return (
                           <button key={ti} onClick={() => toggleClimDim(dim.key, ti as ClimTier)}
                             className={`py-1.5 rounded-lg font-medium text-xs transition text-center truncate ${sel
-                                ? "bg-emerald-500 text-white shadow-sm"
-                                : (darkMode ? "bg-slate-700 text-slate-400" : "bg-slate-100 text-slate-600")
+                              ? "bg-emerald-500 text-white shadow-sm"
+                              : (darkMode ? "bg-slate-700 text-slate-400" : "bg-slate-100 text-slate-600")
                               }`}>
                             {t(tier.labelKey)}
                           </button>
@@ -1020,10 +925,10 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
           {/* Tab selection button */}
           <button onClick={() => { setTabsExpanded(v => !v); setClimOpen(false); }}
             className={`order-3 sm:order-2 mt-2 sm:mt-0 py-2 px-3 rounded-lg text-xs font-medium transition-colors flex items-center ${tabsExpanded
-                ? (composite
-                  ? (darkMode ? "bg-amber-900/40 text-amber-300 ring-1 ring-amber-500/50" : "bg-amber-50 text-amber-700 ring-1 ring-amber-200")
-                  : (darkMode ? "bg-blue-900/40 text-blue-300 ring-1 ring-blue-500/50" : "bg-blue-50 text-blue-700 ring-1 ring-blue-200"))
-                : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100 text-slate-500")
+              ? (composite
+                ? (darkMode ? "bg-amber-900/40 text-amber-300 ring-1 ring-amber-500/50" : "bg-amber-50 text-amber-700 ring-1 ring-amber-200")
+                : (darkMode ? "bg-blue-900/40 text-blue-300 ring-1 ring-blue-500/50" : "bg-blue-50 text-blue-700 ring-1 ring-blue-200"))
+              : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100 text-slate-500")
               }`}>
             <span className="w-4 shrink-0" />
             <span className="flex-1 min-w-0 truncate text-center">
@@ -1058,16 +963,16 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
                 <div className="flex justify-end gap-0.5 text-xs">
                   <button onClick={() => { if (composite) toggleComposite(); }}
                     className={`px-2 py-0.5 rounded-l transition-colors ${!composite
-                        ? (darkMode ? "text-blue-400 font-semibold" : "text-blue-600 font-semibold")
-                        : (darkMode ? "text-slate-600" : "text-slate-400")
+                      ? (darkMode ? "text-blue-400 font-semibold" : "text-blue-600 font-semibold")
+                      : (darkMode ? "text-slate-600" : "text-slate-400")
                       }`}>
                     {t("singleSelect")}
                   </button>
                   <span className={darkMode ? "text-slate-700" : "text-slate-300"}>|</span>
                   <button onClick={() => { if (!composite) toggleComposite(); }}
                     className={`px-2 py-0.5 rounded-r transition-colors ${composite
-                        ? (darkMode ? "text-amber-400 font-semibold" : "text-amber-600 font-semibold")
-                        : (darkMode ? "text-slate-600" : "text-slate-400")
+                      ? (darkMode ? "text-amber-400 font-semibold" : "text-amber-600 font-semibold")
+                      : (darkMode ? "text-slate-600" : "text-slate-400")
                       }`}>
                     {t("multiSelect")}
                   </button>
@@ -1082,14 +987,14 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
                           return (
                             <button key={gTab} onClick={() => handleTab(gTab)}
                               className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${composite
-                                  ? (selected
-                                    ? "bg-amber-500 text-white shadow-sm"
-                                    : (darkMode ? "bg-slate-800 text-slate-400 opacity-50" : "bg-slate-100/70 text-slate-500 opacity-50"))
-                                  : (selected
-                                    ? "bg-blue-600 text-white shadow-sm"
-                                    : gi === activeGroup
-                                      ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-blue-700")
-                                      : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100/70 text-slate-600"))
+                                ? (selected
+                                  ? "bg-amber-500 text-white shadow-sm"
+                                  : (darkMode ? "bg-slate-800 text-slate-400 opacity-50" : "bg-slate-100/70 text-slate-500 opacity-50"))
+                                : (selected
+                                  ? "bg-blue-600 text-white shadow-sm"
+                                  : gi === activeGroup
+                                    ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-blue-700")
+                                    : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100/70 text-slate-600"))
                                 }`}>
                               {t(TAB_I18N[gTab])}
                             </button>
@@ -1106,14 +1011,14 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
                     return (
                       <button key={gTab} onClick={() => handleTab(gTab)}
                         className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${composite
-                            ? (selected
-                              ? "bg-amber-500 text-white shadow-sm"
-                              : (darkMode ? "bg-slate-800 text-slate-400 opacity-50" : "bg-slate-100/70 text-slate-500 opacity-50"))
-                            : (selected
-                              ? "bg-blue-600 text-white shadow-sm"
-                              : activeGroup === 4
-                                ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-blue-700")
-                                : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100/70 text-slate-600"))
+                          ? (selected
+                            ? "bg-amber-500 text-white shadow-sm"
+                            : (darkMode ? "bg-slate-800 text-slate-400 opacity-50" : "bg-slate-100/70 text-slate-500 opacity-50"))
+                          : (selected
+                            ? "bg-blue-600 text-white shadow-sm"
+                            : activeGroup === 4
+                              ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-blue-700")
+                              : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100/70 text-slate-600"))
                           }`}>
                         {t(TAB_I18N[gTab])}
                       </button>
