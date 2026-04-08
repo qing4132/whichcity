@@ -383,6 +383,20 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
                 </p>
               </div>
             )}
+            {city.timezone && (() => {
+              const now = new Date();
+              const fmt = new Intl.DateTimeFormat(locale === "zh" ? "zh-CN" : locale === "ja" ? "ja-JP" : locale === "es" ? "es-ES" : "en-US", { timeZone: city.timezone, hour: "2-digit", minute: "2-digit", hour12: false });
+              const offsetMin = (() => { const parts = new Intl.DateTimeFormat("en-US", { timeZone: city.timezone, timeZoneName: "shortOffset" }).formatToParts(now); const o = parts.find(p => p.type === "timeZoneName")?.value || ""; const m = o.match(/GMT([+-]?)(\d{1,2})(?::(\d{2}))?/); if (!m) return 0; const sign = m[1] === "-" ? -1 : 1; return sign * (parseInt(m[2]) * 60 + parseInt(m[3] || "0")); })();
+              const h = Math.floor(Math.abs(offsetMin) / 60);
+              const m = Math.abs(offsetMin) % 60;
+              const utcLabel = `UTC${offsetMin >= 0 ? "+" : "-"}${h}${m ? ":" + String(m).padStart(2, "0") : ""}`;
+              return (
+                <div className={`rounded-xl border px-4 py-3 text-sm w-full sm:w-auto sm:max-w-xs ${darkMode ? "border-slate-600 bg-slate-800/80" : "border-slate-200 bg-slate-50"}`}>
+                  <p className={`font-bold text-xs mb-1 ${subCls}`}>{t("timezone")}</p>
+                  <p className={`leading-snug font-medium ${headingCls}`}>{utcLabel} · {fmt.format(now)}</p>
+                </div>
+              );
+            })()}
             {(() => {
               const langs = CITY_LANGUAGES[id] || [];
               const localized = langs.map(l => LANGUAGE_NAME_TRANSLATIONS[l]?.[locale] || l);

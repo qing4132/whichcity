@@ -39,6 +39,7 @@ export interface City {
   pressFreedomScore: number | null;
   democracyIndex: number | null;
   corruptionPerceptionIndex: number | null;
+  timezone?: string;
   climate?: ClimateInfo;
 }
 
