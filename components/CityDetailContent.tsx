@@ -178,7 +178,13 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
   useEffect(() => { document.title = `${cityName} | WhichCity`; }, [locale, cityName]);
   useEffect(() => { trackEvent("city_view", { city_slug: slug }); }, [slug]);
   const [now, setNow] = useState(() => new Date());
-  useEffect(() => { const id = setInterval(() => setNow(new Date()), 60_000); return () => clearInterval(id); }, []);
+  useEffect(() => {
+    const tick = () => setNow(new Date());
+    const msToNextMin = (60 - new Date().getSeconds()) * 1000;
+    const timeout = setTimeout(() => { tick(); const id = setInterval(tick, 60_000); cleanup = () => clearInterval(id); }, msToNextMin);
+    let cleanup = () => clearTimeout(timeout);
+    return () => cleanup();
+  }, []);
 
   if (!s.ready) return null;
 
