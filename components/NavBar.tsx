@@ -29,7 +29,13 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(function NavBar(
     const router = useRouter();
     const { locale, darkMode, themeMode, t } = s;
     const [menuOpen, setMenuOpen] = useState(false);
-    const [settingsOpen, setSettingsOpen] = useState(false);
+    const [settingsOpen, setSettingsOpen] = useState(() => {
+        if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("_settingsOpen")) {
+            sessionStorage.removeItem("_settingsOpen");
+            return true;
+        }
+        return false;
+    });
     const [copied, setCopied] = useState(false);
     const [shareOpen, setShareOpen] = useState(false);
 
@@ -271,7 +277,7 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(function NavBar(
                             </label>
                             <label className="flex flex-col gap-0.5">
                                 <span className={labelCls}>{t("settingLanguage")}</span>
-                                <select value={locale} onChange={e => s.setLocale(e.target.value as any)} className={selectCls}>
+                                <select value={locale} onChange={e => { sessionStorage.setItem("_settingsOpen", "1"); s.setLocale(e.target.value as any); }} className={selectCls}>
                                     {(Object.keys(LANGUAGE_LABELS) as any[]).map(lang => <option key={lang} value={lang}>{LANGUAGE_LABELS[lang]}</option>)}
                                 </select>
                             </label>
