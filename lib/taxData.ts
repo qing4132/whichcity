@@ -407,6 +407,26 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     usdToLocal: 1,
     confidence: "medium",
   },
+  "乌拉圭": {
+    brackets: [
+      { upTo: 552384, rate: 0 },
+      { upTo: 789120, rate: 0.10 },
+      { upTo: 1183680, rate: 0.15 },
+      { upTo: 2367360, rate: 0.24 },
+      { upTo: 3945600, rate: 0.25 },
+      { upTo: 5918400, rate: 0.27 },
+      { upTo: 9074880, rate: 0.31 },
+      { upTo: INF, rate: 0.36 },
+    ],
+    standardDeduction: 0,
+    social: [
+      { name: "retirement", rate: 0.15, annualBaseCap: 3270768 },
+      { name: "FONASA", rate: 0.045 },
+      { name: "FRL", rate: 0.001 },
+    ],
+    usdToLocal: 42,
+    confidence: "medium",
+  },
 
   // ── Western Europe ──
 
@@ -1208,6 +1228,24 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     usdToLocal: 50,
     confidence: "medium",
   },
+  "摩洛哥": {
+    brackets: [
+      { upTo: 40000, rate: 0 },
+      { upTo: 60000, rate: 0.10 },
+      { upTo: 80000, rate: 0.20 },
+      { upTo: 100000, rate: 0.30 },
+      { upTo: 180000, rate: 0.34 },
+      { upTo: INF, rate: 0.37 },
+    ],
+    standardDeduction: 0,
+    social: [
+      { name: "CNSS", rate: 0.0448, annualBaseCap: 72000 },
+      { name: "AMO", rate: 0.0226 },
+    ],
+    employeeDeduction: { rate: 0.20, max: 30000, afterSocial: true },
+    usdToLocal: 10,
+    confidence: "medium",
+  },
 };
 
 /* ── City-level Tax Overrides ─────────────────────────── */
@@ -1342,6 +1380,7 @@ export const COUNTRY_CURRENCY_CODE: Record<string, string> = {
   "印度尼西亚": "IDR", "新加坡": "SGD", "柬埔寨": "USD", "缅甸": "MMK",
   "澳大利亚": "AUD", "新西兰": "NZD",
   "南非": "ZAR", "肯尼亚": "KES", "尼日利亚": "NGN", "埃及": "EGP",
+  "乌拉圭": "UYU", "摩洛哥": "MAD",
   "以色列": "ILS", "土耳其": "TRY", "黎巴嫩": "LBP", "约旦": "JOD",
   "伊朗": "IRR",
 };

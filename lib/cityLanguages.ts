@@ -164,13 +164,14 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
      Mandarin is the de facto primary language of gov & education. */
   61:  ["Mandarin", "Taiwanese Hokkien", "Hakka"],  // Taipei — sorted by Taipei usage
 
-  /* ────────────────────── Japan (5) ──────────────────────
+  /* ────────────────────── Japan (6) ──────────────────────
      No de jure official language; Japanese is de facto official. */
   3:   ["Japanese"],  // Tokyo
   106: ["Japanese"],  // Osaka
   107: ["Japanese"],  // Nagoya
   138: ["Japanese"],  // Fukuoka
   139: ["Japanese"],  // Yokohama
+  159: ["Japanese"],  // Kyoto
 
   /* ────────────────────── South Korea (3) ──────────────────────
      Korean is the official language (Framework Act on the National Language). */
@@ -213,12 +214,19 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   /* ────────────────────── Southeast Asia ────────────────────── */
   45:  ["Thai"],         // Bangkok — Thai is national language (Constitution)
   112: ["Thai"],         // Chiang Mai
+  147: ["Thai"],         // Phuket
+  153: ["Thai"],         // Koh Phangan
+  154: ["Thai"],         // Koh Samui
   46:  ["Malay"],        // Kuala Lumpur — Bahasa Malaysia is official (Constitution Art. 152)
+  150: ["Malay"],        // Penang
   47:  ["Vietnamese"],   // Ho Chi Minh City
   48:  ["Vietnamese"],   // Hanoi
+  141: ["Vietnamese"],   // Da Nang
   57:  ["Indonesian"],   // Jakarta — Bahasa Indonesia (Constitution Ch. XV Art. 36)
+  140: ["Indonesian"],   // Bali
   58:  ["Filipino", "English"],  // Manila — both official (Constitution Art. XIV Sec. 7)
   109: ["Khmer"],        // Phnom Penh — Khmer is official (Constitution Art. 5)
+  155: ["Khmer"],        // Siem Reap
   110: ["Burmese"],      // Yangon — Myanmar language is official (Constitution Art. 450)
 
   /* ────────────────────── Central Asia (4) ────────────────────── */
@@ -237,6 +245,7 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   80:  ["Arabic"],   // Beirut — Arabic is official (Lebanon Constitution Art. 11)
   81:  ["Arabic"],   // Amman — Arabic is official (Jordan Constitution Art. 2)
   53:  ["Arabic"],   // Cairo — Arabic is official (Egypt Constitution Art. 2)
+  151: ["Arabic"],   // Marrakech — Arabic is official (Morocco Constitution Art. 5)
   54:  ["Persian"],  // Tehran — Persian/Farsi is official (Iran Constitution Art. 15)
   82:  ["Hebrew"],   // Tel Aviv — Hebrew is official (Basic Law 2018); Arabic has "special status"
 
@@ -259,12 +268,15 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   26:  ["Czech"],       // Prague
   27:  ["Polish"],      // Warsaw
   28:  ["Portuguese"],  // Lisbon
+  143: ["Portuguese"],  // Porto
   29:  ["Greek"],       // Athens
   30:  ["Turkish"],     // Istanbul
   85:  ["Ukrainian"],   // Kyiv — Ukrainian is state lang (Constitution Art. 10)
   86:  ["Romanian"],    // Bucharest
   87:  ["Bulgarian"],   // Sofia
+  145: ["Bulgarian"],   // Bansko
   88:  ["Croatian"],    // Zagreb
+  146: ["Croatian"],    // Split
   89:  ["Serbian"],     // Belgrade
   90:  ["Hungarian"],   // Budapest
   91:  ["Slovak"],      // Bratislava
@@ -275,9 +287,11 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   132: ["Russian"],     // Moscow
   137: ["Estonian"],    // Tallinn
 
-  /* Spain (2) — Spanish (Castilian) is national official; Catalan is co-official in Catalonia. */
+  /* Spain (4) — Spanish (Castilian) is national official; regional co-officials vary. */
   20:  ["Spanish", "Catalan"],  // Barcelona — both co-official (Statute of Autonomy of Catalonia Art. 6)
   21:  ["Spanish"],             // Madrid
+  144: ["Spanish", "Catalan"],  // Valencia — Valencian (Catalan variety) co-official (Statute of Autonomy Art. 6)
+  149: ["Spanish"],             // Las Palmas
 
   /* Italy (2) */
   22:  ["Italian"],  // Milan
@@ -308,18 +322,23 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   /* ────────────────────── Latin America & Caribbean ────────────────────── */
   31:  ["Spanish"],  // Mexico City
   69:  ["Spanish"],  // Guadalajara
+  142: ["Spanish"],  // Playa del Carmen
+  157: ["Spanish"],  // Cancún
+  158: ["Spanish"],  // Puerto Vallarta
   32:  ["Portuguese"],  // São Paulo
   33:  ["Portuguese"],  // Rio de Janeiro
+  152: ["Portuguese"],  // Florianópolis
   62:  ["Spanish"],  // Buenos Aires
   63:  ["Spanish"],  // Santiago
   64:  ["Spanish"],  // Bogotá
   129: ["Spanish"],  // Medellín
+  148: ["Spanish"],  // Montevideo
   70:  ["Spanish"],  // San José (Costa Rica)
   71:  ["Spanish"],  // Panama City
 
-  /* Peru (1) — Spanish, Quechua, Aymara are all official (Constitution Art. 48).
-     In Lima: Spanish overwhelmingly dominant. */
+  /* Peru (2) — Spanish, Quechua, Aymara are all official (Constitution Art. 48). */
   65:  ["Spanish", "Quechua", "Aymara"],  // Lima
+  156: ["Spanish", "Quechua"],             // Cusco — Quechua widely spoken locally
 
   /* Puerto Rico (1) — Spanish + English are co-official (Language Act 1993). */
   73:  ["Spanish", "English"],  // San Juan — Spanish dominant

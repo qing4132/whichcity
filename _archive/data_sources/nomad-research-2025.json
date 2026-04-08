@@ -1,0 +1,754 @@
+{
+  "_meta": {
+    "description": "Digital nomad feature research data for WhichCity",
+    "created": "2026-04-01",
+    "sources": {
+      "ef_epi": "EF Education First English Proficiency Index 2025 (ef.com/epi + Wikipedia)",
+      "nomad_visas": "Wikipedia 'Digital nomad' article (2026-03-23 revision) + VisaGuide.World (2025 list)",
+      "nomad_index": "VisaGuide Digital Nomad Index (visaguide.world/digital-nomad-visa/digital-nomad-index/)"
+    },
+    "notes": [
+      "EF EPI scores are country-level; city-level scores available for some capitals",
+      "Native English countries are not ranked in EF EPI; marked as 'native'",
+      "Nomad visa data may change frequently; verify before use in production",
+      "NO data has been fabricated. Fields marked null = not collected or not available"
+    ]
+  },
+  "countries": {
+    "美国": {
+      "en": "United States",
+      "cities": ["纽约", "洛杉矶", "旧金山", "芝加哥", "迈阿密", "华盛顿", "波士顿", "西雅图", "丹佛", "奥斯汀", "亚特兰大", "凤凰城", "波特兰", "圣地亚哥", "拉斯维加斯", "坦帕", "休斯顿", "费城", "圣何塞", "尔湾"],
+      "ef_epi": { "score": null, "band": "native", "note": "Native English country, not ranked in EF EPI" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. B-1/B-2 tourist visa does not allow work." }
+    },
+    "中国": {
+      "en": "China",
+      "cities": ["北京", "上海", "广州", "深圳", "成都", "杭州", "重庆"],
+      "ef_epi": { "score": 464, "band": "low", "city_scores": { "Shanghai": 527 } },
+      "nomad_visa": { "has_visa": false, "note": "No digital nomad visa program." }
+    },
+    "印度": {
+      "en": "India",
+      "cities": ["班加罗尔", "孟买", "新德里", "海得拉巴", "浦那"],
+      "ef_epi": { "score": 484, "band": "low", "city_scores": { "New Delhi": 407 } },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. e-Tourist visa limited to tourism." }
+    },
+    "日本": {
+      "en": "Japan",
+      "cities": ["东京", "大阪", "名古屋", "福冈", "横滨"],
+      "ef_epi": { "score": 446, "band": "very_low", "city_scores": { "Tokyo": 480 } },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Designated Activities (Digital Nomad)",
+        "duration_months": 6,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": false,
+        "note": "6 months, no extension. Can reapply after 6-month gap. Source: Wikipedia/moj.go.jp"
+      }
+    },
+    "巴西": {
+      "en": "Brazil",
+      "cities": ["圣保罗", "里约热内卢"],
+      "ef_epi": { "score": 482, "band": "low" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "VITEM XIV (Digital Nomad Visa)",
+        "duration_months": 12,
+        "min_income_usd": 1500,
+        "tax_on_foreign_income": "0-27%",
+        "renewable": true,
+        "note": "1 year, renewable for a 2nd year. $1,500/mo income OR $18,000 bank balance. Source: Wikipedia + VisaGuide"
+      }
+    },
+    "英国": {
+      "en": "United Kingdom",
+      "cities": ["伦敦", "贝尔法斯特"],
+      "ef_epi": { "score": null, "band": "native", "note": "Native English country" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Explicitly allows remote work on tourist status for non-UK clients. Source: Wikipedia ref 87" }
+    },
+    "澳大利亚": {
+      "en": "Australia",
+      "cities": ["悉尼", "墨尔本", "布里斯班", "珀斯"],
+      "ef_epi": { "score": null, "band": "native", "note": "Native English country" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "德国": {
+      "en": "Germany",
+      "cities": ["慕尼黑", "柏林"],
+      "ef_epi": { "score": 615, "band": "very_high", "city_scores": { "Berlin": 625 } },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Has freelancer visa (Aufenthaltserlaubnis) that some nomads use, but requires tangible connection to Germany. Source: Wikipedia ref 85-86" }
+    },
+    "韩国": {
+      "en": "South Korea",
+      "cities": ["首尔", "釜山", "仁川"],
+      "ef_epi": { "score": 522, "band": "moderate" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad (Workplace) Visa",
+        "duration_months": null,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "Pilot operation announced Jan 2024. Details limited. Source: Wikipedia ref 80"
+      }
+    },
+    "土耳其": {
+      "en": "Turkey",
+      "cities": ["伊斯坦布尔"],
+      "ef_epi": { "score": 488, "band": "low" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa",
+        "duration_months": null,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "Listed on VisaGuide. Details not fully collected."
+      }
+    },
+    "加拿大": {
+      "en": "Canada",
+      "cities": ["多伦多", "温哥华", "蒙特利尔", "卡尔加里", "渥太华"],
+      "ef_epi": { "score": null, "band": "native", "note": "Native English country" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Remote work allowed on tourist status",
+        "duration_months": 6,
+        "min_income_usd": 0,
+        "tax_on_foreign_income": "15-33%",
+        "renewable": null,
+        "note": "Explicitly allows remote work on tourist visa provided work doesn't involve Canadian clients and is not main purpose of stay. Source: Wikipedia ref 88, VisaGuide"
+      }
+    },
+    "阿联酋": {
+      "en": "United Arab Emirates",
+      "cities": ["迪拜", "阿布扎比"],
+      "ef_epi": { "score": 487, "band": "low" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Dubai Virtual Working Programme / Remote Work Visa",
+        "duration_months": 12,
+        "min_income_usd": 5000,
+        "tax_on_foreign_income": "0%",
+        "renewable": null,
+        "note": "1 year. $5,000/month income + employment confirmation letter. 0% income tax. Source: Wikipedia + VisaGuide (ranked #2 on Nomad Index)"
+      }
+    },
+    "沙特阿拉伯": {
+      "en": "Saudi Arabia",
+      "cities": ["利雅得"],
+      "ef_epi": { "score": 404, "band": "very_low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "墨西哥": {
+      "en": "Mexico",
+      "cities": ["墨西哥城", "瓜达拉哈拉"],
+      "ef_epi": { "score": 440, "band": "very_low", "city_scores": { "Mexico City": 428 } },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Temporary Resident Visa (used by nomads)",
+        "duration_months": 12,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": true,
+        "note": "Has nomad-friendly temporary resident visa. Also 180-day tourist visa commonly used. Listed on VisaGuide."
+      }
+    },
+    "阿根廷": {
+      "en": "Argentina",
+      "cities": ["布宜诺斯艾利斯"],
+      "ef_epi": { "score": 575, "band": "high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa",
+        "duration_months": 6,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": true,
+        "note": "6 months, renewable for additional 6. Announced May 2022. Source: Wikipedia ref 41"
+      }
+    },
+    "哥伦比亚": {
+      "en": "Colombia",
+      "cities": ["波哥大", "麦德林"],
+      "ef_epi": { "score": 480, "band": "low" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa",
+        "duration_months": 24,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "Listed on VisaGuide. Up to 2 years."
+      }
+    },
+    "泰国": {
+      "en": "Thailand",
+      "cities": ["曼谷", "清迈"],
+      "ef_epi": { "score": 402, "band": "very_low", "city_scores": { "Bangkok": 467 } },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Destination Thailand Visa (DTV)",
+        "duration_months": 60,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": false,
+        "note": "5-year multiple-entry visa. Each entry: up to 180 days + 180-day extension. Must show 500,000 THB (~$14,000) balance. Also has SMART Visa for high-expertise foreigners. Source: Wikipedia"
+      }
+    },
+    "印度尼西亚": {
+      "en": "Indonesia",
+      "cities": ["雅加达"],
+      "ef_epi": { "score": 471, "band": "low" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa (Second Home Visa / B211A)",
+        "duration_months": 60,
+        "min_income_usd": null,
+        "tax_on_foreign_income": "0%",
+        "renewable": null,
+        "note": "Plans announced June 2022 for 5-year tax-free nomad visa. Implementation varies. B211A visa commonly used. Source: Wikipedia ref 56-57"
+      }
+    },
+    "法国": {
+      "en": "France",
+      "cities": ["巴黎"],
+      "ef_epi": { "score": 539, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Passeport Talent for freelancers exists." }
+    },
+    "西班牙": {
+      "en": "Spain",
+      "cities": ["巴塞罗那", "马德里"],
+      "ef_epi": { "score": 540, "band": "moderate" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa (Startup Law / Ley de Startups)",
+        "duration_months": 12,
+        "min_income_usd": 2646,
+        "tax_on_foreign_income": "19-24%",
+        "renewable": true,
+        "note": "Initially 12 months, renewable up to 5 years total. Reduced tax rate (Beckham Law). 7,368 permits granted in first 10 months. #1 on VisaGuide Nomad Index. Source: Wikipedia + VisaGuide"
+      }
+    },
+    "意大利": {
+      "en": "Italy",
+      "cities": ["米兰", "罗马"],
+      "ef_epi": { "score": 513, "band": "moderate" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa (decreto sostegni ter)",
+        "duration_months": null,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "Voted into law March 2022. Full implementation details remain unknown as of research date. Source: Wikipedia ref 58-60"
+      }
+    },
+    "荷兰": {
+      "en": "Netherlands",
+      "cities": ["阿姆斯特丹"],
+      "ef_epi": { "score": 624, "band": "very_high", "city_scores": { "Amsterdam": 630 } },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Orientation visa and DAFT treaty for entrepreneurs." }
+    },
+    "瑞典": {
+      "en": "Sweden",
+      "cities": ["斯德哥尔摩"],
+      "ef_epi": { "score": 609, "band": "very_high", "city_scores": { "Stockholm": 633 } },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "挪威": {
+      "en": "Norway",
+      "cities": ["奥斯陆"],
+      "ef_epi": { "score": 613, "band": "very_high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Svalbard Remote Worker Program",
+        "duration_months": null,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "Svalbard is visa-free under Svalbard Treaty but limited infrastructure. Listed on VisaGuide. Mainland Norway has no dedicated nomad visa."
+      }
+    },
+    "丹麦": {
+      "en": "Denmark",
+      "cities": ["哥本哈根"],
+      "ef_epi": { "score": 611, "band": "very_high", "city_scores": { "Copenhagen": 644 } },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "芬兰": {
+      "en": "Finland",
+      "cities": ["赫尔辛基"],
+      "ef_epi": { "score": 603, "band": "very_high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Has considered introducing one." }
+    },
+    "瑞士": {
+      "en": "Switzerland",
+      "cities": ["苏黎世", "日内瓦"],
+      "ef_epi": { "score": 564, "band": "high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "奥地利": {
+      "en": "Austria",
+      "cities": ["维也纳"],
+      "ef_epi": { "score": 616, "band": "very_high", "city_scores": { "Vienna": 634 } },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "比利时": {
+      "en": "Belgium",
+      "cities": ["布鲁塞尔"],
+      "ef_epi": { "score": 608, "band": "very_high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "葡萄牙": {
+      "en": "Portugal",
+      "cities": ["里斯本"],
+      "ef_epi": { "score": 612, "band": "very_high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Remote Work / Digital Nomad Visa (D8)",
+        "duration_months": 12,
+        "min_income_usd": 3548,
+        "tax_on_foreign_income": "20%",
+        "renewable": true,
+        "note": "Applications from Oct 2022. Most popular country for nomads per 2023 survey (~16,000 in Lisbon). 6-month tax-free period on VisaGuide index. Source: Wikipedia + VisaGuide (ranked #8)"
+      }
+    },
+    "爱尔兰": {
+      "en": "Ireland",
+      "cities": ["都柏林"],
+      "ef_epi": { "score": null, "band": "native", "note": "Native English country" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "捷克": {
+      "en": "Czech Republic",
+      "cities": ["布拉格"],
+      "ef_epi": { "score": 582, "band": "high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Zivno visa (trade license) used by some nomads." }
+    },
+    "波兰": {
+      "en": "Poland",
+      "cities": ["华沙"],
+      "ef_epi": { "score": 600, "band": "very_high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "匈牙利": {
+      "en": "Hungary",
+      "cities": ["布达佩斯"],
+      "ef_epi": { "score": 590, "band": "high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "White Card (Digital Nomad Residence Permit)",
+        "duration_months": 12,
+        "min_income_usd": 3000,
+        "tax_on_foreign_income": "15%",
+        "renewable": true,
+        "note": "1 year, extendable for additional year. 6-month tax-free period per VisaGuide. Source: Wikipedia ref 53, VisaGuide (ranked #5)"
+      }
+    },
+    "罗马尼亚": {
+      "en": "Romania",
+      "cities": ["布加勒斯特"],
+      "ef_epi": { "score": 605, "band": "very_high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa",
+        "duration_months": 6,
+        "min_income_usd": 3950,
+        "tax_on_foreign_income": "10%",
+        "renewable": true,
+        "note": "6 months, extendable for additional 6. Requires 3 years prior employment and income 3x Romanian avg gross salary. 6-month tax-free period. Source: Wikipedia ref 70-71, VisaGuide (ranked #7)"
+      }
+    },
+    "保加利亚": {
+      "en": "Bulgaria",
+      "cities": ["索非亚"],
+      "ef_epi": { "score": 594, "band": "high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Popular nomad destination (Bansko) but no formal program." }
+    },
+    "希腊": {
+      "en": "Greece",
+      "cities": ["雅典"],
+      "ef_epi": { "score": 592, "band": "high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa",
+        "duration_months": 12,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": true,
+        "note": "Similar programs offered. Source: Wikipedia ref 84, VisaGuide"
+      }
+    },
+    "克罗地亚": {
+      "en": "Croatia",
+      "cities": ["萨格勒布"],
+      "ef_epi": { "score": 617, "band": "very_high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa",
+        "duration_months": 12,
+        "min_income_usd": null,
+        "tax_on_foreign_income": "0%",
+        "renewable": null,
+        "note": "Up to 1 year. Income TAX EXEMPT. For non-EU nationals only. Since Jan 2021. Source: Wikipedia ref 48"
+      }
+    },
+    "塞尔维亚": {
+      "en": "Serbia",
+      "cities": ["贝尔格莱德"],
+      "ef_epi": { "score": 578, "band": "high", "note": "Corrected from 579 after re-verification on 2026-04-08" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. 90-day visa-free for many nationalities." }
+    },
+    "爱沙尼亚": {
+      "en": "Estonia",
+      "cities": ["塔林"],
+      "ef_epi": { "score": 561, "band": "high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa + e-Residency",
+        "duration_months": 12,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "e-Residency since Dec 2014. Digital Nomad Visa since 2020, up to 1 year. Source: Wikipedia ref 49-50"
+      }
+    },
+    "格鲁吉亚": {
+      "en": "Georgia",
+      "cities": ["第比利斯"],
+      "ef_epi": { "score": 541, "band": "moderate" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Remotely from Georgia",
+        "duration_months": 12,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "360+ days visa-free for citizens of 95 countries. Program launched Aug 2020. Source: Wikipedia ref 51-52"
+      }
+    },
+    "乌克兰": {
+      "en": "Ukraine",
+      "cities": ["基辅"],
+      "ef_epi": { "score": 526, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Digital nomad-friendly before 2022 conflict." }
+    },
+    "俄罗斯": {
+      "en": "Russia",
+      "cities": ["莫斯科"],
+      "ef_epi": { "score": 521, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "以色列": {
+      "en": "Israel",
+      "cities": ["特拉维夫"],
+      "ef_epi": { "score": 524, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Digital Nomad Visa has been discussed but not implemented." }
+    },
+    "黎巴嫩": {
+      "en": "Lebanon",
+      "cities": ["贝鲁特"],
+      "ef_epi": { "score": 477, "band": "low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "约旦": {
+      "en": "Jordan",
+      "cities": ["安曼"],
+      "ef_epi": { "score": 425, "band": "very_low", "note": "Corrected from 426 after re-verification on 2026-04-08" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "埃及": {
+      "en": "Egypt",
+      "cities": ["开罗"],
+      "ef_epi": { "score": 459, "band": "low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "卡塔尔": {
+      "en": "Qatar",
+      "cities": ["多哈"],
+      "ef_epi": { "score": 469, "band": "low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "巴林": {
+      "en": "Bahrain",
+      "cities": ["麦纳麦"],
+      "ef_epi": { "score": null, "band": null, "note": "Not included in EF EPI 2025 (small sample size)" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa found in sources." }
+    },
+    "阿曼": {
+      "en": "Oman",
+      "cities": ["马斯喀特"],
+      "ef_epi": { "score": 407, "band": "very_low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "巴基斯坦": {
+      "en": "Pakistan",
+      "cities": ["卡拉奇", "伊斯兰堡"],
+      "ef_epi": { "score": 493, "band": "low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "孟加拉国": {
+      "en": "Bangladesh",
+      "cities": ["达卡"],
+      "ef_epi": { "score": 506, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "斯里兰卡": {
+      "en": "Sri Lanka",
+      "cities": ["科伦坡"],
+      "ef_epi": { "score": 486, "band": "low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "尼泊尔": {
+      "en": "Nepal",
+      "cities": ["加德满都"],
+      "ef_epi": { "score": 514, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "菲律宾": {
+      "en": "Philippines",
+      "cities": ["马尼拉"],
+      "ef_epi": { "score": 569, "band": "high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa",
+        "duration_months": 12,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "Announced May 2023, 1-year visa for digital nomads. Source: Wikipedia ref 67"
+      }
+    },
+    "马来西亚": {
+      "en": "Malaysia",
+      "cities": ["吉隆坡"],
+      "ef_epi": { "score": 581, "band": "high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "DE Rantau Nomad Pass",
+        "duration_months": 12,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": true,
+        "note": "Listed on VisaGuide. DE Rantau program for digital nomads."
+      }
+    },
+    "越南": {
+      "en": "Vietnam",
+      "cities": ["胡志明市", "河内"],
+      "ef_epi": { "score": 500, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. E-visa for tourism up to 90 days." }
+    },
+    "柬埔寨": {
+      "en": "Cambodia",
+      "cities": ["金边"],
+      "ef_epi": { "score": 390, "band": "very_low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Business visa (EB) commonly used by nomads." }
+    },
+    "缅甸": {
+      "en": "Myanmar",
+      "cities": ["仰光"],
+      "ef_epi": { "score": 444, "band": "very_low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "新加坡": {
+      "en": "Singapore",
+      "cities": ["新加坡"],
+      "ef_epi": { "score": null, "band": "native", "note": "Reclassified as native English in EF EPI 2025" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. Has ONE Pass and Tech.Pass for high earners." }
+    },
+    "台湾": {
+      "en": "Taiwan",
+      "cities": ["台北"],
+      "ef_epi": { "score": null, "band": null, "note": "Not included in EF EPI 2025" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visitor Visa",
+        "duration_months": 6,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": false,
+        "note": "180-day visa, launched Jan 2025. Requires prior nomad visa from another country, $10,000 bank deposits avg 6 months, salary $20,000-40,000/yr depending on age. Source: Wikipedia ref 81"
+      }
+    },
+    "中国香港": {
+      "en": "Hong Kong",
+      "cities": ["香港"],
+      "ef_epi": { "score": 538, "band": "moderate", "note": "Listed separately from China in EF EPI" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "新西兰": {
+      "en": "New Zealand",
+      "cities": ["奥克兰"],
+      "ef_epi": { "score": null, "band": "native", "note": "Native English country" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "南非": {
+      "en": "South Africa",
+      "cities": ["约翰内斯堡", "开普敦"],
+      "ef_epi": { "score": 602, "band": "very_high" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa (updated visa laws)",
+        "duration_months": null,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": null,
+        "note": "Announced March 2022 to allow nomads >90 day stays. First African mainland country. Source: Wikipedia ref 78-79"
+      }
+    },
+    "肯尼亚": {
+      "en": "Kenya",
+      "cities": ["内罗毕"],
+      "ef_epi": { "score": 593, "band": "high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "尼日利亚": {
+      "en": "Nigeria",
+      "cities": ["拉各斯"],
+      "ef_epi": { "score": 569, "band": "high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "秘鲁": {
+      "en": "Peru",
+      "cities": ["利马"],
+      "ef_epi": { "score": 519, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. 183-day tourist stay commonly used." }
+    },
+    "智利": {
+      "en": "Chile",
+      "cities": ["圣地亚哥"],
+      "ef_epi": { "score": 517, "band": "moderate" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "哥斯达黎加": {
+      "en": "Costa Rica",
+      "cities": ["圣何塞"],
+      "ef_epi": { "score": 516, "band": "moderate" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Digital Nomad Visa (Ley Nómada Digital)",
+        "duration_months": 12,
+        "min_income_usd": 3000,
+        "tax_on_foreign_income": null,
+        "renewable": true,
+        "note": "1 year, extendable 1 year. $3,000/mo income (families $5,000/mo). Law passed Aug 2021. Source: Wikipedia ref 46-47"
+      }
+    },
+    "巴拿马": {
+      "en": "Panama",
+      "cities": ["巴拿马城"],
+      "ef_epi": { "score": 491, "band": "low" },
+      "nomad_visa": {
+        "has_visa": true,
+        "visa_name": "Remote Worker Visa (Short Stay Visa for Remote Workers)",
+        "duration_months": 9,
+        "min_income_usd": null,
+        "tax_on_foreign_income": null,
+        "renewable": true,
+        "note": "Listed on VisaGuide."
+      }
+    },
+    "波多黎各": {
+      "en": "Puerto Rico",
+      "cities": ["圣胡安"],
+      "ef_epi": { "score": null, "band": null, "note": "US territory, not separately ranked in EF EPI" },
+      "nomad_visa": { "has_visa": false, "note": "US territory. Act 60 tax incentives for individuals who relocate, but not a nomad visa." }
+    },
+    "卢森堡": {
+      "en": "Luxembourg",
+      "cities": ["卢森堡市"],
+      "ef_epi": { "score": null, "band": null, "note": "Not included in EF EPI 2025 (small sample size)" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "蒙古": {
+      "en": "Mongolia",
+      "cities": ["乌兰巴托"],
+      "ef_epi": { "score": 447, "band": "very_low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "哈萨克斯坦": {
+      "en": "Kazakhstan",
+      "cities": ["阿拉木图"],
+      "ef_epi": { "score": 417, "band": "very_low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. 30-day visa-free for many nationalities." }
+    },
+    "乌兹别克斯坦": {
+      "en": "Uzbekistan",
+      "cities": ["塔什干"],
+      "ef_epi": { "score": 429, "band": "very_low", "note": "Corrected from 439 after re-verification on 2026-04-08" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "伊朗": {
+      "en": "Iran",
+      "cities": ["德黑兰"],
+      "ef_epi": { "score": 492, "band": "low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "阿塞拜疆": {
+      "en": "Azerbaijan",
+      "cities": ["巴库"],
+      "ef_epi": { "score": 454, "band": "low" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa." }
+    },
+    "斯洛伐克": {
+      "en": "Slovakia",
+      "cities": ["布拉迪斯拉发"],
+      "ef_epi": { "score": 606, "band": "very_high" },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. EU member." }
+    },
+    "斯洛文尼亚": {
+      "en": "Slovenia",
+      "cities": ["卢布尔雅那"],
+      "ef_epi": { "score": null, "band": null, "note": "Confirmed NOT in EF EPI 2025 (full 123-country list searched on ef.com 2026-04-08). Slovenia absent from index." },
+      "nomad_visa": { "has_visa": false, "note": "No dedicated nomad visa. EU member." }
+    }
+  },
+  "summary": {
+    "total_countries": 79,
+    "total_cities": 134,
+    "ef_epi_collected": {
+      "with_score": 63,
+      "native_english": 6,
+      "not_available": 5,
+      "not_collected": 5,
+      "native_countries": ["美国", "英国", "澳大利亚", "加拿大", "爱尔兰", "新西兰"],
+      "reclassified_native_2025": ["新加坡"],
+      "not_in_index": ["台湾", "波多黎各", "巴林", "卢森堡"],
+      "not_collected": ["斯洛文尼亚"]
+    },
+    "nomad_visas": {
+      "has_dedicated_visa": 27,
+      "no_visa": 52,
+      "countries_with_visa": [
+        "日本", "巴西", "加拿大", "阿联酋", "墨西哥", "阿根廷", "哥伦比亚",
+        "泰国", "印度尼西亚", "西班牙", "意大利", "葡萄牙", "匈牙利", "罗马尼亚",
+        "希腊", "克罗地亚", "爱沙尼亚", "格鲁吉亚", "菲律宾", "马来西亚",
+        "台湾", "南非", "韩国", "土耳其", "挪威", "哥斯达黎加", "巴拿马"
+      ]
+    }
+  },
+  "data_gaps": {
+    "ef_epi": [
+      "Slovenia (斯洛文尼亚) - score not captured during EF EPI fetch",
+      "Taiwan, Puerto Rico, Bahrain, Luxembourg - not in EF EPI index",
+      "City-level scores only captured for a few capitals; most cities lack city-specific data"
+    ],
+    "nomad_visas": [
+      "Income requirements missing for many countries (Korea, Turkey, Estonia, Georgia, Greece, etc.)",
+      "Tax rates on foreign income missing for most visa countries",
+      "Visa processing time and cost not collected",
+      "Italy implementation status uncertain",
+      "Indonesia visa program evolving rapidly"
+    ],
+    "not_collected_at_all": [
+      "Coworking space costs per city (NomadList has this data)",
+      "Nomad community size estimates per city",
+      "Visa-free stay duration for tourism (useful as fallback)",
+      "Cost of health insurance for nomads",
+      "Time zone offset from major work hubs (partially computable from existing timezone data)"
+    ]
+  }
+}

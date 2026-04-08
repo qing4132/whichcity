@@ -28,6 +28,11 @@ export const CITY_SLUGS: Record<number, string> = {
   126: "philadelphia", 127: "calgary", 128: "perth", 129: "medellin", 130: "tbilisi",
   131: "lagos", 132: "moscow", 133: "san-jose-us", 134: "irvine", 135: "ottawa",
   136: "luxembourg-city", 137: "tallinn", 138: "fukuoka", 139: "yokohama",
+  140: "bali", 141: "da-nang", 142: "playa-del-carmen", 143: "porto", 144: "valencia",
+  145: "bansko", 146: "split", 147: "phuket", 148: "montevideo", 149: "las-palmas",
+  150: "penang", 151: "marrakech", 152: "florianopolis", 153: "koh-phangan",
+  154: "koh-samui", 155: "siem-reap", 156: "cusco", 157: "cancun",
+  158: "puerto-vallarta", 159: "kyoto",
 };
 
 /** Reverse lookup: slug → city ID */

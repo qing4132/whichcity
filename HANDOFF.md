@@ -25,7 +25,7 @@
 
 ## 1. Overview
 
-**WhichCity** ([whichcity.run](https://whichcity.run)) is a global city comparison tool. Users can compare 134 cities across income, living costs, housing, safety, healthcare, institutional freedom, climate, and more. Supports 26 professions, 79 country tax systems, 10 currencies, and 4 languages (zh/en/ja/es).
+**WhichCity** ([whichcity.run](https://whichcity.run)) is a global city comparison tool. Users can compare 154 cities across income, living costs, housing, safety, healthcare, institutional freedom, climate, and more. Supports 26 professions, 81 country tax systems, 10 currencies, and 4 languages (zh/en/ja/es).
 
 **Core use cases**: relocation decisions, job offer comparison, study abroad planning, digital nomad destination research.
 
@@ -96,14 +96,14 @@ whichcity/
 │   ├── taxUtils.ts             Tax computation engine (gross → net)
 │   ├── clientUtils.ts          Life Pressure formula, climate/name helpers
 │   ├── citySlug.ts             ID↔slug mappings, popular pairs, top cities
-│   ├── cityIntros.ts           134 cities × 4 locales (intro paragraphs)
+│   ├── cityIntros.ts           154 cities × 4 locales (intro paragraphs)
 │   ├── cityLanguages.ts        Official languages per city
 │   ├── i18nRouting.ts          Locale detection helpers
 │   ├── analytics.ts            GA4 event tracking (10 lines)
 │
 ├── public/
 │   ├── data/
-│   │   ├── cities.json         134 cities, ~50 fields each (runtime data)
+│   │   ├── cities.json         154 cities, ~50 fields each (runtime data)
 │   │   └── exchange-rates.json 30 currencies (auto-updated daily)
 │   └── fonts/
 │       └── NotoSansSC-Bold.ttf CJK font for OG image generation
@@ -490,6 +490,31 @@ These work correctly but are harder to maintain. Extracting sub-components would
 - `description` field in cities.json is Chinese only; other locales use `cityIntros.ts`
 - Some salary data may be outdated (last bulk update: early 2026)
 
+### Japan Cities — averageIncome Data Source
+
+6 Japan cities (东京/横滨/大阪/名古屋/福冈/京都) `averageIncome` uses **doda.jp 2025** (~60万 sample survey) as data source, NOT Numbeo. The net income is calculated using the project's own Japan tax engine in `taxUtils.ts`:
+
+```
+gross JPY (doda.jp)
+  − social insurance (pension 9.15% + health 5% + employment 0.6%)
+  − employment income deduction (給与所得控除, progressive scale)
+  − basic deduction (¥480,000)
+  = taxable income
+  − national income tax (progressive brackets 5%–45%)
+  − resident tax (10% of taxable)
+  = net JPY ÷ exchange-rates.json JPY rate = averageIncome (USD)
+```
+
+Effective tax rate is ~21% for the ¥3.9M–¥4.8M range. When exchange rates update, Japan city incomes should be recalculated with the same formula. Other countries still use Numbeo. Kyoto profession salaries use doda.jp regional ratio (京都府404万/大阪府411万=0.983) applied to Osaka values.
+
+doda.jp source data (2025):
+- 東京都 476万円 → $23,349
+- 神奈川県 456万円 → $22,442
+- 愛知県 420万円 → $20,769
+- 大阪府 411万円 → $20,343
+- 京都府 404万円 → $20,011
+- 福岡県 391万円 → $19,395
+
 ### i18n
 
 - `i18n.ts` is ~1500 lines — large but flat structure, works fine
@@ -506,7 +531,7 @@ These work correctly but are harder to maintain. Extracting sub-components would
 ### Performance
 
 - cities.json (~240KB) loaded server-side per request (cached per process, acceptable)
-- All 134 cities rendered in ranking (no pagination/virtualization)
+- All 154 cities rendered in ranking (no pagination/virtualization)
 - Climate charts render all 12 months even when off-screen
 
 ### Misc
@@ -521,7 +546,7 @@ These work correctly but are harder to maintain. Extracting sub-components would
 
 ### Near-term
 
-- [ ] Add more cities (target: 150+)
+- [x] Add more cities (target: 150+) — done: 154 cities (2026-04-09)
 - [ ] Annual data refresh cycle (salaries, costs, indices)
 - [ ] Add mobile-optimized share cards
 - [ ] Consider pagination or virtualization for ranking page with many cities

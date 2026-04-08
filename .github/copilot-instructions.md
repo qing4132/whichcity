@@ -12,15 +12,15 @@
 - `components/` — 5 page components + NavBar + ClimateChart + WebVitals
 - `hooks/useSettings.ts` — global settings (profession, locale, theme, currency, etc.)
 - `lib/` — data loading, i18n, tax computation (79 countries), types, constants
-- `public/data/` — cities.json (134 cities), exchange-rates.json (auto-updated daily)
+- `public/data/` — cities.json (154 cities), exchange-rates.json (auto-updated daily)
 - `scripts/` — active maintenance scripts (3 files)
 - `_archive/` — historical scripts, old components, data sources, reports (do not delete)
 
 ## Key Data
 
-- 134 cities, 26 professions, 10 currencies, 4 locales (zh/en/ja/es)
+- 154 cities, 26 professions, 10 currencies, 4 locales (zh/en/ja/es)
 - City type: ~50 fields (income, costs, housing, safety, healthcare, freedom, climate, etc.)
-- Tax engine: 79 country tax tables + city overrides + expat schemes
+- Tax engine: 81 country tax tables + city overrides + expat schemes
 - Composite indices: Life Pressure (client-computed), Safety/Healthcare/Freedom (pre-computed in JSON)
 
 ## Breakpoints
