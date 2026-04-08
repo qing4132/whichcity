@@ -8,7 +8,7 @@ import { CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
 import NavBar from "./NavBar";
-import { computeLifePressure, getCityClimate, getCityEnName, getClimateLabel } from "@/lib/clientUtils";
+import { computeLifePressure, getCityEnName, getClimateLabel } from "@/lib/clientUtils";
 import { trackEvent } from "@/lib/analytics";
 import { CITY_INTROS } from "@/lib/cityIntros";
 import { CITY_LANGUAGES, LANGUAGE_NAME_TRANSLATIONS } from "@/lib/cityLanguages";
@@ -183,7 +183,7 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
   const id = city.id;
   const flag = CITY_FLAG_EMOJIS[id] || "🏤️";
   const countryName = COUNTRY_TRANSLATIONS[city.country]?.[locale] || city.country;
-  const climate = getCityClimate(id);
+  const climate = city.climate ?? null;
 
   const professions = city.professions ? Object.keys(city.professions) : [];
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
@@ -255,7 +255,7 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
     const vec = (i: number): number[] => {
       const c = allCities[i];
       const ytb = allYearsToHome[i];
-      const cl = getCityClimate(c.id);
+      const cl = c.climate ?? null;
       return [
         allIncomes[i], allCosts[i], allSavings[i],
         c.housePrice ?? 0, isFinite(ytb) ? ytb : 999, c.monthlyRent ?? 0,
@@ -549,8 +549,8 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
               const otherIncome = otherGross !== null ? computeNetIncome(otherGross, other.country, other.id, incomeMode, s.rates?.rates).netUSD : null;
               const otherHourly = other.annualWorkHours !== null && other.annualWorkHours > 0 && otherIncome !== null ? otherIncome / other.annualWorkHours : 0;
               const otherLP = computeLifePressure(other, allCities, otherIncome ?? 0, allIncomes, costTierField).value;
-              const curCl = getCityClimate(city.id);
-              const othCl = getCityClimate(otherId);
+              const curCl = city.climate ?? null;
+              const othCl = allCities.find(c => c.id === otherId)?.climate ?? null;
               const dims: { key: string; cur: number; oth: number; higher: boolean }[] = [
                 { key: "avgIncome", cur: income ?? 0, oth: otherIncome ?? 0, higher: true },
                 { key: "monthlyCost", cur: tierCost, oth: other[TIER_KEYS.find(tk => tk.key === costTier)!.field], higher: false },

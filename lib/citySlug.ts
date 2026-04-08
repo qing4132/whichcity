@@ -77,3 +77,28 @@ export const POPULAR_PAIRS: [number, number][] = [
   // New others
   [128, 6], [129, 64], [130, 119], [131, 52],
 ];
+
+/** Top cities by search volume — all pairwise combos auto-generated for sitemap */
+const TOP_CITY_IDS = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+  19, 20, 21, 28, 29, 30, 31, 32, 37, 45, 49, 50, 59, 61, 82,
+];
+
+/** Extended compare pairs for sitemap: POPULAR_PAIRS + top-city combos, deduplicated */
+export const SITEMAP_PAIRS: [number, number][] = (() => {
+  const seen = new Set<string>();
+  const result: [number, number][] = [];
+  const add = (a: number, b: number) => {
+    const key = a < b ? `${a}-${b}` : `${b}-${a}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    result.push([a, b]);
+  };
+  for (const [a, b] of POPULAR_PAIRS) add(a, b);
+  for (let i = 0; i < TOP_CITY_IDS.length; i++) {
+    for (let j = i + 1; j < TOP_CITY_IDS.length; j++) {
+      add(TOP_CITY_IDS[i], TOP_CITY_IDS[j]);
+    }
+  }
+  return result;
+})();

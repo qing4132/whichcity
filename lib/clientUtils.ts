@@ -1,9 +1,10 @@
 import type { ClimateInfo, Locale } from "./types";
-import { CITY_CLIMATE } from "./constants";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "./i18n";
 
-export function getCityClimate(id: number): ClimateInfo | null {
-  return CITY_CLIMATE[id] ?? null;
+/** @deprecated Use city.climate directly instead */
+export function getCityClimate(id: number, cities?: { id: number; climate?: ClimateInfo }[]): ClimateInfo | null {
+  const city = cities?.find(c => c.id === id);
+  return city?.climate ?? null;
 }
 
 export function getCityEnName(id: number): string {

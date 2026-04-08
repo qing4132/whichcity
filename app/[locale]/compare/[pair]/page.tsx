@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { Locale } from "@/lib/types";
-import { SLUG_TO_ID, CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
+import { SLUG_TO_ID, CITY_SLUGS, SITEMAP_PAIRS } from "@/lib/citySlug";
 import { getCityById, getCityEnName, getCityLocaleName, loadCities } from "@/lib/dataLoader";
 import { LOCALES } from "@/lib/i18nRouting";
 import { TRANSLATIONS } from "@/lib/i18n";
@@ -20,7 +20,7 @@ function parsePair(pair: string): string[] | null {
 
 export async function generateStaticParams() {
   const seen = new Set<string>();
-  return POPULAR_PAIRS.map(([a, b]) => {
+  return SITEMAP_PAIRS.map(([a, b]) => {
     const pair = [CITY_SLUGS[a], CITY_SLUGS[b]].sort().join("-vs-");
     if (seen.has(pair)) return null;
     seen.add(pair);
@@ -57,12 +57,22 @@ export default async function ComparePage({ params }: Props) {
   const allCities = loadCities();
   const names = slugs.map(s => getCityEnName(SLUG_TO_ID[s]));
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: `${names.join(" vs ")}: City Comparison`,
-    description: `Detailed comparison of ${names.join(", ")} across income, cost of living, housing, and quality of life metrics.`,
-  };
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: `${names.join(" vs ")}: City Comparison`,
+      description: `Detailed comparison of ${names.join(", ")} across income, cost of living, housing, and quality of life metrics.`,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "WhichCity", item: `https://whichcity.run/${locale}` },
+        { "@type": "ListItem", position: 2, name: names.join(" vs "), item: `https://whichcity.run/${locale}/compare/${pair}` },
+      ],
+    },
+  ];
 
   return (
     <>

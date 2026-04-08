@@ -3,9 +3,9 @@
 import { useEffect, useDeferredValue, useMemo, useRef, useState } from "react";
 import type { City, CostTier, IncomeMode, ClimateType } from "@/lib/types";
 import { COUNTRY_TRANSLATIONS, CITY_NAME_TRANSLATIONS } from "@/lib/i18n";
-import { CITY_FLAG_EMOJIS, CITY_CLIMATE } from "@/lib/constants";
+import { CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
-import { computeLifePressure, getCityClimate } from "@/lib/clientUtils";
+import { computeLifePressure } from "@/lib/clientUtils";
 import { computeAllNetIncomes } from "@/lib/taxUtils";
 import { useSettings } from "@/hooks/useSettings";
 import { trackEvent } from "@/lib/analytics";
@@ -71,26 +71,8 @@ const CLIMATE_TYPE_I18N: Record<ClimateType, string> = {
 type ClimTier = 0 | 1 | 2;
 interface ClimDim { key: string; labelKey: string; tiers: { labelKey: string; test: (v: number) => boolean }[] }
 
-/* Compute p33/p66 percentile thresholds from actual data */
-const _climIds = Object.keys(CITY_CLIMATE).map(Number);
-const _climVals = (fn: (c: (typeof CITY_CLIMATE)[number]) => number) =>
-  _climIds.map(id => fn(CITY_CLIMATE[id])).filter(v => v != null && isFinite(v)).sort((a, b) => a - b);
 const _pct = (arr: number[], p: number) => arr[Math.min(Math.floor(arr.length * p), arr.length - 1)];
 const _round = (v: number, d = 0) => Math.round(v * 10 ** d) / 10 ** d;
-
-const _tempArr = _climVals(c => c.avgTempC);
-const _diffArr = _climVals(c => c.summerAvgC - c.winterAvgC);
-const _humArr = _climVals(c => c.humidityPct);
-const _sunArr = _climVals(c => c.sunshineHours);
-
-const _tLo = _round(_pct(_tempArr, 1 / 3));
-const _tHi = _round(_pct(_tempArr, 2 / 3));
-const _dLo = _round(_pct(_diffArr, 1 / 3));
-const _dHi = _round(_pct(_diffArr, 2 / 3));
-const _hLo = _round(_pct(_humArr, 1 / 3));
-const _hHi = _round(_pct(_humArr, 2 / 3));
-const _sLo = _round(_pct(_sunArr, 1 / 3));
-const _sHi = _round(_pct(_sunArr, 2 / 3));
 
 const _mkTiers = (lo: number, hi: number, keys: [string, string, string]): ClimDim["tiers"] => [
   { labelKey: keys[0], test: v => v < lo },
@@ -98,31 +80,36 @@ const _mkTiers = (lo: number, hi: number, keys: [string, string, string]): ClimD
   { labelKey: keys[2], test: v => v > hi },
 ];
 
-const CLIM_DIMS: ClimDim[] = [
-  {
-    key: "temp", labelKey: "climTemp",
-    tiers: _mkTiers(_tLo, _tHi, ["climTempLo", "climTempMid", "climTempHi"])
-  },
-  {
-    key: "diff", labelKey: "climTempDiff",
-    tiers: _mkTiers(_dLo, _dHi, ["climDiffLo", "climDiffMid", "climDiffHi"])
-  },
-  {
-    key: "rain", labelKey: "climRain",
-    tiers: _mkTiers(600, 1200, ["climRainLo", "climRainMid", "climRainHi"])
-  },
-  {
-    key: "humidity", labelKey: "climHumidity",
-    tiers: _mkTiers(_hLo, _hHi, ["climHumLo", "climHumMid", "climHumHi"])
-  },
-  {
-    key: "sun", labelKey: "climSun",
-    tiers: _mkTiers(_sLo, _sHi, ["climSunLo", "climSunMid", "climSunHi"])
-  },
-];
+function buildClimDims(cities: City[]): ClimDim[] {
+  const climCities = cities.filter(c => c.climate);
+  const climVals = (fn: (c: NonNullable<City["climate"]>) => number) =>
+    climCities.map(c => fn(c.climate!)).filter(v => v != null && isFinite(v)).sort((a, b) => a - b);
 
-const climDimVal = (cityId: number, dimKey: string): number | null => {
-  const c = getCityClimate(cityId);
+  const tempArr = climVals(c => c.avgTempC);
+  const diffArr = climVals(c => c.summerAvgC - c.winterAvgC);
+  const humArr = climVals(c => c.humidityPct);
+  const sunArr = climVals(c => c.sunshineHours);
+
+  const tLo = _round(_pct(tempArr, 1 / 3));
+  const tHi = _round(_pct(tempArr, 2 / 3));
+  const dLo = _round(_pct(diffArr, 1 / 3));
+  const dHi = _round(_pct(diffArr, 2 / 3));
+  const hLo = _round(_pct(humArr, 1 / 3));
+  const hHi = _round(_pct(humArr, 2 / 3));
+  const sLo = _round(_pct(sunArr, 1 / 3));
+  const sHi = _round(_pct(sunArr, 2 / 3));
+
+  return [
+    { key: "temp", labelKey: "climTemp", tiers: _mkTiers(tLo, tHi, ["climTempLo", "climTempMid", "climTempHi"]) },
+    { key: "diff", labelKey: "climTempDiff", tiers: _mkTiers(dLo, dHi, ["climDiffLo", "climDiffMid", "climDiffHi"]) },
+    { key: "rain", labelKey: "climRain", tiers: _mkTiers(600, 1200, ["climRainLo", "climRainMid", "climRainHi"]) },
+    { key: "humidity", labelKey: "climHumidity", tiers: _mkTiers(hLo, hHi, ["climHumLo", "climHumMid", "climHumHi"]) },
+    { key: "sun", labelKey: "climSun", tiers: _mkTiers(sLo, sHi, ["climSunLo", "climSunMid", "climSunHi"]) },
+  ];
+}
+
+const climDimVal = (city: City, dimKey: string): number | null => {
+  const c = city.climate;
   if (!c) return null;
   switch (dimKey) {
     case "temp": return c.avgTempC;
@@ -177,6 +164,8 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
   const searchParams = useSearchParams();
   const s = useSettings(urlLocale);
   const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
+
+  const CLIM_DIMS = useMemo(() => buildClimDims(cities), [cities]);
 
   /* ── URL ↔ State sync ── */
   const validTab = (v: string | null): v is Tab => v !== null && Object.keys(TAB_I18N).includes(v);
@@ -493,20 +482,20 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
   const filtered = useMemo(() => {
     if (!hasClimFilter) return sorted;
     return sorted.filter(r => {
-      const clim = getCityClimate(r.city.id);
+      const clim = r.city.climate;
       if (!clim) return false;
       if (climTypeFilter.size > 0 && !climTypeFilter.has(clim.type)) return false;
       for (const dim of CLIM_DIMS) {
         const sel = climDimFilter[dim.key];
         if (!sel || sel.size === 0) continue;
-        const v = climDimVal(r.city.id, dim.key);
+        const v = climDimVal(r.city, dim.key);
         if (v === null) return false;
         const matchesTier = [...sel].some(ti => dim.tiers[ti].test(v));
         if (!matchesTier) return false;
       }
       return true;
     });
-  }, [sorted, climTypeFilter, climDimFilter, hasClimFilter]);
+  }, [sorted, climTypeFilter, climDimFilter, hasClimFilter, CLIM_DIMS]);
 
   const toggleClimType = (ct: ClimateType) => {
     setClimTypeFilter(prev => {

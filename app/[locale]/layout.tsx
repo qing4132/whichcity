@@ -5,6 +5,7 @@ import { LOCALES } from "@/lib/i18nRouting";
 import type { Locale } from "@/lib/types";
 import { TRANSLATIONS } from "@/lib/i18n";
 import "../globals.css";
+import WebVitals from "@/components/WebVitals";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -44,6 +45,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "WhichCity",
+            url: "https://whichcity.run",
+          }) }}
+        />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-WW9GZ4ZF2C" />
         <script
           dangerouslySetInnerHTML={{
@@ -56,7 +66,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           }}
         />
       </head>
-      <body className={inter.className} suppressHydrationWarning>{children}</body>
+      <body className={inter.className} suppressHydrationWarning>
+        <WebVitals />
+        {children}
+      </body>
     </html>
   );
 }

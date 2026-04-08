@@ -9,7 +9,7 @@ import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
 import { useSettings } from "@/hooks/useSettings";
 import { computeNetIncome } from "@/lib/taxUtils";
-import { computeLifePressure, getCityClimate, getClimateLabel } from "@/lib/clientUtils";
+import { computeLifePressure, getClimateLabel } from "@/lib/clientUtils";
 import { trackEvent } from "@/lib/analytics";
 import ClimateChart from "./ClimateChart";
 import NavBar from "./NavBar";
@@ -59,12 +59,12 @@ const METRICS: Metric[] = [
   { key: "safety", group: "index", label: t => t("safetyIndex"), get: c => c.safetyIndex, fmt: v => v != null ? v.toFixed(1) : "—" },
   { key: "health", group: "index", label: t => t("healthcareIndex"), get: c => c.healthcareIndex, fmt: v => v != null ? v.toFixed(1) : "—" },
   { key: "freedom", group: "index", label: t => t("institutionalFreedom"), get: c => c.freedomIndex, fmt: v => v != null ? v.toFixed(1) : "—" },
-  { key: "climateType", group: "climate", label: t => t("climateType"), get: c => getCityClimate(c.id) ? 1 : null, fmt: () => "—" },
-  { key: "avgTemp", group: "climate", label: t => t("avgTemp"), get: c => getCityClimate(c.id)?.avgTempC ?? null, fmt: v => v != null ? `${v.toFixed(1)}°C` : "—" },
-  { key: "tempRange", group: "climate", label: t => t("tempRange"), get: c => { const cl = getCityClimate(c.id); return cl ? cl.summerAvgC - cl.winterAvgC : null; }, fmt: v => v != null ? `${v.toFixed(1)}°C` : "—", lower: true },
-  { key: "rain", group: "climate", label: t => t("annualRain"), get: c => getCityClimate(c.id)?.annualRainMm ?? null, fmt: v => v != null ? `${Math.round(v)} mm` : "—" },
-  { key: "humidity", group: "climate", label: t => t("humidity"), get: c => getCityClimate(c.id)?.humidityPct ?? null, fmt: v => v != null ? `${v}%` : "—", lower: true },
-  { key: "sunshine", group: "climate", label: t => t("sunshine"), get: c => getCityClimate(c.id)?.sunshineHours ?? null, fmt: (v, x) => v != null ? `${Math.round(v)} ${x.t("unitH")}` : "—" },
+  { key: "climateType", group: "climate", label: t => t("climateType"), get: c => c.climate ? 1 : null, fmt: () => "—" },
+  { key: "avgTemp", group: "climate", label: t => t("avgTemp"), get: c => c.climate?.avgTempC ?? null, fmt: v => v != null ? `${v.toFixed(1)}°C` : "—" },
+  { key: "tempRange", group: "climate", label: t => t("tempRange"), get: c => { const cl = c.climate; return cl ? cl.summerAvgC - cl.winterAvgC : null; }, fmt: v => v != null ? `${v.toFixed(1)}°C` : "—", lower: true },
+  { key: "rain", group: "climate", label: t => t("annualRain"), get: c => c.climate?.annualRainMm ?? null, fmt: v => v != null ? `${Math.round(v)} mm` : "—" },
+  { key: "humidity", group: "climate", label: t => t("humidity"), get: c => c.climate?.humidityPct ?? null, fmt: v => v != null ? `${v}%` : "—", lower: true },
+  { key: "sunshine", group: "climate", label: t => t("sunshine"), get: c => c.climate?.sunshineHours ?? null, fmt: (v, x) => v != null ? `${Math.round(v)} ${x.t("unitH")}` : "—" },
 ];
 
 const GROUP_KEYS = ["income", "housing", "work", "environment", "index"] as const;
@@ -418,7 +418,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
                         </div>
                       );
                       if (m.key === "climateType") {
-                        const cl = getCityClimate(slot.id);
+                        const cl = slot.climate;
                         return (
                           <div key={m.key} className="flex flex-col items-center text-center py-2">
                             <p className={`text-xs mb-0.5 ${lblC}`}>{label}</p>
@@ -450,7 +450,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
           const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
           /* Build per-city climate items */
           const climateItems = (c: City) => {
-            const cl = getCityClimate(c.id);
+            const cl = c.climate;
             if (!cl) return null;
             return [
               [t("climateType"), getClimateLabel(cl.type, locale)],
@@ -461,11 +461,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
               [t("sunshine"), `${Math.round(cl.sunshineHours)} ${t("unitH")}`],
             ];
           };
-          const hasCharts = filledCities.some(c => getCityClimate(c.id)?.monthlyHighC);
+          const hasCharts = filledCities.some(c => c.climate?.monthlyHighC);
           const dividerCls = darkMode ? "border-slate-700" : "border-slate-200";
 
           // Compute shared Y-axis scale across all compared cities
-          const allClimates = filledCities.map(c => getCityClimate(c.id)).filter(Boolean) as NonNullable<ReturnType<typeof getCityClimate>>[];
+          const allClimates = filledCities.map(c => c.climate).filter(Boolean) as NonNullable<City["climate"]>[];
           const allTempsFlat = allClimates.flatMap(cl => [...(cl.monthlyHighC ?? []), ...(cl.monthlyLowC ?? [])]);
           const allRainFlat = allClimates.flatMap(cl => cl.monthlyRainMm ?? []);
           const sharedTempMin = allTempsFlat.length ? Math.floor(Math.min(...allTempsFlat) / 5) * 5 - 5 : undefined;
@@ -487,7 +487,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
                   {visibleSlots.map((slot, ci) => {
                     const c = slot;
                     const items = c ? climateItems(c) : null;
-                    const cl = c ? getCityClimate(c.id) : null;
+                    const cl = c ? c.climate : null;
                     if (!c || !items) return (
                       <div key={`clim-empty-${ci}`} className="flex flex-col items-center justify-center">
                         <p className={`text-lg font-bold ${darkMode ? "text-slate-600" : "text-slate-300"}`}>—</p>

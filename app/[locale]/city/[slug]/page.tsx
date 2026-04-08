@@ -58,20 +58,30 @@ export default async function CityPage({ params }: Props) {
   // Load all cities for detail page (rankings, similarity, etc.)
   const allCities = loadCities();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Place",
-    name: `${enName}, ${country}`,
-    description: city.description,
-    geo: { "@type": "GeoCoordinates" },
-    additionalProperty: [
-      { "@type": "PropertyValue", name: "Average Income (USD)", value: city.averageIncome },
-      { "@type": "PropertyValue", name: "Monthly Cost of Living (USD)", value: city.costModerate },
-      { "@type": "PropertyValue", name: "House Price per m² (USD)", value: city.housePrice },
-      { "@type": "PropertyValue", name: "Air Quality Index", value: city.airQuality },
-      { "@type": "PropertyValue", name: "Doctors per 1,000", value: city.doctorsPerThousand },
-    ],
-  };
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      name: `${enName}, ${country}`,
+      description: city.description,
+      geo: { "@type": "GeoCoordinates" },
+      additionalProperty: [
+        { "@type": "PropertyValue", name: "Average Income (USD)", value: city.averageIncome },
+        { "@type": "PropertyValue", name: "Monthly Cost of Living (USD)", value: city.costModerate },
+        { "@type": "PropertyValue", name: "House Price per m² (USD)", value: city.housePrice },
+        { "@type": "PropertyValue", name: "Air Quality Index", value: city.airQuality },
+        { "@type": "PropertyValue", name: "Doctors per 1,000", value: city.doctorsPerThousand },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "WhichCity", item: `https://whichcity.run/${locale}` },
+        { "@type": "ListItem", position: 2, name: enName, item: `https://whichcity.run/${locale}/city/${slug}` },
+      ],
+    },
+  ];
 
   return (
     <>

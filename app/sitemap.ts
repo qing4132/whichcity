@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
+import { CITY_SLUGS, SITEMAP_PAIRS } from "@/lib/citySlug";
 import { LOCALES } from "@/lib/i18nRouting";
 
 const BASE_URL = "https://whichcity.run";
@@ -48,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Compare pages
   const seen = new Set<string>();
-  for (const [a, b] of POPULAR_PAIRS) {
+  for (const [a, b] of SITEMAP_PAIRS) {
     const pair = [CITY_SLUGS[a], CITY_SLUGS[b]].sort().join("-vs-");
     if (seen.has(pair)) continue;
     seen.add(pair);

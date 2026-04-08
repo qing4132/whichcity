@@ -92,7 +92,7 @@ export function useSettings(urlLocale?: string) {
       fetch("/data/exchange-rates.json")
         .then((r) => r.json())
         .then((data) => { cachedRates = data; setRates(data); })
-        .catch(() => { })
+        .catch((err) => { console.warn("Failed to load exchange rates:", err); })
         .finally(() => setReady(true));
     }
 
