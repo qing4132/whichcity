@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useLayoutEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import type { Locale, CostTier, ExchangeRates, IncomeMode } from "@/lib/types";
 import { TRANSLATIONS, LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
@@ -29,12 +29,17 @@ export function useSettings(urlLocale?: string) {
   const [locale, setLocaleState] = useState<Locale>(
     urlLocale && ["zh", "en", "ja", "es"].includes(urlLocale) ? urlLocale as Locale : "en"
   );
-  // Initialize from localStorage/DOM so client-side navigations never flash
-  const [themeMode, setThemeModeState] = useState<ThemeMode>(readSavedThemeMode);
-  const [darkMode, setDarkModeState] = useState(() =>
-    typeof document !== "undefined"
-      ? document.documentElement.classList.contains("dark")
-      : false,
+  // On initial hydration (theme-ready absent): return SSR defaults so React
+  // doesn't see a hydration mismatch.  useLayoutEffect will fix them before paint.
+  // On client-side navigation (theme-ready present): read the real values so
+  // the very first render already matches the active theme — no flash.
+  const isClientNav = typeof document !== "undefined"
+    && document.documentElement.classList.contains("theme-ready");
+  const [themeMode, setThemeModeState] = useState<ThemeMode>(
+    () => isClientNav ? readSavedThemeMode() : "auto",
+  );
+  const [darkMode, setDarkModeState] = useState(
+    () => isClientNav ? document.documentElement.classList.contains("dark") : false,
   );
   const [currency, setCurrencyState] = useState("USD");
   const [costTier, setCostTierState] = useState<CostTier>("moderate");
@@ -59,17 +64,17 @@ export function useSettings(urlLocale?: string) {
     el.style.colorScheme = dark ? "dark" : "light";
   }, []);
 
-  useEffect(() => {
-    // When urlLocale is set (from URL), use it directly; otherwise fall back to localStorage
+  /* ── Sync theme + settings from localStorage BEFORE first paint ──
+     useLayoutEffect ensures the dark-mode re-render is committed
+     synchronously before the browser paints, so the user never
+     sees SSR light-mode classes when the actual theme is dark.   */
+  useLayoutEffect(() => {
     if (!urlLocale) {
       const l = localStorage.getItem("locale");
       if (l && ["zh", "en", "ja", "es"].includes(l)) setLocaleState(l as Locale);
     }
-    // Sync localStorage with the active locale
     localStorage.setItem("locale", urlLocale || locale);
 
-    // Theme: read saved mode (already initialized via readSavedThemeMode,
-    // but re-read here to ensure DOM is in sync after SSR hydration)
     const mode = readSavedThemeMode();
     setThemeModeState(mode);
     applyTheme(mode);
@@ -86,6 +91,16 @@ export function useSettings(urlLocale?: string) {
     const sm = localStorage.getItem("salaryMultiplier");
     if (sm) { const n = parseFloat(sm); if (n >= 0.5 && n <= 3.0) setSalaryMultiplierState(n); }
 
+    // Remove the flash-guard overlay after the synchronous re-render commits.
+    // rAF fires before the next paint, by which time the DOM already has
+    // the correct dark/light classes thanks to useLayoutEffect.
+    requestAnimationFrame(() => {
+      document.documentElement.classList.add("theme-ready");
+    });
+  }, [applyTheme]);
+
+  /* ── Fetch exchange rates (async, OK to run after paint) ── */
+  useEffect(() => {
     if (cachedRates) {
       setRates(cachedRates);
       setReady(true);
@@ -96,13 +111,7 @@ export function useSettings(urlLocale?: string) {
         .catch((err) => { console.warn("Failed to load exchange rates:", err); })
         .finally(() => setReady(true));
     }
-
-    // Enable CSS transitions after React has painted the correct theme.
-    // This removes the flash-guard overlay and unblocks transition animations.
-    requestAnimationFrame(() => {
-      document.documentElement.classList.add("theme-ready");
-    });
-  }, [applyTheme]);
+  }, []);
 
   /* ── Listen for system theme changes when in auto mode ── */
   useEffect(() => {
