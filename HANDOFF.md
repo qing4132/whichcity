@@ -1,6 +1,6 @@
 # WhichCity — Project Handoff Document
 
-> Last updated: 2026-04-09
+> Last updated: 2026-04-09 (session 2)
 > Purpose: Enable a new developer or AI to fully understand and work on this project without prior context.
 
 ## Table of Contents
@@ -21,6 +21,7 @@
 - [14. Design Principles](#14-design-principles)
 - [15. File Map](#15-file-map)
 - [16. Recent Changes (2026-04-08 → 04-09)](#16-recent-changes-2026-04-08--04-09)
+- [17. Digital Nomad Section (2026-04-09)](#17-digital-nomad-section-2026-04-09)
 
 ---
 
@@ -77,12 +78,12 @@ whichcity/
 │
 ├── components/                 Page components (no shared UI library)
 │   ├── HomeContent.tsx         ~175 lines — search, popular cities
-│   ├── RankingContent.tsx      ~800 lines — 22+ metrics, climate filter
-│   ├── CompareContent.tsx      ~650 lines — 3-city comparison
-│   ├── CityDetailContent.tsx   ~550 lines — single city detail
+│   ├── RankingContent.tsx      ~1100 lines — 22+ metrics, climate filter
+│   ├── CompareContent.tsx      ~570 lines — 3-city comparison
+│   ├── CityDetailContent.tsx   ~830 lines — single city detail + nomad section
 │   ├── MethodologyContent.tsx  ~150 lines — data sources
-│   ├── NavBar.tsx              ~600 lines — nav, settings, share
-│   ├── ClimateChart.tsx        ~150 lines — Recharts monthly chart
+│   ├── NavBar.tsx              ~310 lines — nav, settings, share
+│   ├── ClimateChart.tsx        ~160 lines — Recharts monthly chart
 │   └── WebVitals.tsx           ~30 lines — CWV reporter
 │
 ├── hooks/
@@ -92,7 +93,9 @@ whichcity/
 │   ├── types.ts                City interface (~50 fields), enums
 │   ├── constants.ts            Regions, flags, currencies, country mappings
 │   ├── dataLoader.ts           Server-side data loading (cached per process)
-│   ├── i18n.ts                 ~1500 lines — translations (4 locales, 300+ keys)
+│   ├── i18n.ts                 ~1960 lines — translations (4 locales, 350+ keys)
+│   ├── nomadI18n.ts            ~275 lines — nomad visa/VPN note translations (4 locales)
+│   ├── nomadData.ts            ~80 lines — nomad data types + JSON loader
 │   ├── taxData.ts              81 country tax tables + city overrides + expat schemes
 │   ├── taxUtils.ts             Tax computation engine (gross → net)
 │   ├── clientUtils.ts          Life Pressure formula, climate/name helpers
@@ -182,6 +185,7 @@ whichcity/
 - Row 1: Income & Housing (6 metrics with rank and tier coloring)
 - Row 2: Work & Environment (6 metrics)
 - Row 3: 4 expandable index cards (Life Pressure, Safety, Healthcare, Freedom) with sub-indicators
+- **Digital Nomad section** (see §17): visa info, VPN status, English level, visa-free matrix, timezone overlap
 - Timezone card (live clock, UTC offset, DST-aware)
 - Climate section (type, stats, monthly temperature/rainfall chart)
 - Similar cities (6 recommendations with advantages/disadvantages vs current city)
@@ -334,12 +338,12 @@ interface ClimateInfo {
 
 ### 6.2 Internationalization (i18n)
 
-**Location**: `lib/i18n.ts` (~1500 lines)
+**Location**: `lib/i18n.ts` (~1960 lines) + `lib/nomadI18n.ts` (~275 lines)
 
 **Locales**: zh (Chinese), en (English), ja (Japanese), es (Spanish)
 
-**Exports**:
-- `TRANSLATIONS[locale]` — 300+ UI string keys
+**Exports from i18n.ts**:
+- `TRANSLATIONS[locale]` — 350+ UI string keys
 - `CITY_NAME_TRANSLATIONS[id]` — city names in 4 locales
 - `COUNTRY_TRANSLATIONS[zh_name]` — country names in 4 locales
 - `PROFESSION_TRANSLATIONS[zh_name]` — 26 profession names in 4 locales
@@ -477,10 +481,10 @@ npm run lint         # ESLint
 ### Large Component Files
 
 Several components exceed the 300-line guideline:
-- `RankingContent.tsx` (~800 lines) — complex tab/filter/sort logic
-- `CompareContent.tsx` (~650 lines) — many metric rows + chart integration
-- `NavBar.tsx` (~600 lines) — settings dropdowns, share dialog, responsive
-- `CityDetailContent.tsx` (~550 lines) — index cards, climate, similar cities
+- `RankingContent.tsx` (~1100 lines) — complex tab/filter/sort logic
+- `CityDetailContent.tsx` (~830 lines) — index cards, nomad section, climate, similar cities
+- `CompareContent.tsx` (~570 lines) — many metric rows + chart integration
+- `NavBar.tsx` (~310 lines) — settings dropdowns, share dialog, responsive
 
 These work correctly but are harder to maintain. Extracting sub-components would add indirection without clear benefit given the project's simplicity principle.
 
@@ -548,13 +552,13 @@ doda.jp source data (2025):
 ### Near-term
 
 - [x] Add more cities (target: 150+) — done: 154 cities (2026-04-09)
+- [x] Digital nomad section: visa info, VPN status, English level, visa-free matrix, timezone overlap (done 04-09)
 - [ ] Annual data refresh cycle (salaries, costs, indices)
 - [ ] Add mobile-optimized share cards
 - [ ] Consider pagination or virtualization for ranking page with many cities
 
 ### Medium-term
 
-- [ ] Digital nomad features: nomad visa info, coworking costs, English proficiency scores, timezone overlap tool
 - [ ] Tax calculator: input custom salary → show net income across all cities
 - [ ] More professions (currently 26; creative, blue-collar categories underrepresented)
 - [ ] Regional cost breakdown (rent vs food vs transport)
@@ -611,6 +615,10 @@ Quick reference for "where is X?"
 | Dev session reports | `_archive/reports/` |
 | Data update procedures | `DATA_OPS.md` |
 | Coding rules | `RULES.md` |
+| Nomad data (compiled)        | `_audit/nomad-data-compiled.json` |
+| Nomad translations           | `lib/nomadI18n.ts` |
+| Nomad data types + loader    | `lib/nomadData.ts` |
+| Visa-free matrix             | `_audit/nomad-visafree-4passport.json` |
 | AI coding context | `.github/copilot-instructions.md` |
 
 ---
@@ -659,6 +667,59 @@ Added **Paylab** as a salary data source across all 4 locale versions (zh/en/ja/
 ### Kyoto costBudget Investigation
 
 Investigated anomalous Kyoto costBudget/costModerate ratio (38.9% vs typical 43–45%). Root cause: Kyoto uses **nomads.com** data ("expat cost" / "local cost") while other cities use Numbeo. Per user directive, data left unchanged — it reflects the actual source, not a calculation error.
+
+---
+
+## 17. Digital Nomad Section (2026-04-09)
+
+### Overview
+
+City detail pages now include a **Digital Nomad** section powered by a separate compiled dataset (`_audit/nomad-data-compiled.json`, 154 cities) and a 4-passport visa-free matrix (`_audit/nomad-visafree-4passport.json`, 81 countries).
+
+### Data Architecture
+
+| File | Purpose |
+|------|---------|
+| `_audit/nomad-data-compiled.json` | Per-city nomad data (visa, internet, English, timezone, coworking, community) |
+| `_audit/nomad-visafree-4passport.json` | Visa-free tourism days for CN/US/EU/JP passports × 81 countries |
+| `lib/nomadData.ts` | TypeScript types (`NomadCityData`, `VisaFreeMatrix`) + server-side loaders |
+| `lib/nomadI18n.ts` | 4-locale translations for visa names (22), tax strings (12), visa notes (45), VPN notes (9), legal income (13 programs) |
+
+### NomadCityData Interface
+
+```typescript
+interface NomadCityData {
+  visa: { hasNomadVisa, visaName, durationMonths, minIncomeUsd, taxOnForeignIncome, note } | null;
+  english: { efEpiScore, efEpiBand, cityRating: "Great"|"Good"|"Okay"|"Bad" } | null;
+  internet: { downloadMbps, vpnRestricted: boolean|"partial", vpnNote } | null;
+  timezoneOverlap: { utcOffsetHours, overlapWithUSEast, overlapWithUSWest, overlapWithLondon, overlapWithEast8 } | null;
+  // ... plus coworking, nomadCommunity, nomadMonthlyCost (not yet displayed)
+}
+```
+
+### UI Layout (CityDetailContent.tsx)
+
+Single card with rounded border, 3 visual groups separated by dashed dividers:
+
+1. **Top 6 cells**: Visa name, Duration, Min income (legal currency), Tax on foreign income, VPN status, English level
+2. **Notes**: Visa note + VPN note (auto-cleaned: source refs stripped, "no visa" prefix removed, punctuation ensured)
+3. **Bottom split**: Visa-free days (4 passports: US/EU/CN/JP) | Timezone overlap (San Francisco/New York/London/Shanghai)
+
+### Translation System (nomadI18n.ts)
+
+- **Visa names** (VN): 22 unique visa names × 3 non-EN locales
+- **Tax strings** (TX): 12 unique tax descriptions × 3 non-EN locales
+- **Visa notes** (NT): 45 note templates × 4 locales (en/zh/ja/es) — all rewritten as natural prose, no source references
+- **VPN notes** (VP): 9 unique VPN descriptions × 3 non-EN locales
+- **Legal income** (LI): 13 visa programs → original-currency income display (e.g., "1000万 日元/年")
+- **Note cleaning**: `localizeNote()` strips "No dedicated nomad visa." prefix (4 locales), ensures sentence punctuation, returns null if content is empty after stripping — to avoid showing useless notes
+- **VPN note cleaning**: `localizeVpnNote()` same punctuation logic
+
+### NavBar SSR Fix (2026-04-09)
+
+Fixed two bugs that caused NavBar links to be unclickable on first page load:
+1. **`if (!s.ready) return null`** in page components blocked the entire page (including NavBar) during SSR. Changed to only hide page content below NavBar.
+2. **sessionStorage in useState initializer** caused React hydration mismatch. Moved to useEffect.
 
 ---
 

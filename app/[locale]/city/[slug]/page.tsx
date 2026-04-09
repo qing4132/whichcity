@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { City, Locale } from "@/lib/types";
 import { SLUG_TO_ID, CITY_SLUGS, POPULAR_PAIRS } from "@/lib/citySlug";
 import { loadCities, getCityById, getCityEnName, getCountryEnName, getCityLocaleName, getCountryLocaleName } from "@/lib/dataLoader";
+import { getNomadCityData, loadVisaMatrix } from "@/lib/nomadData";
 import { LOCALES } from "@/lib/i18nRouting";
 import { TRANSLATIONS } from "@/lib/i18n";
 import CityDetailContent from "@/components/CityDetailContent";
@@ -57,6 +58,8 @@ export default async function CityPage({ params }: Props) {
 
   // Load all cities for detail page (rankings, similarity, etc.)
   const allCities = loadCities();
+  const nomadData = getNomadCityData(id);
+  const visaMatrix = loadVisaMatrix();
 
   const jsonLd = [
     {
@@ -89,7 +92,7 @@ export default async function CityPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CityDetailContent city={city} slug={slug} allCities={allCities} locale={locale} />
+      <CityDetailContent city={city} slug={slug} allCities={allCities} locale={locale} nomadData={nomadData} visaMatrix={visaMatrix} />
     </>
   );
 }

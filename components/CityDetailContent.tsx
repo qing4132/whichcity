@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import type { City, CostTier, IncomeMode } from "@/lib/types";
+import type { City, CostTier, IncomeMode, Locale } from "@/lib/types";
+import type { NomadCityData, VisaFreeMatrix } from "@/lib/nomadData";
 import { CITY_FLAG_EMOJIS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
@@ -15,12 +16,15 @@ import { CITY_LANGUAGES, LANGUAGE_NAME_TRANSLATIONS } from "@/lib/cityLanguages"
 import { useSettings } from "@/hooks/useSettings";
 import { computeNetIncome, computeAllNetIncomes, getExpatSchemeName } from "@/lib/taxUtils";
 import ClimateChart from "./ClimateChart";
+import { localizeVisaName, localizeTax, localizeNote, getLegalIncome, localizeVpnNote } from "@/lib/nomadI18n";
 
 interface Props {
   city: City;
   slug: string;
   allCities: City[];
   locale: string;
+  nomadData?: NomadCityData | null;
+  visaMatrix?: VisaFreeMatrix | null;
 }
 
 const TIER_KEYS: { key: CostTier; field: "costModerate" | "costBudget"; labelKey: string }[] = [
@@ -169,7 +173,7 @@ function IndexCardRow({ darkMode, headingCls, subCls, baseCard, cardBorder, card
   );
 }
 
-export default function CityDetailContent({ city, slug, allCities, locale: urlLocale }: Props) {
+export default function CityDetailContent({ city, slug, allCities, locale: urlLocale, nomadData, visaMatrix }: Props) {
   const s = useSettings(urlLocale);
   const router = useRouter();
   const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
@@ -186,7 +190,11 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
     return () => cleanup();
   }, []);
 
-  if (!s.ready) return null;
+  if (!s.ready) return (
+    <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
+      <NavBar s={s} compareHref={`/${locale}/compare/${slug}`} excludeSlug={slug} showShare />
+    </div>
+  );
 
   const id = city.id;
   const flag = CITY_FLAG_EMOJIS[id] || "🏤️";
@@ -559,9 +567,11 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
                   [t("humidity"), `${climate.humidityPct}%`],
                   [t("sunshine"), `${Math.round(climate.sunshineHours)} ${t("unitH")}`],
                 ].map(([label, val]) => (
-                  <div key={label} className="flex flex-col items-center justify-between text-center p-3">
-                    <p className={`text-xs font-semibold tracking-wide mb-1 ${subCls}`}>{label}</p>
-                    <p className={`text-xl font-extrabold my-1 ${headingCls}`}>{val}</p>
+                  <div key={label} className="flex flex-col items-center text-center p-3 h-24">
+                    <p className={`text-xs font-semibold tracking-wide h-8 flex items-center justify-center text-center leading-tight shrink-0 ${subCls}`}>{label}</p>
+                    <div className="flex-1 flex items-center justify-center">
+                      <p className={`text-xl font-extrabold ${headingCls}`}>{val}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -569,6 +579,157 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
             </div>
           </section>
         )}
+
+        {/* Digital Nomad Section */}
+        {nomadData && (() => {
+          const visa = nomadData.visa;
+          const tz = nomadData.timezoneOverlap;
+          const eng = nomadData.english;
+          const inet = nomadData.internet;
+          // Get visa-free days for 4 passports
+          const countryEnName = COUNTRY_TRANSLATIONS[city.country]?.en || city.country;
+          const vfm = visaMatrix?.[countryEnName] || visaMatrix?.[countryEnName.replace(/ /g, "")] || null;
+          const vfmResolved = vfm || (() => {
+            const aliases: Record<string, string> = { "中国香港": "Hong Kong", "阿联酋": "UAE", "波多黎各": "Puerto Rico" };
+            const alias = aliases[city.country];
+            return alias ? visaMatrix?.[alias] || null : null;
+          })();
+
+          const passportLabels = { US: t("nomadPassportUS"), EU: t("nomadPassportEU"), CN: t("nomadPassportCN"), JP: t("nomadPassportJP") };
+
+          // Strip source references from visa notes for display
+          const cleanNote = (note: string | null) => {
+            if (!note) return null;
+            return note
+              .replace(/\s*Source:.*$/i, "")
+              .replace(/\s*\(ranked #\d+.*\)$/i, "")
+              .replace(/\s*Listed on VisaGuide\.?/gi, "")
+              .replace(/\s*#\d+ on VisaGuide[^.]*\.?/gi, "")
+              .replace(/\s*\d[\d,]+ permits granted[^.]*\.?/gi, "")
+              .replace(/\s*per VisaGuide[^.]*\.?/gi, "")
+              .replace(/\s*on VisaGuide[^.]*\.?/gi, "")
+              .replace(/\s*per visaguide[^.]*\.?/gi, "")
+              .replace(/\s*found in sources\.?/gi, "")
+              .replace(/\s*per \d{4} survey[^.)]*\.?/gi, "")
+              .replace(/\s*Most popular country for nomads[^.]*\.?/gi, "")
+              .replace(/\s+/g, " ")
+              .trim() || null;
+          };
+
+          const visaNote = localizeNote(city.id, cleanNote(visa?.note ?? null), locale as Locale);
+          const dataCellCls = "flex flex-col items-center text-center p-3 h-24";
+          const dataLabelCls = `text-xs font-semibold tracking-wide h-8 flex items-center justify-center text-center leading-tight shrink-0 ${subCls}`;
+          const dataValCls = `text-xl font-extrabold ${headingCls}`;
+          const nomadValCls = (v: string, color?: string) => {
+            const len = v.length;
+            const size = len <= 4 ? "text-xl" : len <= 8 ? "text-base" : len <= 14 ? "text-sm" : "text-xs";
+            return `${size} font-extrabold leading-snug ${color ?? headingCls}`;
+          };
+          const nomadValWrapCls = "flex-1 flex items-center justify-center";
+
+          const isOwnCountry = (code: string): boolean => {
+            const c = city.country;
+            if (code === "CN") return c === "中国";
+            if (code === "US") return c === "美国" || c === "波多黎各";
+            if (code === "JP") return c === "日本";
+            if (code === "EU") return ["法国", "德国", "荷兰", "瑞士", "比利时", "奥地利", "捷克", "波兰", "葡萄牙", "希腊", "西班牙", "意大利", "瑞典", "丹麦", "芬兰", "挪威", "爱沙尼亚", "卢森堡", "斯洛伐克", "斯洛文尼亚", "匈牙利", "罗马尼亚", "保加利亚", "克罗地亚", "爱尔兰"].includes(c);
+            return false;
+          };
+
+          return (
+            <section className="mb-10">
+              <div className={`rounded-xl border shadow-sm p-6 ${sectionBg}`}>
+                <h2 className={`text-xl font-bold mb-4 ${headingCls}`}>{t("nomadSection")}</h2>
+
+                {/* Row 1: 6 data cells */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                  {(() => {
+                    const visaVal = visa?.hasNomadVisa ? (localizeVisaName(visa.visaName, locale as Locale) ?? "—") : t("nomadNoVisa");
+                    const durVal = visa?.durationMonths != null ? (visa.durationMonths >= 12 ? `${Math.round(visa.durationMonths / 12)} ${t("nomadYears")}` : `${visa.durationMonths} ${t("nomadMonths")}`) : "—";
+                    const incVal = getLegalIncome(city.id, locale as Locale) ?? "—";
+                    const taxVal = visa?.taxOnForeignIncome ? (localizeTax(visa.taxOnForeignIncome, locale as Locale) ?? "—") : "—";
+                    const vpnVal = inet?.vpnRestricted === true ? t("nomadVPN") : inet?.vpnRestricted === "partial" ? t("nomadVPNPartial") : t("nomadVPNFree");
+                    const vpnColor = inet?.vpnRestricted === true || inet?.vpnRestricted === "partial" ? (darkMode ? "text-rose-400" : "text-rose-500") : undefined;
+                    const engVal = eng?.cityRating ? t(`nomadEnglish${eng.cityRating}`) : "—";
+                    const engColor = eng?.cityRating === "Great" || eng?.cityRating === "Good"
+                      ? (darkMode ? "text-emerald-400" : "text-emerald-600")
+                      : eng?.cityRating === "Bad" ? (darkMode ? "text-rose-400" : "text-rose-500") : undefined;
+                    const cells: { label: string; val: string; color?: string }[] = [
+                      { label: t("nomadVisa"), val: visaVal },
+                      { label: t("nomadDuration"), val: durVal },
+                      { label: t("nomadMinIncome"), val: incVal },
+                      { label: t("nomadTax"), val: taxVal },
+                      { label: t("nomadVPNLabel"), val: vpnVal, color: vpnColor },
+                      { label: t("nomadEnglish"), val: engVal, color: engColor },
+                    ];
+                    return cells.map((c) => (
+                      <div key={c.label} className={dataCellCls}>
+                        <p className={dataLabelCls}>{c.label}</p>
+                        <div className={nomadValWrapCls}>
+                          <p className={nomadValCls(c.val, c.color)}>{c.val}</p>
+                        </div>
+                      </div>
+                    ));
+                  })()}
+                </div>
+
+                {/* Notes */}
+                {(visaNote || inet?.vpnNote) && (
+                  <div className={`mt-3 px-3 space-y-1 text-xs leading-relaxed ${subCls}`}>
+                    {visaNote && <p>{t("nomadVisaNotePrefix")} {visaNote}</p>}
+                    {inet?.vpnNote && <p>{t("nomadVpnNotePrefix")} {localizeVpnNote(inet.vpnNote, locale as Locale)}</p>}
+                  </div>
+                )}
+
+                {/* Dashed divider */}
+                <hr className={`my-5 border-dashed ${darkMode ? "border-slate-600" : "border-slate-300"}`} />
+
+                {/* Bottom: Visa-free + Timezone */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Visa-free */}
+                  <div>
+                    <h3 className={`text-sm font-bold mb-3 ${headingCls}`}>{t("nomadVisaFreeDays").replace("{city}", cityName)}</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                      {(Object.entries(passportLabels) as [keyof typeof passportLabels, string][]).map(([code, flag]) => {
+                        const own = isOwnCountry(code);
+                        const days = vfmResolved?.[code] ?? null;
+                        const val = own ? "—" : days !== null ? t("nomadDays").replace("{d}", String(days)) : t("nomadNeedVisa");
+                        const color = own ? subCls : days !== null ? undefined : (darkMode ? "text-red-400" : "text-red-500");
+                        return (
+                          <div key={code} className={dataCellCls}>
+                            <p className={dataLabelCls}>{flag}</p>
+                            <div className={nomadValWrapCls}>
+                              <p className={nomadValCls(val, color)}>{val}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  {/* Timezone overlap */}
+                  <div>
+                    <h3 className={`text-sm font-bold mb-3 ${headingCls}`}>{t("nomadTimezone")}</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                      {[
+                        { label: t("nomadTzUSWest"), val: tz?.overlapWithUSWest },
+                        { label: t("nomadTzUSEast"), val: tz?.overlapWithUSEast },
+                        { label: t("nomadTzLondon"), val: tz?.overlapWithLondon },
+                        { label: t("nomadTzEast8"), val: tz?.overlapWithEast8 },
+                      ].map((item) => (
+                        <div key={item.label} className={dataCellCls}>
+                          <p className={dataLabelCls}>{item.label}</p>
+                          <div className={nomadValWrapCls}>
+                            <p className={dataValCls}>{item.val != null ? `${item.val} ${t("unitH")}` : "—"}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Similar Cities */}
         <section>

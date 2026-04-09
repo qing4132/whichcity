@@ -806,7 +806,11 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
   /* ── JSX ── */
   useEffect(() => { document.title = `${t("navRanking")} | WhichCity`; }, [locale]);
 
-  if (!s.ready) return null;
+  if (!s.ready) return (
+    <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
+      <NavBar s={s} activePage="ranking" professionValue={activeProfession} professions={professions} showShare />
+    </div>
+  );
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
 

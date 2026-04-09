@@ -267,7 +267,11 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
   const headCls = darkMode ? "text-white" : "text-slate-900";
   const subCls = darkMode ? "text-slate-400" : "text-slate-500";
 
-  if (!s.ready) return null;
+  if (!s.ready) return (
+    <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
+      <NavBar ref={navRef} s={s} activePage="compare" professionValue={activeProfession} professions={professions} showShare />
+    </div>
+  );
 
   return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>

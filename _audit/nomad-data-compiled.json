@@ -82,11 +82,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 28,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -106,7 +106,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.71,
@@ -138,8 +139,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 22,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -159,7 +160,8 @@
         "overlapWithUSEast": 7,
         "overlapWithUSWest": 4,
         "overlapWithLondon": 12,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 5.0
       },
       "nomadCommunity": {
         "nomadScore": 3.78,
@@ -191,8 +193,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 27,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 446,
@@ -212,7 +214,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -240,12 +243,12 @@
       "shortTermRentUsd": 1154,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.27,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 464,
@@ -265,7 +268,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.44,
@@ -293,12 +297,12 @@
       "shortTermRentUsd": 912,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.6,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.74,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 10,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 464,
@@ -318,7 +322,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.53,
@@ -346,12 +351,12 @@
       "shortTermRentUsd": 1928,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.04,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.62,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 19,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -371,7 +376,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 3,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 10.0
       },
       "nomadCommunity": {
         "nomadScore": 3.75,
@@ -403,8 +409,8 @@
         "freeWifiRating": "Okay",
         "powerGridRating": "Great",
         "internetMbps": 129,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -424,7 +430,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.51,
@@ -456,8 +463,8 @@
         "freeWifiRating": "Okay",
         "powerGridRating": "Great",
         "internetMbps": 28,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 539,
@@ -477,7 +484,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.16,
@@ -505,12 +513,12 @@
       "shortTermRentUsd": 1920,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 26,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -530,7 +538,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.52,
@@ -558,12 +567,12 @@
       "shortTermRentUsd": 1241,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 71,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 538,
@@ -583,7 +592,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.74,
@@ -612,11 +622,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 76,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -636,7 +646,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.24,
@@ -664,12 +675,12 @@
       "shortTermRentUsd": 2597,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 83,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -689,7 +700,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.24,
@@ -717,12 +729,12 @@
       "shortTermRentUsd": 2495,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 76,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -742,7 +754,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.59,
@@ -774,8 +787,8 @@
         "freeWifiRating": "Okay",
         "powerGridRating": "Great",
         "internetMbps": 11,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 487,
@@ -795,7 +808,8 @@
         "overlapWithUSEast": 4,
         "overlapWithUSWest": 1,
         "overlapWithLondon": 9,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 8.0
       },
       "nomadCommunity": {
         "nomadScore": 3.44,
@@ -823,12 +837,12 @@
       "shortTermRentUsd": 3317,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.04,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.32,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 19,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 624,
@@ -848,7 +862,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.37,
@@ -877,11 +892,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 31,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 564,
@@ -901,7 +916,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.42,
@@ -929,12 +945,12 @@
       "shortTermRentUsd": 3029,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 32,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 564,
@@ -954,7 +970,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.21,
@@ -982,12 +999,12 @@
       "shortTermRentUsd": 2018,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 27,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 615,
@@ -1007,7 +1024,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.65,
@@ -1039,8 +1057,8 @@
         "freeWifiRating": "Great",
         "powerGridRating": "Great",
         "internetMbps": 27,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 615,
@@ -1060,7 +1078,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -1092,8 +1111,8 @@
         "freeWifiRating": "Okay",
         "powerGridRating": "Great",
         "internetMbps": 34,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 540,
@@ -1113,7 +1132,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.75,
@@ -1141,12 +1161,12 @@
       "shortTermRentUsd": 2056,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 34,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 540,
@@ -1166,7 +1186,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.45,
@@ -1194,12 +1215,12 @@
       "shortTermRentUsd": 2288,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.72,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.89,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 17,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 513,
@@ -1219,7 +1240,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.05,
@@ -1247,12 +1269,12 @@
       "shortTermRentUsd": 2453,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.72,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.59,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 17,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 513,
@@ -1272,7 +1294,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.15,
@@ -1300,12 +1323,12 @@
       "shortTermRentUsd": 1989,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.7,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 35,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 608,
@@ -1325,7 +1348,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 2.81,
@@ -1353,12 +1377,12 @@
       "shortTermRentUsd": 1779,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.2,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.68,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 20,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 616,
@@ -1378,7 +1402,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.35,
@@ -1406,12 +1431,12 @@
       "shortTermRentUsd": 1742,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.68,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.27,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 23,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 582,
@@ -1431,7 +1456,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.39,
@@ -1459,12 +1485,12 @@
       "shortTermRentUsd": 1440,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.04,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.02,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 19,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 600,
@@ -1484,7 +1510,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.63,
@@ -1512,12 +1539,12 @@
       "shortTermRentUsd": 1827,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 39,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 612,
@@ -1537,7 +1564,8 @@
         "overlapWithUSEast": 7,
         "overlapWithUSWest": 4,
         "overlapWithLondon": 12,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 5.0
       },
       "nomadCommunity": {
         "nomadScore": 3.62,
@@ -1565,12 +1593,12 @@
       "shortTermRentUsd": 1498,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.87,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 592,
@@ -1590,7 +1618,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.45,
@@ -1618,12 +1647,12 @@
       "shortTermRentUsd": 759,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.6,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.44,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 10,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 488,
@@ -1643,7 +1672,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.64,
@@ -1671,12 +1701,12 @@
       "shortTermRentUsd": 1008,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.27,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 440,
@@ -1696,7 +1726,8 @@
         "overlapWithUSEast": 10,
         "overlapWithUSWest": 11,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -1724,13 +1755,12 @@
       "shortTermRentUsd": 895,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "qualityRating": "Great",
-        "estimatedPriceRange": {
-          "min": 50,
-          "max": 250,
-          "typical": 120
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
+        "internetMbps": 80,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 482,
@@ -1750,7 +1780,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 8,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 1.0
       },
       "nomadCommunity": {
         "nomadScore": 3.62,
@@ -1778,12 +1809,12 @@
       "shortTermRentUsd": 1084,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.4,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.06,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 15,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 482,
@@ -1803,7 +1834,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 8,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 1.0
       },
       "nomadCommunity": {
         "nomadScore": 3.62,
@@ -1832,11 +1864,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 39,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -1856,7 +1888,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.01,
@@ -1884,13 +1917,12 @@
       "shortTermRentUsd": 2025,
       "shortTermRentNote": "Estimated from NYC/Boston/DC nomad costs",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 150,
-          "max": 400,
-          "typical": 250
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 4.0,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
+        "internetMbps": 210,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -1910,7 +1942,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": null,
@@ -1938,12 +1971,12 @@
       "shortTermRentUsd": 2902,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.7,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 34,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -1963,7 +1996,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.39,
@@ -1992,11 +2026,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 94,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid. Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -2016,7 +2050,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.44,
@@ -2044,12 +2079,12 @@
       "shortTermRentUsd": 1887,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 89,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -2069,7 +2104,8 @@
         "overlapWithUSEast": 10,
         "overlapWithUSWest": 11,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.61,
@@ -2097,12 +2133,12 @@
       "shortTermRentUsd": 1698,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 99,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -2122,7 +2158,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.61,
@@ -2151,11 +2188,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 25,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -2175,7 +2212,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.29,
@@ -2203,12 +2241,12 @@
       "shortTermRentUsd": 1697,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 26,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -2228,7 +2266,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.46,
@@ -2256,12 +2295,12 @@
       "shortTermRentUsd": 1701,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.04,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.72,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 19,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -2281,7 +2320,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 3,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 10.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -2309,12 +2349,12 @@
       "shortTermRentUsd": 2057,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.36,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.84,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 21,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -2334,7 +2374,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 3,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 10.0
       },
       "nomadCommunity": {
         "nomadScore": 3.15,
@@ -2362,12 +2403,12 @@
       "shortTermRentUsd": 1478,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 25,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -2387,7 +2428,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 1,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 8.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -2415,12 +2457,12 @@
       "shortTermRentUsd": 713,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.84,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.04,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 24,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 402,
@@ -2440,7 +2482,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -2468,12 +2511,12 @@
       "shortTermRentUsd": 724,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.88,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.25,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 18,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 581,
@@ -2493,7 +2536,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -2521,12 +2565,12 @@
       "shortTermRentUsd": 471,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.57,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 500,
@@ -2546,7 +2590,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.65,
@@ -2574,12 +2619,12 @@
       "shortTermRentUsd": 489,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.6,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.14,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 10,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 500,
@@ -2599,7 +2644,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.57,
@@ -2627,13 +2673,12 @@
       "shortTermRentUsd": 585,
       "shortTermRentNote": "Estimated from Delhi/Mumbai data",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 30,
-          "max": 150,
-          "typical": 70
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 1.9,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Very bad",
+        "internetMbps": 60,
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 484,
@@ -2653,7 +2698,8 @@
         "overlapWithUSEast": 2.5,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 7.5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.5
       },
       "nomadCommunity": {
         "nomadScore": null,
@@ -2681,12 +2727,12 @@
       "shortTermRentUsd": 580,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.07,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Very bad",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 484,
@@ -2706,7 +2752,8 @@
         "overlapWithUSEast": 2.5,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 7.5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.5
       },
       "nomadCommunity": {
         "nomadScore": 3.57,
@@ -2734,12 +2781,12 @@
       "shortTermRentUsd": 509,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.07,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Very bad",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 484,
@@ -2759,7 +2806,8 @@
         "overlapWithUSEast": 2.5,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 7.5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.5
       },
       "nomadCommunity": {
         "nomadScore": 3.55,
@@ -2787,12 +2835,12 @@
       "shortTermRentUsd": 762,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.6,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.84,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Good",
         "internetMbps": 10,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 593,
@@ -2812,7 +2860,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.17,
@@ -2840,12 +2889,12 @@
       "shortTermRentUsd": 387,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 0.64,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.76,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 4,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 459,
@@ -2865,7 +2914,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.1,
@@ -2897,8 +2947,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 3,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 492,
@@ -2918,7 +2968,8 @@
         "overlapWithUSEast": 4.5,
         "overlapWithUSWest": 1.5,
         "overlapWithLondon": 9.5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.5
       },
       "nomadCommunity": {
         "nomadScore": 0.56,
@@ -2950,8 +3001,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Very bad",
         "internetMbps": 4,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 493,
@@ -2971,7 +3022,8 @@
         "overlapWithUSEast": 3,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.0
       },
       "nomadCommunity": {
         "nomadScore": 2.68,
@@ -2999,12 +3051,12 @@
       "shortTermRentUsd": 633,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 0.64,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 0.56,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Very bad",
         "internetMbps": 4,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 493,
@@ -3024,7 +3076,8 @@
         "overlapWithUSEast": 3,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.0
       },
       "nomadCommunity": {
         "nomadScore": 3.29,
@@ -3052,12 +3105,12 @@
       "shortTermRentUsd": 549,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.76,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.5,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 11,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 471,
@@ -3077,7 +3130,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.29,
@@ -3105,12 +3159,12 @@
       "shortTermRentUsd": 694,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.08,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 569,
@@ -3130,7 +3184,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.25,
@@ -3159,11 +3214,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 33,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 522,
@@ -3183,7 +3238,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -3212,11 +3268,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 36,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 522,
@@ -3236,7 +3292,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.59,
@@ -3264,12 +3321,12 @@
       "shortTermRentUsd": 988,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.68,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.87,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 23,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -3289,7 +3346,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.47,
@@ -3317,12 +3375,12 @@
       "shortTermRentUsd": 762,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.08,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.63,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 13,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 575,
@@ -3342,7 +3400,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 8,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 1.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -3370,12 +3429,12 @@
       "shortTermRentUsd": 922,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.4,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.46,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 15,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 517,
@@ -3395,7 +3454,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 2.94,
@@ -3423,12 +3483,12 @@
       "shortTermRentUsd": 591,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.38,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 480,
@@ -3448,7 +3508,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.54,
@@ -3476,12 +3537,12 @@
       "shortTermRentUsd": 636,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.08,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 519,
@@ -3501,7 +3562,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.55,
@@ -3529,12 +3591,12 @@
       "shortTermRentUsd": 1166,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.48,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Okay",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 602,
@@ -3554,7 +3616,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.56,
@@ -3582,12 +3645,12 @@
       "shortTermRentUsd": 1190,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.78,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Okay",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 602,
@@ -3607,7 +3670,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.91,
@@ -3635,12 +3699,12 @@
       "shortTermRentUsd": 919,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.57,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 440,
@@ -3660,7 +3724,8 @@
         "overlapWithUSEast": 10,
         "overlapWithUSWest": 11,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.11,
@@ -3688,13 +3753,12 @@
       "shortTermRentUsd": 810,
       "shortTermRentNote": "Estimated from Costa Rica similar cities",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 50,
-          "max": 250,
-          "typical": 120
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
+        "internetMbps": 55,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge"
       },
       "english": {
         "efEpiScore": 516,
@@ -3714,7 +3778,8 @@
         "overlapWithUSEast": 10,
         "overlapWithUSWest": 11,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": null,
       "nomadMonthlyCost": 1800,
@@ -3736,12 +3801,12 @@
       "shortTermRentUsd": 1152,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.6,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.04,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 10,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 491,
@@ -3761,7 +3826,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.25,
@@ -3789,12 +3855,12 @@
       "shortTermRentUsd": 1908,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.4,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.76,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 15,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -3814,7 +3880,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.27,
@@ -3842,12 +3909,12 @@
       "shortTermRentUsd": 1866,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.76,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.8,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 11,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 487,
@@ -3867,7 +3934,8 @@
         "overlapWithUSEast": 4,
         "overlapWithUSWest": 1,
         "overlapWithLondon": 9,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 8.0
       },
       "nomadCommunity": {
         "nomadScore": 2.97,
@@ -3895,12 +3963,12 @@
       "shortTermRentUsd": 2558,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.76,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.8,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 11,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 469,
@@ -3920,7 +3988,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 2.76,
@@ -3948,12 +4017,12 @@
       "shortTermRentUsd": 1107,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.08,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -3973,7 +4042,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.08,
@@ -4001,12 +4071,12 @@
       "shortTermRentUsd": 1222,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.08,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 404,
@@ -4026,7 +4096,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.36,
@@ -4054,12 +4125,12 @@
       "shortTermRentUsd": 845,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.12,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.95,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 7,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 407,
@@ -4079,7 +4150,8 @@
         "overlapWithUSEast": 4,
         "overlapWithUSWest": 1,
         "overlapWithLondon": 9,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 8.0
       },
       "nomadCommunity": {
         "nomadScore": 3.46,
@@ -4107,12 +4179,12 @@
       "shortTermRentUsd": 572,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 0.32,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.63,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 2,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 477,
@@ -4132,7 +4204,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 0.56,
@@ -4160,12 +4233,12 @@
       "shortTermRentUsd": 833,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.38,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 425,
@@ -4185,7 +4258,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.7,
@@ -4213,12 +4287,12 @@
       "shortTermRentUsd": 2724,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.56,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.82,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 16,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 524,
@@ -4238,7 +4312,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 0.56,
@@ -4266,12 +4341,12 @@
       "shortTermRentUsd": 450,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.07,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Very bad",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 484,
@@ -4291,7 +4366,8 @@
         "overlapWithUSEast": 2.5,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 7.5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.5
       },
       "nomadCommunity": {
         "nomadScore": 3.39,
@@ -4319,12 +4395,12 @@
       "shortTermRentUsd": 404,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.07,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Very bad",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 484,
@@ -4344,7 +4420,8 @@
         "overlapWithUSEast": 2.5,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 7.5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.5
       },
       "nomadCommunity": {
         "nomadScore": 3.4,
@@ -4372,12 +4449,12 @@
       "shortTermRentUsd": 475,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.52,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.21,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 22,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 526,
@@ -4397,7 +4474,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 0.56,
@@ -4425,12 +4503,12 @@
       "shortTermRentUsd": 1050,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 52,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 605,
@@ -4450,7 +4528,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.59,
@@ -4478,12 +4557,12 @@
       "shortTermRentUsd": 1145,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.68,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.87,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 23,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 594,
@@ -4503,7 +4582,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.6,
@@ -4531,12 +4611,12 @@
       "shortTermRentUsd": 980,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.4,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.06,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 15,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 617,
@@ -4556,7 +4636,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.5,
@@ -4584,12 +4665,12 @@
       "shortTermRentUsd": 1334,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 31,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 578,
@@ -4609,7 +4690,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.32,
@@ -4637,12 +4719,12 @@
       "shortTermRentUsd": 1247,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 33,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 590,
@@ -4662,7 +4744,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.8,
@@ -4690,12 +4773,12 @@
       "shortTermRentUsd": 1271,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.52,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.91,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 22,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 606,
@@ -4715,7 +4798,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.25,
@@ -4743,12 +4827,12 @@
       "shortTermRentUsd": 1505,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 35,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -4768,7 +4852,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.66,
@@ -4796,12 +4881,12 @@
       "shortTermRentUsd": 2570,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 42,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -4821,7 +4906,8 @@
         "overlapWithUSEast": 7,
         "overlapWithUSWest": 4,
         "overlapWithLondon": 12,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 5.0
       },
       "nomadCommunity": {
         "nomadScore": 2.93,
@@ -4849,12 +4935,12 @@
       "shortTermRentUsd": 2090,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.68,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.97,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 23,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -4874,7 +4960,8 @@
         "overlapWithUSEast": 7,
         "overlapWithUSWest": 4,
         "overlapWithLondon": 12,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 5.0
       },
       "nomadCommunity": {
         "nomadScore": 3.03,
@@ -4902,12 +4989,12 @@
       "shortTermRentUsd": 1805,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 37,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -4927,7 +5014,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.46,
@@ -4955,12 +5043,12 @@
       "shortTermRentUsd": 1834,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 73,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -4980,7 +5068,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.15,
@@ -5008,12 +5097,12 @@
       "shortTermRentUsd": 2011,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 88,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -5033,7 +5122,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.33,
@@ -5062,11 +5152,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 105,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -5086,7 +5176,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.21,
@@ -5115,11 +5206,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 75,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -5139,7 +5230,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.25,
@@ -5167,12 +5259,12 @@
       "shortTermRentUsd": 2042,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.7,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 100,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -5192,7 +5284,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.43,
@@ -5220,12 +5313,12 @@
       "shortTermRentUsd": 657,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.12,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.95,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 7,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 464,
@@ -5245,7 +5338,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.53,
@@ -5273,12 +5367,12 @@
       "shortTermRentUsd": 962,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.6,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.44,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 10,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 464,
@@ -5298,7 +5392,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.36,
@@ -5326,12 +5421,12 @@
       "shortTermRentUsd": 655,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 0.96,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.18,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 6,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 464,
@@ -5351,7 +5446,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.56,
@@ -5379,12 +5475,12 @@
       "shortTermRentUsd": 690,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.98,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 464,
@@ -5404,7 +5500,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.6,
@@ -5432,12 +5529,12 @@
       "shortTermRentUsd": 669,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.87,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 464,
@@ -5457,7 +5554,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.42,
@@ -5485,12 +5583,12 @@
       "shortTermRentUsd": 1075,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.84,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.04,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 24,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 446,
@@ -5510,7 +5608,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.57,
@@ -5538,12 +5637,12 @@
       "shortTermRentUsd": 1088,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 26,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 446,
@@ -5563,7 +5662,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 2.97,
@@ -5591,13 +5691,12 @@
       "shortTermRentUsd": 1124,
       "shortTermRentNote": "Estimated equal to Seoul",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 100,
-          "max": 400,
-          "typical": 200
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 3.7,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
+        "internetMbps": 180,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 522,
@@ -5617,7 +5716,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": null,
       "nomadMonthlyCost": 2498,
@@ -5639,12 +5739,12 @@
       "shortTermRentUsd": 536,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.12,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.95,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 7,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 390,
@@ -5664,7 +5764,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.44,
@@ -5696,8 +5797,8 @@
         "freeWifiRating": "Good",
         "powerGridRating": "Very bad",
         "internetMbps": 6,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 444,
@@ -5717,7 +5818,8 @@
         "overlapWithUSEast": 1.5,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6.5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 10.5
       },
       "nomadCommunity": {
         "nomadScore": 0.56,
@@ -5749,8 +5851,8 @@
         "freeWifiRating": "Okay",
         "powerGridRating": "Great",
         "internetMbps": 20,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 402,
@@ -5770,7 +5872,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.62,
@@ -5798,12 +5901,12 @@
       "shortTermRentUsd": 498,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.28,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 0.81,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Very bad",
         "internetMbps": 8,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 506,
@@ -5823,7 +5926,8 @@
         "overlapWithUSEast": 2,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 10.0
       },
       "nomadCommunity": {
         "nomadScore": 3.04,
@@ -5851,12 +5955,12 @@
       "shortTermRentUsd": 584,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.44,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.08,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Good",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 486,
@@ -5876,7 +5980,8 @@
         "overlapWithUSEast": 2.5,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 7.5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.5
       },
       "nomadCommunity": {
         "nomadScore": 3.26,
@@ -5908,8 +6013,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Bad",
         "internetMbps": 6,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 514,
@@ -5929,7 +6034,8 @@
         "overlapWithUSEast": 2.3,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 7.3,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.8
       },
       "nomadCommunity": {
         "nomadScore": 3.46,
@@ -5957,12 +6063,12 @@
       "shortTermRentUsd": 766,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.92,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.57,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 417,
@@ -5982,7 +6088,8 @@
         "overlapWithUSEast": 3,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.0
       },
       "nomadCommunity": {
         "nomadScore": 3.36,
@@ -6010,12 +6117,12 @@
       "shortTermRentUsd": 436,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 0.64,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.76,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 4,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 429,
@@ -6035,7 +6142,8 @@
         "overlapWithUSEast": 3,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 9.0
       },
       "nomadCommunity": {
         "nomadScore": 3.29,
@@ -6063,12 +6171,12 @@
       "shortTermRentUsd": 838,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 0.96,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 1.88,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 6,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 454,
@@ -6088,7 +6196,8 @@
         "overlapWithUSEast": 4,
         "overlapWithUSWest": 1,
         "overlapWithLondon": 9,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 8.0
       },
       "nomadCommunity": {
         "nomadScore": 3.41,
@@ -6120,8 +6229,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 5,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 447,
@@ -6141,7 +6250,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 2.67,
@@ -6169,12 +6279,12 @@
       "shortTermRentUsd": 1819,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 32,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 609,
@@ -6194,7 +6304,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.53,
@@ -6223,11 +6334,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 46,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 611,
@@ -6247,7 +6358,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.52,
@@ -6276,11 +6388,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 25,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 603,
@@ -6300,7 +6412,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.53,
@@ -6328,12 +6441,12 @@
       "shortTermRentUsd": 2518,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 41,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 613,
@@ -6353,7 +6466,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.08,
@@ -6381,12 +6495,12 @@
       "shortTermRentUsd": 1726,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 97,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -6406,7 +6520,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.27,
@@ -6435,11 +6550,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 66,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -6459,7 +6574,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.14,
@@ -6487,12 +6603,12 @@
       "shortTermRentUsd": 1637,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 26,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -6512,7 +6628,8 @@
         "overlapWithUSEast": 10,
         "overlapWithUSWest": 11,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.03,
@@ -6540,12 +6657,12 @@
       "shortTermRentUsd": 2117,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.04,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.72,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 19,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -6565,7 +6682,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.2,
@@ -6593,12 +6711,12 @@
       "shortTermRentUsd": 702,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 1.6,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.14,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 10,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 480,
@@ -6618,7 +6736,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.55,
@@ -6646,12 +6765,12 @@
       "shortTermRentUsd": 986,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.4,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.76,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 15,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 541,
@@ -6671,7 +6790,8 @@
         "overlapWithUSEast": 4,
         "overlapWithUSWest": 1,
         "overlapWithLondon": 9,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 8.0
       },
       "nomadCommunity": {
         "nomadScore": 3.56,
@@ -6703,8 +6823,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Very bad",
         "internetMbps": 4,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 569,
@@ -6724,7 +6844,8 @@
         "overlapWithUSEast": 7,
         "overlapWithUSWest": 4,
         "overlapWithLondon": 12,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 5.0
       },
       "nomadCommunity": {
         "nomadScore": 3.31,
@@ -6752,12 +6873,12 @@
       "shortTermRentUsd": 1106,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 2.24,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.3,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 14,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 521,
@@ -6777,7 +6898,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 0.56,
@@ -6805,13 +6927,12 @@
       "shortTermRentUsd": 1698,
       "shortTermRentNote": "Estimated from Austin/Denver",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 150,
-          "max": 400,
-          "typical": 250
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
+        "internetMbps": 230,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -6831,7 +6952,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": null,
       "nomadMonthlyCost": 3774,
@@ -6853,13 +6975,12 @@
       "shortTermRentUsd": 1890,
       "shortTermRentNote": "Estimated from LA/San Diego area",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 150,
-          "max": 400,
-          "typical": 250
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 3.7,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
+        "internetMbps": 210,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -6879,7 +7000,8 @@
         "overlapWithUSEast": 9,
         "overlapWithUSWest": 12,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": null,
       "nomadMonthlyCost": 4200,
@@ -6901,12 +7023,12 @@
       "shortTermRentUsd": 1603,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.4,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
         "internetMbps": 26,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": null,
@@ -6926,7 +7048,8 @@
         "overlapWithUSEast": 12,
         "overlapWithUSWest": 9,
         "overlapWithLondon": 7,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.34,
@@ -6954,13 +7077,12 @@
       "shortTermRentUsd": 2250,
       "shortTermRentNote": "Estimated from Brussels/Zurich level",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 150,
-          "max": 350,
-          "typical": 200
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 3.7,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
+        "internetMbps": 130,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -6980,7 +7102,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": null,
       "nomadMonthlyCost": 5000,
@@ -7003,11 +7126,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 32,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 561,
@@ -7027,7 +7150,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.55,
@@ -7055,12 +7179,12 @@
       "shortTermRentUsd": 1364,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 27,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 446,
@@ -7080,7 +7204,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.4,
@@ -7108,12 +7233,12 @@
       "shortTermRentUsd": 1165,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "compositeScore": 3.36,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "compositeScore": 2.84,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
         "internetMbps": 21,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 446,
@@ -7133,7 +7258,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 2.93,
@@ -7162,11 +7288,11 @@
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
         "compositeScore": 4.0,
-        "freeWifiRating": null,
-        "powerGridRating": null,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
         "internetMbps": 25,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 471,
@@ -7186,7 +7312,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.15,
@@ -7214,13 +7341,12 @@
       "shortTermRentUsd": 529,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 50,
-          "max": 200,
-          "typical": 100
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 2.68,
+        "freeWifiRating": "Good",
+        "powerGridRating": "Great",
+        "internetMbps": 9,
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 500,
@@ -7240,7 +7366,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": null,
@@ -7272,8 +7399,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 12,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 440,
@@ -7293,7 +7420,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.23,
@@ -7325,8 +7453,8 @@
         "freeWifiRating": "Okay",
         "powerGridRating": "Great",
         "internetMbps": 36,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 612,
@@ -7346,7 +7474,8 @@
         "overlapWithUSEast": 7,
         "overlapWithUSWest": 4,
         "overlapWithLondon": 12,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 5.0
       },
       "nomadCommunity": {
         "nomadScore": 3.67,
@@ -7378,8 +7507,8 @@
         "freeWifiRating": "Good",
         "powerGridRating": "Great",
         "internetMbps": 34,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 540,
@@ -7399,7 +7528,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.71,
@@ -7431,8 +7561,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 23,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 594,
@@ -7452,7 +7582,8 @@
         "overlapWithUSEast": 5,
         "overlapWithUSWest": 2,
         "overlapWithLondon": 10,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 7.0
       },
       "nomadCommunity": {
         "nomadScore": 3.07,
@@ -7484,8 +7615,8 @@
         "freeWifiRating": "Okay",
         "powerGridRating": "Great",
         "internetMbps": 14,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 617,
@@ -7505,7 +7636,8 @@
         "overlapWithUSEast": 6,
         "overlapWithUSWest": 3,
         "overlapWithLondon": 11,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 6.0
       },
       "nomadCommunity": {
         "nomadScore": 3.42,
@@ -7537,8 +7669,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 21,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 402,
@@ -7558,7 +7690,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.29,
@@ -7590,8 +7723,8 @@
         "freeWifiRating": "Great",
         "powerGridRating": "Great",
         "internetMbps": 17,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -7611,7 +7744,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 8,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 1.0
       },
       "nomadCommunity": {
         "nomadScore": 3.63,
@@ -7643,8 +7777,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 31,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 540,
@@ -7664,7 +7798,8 @@
         "overlapWithUSEast": 7,
         "overlapWithUSWest": 4,
         "overlapWithLondon": 12,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 5.0
       },
       "nomadCommunity": {
         "nomadScore": 3.45,
@@ -7696,8 +7831,8 @@
         "freeWifiRating": "Great",
         "powerGridRating": "Great",
         "internetMbps": 18,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 581,
@@ -7717,7 +7852,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 12.0
       },
       "nomadCommunity": {
         "nomadScore": 3.61,
@@ -7745,13 +7881,12 @@
       "shortTermRentUsd": 675,
       "shortTermRentNote": "Estimated; nomads.com page unavailable",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 30,
-          "max": 150,
-          "typical": 80
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 2.8,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Good",
+        "internetMbps": 55,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": null,
@@ -7771,7 +7906,8 @@
         "overlapWithUSEast": 7,
         "overlapWithUSWest": 4,
         "overlapWithLondon": 12,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 5.0
       },
       "nomadCommunity": {
         "nomadScore": null,
@@ -7799,13 +7935,12 @@
       "shortTermRentUsd": 792,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "qualityRating": "Great",
-        "estimatedPriceRange": {
-          "min": 50,
-          "max": 250,
-          "typical": 120
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 2.33,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
+        "internetMbps": 13,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge"
       },
       "english": {
         "efEpiScore": 482,
@@ -7825,7 +7960,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 8,
         "overlapWithLondon": 8,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 1.0
       },
       "nomadCommunity": {
         "nomadScore": 3.52,
@@ -7857,8 +7993,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 50,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 402,
@@ -7878,7 +8014,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.29,
@@ -7910,8 +8047,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 55,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 402,
@@ -7931,7 +8068,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 2.96,
@@ -7963,8 +8101,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 9,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 390,
@@ -7984,7 +8122,8 @@
         "overlapWithUSEast": 1,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": 3.22,
@@ -8016,8 +8155,8 @@
         "freeWifiRating": "Bad",
         "powerGridRating": "Great",
         "internetMbps": 10,
-        "note": "Composite: 40% internet speed + 30% free WiFi + 30% power grid (0-4 scale)",
-        "source": "nomads.com"
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge-based for cities where page failed to load"
       },
       "english": {
         "efEpiScore": 519,
@@ -8037,7 +8176,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 2.81,
@@ -8065,13 +8205,12 @@
       "shortTermRentUsd": 1081,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "qualityRating": "Great",
-        "estimatedPriceRange": {
-          "min": 50,
-          "max": 250,
-          "typical": 120
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 3.17,
+        "freeWifiRating": "Great",
+        "powerGridRating": "Great",
+        "internetMbps": 12,
+        "note": "Composite: 40% internet + 30% free WiFi + 30% power grid (0-4 scale)",
+        "source": "nomads.com + knowledge"
       },
       "english": {
         "efEpiScore": 440,
@@ -8091,7 +8230,8 @@
         "overlapWithUSEast": 11,
         "overlapWithUSWest": 10,
         "overlapWithLondon": 6,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": 3.34,
@@ -8119,13 +8259,12 @@
       "shortTermRentUsd": 990,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 50,
-          "max": 250,
-          "typical": 120
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 2.57,
+        "freeWifiRating": "Okay",
+        "powerGridRating": "Great",
+        "internetMbps": 12,
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 440,
@@ -8145,7 +8284,8 @@
         "overlapWithUSEast": 10,
         "overlapWithUSWest": 11,
         "overlapWithLondon": 5,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 0.0
       },
       "nomadCommunity": {
         "nomadScore": null,
@@ -8173,13 +8313,12 @@
       "shortTermRentUsd": 1387,
       "shortTermRentNote": "Estimated as ~45% of nomads.com total nomad cost",
       "coworking": {
-        "qualityRating": null,
-        "estimatedPriceRange": {
-          "min": 100,
-          "max": 400,
-          "typical": 200
-        },
-        "note": "Quality from nomads.com 'Places to work from'; price is regional estimate"
+        "compositeScore": 3.1,
+        "freeWifiRating": "Bad",
+        "powerGridRating": "Great",
+        "internetMbps": 27,
+        "note": "Verified from nomads.com.",
+        "source": "nomads.com (directly fetched 2026-04-09)"
       },
       "english": {
         "efEpiScore": 446,
@@ -8199,7 +8338,8 @@
         "overlapWithUSEast": 0,
         "overlapWithUSWest": 0,
         "overlapWithLondon": 4,
-        "note": "Hours where both sides are within 8am-8pm window"
+        "note": "Hours where both sides are within 8am-8pm window",
+        "overlapWithEast8": 11.0
       },
       "nomadCommunity": {
         "nomadScore": null,

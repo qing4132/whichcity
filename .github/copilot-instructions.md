@@ -11,8 +11,11 @@
 - `app/[locale]/*/opengraph-image.tsx` — dynamic OG images (Satori + next/og)
 - `components/` — 5 page components + NavBar + ClimateChart + WebVitals
 - `hooks/useSettings.ts` — global settings (profession, locale, theme, currency, etc.)
-- `lib/` — data loading, i18n, tax computation (81 countries), types, constants
+- `lib/` — data loading, i18n, tax computation (81 countries), nomad i18n, types, constants
+- `lib/nomadData.ts` — nomad data types + server-side JSON loader
+- `lib/nomadI18n.ts` — nomad-specific translations (visa names, notes, VPN notes, legal income)
 - `public/data/` — cities.json (154 cities), exchange-rates.json (auto-updated daily)
+- `_audit/` — nomad-data-compiled.json, nomad-visafree-4passport.json, audit scripts
 - `scripts/` — active maintenance scripts (3 files)
 - `_archive/` — historical scripts, old components, data sources, reports (do not delete)
 
@@ -22,6 +25,7 @@
 - City type: ~50 fields (income, costs, housing, safety, healthcare, freedom, climate, etc.)
 - Tax engine: 81 country tax tables + city overrides + expat schemes
 - Composite indices: Life Pressure (client-computed), Safety/Healthcare/Freedom (pre-computed in JSON)
+- Nomad data: visa info, VPN status, English level, timezone overlap, visa-free matrix (4 passports × 81 countries)
 
 ## Breakpoints
 
