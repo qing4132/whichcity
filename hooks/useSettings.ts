@@ -29,10 +29,11 @@ export function useSettings(urlLocale?: string) {
   const [locale, setLocaleState] = useState<Locale>(
     urlLocale && ["zh", "en", "ja", "es"].includes(urlLocale) ? urlLocale as Locale : "en"
   );
-  // On initial hydration (theme-ready absent): return SSR defaults so React
-  // doesn't see a hydration mismatch.  useLayoutEffect will fix them before paint.
-  // On client-side navigation (theme-ready present): read the real values so
-  // the very first render already matches the active theme — no flash.
+  // On client-side navigation the inline script has already set .dark/.light
+  // on <html>, so we can read the correct values immediately.
+  // On initial hydration (first page load), useState returns SSR defaults
+  // (false/"auto") which intentionally match the SSR HTML; the layout effect
+  // then updates them synchronously before paint.
   const isClientNav = typeof document !== "undefined"
     && document.documentElement.classList.contains("theme-ready");
   const [themeMode, setThemeModeState] = useState<ThemeMode>(
@@ -49,6 +50,12 @@ export function useSettings(urlLocale?: string) {
   const [rates, setRates] = useState<ExchangeRates | null>(() => cachedRates);
   const [ready, setReady] = useState(() => cachedRates !== null);
 
+  // `mounted` starts false so SSR and initial hydration render nothing
+  // (components return null/skeleton). After useLayoutEffect syncs the
+  // theme, mounted becomes true and the first client render uses the
+  // correct darkMode value — exactly like the ranking page via Suspense.
+  const [mounted, setMounted] = useState(() => isClientNav);
+
   /* ── Resolve effective dark mode from themeMode + system preference ── */
   const applyTheme = useCallback((mode: ThemeMode) => {
     let dark: boolean;
@@ -62,12 +69,10 @@ export function useSettings(urlLocale?: string) {
     el.classList.toggle("dark", dark);
     el.classList.toggle("light", !dark);
     el.style.colorScheme = dark ? "dark" : "light";
+    el.style.backgroundColor = "";
   }, []);
 
-  /* ── Sync theme + settings from localStorage BEFORE first paint ──
-     useLayoutEffect ensures the dark-mode re-render is committed
-     synchronously before the browser paints, so the user never
-     sees SSR light-mode classes when the actual theme is dark.   */
+  /* ── Sync theme + settings from localStorage BEFORE first paint ── */
   useLayoutEffect(() => {
     if (!urlLocale) {
       const l = localStorage.getItem("locale");
@@ -91,12 +96,10 @@ export function useSettings(urlLocale?: string) {
     const sm = localStorage.getItem("salaryMultiplier");
     if (sm) { const n = parseFloat(sm); if (n >= 0.5 && n <= 3.0) setSalaryMultiplierState(n); }
 
-    // Remove the flash-guard overlay after the synchronous re-render commits.
-    // rAF fires before the next paint, by which time the DOM already has
-    // the correct dark/light classes thanks to useLayoutEffect.
-    requestAnimationFrame(() => {
-      document.documentElement.classList.add("theme-ready");
-    });
+    // Mark as mounted — the next render will have correct darkMode.
+    // Also set theme-ready so client-side navigations skip this path.
+    setMounted(true);
+    document.documentElement.classList.add("theme-ready");
   }, [applyTheme]);
 
   /* ── Fetch exchange rates (async, OK to run after paint) ── */
@@ -235,6 +238,7 @@ export function useSettings(urlLocale?: string) {
     currencySymbol,
     rates,
     ready,
+    mounted,
     LANGUAGE_LABELS,
   };
 }

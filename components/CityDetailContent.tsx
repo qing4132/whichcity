@@ -190,6 +190,8 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
     return () => cleanup();
   }, []);
 
+  if (!s.mounted) return null;
+
   if (!s.ready) return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
       <NavBar s={s} compareHref={`/${locale}/compare/${slug}`} excludeSlug={slug} showShare />

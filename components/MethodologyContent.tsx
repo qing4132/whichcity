@@ -10,6 +10,8 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
   const { locale, darkMode, t } = s;
   useEffect(() => { document.title = `${t("navMethodology")} | WhichCity`; }, [locale]);
 
+  if (!s.mounted) return null;
+
   if (!s.ready) return (
     <div className={darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}>
       <NavBar s={s} />

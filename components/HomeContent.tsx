@@ -73,6 +73,8 @@ export default function HomeContent({ locale: urlLocale }: { locale: string }) {
 
   useEffect(() => { document.title = "WhichCity"; }, [locale]);
 
+  if (!s.mounted) return null;
+
   return (
     <div className={`min-h-screen flex flex-col transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>
 

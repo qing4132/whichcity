@@ -14,7 +14,6 @@ html {
   color-scheme: light;
 }
 
-/* Auto mode: match system dark BEFORE JS runs (CSS loads first in Next.js) */
 @media (prefers-color-scheme: dark) {
   html {
     background-color: #020617; /* slate-950 */
