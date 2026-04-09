@@ -29,17 +29,15 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(function NavBar(
     const router = useRouter();
     const { locale, darkMode, themeMode, t } = s;
     const [menuOpen, setMenuOpen] = useState(false);
-    const [settingsOpen, setSettingsOpen] = useState(false);
+    const [settingsOpen, setSettingsOpen] = useState(() => {
+        if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("_settingsOpen")) {
+            sessionStorage.removeItem("_settingsOpen");
+            return true;
+        }
+        return false;
+    });
     const [copied, setCopied] = useState(false);
     const [shareOpen, setShareOpen] = useState(false);
-
-    // Restore settings panel state after locale change (deferred to avoid hydration mismatch)
-    useEffect(() => {
-        if (sessionStorage.getItem("_settingsOpen")) {
-            sessionStorage.removeItem("_settingsOpen");
-            setSettingsOpen(true);
-        }
-    }, []);
 
     const professions = professionsProp || Object.keys(PROFESSION_TRANSLATIONS);
     const profVal = professionValue ?? s.profession;

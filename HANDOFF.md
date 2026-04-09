@@ -1,6 +1,6 @@
 # WhichCity — Project Handoff Document
 
-> Last updated: 2026-04-09 (session 2)
+> Last updated: 2026-04-10
 > Purpose: Enable a new developer or AI to fully understand and work on this project without prior context.
 
 ## Table of Contents
@@ -22,6 +22,7 @@
 - [15. File Map](#15-file-map)
 - [16. Recent Changes (2026-04-08 → 04-09)](#16-recent-changes-2026-04-08--04-09)
 - [17. Digital Nomad Section (2026-04-09)](#17-digital-nomad-section-2026-04-09)
+- [18. Changes (2026-04-10)](#18-changes-2026-04-10)
 
 ---
 
@@ -424,9 +425,16 @@ NavBar is rendered in layout.tsx, wrapping all pages.
 - `formatCurrency(amountUSD)` — converts and formats with locale symbol
 - `t(key, params?)` — translation lookup with optional substitution
 - `getProfessionLabel(zhName)` — localized profession name
-- `ready` — false until exchange rates loaded (layout waits for this)
+- `ready` — false until exchange rates loaded
+- `mounted` — false during SSR and initial hydration; true after useLayoutEffect syncs theme (see §18)
 
-**Theme hydration**: A `<script>` in layout.tsx reads localStorage before React hydrates to prevent FOUC (flash of unstyled content). Applies `.dark` class and `colorScheme` on `<html>`.
+**Theme system (as of 2026-04-10)**:
+1. `<meta name="color-scheme" content="light dark">` — browser canvas matches system preference before any CSS
+2. Inline `<script>` in `<body>` — reads localStorage, adds `.dark`/`.light` class to `<html>`, sets `colorScheme`
+3. `globals.css` — `@media (prefers-color-scheme: dark)` + `.dark`/`.light` class rules for html/body background
+4. `useSettings` hook — `mounted` state starts `false`; all page components return `null` until `mounted=true`; this prevents any light-themed SSR HTML from being painted (same effect as Suspense in ranking page)
+5. `useLayoutEffect` — syncs all settings from localStorage, then sets `mounted=true`; the first render with correct `darkMode` is the first render the user sees
+6. On client-side navigation (`.theme-ready` present), `mounted` initializes as `true` directly — no flash
 
 ---
 
@@ -717,9 +725,58 @@ Single card with rounded border, 3 visual groups separated by dashed dividers:
 
 ### NavBar SSR Fix (2026-04-09)
 
-Fixed two bugs that caused NavBar links to be unclickable on first page load:
+**Resolved in 04-10**: The NavBar SSR fix described below has been superseded by the `mounted` pattern (§18). Components now return `null` before mount, so there is no SSR NavBar to worry about. `sessionStorage` for settings panel state is now safely read in `useState` initializer.
+
+Original fix (now obsolete):
 1. **`if (!s.ready) return null`** in page components blocked the entire page (including NavBar) during SSR. Changed to only hide page content below NavBar.
 2. **sessionStorage in useState initializer** caused React hydration mismatch. Moved to useEffect.
+
+---
+
+## 18. Changes (2026-04-10)
+
+### Dark Mode Flash Fix (Critical)
+
+**Problem**: On Chrome and mobile Safari, refreshing or visiting any page in dark mode caused a white flash. The ranking page was the only exception.
+
+**Root cause investigation** (8 iterations):
+
+1. **Initial diagnosis**: SSR HTML was pre-rendered with `darkMode=false` (light-mode classNames). The `useState` initializer read `document.documentElement.classList.contains("dark")` → returned `true` on the client (inline script had already set `.dark` class) → hydration mismatch → React kept SSR's light DOM → `setDarkModeState(true)` in `useEffect` was a no-op (already `true`).
+
+2. **Fix #1**: Changed `darkMode` initial value to `false` (match SSR) + `useLayoutEffect` to sync. Worked for hard refresh but caused flash on client-side navigation (new component mounted with `false`, then corrected).
+
+3. **Fix #2**: Detect hydration vs client-nav via `theme-ready` class on `<html>`. Client-nav reads real value from DOM; hydration uses `false`.
+
+4. **Chrome still flashed**: Tried inline `<style>` in `<head>` for critical CSS → Next.js hoisted its own `<link>`/`<script>` tags above it, making inline styles too late.
+
+5. **Tried `<body>` inline style + script**: Next.js put the `<style>` in body, but CSS `body::before` overlay was in external stylesheet (not loaded yet).
+
+6. **Tried `<html style="visibility:hidden">`**: Hid everything until React hydrated. But the white background was still visible (visibility doesn't hide canvas color). Made Safari worse.
+
+7. **Key user observation**: "Ranking page never flashes." Ranking uses `<Suspense>` → SSR outputs no component HTML → client renders with correct `darkMode` from the start.
+
+8. **Final fix**: Add `mounted` state to `useSettings` (initial `false`). All page components return `null` when `!mounted`. `useLayoutEffect` syncs theme + sets `mounted=true`. First visible render uses correct `darkMode`. **Zero SSR HTML with theme-dependent classNames = zero flash.** Same principle as ranking page's Suspense boundary but explicit and universal.
+
+**Files changed**: `hooks/useSettings.ts`, `components/HomeContent.tsx`, `components/CityDetailContent.tsx`, `components/CompareContent.tsx`, `components/MethodologyContent.tsx`, `app/[locale]/layout.tsx`, `app/globals.css`
+
+**Side effects resolved**:
+- Language switching no longer flashes (same root cause: `useEffect` → `useLayoutEffect` + `mounted`)
+- Mobile Safari theme toggle bottom-area color fixed (cleared stale inline `backgroundColor` in `applyTheme`)
+- NavBar settings panel now opens instantly after language switch (read `sessionStorage` in `useState` initializer instead of `useEffect`)
+
+### Chinese Copywriting Fixes
+
+Applied [中文文案排版指北](https://github.com/mzlogin/chinese-copywriting-guidelines) rules to all user-visible Chinese text (170 fixes across 3 files):
+
+| Rule | Example | Files |
+|------|---------|-------|
+| Space between Chinese and English | `TTC公共交通` → `TTC 公共交通` | i18n, cityIntros |
+| Space between Chinese and numbers | `地铁24小时` → `地铁 24 小时` | nomadI18n, cityIntros |
+| Half-width parens → full-width | `(BLS)` → `（BLS）` | i18n, nomadI18n |
+| Half-width colon → full-width | `显示币种:` → `显示币种：` | i18n |
+| No space after full-width punct | `基准城市： {city}` → `基准城市：{city}` | i18n |
+
+Automated via Python script (deleted after use). Only zh values modified; en/ja/es untouched.
 
 ---
 
