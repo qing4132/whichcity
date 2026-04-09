@@ -1,6 +1,6 @@
 # WhichCity — Project Handoff Document
 
-> Last updated: 2026-04-08
+> Last updated: 2026-04-09
 > Purpose: Enable a new developer or AI to fully understand and work on this project without prior context.
 
 ## Table of Contents
@@ -20,6 +20,7 @@
 - [13. TODO & Future Ideas](#13-todo--future-ideas)
 - [14. Design Principles](#14-design-principles)
 - [15. File Map](#15-file-map)
+- [16. Recent Changes (2026-04-08 → 04-09)](#16-recent-changes-2026-04-08--04-09)
 
 ---
 
@@ -92,7 +93,7 @@ whichcity/
 │   ├── constants.ts            Regions, flags, currencies, country mappings
 │   ├── dataLoader.ts           Server-side data loading (cached per process)
 │   ├── i18n.ts                 ~1500 lines — translations (4 locales, 300+ keys)
-│   ├── taxData.ts              79 country tax tables + city overrides + expat schemes
+│   ├── taxData.ts              81 country tax tables + city overrides + expat schemes
 │   ├── taxUtils.ts             Tax computation engine (gross → net)
 │   ├── clientUtils.ts          Life Pressure formula, climate/name helpers
 │   ├── citySlug.ts             ID↔slug mappings, popular pairs, top cities
@@ -307,7 +308,7 @@ interface ClimateInfo {
 
 **Location**: `lib/taxData.ts` (data) + `lib/taxUtils.ts` (computation)
 
-**Coverage**: 79 countries with progressive tax brackets, social security components, standard deductions.
+**Coverage**: 81 countries with progressive tax brackets, social security components, standard deductions.
 
 **Income modes**:
 - `gross` — show raw salary as-is
@@ -488,7 +489,7 @@ These work correctly but are harder to maintain. Extracting sub-components would
 - Some cities have `null` for optional fields (bigMacPrice, directFlightCities, etc.)
 - 3 city IDs are unused (66, 72, 74) — gaps from deleted cities
 - `description` field in cities.json is Chinese only; other locales use `cityIntros.ts`
-- Some salary data may be outdated (last bulk update: early 2026)
+- Some salary data may be outdated (last bulk update: 2026-04-09, see §16)
 
 ### Japan Cities — averageIncome Data Source
 
@@ -589,7 +590,7 @@ Quick reference for "where is X?"
 |------|-------|
 | City data (runtime) | `public/data/cities.json` |
 | City TypeScript type | `lib/types.ts` |
-| Tax rules (79 countries) | `lib/taxData.ts` |
+| Tax rules (81 countries) | `lib/taxData.ts` |
 | Tax computation | `lib/taxUtils.ts` |
 | All UI translations | `lib/i18n.ts` |
 | City names (4 locales) | `lib/i18n.ts` → `CITY_NAME_TRANSLATIONS` |
@@ -611,6 +612,53 @@ Quick reference for "where is X?"
 | Data update procedures | `DATA_OPS.md` |
 | Coding rules | `RULES.md` |
 | AI coding context | `.github/copilot-instructions.md` |
+
+---
+
+## 16. Recent Changes (2026-04-08 → 04-09)
+
+### BigMac Price Unification (Japan)
+
+All 6 Japan cities' `bigMacPrice` unified to **$3.03** based on The Economist Big Mac Index raw data (2026-01-01): ¥480 ÷ 158.545 = $3.03. Previously had inconsistent values (3.35–3.73).
+
+### Profession Salary Data Overhaul (19 cities)
+
+Replaced coefficient-derived salary data for 19 newly added cities (IDs 140–158) with real data from **SalaryExpert** (primary) and **Paylab** (Cambodia fallback).
+
+**Pipeline**: `scripts/_update-salaries.mjs`
+- Input: SalaryExpert gross annual salaries in local currency
+- Conversion: ÷ FX rate → USD → × (1 − effective tax rate) → ÷ 12 → round to nearest $500
+- Tax rates: approximate effective rates per country (not the project tax engine — script is for bulk import only)
+- Missing professions: filled via related-profession heuristics (e.g., Civil Servant ≈ Teacher, Product Manager ≈ Software Engineer)
+- Minimum floor: $500/mo
+
+**Key fixes during the process**:
+- **Split (Croatia)**: SalaryExpert labels values as HRK but Croatia uses EUR since 2023-01. Fixed `currency: "HRK"` → `"EUR"` in the script. Before fix: all 26 professions = $500. After: range $1,000–$4,000.
+- **Siem Reap (Cambodia)**: SalaryExpert blocked by Cloudflare. Used Paylab.com national data × 0.75 (Siem Reap discount). Range $500–$1,500.
+
+**Validation**: All 19 cities have 26 professions, average profession salary / (averageIncome/12) ratio between 1.1× and 4.8×.
+
+| Cities updated | Data source | Professions | Date |
+|---|---|---|---|
+| Porto, Valencia, Las Palmas, Bansko, Split | SalaryExpert (EUR) | 22–26/26 | 2026-04-09 |
+| Cancún, Playa del Carmen, Puerto Vallarta | SalaryExpert (MXN) | 24–25/26 | 2026-04-09 |
+| Bali | SalaryExpert (IDR) | 24/26 | 2026-04-09 |
+| Da Nang | SalaryExpert (VND, country-level) | 24/26 | 2026-04-09 |
+| Phuket, Ko Pha-ngan, Ko Samui | SalaryExpert (THB, Phuket data) | 24/26 | 2026-04-09 |
+| Montevideo | SalaryExpert (UYU) | 25/26 | 2026-04-09 |
+| Penang | SalaryExpert (MYR) | 25/26 | 2026-04-09 |
+| Marrakech | SalaryExpert (MAD) | 25/26 | 2026-04-09 |
+| Florianópolis | SalaryExpert (BRL) | 25/26 | 2026-04-09 |
+| Cusco | SalaryExpert (PEN) | 25/26 | 2026-04-09 |
+| Siem Reap | Paylab (KHR, national × 0.75) | 17+9est/26 | 2026-04-09 |
+
+### Methodology Page Update
+
+Added **Paylab** as a salary data source across all 4 locale versions (zh/en/ja/es). Updated data year range from "2024–2025" to "2024–2026".
+
+### Kyoto costBudget Investigation
+
+Investigated anomalous Kyoto costBudget/costModerate ratio (38.9% vs typical 43–45%). Root cause: Kyoto uses **nomads.com** data ("expat cost" / "local cost") while other cities use Numbeo. Per user directive, data left unchanged — it reflects the actual source, not a calculation error.
 
 ---
 

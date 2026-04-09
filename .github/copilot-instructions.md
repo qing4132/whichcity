@@ -11,7 +11,7 @@
 - `app/[locale]/*/opengraph-image.tsx` — dynamic OG images (Satori + next/og)
 - `components/` — 5 page components + NavBar + ClimateChart + WebVitals
 - `hooks/useSettings.ts` — global settings (profession, locale, theme, currency, etc.)
-- `lib/` — data loading, i18n, tax computation (79 countries), types, constants
+- `lib/` — data loading, i18n, tax computation (81 countries), types, constants
 - `public/data/` — cities.json (154 cities), exchange-rates.json (auto-updated daily)
 - `scripts/` — active maintenance scripts (3 files)
 - `_archive/` — historical scripts, old components, data sources, reports (do not delete)

@@ -141,7 +141,7 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
       <H2 id="data-overview">📊 数据总览</H2>
       <P>本站覆盖全球 150+ 座城市，涵盖 23 类原始数据和 4 项综合指数。所有薪资和费用均以美元 (USD) 为基准存储和计算，用户可在界面上选择 10 种主流货币显示。</P>
       <Table headers={["数据类别", "来源", "粒度", "数据年份"]} rows={[
-        ["薪资（26 种职业）", "ERI / SalaryExpert、BLS (美)、PayScale、OECD、Robert Half、Hays、智联招聘、JobStreet", "城市 × 职业", "2024–2025"],
+        ["薪资（26 种职业）", "ERI / SalaryExpert、BLS (美)、PayScale、Paylab、OECD、Robert Half、Hays、智联招聘、JobStreet", "城市 × 职业", "2024–2026"],
         ["生活成本（标准/节俭）", "Numbeo、Expatistan、各国统计局", "城市", "2024–2025"],
         ["房价（每平方米）", "Global Property Guide、各地房产指数", "城市", "2024–2025"],
         ["月租（市中心一居）", "Numbeo Rent Index", "城市", "2024–2025"],
@@ -170,7 +170,7 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
       <H2 id="income">💰 薪资数据</H2>
       <P>每座城市提供 26 种职业的税前年薪 (USD)。职业涵盖软件工程师、数据科学家、产品经理、设计师、教师、护士、会计等。</P>
       <H3>数据采集方法</H3>
-      <P>综合 ERI / SalaryExpert（全球一手数据）、美国劳工统计局 BLS（美国城市）、PayScale（用户自报）、OECD 数据库、Robert Half / Hays 薪资指南（职业调查）、智联招聘（中国城市），以及 JobStreet / Indeed / Glassdoor（东南亚城市）。对于每种职业 × 城市组合，取多个来源的中位数估算值。</P>
+      <P>综合 ERI / SalaryExpert（全球一手数据）、美国劳工统计局 BLS（美国城市）、PayScale（用户自报）、Paylab（柬埔寨等缺乏 SalaryExpert 覆盖的地区）、OECD 数据库、Robert Half / Hays 薪资指南（职业调查）、智联招聘（中国城市），以及 JobStreet / Indeed / Glassdoor（东南亚城市）。对于每种职业 × 城市组合，取多个来源的中位数估算值。</P>
       <P><strong>日本城市特别说明</strong>：6 座日本城市（东京、横滨、大阪、名古屋、福冈、京都）的 averageIncome 使用 <strong>doda.jp 2025 年版</strong>（约 60 万人薪资调查）作为数据源。换算公式：doda 税前年收入 ×（1 − 项目税引擎精算的实际税率 ~21%）÷ 当日 JPY 汇率，得到税后美元值。其他国家城市仍使用 Numbeo 等来源。</P>
       <H3>收入模式</H3>
       <P>用户可选择三种模式：<strong>税前</strong>（Gross）— 不扣除；<strong>税后</strong>（Net）— 按当地居民税制扣除个税和社保；<strong>外籍税后</strong>（ExpatNet）— 应用适用的外籍人士优惠方案（如荷兰 30% 规则、西班牙贝克汉姆法等）。详见「税后计算」章节。</P>
@@ -348,7 +348,7 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
       <H2 id="data-overview">📊 Data Overview</H2>
       <P>This site covers 150+ cities worldwide with 23 data categories and 4 composite indices. All salaries and costs are stored and computed in USD. Users can display values in 10 major currencies.</P>
       <Table headers={["Category", "Source", "Granularity", "Data Year"]} rows={[
-        ["Salaries (26 professions)", "ERI / SalaryExpert, BLS (US), PayScale, OECD, Robert Half, Hays, Zhilian, JobStreet", "City × Profession", "2024–2025"],
+        ["Salaries (26 professions)", "ERI / SalaryExpert, BLS (US), PayScale, Paylab, OECD, Robert Half, Hays, Zhilian, JobStreet", "City × Profession", "2024–2026"],
         ["Cost of Living (Standard/Budget)", "Numbeo, Expatistan, National Statistics Offices", "City", "2024–2025"],
         ["House Price per m²", "Global Property Guide, Local Indices", "City", "2024–2025"],
         ["Monthly Rent (1BR center)", "Numbeo Rent Index", "City", "2024–2025"],
@@ -377,7 +377,7 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
       <H2 id="income">💰 Income Data</H2>
       <P>Each city has gross annual salaries (USD) for 26 professions including software engineer, data scientist, product manager, designer, teacher, nurse, accountant, etc.</P>
       <H3>Collection Method</H3>
-      <P>Aggregated from ERI/SalaryExpert (global primary), BLS (US cities), PayScale (user-reported), OECD, Robert Half/Hays salary guides, Zhilian (China), and JobStreet/Indeed/Glassdoor (Southeast Asia). For each profession×city, we use the median estimate across sources.</P>
+      <P>Aggregated from ERI/SalaryExpert (global primary), BLS (US cities), PayScale (user-reported), Paylab (regions lacking SalaryExpert coverage, e.g. Cambodia), OECD, Robert Half/Hays salary guides, Zhilian (China), and JobStreet/Indeed/Glassdoor (Southeast Asia). For each profession×city, we use the median estimate across sources.</P>
       <P><strong>Japan cities note</strong>: The 6 Japan cities (Tokyo, Yokohama, Osaka, Nagoya, Fukuoka, Kyoto) use <strong>doda.jp 2025</strong> (~600K salary survey) as the income data source. Formula: doda gross annual income × (1 − effective tax rate ~21% from our tax engine) ÷ daily JPY exchange rate = net USD. Other countries still use Numbeo and other sources.</P>
       <H3>Income Modes</H3>
       <P>Users can choose: <strong>Gross</strong> — no deductions; <strong>Net</strong> — local resident tax/social deductions; <strong>Expat Net</strong> — applies eligible expatriate tax schemes (e.g., Netherlands 30% Ruling, Spain Beckham Law). See Tax Calculations section.</P>
@@ -535,7 +535,7 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
       <H2 id="data-overview">📊 データ概要</H2>
       <P>本サイトは世界150+都市をカバーし、23カテゴリのデータと4つの総合指数を提供します。すべての給与とコストはUSD基準で保存・計算され、10種の主要通貨で表示可能です。</P>
       <Table headers={["カテゴリ", "ソース", "粒度", "データ年"]} rows={[
-        ["給与（26職種）", "ERI/SalaryExpert, BLS, PayScale, OECD, Robert Half, Hays, 智联招聘, JobStreet", "都市×職種", "2024–2025"],
+        ["給与（26職種）", "ERI/SalaryExpert, BLS, PayScale, Paylab, OECD, Robert Half, Hays, 智联招聘, JobStreet", "都市×職種", "2024–2026"],
         ["生活費（標準/節約）", "Numbeo, Expatistan, 各国統計局", "都市", "2024–2025"],
         ["住宅価格（m²あたり）", "Global Property Guide, 各地不動産指数", "都市", "2024–2025"],
         ["月額家賃（中心1BR）", "Numbeo Rent Index", "都市", "2024–2025"],
@@ -564,7 +564,7 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
       <H2 id="income">💰 収入データ</H2>
       <P>各都市26職種の税引前年収（USD）。ソフトウェアエンジニア、データサイエンティスト、プロダクトマネージャー、デザイナー、教師、看護師、会計士等。</P>
       <H3>データ収集方法</H3>
-      <P>ERI/SalaryExpert（グローバル一次データ）、米国BLS（米国都市）、PayScale（ユーザー報告）、OECD、Robert Half/Hays（職種調査）、智联招聘（中国都市）、JobStreet/Indeed/Glassdoor（東南アジア）を統合。職種×都市の組み合わせごとに複数ソースの中央値を推定。</P>
+      <P>ERI/SalaryExpert（グローバル一次データ）、米国BLS（米国都市）、PayScale（ユーザー報告）、Paylab（SalaryExpertがカバーしない地域、例：カンボジア）、OECD、Robert Half/Hays（職種調査）、智联招聘（中国都市）、JobStreet/Indeed/Glassdoor（東南アジア）を統合。職種×都市の組み合わせごとに複数ソースの中央値を推定。</P>
       <P><strong>日本の都市に関する注記</strong>：6つの日本都市（東京、横浜、大阪、名古屋、福岡、京都）のaverageIncomeは<strong>doda.jp 2025年版</strong>（約60万人の給与調査）をデータソースとして使用しています。計算式：doda税前年収 ×（1 − 税エンジンで精算した実効税率 ~21%）÷ 当日のJPY為替レート = 税後USD。他の国の都市は引き続きNumbeo等を使用しています。</P>
       <H3>収入モード</H3>
       <P>3つのモード：<strong>税前</strong>（Gross）— 控除なし。<strong>税後</strong>（Net）— 現地居住者の所得税・社会保険を控除。<strong>外国人税後</strong>（ExpatNet）— 外国人優遇税制を適用（オランダ30%ルーリング、スペインベッカム法等）。詳細は「税後計算」を参照。</P>
@@ -741,7 +741,7 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
       <H2 id="data-overview">📊 Visión general de datos</H2>
       <P>Este sitio cubre 150+ ciudades con 23 categorías de datos y 4 índices compuestos. Todos los salarios se almacenan en USD. Se pueden mostrar en 10 monedas principales.</P>
       <Table headers={["Categoría", "Fuente", "Granularidad", "Año"]} rows={[
-        ["Salarios (26 profesiones)", "ERI/SalaryExpert, BLS, PayScale, OECD, Robert Half, Hays, Zhilian, JobStreet", "Ciudad × Profesión", "2024–2025"],
+        ["Salarios (26 profesiones)", "ERI/SalaryExpert, BLS, PayScale, Paylab, OECD, Robert Half, Hays, Zhilian, JobStreet", "Ciudad × Profesión", "2024–2026"],
         ["Coste de vida (Estándar/Económico)", "Numbeo, Expatistan, Oficinas Nacionales de Estadística", "Ciudad", "2024–2025"],
         ["Precio vivienda por m²", "Global Property Guide, Índices locales", "Ciudad", "2024–2025"],
         ["Alquiler mensual (1BR centro)", "Numbeo Rent Index", "Ciudad", "2024–2025"],
@@ -770,7 +770,7 @@ export default function MethodologyContent({ locale: urlLocale }: { locale: stri
       <H2 id="income">💰 Datos salariales</H2>
       <P>Salario bruto anual (USD) para 26 profesiones por ciudad: ingeniero de software, científico de datos, gerente de producto, diseñador, profesor, enfermero, contador, etc.</P>
       <H3>Método de recopilación</H3>
-      <P>ERI/SalaryExpert (datos primarios globales), BLS de EE.UU. (ciudades estadounidenses), PayScale (autoreporte), OECD, Robert Half/Hays (encuestas profesionales), Zhilian (China), JobStreet/Indeed/Glassdoor (Sudeste Asiático). Para cada combinación profesión × ciudad se estima la mediana de múltiples fuentes.</P>
+      <P>ERI/SalaryExpert (datos primarios globales), BLS de EE.UU. (ciudades estadounidenses), PayScale (autoreporte), Paylab (regiones sin cobertura de SalaryExpert, ej. Camboya), OECD, Robert Half/Hays (encuestas profesionales), Zhilian (China), JobStreet/Indeed/Glassdoor (Sudeste Asiático). Para cada combinación profesión × ciudad se estima la mediana de múltiples fuentes.</P>
       <P><strong>Nota sobre ciudades japonesas</strong>: Las 6 ciudades de Japón (Tokio, Yokohama, Osaka, Nagoya, Fukuoka, Kioto) utilizan <strong>doda.jp 2025</strong> (~600K encuesta salarial) como fuente de datos de ingresos. Fórmula: ingreso bruto anual doda × (1 − tasa impositiva efectiva ~21% del motor fiscal) ÷ tipo de cambio JPY diario = USD neto. Las demás ciudades siguen usando Numbeo y otras fuentes.</P>
       <H3>Modos de ingreso</H3>
       <P>Tres modos: <strong>Bruto</strong> (Gross) — sin deducciones. <strong>Neto</strong> (Net) — impuestos locales y seguridad social. <strong>Neto expatriado</strong> (ExpatNet) — con régimen fiscal para expatriados (Holanda 30% Ruling, España Ley Beckham, etc.). Ver sección «Cálculo fiscal».</P>

@@ -1,5 +1,5 @@
 /**
- * Tax rate data for 79 countries/territories.
+ * Tax rate data for 81 countries/territories.
  * All currency amounts are in LOCAL currency per year unless noted.
  * Source: OECD, KPMG, PwC Worldwide Tax Summaries, national tax authorities.
  * Last updated: 2025-01
