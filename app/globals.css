@@ -9,7 +9,13 @@
 }
 
 html {
+  color-scheme: light dark;
   scroll-behavior: smooth;
+  background-color: #f8fafc; /* slate-50 */
+}
+html.dark {
+  color-scheme: dark;
+  background-color: #020617; /* slate-950 */
 }
 
 body {

@@ -45,6 +45,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        <meta name="color-scheme" content="light dark" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -62,7 +63,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement;var m=localStorage.getItem('themeMode');if(!m||['auto','light','dark'].indexOf(m)===-1){var o=localStorage.getItem('darkMode');m=o==='true'?'dark':o==='false'?'light':'auto'}var dk=m==='dark'||(m==='auto'&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(dk){d.classList.add('dark');d.style.colorScheme='dark'}}catch(e){}})()`
+            __html: `(function(){try{var d=document.documentElement;var m=localStorage.getItem('themeMode');if(!m||['auto','light','dark'].indexOf(m)===-1){var o=localStorage.getItem('darkMode');m=o==='true'?'dark':o==='false'?'light':'auto'}var dk=m==='dark'||(m==='auto'&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(dk){d.classList.add('dark')}d.style.colorScheme=dk?'dark':'light'}catch(e){}})()`
           }}
         />
       </head>

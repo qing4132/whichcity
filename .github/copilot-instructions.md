@@ -25,6 +25,10 @@
 - City type: ~50 fields (income, costs, housing, safety, healthcare, freedom, climate, etc.)
 - Tax engine: 81 country tax tables + city overrides + expat schemes
 - Composite indices: Life Pressure (client-computed), Safety/Healthcare/Freedom (pre-computed in JSON)
+- Nomad data: visa info, VPN status, English level, timezone overlap, visa-free matrix (4 passports × 81 countries
+- City type: ~50 fields (income, costs, housing, safety, healthcare, freedom, climate, etc.)
+- Tax engine: 81 country tax tables + city overrides + expat schemes
+- Composite indices: Life Pressure (client-computed), Safety/Healthcare/Freedom (pre-computed in JSON)
 - Nomad data: visa info, VPN status, English level, timezone overlap, visa-free matrix (4 passports × 81 countries)
 
 ## Breakpoints
