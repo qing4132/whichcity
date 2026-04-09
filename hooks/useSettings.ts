@@ -55,6 +55,7 @@ export function useSettings(urlLocale?: string) {
     setDarkModeState(dark);
     const el = document.documentElement;
     el.classList.toggle("dark", dark);
+    el.classList.toggle("light", !dark);
     el.style.colorScheme = dark ? "dark" : "light";
   }, []);
 

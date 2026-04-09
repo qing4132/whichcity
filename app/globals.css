@@ -9,28 +9,51 @@
 }
 
 html {
-  color-scheme: light dark;
   scroll-behavior: smooth;
   background-color: #f8fafc; /* slate-50 */
+  color-scheme: light;
 }
+
+/* Auto mode: match system dark BEFORE JS runs (CSS loads first in Next.js) */
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: #020617; /* slate-950 */
+    color-scheme: dark;
+  }
+}
+
+/* JS class overrides (higher specificity than bare html) */
 html.dark {
-  color-scheme: dark;
   background-color: #020617; /* slate-950 */
+  color-scheme: dark;
+}
+html.light {
+  background-color: #f8fafc; /* slate-50 */
+  color-scheme: light;
 }
 
 body {
   background-color: #f8fafc; /* slate-50 */
   color: #0f172a; /* slate-900 */
 }
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #020617; /* slate-950 */
+    color: #f1f5f9; /* slate-100 */
+  }
+}
 html.dark body {
   background-color: #020617; /* slate-950 */
   color: #f1f5f9; /* slate-100 */
 }
+html.light body {
+  background-color: #f8fafc; /* slate-50 */
+  color: #0f172a; /* slate-900 */
+}
 
 /* ── Theme flash prevention ──
-   A full-viewport overlay that matches the resolved theme color.
-   Covers any flashing content during the gap between
-   the hydration script (sets html.dark) and React state catch-up. */
+   Full-viewport overlay covers incorrectly-themed Tailwind content
+   until the inline script adds .dark and React adds .theme-ready. */
 body::before {
   content: '';
   position: fixed;
@@ -39,8 +62,16 @@ body::before {
   pointer-events: none;
   background-color: #f8fafc;
 }
+@media (prefers-color-scheme: dark) {
+  body::before {
+    background-color: #020617;
+  }
+}
 html.dark body::before {
   background-color: #020617;
+}
+html.light body::before {
+  background-color: #f8fafc;
 }
 html.theme-ready body::before {
   display: none;
