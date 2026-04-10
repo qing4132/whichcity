@@ -69,7 +69,7 @@ export default function ClimateChart({ climate, locale, darkMode, t, hideTitle, 
         </h3>
       )}
       <div>
-        <div className="relative">
+        <div className="relative py-2">
           {/* Continuous highlight strip for current month */}
           <div className="absolute top-0 bottom-0 rounded pointer-events-none" style={{
             left: `calc(28px + ${currentMonth} * (100% - 28px) / 12)`,

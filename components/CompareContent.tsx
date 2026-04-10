@@ -3,12 +3,16 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { City, CostTier, IncomeMode } from "@/lib/types";
+import type { City, CostTier, IncomeMode, Locale } from "@/lib/types";
+import type { NomadCityData } from "@/lib/nomadData";
 import { CITY_FLAG_EMOJIS, CITY_COUNTRY } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
+import { CITY_LANGUAGES, LANGUAGE_NAME_TRANSLATIONS } from "@/lib/cityLanguages";
+import { localizeVisaName } from "@/lib/nomadI18n";
 import { useSettings } from "@/hooks/useSettings";
-import { computeNetIncome } from "@/lib/taxUtils";
+import { computeNetIncome, getExpatSchemeName } from "@/lib/taxUtils";
+import type { NetIncomeResult } from "@/lib/taxUtils";
 import { computeLifePressure, getClimateLabel } from "@/lib/clientUtils";
 import { trackEvent } from "@/lib/analytics";
 import ClimateChart from "./ClimateChart";
@@ -20,6 +24,7 @@ interface Props {
   initialSlugs: string[];
   allCities: City[];
   locale: string;
+  nomadDataMap?: Record<string, NomadCityData>;
 }
 
 type RowCtx = {
@@ -72,10 +77,11 @@ const CLIMATE_GROUP_KEY = "climate";
 const GROUP_I18N: Record<string, string> = {
   income: "rankGroup_income", housing: "rankGroup_housing", work: "rankGroup_work",
   environment: "rankGroup_environment", index: "rankGroup_index", climate: "climateEnv",
+  nomad: "nomadSection",
 };
 
 /* ════════════════════════════════════════════ */
-export default function CompareContent({ initialCities, initialSlugs, allCities, locale: urlLocale }: Props) {
+export default function CompareContent({ initialCities, initialSlugs, allCities, locale: urlLocale, nomadDataMap }: Props) {
   const router = useRouter();
   const s = useSettings(urlLocale);
   const { locale, darkMode, t, formatCurrency, costTier, profession, incomeMode, salaryMultiplier } = s;
@@ -148,15 +154,18 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
   const activeProfession = profession && professions.includes(profession) ? profession : professions[0] || "";
   const costField = `cost${costTier.charAt(0).toUpperCase()}${costTier.slice(1)}` as keyof City;
 
-  /* ── Compute incomes for all cities ── */
-  const allIncomesMap = useMemo(() => {
-    const map = new Map<number, number>();
+  /* ── Compute incomes + tax results for all cities ── */
+  const { allIncomesMap, taxResultsMap } = useMemo(() => {
+    const incMap = new Map<number, number>();
+    const taxMap = new Map<number, NetIncomeResult | null>();
     allCities.forEach(c => {
-      const gross = activeProfession && c.professions[activeProfession] != null ? c.professions[activeProfession] * salaryMultiplier : 0;
-      const net = computeNetIncome(gross, c.country, c.id, incomeMode, s.rates?.rates).netUSD;
-      map.set(c.id, net);
+      const hasProf = activeProfession && c.professions[activeProfession] != null;
+      const gross = hasProf ? c.professions[activeProfession] * salaryMultiplier : 0;
+      const r = computeNetIncome(gross, c.country, c.id, incomeMode, s.rates?.rates);
+      incMap.set(c.id, r.netUSD);
+      taxMap.set(c.id, hasProf ? r : null);
     });
-    return map;
+    return { allIncomesMap: incMap, taxResultsMap: taxMap };
   }, [allCities, activeProfession, incomeMode, s.rates, salaryMultiplier]);
 
   const rowCtx: RowCtx = useMemo(() => ({
@@ -175,16 +184,55 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
   }, [visibleSlots, rowCtx]);
 
   /* ── Win counts per slot (exclude climate) ── */
+  const ENG_RANK: Record<string, number> = { Great: 4, Good: 3, Okay: 2, Bad: 1 };
+  const VPN_RANK: Record<string, number> = { false: 3, partial: 2, true: 1 };
+
+  const nomadItems = useMemo(() => {
+    if (!nomadDataMap) return null;
+    return visibleSlots.map(c => {
+      if (!c) return null;
+      return nomadDataMap[String(c.id)] ?? null;
+    });
+  }, [visibleSlots, nomadDataMap]);
+
   const winCounts = useMemo(() => {
     const counts: number[] = visibleSlots.map(() => 0);
+    // Numeric metric wins
     rows.forEach(({ m, vals, bestVal }) => {
       if (m.group === CLIMATE_GROUP_KEY) return;
       if (bestVal == null) return;
       if (!vals.some(v => v !== bestVal)) return;
       vals.forEach((v, i) => { if (v === bestVal) counts[i]++; });
     });
+    // Nomad wins (visa, vpn, english)
+    if (nomadItems) {
+      const addWin = (scores: (number | null)[]) => {
+        const valid = scores.filter((v): v is number => v != null);
+        if (valid.length < 2) return;
+        const best = Math.max(...valid);
+        if (!valid.some(v => v !== best)) return;
+        scores.forEach((v, i) => { if (v === best) counts[i]++; });
+      };
+      addWin(nomadItems.map(nd => nd?.visa ? (nd.visa.hasNomadVisa ? 1 : 0) : null));
+      addWin(nomadItems.map(nd => nd?.internet ? (VPN_RANK[String(nd.internet.vpnRestricted)] ?? null) : null));
+      addWin(nomadItems.map(nd => nd?.english?.cityRating ? (ENG_RANK[nd.english.cityRating] ?? null) : null));
+    }
+    // Tax rate win (lower is better, only in non-gross mode)
+    if (incomeMode !== "gross") {
+      const taxScores = visibleSlots.map(c => {
+        const r = c ? taxResultsMap.get(c.id) : null;
+        return r && !r.dataIsLikelyNet ? r.effectiveRate : null;
+      });
+      const validTax = taxScores.filter((v): v is number => v != null);
+      if (validTax.length > 1) {
+        const bestTax = Math.min(...validTax);
+        if (validTax.some(v => v !== bestTax)) {
+          taxScores.forEach((v, i) => { if (v === bestTax) counts[i]++; });
+        }
+      }
+    }
     return counts;
-  }, [visibleSlots, rows]);
+  }, [visibleSlots, rows, nomadItems, taxResultsMap, incomeMode]);
 
   /* ── City helpers ── */
   const getName = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
@@ -392,6 +440,102 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
           </div>
         </div>
 
+        {/* ──── Info card: tax rate, timezone, language (no group header) ──── */}
+        {filledCities.length > 0 && (() => {
+          const bestC = darkMode ? "text-emerald-400" : "text-emerald-600";
+          const valC = darkMode ? "text-slate-100" : "text-slate-800";
+          const dimC = darkMode ? "text-slate-600" : "text-slate-300";
+          const lblC = darkMode ? "text-slate-500" : "text-slate-400";
+          const warnC = darkMode ? "text-amber-400" : "text-amber-600";
+          const dividerCls = darkMode ? "border-slate-700" : "border-slate-200";
+          const colCount = visibleSlots.length;
+          const now = new Date();
+          const intlLocale = locale === "zh" ? "zh-CN" : locale === "ja" ? "ja-JP" : locale === "es" ? "es-ES" : "en-US";
+
+          // Tax: build per-slot results
+          const showTax = incomeMode !== "gross";
+          const taxResults = visibleSlots.map(c => c ? taxResultsMap.get(c.id) ?? null : null);
+          const taxScores = taxResults.map(r => r && !r.dataIsLikelyNet ? r.effectiveRate : null);
+          const validTax = taxScores.filter((v): v is number => v != null);
+          const bestTax = validTax.length > 1 && validTax.some(v => v !== validTax[0]) ? Math.min(...validTax) : null;
+
+          type InfoRow = {
+            label: string;
+            render: (slot: City | null, i: number) => { text: string; colorCls: string } | null;
+          };
+          const infoRows: InfoRow[] = [];
+
+          if (showTax) {
+            infoRows.push({
+              label: t("effectiveTaxRate"),
+              render: (slot, i) => {
+                if (!slot) return null;
+                const r = taxResults[i];
+                if (!r) return null;
+                if (r.dataIsLikelyNet) return { text: t("dataLikelyNet"), colorCls: warnC };
+                const pct = `~${(r.effectiveRate * 100).toFixed(1)}%`;
+                const scheme = r.hasExpatScheme ? ` · ${t("expatSchemeNote", { scheme: t(getExpatSchemeName(slot.country)) })}` : "";
+                const isBest = bestTax != null && taxScores[i] === bestTax;
+                return { text: pct + scheme, colorCls: isBest ? bestC : valC };
+              },
+            });
+          }
+
+          infoRows.push({
+            label: t("timezone"),
+            render: (slot) => {
+              if (!slot?.timezone) return null;
+              const fmt = new Intl.DateTimeFormat(intlLocale, { timeZone: slot.timezone, hour: "2-digit", minute: "2-digit", hour12: false });
+              const parts = new Intl.DateTimeFormat("en-US", { timeZone: slot.timezone, timeZoneName: "shortOffset" }).formatToParts(now);
+              const o = parts.find(p => p.type === "timeZoneName")?.value || "";
+              const m = o.match(/GMT([+-]?)(\d{1,2})(?::(\d{2}))?/);
+              if (!m) return { text: o, colorCls: valC };
+              const sign = m[1] === "-" ? "-" : "+";
+              const h = parseInt(m[2]); const min = m[3] || "0";
+              const utcLabel = `UTC${sign}${h}${min !== "0" ? ":" + min.padStart(2, "0") : ""}`;
+              return { text: `${utcLabel} · ${fmt.format(now)}`, colorCls: valC };
+            },
+          });
+
+          infoRows.push({
+            label: t("officialLanguages"),
+            render: (slot) => {
+              if (!slot) return null;
+              const langs = CITY_LANGUAGES[slot.id] || [];
+              if (langs.length === 0) return null;
+              const localized = langs.map(l => LANGUAGE_NAME_TRANSLATIONS[l]?.[locale] || l);
+              const show = localized.slice(0, 3);
+              const more = localized.length - show.length;
+              return { text: show.join(" · ") + (more > 0 ? ` +${more}` : ""), colorCls: valC };
+            },
+          });
+
+          return (
+            <div className={`rounded-xl shadow-md overflow-hidden border mt-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-100"}`}>
+              <div className="grid px-4 py-2" style={{ gridTemplateColumns: `repeat(${colCount}, minmax(0, 1fr))` }}>
+                {infoRows.flatMap((row) =>
+                  visibleSlots.map((slot, i) => {
+                    const result = row.render(slot, i);
+                    const border = i < colCount - 1 ? `border-r ${dividerCls}` : "";
+                    const txtLen = result?.text.length ?? 0;
+                    const sizeCls = txtLen <= 8 ? "text-lg" : txtLen <= 16 ? "text-base" : "text-sm";
+                    return (
+                      <div key={`${row.label}-${i}`} className={`flex flex-col items-center text-center py-2 px-1 ${border}`}>
+                        <p className={`text-xs mb-0.5 shrink-0 ${lblC}`}>{row.label}</p>
+                        <div className="flex-1 flex items-center justify-center">
+                          <p className={`${sizeCls} font-bold leading-snug ${result ? result.colorCls : dimC}`}>
+                            {result ? result.text : "—"}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* ──── Per-group cards ──── */}
         {GROUP_KEYS.map(gk => {
           const gRows = rows.filter(d => d.m.group === gk);
@@ -539,6 +683,91 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
                       {t("chartRainLegend")}
                     </span>
                   </div>
+                )}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* ──── Digital Nomad card (visa, VPN, English) ──── */}
+        {nomadItems && filledCities.length > 0 && (() => {
+          const bestC = darkMode ? "text-emerald-400" : "text-emerald-600";
+          const valC = darkMode ? "text-slate-100" : "text-slate-800";
+          const dimC = darkMode ? "text-slate-600" : "text-slate-300";
+          const lblC = darkMode ? "text-slate-500" : "text-slate-400";
+          const groupBg = darkMode ? "bg-slate-700/30" : "bg-slate-50";
+          const dividerCls = darkMode ? "border-slate-700" : "border-slate-200";
+
+          const visaScores = nomadItems.map(nd => nd?.visa ? (nd.visa.hasNomadVisa ? 1 : 0) : null);
+          const vpnScores = nomadItems.map(nd => nd?.internet ? (VPN_RANK[String(nd.internet.vpnRestricted)] ?? null) : null);
+          const engScores = nomadItems.map(nd => nd?.english?.cityRating ? (ENG_RANK[nd.english.cityRating] ?? null) : null);
+          const bestOf = (scores: (number | null)[]) => {
+            const valid = scores.filter((v): v is number => v != null);
+            if (valid.length < 2) return null;
+            const best = Math.max(...valid);
+            return valid.some(v => v !== best) ? best : null;
+          };
+
+          type NomadRow = { label: string; vals: (string | null)[]; scores: (number | null)[]; best: number | null };
+          const nomadRows: NomadRow[] = [
+            {
+              label: t("nomadVisa"),
+              vals: nomadItems.map(nd => {
+                if (!nd?.visa) return null;
+                return nd.visa.hasNomadVisa ? (localizeVisaName(nd.visa.visaName, locale as Locale) ?? t("nomadVisa")) : t("nomadNoVisa");
+              }),
+              scores: visaScores, best: bestOf(visaScores),
+            },
+            {
+              label: t("nomadVPNLabel"),
+              vals: nomadItems.map(nd => {
+                if (!nd?.internet) return null;
+                return nd.internet.vpnRestricted === true ? t("nomadVPN")
+                  : nd.internet.vpnRestricted === "partial" ? t("nomadVPNPartial")
+                  : t("nomadVPNFree");
+              }),
+              scores: vpnScores, best: bestOf(vpnScores),
+            },
+            {
+              label: t("nomadEnglish"),
+              vals: nomadItems.map(nd => {
+                if (!nd?.english?.cityRating) return null;
+                return t(`nomadEnglish${nd.english.cityRating}`);
+              }),
+              scores: engScores, best: bestOf(engScores),
+            },
+          ];
+          const colCount = visibleSlots.length;
+
+          return (
+            <div className={`rounded-xl shadow-md overflow-hidden border mt-4 ${darkMode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-100"}`}>
+              <div className={groupBg}>
+                <p className={`px-4 py-2 text-xs font-bold tracking-wider uppercase ${darkMode ? "text-slate-400" : "text-slate-500"}`}>
+                  {t(GROUP_I18N.nomad)}
+                </p>
+              </div>
+              {/* Row-based grid: each nomad metric is one grid row spanning all city columns */}
+              <div className="grid px-4 py-2" style={{ gridTemplateColumns: `repeat(${colCount}, minmax(0, 1fr))` }}>
+                {nomadRows.flatMap((row) =>
+                  visibleSlots.map((slot, i) => {
+                    const val = row.vals[i];
+                    const score = row.scores[i];
+                    const isBest = row.best != null && score != null && score === row.best;
+                    const isNull = !slot || val == null;
+                    const border = i < colCount - 1 ? `border-r ${dividerCls}` : "";
+                    const txtLen = val?.length ?? 0;
+                    const sizeCls = txtLen <= 8 ? "text-lg" : txtLen <= 16 ? "text-base" : "text-sm";
+                    return (
+                      <div key={`${row.label}-${i}`} className={`flex flex-col items-center text-center py-2 px-1 ${border}`}>
+                        <p className={`text-xs mb-0.5 shrink-0 ${lblC}`}>{row.label}</p>
+                        <div className={`flex-1 flex items-center justify-center`}>
+                          <p className={`${sizeCls} font-bold leading-snug ${isNull ? dimC : isBest ? bestC : valC}`}>
+                            {isNull ? "—" : val}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })
                 )}
               </div>
             </div>

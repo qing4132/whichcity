@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { Locale } from "@/lib/types";
 import { SLUG_TO_ID, CITY_SLUGS, SITEMAP_PAIRS } from "@/lib/citySlug";
 import { getCityById, getCityEnName, getCityLocaleName, loadCities } from "@/lib/dataLoader";
+import { loadNomadData } from "@/lib/nomadData";
 import { LOCALES } from "@/lib/i18nRouting";
 import { TRANSLATIONS } from "@/lib/i18n";
 import CompareContent from "@/components/CompareContent";
@@ -55,6 +56,7 @@ export default async function ComparePage({ params }: Props) {
   const initialCities = slugs.map(s => getCityById(SLUG_TO_ID[s])!);
   if (initialCities.some(c => !c)) notFound();
   const allCities = loadCities();
+  const nomadDataMap = loadNomadData();
   const names = slugs.map(s => getCityEnName(SLUG_TO_ID[s]));
 
   const jsonLd = [
@@ -80,7 +82,7 @@ export default async function ComparePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CompareContent initialCities={initialCities} initialSlugs={slugs} allCities={allCities} locale={locale} />
+      <CompareContent initialCities={initialCities} initialSlugs={slugs} allCities={allCities} locale={locale} nomadDataMap={nomadDataMap} />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { loadCities } from "@/lib/dataLoader";
+import { loadNomadData } from "@/lib/nomadData";
 import CompareContent from "@/components/CompareContent";
 
 export const metadata: Metadata = {
@@ -14,5 +15,6 @@ interface Props {
 export default async function CompareIndexPage({ params }: Props) {
   const { locale } = await params;
   const allCities = loadCities();
-  return <CompareContent initialCities={[]} initialSlugs={[]} allCities={allCities} locale={locale} />;
+  const nomadDataMap = loadNomadData();
+  return <CompareContent initialCities={[]} initialSlugs={[]} allCities={allCities} locale={locale} nomadDataMap={nomadDataMap} />;
 }
