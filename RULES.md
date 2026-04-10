@@ -6,7 +6,7 @@
 - Readability is the highest priority
 
 ## Hard Rules
-- Do NOT introduce new frameworks or libraries
+- Do NOT introduce new frameworks or libraries unless clearly necessary (e.g. test runner)
 - Do NOT over-engineer
 - Prefer modifying existing code over adding new layers
 - Keep files small and simple

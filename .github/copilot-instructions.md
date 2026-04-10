@@ -50,5 +50,5 @@ npm run build                # production build
 
 - See RULES.md for coding conventions
 - Simplicity > flexibility > performance; files < 300 lines; functions < 50 lines
-- Do NOT introduce new frameworks or libraries
+- Do NOT introduce new frameworks or libraries unless clearly necessary (e.g. test runner)
 - Prefer deleting code over adding layers
