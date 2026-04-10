@@ -4,6 +4,7 @@
 
 > 详细架构、数据模型、技术债、TODO → 见 [HANDOFF.md](../HANDOFF.md)
 > 数据更新流程 → 见 [DATA_OPS.md](../DATA_OPS.md)
+> **Redesign 产品指导规则 → 见 [REDESIGN.md](../REDESIGN.md)**
 
 ## Architecture
 
@@ -14,18 +15,14 @@
 - `lib/` — data loading, i18n, tax computation (81 countries), nomad i18n, types, constants
 - `lib/nomadData.ts` — nomad data types + server-side JSON loader
 - `lib/nomadI18n.ts` — nomad-specific translations (visa names, notes, VPN notes, legal income)
-- `public/data/` — cities.json (154 cities), exchange-rates.json (auto-updated daily)
-- `_audit/` — nomad-data-compiled.json, nomad-visafree-4passport.json, audit scripts
-- `scripts/` — active maintenance scripts (3 files)
-- `_archive/` — historical scripts, old components, data sources, reports (do not delete)
+- `public/data/` — cities.json, exchange-rates.json, nomad-data-compiled.json, nomad-visafree-4passport.json
+- `__tests__/` — unit tests (Vitest): tax engine, composite index
+- `scripts/` — active maintenance scripts (4 files)
+- `_archive/` — historical scripts, audit reports, old components, data sources, reports (do not delete)
 
 ## Key Data
 
 - 154 cities, 26 professions, 10 currencies, 4 locales (zh/en/ja/es)
-- City type: ~50 fields (income, costs, housing, safety, healthcare, freedom, climate, etc.)
-- Tax engine: 81 country tax tables + city overrides + expat schemes
-- Composite indices: Life Pressure (client-computed), Safety/Healthcare/Freedom (pre-computed in JSON)
-- Nomad data: visa info, VPN status, English level, timezone overlap, visa-free matrix (4 passports × 81 countries
 - City type: ~50 fields (income, costs, housing, safety, healthcare, freedom, climate, etc.)
 - Tax engine: 81 country tax tables + city overrides + expat schemes
 - Composite indices: Life Pressure (client-computed), Safety/Healthcare/Freedom (pre-computed in JSON)
@@ -43,6 +40,7 @@
 ```bash
 npm install && npm run dev   # http://localhost:3000
 npx tsc --noEmit             # type check
+npm test                     # unit tests
 npm run build                # production build
 ```
 

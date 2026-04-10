@@ -1,7 +1,8 @@
 # WhichCity — Project Handoff Document
 
-> Last updated: 2026-04-10
+> **Version 1.0** — Phase 1 complete (2026-04-10)
 > Purpose: Enable a new developer or AI to fully understand and work on this project without prior context.
+> V1 changelog: [`_archive/reports/changelog-v1.md`](_archive/reports/changelog-v1.md)
 
 ## Table of Contents
 
@@ -20,10 +21,6 @@
 - [13. TODO & Future Ideas](#13-todo--future-ideas)
 - [14. Design Principles](#14-design-principles)
 - [15. File Map](#15-file-map)
-- [16. Recent Changes (2026-04-08 → 04-09)](#16-recent-changes-2026-04-08--04-09)
-- [17. Digital Nomad Section (2026-04-09)](#17-digital-nomad-section-2026-04-09)
-- [18. Changes (2026-04-10)](#18-changes-2026-04-10)
-- [19. Changes (2026-04-10 afternoon)](#19-changes-2026-04-10-afternoon)
 
 ---
 
@@ -66,7 +63,7 @@ whichcity/
 │       ├── page.tsx            Home → HomeContent
 │       ├── error.tsx           Error boundary
 │       ├── not-found.tsx       404 page
-│       ├── city/[slug]/        City detail routes (134 slugs)
+│       ├── city/[slug]/        City detail routes (154 slugs)
 │       │   ├── page.tsx        → CityDetailContent
 │       │   └── opengraph-image.tsx
 │       ├── ranking/
@@ -105,33 +102,52 @@ whichcity/
 │   ├── cityIntros.ts           154 cities × 4 locales (intro paragraphs)
 │   ├── cityLanguages.ts        Official languages per city
 │   ├── i18nRouting.ts          Locale detection helpers
-│   ├── analytics.ts            GA4 event tracking (10 lines)
+│   └── analytics.ts            GA4 event tracking (10 lines)
 │
 ├── public/
 │   ├── data/
-│   │   ├── cities.json         154 cities, ~50 fields each (runtime data)
-│   │   └── exchange-rates.json 30 currencies (auto-updated daily)
+│   │   ├── cities.json                  154 cities, ~50 fields each (runtime data)
+│   │   ├── exchange-rates.json          30 currencies (auto-updated daily)
+│   │   ├── nomad-data-compiled.json     154 cities nomad data (visa, VPN, English, timezone)
+│   │   └── nomad-visafree-4passport.json  Visa-free matrix (CN/US/EU/JP × 81 countries)
 │   └── fonts/
 │       └── NotoSansSC-Bold.ttf CJK font for OG image generation
 │
+├── __tests__/                  Unit tests (Vitest)
+│   ├── taxUtils.test.ts        22 tests — tax engine
+│   └── compositeIndex.test.ts  13 tests — Life Pressure computation
+│
 ├── scripts/                    Active maintenance scripts
-│   ├── update-rates.mjs        Fetch exchange rates (ExchangeRate-API)
-│   ├── add-monthly-climate.mjs Batch add monthly climate data
-│   └── add-timezone.mjs        Add timezone to cities
+│   ├── update-rates.mjs        Fetch exchange rates (daily, CI-automated)
+│   ├── validate-data.mjs       Data validation (CI-automated)
+│   ├── add-monthly-climate.mjs Batch add monthly climate data (reusable for new cities)
+│   └── add-timezone.mjs        Add timezone to cities (reusable for new cities)
 │
 ├── _archive/                   Historical reference (DO NOT DELETE)
-│   ├── scripts/                24 one-time data processing scripts
+│   ├── scripts/                30+ one-time data processing scripts
+│   ├── audit/                  V1 data audit scripts, results, and fix reports
 │   ├── data_sources/           Raw source data (Numbeo, UNODC, GPI, Gallup)
 │   ├── old-homepage/           Legacy components before redesign
-│   ├── reports/                Dev session reports (Mar–Apr 2026)
-│   └── *.md                    Historical docs (ARCHITECTURE, DATA_SOURCES, etc.)
+│   ├── reports/                Dev session reports + V1 changelog
+│   └── *.md                    Historical docs
+│
+├── .github/
+│   ├── workflows/
+│   │   ├── ci.yml              CI: tsc → validate-data → test → build
+│   │   └── update-exchange-rates.yml  Daily exchange rate auto-update
+│   ├── agents/
+│   │   └── data-audit.agent.md Data audit AI agent
+│   ├── instructions/           Copilot instruction files
+│   └── copilot-instructions.md AI coding context
 │
 ├── middleware.ts               Locale routing + cookie persistence
 ├── next.config.ts              Dev port isolation, font/data tracing, cache headers
 ├── tailwind.config.ts          darkMode: "class", standard breakpoints
+├── vitest.config.ts            Test configuration
 │
 ├── README.md                   User-facing project description (4 languages)
 ├── RULES.md                    Coding conventions
+├── REDESIGN.md                 Phase 2 redesign guidelines (constraints + design principles)
 ├── DATA_OPS.md                 Data maintenance procedures
 └── HANDOFF.md                  This file
 ```
@@ -550,27 +566,30 @@ doda.jp source data (2025):
 - All 154 cities rendered in ranking (no pagination/virtualization)
 - Climate charts render all 12 months even when off-screen
 
-### Misc
-
-- `getCityClimate()` in clientUtils.ts is deprecated but not removed (use `city.climate` directly)
-
 ---
 
 ## 13. TODO & Future Ideas
 
-### Near-term
+### Phase 1 — Complete ✓
 
-- [x] Add more cities (target: 150+) — done: 154 cities (2026-04-09)
-- [x] Digital nomad section: visa info, VPN status, English level, visa-free matrix, timezone overlap (done 04-09)
-- [x] CI pipeline + unit tests for tax engine & composite index (done 04-10)
+- [x] 154 cities with 26 professions each
+- [x] Digital nomad section (visa, VPN, English, timezone, visa-free matrix)
+- [x] CI pipeline + unit tests (tax engine, composite index)
+- [x] Dark mode flash fix (mounted pattern)
+- [x] Chinese copywriting standards
+- [x] Compare page: info card + nomad card
+
+### Phase 2 — Next
+
+- [ ] Redesign: implement REDESIGN.md guidelines (information hierarchy, identity system)
 - [ ] Annual data refresh cycle (salaries, costs, indices)
-- [ ] Add mobile-optimized share cards
-- [ ] Consider pagination or virtualization for ranking page with many cities
+- [ ] Mobile-optimized share cards
+- [ ] Consider pagination or virtualization for ranking page
 
 ### Medium-term
 
 - [ ] Tax calculator: input custom salary → show net income across all cities
-- [ ] More professions (currently 26; creative, blue-collar categories underrepresented)
+- [ ] More professions (creative, blue-collar categories underrepresented)
 - [ ] Regional cost breakdown (rent vs food vs transport)
 
 ### Long-term
@@ -603,238 +622,40 @@ Quick reference for "where is X?"
 | What | Where |
 |------|-------|
 | City data (runtime) | `public/data/cities.json` |
+| Nomad data (runtime) | `public/data/nomad-data-compiled.json` |
+| Visa-free matrix (runtime) | `public/data/nomad-visafree-4passport.json` |
+| Exchange rates (runtime) | `public/data/exchange-rates.json` |
 | City TypeScript type | `lib/types.ts` |
 | Tax rules (81 countries) | `lib/taxData.ts` |
 | Tax computation | `lib/taxUtils.ts` |
 | All UI translations | `lib/i18n.ts` |
+| Nomad translations | `lib/nomadI18n.ts` |
+| Nomad data types + loader | `lib/nomadData.ts` |
 | City names (4 locales) | `lib/i18n.ts` → `CITY_NAME_TRANSLATIONS` |
 | City intro paragraphs | `lib/cityIntros.ts` |
 | City URL slugs | `lib/citySlug.ts` |
 | City official languages | `lib/cityLanguages.ts` |
 | Regions, flags, countries | `lib/constants.ts` |
 | Life Pressure formula | `lib/clientUtils.ts` → `computeLifePressure` |
-| Exchange rates (runtime) | `public/data/exchange-rates.json` |
 | Exchange rate updater | `scripts/update-rates.mjs` |
+| Data validation | `scripts/validate-data.mjs` |
 | Global settings hook | `hooks/useSettings.ts` |
 | Locale routing | `middleware.ts` |
 | GA4 tracking | `lib/analytics.ts` |
 | OG image generation | `app/[locale]/*/opengraph-image.tsx` |
 | CJK font for OG | `public/fonts/NotoSansSC-Bold.ttf` |
+| CI pipeline | `.github/workflows/ci.yml` |
+| Unit tests (tax engine) | `__tests__/taxUtils.test.ts` |
+| Unit tests (composite index) | `__tests__/compositeIndex.test.ts` |
 | Historical scripts | `_archive/scripts/` |
+| V1 audit reports | `_archive/audit/` |
 | Raw data sources | `_archive/data_sources/` |
+| V1 changelog | `_archive/reports/changelog-v1.md` |
 | Dev session reports | `_archive/reports/` |
 | Data update procedures | `DATA_OPS.md` |
 | Coding rules | `RULES.md` |
-| Nomad data (compiled)        | `_audit/nomad-data-compiled.json` |
-| Nomad translations           | `lib/nomadI18n.ts` |
-| Nomad data types + loader    | `lib/nomadData.ts` |
-| Visa-free matrix             | `_audit/nomad-visafree-4passport.json` |
-| AI coding context | `.github/copilot-instructions.md` |\n| CI pipeline                    | `.github/workflows/ci.yml` |\n| Unit tests (tax engine)        | `__tests__/taxUtils.test.ts` |\n| Unit tests (composite index)   | `__tests__/compositeIndex.test.ts` |\n| Vitest config                  | `vitest.config.ts` |
-
----
-
-## 16. Recent Changes (2026-04-08 → 04-09)
-
-### BigMac Price Unification (Japan)
-
-All 6 Japan cities' `bigMacPrice` unified to **$3.03** based on The Economist Big Mac Index raw data (2026-01-01): ¥480 ÷ 158.545 = $3.03. Previously had inconsistent values (3.35–3.73).
-
-### Profession Salary Data Overhaul (19 cities)
-
-Replaced coefficient-derived salary data for 19 newly added cities (IDs 140–158) with real data from **SalaryExpert** (primary) and **Paylab** (Cambodia fallback).
-
-**Pipeline**: `scripts/_update-salaries.mjs`
-- Input: SalaryExpert gross annual salaries in local currency
-- Conversion: ÷ FX rate → USD → × (1 − effective tax rate) → ÷ 12 → round to nearest $500
-- Tax rates: approximate effective rates per country (not the project tax engine — script is for bulk import only)
-- Missing professions: filled via related-profession heuristics (e.g., Civil Servant ≈ Teacher, Product Manager ≈ Software Engineer)
-- Minimum floor: $500/mo
-
-**Key fixes during the process**:
-- **Split (Croatia)**: SalaryExpert labels values as HRK but Croatia uses EUR since 2023-01. Fixed `currency: "HRK"` → `"EUR"` in the script. Before fix: all 26 professions = $500. After: range $1,000–$4,000.
-- **Siem Reap (Cambodia)**: SalaryExpert blocked by Cloudflare. Used Paylab.com national data × 0.75 (Siem Reap discount). Range $500–$1,500.
-
-**Validation**: All 19 cities have 26 professions, average profession salary / (averageIncome/12) ratio between 1.1× and 4.8×.
-
-| Cities updated | Data source | Professions | Date |
-|---|---|---|---|
-| Porto, Valencia, Las Palmas, Bansko, Split | SalaryExpert (EUR) | 22–26/26 | 2026-04-09 |
-| Cancún, Playa del Carmen, Puerto Vallarta | SalaryExpert (MXN) | 24–25/26 | 2026-04-09 |
-| Bali | SalaryExpert (IDR) | 24/26 | 2026-04-09 |
-| Da Nang | SalaryExpert (VND, country-level) | 24/26 | 2026-04-09 |
-| Phuket, Ko Pha-ngan, Ko Samui | SalaryExpert (THB, Phuket data) | 24/26 | 2026-04-09 |
-| Montevideo | SalaryExpert (UYU) | 25/26 | 2026-04-09 |
-| Penang | SalaryExpert (MYR) | 25/26 | 2026-04-09 |
-| Marrakech | SalaryExpert (MAD) | 25/26 | 2026-04-09 |
-| Florianópolis | SalaryExpert (BRL) | 25/26 | 2026-04-09 |
-| Cusco | SalaryExpert (PEN) | 25/26 | 2026-04-09 |
-| Siem Reap | Paylab (KHR, national × 0.75) | 17+9est/26 | 2026-04-09 |
-
-### Methodology Page Update
-
-Added **Paylab** as a salary data source across all 4 locale versions (zh/en/ja/es). Updated data year range from "2024–2025" to "2024–2026".
-
-### Kyoto costBudget Investigation
-
-Investigated anomalous Kyoto costBudget/costModerate ratio (38.9% vs typical 43–45%). Root cause: Kyoto uses **nomads.com** data ("expat cost" / "local cost") while other cities use Numbeo. Per user directive, data left unchanged — it reflects the actual source, not a calculation error.
-
----
-
-## 17. Digital Nomad Section (2026-04-09)
-
-### Overview
-
-City detail pages now include a **Digital Nomad** section powered by a separate compiled dataset (`_audit/nomad-data-compiled.json`, 154 cities) and a 4-passport visa-free matrix (`_audit/nomad-visafree-4passport.json`, 81 countries).
-
-### Data Architecture
-
-| File | Purpose |
-|------|---------|
-| `_audit/nomad-data-compiled.json` | Per-city nomad data (visa, internet, English, timezone, coworking, community) |
-| `_audit/nomad-visafree-4passport.json` | Visa-free tourism days for CN/US/EU/JP passports × 81 countries |
-| `lib/nomadData.ts` | TypeScript types (`NomadCityData`, `VisaFreeMatrix`) + server-side loaders |
-| `lib/nomadI18n.ts` | 4-locale translations for visa names (22), tax strings (12), visa notes (45), VPN notes (9), legal income (13 programs) |
-
-### NomadCityData Interface
-
-```typescript
-interface NomadCityData {
-  visa: { hasNomadVisa, visaName, durationMonths, minIncomeUsd, taxOnForeignIncome, note } | null;
-  english: { efEpiScore, efEpiBand, cityRating: "Great"|"Good"|"Okay"|"Bad" } | null;
-  internet: { downloadMbps, vpnRestricted: boolean|"partial", vpnNote } | null;
-  timezoneOverlap: { utcOffsetHours, overlapWithUSEast, overlapWithUSWest, overlapWithLondon, overlapWithEast8 } | null;
-  // ... plus coworking, nomadCommunity, nomadMonthlyCost (not yet displayed)
-}
-```
-
-### UI Layout (CityDetailContent.tsx)
-
-Single card with rounded border, 3 visual groups separated by dashed dividers:
-
-1. **Top 6 cells**: Visa name, Duration, Min income (legal currency), Tax on foreign income, VPN status, English level
-2. **Notes**: Visa note + VPN note (auto-cleaned: source refs stripped, "no visa" prefix removed, punctuation ensured)
-3. **Bottom split**: Visa-free days (4 passports: US/EU/CN/JP) | Timezone overlap (San Francisco/New York/London/Shanghai)
-
-### Translation System (nomadI18n.ts)
-
-- **Visa names** (VN): 22 unique visa names × 3 non-EN locales
-- **Tax strings** (TX): 12 unique tax descriptions × 3 non-EN locales
-- **Visa notes** (NT): 45 note templates × 4 locales (en/zh/ja/es) — all rewritten as natural prose, no source references
-- **VPN notes** (VP): 9 unique VPN descriptions × 3 non-EN locales
-- **Legal income** (LI): 13 visa programs → original-currency income display (e.g., "1000万 日元/年")
-- **Note cleaning**: `localizeNote()` strips "No dedicated nomad visa." prefix (4 locales), ensures sentence punctuation, returns null if content is empty after stripping — to avoid showing useless notes
-- **VPN note cleaning**: `localizeVpnNote()` same punctuation logic
-
-### NavBar SSR Fix (2026-04-09)
-
-**Resolved in 04-10**: The NavBar SSR fix described below has been superseded by the `mounted` pattern (§18). Components now return `null` before mount, so there is no SSR NavBar to worry about. `sessionStorage` for settings panel state is now safely read in `useState` initializer.
-
-Original fix (now obsolete):
-1. **`if (!s.ready) return null`** in page components blocked the entire page (including NavBar) during SSR. Changed to only hide page content below NavBar.
-2. **sessionStorage in useState initializer** caused React hydration mismatch. Moved to useEffect.
-
----
-
-## 18. Changes (2026-04-10)
-
-### Dark Mode Flash Fix (Critical)
-
-**Problem**: On Chrome and mobile Safari, refreshing or visiting any page in dark mode caused a white flash. The ranking page was the only exception.
-
-**Root cause investigation** (8 iterations):
-
-1. **Initial diagnosis**: SSR HTML was pre-rendered with `darkMode=false` (light-mode classNames). The `useState` initializer read `document.documentElement.classList.contains("dark")` → returned `true` on the client (inline script had already set `.dark` class) → hydration mismatch → React kept SSR's light DOM → `setDarkModeState(true)` in `useEffect` was a no-op (already `true`).
-
-2. **Fix #1**: Changed `darkMode` initial value to `false` (match SSR) + `useLayoutEffect` to sync. Worked for hard refresh but caused flash on client-side navigation (new component mounted with `false`, then corrected).
-
-3. **Fix #2**: Detect hydration vs client-nav via `theme-ready` class on `<html>`. Client-nav reads real value from DOM; hydration uses `false`.
-
-4. **Chrome still flashed**: Tried inline `<style>` in `<head>` for critical CSS → Next.js hoisted its own `<link>`/`<script>` tags above it, making inline styles too late.
-
-5. **Tried `<body>` inline style + script**: Next.js put the `<style>` in body, but CSS `body::before` overlay was in external stylesheet (not loaded yet).
-
-6. **Tried `<html style="visibility:hidden">`**: Hid everything until React hydrated. But the white background was still visible (visibility doesn't hide canvas color). Made Safari worse.
-
-7. **Key user observation**: "Ranking page never flashes." Ranking uses `<Suspense>` → SSR outputs no component HTML → client renders with correct `darkMode` from the start.
-
-8. **Final fix**: Add `mounted` state to `useSettings` (initial `false`). All page components return `null` when `!mounted`. `useLayoutEffect` syncs theme + sets `mounted=true`. First visible render uses correct `darkMode`. **Zero SSR HTML with theme-dependent classNames = zero flash.** Same principle as ranking page's Suspense boundary but explicit and universal.
-
-**Files changed**: `hooks/useSettings.ts`, `components/HomeContent.tsx`, `components/CityDetailContent.tsx`, `components/CompareContent.tsx`, `components/MethodologyContent.tsx`, `app/[locale]/layout.tsx`, `app/globals.css`
-
-**Side effects resolved**:
-- Language switching no longer flashes (same root cause: `useEffect` → `useLayoutEffect` + `mounted`)
-- Mobile Safari theme toggle bottom-area color fixed (cleared stale inline `backgroundColor` in `applyTheme`)
-- NavBar settings panel now opens instantly after language switch (read `sessionStorage` in `useState` initializer instead of `useEffect`)
-
-### Chinese Copywriting Fixes
-
-Applied [中文文案排版指北](https://github.com/mzlogin/chinese-copywriting-guidelines) rules to all user-visible Chinese text (170 fixes across 3 files):
-
-| Rule | Example | Files |
-|------|---------|-------|
-| Space between Chinese and English | `TTC公共交通` → `TTC 公共交通` | i18n, cityIntros |
-| Space between Chinese and numbers | `地铁24小时` → `地铁 24 小时` | nomadI18n, cityIntros |
-| Half-width parens → full-width | `(BLS)` → `（BLS）` | i18n, nomadI18n |
-| Half-width colon → full-width | `显示币种:` → `显示币种：` | i18n |
-| No space after full-width punct | `基准城市： {city}` → `基准城市：{city}` | i18n |
-
-Automated via Python script (deleted after use). Only zh values modified; en/ja/es untouched.
-
-### Compare Page: Nomad & Info Cards
-
-**New cards added to CompareContent** (inserted between wins summary and per-group metric cards, and after climate section):
-
-1. **Info card** (no group header, between wins and income group):
-   - Effective tax rate: matches city detail display — shows `~X.X%` with expat scheme note, amber warning for dataIsLikelyNet, hidden entirely in gross income mode. Participates in win count (lower is better).
-   - Timezone: shows `UTC±X · HH:MM` (live local time), matching city detail format. Does not participate in win count.
-   - Official languages: shows up to 3 languages with `+N` for overflow. Does not participate in win count.
-
-2. **Digital nomad card** (after climate section):
-   - Relevant visa: shows localized visa name or "None". Win: has visa > no visa.
-   - VPN restriction: Unrestricted > Partial > Restricted.
-   - English level: Great > Good > Okay > Bad.
-   - All 3 metrics participate in win count.
-
-**Layout**: Both cards use row-based flat grid (`flatMap` over rows × columns) ensuring cross-city equal row heights. Labels aligned at top (`shrink-0`), values vertically centered (`flex-1 items-center`). Adaptive font sizing: `text-lg` (≤8 chars) → `text-base` (≤16) → `text-sm` (longer).
-
-**Data flow**: `loadNomadData()` called in both compare page server components, passed as `nomadDataMap` prop. `taxResultsMap` stores full `NetIncomeResult` per city (not just rate) to access `hasExpatScheme`, `dataIsLikelyNet`.
-
-### UI Polish
-
-- **nomadSection label shortened**: zh "数字游民"、en "Digital Nomad"、ja "デジタルノマド"、es "Nómadas Digitales" (was "...信息/Info/情報/Info para...")
-- **ClimateChart breathing room**: Added `py-2` to chart relative container — current-month highlight strip extends 8px above/below chart content
-
----
-
-## 19. Changes (2026-04-10 afternoon)
-
-### CI Pipeline + Unit Tests
-
-- **CI workflow** (`.github/workflows/ci.yml`): on push/PR → `tsc` → `validate-data` → `npm test` → `build`
-- **Vitest 3.x** added as devDependency, config in `vitest.config.ts`, `npm test` runs all tests
-- **35 unit tests** across 2 files:
-  - `__tests__/taxUtils.test.ts` (22 tests): zero-tax, flat-tax, US state tax, Japan/Korea special deductions, Denmark AM-bidrag, Singapore CPF, expat schemes (NL 30%, Spain Beckham, Korea 19%), edge cases, FX rate override
-  - `__tests__/compositeIndex.test.ts` (13 tests): Life Pressure basic computation, cost tier switching, missing data confidence levels, edge cases, sub-indicator weight behavior
-- **RULES.md** updated: "no new frameworks" → "unless clearly necessary (e.g. test runner)"
-
-### City Detail: Similar Cities Card Redesign
-
-Redesigned similar cities section to match the index card pattern (Life Pressure / Safety / Healthcare / Freedom):
-
-- **Structure**: top card (flag + city name + compare button, `rounded-b-none`) + bottom detail panel (highlights, `rounded-b-xl border-t-0`, `detailBg`)
-- **Row-aligned grid**: highlights rendered row-by-row across all 6 cities (not per-card), ensuring equal row height when text wraps. Padded to 3 rows. Uses `flex items-center` for vertical centering
-- **Compare button**: rounded-full pill with neutral border, replacing previous violet accent
-
-### City Detail: Nomad Card Dividers
-
-- Dividers between top 6 cells / notes and visa-free/timezone sections changed from **dashed** to **solid** (`border-slate-700/200`), matching card border style
-- Visa-free ↔ Timezone divider: horizontal `<hr>` on small screens, vertical `border-l` on lg (flex layout with `flex-1`)
-
-### i18n: Spanish Label Shortening
-
-- `annualWorkHours`: "Horas de trabajo anuales" (27 chars) → "Jornada anual" (13 chars)
-- `rankTab_workhours`: "⏰ Horas de trabajo" → "⏰ Jornada anual"
-- Fixes text overflow in Life Pressure sub-indicator card on Spanish locale
+| Redesign guidelines | `REDESIGN.md` |
+| AI coding context | `.github/copilot-instructions.md` |
 
 ---
 
@@ -843,4 +664,6 @@ Redesigned similar cities section to match the index card pattern (Life Pressure
 - [README.md](README.md) — User-facing project description
 - [RULES.md](RULES.md) — Coding conventions
 - [DATA_OPS.md](DATA_OPS.md) — Data maintenance procedures
+- [REDESIGN.md](REDESIGN.md) — Phase 2 redesign guidelines
 - [_archive/README.md](_archive/README.md) — Archive contents description
+- [_archive/reports/changelog-v1.md](_archive/reports/changelog-v1.md) — V1 development changelog

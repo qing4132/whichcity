@@ -6,8 +6,10 @@
 
 ```
 public/data/
-  cities.json          ← 154 cities (runtime, fetched by browser)
-  exchange-rates.json  ← 30 currencies stored, 10 selectable in UI (auto-updated daily)
+  cities.json                  ← 154 cities (runtime, fetched by browser)
+  exchange-rates.json          ← 30 currencies stored, 10 selectable in UI (auto-updated daily)
+  nomad-data-compiled.json     ← 154 cities nomad data (visa, VPN, English, timezone)
+  nomad-visafree-4passport.json ← visa-free matrix (CN/US/EU/JP × 81 countries)
 
 lib/
   constants.ts         ← CITY_CLIMATE (154 entries), REGIONS, CITY_FLAG_EMOJIS, CITY_COUNTRY, POPULAR_CURRENCIES
@@ -17,6 +19,8 @@ lib/
   taxData.ts           ← tax brackets for 81 countries, city overrides, expat schemes
   taxUtils.ts          ← tax computation engine (computeNetIncome)
   clientUtils.ts       ← lifePressure calc, climate helpers
+  nomadData.ts         ← nomad data types + JSON loader
+  nomadI18n.ts         ← nomad visa/VPN/English translations (4 locales)
   i18n.ts              ← 4 locales, all UI strings
   types.ts             ← City, ClimateInfo, ExchangeRates types
 ```
@@ -182,9 +186,13 @@ Automatically generates from `CITY_SLUGS` and `POPULAR_PAIRS`. No manual update 
 
 Run these after any data change:
 ```bash
-npx tsc --noEmit          # TypeScript type check
-npm run build             # Full build validation
+node scripts/validate-data.mjs   # Data integrity checks
+npx tsc --noEmit                 # TypeScript type check
+npm test                         # Unit tests (tax engine, composite index)
+npm run build                    # Full build validation
 ```
+
+These are also run automatically in CI (`.github/workflows/ci.yml`).
 
 ## Data Update Checklist (Annual)
 

@@ -54,7 +54,7 @@ let _visaMatrix: VisaFreeMatrix | null = null;
 export function loadNomadData(): Record<string, NomadCityData> {
     if (_nomadData) return _nomadData;
     try {
-        const raw = readFileSync(join(process.cwd(), "_audit", "nomad-data-compiled.json"), "utf-8");
+        const raw = readFileSync(join(process.cwd(), "public", "data", "nomad-data-compiled.json"), "utf-8");
         const parsed = JSON.parse(raw);
         _nomadData = parsed.cities as Record<string, NomadCityData>;
         return _nomadData;
@@ -66,7 +66,7 @@ export function loadNomadData(): Record<string, NomadCityData> {
 export function loadVisaMatrix(): VisaFreeMatrix {
     if (_visaMatrix) return _visaMatrix;
     try {
-        const raw = readFileSync(join(process.cwd(), "_audit", "nomad-visafree-4passport.json"), "utf-8");
+        const raw = readFileSync(join(process.cwd(), "public", "data", "nomad-visafree-4passport.json"), "utf-8");
         const parsed = JSON.parse(raw);
         _visaMatrix = parsed.matrix as VisaFreeMatrix;
         return _visaMatrix;
