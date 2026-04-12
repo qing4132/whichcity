@@ -26,7 +26,7 @@ Core competitive advantage: profession × 81-country tax engine × comprehensive
 
 ## Key Data
 
-- 154 cities, 26 professions, 81 country tax systems, 10 currencies, 4 locales
+- 154 cities, 25 professions, 81 country tax systems, 10 currencies, 4 locales
 - City type: ~50 fields (income, costs, housing, safety, healthcare, freedom, climate, etc.)
 - Composite indices: Life Pressure (client-computed), Safety/Healthcare/Freedom (pre-computed)
 - Nomad data: visa info, VPN, English level, timezone overlap, visa-free matrix

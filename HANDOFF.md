@@ -13,9 +13,9 @@
 | Dimension | Value |
 |-----------|-------|
 | Cities | 148 displayed (6 hidden nomad-only) |
-| Professions | 23 (was 26; removed 公务员/家政服务人员/摄影师) |
-| Tax Systems | 81 countries + city overrides + expat schemes |
-| Currencies | 10 selectable (30 stored) |
+| Professions | 25 (was 23; added 数字游民 $85k + civil_servant renamed) |
+| Tax Systems | 81 countries + city overrides + 6 expat schemes |
+| Currencies | 10 selectable (50+ stored) |
 | Languages | zh / en / ja / es |
 | Core Use Cases | Job offer comparison, relocation planning, study abroad, city research |
 
@@ -101,7 +101,26 @@ whichcity/
 - `net` — local country tax applied
 - `expatNet` — expat-specific schemes (Netherlands 30%, Spain Beckham Law, etc.)
 
+**Tax Breakdown** (`computeTaxBreakdown`): Returns full itemized breakdown:
+- Gross → Social security (per-component with rates, cap indicators) → Standard deduction → Employee deduction → Taxable income → Income tax brackets → Local tax → Net
+- `TaxBreakdownDetail` has `rate?: string` and `capped?: boolean`
+- `TaxBreakdown` has `expatSchemeName?: string`
+
+**6 Expat Schemes**:
+| Country | Scheme | Engine Type |
+|---------|--------|-------------|
+| Netherlands | 30% Ruling | exemption_pct: 30% |
+| Spain | Beckham Law | flat_rate: 24% (€600k+: 47%) |
+| Italy | Impatriati Regime | exemption_pct: 50% |
+| Portugal | NHR 2.0 | flat_rate: 20% |
+| South Korea | 19% Flat Rate | flat_rate: 19% |
+| Singapore | CPF Exemption | no_social |
+
+**China City Overrides**: 7 cities (Beijing/Shanghai/Guangzhou/Shenzhen/Chengdu/Hangzhou/Chongqing) with per-city caps for pension/medical/unemployment/housing_fund (社平工资×3).
+
 City overrides for US state tax, Canadian provincial tax, HK foreign worker rules.
+
+**Salary Tiers**: 7 multipliers [×0.6 Intern, ×0.8 Junior, ×1.0 Mid, ×1.5 Senior, ×2.0 Expert, ×3.0 Director, ×5.0 Exec] with i18n labels.
 
 ### Composite Indices
 
@@ -123,8 +142,8 @@ Missing sub-indicator weights redistributed proportionally. Confidence: all=high
 | currency | "USD" | localStorage |
 | costTier | "moderate" | localStorage |
 | profession | "软件工程师" | localStorage |
-| incomeMode | "net" | localStorage |
-| salaryMultiplier | 1.0 | localStorage |
+| incomeMode | "net" | forced (no UI) |
+| salaryMultiplier | 1.0 | localStorage (discrete: 0.6/0.8/1/1.5/2/3/5) |
 
 ---
 
@@ -164,9 +183,18 @@ See [REDESIGN.md](REDESIGN.md) for full plan. Key progress:
 - [x] Raw safety fields (homicideRate, gpiScore) added to types + cities.json
 - [x] Ranking page simplified (multi-sort removed)
 - [x] All page emojis removed (except flags)
+- [x] Tax breakdown: expandable itemized view (gross→social→deductions→brackets→net)
+- [x] Social component i18n: 62 items × 4 locales (SOCIAL_COMP_I18N)
+- [x] Cap indicator: * mark + footnote when social base cap reached
+- [x] 6 expat scheme advisory tips with detailed conditions (4 locales)
+- [x] Salary tiers: 7 levels (×0.6–×5.0) with i18n labels in NavBar
+- [x] Digital Nomad profession added ($85k, 148 cities, source: Nomads.com 2026)
+- [x] China tax: 7-city social insurance overrides (pension/medical/unemployment/housing_fund)
+- [x] Currency display: tax breakdown uses currency codes (CNY/EUR) not symbols (¥/€)
+- [x] Thousands separators enabled for all locales
+- [x] Tax detail toggle: "点击展开/收起税务明细" with state-based text
 
 Pending:
-- [ ] Tax calculator visualization
 - [ ] SEO meta optimization
 - [ ] GA4 key event configuration
 - [ ] Compare page Phase 2 restyling

@@ -38,7 +38,7 @@
 
 - Edit `professions` in `cities.json` (values = gross annual USD)
 - `averageIncome` = median across professions
-- Each city must have exactly 26 profession keys (→ 23 after Phase 2 cleanup)
+- Each city must have exactly 25 profession keys (includes 数字游民 $85k fixed)
 
 ## How to Update Composite Indices
 
