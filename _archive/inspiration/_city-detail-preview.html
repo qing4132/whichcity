@@ -2574,6 +2574,706 @@
             </div>
         </div>
 
+        <!-- ══════════════════════════════════════════════════════════════════ -->
+        <!-- 以下 3 个概念是基于前 7 种的优劣分析后提出的"真正推荐"方案     -->
+        <!-- 核心思路：#3 体检报告的信息骨架 + #4 Feed 的移动端展开机制      -->
+        <!-- ══════════════════════════════════════════════════════════════════ -->
+
+        <!-- #8 诊断报告 Feed — 体检 × Feed 融合 -->
+        <div class="concept">
+            <div class="clabel"><span class="cnum" style="background:#f0fdf4;color:#166534">8</span>诊断报告 Feed — 体检骨架 × Feed 展开（推荐）</div>
+            <div class="cdesc">外层是 #4 的竖向 Feed 框架（移动端友好），但每个展开区内采用 #3 体检报告的"实际值 · 参考范围 · 判定符号"三列结构。大数字仍做视觉锚点，但展开后每条子指标都带参考区间和 ⬆/—/⬇ 判定，消除"68.2 到底好不好"的认知真空。可信度低的行用虚线左边框标注。</div>
+            <div class="quad">
+                <div>
+                    <div class="ml">HOME — 首页（不变，同 #4）</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:12px;font-weight:800;color:#0f172a">WhichCity</span>
+                            <div style="display:flex;gap:6px;font-size:10px;color:#94a3b8"><span>排行</span><span>对比</span></div>
+                        </div>
+                        <div style="padding:8px 16px;border-bottom:1px solid #f1f5f9;display:flex;gap:8px;font-size:10px;overflow-x:auto">
+                            <span style="background:#0f172a;color:#fff;padding:3px 10px;border-radius:12px;font-weight:600;white-space:nowrap">🔥 热门</span>
+                            <span style="background:#f1f5f9;color:#64748b;padding:3px 10px;border-radius:12px;white-space:nowrap">🛡️ 最安全</span>
+                            <span style="background:#f1f5f9;color:#64748b;padding:3px 10px;border-radius:12px;white-space:nowrap">💰 高薪</span>
+                        </div>
+                        <div style="flex:1;overflow:auto;max-width:520px;margin:0 auto;width:100%">
+                            <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px">
+                                <span style="font-size:28px">🇺🇸</span>
+                                <div style="flex:1"><div style="font-size:14px;font-weight:800;color:#0f172a">纽约</div><div style="font-size:9px;color:#94a3b8">@newyork · New York</div></div>
+                                <div style="text-align:right"><div style="font-size:14px;font-weight:900;color:#0f172a">$6,200</div><div style="font-size:8px;color:#94a3b8">税后月薪</div></div>
+                            </div>
+                            <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px">
+                                <span style="font-size:28px">🇯🇵</span>
+                                <div style="flex:1"><div style="font-size:14px;font-weight:800;color:#0f172a">东京</div><div style="font-size:9px;color:#94a3b8">@tokyo · Tokyo</div></div>
+                                <div style="text-align:right"><div style="font-size:14px;font-weight:900;color:#0f172a">$4,100</div><div style="font-size:8px;color:#94a3b8">税后月薪</div></div>
+                            </div>
+                            <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px">
+                                <span style="font-size:28px">🇸🇬</span>
+                                <div style="flex:1"><div style="font-size:14px;font-weight:800;color:#0f172a">新加坡</div><div style="font-size:9px;color:#94a3b8">@singapore · Singapore</div></div>
+                                <div style="text-align:right"><div style="font-size:14px;font-weight:900;color:#0f172a">$4,800</div><div style="font-size:8px;color:#94a3b8">税后月薪</div></div>
+                            </div>
+                            <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px">
+                                <span style="font-size:28px">🇬🇧</span>
+                                <div style="flex:1"><div style="font-size:14px;font-weight:800;color:#0f172a">伦敦</div><div style="font-size:9px;color:#94a3b8">@london · London</div></div>
+                                <div style="text-align:right"><div style="font-size:14px;font-weight:900;color:#0f172a">$5,100</div><div style="font-size:8px;color:#94a3b8">税后月薪</div></div>
+                            </div>
+                            <div style="padding:16px;text-align:center;font-size:10px;color:#94a3b8">向下滑动查看更多城市…</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">CITY DETAIL — 城市详情（核心设计）</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:12px;font-weight:800;color:#0f172a">← WhichCity</span>
+                            <div style="display:flex;gap:6px;font-size:10px;color:#94a3b8"><span>对比</span></div>
+                        </div>
+                        <!-- Hero -->
+                        <div style="padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f1f5f9">
+                            <span style="font-size:28px">🇯🇵</span>
+                            <div><div style="font-size:20px;font-weight:900;color:#0f172a">东京</div><div style="font-size:10px;color:#94a3b8">@tokyo · 日本 · 亚洲</div></div>
+                            <div style="margin-left:auto;font-size:10px;background:#0f172a;color:#fff;padding:4px 12px;border-radius:6px;font-weight:600">+ 对比</div>
+                        </div>
+                        <div style="flex:1;overflow:auto;max-width:520px;margin:0 auto;width:100%">
+                            <!-- Row 1: 收入（已展开态） -->
+                            <div style="padding:14px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+                                    <span style="font-size:12px;font-weight:800;color:#0f172a">收入与税务</span>
+                                    <span style="font-size:10px;color:#16a34a;font-weight:600">#35 / 154</span>
+                                </div>
+                                <div style="font-size:36px;font-weight:900;color:#0f172a;line-height:1;margin-bottom:2px">$4,100</div>
+                                <div style="font-size:9px;color:#94a3b8;margin-bottom:8px">软件工程师 · 税后月薪</div>
+                                <!-- 展开：税务明细（已有的 Phase 2 样式） -->
+                                <div style="font-size:10px;color:#64748b;border-top:1px solid #f1f5f9;padding-top:6px">
+                                    <div style="display:flex;justify-content:space-between;font-weight:700;color:#0f172a"><span>税前年薪</span><span>¥6,960,000</span></div>
+                                    <div style="display:flex;justify-content:space-between;padding-left:8px;opacity:.6"><span>所得税</span><span>−¥724,500</span></div>
+                                    <div style="display:flex;justify-content:space-between;padding-left:8px;opacity:.6"><span>社保</span><span>−¥1,041,600</span></div>
+                                    <div style="display:flex;justify-content:between;border-top:1px solid #f1f5f9;margin-top:4px;padding-top:4px;font-weight:700;color:#16a34a"><span>税后净收入</span><span style="margin-left:auto">¥5,193,900</span></div>
+                                    <div style="display:flex;justify-content:space-between;opacity:.6"><span>→ USD (×0.0059)</span><span>$4,100</span></div>
+                                </div>
+                            </div>
+                            <!-- Row 2: 基本保障（已展开态 — 核心差异：体检报告结构） -->
+                            <div style="padding:14px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+                                    <span style="font-size:12px;font-weight:800;color:#0f172a">基本保障</span>
+                                </div>
+                                <div style="display:flex;gap:16px;margin-bottom:8px">
+                                    <div><div style="font-size:36px;font-weight:900;color:#16a34a;line-height:1">95</div><div style="font-size:9px;color:#94a3b8">安全</div></div>
+                                    <div><div style="font-size:36px;font-weight:900;color:#16a34a;line-height:1">89</div><div style="font-size:9px;color:#94a3b8">医疗</div></div>
+                                    <div><div style="font-size:36px;font-weight:900;color:#0f172a;line-height:1">74</div><div style="font-size:9px;color:#94a3b8">治理</div></div>
+                                </div>
+                                <!-- ★ 展开区：体检报告骨架 — 值 · 区间 · 判定 -->
+                                <div style="font-size:10px;color:#64748b;border-top:1px solid #f1f5f9;padding-top:6px">
+                                    <!-- 安全标题 -->
+                                    <div style="display:flex;justify-content:space-between;font-weight:700;color:#0f172a;margin-bottom:2px"><span>安全 <span style="font-size:8px;font-weight:400;color:#94a3b8">5/5 指标</span></span><span>95.0</span></div>
+                                    <!-- 子指标行：名称 | 值 | 参考范围 | 判定 -->
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">Numbeo 安全 (30%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">88</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">20–95</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">谋杀率 (25%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">0.3</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">0.2–50</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">全球和平 (20%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">1.34</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">1.1–3.4</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">Gallup 法治 (15%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">92</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">40–97</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">WPS (10%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">0.83</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">0.4–0.9</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <!-- 分隔 & 医疗 -->
+                                    <div style="display:flex;justify-content:space-between;font-weight:700;color:#0f172a;margin:8px 0 2px"><span>医疗 <span style="font-size:8px;font-weight:400;color:#94a3b8">5/5 指标</span></span><span>89.0</span></div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">医生/千人 (25%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">2.5</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">0.1–6.2</span>
+                                        <span style="width:24px;text-align:right;color:#0f172a">—</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">病床/千人 (20%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">13.0</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">0.5–13</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">UHC 覆盖 (25%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">83</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">25–90</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">预期寿命 (15%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">84.5</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">55–85</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">自付比例 (15%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">13%</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">5–75%</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <!-- 分隔 & 治理（含一条低可信度行） -->
+                                    <div style="display:flex;justify-content:space-between;font-weight:700;color:#0f172a;margin:8px 0 2px"><span>治理 <span style="font-size:8px;font-weight:400;color:#d97706">4/5 指标 · 部分缺失</span></span><span>74.0</span></div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">清廉指数 (25%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">73</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">15–90</span>
+                                        <span style="width:24px;text-align:right;color:#0f172a">—</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">政府效能 (25%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">90</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">5–100</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">法治指数 (20%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">0.78</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">0.3–0.9</span>
+                                        <span style="width:24px;text-align:right;font-weight:700;color:#16a34a">⬆</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-bottom:1px solid #f8fafc">
+                                        <span style="flex:1">新闻自由 (15%)</span>
+                                        <span style="width:40px;text-align:right;font-weight:600;color:#0f172a">70</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">10–95</span>
+                                        <span style="width:24px;text-align:right;color:#0f172a">—</span>
+                                    </div>
+                                    <!-- 缺失行用虚线标注 -->
+                                    <div style="display:flex;align-items:center;padding:2px 0 2px 8px;border-left:2px dashed #d97706;opacity:.5">
+                                        <span style="flex:1">MIPEX (15%)</span>
+                                        <span style="width:40px;text-align:right;color:#94a3b8">—</span>
+                                        <span style="width:50px;text-align:right;font-size:9px;color:#94a3b8">0–80</span>
+                                        <span style="width:24px;text-align:right;color:#94a3b8">—</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Row 3: 住房（折叠态） -->
+                            <div style="padding:14px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="font-size:12px;font-weight:800;color:#0f172a">住房</span></div>
+                                <div style="font-size:24px;font-weight:900;color:#d97706;line-height:1;margin-bottom:2px">$8,900<span style="font-size:12px;font-weight:500;color:#94a3b8">/m²</span></div>
+                                <div style="font-size:9px;color:#94a3b8">买房 18.5 年 · 储蓄率 42%</div>
+                                <div style="font-size:10px;color:#94a3b8;margin-top:4px">展开 ▾</div>
+                            </div>
+                            <!-- Row 4: 生活压力（折叠态） -->
+                            <div style="padding:14px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="font-size:12px;font-weight:800;color:#0f172a">生活压力</span><span style="font-size:10px;color:#d97706;font-weight:600">#85 / 154</span></div>
+                                <div style="font-size:24px;font-weight:900;color:#d97706;line-height:1">55.8</div>
+                                <div style="font-size:10px;color:#94a3b8;margin-top:4px">展开 ▾</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">RANKING — 排行榜（同 #4）</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:12px;font-weight:800;color:#0f172a">← WhichCity</span>
+                            <div style="display:flex;gap:6px;font-size:10px;color:#94a3b8"><span style="color:#0f172a;font-weight:700">🛡️ 安全排行</span></div>
+                        </div>
+                        <div style="padding:8px 16px;border-bottom:1px solid #f1f5f9;display:flex;gap:8px;font-size:10px;overflow-x:auto">
+                            <span style="background:#0f172a;color:#fff;padding:3px 10px;border-radius:12px;font-weight:600;white-space:nowrap">🛡️ 安全</span>
+                            <span style="background:#f1f5f9;color:#64748b;padding:3px 10px;border-radius:12px;white-space:nowrap">🏥 医疗</span>
+                            <span style="background:#f1f5f9;color:#64748b;padding:3px 10px;border-radius:12px;white-space:nowrap">💰 收入</span>
+                        </div>
+                        <div style="flex:1;overflow:auto;max-width:520px;margin:0 auto;width:100%">
+                            <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px">
+                                <div style="width:24px;font-size:14px;font-weight:900;color:#94a3b8;text-align:center">1</div>
+                                <span style="font-size:24px">🇸🇬</span>
+                                <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#0f172a">新加坡</div><div style="font-size:9px;color:#94a3b8">@singapore</div></div>
+                                <div style="text-align:right"><div style="font-size:22px;font-weight:900;color:#16a34a">97</div></div>
+                            </div>
+                            <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px">
+                                <div style="width:24px;font-size:14px;font-weight:900;color:#94a3b8;text-align:center">2</div>
+                                <span style="font-size:24px">🇯🇵</span>
+                                <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#0f172a">东京</div><div style="font-size:9px;color:#94a3b8">@tokyo</div></div>
+                                <div style="text-align:right"><div style="font-size:22px;font-weight:900;color:#16a34a">95</div></div>
+                            </div>
+                            <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px">
+                                <div style="width:24px;font-size:14px;font-weight:900;color:#94a3b8;text-align:center">3</div>
+                                <span style="font-size:24px">🇨🇭</span>
+                                <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#0f172a">苏黎世</div><div style="font-size:9px;color:#94a3b8">@zurich</div></div>
+                                <div style="text-align:right"><div style="font-size:22px;font-weight:900;color:#16a34a">93</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">COMPARE — 对比</div>
+                    <div class="frame" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:12px;font-weight:800;color:#0f172a">WhichCity</span>
+                            <span style="font-size:10px;color:#94a3b8">对比 · 3 城</span>
+                        </div>
+                        <!-- 体检报告式对比表 -->
+                        <div style="flex:1;padding:12px 16px;overflow:auto">
+                            <div style="font-size:16px;font-weight:900;color:#0f172a;margin-bottom:10px">诊断对比</div>
+                            <table style="width:100%;border-collapse:collapse;font-size:10px">
+                                <thead>
+                                    <tr>
+                                        <th style="padding:5px 4px;text-align:left;border-bottom:2px solid #0f172a;font-size:9px;color:#94a3b8">检查项</th>
+                                        <th style="padding:5px 4px;text-align:center;border-bottom:2px solid #0f172a"><span style="font-size:14px">🇯🇵</span><div style="font-size:9px;font-weight:800;color:#0f172a">东京</div></th>
+                                        <th style="padding:5px 4px;text-align:center;border-bottom:2px solid #0f172a"><span style="font-size:14px">🇬🇧</span><div style="font-size:9px;font-weight:800;color:#0f172a">伦敦</div></th>
+                                        <th style="padding:5px 4px;text-align:center;border-bottom:2px solid #0f172a"><span style="font-size:14px">🇸🇬</span><div style="font-size:9px;font-weight:800;color:#0f172a">新加坡</div></th>
+                                        <th style="padding:5px 4px;text-align:center;border-bottom:2px solid #0f172a;font-size:9px;color:#94a3b8">范围</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td style="padding:4px;border-bottom:1px solid #f1f5f9;color:#64748b">安全</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-weight:800;color:#16a34a">95 ⬆</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#64748b">78 —</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-weight:800;color:#16a34a">97 ⬆</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:9px;color:#94a3b8">30–95</td></tr>
+                                    <tr><td style="padding:4px;border-bottom:1px solid #f1f5f9;color:#64748b">医疗</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-weight:800;color:#16a34a">89 ⬆</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#64748b">82 —</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#64748b">86 —</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:9px;color:#94a3b8">25–95</td></tr>
+                                    <tr><td style="padding:4px;border-bottom:1px solid #f1f5f9;color:#64748b">治理</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#64748b">74 —</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-weight:800;color:#16a34a">91 ⬆</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#dc2626">51 ⬇</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:9px;color:#94a3b8">10–95</td></tr>
+                                    <tr><td style="padding:4px;border-bottom:1px solid #f1f5f9;color:#64748b">月薪</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#64748b">$4,100</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-weight:800;color:#16a34a">$5,100</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#64748b">$4,800</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:9px;color:#94a3b8">$400–9K</td></tr>
+                                    <tr><td style="padding:4px;border-bottom:1px solid #f1f5f9;color:#64748b">压力</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#d97706">55.8 ⚠</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#dc2626">68.2 ⬇</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;color:#64748b">49.1 —</td><td style="padding:4px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:9px;color:#94a3b8">15–95</td></tr>
+                                    <tr><td style="padding:4px;color:#64748b">空气</td><td style="padding:4px;text-align:center;color:#64748b">51 —</td><td style="padding:4px;text-align:center;font-weight:800;color:#16a34a">42 ⬆</td><td style="padding:4px;text-align:center;color:#64748b">55 —</td><td style="padding:4px;text-align:center;font-size:9px;color:#94a3b8">10–200</td></tr>
+                                </tbody>
+                            </table>
+                            <div style="margin-top:10px;padding:8px;background:#f8fafc;border-radius:6px;font-size:9px;color:#64748b;line-height:1.5">
+                                <strong style="color:#0f172a">判定标准：</strong>⬆ = P75 以上（优秀）· — = P25–P75（正常）· ⬇ = P25 以下（偏低）· ⚠ = 中高风险
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- #9 极简仪表盘 — 关键信号优先 -->
+        <div class="concept">
+            <div class="clabel"><span class="cnum" style="background:#eff6ff;color:#1d4ed8">9</span>极简仪表盘 — 一屏六块 + 下钻</div>
+            <div class="cdesc">受 Linear/Vercel Dashboard 启发。城市详情页首屏只有 6 个"仪表块"：收入、安全、医疗、消费、储蓄、自由。每块只显示一个大数字+排名+一个 mini 条形进度条（表示在 154 城中的百分位）。点击任意块下钻到子指标详情。零冗余，极度聚焦。</div>
+            <div class="quad">
+                <div>
+                    <div class="ml">HOME — 首页</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:13px;font-weight:800;color:#0f172a">WhichCity</span>
+                            <div style="display:flex;gap:10px;font-size:10px;color:#94a3b8"><span>排行</span><span>对比</span></div>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px">
+                            <div style="font-size:24px;font-weight:900;color:#0f172a;margin-bottom:2px">Where next?</div>
+                            <div style="font-size:10px;color:#94a3b8;margin-bottom:16px">154 cities · 25 professions · 81 tax systems</div>
+                            <div style="width:100%;max-width:380px;margin-bottom:16px"><input disabled placeholder="搜索城市…" style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:11px;color:#94a3b8;background:#f8fafc"></div>
+                            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;max-width:380px">
+                                <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;display:flex;align-items:center;gap:8px">
+                                    <span style="font-size:22px">🇺🇸</span>
+                                    <div><div style="font-size:12px;font-weight:800;color:#0f172a">纽约</div><div style="font-size:8px;color:#94a3b8">#1 收入</div></div>
+                                </div>
+                                <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;display:flex;align-items:center;gap:8px">
+                                    <span style="font-size:22px">🇸🇬</span>
+                                    <div><div style="font-size:12px;font-weight:800;color:#0f172a">新加坡</div><div style="font-size:8px;color:#94a3b8">#1 安全</div></div>
+                                </div>
+                                <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;display:flex;align-items:center;gap:8px">
+                                    <span style="font-size:22px">🇯🇵</span>
+                                    <div><div style="font-size:12px;font-weight:800;color:#0f172a">东京</div><div style="font-size:8px;color:#94a3b8">#3 安全</div></div>
+                                </div>
+                                <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;display:flex;align-items:center;gap:8px">
+                                    <span style="font-size:22px">🇬🇧</span>
+                                    <div><div style="font-size:12px;font-weight:800;color:#0f172a">伦敦</div><div style="font-size:8px;color:#94a3b8">#5 治理</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">CITY DETAIL — 城市详情（核心设计）</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:12px;font-weight:800;color:#0f172a">← WhichCity</span>
+                            <div style="display:flex;gap:8px;font-size:10px;color:#94a3b8"><span>对比</span><span>分享</span></div>
+                        </div>
+                        <!-- Hero -->
+                        <div style="padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f1f5f9">
+                            <span style="font-size:28px">🇯🇵</span>
+                            <div><div style="font-size:20px;font-weight:900;color:#0f172a">东京</div><div style="font-size:10px;color:#94a3b8">@tokyo · 日本 · 亚洲 · UTC+9</div></div>
+                            <div style="margin-left:auto;font-size:10px;background:#0f172a;color:#fff;padding:4px 12px;border-radius:6px;font-weight:600">+ 对比</div>
+                        </div>
+                        <!-- 六块仪表盘 -->
+                        <div style="padding:12px 16px">
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                                <!-- 收入 -->
+                                <div style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;cursor:pointer">
+                                    <div style="font-size:9px;color:#94a3b8;font-weight:600;margin-bottom:4px">税后年收入</div>
+                                    <div style="font-size:28px;font-weight:900;color:#0f172a;line-height:1">$49K</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin-top:6px">
+                                        <div style="flex:1;height:4px;background:#f1f5f9;border-radius:2px"><div style="width:55%;height:100%;background:#3b82f6;border-radius:2px"></div></div>
+                                        <span style="font-size:8px;color:#94a3b8">#35</span>
+                                    </div>
+                                </div>
+                                <!-- 安全 -->
+                                <div style="border:1px solid #bbf7d0;border-radius:10px;padding:12px;background:#f0fdf4;cursor:pointer">
+                                    <div style="font-size:9px;color:#16a34a;font-weight:600;margin-bottom:4px">安全指数 ⬆</div>
+                                    <div style="font-size:28px;font-weight:900;color:#16a34a;line-height:1">95</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin-top:6px">
+                                        <div style="flex:1;height:4px;background:#dcfce7;border-radius:2px"><div style="width:95%;height:100%;background:#16a34a;border-radius:2px"></div></div>
+                                        <span style="font-size:8px;color:#16a34a;font-weight:700">#3</span>
+                                    </div>
+                                </div>
+                                <!-- 医疗 -->
+                                <div style="border:1px solid #bbf7d0;border-radius:10px;padding:12px;background:#f0fdf4;cursor:pointer">
+                                    <div style="font-size:9px;color:#16a34a;font-weight:600;margin-bottom:4px">医疗指数 ⬆</div>
+                                    <div style="font-size:28px;font-weight:900;color:#16a34a;line-height:1">89</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin-top:6px">
+                                        <div style="flex:1;height:4px;background:#dcfce7;border-radius:2px"><div style="width:89%;height:100%;background:#16a34a;border-radius:2px"></div></div>
+                                        <span style="font-size:8px;color:#16a34a;font-weight:700">#8</span>
+                                    </div>
+                                </div>
+                                <!-- 消费 -->
+                                <div style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;cursor:pointer">
+                                    <div style="font-size:9px;color:#94a3b8;font-weight:600;margin-bottom:4px">月消费</div>
+                                    <div style="font-size:28px;font-weight:900;color:#0f172a;line-height:1">$2,360</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin-top:6px">
+                                        <div style="flex:1;height:4px;background:#f1f5f9;border-radius:2px"><div style="width:45%;height:100%;background:#64748b;border-radius:2px"></div></div>
+                                        <span style="font-size:8px;color:#94a3b8">#58</span>
+                                    </div>
+                                </div>
+                                <!-- 储蓄 -->
+                                <div style="border:1px solid #bbf7d0;border-radius:10px;padding:12px;background:#f0fdf4;cursor:pointer">
+                                    <div style="font-size:9px;color:#16a34a;font-weight:600;margin-bottom:4px">年储蓄 ⬆</div>
+                                    <div style="font-size:28px;font-weight:900;color:#16a34a;line-height:1">$21K</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin-top:6px">
+                                        <div style="flex:1;height:4px;background:#dcfce7;border-radius:2px"><div style="width:70%;height:100%;background:#16a34a;border-radius:2px"></div></div>
+                                        <span style="font-size:8px;color:#16a34a;font-weight:700">#22</span>
+                                    </div>
+                                </div>
+                                <!-- 治理 -->
+                                <div style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;cursor:pointer">
+                                    <div style="font-size:9px;color:#94a3b8;font-weight:600;margin-bottom:4px">治理指数</div>
+                                    <div style="font-size:28px;font-weight:900;color:#0f172a;line-height:1">74</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin-top:6px">
+                                        <div style="flex:1;height:4px;background:#f1f5f9;border-radius:2px"><div style="width:55%;height:100%;background:#64748b;border-radius:2px"></div></div>
+                                        <span style="font-size:8px;color:#94a3b8">#22</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 点击提示 -->
+                            <div style="margin-top:8px;text-align:center;font-size:9px;color:#94a3b8">点击任意指标块 → 下钻子指标详情</div>
+                            <!-- 下方紧凑补充 -->
+                            <div style="margin-top:12px;border-top:1px solid #f1f5f9;padding-top:10px;display:flex;flex-wrap:wrap;gap:10px;font-size:10px;color:#64748b">
+                                <span>⏰ 1,607h/年</span><span>🌴 20天假</span><span>🌡️ 15.8°C</span><span>💨 AQI 51</span><span>🌐 154 Mbps</span><span>✈️ 87城直飞</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">RANKING — 排行榜</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:13px;font-weight:800;color:#0f172a">WhichCity</span>
+                            <div style="display:flex;gap:6px;font-size:10px;color:#94a3b8"><span style="color:#0f172a;font-weight:700;border-bottom:2px solid #0f172a">安全</span><span>医疗</span><span>收入</span></div>
+                        </div>
+                        <div style="flex:1;overflow:auto">
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:8px">
+                                <div style="width:20px;font-size:12px;font-weight:900;color:#94a3b8">#1</div>
+                                <span style="font-size:20px">🇸🇬</span>
+                                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#0f172a">新加坡</div></div>
+                                <div style="width:80px"><div style="height:6px;background:#f1f5f9;border-radius:3px"><div style="width:97%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+                                <div style="width:28px;text-align:right;font-size:14px;font-weight:900;color:#16a34a">97</div>
+                            </div>
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:8px">
+                                <div style="width:20px;font-size:12px;font-weight:900;color:#94a3b8">#2</div>
+                                <span style="font-size:20px">🇯🇵</span>
+                                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#0f172a">东京</div></div>
+                                <div style="width:80px"><div style="height:6px;background:#f1f5f9;border-radius:3px"><div style="width:95%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+                                <div style="width:28px;text-align:right;font-size:14px;font-weight:900;color:#16a34a">95</div>
+                            </div>
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:8px">
+                                <div style="width:20px;font-size:12px;font-weight:900;color:#94a3b8">#3</div>
+                                <span style="font-size:20px">🇨🇭</span>
+                                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#0f172a">苏黎世</div></div>
+                                <div style="width:80px"><div style="height:6px;background:#f1f5f9;border-radius:3px"><div style="width:93%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+                                <div style="width:28px;text-align:right;font-size:14px;font-weight:900;color:#16a34a">93</div>
+                            </div>
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:8px">
+                                <div style="width:20px;font-size:12px;font-weight:900;color:#94a3b8">#4</div>
+                                <span style="font-size:20px">🇳🇴</span>
+                                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#0f172a">奥斯陆</div></div>
+                                <div style="width:80px"><div style="height:6px;background:#f1f5f9;border-radius:3px"><div style="width:91%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+                                <div style="width:28px;text-align:right;font-size:14px;font-weight:900;color:#0f172a">91</div>
+                            </div>
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:8px">
+                                <div style="width:20px;font-size:12px;font-weight:900;color:#94a3b8">#5</div>
+                                <span style="font-size:20px">🇩🇰</span>
+                                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#0f172a">哥本哈根</div></div>
+                                <div style="width:80px"><div style="height:6px;background:#f1f5f9;border-radius:3px"><div style="width:90%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+                                <div style="width:28px;text-align:right;font-size:14px;font-weight:900;color:#0f172a">90</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">COMPARE — 对比</div>
+                    <div class="frame" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:13px;font-weight:800;color:#0f172a">WhichCity</span>
+                            <span style="font-size:10px;color:#94a3b8">对比 · 3 城</span>
+                        </div>
+                        <div style="flex:1;padding:12px 16px">
+                            <div style="font-size:16px;font-weight:900;color:#0f172a;margin-bottom:10px">仪表盘对比</div>
+                            <!-- 三列并排仪表块 -->
+                            <div style="display:flex;gap:6px;margin-bottom:10px">
+                                <div style="flex:1;text-align:center;border:1px solid #e2e8f0;border-radius:10px;padding:10px 4px">
+                                    <span style="font-size:18px">🇯🇵</span>
+                                    <div style="font-size:11px;font-weight:800;color:#0f172a">东京</div>
+                                </div>
+                                <div style="flex:1;text-align:center;border:1px solid #e2e8f0;border-radius:10px;padding:10px 4px">
+                                    <span style="font-size:18px">🇬🇧</span>
+                                    <div style="font-size:11px;font-weight:800;color:#0f172a">伦敦</div>
+                                </div>
+                                <div style="flex:1;text-align:center;border:1px solid #e2e8f0;border-radius:10px;padding:10px 4px">
+                                    <span style="font-size:18px">🇸🇬</span>
+                                    <div style="font-size:11px;font-weight:800;color:#0f172a">新加坡</div>
+                                </div>
+                            </div>
+                            <!-- 指标行+条形对比 -->
+                            <div style="font-size:10px;color:#64748b">
+                                <div style="margin-bottom:8px">
+                                    <div style="font-size:9px;color:#94a3b8;font-weight:600;margin-bottom:3px">安全指数</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#0f172a;font-weight:700">95</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:95%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#64748b">78</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:78%;height:100%;background:#94a3b8;border-radius:3px"></div></div></div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#0f172a;font-weight:700">97</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:97%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+                                </div>
+                                <div style="margin-bottom:8px">
+                                    <div style="font-size:9px;color:#94a3b8;font-weight:600;margin-bottom:3px">税后月薪</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#64748b">$4.1K</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:45%;height:100%;background:#94a3b8;border-radius:3px"></div></div></div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#0f172a;font-weight:700">$5.1K</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:56%;height:100%;background:#3b82f6;border-radius:3px"></div></div></div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#64748b">$4.8K</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:53%;height:100%;background:#94a3b8;border-radius:3px"></div></div></div>
+                                </div>
+                                <div>
+                                    <div style="font-size:9px;color:#94a3b8;font-weight:600;margin-bottom:3px">生活压力（低=好）</div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#0f172a;font-weight:700">55.8</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:56%;height:100%;background:#d97706;border-radius:3px"></div></div></div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#dc2626">68.2</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:68%;height:100%;background:#dc2626;border-radius:3px"></div></div></div>
+                                    <div style="display:flex;align-items:center;gap:4px;margin:2px 0"><span style="width:30px;font-size:9px;color:#0f172a;font-weight:700">49.1</span><div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px"><div style="width:49%;height:100%;background:#16a34a;border-radius:3px"></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- #10 结论优先 — 先说答案再展开论据 -->
+        <div class="concept">
+            <div class="clabel"><span class="cnum" style="background:#fef3c7;color:#92400e">10</span>结论优先 — 先说答案再展证据</div>
+            <div class="cdesc">受 Amazon 六页备忘录 "以结论开头" 启发。不先给数字，先给一段人话结论：「东京适合追求极致安全+优质医疗的人，但生活压力偏高，工作文化强度大。税后月入偏中，自由度一般。」下方才是支撑数据。让用户先知道"这座城市适不适合我"，再决定要不要看细节。</div>
+            <div class="quad">
+                <div>
+                    <div class="ml">HOME — 首页</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:13px;font-weight:800;color:#0f172a">WhichCity</span>
+                            <div style="display:flex;gap:10px;font-size:10px;color:#94a3b8"><span>排行</span><span>对比</span></div>
+                        </div>
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px">
+                            <div style="font-size:22px;font-weight:900;color:#0f172a;margin-bottom:4px">你应该去哪？</div>
+                            <div style="font-size:11px;color:#64748b;margin-bottom:16px;text-align:center;line-height:1.6;max-width:320px">选职业，我们告诉你：去哪座城市能过上更好的生活。</div>
+                            <div style="width:100%;max-width:380px;margin-bottom:16px"><input disabled placeholder="搜索城市或国家…" style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:11px;color:#94a3b8;background:#fff"></div>
+                            <!-- 结论式城市卡 -->
+                            <div style="width:100%;display:flex;flex-direction:column;gap:8px">
+                                <div style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start">
+                                    <span style="font-size:24px;flex-shrink:0">🇺🇸</span>
+                                    <div>
+                                        <div style="font-size:13px;font-weight:800;color:#0f172a">纽约</div>
+                                        <div style="font-size:10px;color:#64748b;line-height:1.5;margin-top:2px">全球收入天花板，安全尚可，但生活压力极高。适合能赚能花、追求职业上限的人。</div>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start">
+                                    <span style="font-size:24px;flex-shrink:0">🇯🇵</span>
+                                    <div>
+                                        <div style="font-size:13px;font-weight:800;color:#0f172a">东京</div>
+                                        <div style="font-size:10px;color:#64748b;line-height:1.5;margin-top:2px">极致安全+世界级医疗。收入中上，压力偏高。适合稳定导向型人格。</div>
+                                    </div>
+                                </div>
+                                <div style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start">
+                                    <span style="font-size:24px;flex-shrink:0">🇸🇬</span>
+                                    <div>
+                                        <div style="font-size:13px;font-weight:800;color:#0f172a">新加坡</div>
+                                        <div style="font-size:10px;color:#64748b;line-height:1.5;margin-top:2px">安全 #1 + 低税高薪。自由度受限。适合看重经济效率和人身安全的人。</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">CITY DETAIL — 城市详情（核心设计）</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:12px;font-weight:800;color:#0f172a">← WhichCity</span>
+                            <div style="display:flex;gap:8px;font-size:10px;color:#94a3b8"><span>对比</span></div>
+                        </div>
+                        <!-- Hero -->
+                        <div style="padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f1f5f9">
+                            <span style="font-size:28px">🇯🇵</span>
+                            <div><div style="font-size:20px;font-weight:900;color:#0f172a">东京</div><div style="font-size:10px;color:#94a3b8">@tokyo · 日本 · 亚洲</div></div>
+                            <div style="margin-left:auto;font-size:10px;background:#0f172a;color:#fff;padding:4px 12px;border-radius:6px;font-weight:600">+ 对比</div>
+                        </div>
+                        <div style="flex:1;overflow:auto;max-width:520px;margin:0 auto;width:100%">
+                            <!-- ★ 结论区：先说答案 -->
+                            <div style="padding:14px 16px;border-bottom:1px solid #f1f5f9;background:#f8fafc">
+                                <div style="font-size:13px;font-weight:800;color:#0f172a;margin-bottom:6px">一句话</div>
+                                <div style="font-size:12px;color:#334155;line-height:1.7">
+                                    东京是全球最安全的大都市之一，医疗体系世界顶级。税后收入中等偏上（软件工程师 $4,100/月），但<span style="color:#d97706;font-weight:600">生活压力高于多数同级城市</span>。自由度一般。
+                                </div>
+                                <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+                                    <span style="display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:12px;font-size:9px;font-weight:600;background:#dcfce7;color:#16a34a">✓ 极致安全</span>
+                                    <span style="display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:12px;font-size:9px;font-weight:600;background:#dcfce7;color:#16a34a">✓ 顶级医疗</span>
+                                    <span style="display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:12px;font-size:9px;font-weight:600;background:#fef3c7;color:#d97706">△ 压力偏高</span>
+                                    <span style="display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:12px;font-size:9px;font-weight:600;background:#f1f5f9;color:#64748b">— 自由一般</span>
+                                </div>
+                            </div>
+                            <!-- 论据：核心数据（紧凑排列） -->
+                            <div style="padding:14px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="font-size:10px;color:#94a3b8;font-weight:600;margin-bottom:8px">论据</div>
+                                <div style="display:flex;gap:16px;flex-wrap:wrap">
+                                    <div><div style="font-size:28px;font-weight:900;color:#16a34a;line-height:1">95</div><div style="font-size:9px;color:#94a3b8">安全 · #3</div></div>
+                                    <div><div style="font-size:28px;font-weight:900;color:#16a34a;line-height:1">89</div><div style="font-size:9px;color:#94a3b8">医疗 · #8</div></div>
+                                    <div><div style="font-size:28px;font-weight:900;color:#0f172a;line-height:1">$4,100</div><div style="font-size:9px;color:#94a3b8">月薪 · #35</div></div>
+                                    <div><div style="font-size:28px;font-weight:900;color:#d97706;line-height:1">55.8</div><div style="font-size:9px;color:#94a3b8">压力 · #85</div></div>
+                                    <div><div style="font-size:28px;font-weight:900;color:#0f172a;line-height:1">74</div><div style="font-size:9px;color:#94a3b8">治理 · #22</div></div>
+                                </div>
+                            </div>
+                            <!-- 附注 -->
+                            <div style="padding:14px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="font-size:10px;color:#94a3b8;font-weight:600;margin-bottom:6px">谁适合东京？</div>
+                                <div style="font-size:11px;color:#475569;line-height:1.6">
+                                    ✓ 把人身安全放在第一位的人<br>
+                                    ✓ 重视医疗资源和长寿环境<br>
+                                    ✓ 对收入要求不极端、接受中上<br>
+                                    △ 能适应高强度工作文化<br>
+                                    ✗ 对言论/网络自由度有高要求
+                                </div>
+                            </div>
+                            <!-- 细节：可展开 -->
+                            <div style="padding:14px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="font-size:10px;color:#94a3b8">展开全部子指标 ▾</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">RANKING — 排行榜</div>
+                    <div class="frame wide" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:13px;font-weight:800;color:#0f172a">WhichCity</span>
+                            <div style="display:flex;gap:6px;font-size:10px;color:#94a3b8"><span style="color:#0f172a;font-weight:700;border-bottom:2px solid #0f172a">安全</span><span>医疗</span><span>收入</span></div>
+                        </div>
+                        <div style="flex:1;overflow:auto">
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                                    <span style="font-size:14px;font-weight:900;color:#94a3b8">#1</span>
+                                    <span style="font-size:20px">🇸🇬</span>
+                                    <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#0f172a">新加坡</div></div>
+                                    <div style="font-size:20px;font-weight:900;color:#16a34a">97</div>
+                                </div>
+                                <div style="font-size:9px;color:#64748b;padding-left:46px">安全 #1，低犯罪率，夜间行走完全安全。</div>
+                            </div>
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                                    <span style="font-size:14px;font-weight:900;color:#94a3b8">#2</span>
+                                    <span style="font-size:20px">🇯🇵</span>
+                                    <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#0f172a">东京</div></div>
+                                    <div style="font-size:20px;font-weight:900;color:#16a34a">95</div>
+                                </div>
+                                <div style="font-size:9px;color:#64748b;padding-left:46px">谋杀率 0.3/10万，全球和平指数 Top 10。</div>
+                            </div>
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                                    <span style="font-size:14px;font-weight:900;color:#94a3b8">#3</span>
+                                    <span style="font-size:20px">🇨🇭</span>
+                                    <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#0f172a">苏黎世</div></div>
+                                    <div style="font-size:20px;font-weight:900;color:#16a34a">93</div>
+                                </div>
+                                <div style="font-size:9px;color:#64748b;padding-left:46px">阿尔卑斯小国，极低暴力犯罪率+高度法治。</div>
+                            </div>
+                            <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9">
+                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                                    <span style="font-size:14px;font-weight:900;color:#94a3b8">#4</span>
+                                    <span style="font-size:20px">🇳🇴</span>
+                                    <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#0f172a">奥斯陆</div></div>
+                                    <div style="font-size:20px;font-weight:900;color:#0f172a">91</div>
+                                </div>
+                                <div style="font-size:9px;color:#64748b;padding-left:46px">北欧福利国家，社会信任度极高。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="ml">COMPARE — 对比</div>
+                    <div class="frame" style="background:#fff;min-height:580px;display:flex;flex-direction:column">
+                        <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center">
+                            <span style="font-size:13px;font-weight:800;color:#0f172a">WhichCity</span>
+                            <span style="font-size:10px;color:#94a3b8">对比 · 3 城</span>
+                        </div>
+                        <div style="flex:1;padding:12px 16px;overflow:auto">
+                            <div style="font-size:16px;font-weight:900;color:#0f172a;margin-bottom:4px">结论对比</div>
+                            <div style="font-size:10px;color:#94a3b8;margin-bottom:12px">先看结论，再看数据。</div>
+                            <!-- 城市 1 结论 -->
+                            <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin-bottom:8px">
+                                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                                    <span style="font-size:18px">🇯🇵</span>
+                                    <span style="font-size:12px;font-weight:800;color:#0f172a">东京</span>
+                                </div>
+                                <div style="font-size:10px;color:#475569;line-height:1.5;margin-bottom:6px">极致安全+顶级医疗，收入中上，压力偏高。</div>
+                                <div style="display:flex;gap:4px;flex-wrap:wrap">
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#dcfce7;color:#16a34a">安全 95</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#dcfce7;color:#16a34a">医疗 89</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#fef3c7;color:#d97706">压力 55.8</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;color:#64748b;background:#f1f5f9">$4.1K</span>
+                                </div>
+                            </div>
+                            <!-- 城市 2 结论 -->
+                            <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin-bottom:8px">
+                                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                                    <span style="font-size:18px">🇬🇧</span>
+                                    <span style="font-size:12px;font-weight:800;color:#0f172a">伦敦</span>
+                                </div>
+                                <div style="font-size:10px;color:#475569;line-height:1.5;margin-bottom:6px">高收入+高自由，但安全中等、生活压力很高。</div>
+                                <div style="display:flex;gap:4px;flex-wrap:wrap">
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#dcfce7;color:#16a34a">治理 91</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#dcfce7;color:#16a34a">$5.1K</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#fef2f2;color:#dc2626">压力 68.2</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;color:#64748b;background:#f1f5f9">安全 78</span>
+                                </div>
+                            </div>
+                            <!-- 城市 3 结论 -->
+                            <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin-bottom:8px">
+                                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                                    <span style="font-size:18px">🇸🇬</span>
+                                    <span style="font-size:12px;font-weight:800;color:#0f172a">新加坡</span>
+                                </div>
+                                <div style="font-size:10px;color:#475569;line-height:1.5;margin-bottom:6px">安全 #1，低税高薪，压力适中。自由度受限。</div>
+                                <div style="display:flex;gap:4px;flex-wrap:wrap">
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#dcfce7;color:#16a34a">安全 97</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#dcfce7;color:#16a34a">$4.8K</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#fef2f2;color:#dc2626">治理 51</span>
+                                    <span style="padding:2px 6px;border-radius:8px;font-size:8px;color:#64748b;background:#f1f5f9">压力 49</span>
+                                </div>
+                            </div>
+                            <!-- 最终推荐 -->
+                            <div style="margin-top:6px;padding:8px 10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;font-size:10px;color:#166534;line-height:1.5">
+                                <strong>推荐：</strong>追求安全 → 🇸🇬 新加坡；追求收入+自由 → 🇬🇧 伦敦；追求均衡 → 🇯🇵 东京
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </div><!-- /concepts-grid -->
 
 </body>

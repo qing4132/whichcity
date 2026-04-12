@@ -33,6 +33,7 @@ export const CITY_SLUGS: Record<number, string> = {
   150: "penang", 152: "florianopolis",
   157: "cancun",
   158: "puerto-vallarta", 159: "kyoto",
+  160: "casablanca", 161: "wellington",
 };
 
 /** Reverse lookup: slug → city ID */

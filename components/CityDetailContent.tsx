@@ -277,30 +277,51 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
             </div>
           </div>
           <div className={`text-[14px] ${subCls}`}>{t(shfOpen ? "shfTapToCollapse" : "shfTapForDetails")}</div>
-          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${shfOpen ? "max-h-40 opacity-100 mt-1" : "max-h-0 opacity-0"}`}>
-            <div className={`text-[13px] ${subCls} space-y-0.5`}>
-              <div>{[
-                city.numbeoSafetyIndex != null ? `${t("safetyNumbeo")} ${city.numbeoSafetyIndex}` : null,
-                city.homicideRate != null ? `${t("safetyHomicide")} ${city.homicideRate}${t("per100k")}` : null,
-                city.gpiScore != null ? `${t("safetyGpi")} ${city.gpiScore}` : null,
-                city.gallupLawOrder != null ? `${t("safetyGallup")} ${city.gallupLawOrder}` : null,
-                city.wpsIndex != null ? `WPS ${city.wpsIndex}` : null,
-              ].filter(Boolean).join(" · ")}</div>
-              <div>{[
-                city.doctorsPerThousand != null ? `${t("doctorsPerThousand")} ${city.doctorsPerThousand}` : null,
-                city.hospitalBedsPerThousand != null ? `${t("hospitalBeds")} ${city.hospitalBedsPerThousand}` : null,
-                city.uhcCoverageIndex != null ? `UHC ${city.uhcCoverageIndex}` : null,
-                city.lifeExpectancy != null ? `${t("lifeExpectancy")} ${city.lifeExpectancy}` : null,
-                city.outOfPocketPct != null ? `${t("outOfPocket")} ${city.outOfPocketPct}%` : null,
-              ].filter(Boolean).join(" · ")}</div>
-              <div>{[
-                city.corruptionPerceptionIndex != null ? `CPI ${city.corruptionPerceptionIndex}` : null,
-                city.govEffectiveness != null ? `${t("govEffect")} ${city.govEffectiveness}` : null,
-                city.wjpRuleLaw != null ? `${t("ruleLaw")} ${city.wjpRuleLaw}` : null,
-                city.internetFreedomScore != null ? `${t("internetFreedom")} ${city.internetFreedomScore}` : null,
-                city.mipexScore != null ? `MIPEX ${city.mipexScore}` : null,
-              ].filter(Boolean).join(" · ")}</div>
-            </div>
+          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${shfOpen ? "max-h-[600px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
+            {(() => {
+              const warnCls = darkMode ? "text-amber-400" : "text-amber-600";
+              const confBadge = (conf: "high" | "medium" | "low") => conf === "high" ? null : (
+                <span className={`ml-2 text-[12px] font-normal ${conf === "low" ? warnCls : ""}`}>{t(conf === "low" ? "confidenceLow" : "confidenceMedium")}</span>
+              );
+              const sub = (label: string, val: number | null | undefined, suffix = "") => (
+                <div className="flex justify-between pl-3 opacity-60">
+                  <span>{label}</span><span>{val != null ? `${val}${suffix}` : "—"}</span>
+                </div>
+              );
+              return (
+                <div className={`text-[13px] ${subCls} space-y-0.5`}>
+                  <div className="flex justify-between font-semibold">
+                    <span className={headCls}>{t("safetyShort")}{confBadge(city.safetyConfidence)}</span>
+                    <span className={headCls}>{city.safetyIndex.toFixed(1)}</span>
+                  </div>
+                  {sub(`${t("safetyNumbeo")} (30%)`, city.numbeoSafetyIndex)}
+                  {sub(`${t("safetyHomicide")} (25%)`, city.homicideRate, city.homicideRate != null ? t("per100k") : "")}
+                  {sub(`${t("safetyGpi")} (20%)`, city.gpiScore)}
+                  {sub(`${t("safetyGallup")} (15%)`, city.gallupLawOrder)}
+                  {sub(`WPS (10%)`, city.wpsIndex)}
+                  <div className={`border-t ${divider} my-1`} />
+                  <div className="flex justify-between font-semibold">
+                    <span className={headCls}>{t("healthcareShort")}{confBadge(city.healthcareConfidence)}</span>
+                    <span className={headCls}>{city.healthcareIndex.toFixed(1)}</span>
+                  </div>
+                  {sub(`${t("doctorsPerThousand")} (25%)`, city.doctorsPerThousand)}
+                  {sub(`${t("hospitalBeds")} (20%)`, city.hospitalBedsPerThousand)}
+                  {sub(`${t("uhcCoverage")} (25%)`, city.uhcCoverageIndex)}
+                  {sub(`${t("lifeExpectancy")} (15%)`, city.lifeExpectancy, city.lifeExpectancy != null ? ` ${t("lifeExpectancyUnit")}` : "")}
+                  {sub(`${t("outOfPocket")} (15%)`, city.outOfPocketPct, city.outOfPocketPct != null ? "%" : "")}
+                  <div className={`border-t ${divider} my-1`} />
+                  <div className="flex justify-between font-semibold">
+                    <span className={headCls}>{t("governanceShort")}{confBadge(city.governanceConfidence)}</span>
+                    <span className={headCls}>{city.governanceIndex.toFixed(1)}</span>
+                  </div>
+                  {sub(`${t("corruptionIdx")} (25%)`, city.corruptionPerceptionIndex)}
+                  {sub(`${t("govEffect")} (25%)`, city.govEffectiveness)}
+                  {sub(`${t("ruleLaw")} (20%)`, city.wjpRuleLaw)}
+                  {sub(`${t("pressFreedom")} (15%)`, city.pressFreedomScore)}
+                  {sub("MIPEX (15%)", city.mipexScore)}
+                </div>
+              );
+            })()}
           </div>
         </div>
 

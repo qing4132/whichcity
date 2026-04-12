@@ -95,19 +95,22 @@
 | CPI (Anti-Corruption) | 25% | 腐败直接影响移居者日常体验（办事效率、营商环境） |
 | Gov Effectiveness (WGI) | 25% | 政府服务质量、政策执行力，直接影响基础设施和公共服务 |
 | WJP Rule of Law | 20% | 法治水平：司法独立、产权保护、合同执行 |
-| Internet Freedom (FOTN) | 15% | 信息自由，影响远程工作和数字生活 |
+| Press Freedom (RSF) | 15% | 新闻自由，反映信息透明度与言论环境（替代 FOTN，覆盖率 148/148） |
 | MIPEX | 15% | 移民融合政策，直接关联移居者权益 |
 
 > CPI + WGI 各 25%：两者高度互补——CPI 聚焦腐败问题，WGI 聚焦行政能力。
 > WJP 20%：法治是营商/居住安全的基石，但与 CPI 有正相关，稍降权避免双重计算。
-> FOTN + MIPEX 各 15%：覆盖率较低（112、109/148），但对移居决策高度相关。
+> RSF 15%（原 FOTN 位置）：FOTN 覆盖仅 112/148，RSF 满覆盖且 r=0.919 高相关。FOTN 保留在详情页单独展示。
+> MIPEX 15%：覆盖率较低（109/148），但对移居决策高度相关。
 > 缺失值处理：仅用有效子指标的加权平均，confidence 字段标识可信度（5/5=high, 4/5=medium, ≤3=low）。
 
 ---
 
 ## 四、旧字段保留
 
-- `pressFreedomScore`、`democracyIndex`：数据保留在 cities.json，可供详情页展示；不再参与复合指数计算。
+- `internetFreedomScore`（FOTN）：数据保留在 cities.json，详情页单独展示；不再参与 Governance 复合指数计算（已由 RSF pressFreedomScore 替代）。
+- `pressFreedomScore`（RSF）：现参与 Governance 复合指数计算（15% 权重），同时在详情页展示。
+- `democracyIndex`：数据保留在 cities.json，可供详情页展示；不参与复合指数计算。
 - `freedomIndex` / `freedomConfidence`：保留在 type 和 data 中，值不再更新。新代码应使用 `governanceIndex` / `governanceConfidence`。
 
 ---
@@ -119,7 +122,7 @@
 | WPS | 台湾 (1 city) | Georgetown WPS 不覆盖 |
 | OOP | 中国香港、波多黎各、台湾 (3 cities) | World Bank 不单独统计 |
 | WJP | 瑞士、阿塞拜疆、以色列、巴林、沙特、冰岛、波多黎各、阿曼 (9 cities) | WJP 2025 未覆盖 |
-| FOTN | 39 个国家 (36 cities) | Freedom House 仅评估 ~70 国 |
+| FOTN | 39 个国家 (36 cities) | Freedom House 仅评估 ~70 国（已从 Governance 指数移除，仅详情页展示） |
 | MIPEX | 33 个国家 (39 cities) | MIPEX 仅覆盖 EU/OECD + 部分国家 |
 | WGI GE | 台湾 (1 city) | World Bank 不覆盖 |
 

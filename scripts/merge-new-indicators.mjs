@@ -49,6 +49,7 @@ const COUNTRY_TO_ISO3 = {
   "瑞典": "SWE", "丹麦": "DNK", "芬兰": "FIN", "挪威": "NOR",
   "爱沙尼亚": "EST", "卢森堡": "LUX", "俄罗斯": "RUS", "尼日利亚": "NGA",
   "格鲁吉亚": "GEO", "乌拉圭": "URY", "新西兰": "NZL", "冰岛": "ISL",
+  "摩洛哥": "MAR",
 };
 
 // ── 1. WPS Index (Georgetown 2025/26, 0–1 scale, 181 countries) ──
@@ -70,6 +71,7 @@ const WPS = {
   UZB: 0.674, GEO: 0.798, AZE: 0.653, IRN: 0.608, UKR: 0.645,
   CHL: 0.739, ARG: 0.791, COL: 0.551, PER: 0.701, URY: 0.822,
   CRI: 0.824, PAN: 0.696, PRI: 0.707, LBN: 0.575, ISL: 0.932,
+  MAR: 0.555,
   TWN: null,  // Not covered by WPS Index
 };
 
@@ -92,6 +94,7 @@ const OOP = {
   UZB: 46.50, GEO: 43.06, AZE: 21.08, IRN: 37.57, UKR: 45.24,
   CHL: 32.72, ARG: 28.02, COL: 16.71, PER: 21.68, URY: 16.49,
   CRI: 22.18, PAN: 29.73, PRI: null, LBN: 37.77,
+  MAR: 32.85,
   TWN: null,  // Not in World Bank
 };
 
@@ -114,6 +117,7 @@ const WJP = {
   UZB: 0.50, GEO: 0.58, AZE: null, IRN: 0.38, UKR: 0.48,
   CHL: 0.66, ARG: 0.54, COL: 0.47, PER: 0.48, URY: 0.72,
   CRI: 0.68, PAN: 0.52, PRI: null, LBN: 0.44,
+  MAR: 0.50,
   TWN: null,  // Not covered by WJP
 };
 
@@ -137,6 +141,7 @@ const FOTN = {
   UZB: 29, GEO: 70, AZE: 34, IRN: 13, UKR: 62,
   CHL: 87, ARG: 71, COL: 64, PER: null, URY: null,
   CRI: 86, PAN: null, PRI: null, LBN: 50,
+  MAR: 47,
   TWN: 79,
 };
 
@@ -159,6 +164,7 @@ const MIPEX = {
   UZB: null, GEO: null, AZE: null, IRN: null, UKR: 48,
   CHL: 53, ARG: 58, COL: null, PER: null, URY: null,
   CRI: null, PAN: null, PRI: null, LBN: null,
+  MAR: null,  // Not covered by MIPEX
   TWN: null,
 };
 
@@ -181,6 +187,7 @@ const GE = {
   UZB: 48.5, GEO: 60.2, AZE: 54.6, IRN: 37.6, UKR: 39.7,
   CHL: 70.1, ARG: 54.9, COL: 49.2, PER: 47.4, URY: 64.8,
   CRI: 56.9, PAN: 56.1, PRI: 46.4, LBN: 29.4,
+  MAR: 48.1,
   TWN: null,  // Not in WGI
 };
 
@@ -289,7 +296,7 @@ console.log(`  OOP:     [${oopMin}, ${oopMax}] (inverted: lower=better)`);
 //   25% Doctors(norm) + 20% Beds(norm) + 25% UHC + 15% LifeExp(norm) + 15% OOP_inv(norm)
 //
 // GOVERNANCE (5 subs, all scaled to 0-100):
-//   25% CPI + 25% GovEffectiveness + 20% WJP*100 + 15% InternetFreedom + 15% MIPEX
+//   25% CPI + 25% GovEffectiveness + 20% WJP*100 + 15% PressFreedom(RSF) + 15% MIPEX
 
 let safetyChanges = 0, healthChanges = 0, govChanges = 0;
 
@@ -337,7 +344,7 @@ for (const city of cities) {
     { val: city.corruptionPerceptionIndex, weight: 0.25 },
     { val: city.govEffectiveness,          weight: 0.25 },
     { val: wjpNorm,                        weight: 0.20 },
-    { val: city.internetFreedomScore,      weight: 0.15 },
+    { val: city.pressFreedomScore,          weight: 0.15 },
     { val: city.mipexScore,                weight: 0.15 },
   ];
   const oldFreedom = city.freedomIndex;

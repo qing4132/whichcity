@@ -13,7 +13,7 @@
 
 | Dimension | Value |
 |-----------|-------|
-| Cities | 148 displayed (6 hidden nomad-only) |
+| Cities | 150 displayed (6 hidden nomad-only) |
 | Professions | 25 (was 23; added 数字游民 $85k + civil_servant renamed) |
 | Tax Systems | 81 countries + city overrides + 6 expat schemes |
 | Currencies | 10 selectable (50+ stored) |
@@ -74,17 +74,17 @@ whichcity/
 │   ├── dataLoader.ts          Server-side data loading
 │   ├── clientUtils.ts         Life Pressure formula, helpers
 │   ├── citySlug.ts            ID↔slug mappings
-│   ├── cityIntros.ts          148 cities × 4 locales
+│   ├── cityIntros.ts          150 cities × 4 locales
 │   └── analytics.ts           GA4 events
 │
 ├── public/data/
-│   ├── cities.json            148 cities runtime data
+│   ├── cities.json            150 cities runtime data
 │   ├── exchange-rates.json    Daily auto-updated (JPY→JP¥)
 │   ├── nomad-data-compiled.json
 │   └── nomad-visafree-4passport.json
 │
 ├── __tests__/                 Vitest (tax engine + composite index)
-├── scripts/                   6 active scripts (rates, validate, climate, timezone, collect, merge)
+├── scripts/                   8 active scripts (rates, validate, climate, timezone, collect, merge, numbeo-safety)
 │
 ├── REDESIGN.md                Phase 2 direction & constraints
 ├── RULES.md                   Coding conventions
@@ -129,7 +129,7 @@ City overrides for US state tax, Canadian provincial tax, HK foreign worker rule
 |-------|---------|--------|
 | Safety | 30% Numbeo + 25% Homicide(inv) + 20% GPI(inv) + 15% Gallup + 10% WPS | Pre-computed in JSON |
 | Healthcare | 25% Doctors + 25% UHC + 20% Beds + 15% Life Expectancy + 15% OOP(inv) | Pre-computed |
-| Governance | 25% CPI + 25% Gov Effectiveness + 20% WJP Rule of Law + 15% Internet Freedom + 15% MIPEX | Pre-computed |
+| Governance | 25% CPI + 25% Gov Effectiveness + 20% WJP Rule of Law + 15% RSF Press Freedom + 15% MIPEX | Pre-computed |
 | Life Pressure | 30% Savings Rate + 25% BigMac + 25% WorkHours(inv) + 20% YearsToBuy | Client-computed |
 
 Missing sub-indicator weights redistributed proportionally. Confidence: all=high, 1 missing=medium, 2+=low.
@@ -199,12 +199,18 @@ See [REDESIGN.md](REDESIGN.md) for full plan. Key progress:
 - [x] 6 new indicators collected from public sources (WPS, OOP health, WJP Rule of Law, Freedom on Net, MIPEX, WGI Gov Effectiveness)
 - [x] Composite indices upgraded: Safety 4→5 subs, Healthcare 4→5 subs, Freedom→Governance 3→5 subs
 - [x] governanceIndex replaces freedomIndex throughout codebase (types, components, i18n)
+- [x] Added Casablanca (id=160) + Wellington (id=161) → 150 cities total
+- [x] Applied Numbeo Safety Index 2025 data for 120+ cities
+- [x] Governance: FOTN (internetFreedomScore) → RSF (pressFreedomScore) in detail page & i18n
+- [x] "基本保障" expandable section redesigned: tax-detail-style structured rows with weights, reference values, confidence badges, "—" for missing data
+- [x] safetyDesc/safetyMethodNote/institutionalFreedomDesc updated to 5-sub weights (all 4 locales)
+- [x] 3 new design concepts added to inspiration file (#8 诊断报告Feed, #9 极简仪表盘, #10 结论优先)
 
 Pending:
 - [ ] SEO meta optimization
 - [ ] GA4 key event configuration
 - [ ] Compare page Phase 2 restyling
-- [ ] Migrate remaining freedomIndex references in documentation
+- [ ] Add reference ranges + ⬆/—/⬇ judgment symbols to expandable sub-indicators (#8 design)
 # WhichCity — Project Handoff Document
 
 > **Version 1.0** — Phase 1 complete (2026-04-10)
@@ -330,7 +336,9 @@ whichcity/
 │   ├── add-monthly-climate.mjs Batch add monthly climate data (reusable for new cities)
 │   ├── add-timezone.mjs        Add timezone to cities (reusable for new cities)
 │   ├── collect-new-indicators.py  Fetch indicators from World Bank API
-│   └── merge-new-indicators.mjs   Merge 6 new indicators + recompute composites
+│   ├── merge-new-indicators.mjs   Merge 6 new indicators + recompute composites
+│   ├── fetch-numbeo-safety.mjs    Fetch Numbeo Safety Index for all cities
+│   └── apply-numbeo-safety.mjs    Apply Numbeo data + recompute safety index
 │
 ├── _archive/                   Historical reference (DO NOT DELETE)
 │   ├── scripts/                30+ one-time data processing scripts
@@ -395,7 +403,7 @@ whichcity/
 - Life Pressure: 30% savings rate, 25% big mac purchasing power, 25% work hours (inv), 20% years-to-buy
 - Safety: 30% Numbeo, 25% homicide rate (inv), 20% GPI (inv), 15% Gallup law & order, 10% WPS
 - Healthcare: 25% doctors/1k, 25% UHC coverage, 20% hospital beds/1k, 15% life expectancy, 15% OOP (inv)
-- Governance: 25% CPI, 25% gov effectiveness, 20% WJP rule of law, 15% internet freedom, 15% MIPEX
+- Governance: 25% CPI, 25% gov effectiveness, 20% WJP rule of law, 15% RSF press freedom, 15% MIPEX
 
 ### 4.3 Compare (`/:locale/compare/:pair`)
 

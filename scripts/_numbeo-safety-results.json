@@ -1,0 +1,14 @@
+{
+  "160": {
+    "name": "Casablanca",
+    "numbeoSafetyIndex": null,
+    "status": "error",
+    "error": "Could not parse safety index for Casablanca. Page might have changed format."
+  },
+  "161": {
+    "name": "Wellington",
+    "numbeoSafetyIndex": null,
+    "status": "error",
+    "error": "Could not parse safety index for Wellington. Page might have changed format."
+  }
+}

@@ -46,13 +46,15 @@ for (const f of idx100) {
   }
 }
 
-// 4. Safety index matches sub-indicators within tolerance
+// 4. Safety index matches sub-indicators within tolerance (5 subs)
 for (const c of cities) {
+  const wpsNorm = c.wpsIndex != null ? c.wpsIndex * 100 : null;
   const subs = [
-    { val: c.numbeoSafetyIndex, w: 0.35 },
-    { val: c.homicideRateInv, w: 0.30 },
+    { val: c.numbeoSafetyIndex, w: 0.30 },
+    { val: c.homicideRateInv, w: 0.25 },
     { val: c.gpiScoreInv, w: 0.20 },
     { val: c.gallupLawOrder, w: 0.15 },
+    { val: wpsNorm, w: 0.10 },
   ];
   const avail = subs.filter(s => s.val !== null && s.val !== undefined);
   if (avail.length > 0) {
@@ -88,18 +90,22 @@ for (const c of cities) {
 
 // 7. Confidence labels match sub-indicator counts
 for (const c of cities) {
-  // Safety
-  const sn = [c.numbeoSafetyIndex, c.homicideRateInv, c.gpiScoreInv, c.gallupLawOrder].filter(v => v != null).length;
-  const esc = sn >= 4 ? "high" : sn >= 3 ? "medium" : "low";
+  // Safety (5 subs: numbeo, homicide, gpi, gallup, wps)
+  const sn = [c.numbeoSafetyIndex, c.homicideRateInv, c.gpiScoreInv, c.gallupLawOrder, c.wpsIndex].filter(v => v != null).length;
+  const esc = sn >= 5 ? "high" : sn >= 4 ? "medium" : "low";
   if (c.safetyConfidence !== esc) warn(`${c.name}(${c.id}): safetyConfidence="${c.safetyConfidence}" should be "${esc}"`);
-  // Healthcare
-  const hn = [c.doctorsPerThousand, c.hospitalBedsPerThousand, c.uhcCoverageIndex, c.lifeExpectancy].filter(v => v != null).length;
-  const ehc = hn >= 4 ? "high" : hn >= 3 ? "medium" : "low";
+  // Healthcare (5 subs: doctors, beds, uhc, life, oop)
+  const hn = [c.doctorsPerThousand, c.hospitalBedsPerThousand, c.uhcCoverageIndex, c.lifeExpectancy, c.outOfPocketPct].filter(v => v != null).length;
+  const ehc = hn >= 5 ? "high" : hn >= 4 ? "medium" : "low";
   if (c.healthcareConfidence !== ehc) warn(`${c.name}(${c.id}): healthcareConfidence="${c.healthcareConfidence}" should be "${ehc}"`);
-  // Freedom
+  // Freedom (legacy, 3 subs)
   const fn = [c.pressFreedomScore, c.democracyIndex, c.corruptionPerceptionIndex].filter(v => v != null).length;
   const efc = fn >= 3 ? "high" : fn >= 2 ? "medium" : "low";
   if (c.freedomConfidence !== efc) warn(`${c.name}(${c.id}): freedomConfidence="${c.freedomConfidence}" should be "${efc}"`);
+  // Governance (5 subs: CPI, govEffectiveness, wjpRuleLaw, pressFreedomScore, mipexScore)
+  const gn = [c.corruptionPerceptionIndex, c.govEffectiveness, c.wjpRuleLaw, c.pressFreedomScore, c.mipexScore].filter(v => v != null).length;
+  const egc = gn >= 5 ? "high" : gn >= 4 ? "medium" : "low";
+  if (c.governanceConfidence !== egc) warn(`${c.name}(${c.id}): governanceConfidence="${c.governanceConfidence}" should be "${egc}"`);
 }
 
 console.log(`\n${"=".repeat(40)}`);

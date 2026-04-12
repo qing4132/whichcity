@@ -123,7 +123,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -249,7 +249,7 @@
       "internetFreedomScore": 76,
       "mipexScore": 56,
       "govEffectiveness": 74.4,
-      "governanceIndex": 71.8,
+      "governanceIndex": 70.9,
       "governanceConfidence": "high"
     },
     {
@@ -375,7 +375,7 @@
       "internetFreedomScore": 78,
       "mipexScore": 47,
       "govEffectiveness": 91.9,
-      "governanceIndex": 75.6,
+      "governanceIndex": 73.5,
       "governanceConfidence": "high"
     },
     {
@@ -753,7 +753,7 @@
       "internetFreedomScore": 75,
       "mipexScore": 65,
       "govEffectiveness": 86.5,
-      "governanceIndex": 77.4,
+      "governanceIndex": 75.9,
       "governanceConfidence": "high"
     },
     {
@@ -879,7 +879,7 @@
       "internetFreedomScore": 53,
       "mipexScore": null,
       "govEffectiveness": 95.7,
-      "governanceIndex": 80.3,
+      "governanceIndex": 78,
       "governanceConfidence": "medium"
     },
     {
@@ -1005,7 +1005,7 @@
       "internetFreedomScore": 76,
       "mipexScore": 56,
       "govEffectiveness": 74.7,
-      "governanceIndex": 70.6,
+      "governanceIndex": 69.4,
       "governanceConfidence": "high"
     },
     {
@@ -1131,7 +1131,7 @@
       "internetFreedomScore": 85,
       "mipexScore": 79,
       "govEffectiveness": 85.5,
-      "governanceIndex": 80.8,
+      "governanceIndex": 78.8,
       "governanceConfidence": "high"
     },
     {
@@ -1257,8 +1257,8 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 83.2,
-      "governanceIndex": 77.1,
-      "governanceConfidence": "low"
+      "governanceIndex": 66.3,
+      "governanceConfidence": "medium"
     },
     {
       "id": 11,
@@ -1383,7 +1383,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -1509,7 +1509,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -1635,7 +1635,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -1761,7 +1761,7 @@
       "internetFreedomScore": 28,
       "mipexScore": 29,
       "govEffectiveness": 75.8,
-      "governanceIndex": 57.3,
+      "governanceIndex": 57,
       "governanceConfidence": "high"
     },
     {
@@ -1887,7 +1887,7 @@
       "internetFreedomScore": 84,
       "mipexScore": 57,
       "govEffectiveness": 85.4,
-      "governanceIndex": 78.6,
+      "governanceIndex": 77.6,
       "governanceConfidence": "high"
     },
     {
@@ -2013,8 +2013,8 @@
       "internetFreedomScore": null,
       "mipexScore": 50,
       "govEffectiveness": 87.1,
-      "governanceIndex": 76.6,
-      "governanceConfidence": "low"
+      "governanceIndex": 77.6,
+      "governanceConfidence": "medium"
     },
     {
       "id": 17,
@@ -2139,8 +2139,8 @@
       "internetFreedomScore": null,
       "mipexScore": 50,
       "govEffectiveness": 87.1,
-      "governanceIndex": 76.6,
-      "governanceConfidence": "low"
+      "governanceIndex": 77.6,
+      "governanceConfidence": "medium"
     },
     {
       "id": 18,
@@ -2265,7 +2265,7 @@
       "internetFreedomScore": 74,
       "mipexScore": 58,
       "govEffectiveness": 81.4,
-      "governanceIndex": 76.3,
+      "governanceIndex": 76,
       "governanceConfidence": "high"
     },
     {
@@ -2391,7 +2391,7 @@
       "internetFreedomScore": 74,
       "mipexScore": 58,
       "govEffectiveness": 81.4,
-      "governanceIndex": 76.3,
+      "governanceIndex": 76,
       "governanceConfidence": "high"
     },
     {
@@ -2517,8 +2517,8 @@
       "internetFreedomScore": null,
       "mipexScore": 60,
       "govEffectiveness": 72.9,
-      "governanceIndex": 66.4,
-      "governanceConfidence": "medium"
+      "governanceIndex": 66.3,
+      "governanceConfidence": "high"
     },
     {
       "id": 21,
@@ -2643,8 +2643,8 @@
       "internetFreedomScore": null,
       "mipexScore": 60,
       "govEffectiveness": 72.9,
-      "governanceIndex": 66.4,
-      "governanceConfidence": "medium"
+      "governanceIndex": 66.3,
+      "governanceConfidence": "high"
     },
     {
       "id": 22,
@@ -2769,7 +2769,7 @@
       "internetFreedomScore": 74,
       "mipexScore": 58,
       "govEffectiveness": 66.7,
-      "governanceIndex": 63.7,
+      "governanceIndex": 61,
       "governanceConfidence": "high"
     },
     {
@@ -2895,7 +2895,7 @@
       "internetFreedomScore": 74,
       "mipexScore": 58,
       "govEffectiveness": 66.7,
-      "governanceIndex": 63.7,
+      "governanceIndex": 61,
       "governanceConfidence": "high"
     },
     {
@@ -3021,8 +3021,8 @@
       "internetFreedomScore": null,
       "mipexScore": 69,
       "govEffectiveness": 74.6,
-      "governanceIndex": 73.9,
-      "governanceConfidence": "medium"
+      "governanceIndex": 74.1,
+      "governanceConfidence": "high"
     },
     {
       "id": 25,
@@ -3147,8 +3147,8 @@
       "internetFreedomScore": null,
       "mipexScore": 46,
       "govEffectiveness": 80.8,
-      "governanceIndex": 71.4,
-      "governanceConfidence": "medium"
+      "governanceIndex": 71.2,
+      "governanceConfidence": "high"
     },
     {
       "id": 26,
@@ -3273,8 +3273,8 @@
       "internetFreedomScore": null,
       "mipexScore": 49,
       "govEffectiveness": 74.2,
-      "governanceIndex": 64.6,
-      "governanceConfidence": "medium"
+      "governanceIndex": 64.4,
+      "governanceConfidence": "high"
     },
     {
       "id": 27,
@@ -3399,8 +3399,8 @@
       "internetFreedomScore": null,
       "mipexScore": 41,
       "govEffectiveness": 64.4,
-      "governanceIndex": 57.6,
-      "governanceConfidence": "medium"
+      "governanceIndex": 57.2,
+      "governanceConfidence": "high"
     },
     {
       "id": 28,
@@ -3525,8 +3525,8 @@
       "internetFreedomScore": null,
       "mipexScore": 81,
       "govEffectiveness": 69.8,
-      "governanceIndex": 68.5,
-      "governanceConfidence": "medium"
+      "governanceIndex": 70.3,
+      "governanceConfidence": "high"
     },
     {
       "id": 29,
@@ -3651,8 +3651,8 @@
       "internetFreedomScore": null,
       "mipexScore": 47,
       "govEffectiveness": 55.1,
-      "governanceIndex": 53,
-      "governanceConfidence": "medium"
+      "governanceIndex": 53.8,
+      "governanceConfidence": "high"
     },
     {
       "id": 30,
@@ -3777,7 +3777,7 @@
       "internetFreedomScore": 31,
       "mipexScore": 43,
       "govEffectiveness": 50,
-      "governanceIndex": 40.8,
+      "governanceIndex": 39.5,
       "governanceConfidence": "high"
     },
     {
@@ -3903,7 +3903,7 @@
       "internetFreedomScore": 61,
       "mipexScore": 51,
       "govEffectiveness": 47.1,
-      "governanceIndex": 44.3,
+      "governanceIndex": 40.1,
       "governanceConfidence": "high"
     },
     {
@@ -4029,7 +4029,7 @@
       "internetFreedomScore": 65,
       "mipexScore": 64,
       "govEffectiveness": 47,
-      "governanceIndex": 50.1,
+      "governanceIndex": 48.6,
       "governanceConfidence": "high"
     },
     {
@@ -4155,7 +4155,7 @@
       "internetFreedomScore": 65,
       "mipexScore": 64,
       "govEffectiveness": 47,
-      "governanceIndex": 50.1,
+      "governanceIndex": 48.6,
       "governanceConfidence": "high"
     },
     {
@@ -4281,7 +4281,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -4407,7 +4407,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -4533,7 +4533,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -4659,7 +4659,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -4785,7 +4785,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -4911,7 +4911,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -5037,7 +5037,7 @@
       "internetFreedomScore": 85,
       "mipexScore": 79,
       "govEffectiveness": 85.5,
-      "governanceIndex": 80.8,
+      "governanceIndex": 78.8,
       "governanceConfidence": "high"
     },
     {
@@ -5163,7 +5163,7 @@
       "internetFreedomScore": 85,
       "mipexScore": 79,
       "govEffectiveness": 85.5,
-      "governanceIndex": 80.8,
+      "governanceIndex": 78.8,
       "governanceConfidence": "high"
     },
     {
@@ -5289,7 +5289,7 @@
       "internetFreedomScore": 75,
       "mipexScore": 65,
       "govEffectiveness": 86.5,
-      "governanceIndex": 77.4,
+      "governanceIndex": 75.9,
       "governanceConfidence": "high"
     },
     {
@@ -5415,7 +5415,7 @@
       "internetFreedomScore": 75,
       "mipexScore": 65,
       "govEffectiveness": 86.5,
-      "governanceIndex": 77.4,
+      "governanceIndex": 75.9,
       "governanceConfidence": "high"
     },
     {
@@ -5535,8 +5535,8 @@
       "timezone": "Pacific/Auckland",
       "homicideRate": 1.1,
       "gpiScore": 1.22,
-      "governanceIndex": 83.8,
-      "governanceConfidence": "medium",
+      "governanceIndex": 82.9,
+      "governanceConfidence": "high",
       "wpsIndex": 0.898,
       "outOfPocketPct": 12.69,
       "wjpRuleLaw": 0.83,
@@ -5667,7 +5667,7 @@
       "internetFreedomScore": 39,
       "mipexScore": null,
       "govEffectiveness": 56.3,
-      "governanceIndex": 45.5,
+      "governanceIndex": 45.7,
       "governanceConfidence": "medium"
     },
     {
@@ -5793,7 +5793,7 @@
       "internetFreedomScore": 60,
       "mipexScore": null,
       "govEffectiveness": 69.1,
-      "governanceIndex": 59,
+      "governanceIndex": 56.7,
       "governanceConfidence": "medium"
     },
     {
@@ -5919,7 +5919,7 @@
       "internetFreedomScore": 22,
       "mipexScore": null,
       "govEffectiveness": 49.5,
-      "governanceIndex": 42.6,
+      "governanceIndex": 41.3,
       "governanceConfidence": "medium"
     },
     {
@@ -6045,7 +6045,7 @@
       "internetFreedomScore": 22,
       "mipexScore": null,
       "govEffectiveness": 49.5,
-      "governanceIndex": 42.6,
+      "governanceIndex": 41.3,
       "governanceConfidence": "medium"
     },
     {
@@ -6171,7 +6171,7 @@
       "internetFreedomScore": 51,
       "mipexScore": 24,
       "govEffectiveness": 59.2,
-      "governanceIndex": 45.6,
+      "governanceIndex": 42.6,
       "governanceConfidence": "high"
     },
     {
@@ -6297,7 +6297,7 @@
       "internetFreedomScore": 51,
       "mipexScore": 24,
       "govEffectiveness": 59.2,
-      "governanceIndex": 45.6,
+      "governanceIndex": 42.6,
       "governanceConfidence": "high"
     },
     {
@@ -6423,7 +6423,7 @@
       "internetFreedomScore": 51,
       "mipexScore": 24,
       "govEffectiveness": 59.2,
-      "governanceIndex": 45.6,
+      "governanceIndex": 42.6,
       "governanceConfidence": "high"
     },
     {
@@ -6549,7 +6549,7 @@
       "internetFreedomScore": 58,
       "mipexScore": null,
       "govEffectiveness": 45.5,
-      "governanceIndex": 43.6,
+      "governanceIndex": 43.1,
       "governanceConfidence": "medium"
     },
     {
@@ -6675,7 +6675,7 @@
       "internetFreedomScore": 28,
       "mipexScore": null,
       "govEffectiveness": 49.5,
-      "governanceIndex": 38,
+      "governanceIndex": 35.6,
       "governanceConfidence": "medium"
     },
     {
@@ -6801,7 +6801,7 @@
       "internetFreedomScore": 13,
       "mipexScore": null,
       "govEffectiveness": 37.6,
-      "governanceIndex": 29.4,
+      "governanceIndex": 28.5,
       "governanceConfidence": "medium"
     },
     {
@@ -7179,7 +7179,7 @@
       "internetFreedomScore": 48,
       "mipexScore": 26,
       "govEffectiveness": 54.8,
-      "governanceIndex": 44.4,
+      "governanceIndex": 44.8,
       "governanceConfidence": "high"
     },
     {
@@ -7305,7 +7305,7 @@
       "internetFreedomScore": 61,
       "mipexScore": null,
       "govEffectiveness": 54.2,
-      "governanceIndex": 47.5,
+      "governanceIndex": 44.2,
       "governanceConfidence": "medium"
     },
     {
@@ -7431,7 +7431,7 @@
       "internetFreedomScore": 65,
       "mipexScore": 56,
       "govEffectiveness": 80.2,
-      "governanceIndex": 68.8,
+      "governanceIndex": 69.8,
       "governanceConfidence": "high"
     },
     {
@@ -7557,7 +7557,7 @@
       "internetFreedomScore": 65,
       "mipexScore": 56,
       "govEffectiveness": 80.2,
-      "governanceIndex": 68.8,
+      "governanceIndex": 69.8,
       "governanceConfidence": "high"
     },
     {
@@ -7683,7 +7683,7 @@
       "internetFreedomScore": 79,
       "mipexScore": null,
       "govEffectiveness": null,
-      "governanceIndex": 72.1,
+      "governanceIndex": 70.3,
       "governanceConfidence": "low"
     },
     {
@@ -7809,7 +7809,7 @@
       "internetFreedomScore": 71,
       "mipexScore": 58,
       "govEffectiveness": 54.9,
-      "governanceIndex": 53.4,
+      "governanceIndex": 51.7,
       "governanceConfidence": "high"
     },
     {
@@ -7935,7 +7935,7 @@
       "internetFreedomScore": 87,
       "mipexScore": 53,
       "govEffectiveness": 70.1,
-      "governanceIndex": 68.5,
+      "governanceIndex": 65.6,
       "governanceConfidence": "high"
     },
     {
@@ -8061,7 +8061,7 @@
       "internetFreedomScore": 64,
       "mipexScore": null,
       "govEffectiveness": 49.2,
-      "governanceIndex": 48.6,
+      "governanceIndex": 45.8,
       "governanceConfidence": "medium"
     },
     {
@@ -8130,7 +8130,7 @@
       "climate": {
         "type": "arid",
         "avgTempC": 19.2,
-        "annualRainMm": 10,
+        "annualRainMm": 13,
         "sunshineHours": 1230,
         "summerAvgC": 22.5,
         "winterAvgC": 15.3,
@@ -8187,8 +8187,8 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 47.4,
-      "governanceIndex": 43.5,
-      "governanceConfidence": "low"
+      "governanceIndex": 45,
+      "governanceConfidence": "medium"
     },
     {
       "id": 67,
@@ -8313,7 +8313,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 48,
       "govEffectiveness": 46.9,
-      "governanceIndex": 51.8,
+      "governanceIndex": 50.2,
       "governanceConfidence": "high"
     },
     {
@@ -8439,7 +8439,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 48,
       "govEffectiveness": 46.9,
-      "governanceIndex": 51.8,
+      "governanceIndex": 50.2,
       "governanceConfidence": "high"
     },
     {
@@ -8565,7 +8565,7 @@
       "internetFreedomScore": 61,
       "mipexScore": 51,
       "govEffectiveness": 47.1,
-      "governanceIndex": 44.3,
+      "governanceIndex": 40.1,
       "governanceConfidence": "high"
     },
     {
@@ -8691,7 +8691,7 @@
       "internetFreedomScore": 86,
       "mipexScore": null,
       "govEffectiveness": 56.9,
-      "governanceIndex": 64.1,
+      "governanceIndex": 61.3,
       "governanceConfidence": "medium"
     },
     {
@@ -8817,8 +8817,8 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 56.1,
-      "governanceIndex": 47.8,
-      "governanceConfidence": "low"
+      "governanceIndex": 49.2,
+      "governanceConfidence": "medium"
     },
     {
       "id": 73,
@@ -8943,7 +8943,7 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 46.4,
-      "governanceIndex": 57.7,
+      "governanceIndex": 57.1,
       "governanceConfidence": "low"
     },
     {
@@ -9012,7 +9012,7 @@
       "climate": {
         "type": "arid",
         "avgTempC": 27.6,
-        "annualRainMm": 56,
+        "annualRainMm": 74,
         "sunshineHours": 3448,
         "summerAvgC": 35.2,
         "winterAvgC": 18.8,
@@ -9069,7 +9069,7 @@
       "internetFreedomScore": 28,
       "mipexScore": 29,
       "govEffectiveness": 75.8,
-      "governanceIndex": 57.3,
+      "governanceIndex": 57,
       "governanceConfidence": "high"
     },
     {
@@ -9195,8 +9195,8 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 73.4,
-      "governanceIndex": 64.6,
-      "governanceConfidence": "low"
+      "governanceIndex": 58.5,
+      "governanceConfidence": "medium"
     },
     {
       "id": 77,
@@ -9321,7 +9321,7 @@
       "internetFreedomScore": 30,
       "mipexScore": null,
       "govEffectiveness": 63,
-      "governanceIndex": 48.1,
+      "governanceIndex": 44.6,
       "governanceConfidence": "low"
     },
     {
@@ -9447,7 +9447,7 @@
       "internetFreedomScore": 25,
       "mipexScore": 10,
       "govEffectiveness": 66.6,
-      "governanceIndex": 43.6,
+      "governanceIndex": 41.2,
       "governanceConfidence": "medium"
     },
     {
@@ -9573,7 +9573,7 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 62.4,
-      "governanceIndex": 57.2,
+      "governanceIndex": 50.5,
       "governanceConfidence": "low"
     },
     {
@@ -9699,7 +9699,7 @@
       "internetFreedomScore": 50,
       "mipexScore": null,
       "govEffectiveness": 29.4,
-      "governanceIndex": 34.9,
+      "governanceIndex": 34.5,
       "governanceConfidence": "medium"
     },
     {
@@ -9825,7 +9825,7 @@
       "internetFreedomScore": 47,
       "mipexScore": 21,
       "govEffectiveness": 55.5,
-      "governanceIndex": 46.8,
+      "governanceIndex": 44.6,
       "governanceConfidence": "high"
     },
     {
@@ -9951,8 +9951,8 @@
       "internetFreedomScore": null,
       "mipexScore": 49,
       "govEffectiveness": 74.1,
-      "governanceIndex": 63.7,
-      "governanceConfidence": "low"
+      "governanceIndex": 61.7,
+      "governanceConfidence": "medium"
     },
     {
       "id": 83,
@@ -10077,7 +10077,7 @@
       "internetFreedomScore": 51,
       "mipexScore": 24,
       "govEffectiveness": 59.2,
-      "governanceIndex": 45.6,
+      "governanceIndex": 42.6,
       "governanceConfidence": "high"
     },
     {
@@ -10203,7 +10203,7 @@
       "internetFreedomScore": 51,
       "mipexScore": 24,
       "govEffectiveness": 59.2,
-      "governanceIndex": 45.6,
+      "governanceIndex": 42.6,
       "governanceConfidence": "high"
     },
     {
@@ -10330,7 +10330,7 @@
       "internetFreedomScore": 62,
       "mipexScore": 48,
       "govEffectiveness": 39.7,
-      "governanceIndex": 45,
+      "governanceIndex": 42.3,
       "governanceConfidence": "high"
     },
     {
@@ -10456,8 +10456,8 @@
       "internetFreedomScore": null,
       "mipexScore": 49,
       "govEffectiveness": 59.5,
-      "governanceIndex": 54,
-      "governanceConfidence": "medium"
+      "governanceIndex": 54.9,
+      "governanceConfidence": "high"
     },
     {
       "id": 87,
@@ -10582,8 +10582,8 @@
       "internetFreedomScore": null,
       "mipexScore": 39,
       "govEffectiveness": 52.2,
-      "governanceIndex": 48.4,
-      "governanceConfidence": "medium"
+      "governanceIndex": 47.5,
+      "governanceConfidence": "high"
     },
     {
       "id": 88,
@@ -10708,8 +10708,8 @@
       "internetFreedomScore": null,
       "mipexScore": 39,
       "govEffectiveness": 65.1,
-      "governanceIndex": 54.2,
-      "governanceConfidence": "medium"
+      "governanceIndex": 54.3,
+      "governanceConfidence": "high"
     },
     {
       "id": 89,
@@ -10834,7 +10834,7 @@
       "internetFreedomScore": 67,
       "mipexScore": 50,
       "govEffectiveness": 53.3,
-      "governanceIndex": 49.3,
+      "governanceIndex": 44.3,
       "governanceConfidence": "high"
     },
     {
@@ -10960,7 +10960,7 @@
       "internetFreedomScore": 69,
       "mipexScore": 43,
       "govEffectiveness": 61.1,
-      "governanceIndex": 52.6,
+      "governanceIndex": 48.2,
       "governanceConfidence": "high"
     },
     {
@@ -11086,8 +11086,8 @@
       "internetFreedomScore": null,
       "mipexScore": 39,
       "govEffectiveness": 64.1,
-      "governanceIndex": 56.7,
-      "governanceConfidence": "medium"
+      "governanceIndex": 56.6,
+      "governanceConfidence": "high"
     },
     {
       "id": 92,
@@ -11212,8 +11212,8 @@
       "internetFreedomScore": null,
       "mipexScore": 48,
       "govEffectiveness": 72.5,
-      "governanceIndex": 62.3,
-      "governanceConfidence": "medium"
+      "governanceIndex": 62.2,
+      "governanceConfidence": "high"
     },
     {
       "id": 93,
@@ -11339,7 +11339,7 @@
       "mipexScore": 64,
       "govEffectiveness": 82.7,
       "governanceIndex": 77.6,
-      "governanceConfidence": "medium"
+      "governanceConfidence": "high"
     },
     {
       "id": 94,
@@ -11464,7 +11464,7 @@
       "internetFreedomScore": 76,
       "mipexScore": 56,
       "govEffectiveness": 74.4,
-      "governanceIndex": 71.8,
+      "governanceIndex": 70.9,
       "governanceConfidence": "high"
     },
     {
@@ -11590,7 +11590,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -11716,7 +11716,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -11842,7 +11842,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -11968,7 +11968,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -12094,7 +12094,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -12220,7 +12220,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -12976,7 +12976,7 @@
       "internetFreedomScore": 78,
       "mipexScore": 47,
       "govEffectiveness": 91.9,
-      "governanceIndex": 75.6,
+      "governanceIndex": 73.5,
       "governanceConfidence": "high"
     },
     {
@@ -13102,7 +13102,7 @@
       "internetFreedomScore": 78,
       "mipexScore": 47,
       "govEffectiveness": 91.9,
-      "governanceIndex": 75.6,
+      "governanceIndex": 73.5,
       "governanceConfidence": "high"
     },
     {
@@ -13228,7 +13228,7 @@
       "internetFreedomScore": 65,
       "mipexScore": 56,
       "govEffectiveness": 80.2,
-      "governanceIndex": 68.8,
+      "governanceIndex": 69.8,
       "governanceConfidence": "high"
     },
     {
@@ -13354,7 +13354,7 @@
       "internetFreedomScore": 42,
       "mipexScore": null,
       "govEffectiveness": 45.6,
-      "governanceIndex": 34.6,
+      "governanceIndex": 30.7,
       "governanceConfidence": "medium"
     },
     {
@@ -13480,7 +13480,7 @@
       "internetFreedomScore": 9,
       "mipexScore": null,
       "govEffectiveness": 21,
-      "governanceIndex": 22.5,
+      "governanceIndex": 22.7,
       "governanceConfidence": "medium"
     },
     {
@@ -13606,7 +13606,7 @@
       "internetFreedomScore": 39,
       "mipexScore": null,
       "govEffectiveness": 56.3,
-      "governanceIndex": 45.5,
+      "governanceIndex": 45.7,
       "governanceConfidence": "medium"
     },
     {
@@ -13732,7 +13732,7 @@
       "internetFreedomScore": 45,
       "mipexScore": null,
       "govEffectiveness": 39.3,
-      "governanceIndex": 36,
+      "governanceIndex": 33.4,
       "governanceConfidence": "medium"
     },
     {
@@ -13858,7 +13858,7 @@
       "internetFreedomScore": 53,
       "mipexScore": null,
       "govEffectiveness": 46,
-      "governanceIndex": 44.9,
+      "governanceIndex": 42.2,
       "governanceConfidence": "medium"
     },
     {
@@ -13984,8 +13984,8 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 34.1,
-      "governanceIndex": 38.8,
-      "governanceConfidence": "low"
+      "governanceIndex": 41.7,
+      "governanceConfidence": "medium"
     },
     {
       "id": 117,
@@ -14110,7 +14110,7 @@
       "internetFreedomScore": 37,
       "mipexScore": null,
       "govEffectiveness": 54.2,
-      "governanceIndex": 46.6,
+      "governanceIndex": 44,
       "governanceConfidence": "medium"
     },
     {
@@ -14236,7 +14236,7 @@
       "internetFreedomScore": 29,
       "mipexScore": null,
       "govEffectiveness": 48.5,
-      "governanceIndex": 40.9,
+      "governanceIndex": 38.9,
       "governanceConfidence": "medium"
     },
     {
@@ -14362,7 +14362,7 @@
       "internetFreedomScore": 34,
       "mipexScore": null,
       "govEffectiveness": 54.6,
-      "governanceIndex": 37.7,
+      "governanceIndex": 32.6,
       "governanceConfidence": "low"
     },
     {
@@ -14488,8 +14488,8 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 43.8,
-      "governanceIndex": 43.3,
-      "governanceConfidence": "low"
+      "governanceIndex": 45.9,
+      "governanceConfidence": "medium"
     },
     {
       "id": 121,
@@ -14614,8 +14614,8 @@
       "internetFreedomScore": null,
       "mipexScore": 86,
       "govEffectiveness": 85.8,
-      "governanceIndex": 84.5,
-      "governanceConfidence": "medium"
+      "governanceIndex": 85.1,
+      "governanceConfidence": "high"
     },
     {
       "id": 122,
@@ -14740,8 +14740,8 @@
       "internetFreedomScore": null,
       "mipexScore": 49,
       "govEffectiveness": 88.5,
-      "governanceIndex": 82.3,
-      "governanceConfidence": "medium"
+      "governanceIndex": 83.8,
+      "governanceConfidence": "high"
     },
     {
       "id": 123,
@@ -14866,8 +14866,8 @@
       "internetFreedomScore": null,
       "mipexScore": 85,
       "govEffectiveness": 86.7,
-      "governanceIndex": 86.6,
-      "governanceConfidence": "medium"
+      "governanceIndex": 87.1,
+      "governanceConfidence": "high"
     },
     {
       "id": 124,
@@ -14992,8 +14992,8 @@
       "internetFreedomScore": null,
       "mipexScore": 69,
       "govEffectiveness": 87.2,
-      "governanceIndex": 83.5,
-      "governanceConfidence": "medium"
+      "governanceIndex": 84.6,
+      "governanceConfidence": "high"
     },
     {
       "id": 125,
@@ -15118,7 +15118,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -15244,7 +15244,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -15370,7 +15370,7 @@
       "internetFreedomScore": 85,
       "mipexScore": 79,
       "govEffectiveness": 85.5,
-      "governanceIndex": 80.8,
+      "governanceIndex": 78.8,
       "governanceConfidence": "high"
     },
     {
@@ -15496,7 +15496,7 @@
       "internetFreedomScore": 75,
       "mipexScore": 65,
       "govEffectiveness": 86.5,
-      "governanceIndex": 77.4,
+      "governanceIndex": 76.3,
       "governanceConfidence": "high"
     },
     {
@@ -15622,7 +15622,7 @@
       "internetFreedomScore": 64,
       "mipexScore": null,
       "govEffectiveness": 49.2,
-      "governanceIndex": 48.6,
+      "governanceIndex": 44.5,
       "governanceConfidence": "medium"
     },
     {
@@ -15748,7 +15748,7 @@
       "internetFreedomScore": 70,
       "mipexScore": null,
       "govEffectiveness": 60.2,
-      "governanceIndex": 60.2,
+      "governanceIndex": 57,
       "governanceConfidence": "medium"
     },
     {
@@ -15874,7 +15874,7 @@
       "internetFreedomScore": 59,
       "mipexScore": null,
       "govEffectiveness": 31.8,
-      "governanceIndex": 36.8,
+      "governanceIndex": 32.7,
       "governanceConfidence": "medium"
     },
     {
@@ -16000,7 +16000,7 @@
       "internetFreedomScore": 17,
       "mipexScore": 31,
       "govEffectiveness": 45.1,
-      "governanceIndex": 33.2,
+      "governanceIndex": 33.9,
       "governanceConfidence": "high"
     },
     {
@@ -16126,7 +16126,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -16252,7 +16252,7 @@
       "internetFreedomScore": 73,
       "mipexScore": 73,
       "govEffectiveness": 77.8,
-      "governanceIndex": 72.2,
+      "governanceIndex": 69.5,
       "governanceConfidence": "high"
     },
     {
@@ -16378,7 +16378,7 @@
       "internetFreedomScore": 85,
       "mipexScore": 79,
       "govEffectiveness": 85.5,
-      "governanceIndex": 80.8,
+      "governanceIndex": 78.8,
       "governanceConfidence": "high"
     },
     {
@@ -16504,8 +16504,8 @@
       "internetFreedomScore": null,
       "mipexScore": 62,
       "govEffectiveness": 91,
-      "governanceIndex": 80.2,
-      "governanceConfidence": "medium"
+      "governanceIndex": 80.5,
+      "governanceConfidence": "high"
     },
     {
       "id": 137,
@@ -16630,7 +16630,7 @@
       "internetFreedomScore": 91,
       "mipexScore": 50,
       "govEffectiveness": 76.6,
-      "governanceIndex": 75.2,
+      "governanceIndex": 73.3,
       "governanceConfidence": "high"
     },
     {
@@ -16756,7 +16756,7 @@
       "internetFreedomScore": 78,
       "mipexScore": 47,
       "govEffectiveness": 91.9,
-      "governanceIndex": 75.6,
+      "governanceIndex": 71.7,
       "governanceConfidence": "high"
     },
     {
@@ -16882,7 +16882,7 @@
       "internetFreedomScore": 78,
       "mipexScore": 47,
       "govEffectiveness": 91.9,
-      "governanceIndex": 75.6,
+      "governanceIndex": 71.7,
       "governanceConfidence": "high"
     },
     {
@@ -17008,7 +17008,7 @@
       "internetFreedomScore": 48,
       "mipexScore": 26,
       "govEffectiveness": 54.8,
-      "governanceIndex": 44.4,
+      "governanceIndex": 44.8,
       "governanceConfidence": "high"
     },
     {
@@ -17134,7 +17134,7 @@
       "internetFreedomScore": 22,
       "mipexScore": null,
       "govEffectiveness": 49.5,
-      "governanceIndex": 42.6,
+      "governanceIndex": 41.3,
       "governanceConfidence": "medium"
     },
     {
@@ -17260,7 +17260,7 @@
       "internetFreedomScore": 61,
       "mipexScore": 51,
       "govEffectiveness": 47.1,
-      "governanceIndex": 44.3,
+      "governanceIndex": 40.1,
       "governanceConfidence": "high"
     },
     {
@@ -17386,8 +17386,8 @@
       "internetFreedomScore": null,
       "mipexScore": 81,
       "govEffectiveness": 69.8,
-      "governanceIndex": 68.5,
-      "governanceConfidence": "medium"
+      "governanceIndex": 70.3,
+      "governanceConfidence": "high"
     },
     {
       "id": 144,
@@ -17512,8 +17512,8 @@
       "internetFreedomScore": null,
       "mipexScore": 60,
       "govEffectiveness": 72.9,
-      "governanceIndex": 66.4,
-      "governanceConfidence": "medium"
+      "governanceIndex": 66.3,
+      "governanceConfidence": "high"
     },
     {
       "id": 146,
@@ -17638,8 +17638,8 @@
       "internetFreedomScore": null,
       "mipexScore": 39,
       "govEffectiveness": 65.1,
-      "governanceIndex": 54.2,
-      "governanceConfidence": "medium"
+      "governanceIndex": 54.3,
+      "governanceConfidence": "high"
     },
     {
       "id": 147,
@@ -17764,7 +17764,7 @@
       "internetFreedomScore": 39,
       "mipexScore": null,
       "govEffectiveness": 56.3,
-      "governanceIndex": 45.5,
+      "governanceIndex": 45.7,
       "governanceConfidence": "medium"
     },
     {
@@ -17890,8 +17890,8 @@
       "internetFreedomScore": null,
       "mipexScore": null,
       "govEffectiveness": 64.8,
-      "governanceIndex": 69.8,
-      "governanceConfidence": "low"
+      "governanceIndex": 68.9,
+      "governanceConfidence": "medium"
     },
     {
       "id": 149,
@@ -18016,8 +18016,8 @@
       "internetFreedomScore": null,
       "mipexScore": 60,
       "govEffectiveness": 72.9,
-      "governanceIndex": 66.4,
-      "governanceConfidence": "medium"
+      "governanceIndex": 66.3,
+      "governanceConfidence": "high"
     },
     {
       "id": 150,
@@ -18142,7 +18142,7 @@
       "internetFreedomScore": 60,
       "mipexScore": null,
       "govEffectiveness": 69.1,
-      "governanceIndex": 59,
+      "governanceIndex": 56.7,
       "governanceConfidence": "medium"
     },
     {
@@ -18268,7 +18268,7 @@
       "internetFreedomScore": 65,
       "mipexScore": 64,
       "govEffectiveness": 47,
-      "governanceIndex": 50.1,
+      "governanceIndex": 48.6,
       "governanceConfidence": "high"
     },
     {
@@ -18394,7 +18394,7 @@
       "internetFreedomScore": 61,
       "mipexScore": 51,
       "govEffectiveness": 47.1,
-      "governanceIndex": 44.3,
+      "governanceIndex": 40.1,
       "governanceConfidence": "high"
     },
     {
@@ -18520,7 +18520,7 @@
       "internetFreedomScore": 61,
       "mipexScore": 51,
       "govEffectiveness": 47.1,
-      "governanceIndex": 44.3,
+      "governanceIndex": 40.1,
       "governanceConfidence": "high"
     },
     {
@@ -18646,8 +18646,260 @@
       "internetFreedomScore": 78,
       "mipexScore": 47,
       "govEffectiveness": 91.9,
-      "governanceIndex": 75.6,
+      "governanceIndex": 73.5,
       "governanceConfidence": "high"
+    },
+    {
+      "id": 160,
+      "name": "卡萨布兰卡",
+      "country": "摩洛哥",
+      "averageIncome": 7500,
+      "bigMacPrice": 4.4,
+      "currency": "USD",
+      "description": "摩洛哥最大城市和经济首都，北非商业中心。地中海气候宜人，生活成本低廉。传统麦地那与现代金融城交融。",
+      "continent": "非洲",
+      "professions": {
+        "软件工程师": 14000,
+        "医生/医学博士": 18000,
+        "财务分析师": 10000,
+        "市场经理": 10000,
+        "平面设计师": 7000,
+        "数据科学家": 15000,
+        "销售经理": 10000,
+        "人力资源经理": 9000,
+        "教师": 7500,
+        "护士": 6000,
+        "律师": 14000,
+        "建筑师": 9000,
+        "厨师": 5000,
+        "记者": 6000,
+        "机械工程师": 10000,
+        "药剂师": 10000,
+        "会计师": 9000,
+        "产品经理": 13000,
+        "UI/UX设计师": 9000,
+        "大学教授": 15000,
+        "牙医": 16000,
+        "公交司机": 4500,
+        "电工": 5500,
+        "政府/NGO行政": 8000,
+        "数字游民": 85000
+      },
+      "housePrice": 750,
+      "airQuality": 60,
+      "costModerate": 850,
+      "costBudget": 450,
+      "doctorsPerThousand": 0.73,
+      "directFlightCities": 85,
+      "safetyIndex": 68.9,
+      "safetyConfidence": "high",
+      "annualWorkHours": 2000,
+      "monthlyRent": 400,
+      "paidLeaveDays": 18,
+      "internetSpeedMbps": 35,
+      "hospitalBedsPerThousand": 1,
+      "uhcCoverageIndex": 58,
+      "lifeExpectancy": 76.7,
+      "pressFreedomScore": 41,
+      "democracyIndex": 4.85,
+      "corruptionPerceptionIndex": 38,
+      "numbeoSafetyIndex": 44.44,
+      "homicideRateInv": 97,
+      "gpiScoreInv": 75,
+      "gallupLawOrder": 72,
+      "healthcareIndex": 38.4,
+      "healthcareConfidence": "high",
+      "freedomIndex": 44.3,
+      "freedomConfidence": "high",
+      "aqiSource": "EPA",
+      "climate": {
+        "type": "mediterranean",
+        "avgTempC": 18.6,
+        "annualRainMm": 410,
+        "sunshineHours": 3030,
+        "summerAvgC": 23,
+        "winterAvgC": 14,
+        "humidityPct": 82,
+        "monthlyHighC": [
+          18,
+          18,
+          20,
+          21,
+          23,
+          25,
+          26,
+          27,
+          26,
+          24,
+          21,
+          19
+        ],
+        "monthlyLowC": [
+          9,
+          10,
+          12,
+          13,
+          16,
+          19,
+          21,
+          21,
+          20,
+          17,
+          13,
+          11
+        ],
+        "monthlyRainMm": [
+          62,
+          50,
+          43,
+          34,
+          14,
+          3,
+          1,
+          0,
+          12,
+          45,
+          84,
+          62
+        ]
+      },
+      "timezone": "Africa/Casablanca",
+      "homicideRate": 1.4,
+      "gpiScore": 2,
+      "governanceIndex": 44.3,
+      "governanceConfidence": "medium",
+      "wpsIndex": 0.555,
+      "outOfPocketPct": 32.85,
+      "wjpRuleLaw": 0.5,
+      "internetFreedomScore": 47,
+      "mipexScore": null,
+      "govEffectiveness": 48.1
+    },
+    {
+      "id": 161,
+      "name": "惠灵顿",
+      "country": "新西兰",
+      "averageIncome": 53000,
+      "bigMacPrice": 5.3,
+      "currency": "USD",
+      "description": "新西兰首都，世界最南端主权国家首都。政府与文化中心，咖啡馆密度全球最高。多风但宜居。",
+      "continent": "大洋洲",
+      "professions": {
+        "软件工程师": 68000,
+        "医生/医学博士": 95000,
+        "财务分析师": 52000,
+        "市场经理": 52000,
+        "平面设计师": 36000,
+        "数据科学家": 72000,
+        "销售经理": 55000,
+        "人力资源经理": 50000,
+        "教师": 48000,
+        "护士": 52000,
+        "律师": 80000,
+        "建筑师": 48000,
+        "厨师": 30000,
+        "记者": 38000,
+        "机械工程师": 52000,
+        "药剂师": 55000,
+        "会计师": 46000,
+        "产品经理": 75000,
+        "UI/UX设计师": 50000,
+        "大学教授": 70000,
+        "牙医": 88000,
+        "公交司机": 36000,
+        "电工": 46000,
+        "政府/NGO行政": 52000,
+        "数字游民": 85000
+      },
+      "housePrice": 5200,
+      "airQuality": 15,
+      "costModerate": 2600,
+      "costBudget": 1200,
+      "doctorsPerThousand": 3.5,
+      "directFlightCities": 25,
+      "safetyIndex": 84.7,
+      "safetyConfidence": "high",
+      "annualWorkHours": 1752,
+      "monthlyRent": 1200,
+      "paidLeaveDays": 20,
+      "internetSpeedMbps": 110,
+      "hospitalBedsPerThousand": 2.6,
+      "uhcCoverageIndex": 87,
+      "lifeExpectancy": 82.1,
+      "pressFreedomScore": 78,
+      "democracyIndex": 9.61,
+      "corruptionPerceptionIndex": 85,
+      "numbeoSafetyIndex": 66.52,
+      "homicideRateInv": 98,
+      "gpiScoreInv": 95,
+      "gallupLawOrder": 82,
+      "healthcareIndex": 65.3,
+      "healthcareConfidence": "high",
+      "freedomIndex": 82.9,
+      "freedomConfidence": "high",
+      "aqiSource": "EPA",
+      "climate": {
+        "type": "oceanic",
+        "avgTempC": 13.1,
+        "annualRainMm": 1320,
+        "sunshineHours": 2094,
+        "summerAvgC": 16.6,
+        "winterAvgC": 9.6,
+        "humidityPct": 81,
+        "monthlyHighC": [
+          20,
+          21,
+          19,
+          17,
+          15,
+          12,
+          12,
+          12,
+          14,
+          15,
+          17,
+          19
+        ],
+        "monthlyLowC": [
+          14,
+          14,
+          13,
+          11,
+          9,
+          7,
+          7,
+          7,
+          8,
+          9,
+          10,
+          12
+        ],
+        "monthlyRainMm": [
+          79,
+          56,
+          100,
+          127,
+          145,
+          124,
+          147,
+          139,
+          108,
+          119,
+          85,
+          91
+        ]
+      },
+      "timezone": "Pacific/Auckland",
+      "homicideRate": 1.1,
+      "gpiScore": 1.22,
+      "governanceIndex": 82.9,
+      "governanceConfidence": "high",
+      "wpsIndex": 0.898,
+      "outOfPocketPct": 12.69,
+      "wjpRuleLaw": 0.83,
+      "internetFreedomScore": null,
+      "mipexScore": 77,
+      "govEffectiveness": 87.3
     }
   ]
 }

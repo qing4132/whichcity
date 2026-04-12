@@ -21,14 +21,14 @@ Core competitive advantage: profession × 81-country tax engine × comprehensive
 - `lib/` — data loading, i18n, tax engine (81 countries), nomad i18n, types, constants
 - `public/data/` — cities.json, exchange-rates.json, nomad-data-compiled.json
 - `__tests__/` — unit tests (Vitest): tax engine, composite index
-- `scripts/` — 4 active maintenance scripts
+- `scripts/` — 8 active maintenance scripts
 - `_archive/` — historical scripts, data sources, reports (reference only)
 
 ## Key Data
 
-- 154 cities, 25 professions, 81 country tax systems, 10 currencies, 4 locales
+- 150 cities, 25 professions, 81 country tax systems, 10 currencies, 4 locales
 - City type: ~50 fields (income, costs, housing, safety, healthcare, freedom, climate, etc.)
-- Composite indices: Life Pressure (client-computed), Safety/Healthcare/Freedom (pre-computed)
+- Composite indices: Life Pressure (client-computed), Safety/Healthcare/Governance (pre-computed, 5-sub each)
 - Nomad data: visa info, VPN, English level, timezone overlap, visa-free matrix
 
 ## Data Priority (Phase 2)

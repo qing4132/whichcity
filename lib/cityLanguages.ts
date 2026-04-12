@@ -336,4 +336,11 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
 
   /* Puerto Rico (1) — Spanish + English are co-official (Language Act 1993). */
   73:  ["Spanish", "English"],  // San Juan — Spanish dominant
+
+  /* ────────────────────── Morocco (1) ────────────────────── */
+  /* Arabic + Amazigh are official (Constitution Art. 5); French is de facto lingua franca in business/education. */
+  160: ["Arabic", "French"],  // Casablanca — Darija (Moroccan Arabic) dominant; French widely used in commerce
+
+  /* ────────────────────── New Zealand (additional) ────────────────────── */
+  161: ["English", "Māori"],  // Wellington — same official languages as Auckland
 };
