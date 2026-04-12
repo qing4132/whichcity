@@ -20,10 +20,15 @@ interface NavBarProps {
     compareHref?: string;
     excludeSlug?: string;
     showShare?: boolean;
+    /** City detail page mode — hides nav links, enables scroll-triggered city title */
+    isCityDetail?: boolean;
+    cityFlag?: string;
+    cityNameText?: string;
+    showCityInNav?: boolean;
 }
 
 const NavBar = forwardRef<HTMLDivElement, NavBarProps>(function NavBar(
-    { s, activePage, professionValue, professions: professionsProp, compareHref, excludeSlug, showShare },
+    { s, activePage, professionValue, professions: professionsProp, compareHref, excludeSlug, showShare, isCityDetail, cityFlag, cityNameText, showCityInNav },
     ref,
 ) {
     const router = useRouter();
@@ -45,8 +50,10 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(function NavBar(
 
     const navBg = darkMode ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100";
     const selectCls = `text-xs rounded px-1.5 py-1 h-7 border w-full ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;
-    const iconBtn = `h-6 w-6 inline-flex items-center justify-center rounded transition ${darkMode ? "text-slate-400 [@media(hover:hover)]:hover:text-slate-200" : "text-slate-400 [@media(hover:hover)]:hover:text-slate-600"}`;
-    const labelCls = `text-[10px] font-medium ${darkMode ? "text-slate-500" : "text-slate-400"}`;
+    const iconBtn = isCityDetail
+        ? `h-8 w-8 inline-flex items-center justify-center rounded-full transition ${darkMode ? "text-slate-400 [@media(hover:hover)]:hover:bg-slate-800 [@media(hover:hover)]:hover:text-slate-200" : "text-slate-500 [@media(hover:hover)]:hover:bg-slate-100 [@media(hover:hover)]:hover:text-slate-700"}`
+        : `h-6 w-6 inline-flex items-center justify-center rounded transition ${darkMode ? "text-slate-400 [@media(hover:hover)]:hover:text-slate-200" : "text-slate-400 [@media(hover:hover)]:hover:text-slate-600"}`;
+    const labelCls = `text-[12px] font-medium ${darkMode ? "text-slate-500" : "text-slate-400"}`;
     const shareBtnCls = `text-xs h-7 px-2.5 inline-flex items-center gap-1.5 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200 [@media(hover:hover)]:hover:bg-slate-700" : "bg-white border-slate-300 text-slate-700 [@media(hover:hover)]:hover:bg-slate-50"}`;
 
     const randomCity = () => {
@@ -125,45 +132,57 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(function NavBar(
     /* ── Nav link colors ── */
     const linkCls = (page: string, _color: "blue" | "amber" | "emerald" | "violet") => {
         const isActive = activePage === page;
-        if (isActive) return `text-[10px] font-semibold ${darkMode ? "text-slate-100" : "text-slate-900"}`;
-        return `text-[10px] transition ${darkMode ? "text-slate-400 [@media(hover:hover)]:hover:text-slate-200" : "text-slate-400 [@media(hover:hover)]:hover:text-slate-700"}`;
+        if (isActive) return `text-[13px] font-semibold ${darkMode ? "text-slate-100" : "text-slate-900"}`;
+        return `text-[13px] transition ${darkMode ? "text-slate-400 [@media(hover:hover)]:hover:text-slate-200" : "text-slate-400 [@media(hover:hover)]:hover:text-slate-700"}`;
     };
 
     /* ── Mobile nav link colors ── */
     const mobileLinkCls = (page: string, _color: string) => {
         const isActive = activePage === page;
-        if (isActive) return `text-sm px-3 py-2 rounded font-semibold ${darkMode ? "text-slate-100" : "text-slate-900"}`;
-        return `text-sm px-3 py-2 rounded ${darkMode ? "text-slate-400 [@media(hover:hover)]:hover:text-slate-200" : "text-slate-500 [@media(hover:hover)]:hover:text-slate-700"}`;
+        if (isActive) return `text-[15px] px-3 py-2 rounded font-semibold ${darkMode ? "text-slate-100" : "text-slate-900"}`;
+        return `text-[15px] px-3 py-2 rounded ${darkMode ? "text-slate-400 [@media(hover:hover)]:hover:text-slate-200" : "text-slate-500 [@media(hover:hover)]:hover:text-slate-700"}`;
     };
 
 
     return (
-        <div ref={ref} className={`sticky top-0 z-50 border-b py-2 ${navBg}`}>
+        <div ref={ref} className={`sticky top-0 z-50 border-b py-2.5 ${navBg}`}>
             <div className="max-w-2xl mx-auto px-4">
-                <div className="flex items-center justify-between gap-2">
-                    {/* Left: brand + nav links */}
-                    <div className="flex items-center gap-3 min-w-0">
-                        <Link href={`/${locale}`} className={`text-sm font-black tracking-tight ${darkMode ? "text-white" : "text-slate-900"}`}>WhichCity</Link>
-                        <Link href={`/${locale}/ranking`} className={linkCls("ranking", "amber")}>{t("navRanking")}</Link>
-                        <button onClick={randomCity} className={linkCls("", "emerald")}>
-                            <span className="min-[420px]:hidden">{t("navRandomCityShort")}</span>
-                            <span className="hidden min-[420px]:inline">{t("navRandomCity")}</span>
-                        </button>
-                        {activePage === "compare"
-                            ? <span className={linkCls("compare", "violet")}>{t("navCompare")}</span>
-                            : <Link href={compareTo} className={linkCls("compare", "violet")}>{t("navCompare")}</Link>
-                        }
+                <div className="flex items-center justify-between gap-2 relative">
+                    {/* Left: brand (+ nav links on non-detail pages) */}
+                    <div className="flex items-center gap-3 min-w-0 z-10">
+                        <Link href={`/${locale}`} className={`text-[18px] font-black tracking-tight shrink-0 ${darkMode ? "text-white" : "text-slate-900"}`}>WhichCity</Link>
+                        {!isCityDetail && (
+                            <>
+                                <Link href={`/${locale}/ranking`} className={linkCls("ranking", "amber")}>{t("navRanking")}</Link>
+                                <button onClick={randomCity} className={linkCls("", "emerald")}>
+                                    <span className="min-[420px]:hidden">{t("navRandomCityShort")}</span>
+                                    <span className="hidden min-[420px]:inline">{t("navRandomCity")}</span>
+                                </button>
+                                {activePage === "compare"
+                                    ? <span className={linkCls("compare", "violet")}>{t("navCompare")}</span>
+                                    : <Link href={compareTo} className={linkCls("compare", "violet")}>{t("navCompare")}</Link>
+                                }
+                            </>
+                        )}
                     </div>
 
+                    {/* Center: city flag + name (detail page only, scroll-triggered) */}
+                    {isCityDetail && cityFlag && cityNameText && (
+                        <div className={`absolute left-1/2 -translate-x-1/2 flex items-center gap-1.5 transition-all duration-300 ease-out ${showCityInNav ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}`}>
+                            <span className="text-[20px]">{cityFlag}</span>
+                            <span className={`text-[15px] font-bold truncate max-w-[160px] ${darkMode ? "text-white" : "text-slate-900"}`}>{cityNameText}</span>
+                        </div>
+                    )}
+
                     {/* Right: Share + Settings */}
-                    <div className="flex items-center gap-2 shrink-0">
+                    <div className={`flex items-center ${isCityDetail ? "gap-1" : "gap-2"} shrink-0`}>
                         {showShare && (
                             <button
                                 onClick={() => { setShareOpen(v => !v); setSettingsOpen(false); }}
                                 className={`${iconBtn} ${shareOpen ? (darkMode ? "!text-slate-100" : "!text-slate-900") : ""}`}
                                 title={t("shareLink")}
                             >
-                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+                                <svg className={isCityDetail ? "w-4 h-4" : "w-3.5 h-3.5"} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
                             </button>
                         )}
                         <button
@@ -171,7 +190,7 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(function NavBar(
                             className={`${iconBtn} ${settingsOpen ? (darkMode ? "!text-slate-100" : "!text-slate-900") : ""}`}
                             title={t("settingsLabel")}
                         >
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><circle cx="12" cy="12" r="3" /></svg>
+                            <svg className={isCityDetail ? "w-4 h-4" : "w-3.5 h-3.5"} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><circle cx="12" cy="12" r="3" /></svg>
                         </button>
                     </div>
                 </div>

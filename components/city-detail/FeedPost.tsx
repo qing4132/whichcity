@@ -31,14 +31,14 @@ export default function FeedPost({ icon, title, rank, bigValue, valueTier, stats
         <div className={`py-3.5 border-b ${divider}`}>
             {/* Header */}
             <div className="flex items-center gap-1.5 mb-1.5">
-                {icon && <span className="text-sm">{icon}</span>}
-                <span className={`text-xs font-extrabold ${headCls}`}>{title}</span>
-                {rank && <span className={`text-[10px] font-semibold ${rankCls}`}>{rank}</span>}
+                {icon && <span className="text-[15px]">{icon}</span>}
+                <span className={`text-[15px] font-extrabold ${headCls}`}>{title}</span>
+                {rank && <span className={`text-[13px] font-semibold ${rankCls}`}>{rank}</span>}
             </div>
 
             {/* Big value */}
             {bigValue && (
-                <div className={`text-4xl font-black leading-none mb-1 ${valueTier ? cardValCls(valueTier) : headCls}`}>
+                <div className={`text-[45px] font-black leading-none mb-1 ${valueTier ? cardValCls(valueTier) : headCls}`}>
                     {bigValue}
                 </div>
             )}
@@ -48,9 +48,9 @@ export default function FeedPost({ icon, title, rank, bigValue, valueTier, stats
                 <div className="flex gap-4 mb-1">
                     {stats.map(s => (
                         <div key={s.label}>
-                            <div className={`text-2xl font-black ${headCls}`}>{s.value}</div>
-                            <div className={`text-[9px] ${labelCls}`}>{s.label}</div>
-                            {s.detail && <div className={`text-[9px] ${labelCls}`}>{s.detail}</div>}
+                            <div className={`text-[30px] font-black ${headCls}`}>{s.value}</div>
+                            <div className={`text-[12px] ${labelCls}`}>{s.label}</div>
+                            {s.detail && <div className={`text-[12px] ${labelCls}`}>{s.detail}</div>}
                         </div>
                     ))}
                 </div>
@@ -61,7 +61,7 @@ export default function FeedPost({ icon, title, rank, bigValue, valueTier, stats
 
             {/* Description */}
             {description && (
-                <div className={`text-[10px] leading-normal ${subCls}`}>{description}</div>
+                <div className={`text-[13px] leading-normal ${subCls}`}>{description}</div>
             )}
         </div>
     );

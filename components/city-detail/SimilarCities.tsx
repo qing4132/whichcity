@@ -53,7 +53,7 @@ export default function SimilarCities(props: Props) {
             return [allIncomes[i], allCosts[i], allSavings[i], c.housePrice ?? medHP, isFinite(ytb) ? ytb : 999, c.monthlyRent ?? medRent,
             c.annualWorkHours ?? medWH, allHourly[i], c.paidLeaveDays ?? medPL,
             c.airQuality ?? medAQI, c.internetSpeedMbps ?? medNet, c.directFlightCities ?? medFlights,
-            allLifePressure[i], c.healthcareIndex, c.freedomIndex, c.safetyIndex,
+            allLifePressure[i], c.healthcareIndex, c.governanceIndex, c.safetyIndex,
             cl?.avgTempC ?? 15, cl ? cl.summerAvgC - cl.winterAvgC : 15, cl?.annualRainMm ?? 800, cl?.humidityPct ?? 60, cl?.sunshineHours ?? 2000];
         };
         const all = allCities.map((_, i) => vec(i));
@@ -102,25 +102,25 @@ export default function SimilarCities(props: Props) {
     return (
         <div className={`py-3.5 border-b ${divider}`}>
             <div className="flex items-center gap-1.5 mb-3">
-                <span className="text-sm">🔗</span>
-                <span className={`text-xs font-extrabold ${headCls}`}>{t("similarCities")}</span>
+                <span className="text-[15px]">🔗</span>
+                <span className={`text-[15px] font-extrabold ${headCls}`}>{t("similarCities")}</span>
             </div>
             <div className="space-y-3">
                 {simData.map(sc => (
                     <div key={sc.otherId} className="flex items-center gap-3">
-                        <span className="text-xl">{CITY_FLAG_EMOJIS[sc.otherId] || "🏙️"}</span>
+                        <span className="text-[24px]">{CITY_FLAG_EMOJIS[sc.otherId] || "🏙️"}</span>
                         <div className="flex-1 min-w-0">
-                            <Link href={`/${locale}/city/${sc.otherSlug}`} className={`text-sm font-bold hover:underline ${headCls}`}>{sc.otherName}</Link>
+                            <Link href={`/${locale}/city/${sc.otherSlug}`} className={`text-[15px] font-bold hover:underline ${headCls}`}>{sc.otherName}</Link>
                             <div className="flex flex-wrap gap-x-2 gap-y-0.5">
                                 {sc.highlights.map((h, i) => (
-                                    <span key={i} className={`text-[10px] ${h.adv ? (darkMode ? "text-green-400" : "text-green-600") : (darkMode ? "text-rose-400" : "text-rose-500")}`}>
+                                    <span key={i} className={`text-[13px] ${h.adv ? (darkMode ? "text-green-400" : "text-green-600") : (darkMode ? "text-rose-400" : "text-rose-500")}`}>
                                         {t(h.key)} {h.sign}{h.pct}%
                                     </span>
                                 ))}
                             </div>
                         </div>
                         <Link href={`/${locale}/compare/${[slug, sc.otherSlug].sort().join("-vs-")}`}
-                            className={`text-[10px] px-2 py-1 rounded shrink-0 ${darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600"}`}>
+                            className={`text-[13px] px-2 py-1 rounded shrink-0 ${darkMode ? "bg-slate-800 text-slate-300" : "bg-slate-100 text-slate-600"}`}>
                             {t("compareCity")}
                         </Link>
                     </div>

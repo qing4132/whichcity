@@ -63,7 +63,7 @@ const METRICS: Metric[] = [
   { key: "lp", group: "index", label: t => t("lifePressureIndex"), get: (c, x) => { const inc = x.allIncomes.get(c.id) ?? 0; const allInc = x.allCities.map(cc => x.allIncomes.get(cc.id) ?? 0); return computeLifePressure(c, x.allCities, inc, allInc, x.costField).value; }, fmt: v => v != null ? v.toFixed(1) : "—", lower: true },
   { key: "safety", group: "index", label: t => t("safetyIndex"), get: c => c.safetyIndex, fmt: v => v != null ? v.toFixed(1) : "—" },
   { key: "health", group: "index", label: t => t("healthcareIndex"), get: c => c.healthcareIndex, fmt: v => v != null ? v.toFixed(1) : "—" },
-  { key: "freedom", group: "index", label: t => t("institutionalFreedom"), get: c => c.freedomIndex, fmt: v => v != null ? v.toFixed(1) : "—" },
+  { key: "freedom", group: "index", label: t => t("governanceShort"), get: c => c.governanceIndex, fmt: v => v != null ? v.toFixed(1) : "—" },
   { key: "climateType", group: "climate", label: t => t("climateType"), get: c => c.climate ? 1 : null, fmt: () => "—" },
   { key: "avgTemp", group: "climate", label: t => t("avgTemp"), get: c => c.climate?.avgTempC ?? null, fmt: v => v != null ? `${v.toFixed(1)}°C` : "—" },
   { key: "tempRange", group: "climate", label: t => t("tempRange"), get: c => { const cl = c.climate; return cl ? cl.summerAvgC - cl.winterAvgC : null; }, fmt: v => v != null ? `${v.toFixed(1)}°C` : "—", lower: true },

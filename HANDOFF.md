@@ -1,8 +1,9 @@
 # WhichCity — Project Handoff
 
-> **Version 2.1** — Phase 2 in progress (2026-04-12)
+> **Version 2.2** — Phase 2 in progress (2026-04-13)
 > Phase 1 changelog: `_archive/reports/changelog-v1.md`
 > Phase 2 strategy: `_archive/reports/phase2-strategy.md`
+> New indicators report: `_archive/reports/new-indicators-2025-04.md`
 
 ---
 
@@ -65,10 +66,10 @@ whichcity/
 ├── hooks/useSettings.ts       Global settings + formatCompact (万/亿 for CJK, k/M for latin)
 │
 ├── lib/
-│   ├── types.ts               City interface (~50 fields + homicideRate, gpiScore)
+│   ├── types.ts               City interface (~60 fields, incl. 6 new governance/health indicators)
 │   ├── taxData.ts             81 country tax tables + expat schemes
 │   ├── taxUtils.ts            Tax computation engine
-│   ├── i18n.ts                ~2000 lines (4 locales, 360+ keys)
+│   ├── i18n.ts                ~2100 lines (4 locales, 370+ keys)
 │   ├── constants.ts           Regions, flags, currencies, climate
 │   ├── dataLoader.ts          Server-side data loading
 │   ├── clientUtils.ts         Life Pressure formula, helpers
@@ -83,7 +84,7 @@ whichcity/
 │   └── nomad-visafree-4passport.json
 │
 ├── __tests__/                 Vitest (tax engine + composite index)
-├── scripts/                   4 active scripts (rates, validate, climate, timezone)
+├── scripts/                   6 active scripts (rates, validate, climate, timezone, collect, merge)
 │
 ├── REDESIGN.md                Phase 2 direction & constraints
 ├── RULES.md                   Coding conventions
@@ -126,9 +127,9 @@ City overrides for US state tax, Canadian provincial tax, HK foreign worker rule
 
 | Index | Weights | Stored |
 |-------|---------|--------|
-| Safety | 35% Numbeo + 30% Homicide(inv) + 20% GPI(inv) + 15% Gallup | Pre-computed in JSON |
-| Healthcare | 35% Doctors + 25% Beds + 25% UHC + 15% Life Expectancy | Pre-computed |
-| Freedom | 35% Press + 35% Democracy + 30% Corruption | Pre-computed |
+| Safety | 30% Numbeo + 25% Homicide(inv) + 20% GPI(inv) + 15% Gallup + 10% WPS | Pre-computed in JSON |
+| Healthcare | 25% Doctors + 25% UHC + 20% Beds + 15% Life Expectancy + 15% OOP(inv) | Pre-computed |
+| Governance | 25% CPI + 25% Gov Effectiveness + 20% WJP Rule of Law + 15% Internet Freedom + 15% MIPEX | Pre-computed |
 | Life Pressure | 30% Savings Rate + 25% BigMac + 25% WorkHours(inv) + 20% YearsToBuy | Client-computed |
 
 Missing sub-indicator weights redistributed proportionally. Confidence: all=high, 1 missing=medium, 2+=low.
@@ -193,11 +194,17 @@ See [REDESIGN.md](REDESIGN.md) for full plan. Key progress:
 - [x] Currency display: tax breakdown uses currency codes (CNY/EUR) not symbols (¥/€)
 - [x] Thousands separators enabled for all locales
 - [x] Tax detail toggle: "点击展开/收起税务明细" with state-based text
+- [x] City detail NavBar: scroll-triggered city name animation, hidden nav links, compact icon buttons
+- [x] Plan D font scale applied (12/13/14/15/20/30/45px) across city detail page
+- [x] 6 new indicators collected from public sources (WPS, OOP health, WJP Rule of Law, Freedom on Net, MIPEX, WGI Gov Effectiveness)
+- [x] Composite indices upgraded: Safety 4→5 subs, Healthcare 4→5 subs, Freedom→Governance 3→5 subs
+- [x] governanceIndex replaces freedomIndex throughout codebase (types, components, i18n)
 
 Pending:
 - [ ] SEO meta optimization
 - [ ] GA4 key event configuration
 - [ ] Compare page Phase 2 restyling
+- [ ] Migrate remaining freedomIndex references in documentation
 # WhichCity — Project Handoff Document
 
 > **Version 1.0** — Phase 1 complete (2026-04-10)
@@ -226,7 +233,7 @@ Pending:
 
 ## 1. Overview
 
-**WhichCity** ([whichcity.run](https://whichcity.run)) is a global city comparison tool. Users can compare 154 cities across income, living costs, housing, safety, healthcare, institutional freedom, climate, and more. Supports 26 professions, 81 country tax systems, 10 currencies, and 4 languages (zh/en/ja/es).
+**WhichCity** ([whichcity.run](https://whichcity.run)) is a global city comparison tool. Users can compare 154 cities across income, living costs, housing, safety, healthcare, governance, climate, and more. Supports 26 professions, 81 country tax systems, 10 currencies, and 4 languages (zh/en/ja/es).
 
 **Core use cases**: relocation decisions, job offer comparison, study abroad planning, digital nomad destination research.
 
@@ -289,7 +296,7 @@ whichcity/
 │   └── useSettings.ts          Global settings hook (localStorage-backed)
 │
 ├── lib/
-│   ├── types.ts                City interface (~50 fields), enums
+│   ├── types.ts                City interface (~60 fields), enums
 │   ├── constants.ts            Regions, flags, currencies, country mappings
 │   ├── dataLoader.ts           Server-side data loading (cached per process)
 │   ├── i18n.ts                 ~1960 lines — translations (4 locales, 350+ keys)
@@ -317,16 +324,18 @@ whichcity/
 │   ├── taxUtils.test.ts        22 tests — tax engine
 │   └── compositeIndex.test.ts  13 tests — Life Pressure computation
 │
-├── scripts/                    Active maintenance scripts
+├── scripts/                    Active maintenance scripts (6 files)
 │   ├── update-rates.mjs        Fetch exchange rates (daily, CI-automated)
 │   ├── validate-data.mjs       Data validation (CI-automated)
 │   ├── add-monthly-climate.mjs Batch add monthly climate data (reusable for new cities)
-│   └── add-timezone.mjs        Add timezone to cities (reusable for new cities)
+│   ├── add-timezone.mjs        Add timezone to cities (reusable for new cities)
+│   ├── collect-new-indicators.py  Fetch indicators from World Bank API
+│   └── merge-new-indicators.mjs   Merge 6 new indicators + recompute composites
 │
 ├── _archive/                   Historical reference (DO NOT DELETE)
 │   ├── scripts/                30+ one-time data processing scripts
 │   ├── audit/                  V1 data audit scripts, results, and fix reports
-│   ├── data_sources/           Raw source data (Numbeo, UNODC, GPI, Gallup)
+│   ├── data_sources/           Raw source data (Numbeo, UNODC, GPI, Gallup, WPS, WJP, etc.)
 │   ├── old-homepage/           Legacy components before redesign
 │   ├── reports/                Dev session reports + V1 changelog
 │   └── *.md                    Historical docs
@@ -373,7 +382,7 @@ whichcity/
 | Housing | housePrice, housing (years to buy), rent |
 | Work | workhours, hourlyWage, vacation |
 | Environment | air (AQI), internet (Mbps), flights |
-| Index | lifePressure, safety, healthcare, freedom |
+| Index | lifePressure, safety, healthcare, governance |
 
 **Features**:
 - Single-select mode: sort by one tab + optional sub-sort for composite indices
@@ -384,9 +393,9 @@ whichcity/
 
 **Index sub-indicators and weights**:
 - Life Pressure: 30% savings rate, 25% big mac purchasing power, 25% work hours (inv), 20% years-to-buy
-- Safety: 35% Numbeo, 30% homicide rate (inv), 20% GPI (inv), 15% Gallup law & order
-- Healthcare: 35% doctors/1k, 25% hospital beds/1k, 25% UHC coverage, 15% life expectancy
-- Freedom: 35% press freedom, 35% democracy index, 30% corruption perception index
+- Safety: 30% Numbeo, 25% homicide rate (inv), 20% GPI (inv), 15% Gallup law & order, 10% WPS
+- Healthcare: 25% doctors/1k, 25% UHC coverage, 20% hospital beds/1k, 15% life expectancy, 15% OOP (inv)
+- Governance: 25% CPI, 25% gov effectiveness, 20% WJP rule of law, 15% internet freedom, 15% MIPEX
 
 ### 4.3 Compare (`/:locale/compare/:pair`)
 
@@ -404,7 +413,7 @@ whichcity/
 
 - Row 1: Income & Housing (6 metrics with rank and tier coloring)
 - Row 2: Work & Environment (6 metrics)
-- Row 3: 4 expandable index cards (Life Pressure, Safety, Healthcare, Freedom) with sub-indicators
+- Row 3: 4 expandable index cards (Life Pressure, Safety, Healthcare, Governance) with sub-indicators
 - **Digital Nomad section** (see §17): visa info, VPN status, English level, visa-free matrix, timezone overlap
 - Timezone card (live clock, UTC offset, DST-aware)
 - Climate section (type, stats, monthly temperature/rainfall chart)
@@ -457,29 +466,39 @@ interface City {
   internetSpeedMbps: number | null;
   directFlightCities: number | null;
 
-  // Safety (composite + 4 sub-indicators)
+  // Safety (composite + 5 sub-indicators)
   safetyIndex: number;               // 0–100 pre-computed weighted
   safetyConfidence: "high" | "medium" | "low";
   numbeoSafetyIndex: number | null;
   homicideRateInv: number | null;
   gpiScoreInv: number | null;
   gallupLawOrder: number | null;
+  wpsIndex: number | null;           // Georgetown WPS Index (0-1)
   safetyWarning?: "active_conflict" | "extreme_instability" | "data_blocked";
 
-  // Healthcare (composite + 4 sub-indicators)
+  // Healthcare (composite + 5 sub-indicators)
   healthcareIndex: number;
   healthcareConfidence: "high" | "medium" | "low";
   doctorsPerThousand: number | null;
   hospitalBedsPerThousand: number | null;
   uhcCoverageIndex: number | null;
   lifeExpectancy: number | null;
+  outOfPocketPct: number | null;     // OOP health expenditure (%)
 
-  // Freedom (composite + 3 sub-indicators)
+  // Governance (composite + 5 sub-indicators, replaces old Freedom)
+  governanceIndex: number;           // 0–100 pre-computed weighted
+  governanceConfidence: "high" | "medium" | "low";
+  corruptionPerceptionIndex: number | null;
+  govEffectiveness: number | null;   // WGI Government Effectiveness (0-100)
+  wjpRuleLaw: number | null;        // WJP Rule of Law Index (0-1)
+  internetFreedomScore: number | null; // Freedom on the Net (0-100)
+  mipexScore: number | null;         // MIPEX migrant integration (0-100)
+
+  // Legacy (kept for backwards compatibility)
   freedomIndex: number;
   freedomConfidence: "high" | "medium" | "low";
   pressFreedomScore: number | null;
   democracyIndex: number | null;
-  corruptionPerceptionIndex: number | null;
 
   // Climate
   timezone?: string;                 // IANA timezone (e.g., "America/New_York")
@@ -509,9 +528,9 @@ interface ClimateInfo {
 | Cost of living | Numbeo, Expatistan | Semi-annual manual |
 | House prices | Local real estate data | Semi-annual manual |
 | AQI | IQAir annual report | Annual |
-| Safety sub-indices | Numbeo, UNODC, GPI, Gallup | Annual |
+| Safety sub-indices | Numbeo, UNODC, GPI, Gallup, Georgetown WPS | Annual |
 | Healthcare sub-indices | WHO, World Bank | Annual |
-| Freedom sub-indices | RSF, EIU, Transparency International | Annual |
+| Governance sub-indices | TI CPI, World Bank WGI, WJP, Freedom House, MIPEX | Annual |
 | Exchange rates | ExchangeRate-API | **Daily (automated)** |
 | Tax brackets | Government sources | Annual manual |
 | Climate | WMO Normals 1991-2020, NOAA | Static (rarely changes) |
@@ -585,7 +604,7 @@ interface ClimateInfo {
 - Income, costModerate, costBudget, housePrice, monthlyRent
 - annualWorkHours, paidLeaveDays
 - airQuality, internetSpeedMbps, directFlightCities
-- safetyIndex, healthcareIndex, freedomIndex
+- safetyIndex, healthcareIndex, governanceIndex
 - bigMacPrice, doctorsPerThousand, hospitalBedsPerThousand
 - uhcCoverageIndex, lifeExpectancy
 - avgTempC, annualRainMm, sunshineHours

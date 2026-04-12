@@ -60,10 +60,10 @@ export default function NomadSection({ city, cityName, locale, darkMode, t, noma
     return (
         <div className={`py-3.5 border-b ${divider}`}>
             <button onClick={() => setOpen(o => !o)} className="w-full flex items-center gap-1.5 text-left">
-                <span className="text-sm">✈️</span>
-                <span className={`text-xs font-extrabold ${headCls}`}>{t("nomadSection")}</span>
-                {visa?.hasNomadVisa && <span className={`text-[10px] ${subCls}`}>· {visaName}{duration ? ` · ${duration}` : ""}</span>}
-                <span className={`text-[10px] ml-auto transition-transform ${open ? "rotate-90" : ""} ${subCls}`}>▶</span>
+                <span className="text-[15px]">✈️</span>
+                <span className={`text-[15px] font-extrabold ${headCls}`}>{t("nomadSection")}</span>
+                {visa?.hasNomadVisa && <span className={`text-[13px] ${subCls}`}>· {visaName}{duration ? ` · ${duration}` : ""}</span>}
+                <span className={`text-[13px] ml-auto transition-transform ${open ? "rotate-90" : ""} ${subCls}`}>▶</span>
             </button>
 
             {open && (
@@ -76,16 +76,16 @@ export default function NomadSection({ city, cityName, locale, darkMode, t, noma
                             { label: t("nomadTax"), val: visa?.taxOnForeignIncome ? (localizeTax(visa.taxOnForeignIncome, locale as Locale) ?? "—") : "—" },
                         ].map(c => (
                             <div key={c.label}>
-                                <div className={`text-base font-black ${headCls}`}>{c.val}</div>
-                                <div className={`text-[9px] ${labelCls}`}>{c.label}</div>
+                                <div className={`text-[20px] font-black ${headCls}`}>{c.val}</div>
+                                <div className={`text-[12px] ${labelCls}`}>{c.label}</div>
                             </div>
                         ))}
                     </div>
 
-                    {visaNote && <p className={`text-[10px] leading-normal ${subCls}`}>{t("nomadVisaNotePrefix")} {visaNote}</p>}
+                    {visaNote && <p className={`text-[13px] leading-normal ${subCls}`}>{t("nomadVisaNotePrefix")} {visaNote}</p>}
 
                     <div>
-                        <div className={`text-xs font-semibold mb-2 ${headCls}`}>{t("nomadVisaFreeDays").replace("{city}", cityName)}</div>
+                        <div className={`text-[15px] font-semibold mb-2 ${headCls}`}>{t("nomadVisaFreeDays").replace("{city}", cityName)}</div>
                         <div className="flex gap-4 flex-wrap">
                             {(Object.entries(passports) as [string, string][]).map(([code, label]) => {
                                 const own = isOwn(code);
@@ -93,8 +93,8 @@ export default function NomadSection({ city, cityName, locale, darkMode, t, noma
                                 const val = own ? "—" : days !== null ? t("nomadDays").replace("{d}", String(days)) : t("nomadNeedVisa");
                                 return (
                                     <div key={code}>
-                                        <div className={`text-base font-black ${own ? subCls : days === null ? (darkMode ? "text-red-400" : "text-red-500") : headCls}`}>{val}</div>
-                                        <div className={`text-[9px] ${labelCls}`}>{label}</div>
+                                        <div className={`text-[20px] font-black ${own ? subCls : days === null ? (darkMode ? "text-red-400" : "text-red-500") : headCls}`}>{val}</div>
+                                        <div className={`text-[12px] ${labelCls}`}>{label}</div>
                                     </div>
                                 );
                             })}
@@ -103,7 +103,7 @@ export default function NomadSection({ city, cityName, locale, darkMode, t, noma
 
                     {tz && (
                         <div>
-                            <div className={`text-xs font-semibold mb-2 ${headCls}`}>{t("nomadTimezone")}</div>
+                            <div className={`text-[15px] font-semibold mb-2 ${headCls}`}>{t("nomadTimezone")}</div>
                             <div className="flex gap-4 flex-wrap">
                                 {[
                                     { label: t("nomadTzUSWest"), val: tz.overlapWithUSWest },
@@ -112,8 +112,8 @@ export default function NomadSection({ city, cityName, locale, darkMode, t, noma
                                     { label: t("nomadTzEast8"), val: tz.overlapWithEast8 },
                                 ].map(item => (
                                     <div key={item.label}>
-                                        <div className={`text-base font-black ${headCls}`}>{item.val != null ? `${item.val} ${t("unitH")}` : "—"}</div>
-                                        <div className={`text-[9px] ${labelCls}`}>{item.label}</div>
+                                        <div className={`text-[20px] font-black ${headCls}`}>{item.val != null ? `${item.val} ${t("unitH")}` : "—"}</div>
+                                        <div className={`text-[12px] ${labelCls}`}>{item.label}</div>
                                     </div>
                                 ))}
                             </div>

@@ -287,7 +287,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
       lifePressure: lp.value, lifePressureConf: lp.confidence,
       safetyIndex: city.safetyIndex, safetyConf: city.safetyConfidence,
       healthcareIndex: city.healthcareIndex, healthcareConf: city.healthcareConfidence,
-      freedomIndex: city.freedomIndex, freedomConf: city.freedomConfidence,
+      governanceIndex: city.governanceIndex, governanceConf: city.governanceConfidence,
       numbeoSafety: city.numbeoSafetyIndex, homicideInv: city.homicideRateInv,
       gpiInv: city.gpiScoreInv, gallupLO: city.gallupLawOrder,
       doctors: city.doctorsPerThousand, beds: city.hospitalBedsPerThousand,
@@ -315,7 +315,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
     lp: rows.map(r => r.lifePressure),
     safety: rows.map(r => r.safetyIndex),
     hc: rows.map(r => r.healthcareIndex),
-    freedom: rows.map(r => r.freedomIndex),
+    freedom: rows.map(r => r.governanceIndex),
     savingsRate: rows.map(r => r.savingsRate),
     bigMac: nn(rows.map(r => r.bigMacPower)),
     numbeo: nn(rows.map(r => r.numbeoSafety)),
@@ -355,7 +355,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
         case "lifePressure": return a.lifePressure - b.lifePressure;
         case "safety": return b.safetyIndex - a.safetyIndex;
         case "healthcare": return b.healthcareIndex - a.healthcareIndex;
-        case "freedom": return b.freedomIndex - a.freedomIndex;
+        case "freedom": return b.governanceIndex - a.governanceIndex;
         case "savingsRate": return b.savingsRate - a.savingsRate;
         case "bigMacPower": return nullLast(a.bigMacPower, b.bigMacPower, false);
         case "subWorkHours": return nullLast(a.annualWorkHours, b.annualWorkHours, true);
@@ -458,7 +458,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
           case "lifePressure": return Math.round(r.lifePressure * 10);
           case "safety": return Math.round(r.safetyIndex * 10);
           case "healthcare": return Math.round(r.healthcareIndex * 10);
-          case "freedom": return Math.round(r.freedomIndex * 10);
+          case "freedom": return Math.round(r.governanceIndex * 10);
           case "savingsRate": return r.savingsRate;
           case "bigMacPower": return r.bigMacPower !== null ? Math.round(r.bigMacPower * 10) : null;
           case "subWorkHours": return r.annualWorkHours;
@@ -592,10 +592,10 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
           <TC val={r.lifeExpectancy} formatted={fmtN(r.lifeExpectancy, t("lifeExpectancyUnit"), 1)} vals={V.lifeExp} higher={true} active={sortKey === "lifeExp"} />
         </>);
         case "freedom": return (<>
-          <TC val={r.freedomIndex} formatted={r.freedomIndex.toFixed(1)} vals={V.freedom} higher={true} conf={r.freedomConf} active={sortKey === "freedom"} />
+          <TC val={r.governanceIndex} formatted={r.governanceIndex.toFixed(1)} vals={V.freedom} higher={true} conf={r.governanceConf} active={sortKey === "freedom"} />
+          <TC val={r.cpi} formatted={fmtN(r.cpi)} vals={V.cpi} higher={true} active={sortKey === "cpi"} />
           <TC val={r.pressFreedom} formatted={fmtN(r.pressFreedom)} vals={V.press} higher={true} active={sortKey === "press"} />
           <TC val={r.democracy} formatted={fmtN(r.democracy, "", 1)} vals={V.demo} higher={true} active={sortKey === "democracy"} />
-          <TC val={r.cpi} formatted={fmtN(r.cpi)} vals={V.cpi} higher={true} active={sortKey === "cpi"} />
         </>);
       }
     }

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字号方案对比 — 伦敦 (iPhone 13 Pro 390px)</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .page {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            padding: 32px 12px;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+            width: 390px;
+            max-width: 100%;
+        }
+
+        .column-label {
+            text-align: center;
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            color: #64748b;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            margin-left: 6px;
+        }
+
+        .tag-a {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .tag-b {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .tag-c {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .tag-d {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .content {
+            padding: 0 16px;
+        }
+
+        .row {
+            padding: 14px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .row-head {
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .row-rank {
+            font-weight: 600;
+            color: #16a34a;
+            margin-left: auto;
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+
+        .big-val {
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .label {
+            color: #94a3b8;
+        }
+
+        .sub {
+            color: #64748b;
+        }
+
+        .sub-indicators {
+            color: #64748b;
+        }
+
+        .green {
+            color: #16a34a;
+        }
+
+        .rose {
+            color: #f43f5e;
+        }
+
+        .hero {
+            padding: 24px 0 8px;
+        }
+
+        .hero h1 {
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .hero-sub {
+            color: #64748b;
+        }
+
+        .footer {
+            padding: 16px 0;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid #f1f5f9;
+            margin-top: 8px;
+        }
+
+        .cjk {
+            font-family: 'Noto Sans SC', sans-serif;
+            position: relative;
+            -webkit-text-stroke: 2px;
+        }
+
+        /* Tax breakdown */
+        .tax {
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        .tax-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 1px 0;
+        }
+
+        .tax-line.bold {
+            font-weight: 700;
+        }
+
+        .tax-line.indent {
+            padding-left: 12px;
+            opacity: .6;
+        }
+
+        .tax-divider {
+            border-top: 1px solid #f1f5f9;
+            margin: 2px 0;
+        }
+
+        .tax-net {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 3px;
+            margin-top: 3px;
+        }
+
+        /* Scale table */
+        .scale-table {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+        }
+
+        .scale-table h2 {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #334155;
+        }
+
+        .scale-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .scale-table th {
+            text-align: left;
+            padding: 6px 10px;
+            background: #f8fafc;
+            border-bottom: 2px solid #e2e8f0;
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        .scale-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .bar {
+            display: inline-block;
+            height: 8px;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+
+        .bar-a {
+            background: #cbd5e1;
+        }
+
+        .bar-b {
+            background: #93c5fd;
+        }
+
+        .bar-c {
+            background: #86efac;
+        }
+
+        .bar-d {
+            background: #fbbf24;
+        }
+
+        .dim {
+            font-size: 11px;
+            color: #94a3b8;
+            text-align: center;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="padding: 32px 16px 0;">
+        <div class="scale-table">
+            <h2>字号层级对比</h2>
+            <table>
+                <tr>
+                    <th>元素</th>
+                    <th>A 现状</th>
+                    <th>B 收窄底部</th>
+                    <th>C 等比递增</th>
+                    <th>D 渐进</th>
+                    <th>可视化</th>
+                </tr>
+                <tr>
+                    <td>值下方标签</td>
+                    <td>9px</td>
+                    <td>11px</td>
+                    <td>12px</td>
+                    <td>12px</td>
+                    <td><span class="bar bar-a" style="width:36px"></span> <span class="bar bar-b"
+                            style="width:44px"></span> <span class="bar bar-c" style="width:48px"></span> <span
+                            class="bar bar-d" style="width:48px"></span></td>
+                </tr>
+                <tr>
+                    <td>子描述/税务明细</td>
+                    <td>10px</td>
+                    <td>11px</td>
+                    <td>14px</td>
+                    <td>13px</td>
+                    <td><span class="bar bar-a" style="width:40px"></span> <span class="bar bar-b"
+                            style="width:44px"></span> <span class="bar bar-c" style="width:56px"></span> <span
+                            class="bar bar-d" style="width:52px"></span></td>
+                </tr>
+                <tr>
+                    <td>展开提示</td>
+                    <td>11px</td>
+                    <td>11px</td>
+                    <td>16px</td>
+                    <td>14px</td>
+                    <td><span class="bar bar-a" style="width:44px"></span> <span class="bar bar-b"
+                            style="width:44px"></span> <span class="bar bar-c" style="width:64px"></span> <span
+                            class="bar bar-d" style="width:56px"></span></td>
+                </tr>
+                <tr>
+                    <td>行标题</td>
+                    <td>12px</td>
+                    <td>13px</td>
+                    <td>18px</td>
+                    <td>15px</td>
+                    <td><span class="bar bar-a" style="width:48px"></span> <span class="bar bar-b"
+                            style="width:52px"></span> <span class="bar bar-c" style="width:72px"></span> <span
+                            class="bar bar-d" style="width:60px"></span></td>
+                </tr>
+                <tr>
+                    <td>小数字（工作/环境）</td>
+                    <td>16px</td>
+                    <td>16px</td>
+                    <td>24px</td>
+                    <td>20px</td>
+                    <td><span class="bar bar-a" style="width:64px"></span> <span class="bar bar-b"
+                            style="width:64px"></span> <span class="bar bar-c" style="width:96px"></span> <span
+                            class="bar bar-d" style="width:80px"></span></td>
+                </tr>
+                <tr>
+                    <td>中数字（住房/消费）</td>
+                    <td>24px</td>
+                    <td>24px</td>
+                    <td>36px</td>
+                    <td>30px</td>
+                    <td><span class="bar bar-a" style="width:96px"></span> <span class="bar bar-b"
+                            style="width:96px"></span> <span class="bar bar-c" style="width:144px"></span> <span
+                            class="bar bar-d" style="width:120px"></span></td>
+                </tr>
+                <tr>
+                    <td>大数字（收入/安全）</td>
+                    <td>36px</td>
+                    <td>36px</td>
+                    <td>48px</td>
+                    <td>45px</td>
+                    <td><span class="bar bar-a" style="width:144px"></span> <span class="bar bar-b"
+                            style="width:144px"></span> <span class="bar bar-c" style="width:192px"></span> <span
+                            class="bar bar-d" style="width:180px"></span></td>
+                </tr>
+            </table>
+        </div>
+        <p class="dim">每列宽度 = 390px（iPhone 13 Pro 屏宽），含 16px 内边距</p>
+    </div>
+
+    <div class="page">
+
+        <!-- ==================== A: 现状 ==================== -->
+        <div class="column">
+            <div class="column-label">A 现状 <span class="tag tag-a">9–36px</span></div>
+            <div class="content">
+                <div class="hero">
+                    <h1 style="font-size:20px;">🇬🇧 伦敦</h1>
+                    <div class="hero-sub" style="font-size:14px;">英国</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:12px;">税后收入 <span class="row-rank"
+                            style="font-size:10px;">#12 / 148</span></div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val green" style="font-size:36px;">¥45.8<span class="cjk"
+                                    style="font-size:30px;top:-2px">万</span></div>
+                            <div class="label" style="font-size:9px;">软件工程师 · 中位数</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:11px;">收起 ▴</div>
+                    <div class="tax" style="font-size:10px;">
+                        <div class="tax-line bold"><span>税前总收入</span><span>GBP 85,000</span></div>
+                        <div class="tax-line bold" style="color:#f43f5e"><span>− 社保</span><span>GBP 5,486</span></div>
+                        <div class="tax-line indent"><span>National Insurance 13.25%</span><span>GBP 5,486</span></div>
+                        <div class="tax-divider"></div>
+                        <div class="tax-line"><span>免税额</span><span>GBP 12,570</span></div>
+                        <div class="tax-line"><span>应税收入</span><span>GBP 66,944</span></div>
+                        <div class="tax-divider"></div>
+                        <div class="tax-line bold" style="color:#f43f5e"><span>− 个人所得税</span><span>GBP 16,432</span>
+                        </div>
+                        <div class="tax-line indent"><span>Basic 20% (≤37,700)</span><span>GBP 7,540</span></div>
+                        <div class="tax-line indent"><span>Higher 40% (余)</span><span>GBP 8,892</span></div>
+                        <div class="tax-net tax-line bold"><span>税后净收入</span><span class="green">GBP 63,082</span></div>
+                        <div class="tax-line"><span>实际税率</span><span>~25.8%</span></div>
+                        <div class="tax-line"><span>→ CNY (× 8.72)</span><span class="green">¥549,675</span></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:12px;">安全 · 医疗 · 自由</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val green" style="font-size:36px;">74.0</div>
+                            <div class="label" style="font-size:9px;">安全</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:36px;">57.0</div>
+                            <div class="label" style="font-size:9px;">医疗</div>
+                        </div>
+                        <div>
+                            <div class="big-val green" style="font-size:36px;">76.0</div>
+                            <div class="label" style="font-size:9px;">自由</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:11px;">查看子指标 ▾</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:12px;">房价</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val rose" style="font-size:24px;">¥71,295/m²</div>
+                            <div class="label" style="font-size:9px;">房价</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:10px;">购房年数: 15.5 年</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:12px;">生活压力指数 <span class="row-rank"
+                            style="font-size:10px;">#95 / 148</span></div>
+                    <div class="big-val" style="font-size:24px;">62.4</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:12px;">月消费</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val rose" style="font-size:24px;">¥2.7<span class="cjk"
+                                    style="font-size:20px;top:-1px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:9px;">月消费（适度）</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:24px;">¥1.5<span class="cjk"
+                                    style="font-size:20px;top:-1px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:9px;">月租金（1居）</div>
+                        </div>
+                        <div>
+                            <div class="big-val green" style="font-size:24px;">¥13.5<span class="cjk"
+                                    style="font-size:20px;top:-1px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:9px;">年储蓄</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:10px;">储蓄率 29%</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:12px;">年工时</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val" style="font-size:16px;">1,532 h</div>
+                            <div class="label" style="font-size:9px;">年工时</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:16px;">¥299</div>
+                            <div class="label" style="font-size:9px;">时薪</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:16px;">28 天</div>
+                            <div class="label" style="font-size:9px;">带薪假</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:12px;">气候与环境</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val" style="font-size:16px;">AQI 48</div>
+                            <div class="label" style="font-size:9px;">空气质量</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:16px;">100 Mbps</div>
+                            <div class="label" style="font-size:9px;">网速</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:16px;">390</div>
+                            <div class="label" style="font-size:9px;">直飞城市</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer" style="font-size:12px;">数据来源 · 方法论 · GitHub</div>
+            </div>
+        </div>
+
+        <!-- ==================== B: 收窄底部 ==================== -->
+        <div class="column">
+            <div class="column-label">B 收窄底部 <span class="tag tag-b">11–36px</span></div>
+            <div class="content">
+                <div class="hero">
+                    <h1 style="font-size:20px;">🇬🇧 伦敦</h1>
+                    <div class="hero-sub" style="font-size:14px;">英国</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:13px;">税后收入 <span class="row-rank"
+                            style="font-size:10px;">#12 / 148</span></div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val green" style="font-size:36px;">¥45.8<span class="cjk"
+                                    style="font-size:30px;top:-2px">万</span></div>
+                            <div class="label" style="font-size:11px;">软件工程师 · 中位数</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:11px;">收起 ▴</div>
+                    <div class="tax" style="font-size:11px;">
+                        <div class="tax-line bold"><span>税前总收入</span><span>GBP 85,000</span></div>
+                        <div class="tax-line bold" style="color:#f43f5e"><span>− 社保</span><span>GBP 5,486</span></div>
+                        <div class="tax-line indent"><span>National Insurance 13.25%</span><span>GBP 5,486</span></div>
+                        <div class="tax-divider"></div>
+                        <div class="tax-line"><span>免税额</span><span>GBP 12,570</span></div>
+                        <div class="tax-line"><span>应税收入</span><span>GBP 66,944</span></div>
+                        <div class="tax-divider"></div>
+                        <div class="tax-line bold" style="color:#f43f5e"><span>− 个人所得税</span><span>GBP 16,432</span>
+                        </div>
+                        <div class="tax-line indent"><span>Basic 20% (≤37,700)</span><span>GBP 7,540</span></div>
+                        <div class="tax-line indent"><span>Higher 40% (余)</span><span>GBP 8,892</span></div>
+                        <div class="tax-net tax-line bold"><span>税后净收入</span><span class="green">GBP 63,082</span></div>
+                        <div class="tax-line"><span>实际税率</span><span>~25.8%</span></div>
+                        <div class="tax-line"><span>→ CNY (× 8.72)</span><span class="green">¥549,675</span></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:13px;">安全 · 医疗 · 自由</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val green" style="font-size:36px;">74.0</div>
+                            <div class="label" style="font-size:11px;">安全</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:36px;">57.0</div>
+                            <div class="label" style="font-size:11px;">医疗</div>
+                        </div>
+                        <div>
+                            <div class="big-val green" style="font-size:36px;">76.0</div>
+                            <div class="label" style="font-size:11px;">自由</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:11px;">查看子指标 ▾</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:13px;">房价</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val rose" style="font-size:24px;">¥71,295/m²</div>
+                            <div class="label" style="font-size:11px;">房价</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:11px;">购房年数: 15.5 年</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:13px;">生活压力指数 <span class="row-rank"
+                            style="font-size:10px;">#95 / 148</span></div>
+                    <div class="big-val" style="font-size:24px;">62.4</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:13px;">月消费</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val rose" style="font-size:24px;">¥2.7<span class="cjk"
+                                    style="font-size:20px;top:-1px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:11px;">月消费（适度）</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:24px;">¥1.5<span class="cjk"
+                                    style="font-size:20px;top:-1px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:11px;">月租金（1居）</div>
+                        </div>
+                        <div>
+                            <div class="big-val green" style="font-size:24px;">¥13.5<span class="cjk"
+                                    style="font-size:20px;top:-1px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:11px;">年储蓄</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:11px;">储蓄率 29%</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:13px;">年工时</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val" style="font-size:16px;">1,532 h</div>
+                            <div class="label" style="font-size:11px;">年工时</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:16px;">¥299</div>
+                            <div class="label" style="font-size:11px;">时薪</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:16px;">28 天</div>
+                            <div class="label" style="font-size:11px;">带薪假</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:13px;">气候与环境</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val" style="font-size:16px;">AQI 48</div>
+                            <div class="label" style="font-size:11px;">空气质量</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:16px;">100 Mbps</div>
+                            <div class="label" style="font-size:11px;">网速</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:16px;">390</div>
+                            <div class="label" style="font-size:11px;">直飞城市</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer" style="font-size:12px;">数据来源 · 方法论 · GitHub</div>
+            </div>
+        </div>
+
+        <!-- ==================== C: 等比递增 ==================== -->
+        <div class="column">
+            <div class="column-label">C 等比递增 <span class="tag tag-c">12–48px</span></div>
+            <div class="content">
+                <div class="hero">
+                    <h1 style="font-size:20px;">🇬🇧 伦敦</h1>
+                    <div class="hero-sub" style="font-size:14px;">英国</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:18px;">税后收入 <span class="row-rank"
+                            style="font-size:12px;">#12 / 148</span></div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val green" style="font-size:48px;">¥45.8<span class="cjk"
+                                    style="font-size:40px;top:-3px">万</span></div>
+                            <div class="label" style="font-size:12px;">软件工程师 · 中位数</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:16px;">收起 ▴</div>
+                    <div class="tax" style="font-size:14px;">
+                        <div class="tax-line bold"><span>税前总收入</span><span>GBP 85,000</span></div>
+                        <div class="tax-line bold" style="color:#f43f5e"><span>− 社保</span><span>GBP 5,486</span></div>
+                        <div class="tax-line indent"><span>National Insurance 13.25%</span><span>GBP 5,486</span></div>
+                        <div class="tax-divider"></div>
+                        <div class="tax-line"><span>免税额</span><span>GBP 12,570</span></div>
+                        <div class="tax-line"><span>应税收入</span><span>GBP 66,944</span></div>
+                        <div class="tax-divider"></div>
+                        <div class="tax-line bold" style="color:#f43f5e"><span>− 个人所得税</span><span>GBP 16,432</span>
+                        </div>
+                        <div class="tax-line indent"><span>Basic 20% (≤37,700)</span><span>GBP 7,540</span></div>
+                        <div class="tax-line indent"><span>Higher 40% (余)</span><span>GBP 8,892</span></div>
+                        <div class="tax-net tax-line bold"><span>税后净收入</span><span class="green">GBP 63,082</span></div>
+                        <div class="tax-line"><span>实际税率</span><span>~25.8%</span></div>
+                        <div class="tax-line"><span>→ CNY (× 8.72)</span><span class="green">¥549,675</span></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:18px;">安全 · 医疗 · 自由</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val green" style="font-size:48px;">74.0</div>
+                            <div class="label" style="font-size:12px;">安全</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:48px;">57.0</div>
+                            <div class="label" style="font-size:12px;">医疗</div>
+                        </div>
+                        <div>
+                            <div class="big-val green" style="font-size:48px;">76.0</div>
+                            <div class="label" style="font-size:12px;">自由</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:16px;">查看子指标 ▾</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:18px;">房价</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val rose" style="font-size:36px;">¥71,295/m²</div>
+                            <div class="label" style="font-size:12px;">房价</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:14px;">购房年数: 15.5 年</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:18px;">生活压力指数 <span class="row-rank"
+                            style="font-size:12px;">#95 / 148</span></div>
+                    <div class="big-val" style="font-size:36px;">62.4</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:18px;">月消费</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val rose" style="font-size:36px;">¥2.7<span class="cjk"
+                                    style="font-size:30px;top:-2px">万</span></div>
+                            <div class="label" style="font-size:12px;">月消费（适度）</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:36px;">¥1.5<span class="cjk"
+                                    style="font-size:30px;top:-2px">万</span></div>
+                            <div class="label" style="font-size:12px;">月租金（1居）</div>
+                        </div>
+                        <div>
+                            <div class="big-val green" style="font-size:36px;">¥13.5<span class="cjk"
+                                    style="font-size:30px;top:-2px">万</span></div>
+                            <div class="label" style="font-size:12px;">年储蓄</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:14px;">储蓄率 29%</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:18px;">年工时</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val" style="font-size:24px;">1,532 h</div>
+                            <div class="label" style="font-size:12px;">年工时</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:24px;">¥299</div>
+                            <div class="label" style="font-size:12px;">时薪</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:24px;">28 天</div>
+                            <div class="label" style="font-size:12px;">带薪假</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:18px;">气候与环境</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val" style="font-size:24px;">AQI 48</div>
+                            <div class="label" style="font-size:12px;">空气质量</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:24px;">100 Mbps</div>
+                            <div class="label" style="font-size:12px;">网速</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:24px;">390</div>
+                            <div class="label" style="font-size:12px;">直飞城市</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer" style="font-size:12px;">数据来源 · 方法论 · GitHub</div>
+            </div>
+        </div>
+
+        <!-- ==================== D: 渐进 ==================== -->
+        <div class="column">
+            <div class="column-label">D 渐进 <span class="tag tag-d">12–45px</span></div>
+            <div class="content">
+                <div class="hero">
+                    <h1 style="font-size:20px;">🇬🇧 伦敦</h1>
+                    <div class="hero-sub" style="font-size:14px;">英国</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:15px;">税后收入 <span class="row-rank"
+                            style="font-size:12px;">#12 / 148</span></div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val green" style="font-size:45px;">¥45.8<span class="cjk"
+                                    style="font-size:37px;top:-2px">万</span></div>
+                            <div class="label" style="font-size:12px;">软件工程师 · 中位数</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:14px;">收起 ▴</div>
+                    <div class="tax" style="font-size:13px;">
+                        <div class="tax-line bold"><span>税前总收入</span><span>GBP 85,000</span></div>
+                        <div class="tax-line bold" style="color:#f43f5e"><span>− 社保</span><span>GBP 5,486</span></div>
+                        <div class="tax-line indent"><span>National Insurance 13.25%</span><span>GBP 5,486</span></div>
+                        <div class="tax-divider"></div>
+                        <div class="tax-line"><span>免税额</span><span>GBP 12,570</span></div>
+                        <div class="tax-line"><span>应税收入</span><span>GBP 66,944</span></div>
+                        <div class="tax-divider"></div>
+                        <div class="tax-line bold" style="color:#f43f5e"><span>− 个人所得税</span><span>GBP 16,432</span>
+                        </div>
+                        <div class="tax-line indent"><span>Basic 20% (≤37,700)</span><span>GBP 7,540</span></div>
+                        <div class="tax-line indent"><span>Higher 40% (余)</span><span>GBP 8,892</span></div>
+                        <div class="tax-net tax-line bold"><span>税后净收入</span><span class="green">GBP 63,082</span></div>
+                        <div class="tax-line"><span>实际税率</span><span>~25.8%</span></div>
+                        <div class="tax-line"><span>→ CNY (× 8.72)</span><span class="green">¥549,675</span></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:15px;">安全 · 医疗 · 自由</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val green" style="font-size:45px;">74.0</div>
+                            <div class="label" style="font-size:12px;">安全</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:45px;">57.0</div>
+                            <div class="label" style="font-size:12px;">医疗</div>
+                        </div>
+                        <div>
+                            <div class="big-val green" style="font-size:45px;">76.0</div>
+                            <div class="label" style="font-size:12px;">自由</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:14px;">查看子指标 ▾</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:15px;">房价</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val rose" style="font-size:30px;">¥71,295/m²</div>
+                            <div class="label" style="font-size:12px;">房价</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:13px;">购房年数: 15.5 年</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:15px;">生活压力指数 <span class="row-rank"
+                            style="font-size:12px;">#95 / 148</span></div>
+                    <div class="big-val" style="font-size:30px;">62.4</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:15px;">月消费</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val rose" style="font-size:30px;">¥2.7<span class="cjk"
+                                    style="font-size:25px;top:-2px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:12px;">月消费（适度）</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:30px;">¥1.5<span class="cjk"
+                                    style="font-size:25px;top:-2px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:12px;">月租金（1居）</div>
+                        </div>
+                        <div>
+                            <div class="big-val green" style="font-size:30px;">¥13.5<span class="cjk"
+                                    style="font-size:25px;top:-2px;-webkit-text-stroke:1px">万</span></div>
+                            <div class="label" style="font-size:12px;">年储蓄</div>
+                        </div>
+                    </div>
+                    <div class="sub" style="font-size:13px;">储蓄率 29%</div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:15px;">年工时</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val" style="font-size:20px;">1,532 h</div>
+                            <div class="label" style="font-size:12px;">年工时</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:20px;">¥299</div>
+                            <div class="label" style="font-size:12px;">时薪</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:20px;">28 天</div>
+                            <div class="label" style="font-size:12px;">带薪假</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row-head" style="font-size:15px;">气候与环境</div>
+                    <div class="flex-row">
+                        <div>
+                            <div class="big-val" style="font-size:20px;">AQI 48</div>
+                            <div class="label" style="font-size:12px;">空气质量</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:20px;">100 Mbps</div>
+                            <div class="label" style="font-size:12px;">网速</div>
+                        </div>
+                        <div>
+                            <div class="big-val" style="font-size:20px;">390</div>
+                            <div class="label" style="font-size:12px;">直飞城市</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer" style="font-size:12px;">数据来源 · 方法论 · GitHub</div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

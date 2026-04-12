@@ -24,11 +24,20 @@ export interface City {
   gpiScoreInv: number | null;          // GPI score inverted (0-100)
   gpiScore?: number | null;            // GPI overall score (1-5, lower = more peaceful)
   gallupLawOrder: number | null;       // Gallup Law & Order Index (0-100)
+  wpsIndex: number | null;             // Georgetown WPS Index (0-1)
   safetyWarning?: "active_conflict" | "extreme_instability" | "data_blocked";
   // Healthcare Index (pre-computed)
   healthcareIndex: number;
   healthcareConfidence: "high" | "medium" | "low";
-  // Institutional Freedom Index (pre-computed)
+  outOfPocketPct: number | null;       // Out-of-pocket health expenditure (% of health spending)
+  // Social Governance Index (pre-computed, replaces freedomIndex)
+  governanceIndex: number;
+  governanceConfidence: "high" | "medium" | "low";
+  govEffectiveness: number | null;     // WGI Government Effectiveness (0-100 percentile)
+  wjpRuleLaw: number | null;          // WJP Rule of Law Index (0-1)
+  internetFreedomScore: number | null; // Freedom on the Net (0-100)
+  mipexScore: number | null;          // MIPEX migrant integration (0-100)
+  // Legacy: keep freedomIndex for backwards compat during transition
   freedomIndex: number;
   freedomConfidence: "high" | "medium" | "low";
   // New fields (v2)
