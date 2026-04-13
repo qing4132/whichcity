@@ -164,7 +164,7 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
           role="button" aria-expanded={incomeOpen} tabIndex={0} onKeyDown={e => e.key === "Enter" && setIncomeOpen(!incomeOpen)}>
           <div className="flex items-center gap-1.5 mb-1.5">
             <span className={`text-[15px] font-extrabold ${headCls}`}>{t("incomeExpenseTitle")}</span>
-            {income !== null && <span className={`ml-auto text-[13px] font-semibold ${cardValCls(tierHigh(allIncomes, income))}`}>#{rankHigher(allIncomes, income)} / {n}</span>}
+            {income !== null && <span className="ml-auto text-[13px] font-semibold"><span className={cardValCls(tierHigh(allIncomes, income))}>#{rankHigher(allIncomes, income)}</span><span className={headCls}> / {n}</span></span>}
           </div>
           <div className="flex gap-4 mb-1 flex-wrap">
             <div>
