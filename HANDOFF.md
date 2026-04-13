@@ -209,12 +209,17 @@ See [REDESIGN.md](REDESIGN.md) for full plan. Key progress:
 - [x] "基本保障" expandable section redesigned: tax-detail-style structured rows with weights, reference values, confidence badges, "—" for missing data
 - [x] safetyDesc/safetyMethodNote/institutionalFreedomDesc updated to 5-sub weights (all 4 locales)
 - [x] 3 new design concepts added to inspiration file (#8 诊断报告Feed, #9 极简仪表盘, #10 结论优先)
+- [x] Diagnostic report style (#8): sub-indicators show value · reference range · ⬆︎/—/⬇︎ judgment per percentile
+- [x] Arrow symbols use VS15 (U+FE0E) to prevent iOS Safari emoji rendering
+- [x] Sub-indicator labels improved (4 locales): Gallup→居民治安感受, WPS→女性和平指数, MIPEX→移民包容度, UHC→全民医保覆盖, etc.
+- [x] 基本保障 header shows 3 ranks (#S #H #G / 150) with per-index tier colors
+- [x] 税後年薪 rank color follows tier (green/red/neutral), "/ 150" uses body color
+- [x] Expandable sub-indicator style unified with tax breakdown: font-bold group headers, opacity-60 sub-rows, 4-column layout (label | value | range | arrow)
 
 Pending:
 - [ ] SEO meta optimization
 - [ ] GA4 key event configuration
 - [ ] Compare page Phase 2 restyling
-- [ ] Add reference ranges + ⬆/—/⬇ judgment symbols to expandable sub-indicators (#8 design)
 # WhichCity — Project Handoff Document
 
 > **Version 1.0** — Phase 1 complete (2026-04-10)
