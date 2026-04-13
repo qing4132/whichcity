@@ -17,7 +17,7 @@ export interface City {
   directFlightCities: number | null;
   annualWorkHours: number | null;
   safetyIndex: number;
-  safetyConfidence: "high" | "medium" | "low";
+  safetyConfidence: number;  // weighted confidence 0-100 (sum of available sub-indicator weights)
   numbeoSafetyIndex: number | null;    // Numbeo Safety Index (0-100)
   homicideRateInv: number | null;      // UNODC homicide rate inverted (0-100)
   homicideRate?: number | null;        // UNODC homicide rate per 100k (raw)
@@ -28,18 +28,19 @@ export interface City {
   safetyWarning?: "active_conflict" | "extreme_instability" | "data_blocked";
   // Healthcare Index (pre-computed)
   healthcareIndex: number;
-  healthcareConfidence: "high" | "medium" | "low";
+  healthcareConfidence: number;  // weighted confidence 0-100
   outOfPocketPct: number | null;       // Out-of-pocket health expenditure (% of health spending)
   // Social Governance Index (pre-computed, replaces freedomIndex)
   governanceIndex: number;
-  governanceConfidence: "high" | "medium" | "low";
+  governanceConfidence: number;  // weighted confidence 0-100
   govEffectiveness: number | null;     // WGI Government Effectiveness (0-100 percentile)
   wjpRuleLaw: number | null;          // WJP Rule of Law Index (0-1)
   internetFreedomScore: number | null; // Freedom on the Net (0-100)
   mipexScore: number | null;          // MIPEX migrant integration (0-100)
   // Legacy: keep freedomIndex for backwards compat during transition
   freedomIndex: number;
-  freedomConfidence: "high" | "medium" | "low";
+  freedomConfidence: number;  // legacy, kept for compat
+  securityConfidence: number;  // avg of safety+healthcare+governance confidence (0-100)
   // New fields (v2)
   monthlyRent: number | null;
   paidLeaveDays: number | null;

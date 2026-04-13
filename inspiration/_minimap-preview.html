@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini World Map — Johannesburg</title>
+<style>
+  body { font-family: Inter, -apple-system, sans-serif; background: #fff; color: #0f172a; display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 60px 20px; }
+  .dark { background: #020617; color: #f1f5f9; }
+  .card { display: flex; align-items: center; gap: 12px; }
+  .label { font-size: 15px; font-weight: 600; }
+  .toggle { position: fixed; top: 12px; right: 16px; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid #e2e8f0; }
+  h2 { font-size: 14px; color: #94a3b8; font-weight: 400; margin: 0; }
+
+  /* Sizes to try */
+  .variants { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+  .variant { text-align: center; }
+</style>
+</head>
+<body>
+<button class="toggle" onclick="document.body.classList.toggle('dark')">Toggle Dark</button>
+
+<h1>Mini World Map — 约翰内斯堡</h1>
+<p style="color:#94a3b8;font-size:13px">Equirectangular projection, inline SVG, city dot at lat=-26.2 lon=28.0</p>
+
+<div class="variants" id="variants"></div>
+
+<h2>Integration preview (Hero style)</h2>
+<div style="max-width:672px;width:100%;border-bottom:1px solid #f1f5f9;padding-bottom:16px">
+  <div style="display:flex;align-items:baseline;justify-content:between;gap:8px">
+    <h1 style="font-size:24px;font-weight:900;flex:1">🇿🇦 约翰内斯堡</h1>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:15px;font-weight:600" id="hero-tz">UTC+2 · 14:30</span>
+      <span id="hero-map"></span>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#64748b">南非荷兰语 · 英语 · 祖鲁语 +8</p>
+</div>
+
+<script>
+// Simplified world map paths (equirectangular, viewBox 0 0 360 180, origin top-left)
+// lon → x: x = lon + 180
+// lat → y: y = 90 - lat
+// These are hand-simplified continental outlines (~1.2KB total)
+const LAND_PATH = [
+  // North America
+  "M 30 30 L 55 25 70 28 80 30 85 40 90 50 82 55 75 60 68 65 60 68 55 72 48 75 42 78 38 80 35 78 30 72 25 65 22 55 25 45 28 35 Z",
+  // South America  
+  "M 58 82 L 65 78 72 82 75 88 78 95 80 105 78 115 75 125 70 130 65 135 60 132 55 125 52 115 50 105 52 95 55 88 Z",
+  // Europe
+  "M 165 28 L 175 25 185 27 195 30 195 38 190 42 185 45 180 48 175 50 170 48 165 45 160 42 158 38 160 32 Z",
+  // Africa
+  "M 160 55 L 170 52 180 55 190 58 195 65 198 75 195 88 190 100 185 108 180 115 175 118 170 115 165 108 158 100 155 90 152 80 155 70 158 62 Z",
+  // Asia
+  "M 195 25 L 215 22 235 20 255 22 275 25 290 28 300 32 310 38 315 45 310 50 305 55 298 58 290 60 280 62 270 60 260 58 250 55 240 52 230 48 220 45 210 42 200 38 198 32 Z",
+  // Southeast Asia / Indonesia
+  "M 275 65 L 285 62 295 65 300 70 298 75 292 78 285 80 278 78 272 75 270 70 Z",
+  "M 300 72 L 310 70 318 72 320 78 315 82 308 80 302 77 Z",
+  // Australia
+  "M 290 100 L 305 95 318 98 328 102 332 110 328 118 320 122 310 125 300 122 292 118 288 110 Z",
+  // New Zealand  
+  "M 340 118 L 345 115 348 120 345 128 340 125 Z",
+].join(" ");
+
+// Johannesburg: lat=-26.2, lon=28.0
+const JNB_X = 28 + 180;   // 208
+const JNB_Y = 90 - (-26.2); // 116.2
+
+function createMap(w, h, dotSize, isDark) {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 360 180");
+  svg.setAttribute("width", w);
+  svg.setAttribute("height", h);
+  svg.style.borderRadius = "4px";
+  svg.style.overflow = "hidden";
+  
+  // Background
+  const bg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  bg.setAttribute("width", "360");
+  bg.setAttribute("height", "180");
+  bg.setAttribute("fill", isDark ? "#1e293b" : "#f1f5f9");
+  svg.appendChild(bg);
+  
+  // Land
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", LAND_PATH);
+  path.setAttribute("fill", isDark ? "#334155" : "#cbd5e1");
+  path.setAttribute("stroke", "none");
+  svg.appendChild(path);
+  
+  // City dot
+  const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  dot.setAttribute("cx", JNB_X);
+  dot.setAttribute("cy", JNB_Y);
+  dot.setAttribute("r", dotSize);
+  dot.setAttribute("fill", "#16a34a");
+  svg.appendChild(dot);
+  
+  // Dot glow
+  const glow = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  glow.setAttribute("cx", JNB_X);
+  glow.setAttribute("cy", JNB_Y);
+  glow.setAttribute("r", dotSize * 2.5);
+  glow.setAttribute("fill", "#16a34a");
+  glow.setAttribute("opacity", "0.25");
+  svg.appendChild(glow);
+  
+  return svg;
+}
+
+// Generate size variants
+const sizes = [
+  { w: 60, h: 30, dot: 6, label: "60×30" },
+  { w: 80, h: 40, dot: 6, label: "80×40" },
+  { w: 100, h: 50, dot: 7, label: "100×50" },
+  { w: 120, h: 60, dot: 7, label: "120×60" },
+];
+
+const container = document.getElementById("variants");
+sizes.forEach(s => {
+  const div = document.createElement("div");
+  div.className = "variant";
+  
+  const lightMap = createMap(s.w, s.h, s.dot, false);
+  const darkMap = createMap(s.w, s.h, s.dot, true);
+  
+  div.innerHTML = `<h2>${s.label}</h2><div style="display:flex;gap:12px;margin-top:8px"></div>`;
+  div.querySelector("div").appendChild(lightMap);
+  div.querySelector("div").appendChild(darkMap);
+  container.appendChild(div);
+});
+
+// Hero integration
+document.getElementById("hero-map").appendChild(createMap(60, 30, 6, false));
+</script>
+</body>
+</html>

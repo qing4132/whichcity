@@ -32,20 +32,17 @@
 - [ ] A2.3 从 `lib/i18n.ts` 移除相关翻译键（如有）
 - [ ] A2.4 验证：所有页面的分享面板仍显示 X/Facebook/WhatsApp/LinkedIn/Telegram/Copy
 
-### A3. 删除 2 个职业 + 重命名 1 个（26→23）
-- [ ] A3.1 **数据层**：从 `public/data/cities.json` 每座城市的 `professions` 对象中移除 `domestic_worker` 和 `photographer` 键（写脚本批量执行）
-- [ ] A3.2 **翻译层**：从 `lib/i18n.ts` 的职业列表（~L1691-1719）移除 `domestic_worker`、`photographer`，将 `civil_servant` 的 zh 改为"政府/NGO行政"、en 改为"Government/NGO Admin"、ja/es 做相应翻译
-- [ ] A3.3 **默认值检查**：确认 `useSettings.ts` 默认职业"软件工程师"无影响
-- [ ] A3.4 运行 `node scripts/validate-data.mjs`（需先更新脚本中的 profession count 期望值 26→23）
-- [ ] A3.5 运行 `npx tsc --noEmit && npm test` 验证
+### A3. 职业集整理已完成（当前 25 个）
+- [x] A3.1 **数据层**：`public/data/cities.json` 已移除 `domestic_worker` 和 `photographer`；每座城市当前保留 25 个 profession 键
+- [x] A3.2 **翻译层**：`lib/i18n.ts` 已移除 `domestic_worker`、`photographer`，`civil_servant` 已更名为"政府/NGO行政" / "Government/NGO Admin"
+- [x] A3.3 **默认值检查**：`useSettings.ts` 默认职业"软件工程师"无影响
+- [x] A3.4 `scripts/validate-data.mjs` 的 profession count 校验已对齐到 25
+- [x] A3.5 `npx tsc --noEmit && npm test` 验证通过
 
-### A4. 隐藏 6 座游牧城市（154→148 展示）
-- [ ] A4.1 在 `lib/constants.ts` 新增 `HIDDEN_CITIES` 数组：帕岸岛、苏梅岛、暹粒、班斯科、库斯科、马拉喀什（用城市 ID 或 slug）
-- [ ] A4.2 在 `lib/dataLoader.ts` 的城市列表加载中过滤 `HIDDEN_CITIES`
-- [ ] A4.3 保留：这些城市的 JSON 数据不删、URL slug 不删（直接访问仍可达）
-- [ ] A4.4 排行榜和首页搜索结果中不再显示这 6 座城市
-- [ ] A4.5 `sitemap.ts` 中排除这些城市的 URL（可选，SEO 决策）
-- [ ] A4.6 验证：直接访问 `/en/city/koh-phangan` 仍能打开（不 404）
+### A4. 6 座游牧城市已处理（直接删除，150 为最终结果）
+- [x] A4.1 数据层：帕岸岛、苏梅岛、暹粒、班斯科、库斯科、马拉喀什已从当前运行时数据中移除
+- [x] A4.2 当前无需新增 `HIDDEN_CITIES` 或在 `dataLoader.ts` 中做展示层过滤
+- [x] A4.3 当前 150 座城市就是最终结果，URL、sitemap、搜索、排行榜均以现有数据集为准
 
 ---
 
@@ -63,7 +60,7 @@
 ### B2. L1 核心数据条（首屏 5 格一行）
 - [ ] B2.1 设计核心数据条组件：税后年收入 | 月消费 | 月租 | 年储蓄 | 医疗指数
 - [ ] B2.2 月消费排在年收入前面（440 > 370 票）
-- [ ] B2.3 每格显示数值 + 排名（如 `#4/148`）
+- [ ] B2.3 每格显示数值 + 排名（如 `#4/N`）
 - [ ] B2.4 响应式：≥1080px 一行 5 格，768px 一行 3 格，<640px 一行 2 格
 
 ### B3. L2 重要数据区
@@ -139,7 +136,7 @@
 > 新增 3 个高价值数据维度 + 2 座新城市。
 
 ### D1. 新增数据字段
-- [ ] D1.1 **公共交通评分**：研究 Numbeo Traffic Index 数据，为 148 城市补充 `transitScore`（0-100）
+- [ ] D1.1 **公共交通评分**：研究 Numbeo Traffic Index 数据，为 150 城市补充 `transitScore`（0-100）
 - [ ] D1.2 **自然灾害风险**：采用 World Risk Index 国家级数据，新增 `disasterRiskIndex` 字段
 - [ ] D1.3 **外国出生人口%**：联合国/世行数据，新增 `foreignBornPct` 字段
 - [ ] D1.4 更新 `lib/types.ts` City 接口添加新字段

@@ -13,8 +13,8 @@
 
 | Dimension | Value |
 |-----------|-------|
-| Cities | 150 displayed (6 hidden nomad-only) |
-| Professions | 25 (was 23; added 数字游民 $85k + civil_servant renamed) |
+| Cities | 150 current cities |
+| Professions | 25 (includes 数字游民; 公务员已更名为 政府/NGO行政) |
 | Tax Systems | 81 countries + city overrides + 6 expat schemes |
 | Currencies | 10 selectable (50+ stored) |
 | Languages | zh / en / ja / es |
@@ -44,7 +44,7 @@
 ```
 whichcity/
 ├── app/[locale]/              Pages (thin SSR wrappers)
-│   ├── city/[slug]/           City detail (148 slugs)
+│   ├── city/[slug]/           City detail (150 slugs)
 │   ├── ranking/               Rankings (22+ metrics)
 │   ├── compare/[pair]/        Compare (slug-vs-slug[-vs-slug])
 │   └── methodology/           Data sources
@@ -132,7 +132,7 @@ City overrides for US state tax, Canadian provincial tax, HK foreign worker rule
 | Governance | 25% CPI + 25% Gov Effectiveness + 20% WJP Rule of Law + 15% RSF Press Freedom + 15% MIPEX | Pre-computed |
 | Life Pressure | 30% Savings Rate + 25% BigMac + 25% WorkHours(inv) + 20% YearsToBuy | Client-computed |
 
-Missing sub-indicator weights redistributed proportionally. Confidence: all=high, 1 missing=medium, 2+=low.
+Missing sub-indicator weights redistributed proportionally. Confidence: weighted % (0–100). Thresholds: ≥90 high, 70–89 medium, <70 low.
 
 **Color thresholds** (intentionally different by context):
 - Big numbers (45px): **top/bottom 20%** → green/red. Glanceable; color is scarce signal for extremes only.
@@ -183,7 +183,7 @@ See [REDESIGN.md](REDESIGN.md) for full plan. Key progress:
 - [x] Row 2: Safety + Healthcare + Freedom merged with collapsible sub-indicators
 - [x] Dark mode symmetric color palette (slate-950, green-400, rose-400)
 - [x] NavBar streamlined (max-w-2xl, simplified layout)
-- [x] Profession cleanup (26→23, removed 公务员/家政服务人员/摄影师)
+- [x] Profession set stabilized at 25 (移除家政服务人员/摄影师，公务员→政府/NGO行政，新增数字游民)
 - [x] JPY symbol → JP¥ (disambiguate from CNY ¥)
 - [x] Raw safety fields (homicideRate, gpiScore) added to types + cities.json
 - [x] Ranking page simplified (multi-sort removed)
@@ -193,7 +193,7 @@ See [REDESIGN.md](REDESIGN.md) for full plan. Key progress:
 - [x] Cap indicator: * mark + footnote when social base cap reached
 - [x] 6 expat scheme advisory tips with detailed conditions (4 locales)
 - [x] Salary tiers: 7 levels (×0.6–×5.0) with i18n labels in NavBar
-- [x] Digital Nomad profession added ($85k, 148 cities, source: Nomads.com 2026)
+- [x] Digital Nomad profession added ($85k, 150 cities, source: Nomads.com 2026)
 - [x] China tax: 7-city social insurance overrides (pension/medical/unemployment/housing_fund)
 - [x] Currency display: tax breakdown uses currency codes (CNY/EUR) not symbols (¥/€)
 - [x] Thousands separators enabled for all locales
@@ -248,7 +248,7 @@ Pending:
 
 ## 1. Overview
 
-**WhichCity** ([whichcity.run](https://whichcity.run)) is a global city comparison tool. Users can compare 154 cities across income, living costs, housing, safety, healthcare, governance, climate, and more. Supports 26 professions, 81 country tax systems, 10 currencies, and 4 languages (zh/en/ja/es).
+**WhichCity** ([whichcity.run](https://whichcity.run)) is a global city comparison tool. Users can compare 150 cities across income, living costs, housing, safety, healthcare, governance, climate, and more. Supports 25 professions, 81 country tax systems, 10 currencies, and 4 languages (zh/en/ja/es).
 
 **Core use cases**: relocation decisions, job offer comparison, study abroad planning, digital nomad destination research.
 
@@ -285,7 +285,7 @@ whichcity/
 │       ├── page.tsx            Home → HomeContent
 │       ├── error.tsx           Error boundary
 │       ├── not-found.tsx       404 page
-│       ├── city/[slug]/        City detail routes (154 slugs)
+│       ├── city/[slug]/        City detail routes (150 slugs)
 │       │   ├── page.tsx        → CityDetailContent
 │       │   └── opengraph-image.tsx
 │       ├── ranking/
@@ -321,16 +321,16 @@ whichcity/
 │   ├── taxUtils.ts             Tax computation engine (gross → net)
 │   ├── clientUtils.ts          Life Pressure formula, climate/name helpers
 │   ├── citySlug.ts             ID↔slug mappings, popular pairs, top cities
-│   ├── cityIntros.ts           154 cities × 4 locales (intro paragraphs)
+│   ├── cityIntros.ts           150 cities × 4 locales (intro paragraphs)
 │   ├── cityLanguages.ts        Official languages per city
 │   ├── i18nRouting.ts          Locale detection helpers
 │   └── analytics.ts            GA4 event tracking (10 lines)
 │
 ├── public/
 │   ├── data/
-│   │   ├── cities.json                  154 cities, ~50 fields each (runtime data)
+│   │   ├── cities.json                  150 cities, ~50 fields each (runtime data)
 │   │   ├── exchange-rates.json          30 currencies (auto-updated daily)
-│   │   ├── nomad-data-compiled.json     154 cities nomad data (visa, VPN, English, timezone)
+│   │   ├── nomad-data-compiled.json     150 cities nomad data (visa, VPN, English, timezone)
 │   │   └── nomad-visafree-4passport.json  Visa-free matrix (CN/US/EU/JP × 81 countries)
 │   └── fonts/
 │       └── NotoSansSC-Bold.ttf CJK font for OG image generation
@@ -461,7 +461,7 @@ interface City {
 
   // Income
   averageIncome: number;             // USD, median across professions
-  professions: Record<string, number>; // 26 professions → gross annual USD
+  professions: Record<string, number>; // 25 professions → gross annual USD
   currency: string;                  // Local currency code
 
   // Living Costs
@@ -485,7 +485,7 @@ interface City {
 
   // Safety (composite + 5 sub-indicators)
   safetyIndex: number;               // 0–100 pre-computed weighted
-  safetyConfidence: "high" | "medium" | "low";
+  safetyConfidence: number;            // 0–100 weighted data coverage
   numbeoSafetyIndex: number | null;
   homicideRateInv: number | null;
   gpiScoreInv: number | null;
@@ -495,7 +495,7 @@ interface City {
 
   // Healthcare (composite + 5 sub-indicators)
   healthcareIndex: number;
-  healthcareConfidence: "high" | "medium" | "low";
+  healthcareConfidence: number;        // 0–100 weighted data coverage
   doctorsPerThousand: number | null;
   hospitalBedsPerThousand: number | null;
   uhcCoverageIndex: number | null;
@@ -504,7 +504,7 @@ interface City {
 
   // Governance (composite + 5 sub-indicators, replaces old Freedom)
   governanceIndex: number;           // 0–100 pre-computed weighted
-  governanceConfidence: "high" | "medium" | "low";
+  governanceConfidence: number;        // 0–100 weighted data coverage
   corruptionPerceptionIndex: number | null;
   govEffectiveness: number | null;   // WGI Government Effectiveness (0-100)
   wjpRuleLaw: number | null;        // WJP Rule of Law Index (0-1)
@@ -513,7 +513,7 @@ interface City {
 
   // Legacy (kept for backwards compatibility)
   freedomIndex: number;
-  freedomConfidence: "high" | "medium" | "low";
+  freedomConfidence: number;           // 0–100 weighted data coverage
   pressFreedomScore: number | null;
   democracyIndex: number | null;
 
@@ -602,7 +602,7 @@ interface ClimateInfo {
 - `TRANSLATIONS[locale]` — 350+ UI string keys
 - `CITY_NAME_TRANSLATIONS[id]` — city names in 4 locales
 - `COUNTRY_TRANSLATIONS[zh_name]` — country names in 4 locales
-- `PROFESSION_TRANSLATIONS[zh_name]` — 26 profession names in 4 locales
+- `PROFESSION_TRANSLATIONS[zh_name]` — 25 profession names in 4 locales
 - `CONTINENT_TRANSLATIONS` — continent names
 - `LANGUAGE_LABELS` — locale display names
 
@@ -613,7 +613,7 @@ interface ClimateInfo {
 **Pre-computed** (stored in cities.json): Safety, Healthcare, Freedom
 **Client-computed**: Life Pressure (depends on user's profession and cost tier selection)
 
-**Missing data handling**: When a sub-indicator is `null`, its weight is redistributed proportionally. Confidence set to "high" (all present), "medium" (1 missing), "low" (2+ missing).
+**Missing data handling**: When a sub-indicator is `null`, its weight is redistributed proportionally. Confidence is weighted % (0–100); `securityConfidence` = avg of three groups. Display: ≥90 no label, 70–89 "*" prefix + "个别数据缺失", <70 "*" prefix + "数个数据缺失".
 
 ### 6.4 Similar Cities Algorithm
 
@@ -709,7 +709,7 @@ NavBar is rendered in layout.tsx, wrapping all pages.
 
 **Dynamic OG images**: All 4 main routes have `opengraph-image.tsx` using Satori + `next/og`. CJK font (`NotoSansSC-Bold.ttf`) ensures Chinese/Japanese characters render correctly.
 
-**Sitemap**: Auto-generated from `CITY_SLUGS` (134 city pages), `POPULAR_PAIRS` (79 pairs), `SITEMAP_PAIRS` (top-city combinations), and `TOP_CITY_IDS` (30 cities).
+**Sitemap**: Auto-generated from `CITY_SLUGS` (150 city pages), `POPULAR_PAIRS` (79 pairs), `SITEMAP_PAIRS` (top-city combinations), and `TOP_CITY_IDS` (30 cities).
 
 **JSON-LD**: Website schema in layout.tsx.
 
@@ -799,7 +799,7 @@ doda.jp source data (2025):
 ### Performance
 
 - cities.json (~240KB) loaded server-side per request (cached per process, acceptable)
-- All 154 cities rendered in ranking (no pagination/virtualization)
+- All 150 cities rendered in ranking (no pagination/virtualization)
 - Climate charts render all 12 months even when off-screen
 
 ---
@@ -808,7 +808,7 @@ doda.jp source data (2025):
 
 ### Phase 1 — Complete ✓
 
-- [x] 154 cities with 26 professions each
+- [x] 150 cities with 25 professions each
 - [x] Digital nomad section (visa, VPN, English, timezone, visa-free matrix)
 - [x] CI pipeline + unit tests (tax engine, composite index)
 - [x] Dark mode flash fix (mounted pattern)

@@ -1,0 +1,185 @@
+<!--
+  城市介绍重写审稿 B 版（仅中文）
+  B 版写作规则：
+  1. 不提储蓄率
+  2. 不绑定特定职业（25 种职业共用同一段）
+  3. 环境有突出特征必须写（气候/AQI，好坏都写）
+  4. 语气更鲜明——好的不吝赞赏，差的勇于指出
+  5. 每条 3-4 句话，中文 70-100 字
+-->
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>城市介绍审稿 B 版 — 10 城</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #fff; --text: #0f172a; --sub: #475569; --label: #94a3b8; --div: #f1f5f9; --green: #16a34a; --red: #e11d48; --blue: #2563eb; --amber: #d97706; }
+  .dark { --bg: #020617; --text: #f1f5f9; --sub: #94a3b8; --label: #64748b; --div: #1e293b; --green: #4ade80; --red: #fb7185; --blue: #60a5fa; --amber: #fbbf24; }
+  body { font-family: Inter, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .container { max-width: 672px; margin: 0 auto; padding: 24px 16px 80px; }
+  .controls { position: fixed; top: 12px; right: 16px; z-index: 100; display: flex; gap: 8px; }
+  .controls button { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--div); background: var(--bg); color: var(--text); }
+  .controls button.active { background: var(--text); color: var(--bg); }
+
+  h1 { font-size: 18px; font-weight: 800; margin: 40px 0 8px; }
+  .intro { font-size: 13px; color: var(--label); margin-bottom: 24px; }
+  .intro strong { color: var(--sub); }
+
+  .city { border-bottom: 1px solid var(--div); padding: 20px 0; }
+  .city-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .flag { font-size: 28px; }
+  .name { font-size: 20px; font-weight: 900; }
+
+  .version { font-size: 14px; color: var(--sub); line-height: 1.7; margin-bottom: 8px; padding: 8px 12px; border-left: 3px solid transparent; }
+  .version:last-child { margin-bottom: 0; }
+  .version .tag { font-weight: 800; font-size: 12px; margin-right: 6px; vertical-align: middle; }
+  .v-old { border-left-color: var(--div); opacity: 0.6; font-size: 13px; }
+  .v-old .tag { color: var(--label); }
+  .v-a { border-left-color: var(--amber); }
+  .v-a .tag { color: var(--amber); }
+  .v-b { border-left-color: var(--green); font-size: 15px; }
+  .v-b .tag { color: var(--green); }
+
+  .count { font-size: 11px; color: var(--label); margin-top: 2px; }
+
+  details { margin-top: 4px; }
+  details summary { font-size: 12px; color: var(--blue); cursor: pointer; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="controls">
+  <button onclick="toggle('dark')" id="btn-dark">Dark</button>
+  <button onclick="toggle('light')" id="btn-light" class="active">Light</button>
+</div>
+<div class="container">
+
+<h1>城市介绍审稿 — 老版 / A 版 / B 版</h1>
+<div class="intro">
+  <strong>B 版改动</strong>：① 删除储蓄率 ② 不绑定职业 ③ 环境特征有突出的必写 ④ 语气更鲜明<br>
+  老版 = 线上 · A 版 = 首稿 · <strong>B 版 = 本轮</strong>
+</div>
+
+<!-- ═══ 1. 纽约 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇺🇸</span><span class="name">纽约</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>纽约是一座永不停歇的国际都市，地铁 24 小时运营，曼哈顿、布鲁克林各区风格迥异。这里汇聚了全球最多元的饮食和文化，几乎能找到任何国家的社区。租房竞争激烈，建议提前准备好信用记录和收入证明。冬季寒冷多雪，夏季闷热潮湿，春秋是最宜人的季节。医疗资源丰富但费用高昂，务必确保有保险覆盖。治安因区域差异较大，选择居住地前建议实地走访。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>全球金融与科技双引擎，软件工程师薪资居世界前列。生活成本极高但储蓄率可观，适合高收入职业积累财富。无法定带薪假、医保依赖雇主，选择雇主时需格外关注福利条款。</div>
+  <div class="version v-b"><span class="tag">B</span>全球收入天花板级城市，金融与科技双引擎带来顶级薪资。代价同样顶级——零法定带薪假、医保完全绑定雇主、租房竞争惨烈。夏天闷热冬天刺骨，但四季分明、阳光充裕，秋天的纽约值得一切。</div>
+  <div class="count">B: 80字</div>
+</div>
+
+<!-- ═══ 2. 伦敦 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇬🇧</span><span class="name">伦敦</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>伦敦融合了历史底蕴与现代活力，地铁（Tube）网络发达但高峰期拥挤。这座城市以多元文化著称，各族裔社区特色鲜明，从东伦敦的创意街区到西区的传统优雅各有魅力。英国全民医疗（NHS）免费提供基本医疗服务。天气多阴雨，夏季温和宜人，冬季日照短暂。租房需提前准备推荐信和押金，建议优先办理 Oyster 卡方便出行。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>欧洲金融与科技双中心，英语环境、28 天带薪假和 NHS 免费医疗是核心吸引力。租房竞争激烈且房价全球前列，储蓄率低于纽约，但工作与生活的法定保障远优于美国。</div>
+  <div class="version v-b"><span class="tag">B</span>欧洲金融与科技双中心，英语环境、28 天带薪假、NHS 免费医疗——这套组合在全球几乎没有对手。房价令人窒息，租房市场同样残酷。全年阴沉多雨，年日照仅 1,633 小时，你真的会想念太阳。</div>
+  <div class="count">B: 82字</div>
+</div>
+
+<!-- ═══ 3. 东京 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇯🇵</span><span class="name">东京</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>东京是全球最安全、最有秩序的大城市之一，电车和地铁网络极其精密准时。便利店文化深入日常，24 小时能解决大部分生活需求。饮食水平世界顶级，从路边拉面到米其林名店选择丰富。租房需注意「礼金」「敷金」等初期费用较高，且许多房东要求担保人。夏季高温多湿，冬季干燥寒冷，春季赏樱和秋季红叶是最美的时节。日语能力对日常生活至关重要。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>安全指数近 90 分居全球前列，医疗和治理评分同样优秀。工程师收入可观且租金远低于同级别城市，储蓄率接近六成。需要日语能力才能融入日常生活，已开放数字游民签证。</div>
+  <div class="version v-b"><span class="tag">B</span>安全指数近 90，可能是地球上秩序感最强的大城市。同级城市中租金出奇地低，收入水平却毫不逊色。日语是融入日常生活的硬门槛，不会日语寸步难行。盛夏湿热难熬，但春樱秋枫美到足以补偿一切。</div>
+  <div class="count">B: 83字</div>
+</div>
+
+<!-- ═══ 4. 北京 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇨🇳</span><span class="name">北京</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>北京是中国的政治和文化中心，拥有故宫、长城等世界级文化遗产。地铁线路不断扩展，覆盖面广但早晚高峰拥挤。四季分明，春季多风沙，夏季炎热多雨，秋天（特别是十月）是一年中最舒适的时节。互联网服务丰富但需适应防火墙环境，建议提前做好准备。整体治安良好，外卖和电商极为便利。医疗资源集中于三甲医院，建议提前预约挂号。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>中国科技与互联网产业核心城市，生活成本在超大城市中偏低。工时偏长、法定假期少，但整体治安和生活便利度优秀。需适应 VPN 环境与空气质量波动。</div>
+  <div class="version v-b"><span class="tag">B</span>中国科技与互联网产业核心，超大城市中生活成本出奇的低，日常便利度无可匹敌——外卖和电商的效率全球领先。工时长、假期少，VPN 是每日刚需。AQI 89，空气质量是绕不开的硬伤，春季风沙更为恼人。</div>
+  <div class="count">B: 87字</div>
+</div>
+
+<!-- ═══ 5. 新加坡 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇸🇬</span><span class="name">新加坡</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>新加坡是热带花园城市，全年高温多雨但公共空间空调覆盖率极高。地铁（MRT）高效整洁，城市虽小但规划精密，日常生活极为便利。饮食选择丰富，小贩中心提供物美价廉的本地餐食。多元种族社会和谐的英语环境使移居者容易融入。医疗水平一流但需自费比例较高，建议购买商业保险。对口香糖进口有限制，公共行为规范严格但确保了极高的城市秩序。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>安全指数超 90 且英语通用，亚洲最高效的商业环境之一。收入高、个税低，但住房成本全球顶级。工时长、法定假少，适合高强度职业发展期的积累阶段。</div>
+  <div class="version v-b"><span class="tag">B</span>安全指数超 90、英语通用，亚洲效率最高的商业枢纽。收入高、个税极低，但住房成本会刷新你的认知。365 天热带高温加 84% 湿度，走出空调就像走进蒸笼——这是你为秩序和效率支付的另一种代价。</div>
+  <div class="count">B: 88字</div>
+</div>
+
+<!-- ═══ 6. 迪拜 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇦🇪</span><span class="name">迪拜</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>迪拜是中东最具现代感的城市，摩天大楼和人工岛屿彰显雄心。全年炎热，夏季户外活动需避开高温时段，室内空调覆盖全面。购物中心是社交娱乐的核心场所，国际化社区多元但社交圈相对割裂。零个人所得税是最大亮点，吸引了大量外籍专业人士。驾车为主要出行方式，地铁覆盖有限但在扩展中。饮酒需在持牌场所，公共行为需遵守当地文化规范。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>零个税是最大卖点，安全指数超 90 且已开放远程工作签证。30 天带薪假高于多数亚洲城市，但工时偏长、英语环境一般。适合中短期高效存钱，空气质量需关注。</div>
+  <div class="version v-b"><span class="tag">B</span>零个税，句号——这一条就够很多人订机票了。安全指数超 90，30 天带薪假。但夏季均温 35.5°C、AQI 高达 95，六月到九月整座城市是一座巨型空调仓。适合中短期高效积累，长期定居前请认真考虑极端气候和有限的英语环境。</div>
+  <div class="count">B: 96字</div>
+</div>
+
+<!-- ═══ 7. 柏林 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇩🇪</span><span class="name">柏林</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>柏林是欧洲最具创意和包容性的城市之一，艺术、音乐和夜生活文化丰富多元。生活成本在西欧首都中相对友好，尤其是房租和饮食方面。科技创业生态蓬勃，吸引了大量国际人才。地铁和有轨电车网络覆盖全面。德语是日常主要语言，但国际社区中英语使用广泛。冬季漫长寒冷，夏季则温暖宜人，有丰富的户外活动。医疗保险为强制性，选择公立或私立都能获得优质服务。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>欧洲性价比最高的科技城市之一，储蓄率在西欧名列前茅。德国法定 20 天假期、1,341 小时年工时和全民强制医保构成稳健的生活保障框架。虽以德语为主，但国际科技社区英语通用度极高。</div>
+  <div class="version v-b"><span class="tag">B</span>西欧性价比之王——房租在欧洲首都中仍属友好，20 天法定假、年工时约 1,340 小时、全民强制医保，工作生活平衡的制度保障堪称典范。德语为主但国际社区英语畅通无阻。漫长灰暗的冬天是真正的考验，年日照仅 1,626 小时，备好维生素 D。</div>
+  <div class="count">B: 100字</div>
+</div>
+
+<!-- ═══ 8. 曼谷 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇹🇭</span><span class="name">曼谷</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>曼谷是东南亚最具活力的城市之一，传统寺庙与摩天大楼共存。街头美食是全球闻名的体验，冬阴功汤和芒果糯米饭不容错过。生活成本低廉，尤其在饮食和交通方面。BTS 轻轨和 MRT 地铁覆盖主要商业区，但交通拥堵严重。全年高温潮湿，空调几乎是生存必需品。医疗旅游发达，国际医院性价比高。泰语是主要语言，旅游区英语尚可但日常需基本泰语。夜生活丰富但需注意合法经营场所。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>东南亚数字游民首选目的地，月消费仅 $1,300 且已开放 DTV 签证。本地薪资偏低，更适合远程工作者和自由职业者用汇率差实现低成本生活。英语环境有限，空气质量需关注。</div>
+  <div class="version v-b"><span class="tag">B</span>月消费仅 $1,300，DTV 签证已开放，东南亚生活成本洼地。本地薪资不高，真正的优势在于用外币收入兑换极低的日常开销。全年热带闷热、AQI 85，雨季可能内涝——环境舒适度要打折扣，但那个价格优势，确实太难被击败。</div>
+  <div class="count">B: 93字</div>
+</div>
+
+<!-- ═══ 9. 悉尼 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇦🇺</span><span class="name">悉尼</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>悉尼依山傍海，歌剧院和海港大桥标志性地标让人印象深刻。阳光充沛，气候温暖宜人，户外文化深入日常生活——冲浪、徒步和海滩烧烤是周末常态。生活成本在发达国家中偏高，尤其房租是主要开支。公共交通以火车和公交为主，Opal 卡是必备。多元文化社区丰富，亚洲餐饮选择多样。医疗采用公私双轨制（Medicare 提供基本保障），建议额外购买私立保险缩短等待时间。工作签证体系相对透明。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>英语世界中综合评分最均衡的城市之一——安全、医疗、治理三项均达优秀水平。工程师收入高且储蓄率近六成，20 天带薪假加 Medicare 免费医疗。签证体系对技术人才相对透明友好。</div>
+  <div class="version v-b"><span class="tag">B</span>英语世界里也许最均衡的城市——安全、医疗、治理三项全优，20 天带薪假加 Medicare 免费医保，制度保障令人安心。签证体系对技术人才透明友好。年日照 2,592 小时、AQI 仅 35、冬天最低也有 13°C——这份气候条件，令人嫉妒。</div>
+  <div class="count">B: 99字</div>
+</div>
+
+<!-- ═══ 10. 阿姆斯特丹 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇳🇱</span><span class="name">阿姆斯特丹</span></div>
+  <details><summary>展开老版</summary>
+  <div class="version v-old"><span class="tag">老版</span>阿姆斯特丹是一座以自行车为主要出行方式的紧凑型城市，运河纵横交错风景如画。国际化程度极高，英语几乎可以替代荷兰语用于日常沟通。科技和创意产业蓬勃发展，吸引了大量国际人才。生活节奏适中，工作与生活平衡在欧洲名列前茅。租房市场紧张，建议通过正规渠道寻找房源。全民医疗保险体系完善但需自行购买基础保险。冬季阴冷多风，夏季凉爽宜人。大麻合法但有规范限制。</div>
+  </details>
+  <div class="version v-a"><span class="tag">A</span>欧洲英语通用度最高的非英语城市，年工时仅 1,417 小时。荷兰 30% ruling 允许外籍员工前五年享受 30% 免税，是欧洲最具吸引力的税务优惠之一。治理指数全球前列，但租房市场极为紧张。</div>
+  <div class="version v-b"><span class="tag">B</span>非英语欧洲中英语最好使的城市，不会荷兰语也能畅行无阻。年工时仅 1,417 小时，30% ruling 让外籍员工前五年 30% 收入免税——全欧最慷慨的税务礼包。治理水准世界顶尖。租房市场？噩梦级别。常年阴冷多风多雨，但空气极其干净（AQI 35），算是一种补偿。</div>
+  <div class="count">B: 105字</div>
+</div>
+
+</div>
+
+<script>
+function toggle(mode) {
+  document.documentElement.classList.toggle('dark', mode === 'dark');
+  document.getElementById('btn-dark').classList.toggle('active', mode === 'dark');
+  document.getElementById('btn-light').classList.toggle('active', mode === 'light');
+}
+</script>
+</body>
+</html>

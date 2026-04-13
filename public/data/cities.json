@@ -43,7 +43,7 @@
       "doctorsPerThousand": 4.1,
       "directFlightCities": 280,
       "safetyIndex": 67.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 3200,
       "paidLeaveDays": 0,
@@ -59,7 +59,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 65.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -124,7 +124,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 2,
@@ -169,7 +170,7 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 390,
       "safetyIndex": 75.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1532,
       "monthlyRent": 2100,
       "paidLeaveDays": 28,
@@ -185,7 +186,7 @@
       "gpiScoreInv": 84,
       "gallupLawOrder": 79,
       "healthcareIndex": 64.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 76,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -250,7 +251,8 @@
       "mipexScore": 56,
       "govEffectiveness": 74.4,
       "governanceIndex": 70.9,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 3,
@@ -295,7 +297,7 @@
       "doctorsPerThousand": 2.7,
       "directFlightCities": 165,
       "safetyIndex": 89.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1607,
       "monthlyRent": 1400,
       "paidLeaveDays": 10,
@@ -311,7 +313,7 @@
       "gpiScoreInv": 92,
       "gallupLawOrder": 91,
       "healthcareIndex": 78.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 73,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -376,7 +378,8 @@
       "mipexScore": 47,
       "govEffectiveness": 91.9,
       "governanceIndex": 73.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 4,
@@ -421,7 +424,7 @@
       "doctorsPerThousand": 4.6,
       "directFlightCities": 220,
       "safetyIndex": 82,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2170,
       "monthlyRent": 1100,
       "paidLeaveDays": 5,
@@ -437,7 +440,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 90,
       "healthcareIndex": 64.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 23,
       "freedomConfidence": "high",
       "aqiSource": "iqair",
@@ -502,7 +505,8 @@
       "mipexScore": 32,
       "govEffectiveness": 68.8,
       "governanceIndex": 43.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 5,
@@ -547,7 +551,7 @@
       "doctorsPerThousand": 3.8,
       "directFlightCities": 230,
       "safetyIndex": 82.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2170,
       "monthlyRent": 1300,
       "paidLeaveDays": 5,
@@ -563,7 +567,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 90,
       "healthcareIndex": 61.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 23,
       "freedomConfidence": "high",
       "aqiSource": "iqair",
@@ -628,7 +632,8 @@
       "mipexScore": 32,
       "govEffectiveness": 68.8,
       "governanceIndex": 43.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 6,
@@ -673,7 +678,7 @@
       "doctorsPerThousand": 4.3,
       "directFlightCities": 95,
       "safetyIndex": 81.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1694,
       "monthlyRent": 2200,
       "paidLeaveDays": 20,
@@ -689,7 +694,7 @@
       "gpiScoreInv": 87,
       "gallupLawOrder": 82,
       "healthcareIndex": 69.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 76,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -754,7 +759,8 @@
       "mipexScore": 65,
       "govEffectiveness": 86.5,
       "governanceIndex": 75.9,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 7,
@@ -799,7 +805,7 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 150,
       "safetyIndex": 90.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2238,
       "monthlyRent": 2400,
       "paidLeaveDays": 7,
@@ -815,7 +821,7 @@
       "gpiScoreInv": 92,
       "gallupLawOrder": 97,
       "healthcareIndex": 59.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 60,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -880,7 +886,8 @@
       "mipexScore": null,
       "govEffectiveness": 95.7,
       "governanceIndex": 78,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 8,
@@ -925,7 +932,7 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 290,
       "safetyIndex": 72.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1511,
       "monthlyRent": 1500,
       "paidLeaveDays": 25,
@@ -941,7 +948,7 @@
       "gpiScoreInv": 76,
       "gallupLawOrder": 74,
       "healthcareIndex": 71.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 73,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -1006,7 +1013,8 @@
       "mipexScore": 56,
       "govEffectiveness": 74.7,
       "governanceIndex": 69.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 9,
@@ -1051,7 +1059,7 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 180,
       "safetyIndex": 79.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1686,
       "monthlyRent": 1800,
       "paidLeaveDays": 10,
@@ -1067,7 +1075,7 @@
       "gpiScoreInv": 91,
       "gallupLawOrder": 80,
       "healthcareIndex": 62.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 79,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -1132,7 +1140,8 @@
       "mipexScore": 79,
       "govEffectiveness": 85.5,
       "governanceIndex": 78.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 10,
@@ -1177,7 +1186,7 @@
       "doctorsPerThousand": 2.1,
       "directFlightCities": 180,
       "safetyIndex": 83.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2080,
       "monthlyRent": 1900,
       "paidLeaveDays": 7,
@@ -1193,7 +1202,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 86,
       "healthcareIndex": 60.9,
-      "healthcareConfidence": "medium",
+      "healthcareConfidence": 85,
       "freedomIndex": 40,
       "freedomConfidence": "high",
       "aqiSource": "iqair",
@@ -1258,7 +1267,8 @@
       "mipexScore": null,
       "govEffectiveness": 83.2,
       "governanceIndex": 66.3,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 90
     },
     {
       "id": 11,
@@ -1303,7 +1313,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 195,
       "safetyIndex": 65.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 2500,
       "paidLeaveDays": 0,
@@ -1319,7 +1329,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 60.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -1384,7 +1394,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 12,
@@ -1429,7 +1440,7 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 130,
       "safetyIndex": 63.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 2800,
       "paidLeaveDays": 0,
@@ -1445,7 +1456,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 63.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -1510,7 +1521,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 13,
@@ -1555,7 +1567,7 @@
       "doctorsPerThousand": 3.4,
       "directFlightCities": 250,
       "safetyIndex": 64.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1600,
       "paidLeaveDays": 0,
@@ -1571,7 +1583,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 62.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -1636,7 +1648,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 14,
@@ -1681,7 +1694,7 @@
       "doctorsPerThousand": 3.2,
       "directFlightCities": 265,
       "safetyIndex": 90.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2200,
       "monthlyRent": 1800,
       "paidLeaveDays": 30,
@@ -1697,7 +1710,7 @@
       "gpiScoreInv": 87,
       "gallupLawOrder": 95,
       "healthcareIndex": 58.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 39,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -1762,7 +1775,8 @@
       "mipexScore": 29,
       "govEffectiveness": 75.8,
       "governanceIndex": 57,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 15,
@@ -1807,7 +1821,7 @@
       "doctorsPerThousand": 3.9,
       "directFlightCities": 195,
       "safetyIndex": 80.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1417,
       "monthlyRent": 1700,
       "paidLeaveDays": 20,
@@ -1823,7 +1837,7 @@
       "gpiScoreInv": 87,
       "gallupLawOrder": 79,
       "healthcareIndex": 67.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 82,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -1888,7 +1902,8 @@
       "mipexScore": 57,
       "govEffectiveness": 85.4,
       "governanceIndex": 77.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 16,
@@ -1933,7 +1948,7 @@
       "doctorsPerThousand": 4.7,
       "directFlightCities": 130,
       "safetyIndex": 89.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1533,
       "monthlyRent": 2200,
       "paidLeaveDays": 20,
@@ -1949,7 +1964,7 @@
       "gpiScoreInv": 92,
       "gallupLawOrder": 89,
       "healthcareIndex": 70.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 85,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -2014,7 +2029,8 @@
       "mipexScore": 50,
       "govEffectiveness": 87.1,
       "governanceIndex": 77.6,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 80,
+      "securityConfidence": 93
     },
     {
       "id": 17,
@@ -2059,7 +2075,7 @@
       "doctorsPerThousand": 4.6,
       "directFlightCities": 110,
       "safetyIndex": 88.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1533,
       "monthlyRent": 1900,
       "paidLeaveDays": 20,
@@ -2075,7 +2091,7 @@
       "gpiScoreInv": 92,
       "gallupLawOrder": 89,
       "healthcareIndex": 70.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 85,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -2140,7 +2156,8 @@
       "mipexScore": 50,
       "govEffectiveness": 87.1,
       "governanceIndex": 77.6,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 80,
+      "securityConfidence": 93
     },
     {
       "id": 18,
@@ -2185,7 +2202,7 @@
       "doctorsPerThousand": 4.8,
       "directFlightCities": 190,
       "safetyIndex": 84.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1341,
       "monthlyRent": 1200,
       "paidLeaveDays": 20,
@@ -2201,7 +2218,7 @@
       "gpiScoreInv": 83,
       "gallupLawOrder": 80,
       "healthcareIndex": 77.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 79,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -2266,7 +2283,8 @@
       "mipexScore": 58,
       "govEffectiveness": 81.4,
       "governanceIndex": 76,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 19,
@@ -2311,7 +2329,7 @@
       "doctorsPerThousand": 4.3,
       "directFlightCities": 180,
       "safetyIndex": 77.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1341,
       "monthlyRent": 1100,
       "paidLeaveDays": 20,
@@ -2327,7 +2345,7 @@
       "gpiScoreInv": 83,
       "gallupLawOrder": 80,
       "healthcareIndex": 75.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 79,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -2392,7 +2410,8 @@
       "mipexScore": 58,
       "govEffectiveness": 81.4,
       "governanceIndex": 76,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 20,
@@ -2437,7 +2456,7 @@
       "doctorsPerThousand": 4.5,
       "directFlightCities": 215,
       "safetyIndex": 74.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1644,
       "monthlyRent": 1100,
       "paidLeaveDays": 22,
@@ -2453,7 +2472,7 @@
       "gpiScoreInv": 85,
       "gallupLawOrder": 74,
       "healthcareIndex": 67.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 69,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -2518,7 +2537,8 @@
       "mipexScore": 60,
       "govEffectiveness": 72.9,
       "governanceIndex": 66.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 21,
@@ -2563,7 +2583,7 @@
       "doctorsPerThousand": 4.5,
       "directFlightCities": 200,
       "safetyIndex": 77.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1644,
       "monthlyRent": 1000,
       "paidLeaveDays": 22,
@@ -2579,7 +2599,7 @@
       "gpiScoreInv": 85,
       "gallupLawOrder": 74,
       "healthcareIndex": 67.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 69,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -2644,7 +2664,8 @@
       "mipexScore": 60,
       "govEffectiveness": 72.9,
       "governanceIndex": 66.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 22,
@@ -2689,7 +2710,7 @@
       "doctorsPerThousand": 4.4,
       "directFlightCities": 190,
       "safetyIndex": 75.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1669,
       "monthlyRent": 1200,
       "paidLeaveDays": 20,
@@ -2705,7 +2726,7 @@
       "gpiScoreInv": 84,
       "gallupLawOrder": 72,
       "healthcareIndex": 66.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 63,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -2770,7 +2791,8 @@
       "mipexScore": 58,
       "govEffectiveness": 66.7,
       "governanceIndex": 61,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 23,
@@ -2815,7 +2837,7 @@
       "doctorsPerThousand": 4.3,
       "directFlightCities": 190,
       "safetyIndex": 74.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1669,
       "monthlyRent": 950,
       "paidLeaveDays": 20,
@@ -2831,7 +2853,7 @@
       "gpiScoreInv": 84,
       "gallupLawOrder": 72,
       "healthcareIndex": 66.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 63,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -2896,7 +2918,8 @@
       "mipexScore": 58,
       "govEffectiveness": 66.7,
       "governanceIndex": 61,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 24,
@@ -2941,7 +2964,7 @@
       "doctorsPerThousand": 3.8,
       "directFlightCities": 170,
       "safetyIndex": 73.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1577,
       "monthlyRent": 1100,
       "paidLeaveDays": 20,
@@ -2957,7 +2980,7 @@
       "gpiScoreInv": 87,
       "gallupLawOrder": 72,
       "healthcareIndex": 69,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 75,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -3022,7 +3045,8 @@
       "mipexScore": 69,
       "govEffectiveness": 74.6,
       "governanceIndex": 74.1,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 25,
@@ -3067,7 +3091,7 @@
       "doctorsPerThousand": 5.7,
       "directFlightCities": 175,
       "safetyIndex": 87,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1442,
       "monthlyRent": 1000,
       "paidLeaveDays": 25,
@@ -3083,7 +3107,7 @@
       "gpiScoreInv": 93,
       "gallupLawOrder": 85,
       "healthcareIndex": 78.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 75,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -3148,7 +3172,8 @@
       "mipexScore": 46,
       "govEffectiveness": 80.8,
       "governanceIndex": 71.2,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 26,
@@ -3193,7 +3218,7 @@
       "doctorsPerThousand": 4.6,
       "directFlightCities": 155,
       "safetyIndex": 84.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1766,
       "monthlyRent": 700,
       "paidLeaveDays": 20,
@@ -3209,7 +3234,7 @@
       "gpiScoreInv": 91,
       "gallupLawOrder": 81,
       "healthcareIndex": 71.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -3274,7 +3299,8 @@
       "mipexScore": 49,
       "govEffectiveness": 74.2,
       "governanceIndex": 64.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 27,
@@ -3319,7 +3345,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 160,
       "safetyIndex": 81.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1803,
       "monthlyRent": 650,
       "paidLeaveDays": 20,
@@ -3335,7 +3361,7 @@
       "gpiScoreInv": 82,
       "gallupLawOrder": 79,
       "healthcareIndex": 61.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 60,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -3400,7 +3426,8 @@
       "mipexScore": 41,
       "govEffectiveness": 64.4,
       "governanceIndex": 57.2,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 28,
@@ -3445,7 +3472,7 @@
       "doctorsPerThousand": 5.7,
       "directFlightCities": 150,
       "safetyIndex": 80.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1649,
       "monthlyRent": 900,
       "paidLeaveDays": 22,
@@ -3461,7 +3488,7 @@
       "gpiScoreInv": 93,
       "gallupLawOrder": 76,
       "healthcareIndex": 69.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 74,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -3526,7 +3553,8 @@
       "mipexScore": 81,
       "govEffectiveness": 69.8,
       "governanceIndex": 70.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 29,
@@ -3571,7 +3599,7 @@
       "doctorsPerThousand": 7,
       "directFlightCities": 165,
       "safetyIndex": 74.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1886,
       "monthlyRent": 550,
       "paidLeaveDays": 20,
@@ -3587,7 +3615,7 @@
       "gpiScoreInv": 81,
       "gallupLawOrder": 69,
       "healthcareIndex": 71.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 61,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -3652,7 +3680,8 @@
       "mipexScore": 47,
       "govEffectiveness": 55.1,
       "governanceIndex": 53.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 30,
@@ -3697,7 +3726,7 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 310,
       "safetyIndex": 69.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1855,
       "monthlyRent": 500,
       "paidLeaveDays": 14,
@@ -3713,7 +3742,7 @@
       "gpiScoreInv": 62,
       "gallupLawOrder": 72,
       "healthcareIndex": 55.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 34,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -3778,7 +3807,8 @@
       "mipexScore": 43,
       "govEffectiveness": 50,
       "governanceIndex": 39.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 31,
@@ -3823,7 +3853,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 115,
       "safetyIndex": 41,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2128,
       "monthlyRent": 550,
       "paidLeaveDays": 12,
@@ -3839,7 +3869,7 @@
       "gpiScoreInv": 52,
       "gallupLawOrder": 48,
       "healthcareIndex": 47,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 40,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -3904,7 +3934,8 @@
       "mipexScore": 51,
       "govEffectiveness": 47.1,
       "governanceIndex": 40.1,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 32,
@@ -3949,7 +3980,7 @@
       "doctorsPerThousand": 2.7,
       "directFlightCities": 135,
       "safetyIndex": 45.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1776,
       "monthlyRent": 550,
       "paidLeaveDays": 30,
@@ -3965,7 +3996,7 @@
       "gpiScoreInv": 66,
       "gallupLawOrder": 49,
       "healthcareIndex": 52.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 54,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -4030,7 +4061,8 @@
       "mipexScore": 64,
       "govEffectiveness": 47,
       "governanceIndex": 48.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 33,
@@ -4075,7 +4107,7 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 55,
       "safetyIndex": 45,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1776,
       "monthlyRent": 650,
       "paidLeaveDays": 30,
@@ -4091,7 +4123,7 @@
       "gpiScoreInv": 66,
       "gallupLawOrder": 49,
       "healthcareIndex": 51.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 54,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -4156,7 +4188,8 @@
       "mipexScore": 64,
       "govEffectiveness": 47,
       "governanceIndex": 48.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 34,
@@ -4201,7 +4234,7 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 180,
       "safetyIndex": 68.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 2000,
       "paidLeaveDays": 0,
@@ -4217,7 +4250,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 61.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -4282,7 +4315,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 35,
@@ -4327,7 +4361,7 @@
       "doctorsPerThousand": 4,
       "directFlightCities": 200,
       "safetyIndex": 69.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1700,
       "paidLeaveDays": 0,
@@ -4343,7 +4377,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 65,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -4408,7 +4442,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 36,
@@ -4453,7 +4488,7 @@
       "doctorsPerThousand": 5,
       "directFlightCities": 140,
       "safetyIndex": 71.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1500,
       "paidLeaveDays": 0,
@@ -4469,7 +4504,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 68.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -4534,7 +4569,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 37,
@@ -4579,7 +4615,7 @@
       "doctorsPerThousand": 3.1,
       "directFlightCities": 135,
       "safetyIndex": 66.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1800,
       "paidLeaveDays": 0,
@@ -4595,7 +4631,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 61.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -4660,7 +4696,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 38,
@@ -4705,7 +4742,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 215,
       "safetyIndex": 69.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1400,
       "paidLeaveDays": 0,
@@ -4721,7 +4758,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 60.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -4786,7 +4823,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 39,
@@ -4831,7 +4869,7 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 75,
       "safetyIndex": 70.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1600,
       "paidLeaveDays": 0,
@@ -4847,7 +4885,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 59.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -4912,7 +4950,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 40,
@@ -4957,7 +4996,7 @@
       "doctorsPerThousand": 2.6,
       "directFlightCities": 120,
       "safetyIndex": 80.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1686,
       "monthlyRent": 1600,
       "paidLeaveDays": 10,
@@ -4973,7 +5012,7 @@
       "gpiScoreInv": 91,
       "gallupLawOrder": 80,
       "healthcareIndex": 61.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 79,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -5038,7 +5077,8 @@
       "mipexScore": 79,
       "govEffectiveness": 85.5,
       "governanceIndex": 78.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 41,
@@ -5083,7 +5123,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 130,
       "safetyIndex": 80.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1686,
       "monthlyRent": 1400,
       "paidLeaveDays": 10,
@@ -5099,7 +5139,7 @@
       "gpiScoreInv": 91,
       "gallupLawOrder": 80,
       "healthcareIndex": 62,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 79,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -5164,7 +5204,8 @@
       "mipexScore": 79,
       "govEffectiveness": 85.5,
       "governanceIndex": 78.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 42,
@@ -5209,7 +5250,7 @@
       "doctorsPerThousand": 4.2,
       "directFlightCities": 75,
       "safetyIndex": 81.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1694,
       "monthlyRent": 1800,
       "paidLeaveDays": 20,
@@ -5225,7 +5266,7 @@
       "gpiScoreInv": 87,
       "gallupLawOrder": 82,
       "healthcareIndex": 69.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 76,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -5290,7 +5331,8 @@
       "mipexScore": 65,
       "govEffectiveness": 86.5,
       "governanceIndex": 75.9,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 43,
@@ -5335,7 +5377,7 @@
       "doctorsPerThousand": 3.8,
       "directFlightCities": 55,
       "safetyIndex": 82.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1694,
       "monthlyRent": 1400,
       "paidLeaveDays": 20,
@@ -5351,7 +5393,7 @@
       "gpiScoreInv": 87,
       "gallupLawOrder": 82,
       "healthcareIndex": 68.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 76,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -5416,7 +5458,8 @@
       "mipexScore": 65,
       "govEffectiveness": 86.5,
       "governanceIndex": 75.9,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 44,
@@ -5461,7 +5504,7 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 60,
       "safetyIndex": 80.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1752,
       "monthlyRent": 1300,
       "paidLeaveDays": 20,
@@ -5477,7 +5520,7 @@
       "gpiScoreInv": 95,
       "gallupLawOrder": 82,
       "healthcareIndex": 65.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 86,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -5536,13 +5579,14 @@
       "homicideRate": 1.1,
       "gpiScore": 1.22,
       "governanceIndex": 82.9,
-      "governanceConfidence": "high",
+      "governanceConfidence": 100,
       "wpsIndex": 0.898,
       "outOfPocketPct": 12.69,
       "wjpRuleLaw": 0.83,
       "internetFreedomScore": null,
       "mipexScore": 77,
-      "govEffectiveness": 87.3
+      "govEffectiveness": 87.3,
+      "securityConfidence": 100
     },
     {
       "id": 45,
@@ -5587,7 +5631,7 @@
       "doctorsPerThousand": 0.8,
       "directFlightCities": 190,
       "safetyIndex": 74.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2024,
       "monthlyRent": 500,
       "paidLeaveDays": 6,
@@ -5603,7 +5647,7 @@
       "gpiScoreInv": 75,
       "gallupLawOrder": 78,
       "healthcareIndex": 52.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 47,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -5668,7 +5712,8 @@
       "mipexScore": null,
       "govEffectiveness": 56.3,
       "governanceIndex": 45.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 46,
@@ -5713,7 +5758,7 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 140,
       "safetyIndex": 75.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2028,
       "monthlyRent": 550,
       "paidLeaveDays": 8,
@@ -5729,7 +5774,7 @@
       "gpiScoreInv": 86,
       "gallupLawOrder": 77,
       "healthcareIndex": 49.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 57,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -5794,7 +5839,8 @@
       "mipexScore": null,
       "govEffectiveness": 69.1,
       "governanceIndex": 56.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 47,
@@ -5839,7 +5885,7 @@
       "doctorsPerThousand": 1.4,
       "directFlightCities": 85,
       "safetyIndex": 77.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2060,
       "monthlyRent": 400,
       "paidLeaveDays": 12,
@@ -5855,7 +5901,7 @@
       "gpiScoreInv": 79,
       "gallupLawOrder": 85,
       "healthcareIndex": 44.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 28,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -5920,7 +5966,8 @@
       "mipexScore": null,
       "govEffectiveness": 49.5,
       "governanceIndex": 41.3,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 48,
@@ -5965,7 +6012,7 @@
       "doctorsPerThousand": 1.3,
       "directFlightCities": 70,
       "safetyIndex": 78.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2060,
       "monthlyRent": 450,
       "paidLeaveDays": 12,
@@ -5981,7 +6028,7 @@
       "gpiScoreInv": 79,
       "gallupLawOrder": 85,
       "healthcareIndex": 44.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 28,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -6046,7 +6093,8 @@
       "mipexScore": null,
       "govEffectiveness": 49.5,
       "governanceIndex": 41.3,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 49,
@@ -6091,7 +6139,7 @@
       "doctorsPerThousand": 1,
       "directFlightCities": 75,
       "safetyIndex": 68.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2117,
       "monthlyRent": 250,
       "paidLeaveDays": 15,
@@ -6107,7 +6155,7 @@
       "gpiScoreInv": 67,
       "gallupLawOrder": 73,
       "healthcareIndex": 32.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 48,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -6172,7 +6220,8 @@
       "mipexScore": 24,
       "govEffectiveness": 59.2,
       "governanceIndex": 42.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 50,
@@ -6217,7 +6266,7 @@
       "doctorsPerThousand": 1.2,
       "directFlightCities": 110,
       "safetyIndex": 67.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2117,
       "monthlyRent": 200,
       "paidLeaveDays": 15,
@@ -6233,7 +6282,7 @@
       "gpiScoreInv": 67,
       "gallupLawOrder": 73,
       "healthcareIndex": 33.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 48,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -6298,7 +6347,8 @@
       "mipexScore": 24,
       "govEffectiveness": 59.2,
       "governanceIndex": 42.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 51,
@@ -6343,7 +6393,7 @@
       "doctorsPerThousand": 1.1,
       "directFlightCities": 145,
       "safetyIndex": 65.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2117,
       "monthlyRent": 250,
       "paidLeaveDays": 15,
@@ -6359,7 +6409,7 @@
       "gpiScoreInv": 67,
       "gallupLawOrder": 73,
       "healthcareIndex": 32.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 48,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -6424,7 +6474,8 @@
       "mipexScore": 24,
       "govEffectiveness": 59.2,
       "governanceIndex": 42.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 52,
@@ -6469,7 +6520,7 @@
       "doctorsPerThousand": 0.3,
       "directFlightCities": 60,
       "safetyIndex": 58.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2100,
       "monthlyRent": 350,
       "paidLeaveDays": 21,
@@ -6485,7 +6536,7 @@
       "gpiScoreInv": 65,
       "gallupLawOrder": 60,
       "healthcareIndex": 29.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 47,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -6550,7 +6601,8 @@
       "mipexScore": null,
       "govEffectiveness": 45.5,
       "governanceIndex": 43.1,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 53,
@@ -6595,7 +6647,7 @@
       "doctorsPerThousand": 0.9,
       "directFlightCities": 100,
       "safetyIndex": 70.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2070,
       "monthlyRent": 300,
       "paidLeaveDays": 21,
@@ -6611,7 +6663,7 @@
       "gpiScoreInv": 71,
       "gallupLawOrder": 78,
       "healthcareIndex": 32.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 26,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -6676,7 +6728,8 @@
       "mipexScore": null,
       "govEffectiveness": 49.5,
       "governanceIndex": 35.6,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 54,
@@ -6721,7 +6774,7 @@
       "doctorsPerThousand": 2.2,
       "directFlightCities": 75,
       "safetyIndex": 67.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2024,
       "monthlyRent": 200,
       "paidLeaveDays": 26,
@@ -6737,7 +6790,7 @@
       "gpiScoreInv": 63,
       "gallupLawOrder": 68,
       "healthcareIndex": 45.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 17,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -6802,7 +6855,8 @@
       "mipexScore": null,
       "govEffectiveness": 37.6,
       "governanceIndex": 28.5,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 55,
@@ -6847,7 +6901,7 @@
       "doctorsPerThousand": 1.1,
       "directFlightCities": 40,
       "safetyIndex": 55.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2150,
       "monthlyRent": 150,
       "paidLeaveDays": 14,
@@ -6863,7 +6917,7 @@
       "gpiScoreInv": 56,
       "gallupLawOrder": 63,
       "healthcareIndex": 24.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 32,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -6928,7 +6982,8 @@
       "mipexScore": null,
       "govEffectiveness": 39.7,
       "governanceIndex": 33.1,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 56,
@@ -6973,7 +7028,7 @@
       "doctorsPerThousand": 1.3,
       "directFlightCities": 45,
       "safetyIndex": 60.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2150,
       "monthlyRent": 180,
       "paidLeaveDays": 14,
@@ -6989,7 +7044,7 @@
       "gpiScoreInv": 56,
       "gallupLawOrder": 63,
       "healthcareIndex": 25.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 32,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -7054,7 +7109,8 @@
       "mipexScore": null,
       "govEffectiveness": 39.7,
       "governanceIndex": 33.1,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 57,
@@ -7099,7 +7155,7 @@
       "doctorsPerThousand": 0.7,
       "directFlightCities": 90,
       "safetyIndex": 74.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1950,
       "monthlyRent": 350,
       "paidLeaveDays": 12,
@@ -7115,7 +7171,7 @@
       "gpiScoreInv": 79,
       "gallupLawOrder": 82,
       "healthcareIndex": 37,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 52,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -7180,7 +7236,8 @@
       "mipexScore": 26,
       "govEffectiveness": 54.8,
       "governanceIndex": 44.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 58,
@@ -7225,7 +7282,7 @@
       "doctorsPerThousand": 0.8,
       "directFlightCities": 80,
       "safetyIndex": 65.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2000,
       "monthlyRent": 350,
       "paidLeaveDays": 5,
@@ -7241,7 +7298,7 @@
       "gpiScoreInv": 68,
       "gallupLawOrder": 72,
       "healthcareIndex": 32.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 48,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -7306,7 +7363,8 @@
       "mipexScore": null,
       "govEffectiveness": 54.2,
       "governanceIndex": 44.2,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 59,
@@ -7351,7 +7409,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 190,
       "safetyIndex": 84.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1901,
       "monthlyRent": 900,
       "paidLeaveDays": 15,
@@ -7367,7 +7425,7 @@
       "gpiScoreInv": 82,
       "gallupLawOrder": 85,
       "healthcareIndex": 73.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 72,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -7432,7 +7490,8 @@
       "mipexScore": 56,
       "govEffectiveness": 80.2,
       "governanceIndex": 69.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 60,
@@ -7477,7 +7536,7 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 50,
       "safetyIndex": 84.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1901,
       "monthlyRent": 600,
       "paidLeaveDays": 15,
@@ -7493,7 +7552,7 @@
       "gpiScoreInv": 82,
       "gallupLawOrder": 85,
       "healthcareIndex": 72.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 72,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -7558,7 +7617,8 @@
       "mipexScore": 56,
       "govEffectiveness": 80.2,
       "governanceIndex": 69.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 61,
@@ -7602,8 +7662,8 @@
       "costBudget": 756,
       "doctorsPerThousand": 2.5,
       "directFlightCities": 130,
-      "safetyIndex": 87.8,
-      "safetyConfidence": "medium",
+      "safetyIndex": 84.9,
+      "safetyConfidence": 75,
       "annualWorkHours": 2008,
       "monthlyRent": 800,
       "paidLeaveDays": 7,
@@ -7615,11 +7675,11 @@
       "democracyIndex": 8.99,
       "corruptionPerceptionIndex": 68,
       "numbeoSafetyIndex": 85,
-      "homicideRateInv": 99,
-      "gpiScoreInv": 78,
+      "homicideRateInv": null,
+      "gpiScoreInv": 82,
       "gallupLawOrder": 88,
       "healthcareIndex": 61.2,
-      "healthcareConfidence": "medium",
+      "healthcareConfidence": 85,
       "freedomIndex": 78,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -7676,15 +7736,16 @@
       },
       "timezone": "Asia/Taipei",
       "homicideRate": null,
-      "gpiScore": null,
-      "wpsIndex": null,
+      "gpiScore": 1.73,
+      "wpsIndex": 0.854,
       "outOfPocketPct": null,
       "wjpRuleLaw": null,
       "internetFreedomScore": 79,
       "mipexScore": null,
       "govEffectiveness": null,
       "governanceIndex": 70.3,
-      "governanceConfidence": "low"
+      "governanceConfidence": 40,
+      "securityConfidence": 67
     },
     {
       "id": 62,
@@ -7729,7 +7790,7 @@
       "doctorsPerThousand": 5.5,
       "directFlightCities": 65,
       "safetyIndex": 62,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1820,
       "monthlyRent": 350,
       "paidLeaveDays": 14,
@@ -7745,7 +7806,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 50,
       "healthcareIndex": 66.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 56,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -7810,7 +7871,8 @@
       "mipexScore": 58,
       "govEffectiveness": 54.9,
       "governanceIndex": 51.7,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 63,
@@ -7855,7 +7917,7 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 55,
       "safetyIndex": 64.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1916,
       "monthlyRent": 500,
       "paidLeaveDays": 15,
@@ -7871,7 +7933,7 @@
       "gpiScoreInv": 80,
       "gallupLawOrder": 58,
       "healthcareIndex": 56.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 73,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -7936,7 +7998,8 @@
       "mipexScore": 53,
       "govEffectiveness": 70.1,
       "governanceIndex": 65.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 64,
@@ -7981,7 +8044,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 75,
       "safetyIndex": 42.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1964,
       "monthlyRent": 350,
       "paidLeaveDays": 15,
@@ -7997,7 +8060,7 @@
       "gpiScoreInv": 57,
       "gallupLawOrder": 51,
       "healthcareIndex": 55.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 53,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -8062,7 +8125,8 @@
       "mipexScore": null,
       "govEffectiveness": 49.2,
       "governanceIndex": 45.8,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 65,
@@ -8107,7 +8171,7 @@
       "doctorsPerThousand": 1.7,
       "directFlightCities": 65,
       "safetyIndex": 54.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2000,
       "monthlyRent": 300,
       "paidLeaveDays": 30,
@@ -8123,7 +8187,7 @@
       "gpiScoreInv": 71,
       "gallupLawOrder": 45,
       "healthcareIndex": 47.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 50,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -8188,7 +8252,8 @@
       "mipexScore": null,
       "govEffectiveness": 47.4,
       "governanceIndex": 45,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 67,
@@ -8233,7 +8298,7 @@
       "doctorsPerThousand": 1,
       "directFlightCities": 75,
       "safetyIndex": 30.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1856,
       "monthlyRent": 500,
       "paidLeaveDays": 15,
@@ -8249,7 +8314,7 @@
       "gpiScoreInv": 58,
       "gallupLawOrder": 45,
       "healthcareIndex": 40.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 59,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -8314,7 +8379,8 @@
       "mipexScore": 48,
       "govEffectiveness": 46.9,
       "governanceIndex": 50.2,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 68,
@@ -8359,7 +8425,7 @@
       "doctorsPerThousand": 1,
       "directFlightCities": 35,
       "safetyIndex": 31.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1856,
       "monthlyRent": 600,
       "paidLeaveDays": 15,
@@ -8375,7 +8441,7 @@
       "gpiScoreInv": 58,
       "gallupLawOrder": 45,
       "healthcareIndex": 40.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 59,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -8440,7 +8506,8 @@
       "mipexScore": 48,
       "govEffectiveness": 46.9,
       "governanceIndex": 50.2,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 69,
@@ -8485,7 +8552,7 @@
       "doctorsPerThousand": 2.2,
       "directFlightCities": 50,
       "safetyIndex": 42.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2128,
       "monthlyRent": 450,
       "paidLeaveDays": 12,
@@ -8501,7 +8568,7 @@
       "gpiScoreInv": 52,
       "gallupLawOrder": 48,
       "healthcareIndex": 44.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 40,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -8566,7 +8633,8 @@
       "mipexScore": 51,
       "govEffectiveness": 47.1,
       "governanceIndex": 40.1,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 70,
@@ -8611,7 +8679,7 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 55,
       "safetyIndex": 63.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2026,
       "monthlyRent": 550,
       "paidLeaveDays": 14,
@@ -8627,7 +8695,7 @@
       "gpiScoreInv": 80,
       "gallupLawOrder": 59,
       "healthcareIndex": 55.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 70,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -8692,7 +8760,8 @@
       "mipexScore": null,
       "govEffectiveness": 56.9,
       "governanceIndex": 61.3,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 71,
@@ -8737,7 +8806,7 @@
       "doctorsPerThousand": 1.9,
       "directFlightCities": 90,
       "safetyIndex": 64,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1960,
       "monthlyRent": 800,
       "paidLeaveDays": 30,
@@ -8753,7 +8822,7 @@
       "gpiScoreInv": 77,
       "gallupLawOrder": 63,
       "healthcareIndex": 49.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 56,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -8818,7 +8887,8 @@
       "mipexScore": null,
       "govEffectiveness": 56.1,
       "governanceIndex": 49.2,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 73,
@@ -8863,7 +8933,7 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 45,
       "safetyIndex": 57.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 750,
       "paidLeaveDays": 0,
@@ -8879,7 +8949,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 62,
       "healthcareIndex": 55.8,
-      "healthcareConfidence": "medium",
+      "healthcareConfidence": 85,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -8944,7 +9014,8 @@
       "mipexScore": null,
       "govEffectiveness": 46.4,
       "governanceIndex": 57.1,
-      "governanceConfidence": "low"
+      "governanceConfidence": 65,
+      "securityConfidence": 83
     },
     {
       "id": 75,
@@ -8989,7 +9060,7 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 115,
       "safetyIndex": 91.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2200,
       "monthlyRent": 1500,
       "paidLeaveDays": 30,
@@ -9005,7 +9076,7 @@
       "gpiScoreInv": 87,
       "gallupLawOrder": 95,
       "healthcareIndex": 57.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 39,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -9070,7 +9141,8 @@
       "mipexScore": 29,
       "govEffectiveness": 75.8,
       "governanceIndex": 57,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 76,
@@ -9115,7 +9187,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 185,
       "safetyIndex": 89.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2200,
       "monthlyRent": 1600,
       "paidLeaveDays": 21,
@@ -9131,7 +9203,7 @@
       "gpiScoreInv": 89,
       "gallupLawOrder": 93,
       "healthcareIndex": 57,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 39,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -9196,7 +9268,8 @@
       "mipexScore": null,
       "govEffectiveness": 73.4,
       "governanceIndex": 58.5,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 77,
@@ -9241,7 +9314,7 @@
       "doctorsPerThousand": 0.9,
       "directFlightCities": 65,
       "safetyIndex": 83.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2150,
       "monthlyRent": 700,
       "paidLeaveDays": 30,
@@ -9257,7 +9330,7 @@
       "gpiScoreInv": 80,
       "gallupLawOrder": 83,
       "healthcareIndex": 47.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 27,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -9322,7 +9395,8 @@
       "mipexScore": null,
       "govEffectiveness": 63,
       "governanceIndex": 44.6,
-      "governanceConfidence": "low"
+      "governanceConfidence": 65,
+      "securityConfidence": 88
     },
     {
       "id": 78,
@@ -9367,7 +9441,7 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 105,
       "safetyIndex": 82.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2100,
       "monthlyRent": 800,
       "paidLeaveDays": 21,
@@ -9383,7 +9457,7 @@
       "gpiScoreInv": 77,
       "gallupLawOrder": 90,
       "healthcareIndex": 56.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 27,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -9448,7 +9522,8 @@
       "mipexScore": 10,
       "govEffectiveness": 66.6,
       "governanceIndex": 41.2,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 80,
+      "securityConfidence": 93
     },
     {
       "id": 79,
@@ -9493,7 +9568,7 @@
       "doctorsPerThousand": 2.2,
       "directFlightCities": 75,
       "safetyIndex": 88.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2100,
       "monthlyRent": 650,
       "paidLeaveDays": 30,
@@ -9509,7 +9584,7 @@
       "gpiScoreInv": 86,
       "gallupLawOrder": 92,
       "healthcareIndex": 54,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 36,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -9574,7 +9649,8 @@
       "mipexScore": null,
       "govEffectiveness": 62.4,
       "governanceIndex": 50.5,
-      "governanceConfidence": "low"
+      "governanceConfidence": 65,
+      "securityConfidence": 88
     },
     {
       "id": 80,
@@ -9619,7 +9695,7 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 60,
       "safetyIndex": 60.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1950,
       "monthlyRent": 500,
       "paidLeaveDays": 15,
@@ -9635,7 +9711,7 @@
       "gpiScoreInv": 58,
       "gallupLawOrder": 55,
       "healthcareIndex": 50.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 39,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -9700,7 +9776,8 @@
       "mipexScore": null,
       "govEffectiveness": 29.4,
       "governanceIndex": 34.5,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 81,
@@ -9745,7 +9822,7 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 70,
       "safetyIndex": 75.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2050,
       "monthlyRent": 400,
       "paidLeaveDays": 14,
@@ -9761,7 +9838,7 @@
       "gpiScoreInv": 75,
       "gallupLawOrder": 79,
       "healthcareIndex": 48.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 37,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -9826,7 +9903,8 @@
       "mipexScore": 21,
       "govEffectiveness": 55.5,
       "governanceIndex": 44.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 82,
@@ -9871,7 +9949,7 @@
       "doctorsPerThousand": 4,
       "directFlightCities": 120,
       "safetyIndex": 72.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1898,
       "monthlyRent": 1500,
       "paidLeaveDays": 12,
@@ -9887,7 +9965,7 @@
       "gpiScoreInv": 56,
       "gallupLawOrder": 76,
       "healthcareIndex": 64.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 65,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -9952,7 +10030,8 @@
       "mipexScore": 49,
       "govEffectiveness": 74.1,
       "governanceIndex": 61.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 80,
+      "securityConfidence": 93
     },
     {
       "id": 83,
@@ -9997,7 +10076,7 @@
       "doctorsPerThousand": 0.9,
       "directFlightCities": 55,
       "safetyIndex": 69.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2117,
       "monthlyRent": 200,
       "paidLeaveDays": 15,
@@ -10013,7 +10092,7 @@
       "gpiScoreInv": 67,
       "gallupLawOrder": 73,
       "healthcareIndex": 32.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 48,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -10078,7 +10157,8 @@
       "mipexScore": 24,
       "govEffectiveness": 59.2,
       "governanceIndex": 42.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 84,
@@ -10123,7 +10203,7 @@
       "doctorsPerThousand": 0.9,
       "directFlightCities": 30,
       "safetyIndex": 70.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2117,
       "monthlyRent": 200,
       "paidLeaveDays": 15,
@@ -10139,7 +10219,7 @@
       "gpiScoreInv": 67,
       "gallupLawOrder": 73,
       "healthcareIndex": 32.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 48,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -10204,7 +10284,8 @@
       "mipexScore": 24,
       "govEffectiveness": 59.2,
       "governanceIndex": 42.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 85,
@@ -10249,7 +10330,7 @@
       "doctorsPerThousand": 3.7,
       "directFlightCities": 0,
       "safetyIndex": 60.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1750,
       "monthlyRent": 350,
       "paidLeaveDays": 24,
@@ -10266,7 +10347,7 @@
       "gallupLawOrder": 67,
       "safetyWarning": "active_conflict",
       "healthcareIndex": 55.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 45,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -10331,7 +10412,8 @@
       "mipexScore": 48,
       "govEffectiveness": 39.7,
       "governanceIndex": 42.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 86,
@@ -10376,7 +10458,7 @@
       "doctorsPerThousand": 3.3,
       "directFlightCities": 115,
       "safetyIndex": 78,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1838,
       "monthlyRent": 400,
       "paidLeaveDays": 20,
@@ -10392,7 +10474,7 @@
       "gpiScoreInv": 84,
       "gallupLawOrder": 71,
       "healthcareIndex": 61.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 57,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -10457,7 +10539,8 @@
       "mipexScore": 49,
       "govEffectiveness": 59.5,
       "governanceIndex": 54.9,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 87,
@@ -10502,7 +10585,7 @@
       "doctorsPerThousand": 4.5,
       "directFlightCities": 90,
       "safetyIndex": 79.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1754,
       "monthlyRent": 350,
       "paidLeaveDays": 20,
@@ -10518,7 +10601,7 @@
       "gpiScoreInv": 85,
       "gallupLawOrder": 70,
       "healthcareIndex": 61.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 51,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -10583,7 +10666,8 @@
       "mipexScore": 39,
       "govEffectiveness": 52.2,
       "governanceIndex": 47.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 88,
@@ -10628,7 +10712,7 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 65,
       "safetyIndex": 84.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1715,
       "monthlyRent": 500,
       "paidLeaveDays": 20,
@@ -10644,7 +10728,7 @@
       "gpiScoreInv": 90,
       "gallupLawOrder": 80,
       "healthcareIndex": 65.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 56,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -10709,7 +10793,8 @@
       "mipexScore": 39,
       "govEffectiveness": 65.1,
       "governanceIndex": 54.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 89,
@@ -10754,7 +10839,7 @@
       "doctorsPerThousand": 3.3,
       "directFlightCities": 90,
       "safetyIndex": 77.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1780,
       "monthlyRent": 350,
       "paidLeaveDays": 20,
@@ -10770,7 +10855,7 @@
       "gpiScoreInv": 77,
       "gallupLawOrder": 73,
       "healthcareIndex": 55.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 44,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -10835,7 +10920,8 @@
       "mipexScore": 50,
       "govEffectiveness": 53.3,
       "governanceIndex": 44.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 90,
@@ -10880,7 +10966,7 @@
       "doctorsPerThousand": 3.7,
       "directFlightCities": 145,
       "safetyIndex": 80.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1805,
       "monthlyRent": 500,
       "paidLeaveDays": 20,
@@ -10896,7 +10982,7 @@
       "gpiScoreInv": 86,
       "gallupLawOrder": 76,
       "healthcareIndex": 62.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 49,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -10961,7 +11047,8 @@
       "mipexScore": 43,
       "govEffectiveness": 61.1,
       "governanceIndex": 48.2,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 91,
@@ -11006,7 +11093,7 @@
       "doctorsPerThousand": 3.9,
       "directFlightCities": 45,
       "safetyIndex": 81.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1700,
       "monthlyRent": 550,
       "paidLeaveDays": 20,
@@ -11022,7 +11109,7 @@
       "gpiScoreInv": 86,
       "gallupLawOrder": 75,
       "healthcareIndex": 64.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 61,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -11087,7 +11174,8 @@
       "mipexScore": 39,
       "govEffectiveness": 64.1,
       "governanceIndex": 56.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 92,
@@ -11132,7 +11220,7 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 40,
       "safetyIndex": 88,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1624,
       "monthlyRent": 600,
       "paidLeaveDays": 20,
@@ -11148,7 +11236,7 @@
       "gpiScoreInv": 92,
       "gallupLawOrder": 84,
       "healthcareIndex": 67.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 66,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -11213,7 +11301,8 @@
       "mipexScore": 48,
       "govEffectiveness": 72.5,
       "governanceIndex": 62.2,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 93,
@@ -11258,7 +11347,7 @@
       "doctorsPerThousand": 4.1,
       "directFlightCities": 185,
       "safetyIndex": 78,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1656,
       "monthlyRent": 1800,
       "paidLeaveDays": 20,
@@ -11274,7 +11363,7 @@
       "gpiScoreInv": 93,
       "gallupLawOrder": 75,
       "healthcareIndex": 66.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 82,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -11339,7 +11428,8 @@
       "mipexScore": 64,
       "govEffectiveness": 82.7,
       "governanceIndex": 77.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 94,
@@ -11384,7 +11474,7 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 65,
       "safetyIndex": 78.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1532,
       "monthlyRent": 1200,
       "paidLeaveDays": 28,
@@ -11400,7 +11490,7 @@
       "gpiScoreInv": 84,
       "gallupLawOrder": 79,
       "healthcareIndex": 62.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 76,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -11465,7 +11555,8 @@
       "mipexScore": 56,
       "govEffectiveness": 74.4,
       "governanceIndex": 70.9,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 95,
@@ -11510,7 +11601,7 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 260,
       "safetyIndex": 64.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1500,
       "paidLeaveDays": 0,
@@ -11526,7 +11617,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 61.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -11591,7 +11682,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 96,
@@ -11636,7 +11728,7 @@
       "doctorsPerThousand": 2.3,
       "directFlightCities": 135,
       "safetyIndex": 67.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1400,
       "paidLeaveDays": 0,
@@ -11652,7 +11744,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 58.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -11717,7 +11809,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 97,
@@ -11762,7 +11855,7 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 80,
       "safetyIndex": 64.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1300,
       "paidLeaveDays": 0,
@@ -11778,7 +11871,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 61.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -11843,7 +11936,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 98,
@@ -11888,7 +11982,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 75,
       "safetyIndex": 71.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1100,
       "paidLeaveDays": 0,
@@ -11904,7 +11998,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 60.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -11969,7 +12063,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 99,
@@ -12014,7 +12109,7 @@
       "doctorsPerThousand": 2,
       "directFlightCities": 145,
       "safetyIndex": 67.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1200,
       "paidLeaveDays": 0,
@@ -12030,7 +12125,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 57.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -12095,7 +12190,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 100,
@@ -12140,7 +12236,7 @@
       "doctorsPerThousand": 2.6,
       "directFlightCities": 90,
       "safetyIndex": 68.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1811,
       "monthlyRent": 1100,
       "paidLeaveDays": 0,
@@ -12156,7 +12252,7 @@
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 60,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -12221,7 +12317,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 101,
@@ -12266,7 +12363,7 @@
       "doctorsPerThousand": 3.2,
       "directFlightCities": 210,
       "safetyIndex": 81.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2170,
       "monthlyRent": 700,
       "paidLeaveDays": 5,
@@ -12282,7 +12379,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 90,
       "healthcareIndex": 59.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 23,
       "freedomConfidence": "high",
       "aqiSource": "iqair",
@@ -12347,7 +12444,8 @@
       "mipexScore": 32,
       "govEffectiveness": 68.8,
       "governanceIndex": 43.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 102,
@@ -12392,7 +12490,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 150,
       "safetyIndex": 82.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2170,
       "monthlyRent": 550,
       "paidLeaveDays": 5,
@@ -12408,7 +12506,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 90,
       "healthcareIndex": 57.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 23,
       "freedomConfidence": "high",
       "aqiSource": "iqair",
@@ -12473,7 +12571,8 @@
       "mipexScore": 32,
       "govEffectiveness": 68.8,
       "governanceIndex": 43.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 103,
@@ -12518,7 +12617,7 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 200,
       "safetyIndex": 81.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2170,
       "monthlyRent": 450,
       "paidLeaveDays": 5,
@@ -12534,7 +12633,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 90,
       "healthcareIndex": 60.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 23,
       "freedomConfidence": "high",
       "aqiSource": "iqair",
@@ -12599,7 +12698,8 @@
       "mipexScore": 32,
       "govEffectiveness": 68.8,
       "governanceIndex": 43.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 104,
@@ -12644,7 +12744,7 @@
       "doctorsPerThousand": 3.3,
       "directFlightCities": 140,
       "safetyIndex": 83.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2170,
       "monthlyRent": 400,
       "paidLeaveDays": 5,
@@ -12660,7 +12760,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 90,
       "healthcareIndex": 59.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 23,
       "freedomConfidence": "high",
       "aqiSource": "iqair",
@@ -12725,7 +12825,8 @@
       "mipexScore": 32,
       "govEffectiveness": 68.8,
       "governanceIndex": 43.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 105,
@@ -12770,7 +12871,7 @@
       "doctorsPerThousand": 2.9,
       "directFlightCities": 150,
       "safetyIndex": 80.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2170,
       "monthlyRent": 500,
       "paidLeaveDays": 5,
@@ -12786,7 +12887,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 90,
       "healthcareIndex": 58.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 23,
       "freedomConfidence": "high",
       "aqiSource": "iqair",
@@ -12851,7 +12952,8 @@
       "mipexScore": 32,
       "govEffectiveness": 68.8,
       "governanceIndex": 43.4,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 106,
@@ -12896,7 +12998,7 @@
       "doctorsPerThousand": 2.6,
       "directFlightCities": 115,
       "safetyIndex": 88.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1607,
       "monthlyRent": 1000,
       "paidLeaveDays": 10,
@@ -12912,7 +13014,7 @@
       "gpiScoreInv": 92,
       "gallupLawOrder": 91,
       "healthcareIndex": 77.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 73,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -12977,7 +13079,8 @@
       "mipexScore": 47,
       "govEffectiveness": 91.9,
       "governanceIndex": 73.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 107,
@@ -13022,7 +13125,7 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 55,
       "safetyIndex": 89.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1607,
       "monthlyRent": 550,
       "paidLeaveDays": 10,
@@ -13038,7 +13141,7 @@
       "gpiScoreInv": 92,
       "gallupLawOrder": 91,
       "healthcareIndex": 77.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 73,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -13103,7 +13206,8 @@
       "mipexScore": 47,
       "govEffectiveness": 91.9,
       "governanceIndex": 73.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 108,
@@ -13148,7 +13252,7 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 185,
       "safetyIndex": 84,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1901,
       "monthlyRent": 450,
       "paidLeaveDays": 15,
@@ -13164,7 +13268,7 @@
       "gpiScoreInv": 82,
       "gallupLawOrder": 85,
       "healthcareIndex": 72.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 72,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -13229,7 +13333,8 @@
       "mipexScore": 56,
       "govEffectiveness": 80.2,
       "governanceIndex": 69.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 109,
@@ -13274,7 +13379,7 @@
       "doctorsPerThousand": 0.2,
       "directFlightCities": 35,
       "safetyIndex": 72.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2100,
       "monthlyRent": 250,
       "paidLeaveDays": 18,
@@ -13290,7 +13395,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 70,
       "healthcareIndex": 26.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 25,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -13355,7 +13460,8 @@
       "mipexScore": null,
       "govEffectiveness": 45.6,
       "governanceIndex": 30.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 110,
@@ -13399,8 +13505,8 @@
       "costBudget": 185,
       "doctorsPerThousand": 0.7,
       "directFlightCities": 30,
-      "safetyIndex": 64.1,
-      "safetyConfidence": "medium",
+      "safetyIndex": 60.2,
+      "safetyConfidence": 100,
       "annualWorkHours": 2100,
       "monthlyRent": 200,
       "paidLeaveDays": 10,
@@ -13411,12 +13517,12 @@
       "pressFreedomScore": 10,
       "democracyIndex": 1.74,
       "corruptionPerceptionIndex": 23,
-      "numbeoSafetyIndex": null,
+      "numbeoSafetyIndex": 51,
       "homicideRateInv": 95,
       "gpiScoreInv": 43,
       "gallupLawOrder": 54,
       "healthcareIndex": 22.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 16,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -13481,7 +13587,8 @@
       "mipexScore": null,
       "govEffectiveness": 21,
       "governanceIndex": 22.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 112,
@@ -13526,7 +13633,7 @@
       "doctorsPerThousand": 0.8,
       "directFlightCities": 40,
       "safetyIndex": 78.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2024,
       "monthlyRent": 350,
       "paidLeaveDays": 6,
@@ -13542,7 +13649,7 @@
       "gpiScoreInv": 75,
       "gallupLawOrder": 78,
       "healthcareIndex": 52.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 47,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -13607,7 +13714,8 @@
       "mipexScore": null,
       "govEffectiveness": 56.3,
       "governanceIndex": 45.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 114,
@@ -13652,7 +13760,7 @@
       "doctorsPerThousand": 0.5,
       "directFlightCities": 40,
       "safetyIndex": 65.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2200,
       "monthlyRent": 200,
       "paidLeaveDays": 10,
@@ -13668,7 +13776,7 @@
       "gpiScoreInv": 73,
       "gallupLawOrder": 67,
       "healthcareIndex": 24.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 39,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -13733,7 +13841,8 @@
       "mipexScore": null,
       "govEffectiveness": 39.3,
       "governanceIndex": 33.4,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 115,
@@ -13778,7 +13887,7 @@
       "doctorsPerThousand": 1,
       "directFlightCities": 55,
       "safetyIndex": 74.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1980,
       "monthlyRent": 200,
       "paidLeaveDays": 14,
@@ -13794,7 +13903,7 @@
       "gpiScoreInv": 76,
       "gallupLawOrder": 73,
       "healthcareIndex": 43.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 45,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -13859,7 +13968,8 @@
       "mipexScore": null,
       "govEffectiveness": 46,
       "governanceIndex": 42.2,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 116,
@@ -13904,7 +14014,7 @@
       "doctorsPerThousand": 0.3,
       "directFlightCities": 40,
       "safetyIndex": 72.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2050,
       "monthlyRent": 150,
       "paidLeaveDays": 13,
@@ -13920,7 +14030,7 @@
       "gpiScoreInv": 78,
       "gallupLawOrder": 70,
       "healthcareIndex": 25.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 45,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -13985,7 +14095,8 @@
       "mipexScore": null,
       "govEffectiveness": 34.1,
       "governanceIndex": 41.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 117,
@@ -14030,7 +14141,7 @@
       "doctorsPerThousand": 3.3,
       "directFlightCities": 75,
       "safetyIndex": 73.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1900,
       "monthlyRent": 350,
       "paidLeaveDays": 24,
@@ -14046,7 +14157,7 @@
       "gpiScoreInv": 76,
       "gallupLawOrder": 77,
       "healthcareIndex": 58.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 30,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -14111,7 +14222,8 @@
       "mipexScore": null,
       "govEffectiveness": 54.2,
       "governanceIndex": 44,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 118,
@@ -14156,7 +14268,7 @@
       "doctorsPerThousand": 2.4,
       "directFlightCities": 65,
       "safetyIndex": 77.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1950,
       "monthlyRent": 250,
       "paidLeaveDays": 15,
@@ -14172,7 +14284,7 @@
       "gpiScoreInv": 76,
       "gallupLawOrder": 83,
       "healthcareIndex": 46.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 24,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -14237,7 +14349,8 @@
       "mipexScore": null,
       "govEffectiveness": 48.5,
       "governanceIndex": 38.9,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 119,
@@ -14282,7 +14395,7 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 70,
       "safetyIndex": 75.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1920,
       "monthlyRent": 400,
       "paidLeaveDays": 21,
@@ -14298,7 +14411,7 @@
       "gpiScoreInv": 72,
       "gallupLawOrder": 75,
       "healthcareIndex": 56.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 20,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -14363,7 +14476,8 @@
       "mipexScore": null,
       "govEffectiveness": 54.6,
       "governanceIndex": 32.6,
-      "governanceConfidence": "low"
+      "governanceConfidence": 65,
+      "securityConfidence": 88
     },
     {
       "id": 120,
@@ -14408,7 +14522,7 @@
       "doctorsPerThousand": 3,
       "directFlightCities": 25,
       "safetyIndex": 69.3,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1980,
       "monthlyRent": 250,
       "paidLeaveDays": 15,
@@ -14424,7 +14538,7 @@
       "gpiScoreInv": 80,
       "gallupLawOrder": 65,
       "healthcareIndex": 54.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 53,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -14489,7 +14603,8 @@
       "mipexScore": null,
       "govEffectiveness": 43.8,
       "governanceIndex": 45.9,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 121,
@@ -14518,13 +14633,13 @@
       "democracyIndex": 9.39,
       "corruptionPerceptionIndex": 82,
       "safetyIndex": 79.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 53,
       "homicideRateInv": 98,
       "gpiScoreInv": 90,
       "gallupLawOrder": 80,
       "healthcareIndex": 72.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 88,
       "freedomConfidence": "high",
       "professions": {
@@ -14615,7 +14730,8 @@
       "mipexScore": 86,
       "govEffectiveness": 85.8,
       "governanceIndex": 85.1,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 122,
@@ -14644,13 +14760,13 @@
       "democracyIndex": 9.28,
       "corruptionPerceptionIndex": 90,
       "safetyIndex": 86.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 69,
       "homicideRateInv": 99,
       "gpiScoreInv": 92,
       "gallupLawOrder": 86,
       "healthcareIndex": 67,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 92,
       "freedomConfidence": "high",
       "professions": {
@@ -14741,7 +14857,8 @@
       "mipexScore": 49,
       "govEffectiveness": 88.5,
       "governanceIndex": 83.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 123,
@@ -14770,13 +14887,13 @@
       "democracyIndex": 9.3,
       "corruptionPerceptionIndex": 87,
       "safetyIndex": 86.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 73,
       "homicideRateInv": 97,
       "gpiScoreInv": 91,
       "gallupLawOrder": 87,
       "healthcareIndex": 67.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 90,
       "freedomConfidence": "high",
       "professions": {
@@ -14867,7 +14984,8 @@
       "mipexScore": 85,
       "govEffectiveness": 86.7,
       "governanceIndex": 87.1,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 124,
@@ -14896,13 +15014,13 @@
       "democracyIndex": 9.81,
       "corruptionPerceptionIndex": 84,
       "safetyIndex": 83.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 63,
       "homicideRateInv": 99,
       "gpiScoreInv": 89,
       "gallupLawOrder": 88,
       "healthcareIndex": 72.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 91,
       "freedomConfidence": "high",
       "professions": {
@@ -14993,7 +15111,8 @@
       "mipexScore": 69,
       "govEffectiveness": 87.2,
       "governanceIndex": 84.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 125,
@@ -15022,13 +15141,13 @@
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
       "safetyIndex": 66.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 42,
       "homicideRateInv": 85,
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 62.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "professions": {
@@ -15119,7 +15238,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 126,
@@ -15148,13 +15268,13 @@
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
       "safetyIndex": 64.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 35,
       "homicideRateInv": 85,
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 66.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "professions": {
@@ -15245,7 +15365,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 127,
@@ -15274,13 +15395,13 @@
       "democracyIndex": 8.88,
       "corruptionPerceptionIndex": 76,
       "safetyIndex": 81.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 61,
       "homicideRateInv": 96,
       "gpiScoreInv": 91,
       "gallupLawOrder": 80,
       "healthcareIndex": 62.8,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 79,
       "freedomConfidence": "high",
       "professions": {
@@ -15371,7 +15492,8 @@
       "mipexScore": 79,
       "govEffectiveness": 85.5,
       "governanceIndex": 78.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 128,
@@ -15400,13 +15522,13 @@
       "democracyIndex": 8.71,
       "corruptionPerceptionIndex": 75,
       "safetyIndex": 82.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 65,
       "homicideRateInv": 98,
       "gpiScoreInv": 87,
       "gallupLawOrder": 82,
       "healthcareIndex": 68.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 77,
       "freedomConfidence": "high",
       "professions": {
@@ -15497,7 +15619,8 @@
       "mipexScore": 65,
       "govEffectiveness": 86.5,
       "governanceIndex": 76.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 129,
@@ -15526,13 +15649,13 @@
       "democracyIndex": 7.13,
       "corruptionPerceptionIndex": 40,
       "safetyIndex": 46.8,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 39,
       "homicideRateInv": 42,
       "gpiScoreInv": 57,
       "gallupLawOrder": 51,
       "healthcareIndex": 54.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 51,
       "freedomConfidence": "high",
       "professions": {
@@ -15623,7 +15746,8 @@
       "mipexScore": null,
       "govEffectiveness": 49.2,
       "governanceIndex": 44.5,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 130,
@@ -15652,13 +15776,13 @@
       "democracyIndex": 5.31,
       "corruptionPerceptionIndex": 56,
       "safetyIndex": 79.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 72,
       "homicideRateInv": 96,
       "gpiScoreInv": 74,
       "gallupLawOrder": 72,
       "healthcareIndex": 56.9,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 54,
       "freedomConfidence": "high",
       "professions": {
@@ -15749,7 +15873,8 @@
       "mipexScore": null,
       "govEffectiveness": 60.2,
       "governanceIndex": 57,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 131,
@@ -15778,13 +15903,13 @@
       "democracyIndex": 4.29,
       "corruptionPerceptionIndex": 25,
       "safetyIndex": 54.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 29,
       "homicideRateInv": 86,
       "gpiScoreInv": 57,
       "gallupLawOrder": 52,
       "healthcareIndex": 13.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 35,
       "freedomConfidence": "high",
       "professions": {
@@ -15875,7 +16000,8 @@
       "mipexScore": null,
       "govEffectiveness": 31.8,
       "governanceIndex": 32.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 132,
@@ -15904,13 +16030,13 @@
       "democracyIndex": 2.22,
       "corruptionPerceptionIndex": 26,
       "safetyIndex": 66.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 65,
       "homicideRateInv": 83,
       "gpiScoreInv": 47,
       "gallupLawOrder": 62,
       "healthcareIndex": 65,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 23,
       "freedomConfidence": "high",
       "professions": {
@@ -16001,7 +16127,8 @@
       "mipexScore": 31,
       "govEffectiveness": 45.1,
       "governanceIndex": 33.9,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 133,
@@ -16030,13 +16157,13 @@
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
       "safetyIndex": 65,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 36,
       "homicideRateInv": 85,
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 63.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "professions": {
@@ -16127,7 +16254,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 134,
@@ -16156,13 +16284,13 @@
       "democracyIndex": 7.85,
       "corruptionPerceptionIndex": 69,
       "safetyIndex": 76.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 73,
       "homicideRateInv": 85,
       "gpiScoreInv": 64,
       "gallupLawOrder": 78,
       "healthcareIndex": 62.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 67,
       "freedomConfidence": "high",
       "professions": {
@@ -16253,7 +16381,8 @@
       "mipexScore": 73,
       "govEffectiveness": 77.8,
       "governanceIndex": 69.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 135,
@@ -16282,13 +16411,13 @@
       "democracyIndex": 8.88,
       "corruptionPerceptionIndex": 76,
       "safetyIndex": 81.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 63,
       "homicideRateInv": 96,
       "gpiScoreInv": 91,
       "gallupLawOrder": 80,
       "healthcareIndex": 62.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 79,
       "freedomConfidence": "high",
       "professions": {
@@ -16379,7 +16508,8 @@
       "mipexScore": 79,
       "govEffectiveness": 85.5,
       "governanceIndex": 78.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 136,
@@ -16408,13 +16538,13 @@
       "democracyIndex": 8.68,
       "corruptionPerceptionIndex": 78,
       "safetyIndex": 86.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 72,
       "homicideRateInv": 100,
       "gpiScoreInv": 91,
       "gallupLawOrder": 85,
       "healthcareIndex": 66.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 82,
       "freedomConfidence": "high",
       "professions": {
@@ -16505,7 +16635,8 @@
       "mipexScore": 62,
       "govEffectiveness": 91,
       "governanceIndex": 80.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 137,
@@ -16534,13 +16665,13 @@
       "democracyIndex": 7.96,
       "corruptionPerceptionIndex": 74,
       "safetyIndex": 82.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 68,
       "homicideRateInv": 96,
       "gpiScoreInv": 85,
       "gallupLawOrder": 78,
       "healthcareIndex": 63.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 77,
       "freedomConfidence": "high",
       "professions": {
@@ -16631,7 +16762,8 @@
       "mipexScore": 50,
       "govEffectiveness": 76.6,
       "governanceIndex": 73.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 138,
@@ -16660,13 +16792,13 @@
       "democracyIndex": 8.33,
       "corruptionPerceptionIndex": 73,
       "safetyIndex": 89.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 79,
       "homicideRateInv": 100,
       "gpiScoreInv": 92,
       "gallupLawOrder": 91,
       "healthcareIndex": 80.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 69,
       "freedomConfidence": "high",
       "professions": {
@@ -16757,7 +16889,8 @@
       "mipexScore": 47,
       "govEffectiveness": 91.9,
       "governanceIndex": 71.7,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 139,
@@ -16786,13 +16919,13 @@
       "democracyIndex": 8.33,
       "corruptionPerceptionIndex": 73,
       "safetyIndex": 89.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "numbeoSafetyIndex": 80,
       "homicideRateInv": 100,
       "gpiScoreInv": 92,
       "gallupLawOrder": 91,
       "healthcareIndex": 80.2,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 69,
       "freedomConfidence": "high",
       "professions": {
@@ -16883,7 +17016,8 @@
       "mipexScore": 47,
       "govEffectiveness": 91.9,
       "governanceIndex": 71.7,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 140,
@@ -16928,7 +17062,7 @@
       "doctorsPerThousand": 0.7,
       "directFlightCities": 55,
       "safetyIndex": 74.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1950,
       "monthlyRent": 1130,
       "paidLeaveDays": 12,
@@ -16944,7 +17078,7 @@
       "gpiScoreInv": 79,
       "gallupLawOrder": 82,
       "healthcareIndex": 37,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 52,
       "freedomConfidence": "high",
       "climate": {
@@ -17009,7 +17143,8 @@
       "mipexScore": 26,
       "govEffectiveness": 54.8,
       "governanceIndex": 44.8,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 141,
@@ -17054,7 +17189,7 @@
       "doctorsPerThousand": 1.4,
       "directFlightCities": 35,
       "safetyIndex": 81.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2060,
       "monthlyRent": 487,
       "paidLeaveDays": 12,
@@ -17070,7 +17205,7 @@
       "gpiScoreInv": 79,
       "gallupLawOrder": 85,
       "healthcareIndex": 44.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 28,
       "freedomConfidence": "high",
       "climate": {
@@ -17135,7 +17270,8 @@
       "mipexScore": null,
       "govEffectiveness": 49.5,
       "governanceIndex": 41.3,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 142,
@@ -17180,7 +17316,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 55,
       "safetyIndex": 49.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2128,
       "monthlyRent": 750,
       "paidLeaveDays": 12,
@@ -17196,7 +17332,7 @@
       "gpiScoreInv": 52,
       "gallupLawOrder": 48,
       "healthcareIndex": 47,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 40,
       "freedomConfidence": "high",
       "climate": {
@@ -17261,7 +17397,8 @@
       "mipexScore": 51,
       "govEffectiveness": 47.1,
       "governanceIndex": 40.1,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 143,
@@ -17306,7 +17443,7 @@
       "doctorsPerThousand": 5.7,
       "directFlightCities": 95,
       "safetyIndex": 83.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1649,
       "monthlyRent": 1187,
       "paidLeaveDays": 22,
@@ -17322,7 +17459,7 @@
       "gpiScoreInv": 93,
       "gallupLawOrder": 76,
       "healthcareIndex": 69.5,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 74,
       "freedomConfidence": "high",
       "climate": {
@@ -17387,7 +17524,8 @@
       "mipexScore": 81,
       "govEffectiveness": 69.8,
       "governanceIndex": 70.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 144,
@@ -17432,7 +17570,7 @@
       "doctorsPerThousand": 4.5,
       "directFlightCities": 100,
       "safetyIndex": 80.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1644,
       "monthlyRent": 1294,
       "paidLeaveDays": 22,
@@ -17448,7 +17586,7 @@
       "gpiScoreInv": 85,
       "gallupLawOrder": 74,
       "healthcareIndex": 67.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 69,
       "freedomConfidence": "high",
       "climate": {
@@ -17513,7 +17651,8 @@
       "mipexScore": 60,
       "govEffectiveness": 72.9,
       "governanceIndex": 66.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 146,
@@ -17558,7 +17697,7 @@
       "doctorsPerThousand": 3.6,
       "directFlightCities": 80,
       "safetyIndex": 83.6,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1715,
       "monthlyRent": 985,
       "paidLeaveDays": 20,
@@ -17574,7 +17713,7 @@
       "gpiScoreInv": 90,
       "gallupLawOrder": 80,
       "healthcareIndex": 65.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 56,
       "freedomConfidence": "high",
       "climate": {
@@ -17639,7 +17778,8 @@
       "mipexScore": 39,
       "govEffectiveness": 65.1,
       "governanceIndex": 54.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 147,
@@ -17684,7 +17824,7 @@
       "doctorsPerThousand": 0.8,
       "directFlightCities": 50,
       "safetyIndex": 76.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2024,
       "monthlyRent": 657,
       "paidLeaveDays": 6,
@@ -17700,7 +17840,7 @@
       "gpiScoreInv": 75,
       "gallupLawOrder": 78,
       "healthcareIndex": 52.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 47,
       "freedomConfidence": "high",
       "climate": {
@@ -17765,7 +17905,8 @@
       "mipexScore": null,
       "govEffectiveness": 56.3,
       "governanceIndex": 45.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 148,
@@ -17809,8 +17950,8 @@
       "costBudget": 840,
       "doctorsPerThousand": 4.6,
       "directFlightCities": 18,
-      "safetyIndex": 68.5,
-      "safetyConfidence": "high",
+      "safetyIndex": 66.2,
+      "safetyConfidence": 100,
       "annualWorkHours": 1533,
       "monthlyRent": 622,
       "paidLeaveDays": 20,
@@ -17822,11 +17963,11 @@
       "democracyIndex": 8.67,
       "corruptionPerceptionIndex": 73,
       "numbeoSafetyIndex": 43,
-      "homicideRateInv": 72,
-      "gpiScoreInv": 93,
+      "homicideRateInv": 73,
+      "gpiScoreInv": 80,
       "gallupLawOrder": 72,
       "healthcareIndex": 64.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 75,
       "freedomConfidence": "high",
       "climate": {
@@ -17882,8 +18023,8 @@
       },
       "timezone": "America/Montevideo",
       "aqiSource": "AQICN",
-      "homicideRate": null,
-      "gpiScore": null,
+      "homicideRate": 11.2,
+      "gpiScore": 1.784,
       "wpsIndex": 0.822,
       "outOfPocketPct": 16.49,
       "wjpRuleLaw": 0.72,
@@ -17891,7 +18032,8 @@
       "mipexScore": null,
       "govEffectiveness": 64.8,
       "governanceIndex": 68.9,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 149,
@@ -17936,7 +18078,7 @@
       "doctorsPerThousand": 4.5,
       "directFlightCities": 120,
       "safetyIndex": 83.1,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1644,
       "monthlyRent": 962,
       "paidLeaveDays": 22,
@@ -17952,7 +18094,7 @@
       "gpiScoreInv": 85,
       "gallupLawOrder": 74,
       "healthcareIndex": 67.1,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 69,
       "freedomConfidence": "high",
       "climate": {
@@ -18017,7 +18159,8 @@
       "mipexScore": 60,
       "govEffectiveness": 72.9,
       "governanceIndex": 66.3,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 150,
@@ -18062,7 +18205,7 @@
       "doctorsPerThousand": 2.5,
       "directFlightCities": 30,
       "safetyIndex": 81.2,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2028,
       "monthlyRent": 383,
       "paidLeaveDays": 8,
@@ -18078,7 +18221,7 @@
       "gpiScoreInv": 86,
       "gallupLawOrder": 77,
       "healthcareIndex": 49.6,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 57,
       "freedomConfidence": "high",
       "climate": {
@@ -18143,7 +18286,8 @@
       "mipexScore": null,
       "govEffectiveness": 69.1,
       "governanceIndex": 56.7,
-      "governanceConfidence": "medium"
+      "governanceConfidence": 85,
+      "securityConfidence": 95
     },
     {
       "id": 152,
@@ -18188,7 +18332,7 @@
       "doctorsPerThousand": 2.7,
       "directFlightCities": 28,
       "safetyIndex": 54.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1776,
       "monthlyRent": 540,
       "paidLeaveDays": 30,
@@ -18204,7 +18348,7 @@
       "gpiScoreInv": 66,
       "gallupLawOrder": 49,
       "healthcareIndex": 52.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 54,
       "freedomConfidence": "high",
       "climate": {
@@ -18269,7 +18413,8 @@
       "mipexScore": 64,
       "govEffectiveness": 47,
       "governanceIndex": 48.6,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 157,
@@ -18314,7 +18459,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 100,
       "safetyIndex": 46.4,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2128,
       "monthlyRent": 652,
       "paidLeaveDays": 12,
@@ -18330,7 +18475,7 @@
       "gpiScoreInv": 52,
       "gallupLawOrder": 48,
       "healthcareIndex": 47,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 40,
       "freedomConfidence": "high",
       "climate": {
@@ -18395,7 +18540,8 @@
       "mipexScore": 51,
       "govEffectiveness": 47.1,
       "governanceIndex": 40.1,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 158,
@@ -18440,7 +18586,7 @@
       "doctorsPerThousand": 2.8,
       "directFlightCities": 57,
       "safetyIndex": 52.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2128,
       "monthlyRent": 1253,
       "paidLeaveDays": 12,
@@ -18456,7 +18602,7 @@
       "gpiScoreInv": 52,
       "gallupLawOrder": 48,
       "healthcareIndex": 47,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 40,
       "freedomConfidence": "high",
       "climate": {
@@ -18521,7 +18667,8 @@
       "mipexScore": 51,
       "govEffectiveness": 47.1,
       "governanceIndex": 40.1,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 159,
@@ -18566,7 +18713,7 @@
       "doctorsPerThousand": 2.6,
       "directFlightCities": null,
       "safetyIndex": 91.5,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1607,
       "monthlyRent": 447,
       "paidLeaveDays": 10,
@@ -18582,7 +18729,7 @@
       "gpiScoreInv": 92,
       "gallupLawOrder": 91,
       "healthcareIndex": 77.7,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 73,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -18647,7 +18794,8 @@
       "mipexScore": 47,
       "govEffectiveness": 91.9,
       "governanceIndex": 73.5,
-      "governanceConfidence": "high"
+      "governanceConfidence": 100,
+      "securityConfidence": 100
     },
     {
       "id": 160,
@@ -18692,7 +18840,7 @@
       "doctorsPerThousand": 0.73,
       "directFlightCities": 85,
       "safetyIndex": 68.9,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 2000,
       "monthlyRent": 400,
       "paidLeaveDays": 18,
@@ -18708,7 +18856,7 @@
       "gpiScoreInv": 75,
       "gallupLawOrder": 72,
       "healthcareIndex": 38.4,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 44.3,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -18767,13 +18915,14 @@
       "homicideRate": 1.4,
       "gpiScore": 2,
       "governanceIndex": 44.3,
-      "governanceConfidence": "medium",
+      "governanceConfidence": 85,
       "wpsIndex": 0.555,
       "outOfPocketPct": 32.85,
       "wjpRuleLaw": 0.5,
       "internetFreedomScore": 47,
       "mipexScore": null,
-      "govEffectiveness": 48.1
+      "govEffectiveness": 48.1,
+      "securityConfidence": 95
     },
     {
       "id": 161,
@@ -18818,7 +18967,7 @@
       "doctorsPerThousand": 3.5,
       "directFlightCities": 25,
       "safetyIndex": 84.7,
-      "safetyConfidence": "high",
+      "safetyConfidence": 100,
       "annualWorkHours": 1752,
       "monthlyRent": 1200,
       "paidLeaveDays": 20,
@@ -18834,7 +18983,7 @@
       "gpiScoreInv": 95,
       "gallupLawOrder": 82,
       "healthcareIndex": 65.3,
-      "healthcareConfidence": "high",
+      "healthcareConfidence": 100,
       "freedomIndex": 82.9,
       "freedomConfidence": "high",
       "aqiSource": "EPA",
@@ -18893,13 +19042,14 @@
       "homicideRate": 1.1,
       "gpiScore": 1.22,
       "governanceIndex": 82.9,
-      "governanceConfidence": "high",
+      "governanceConfidence": 100,
       "wpsIndex": 0.898,
       "outOfPocketPct": 12.69,
       "wjpRuleLaw": 0.83,
       "internetFreedomScore": null,
       "mipexScore": 77,
-      "govEffectiveness": 87.3
+      "govEffectiveness": 87.3,
+      "securityConfidence": 100
     }
   ]
 }

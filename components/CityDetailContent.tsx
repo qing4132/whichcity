@@ -53,10 +53,10 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
   const s = useSettings(urlLocale);
   const { locale, darkMode, t, formatCurrency, formatCompact, costTier, profession, incomeMode, salaryMultiplier } = s;
   const cjk = locale === "zh" || locale === "ja";
-  const compactVal = (amount: number) => {
+  const compactVal = (amount: number, unitPx = 37) => {
     const { num, unit } = formatCompact(amount);
     if (!unit || !cjk) return <>{num}{unit}</>;
-    return <>{num}<span className="relative -top-[2px] font-[var(--font-cjk)]" style={{ fontSize: "37px", WebkitTextStroke: "2px" }}>{unit}</span></>;
+    return <>{num}<span className="relative -top-[2px] font-[var(--font-cjk)]" style={{ fontSize: `${unitPx}px`, WebkitTextStroke: unitPx >= 30 ? "2px" : "1px" }}>{unit}</span></>;
   };
 
   const cityName = CITY_NAME_TRANSLATIONS[city.id]?.[locale] || city.name;
@@ -65,6 +65,7 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
   useEffect(() => { trackEvent("city_view", { city_slug: slug }); }, [slug]);
   const [shfOpen, setShfOpen] = useState(false);
   const [incomeOpen, setIncomeOpen] = useState(false);
+  const [costOpen, setCostOpen] = useState(false);
   const [showCityInNav, setShowCityInNav] = useState(false);
   const [heroEl, setHeroEl] = useState<HTMLDivElement | null>(null);
   const heroRef = useCallback((node: HTMLDivElement | null) => setHeroEl(node), []);
@@ -164,7 +165,7 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
           role="button" aria-expanded={incomeOpen} tabIndex={0} onKeyDown={e => e.key === "Enter" && setIncomeOpen(!incomeOpen)}>
           <div className="flex items-center gap-1.5 mb-1.5">
             <span className={`text-[15px] font-extrabold ${headCls}`}>{t("incomeExpenseTitle")}</span>
-            {income !== null && <span className="ml-auto text-[13px] font-semibold"><span className={cardValCls(tierHigh(allIncomes, income))}>#{rankHigher(allIncomes, income)}</span><span className={headCls}> / {n}</span></span>}
+            <span className={`ml-auto text-[14px] ${subCls}`}>{t(incomeOpen ? "tapToCollapse" : "tapForDetails")}</span>
           </div>
           <div className="flex gap-4 mb-1 flex-wrap">
             <div>
@@ -174,7 +175,6 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
               <div className={`text-[12px] ${labelCls}`}>{s.getProfessionLabel(activeProfession)} · {t(`salaryTier_${salaryMultiplier}`)}</div>
             </div>
           </div>
-          <div className={`text-[14px] ${subCls}`}>{t(incomeOpen ? "tapToCollapse" : "tapForDetails")}</div>
           <div className={`overflow-hidden transition-all duration-300 ease-in-out ${incomeOpen ? "max-h-[600px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
             {(() => {
               const bd = grossIncome !== null ? computeTaxBreakdown(grossIncome, city.country, city.id, s.rates?.rates) : null;
@@ -256,33 +256,32 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
           </div>
         </div>
 
-        {/* Row 2: Safety + Healthcare + Freedom (大) */}
+        {/* Row 2: Basic Security (综合评级) */}
+        {(() => {
+          const shfSum = city.safetyIndex + city.healthcareIndex + city.governanceIndex;
+          const allShfSums = allCities.map(c => c.safetyIndex + c.healthcareIndex + c.governanceIndex);
+          const shfRank = rankHigher(allShfSums, shfSum);
+          const baseGrade = shfRank <= n * 0.25 ? "A" : shfRank <= n * 0.50 ? "B" : shfRank <= n * 0.75 ? "C" : "D";
+          const allGreen = tierHigh(allSafety, city.safetyIndex) === "good" && tierHigh(allHealth, city.healthcareIndex) === "good" && tierHigh(allGovernance, city.governanceIndex) === "good";
+          const grade = baseGrade === "A" && allGreen ? "S" : baseGrade;
+          const confLevel = city.securityConfidence >= 90 ? "high" : city.securityConfidence >= 70 ? "medium" : "low";
+          const warnCls0 = darkMode ? "text-amber-400" : "text-amber-600";
+          const gradeDisplay = confLevel !== "high" ? `*${grade}` : grade;
+          const gradeCls = confLevel !== "high" ? warnCls0 : grade === "S" || grade === "A" ? (darkMode ? "text-green-400" : "text-green-600") : grade === "D" ? (darkMode ? "text-rose-400" : "text-rose-500") : headCls;
+          return (
         <div className={`py-3.5 border-b ${divider} cursor-pointer select-none active:${darkMode ? "bg-slate-900" : "bg-slate-50"}`} onClick={() => setShfOpen(!shfOpen)}
           role="button" aria-expanded={shfOpen} tabIndex={0} onKeyDown={e => e.key === "Enter" && setShfOpen(!shfOpen)}>
           <div className="flex items-center gap-1.5 mb-1.5">
             <span className={`text-[15px] font-extrabold ${headCls}`}>{t("basicSecurityTitle")}</span>
-            <span className="ml-auto text-[13px] font-semibold">
-              <span className={cardValCls(tierHigh(allSafety, city.safetyIndex))}>#{rankHigher(allSafety, city.safetyIndex)}</span>
-              {"\u2003"}<span className={cardValCls(tierHigh(allHealth, city.healthcareIndex))}>#{rankHigher(allHealth, city.healthcareIndex)}</span>
-              {"\u2003"}<span className={cardValCls(tierHigh(allGovernance, city.governanceIndex))}>#{rankHigher(allGovernance, city.governanceIndex)}</span>
-              <span className={headCls}> / {n}</span>
-            </span>
+            <span className={`ml-auto text-[14px] ${subCls}`}>{t(shfOpen ? "shfTapToCollapse" : "shfTapForDetails")}</span>
           </div>
-          <div className="flex gap-4 mb-1 flex-wrap">
+          <div className="flex gap-4 mb-1">
             <div>
-              <div className={`text-[45px] font-black leading-none ${cardValCls(tierHigh(allSafety, city.safetyIndex))}`}>{city.safetyIndex.toFixed(1)}</div>
-              <div className={`text-[12px] ${labelCls}`}>{t("safetyShort")}</div>
-            </div>
-            <div>
-              <div className={`text-[45px] font-black leading-none ${cardValCls(tierHigh(allHealth, city.healthcareIndex))}`}>{city.healthcareIndex.toFixed(1)}</div>
-              <div className={`text-[12px] ${labelCls}`}>{t("healthcareShort")}</div>
-            </div>
-            <div>
-              <div className={`text-[45px] font-black leading-none ${cardValCls(tierHigh(allGovernance, city.governanceIndex))}`}>{city.governanceIndex.toFixed(1)}</div>
-              <div className={`text-[12px] ${labelCls}`}>{t("governanceShort")}</div>
+              <div className={`text-[45px] font-black leading-none ${gradeCls}`}>{gradeDisplay}</div>
+              {confLevel === "medium" && <div className={`text-[12px] mt-0.5 ${warnCls0}`}>{t("confMedium")}</div>}
+              {confLevel === "low" && <div className={`text-[12px] mt-0.5 ${warnCls0}`}>{t("confLow")}</div>}
             </div>
           </div>
-          <div className={`text-[14px] ${subCls}`}>{t(shfOpen ? "shfTapToCollapse" : "shfTapForDetails")}</div>
           <div className={`overflow-hidden transition-all duration-300 ease-in-out ${shfOpen ? "max-h-[800px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
             {(() => {
               const warnCls = darkMode ? "text-amber-400" : "text-amber-600";
@@ -309,22 +308,22 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
               };
 
               type Sub = { label: string; val: number | null | undefined; range: string; field: string; inv?: boolean; fmt: (v: number) => string };
-              const groups: { name: string; score: number; subs: Sub[] }[] = [
-                { name: t("safetyShort"), score: city.safetyIndex, subs: [
+              const groups: { name: string; score: number; rank: number; all: number[]; conf: number; subs: Sub[] }[] = [
+                { name: t("safetyShort"), score: city.safetyIndex, rank: rankHigher(allSafety, city.safetyIndex), all: allSafety, conf: city.safetyConfidence, subs: [
                   { label: `${t("safetyNumbeo")} (30%)`, val: city.numbeoSafetyIndex, range: "20–90", field: "numbeoSafetyIndex", fmt: v => String(Math.round(v)) },
                   { label: `${t("safetyHomicide")} (25%)`, val: city.homicideRate, range: "0.2–41", field: "homicideRate", inv: true, fmt: v => v.toFixed(1) },
                   { label: `${t("safetyGpi")} (20%)`, val: city.gpiScore, range: "1.2–3.7", field: "gpiScore", inv: true, fmt: v => v.toFixed(2) },
                   { label: `${t("safetyGallup")} (15%)`, val: city.gallupLawOrder, range: "45–97", field: "gallupLawOrder", fmt: v => String(Math.round(v)) },
                   { label: `${t("wpsIndex")} (10%)`, val: city.wpsIndex, range: "0.4–0.9", field: "wpsIndex", fmt: v => v.toFixed(2) },
                 ]},
-                { name: t("healthcareShort"), score: city.healthcareIndex, subs: [
+                { name: t("healthcareShort"), score: city.healthcareIndex, rank: rankHigher(allHealth, city.healthcareIndex), all: allHealth, conf: city.healthcareConfidence, subs: [
                   { label: `${t("doctorsPerThousand")} (25%)`, val: city.doctorsPerThousand, range: "0.2–7.0", field: "doctorsPerThousand", fmt: v => v.toFixed(1) },
                   { label: `${t("hospitalBeds")} (20%)`, val: city.hospitalBedsPerThousand, range: "0.3–13", field: "hospitalBedsPerThousand", fmt: v => v.toFixed(1) },
                   { label: `${t("uhcCoverage")} (25%)`, val: city.uhcCoverageIndex, range: "40–92", field: "uhcCoverageIndex", fmt: v => String(Math.round(v)) },
                   { label: `${t("lifeExpectancy")} (15%)`, val: city.lifeExpectancy, range: "54–85", field: "lifeExpectancy", fmt: v => v.toFixed(1) },
                   { label: `${t("outOfPocket")} (15%)`, val: city.outOfPocketPct, range: "7–71%", field: "outOfPocketPct", inv: true, fmt: v => `${Math.round(v)}%` },
                 ]},
-                { name: t("governanceShort"), score: city.governanceIndex, subs: [
+                { name: t("governanceShort"), score: city.governanceIndex, rank: rankHigher(allGovernance, city.governanceIndex), all: allGovernance, conf: city.governanceConfidence, subs: [
                   { label: `${t("corruptionIdx")} (25%)`, val: city.corruptionPerceptionIndex, range: "22–90", field: "corruptionPerceptionIndex", fmt: v => String(Math.round(v)) },
                   { label: `${t("govEffect")} (25%)`, val: city.govEffectiveness, range: "21–96", field: "govEffectiveness", fmt: v => v.toFixed(1) },
                   { label: `${t("ruleLaw")} (20%)`, val: city.wjpRuleLaw, range: "0.3–0.9", field: "wjpRuleLaw", fmt: v => v.toFixed(2) },
@@ -344,11 +343,8 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
                         <div className="flex justify-between font-bold">
                           <span>
                             {g.name}
-                            <span className={`ml-2 text-[11px] font-normal ${present < total ? warnCls : subCls}`}>
-                              {present}/{total}{present < total && ` · ${t("confidenceMedium")}`}
-                            </span>
                           </span>
-                          <span className={headCls}>{g.score.toFixed(1)}</span>
+                          <span className={cardValCls(tierHigh(g.all, g.score))}>{g.score.toFixed(1)}</span>
                         </div>
                         {g.subs.map(s => {
                           const missing = s.val == null;
@@ -370,8 +366,72 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
             })()}
           </div>
         </div>
+          );
+        })()}
 
-        {/* Row 3: Housing (中) */}
+        {/* Row 3: Living Cost (L2) */}
+        <div className={`py-3.5 border-b ${divider} cursor-pointer select-none active:${darkMode ? "bg-slate-900" : "bg-slate-50"}`} onClick={() => setCostOpen(!costOpen)}
+          role="button" aria-expanded={costOpen} tabIndex={0} onKeyDown={e => e.key === "Enter" && setCostOpen(!costOpen)}>
+          <div className="flex items-center gap-1.5 mb-1.5">
+            <span className={`text-[15px] font-extrabold ${headCls}`}>{t("monthlyCost")}</span>
+            <span className="ml-auto text-[13px] font-semibold">
+              <span className={cardValCls(tierLow(allCosts, tierCost))}>#{rankLower(allCosts, tierCost)}</span>
+              <span className={headCls}> / {n}</span>
+            </span>
+          </div>
+          <div className="flex gap-4 mb-1 flex-wrap">
+            <div>
+              <div className={`text-[30px] font-black ${cardValCls(tierLow(allCosts, tierCost))}`}>{compactVal(tierCost, 25)}</div>
+              <div className={`text-[12px] ${labelCls}`}>{t("monthlyCostWithTier")}</div>
+            </div>
+            <div>
+              <div className={`text-[30px] font-black ${headCls}`}>{city.monthlyRent != null ? compactVal(city.monthlyRent, 25) : "—"}</div>
+              <div className={`text-[12px] ${labelCls}`}>{t("avgMonthlyRent1BR")}</div>
+            </div>
+          </div>
+          <div className={`text-[14px] ${subCls}`}>{t(costOpen ? "costTapToCollapse" : "costTapForDetails")}</div>
+          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${costOpen ? "max-h-[400px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
+            {(() => {
+              const fmtC = (v: number) => formatCurrency(Math.round(v));
+              const rentPct = city.monthlyRent != null && tierCost > 0 ? Math.round((city.monthlyRent / tierCost) * 100) : null;
+              const nonRent = city.monthlyRent != null ? tierCost - city.monthlyRent : null;
+              const otherKey = costTier === "moderate" ? "budget" : "moderate";
+              const otherField = TIER_KEYS.find(tk => tk.key === otherKey)!.field;
+              const otherCost = city[otherField];
+              const rowBdr = darkMode ? "border-slate-800" : "border-slate-50";
+              return (
+                <div className={`text-[13px] ${subCls} space-y-0.5`}>
+                  <div className="opacity-60">{t(costTier === "moderate" ? "costBkModerateDesc" : "costBkBudgetDesc")}</div>
+                  <div className={`opacity-60 mb-1`}>{t("costBkIncludes")}</div>
+                  {city.monthlyRent != null && (
+                    <>
+                      <div className={`flex justify-between py-0.5 border-b ${rowBdr}`}>
+                        <span>{t("costBkRent")}</span><span className={headCls}>{fmtC(city.monthlyRent)}</span>
+                      </div>
+                      {nonRent !== null && (
+                        <div className={`flex justify-between py-0.5 border-b ${rowBdr}`}>
+                          <span>{t("costBkNonRent")}</span><span className={headCls}>{fmtC(nonRent)}</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between font-bold pt-0.5">
+                        <span>{t("monthlyCost")}</span><span className={headCls}>{fmtC(tierCost)}</span>
+                      </div>
+                      {rentPct !== null && (
+                        <div className="opacity-60">{t("costBkRentPct", { pct: rentPct })}</div>
+                      )}
+                    </>
+                  )}
+                  <div className={`border-t ${divider} mt-1 pt-1 opacity-60`}>
+                    {t("costBkOtherTier", { tier: t(TIER_KEYS.find(tk => tk.key === otherKey)!.labelKey), cost: fmtC(otherCost) })}
+                  </div>
+                  <div className="opacity-40">{t("costBkDataSrc")}</div>
+                </div>
+              );
+            })()}
+          </div>
+        </div>
+
+        {/* Row 4: Housing (中) */}
         <FeedPost title={t("housePrice")} darkMode={darkMode} cardValCls={cardValCls}>
           <div className="flex gap-4 mb-1">
             <div>
@@ -396,19 +456,19 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
           <div className="flex gap-4 mb-1 flex-wrap">
             <div>
               <div className={`text-[30px] font-black ${cardValCls(tierLow(allCosts, tierCost))}`}>
-                {compactVal(tierCost)}
+                {compactVal(tierCost, 25)}
               </div>
               <div className={`text-[12px] ${labelCls}`}>{t("monthlyCostWithTier")}</div>
             </div>
             <div>
               <div className={`text-[30px] font-black ${headCls}`}>
-                {city.monthlyRent != null ? compactVal(city.monthlyRent) : "—"}
+                {city.monthlyRent != null ? compactVal(city.monthlyRent, 25) : "—"}
               </div>
               <div className={`text-[12px] ${labelCls}`}>{t("avgMonthlyRent1BR")}</div>
             </div>
             <div>
               <div className={`text-[30px] font-black ${savings !== null ? cardValCls(tierHigh(allSavings, savings)) : headCls}`}>
-                {savings !== null ? compactVal(savings) : "—"}
+                {savings !== null ? compactVal(savings, 25) : "—"}
               </div>
               <div className={`text-[12px] ${labelCls}`}>{t("yearlySavings")}</div>
             </div>

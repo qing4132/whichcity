@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>城市详情页 — 布局节奏 v2 预览</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #0f172a;       /* slate-900 */
+    --sub: #64748b;        /* slate-500 */
+    --label: #94a3b8;      /* slate-400 */
+    --divider: #f1f5f9;    /* slate-100 */
+    --green: #16a34a;      /* green-600 */
+    --red: #f43f5e;        /* rose-500 */
+  }
+  .dark {
+    --bg: #020617;         /* slate-950 */
+    --text: #f1f5f9;       /* slate-100 */
+    --sub: #64748b;        /* slate-500 */
+    --label: #94a3b8;      /* slate-400 */
+    --divider: #1e293b;    /* slate-800 */
+    --green: #4ade80;      /* green-400 */
+    --red: #fb7185;        /* rose-400 */
+  }
+
+  body {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.4;
+  }
+  .container { max-width: 672px; margin: 0 auto; padding: 24px 16px; }
+
+  /* ── Controls ── */
+  .controls { position: fixed; top: 12px; right: 16px; z-index: 100; display: flex; gap: 8px; }
+  .controls button {
+    padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600;
+    cursor: pointer; border: 1px solid var(--divider); background: var(--bg); color: var(--text);
+  }
+  .controls button.active { background: var(--text); color: var(--bg); }
+
+  /* ── Shared atoms (pixel-match site) ── */
+  .section-title { font-size: 15px; font-weight: 800; color: var(--text); }
+  .label    { font-size: 12px; color: var(--label); }
+  .sub      { font-size: 13px; color: var(--sub); }
+  .hint     { font-size: 14px; color: var(--sub); }
+  .big-val  { font-size: 45px; font-weight: 900; line-height: 1; }
+  .mid-val  { font-size: 30px; font-weight: 900; line-height: 1; }
+  .sm-val   { font-size: 20px; font-weight: 900; }
+  .green    { color: var(--green); }
+  .red      { color: var(--red); }
+
+  .row { padding: 14px 0; border-bottom: 1px solid var(--divider); }
+  .row-header { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .row-header .ml-auto { margin-left: auto; }
+  .vals { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 4px; }
+  .val-group .lbl { font-size: 12px; color: var(--label); margin-top: 2px; }
+
+  /* ── Hero ── */
+  .hero { padding-bottom: 16px; border-bottom: 1px solid var(--divider); }
+  .hero-identity { display: flex; align-items: center; gap: 10px; }
+  .hero-flag { font-size: 32px; }
+  .hero h1 { font-size: 24px; font-weight: 900; }
+  .hero .slug { font-size: 13px; color: var(--sub); }
+  .hero-btn {
+    font-size: 13px; padding: 4px 12px; border-radius: 6px; font-weight: 600;
+    flex-shrink: 0; border: none; cursor: pointer; background: #0f172a; color: #fff;
+  }
+  .dark .hero-btn { background: #1e293b; color: #f1f5f9; }
+  .hero-intro { margin-top: 12px; font-size: 15px; color: var(--sub); line-height: 1.6; }
+
+  /* ── kv row: key-value 明细行 ── */
+  .kv-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 2px 0; font-size: 13px; color: var(--sub);
+  }
+  .kv-row .kv-val { font-weight: 700; color: var(--text); }
+
+  /* ── Comparison divider ── */
+  .compare-label {
+    text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--label); padding: 48px 0 12px;
+    border-bottom: 2px dashed var(--divider);
+  }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <button onclick="toggle('dark')" id="btn-dark">Dark</button>
+  <button onclick="toggle('light')" id="btn-light" class="active">Light</button>
+</div>
+
+<div class="container">
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="hero-identity">
+      <span class="hero-flag">🇩🇪</span>
+      <div style="flex:1; min-width:0">
+        <h1>柏林</h1>
+        <div class="slug">@berlin · 德国 · 欧洲</div>
+      </div>
+      <button class="hero-btn">+ 对比</button>
+    </div>
+    <p class="hero-intro">柏林是欧洲最具创意和活力的首都之一，生活成本在西欧中相对友好，科技和创意产业蓬勃发展。</p>
+  </div>
+
+  <!-- ═══ Row 1: 税后年薪 (identical) ═══ -->
+  <div class="row" style="cursor:pointer">
+    <div class="row-header">
+      <span class="section-title">税后年薪</span>
+      <span class="section-rank green ml-auto">#31 <span style="color:var(--text)">/ 150</span></span>
+    </div>
+    <div class="big-val green" style="margin-bottom:4px">$61,832</div>
+    <div class="label">软件工程师 · ×1.0 中级</div>
+    <div class="hint" style="margin-top:4px">点击展开税务明细</div>
+  </div>
+
+  <!-- ═══ Row 2: 基本保障 (identical) ═══ -->
+  <div class="row" style="cursor:pointer">
+    <div class="row-header">
+      <span class="section-title">基本保障</span>
+      <span class="section-rank ml-auto">
+        <span class="green">#22</span>&emsp;<span class="green">#19</span>&emsp;<span class="green">#11</span>
+        <span style="color:var(--text)"> / 150</span>
+      </span>
+    </div>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:4px">
+      <div><div class="big-val green">72.8</div><div class="label">安全</div></div>
+      <div><div class="big-val green">83.5</div><div class="label">医疗</div></div>
+      <div><div class="big-val green">85.2</div><div class="label">治理</div></div>
+    </div>
+    <div class="hint">点击展开子指标明细</div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ▼  新方案 — 同风格 不同节奏  ▼
+       ═══════════════════════════════════ -->
+  <div class="compare-label">▼ 新方案</div>
+
+  <!-- ── 生活开支 (合并: 消费+租金+储蓄+房价+购房+压力) ── -->
+  <div class="row">
+    <div class="row-header">
+      <span class="section-title">生活开支</span>
+    </div>
+    <!-- 主数字：30px flex 排列 (保持原有模式) -->
+    <div class="vals">
+      <div class="val-group">
+        <div class="mid-val green">$2,150</div>
+        <div class="lbl">月消费（适中）</div>
+      </div>
+      <div class="val-group">
+        <div class="mid-val" style="color:var(--text)">$1,280</div>
+        <div class="lbl">月租（一居室）</div>
+      </div>
+      <div class="val-group">
+        <div class="mid-val green">$36,032</div>
+        <div class="lbl">年储蓄</div>
+      </div>
+    </div>
+    <!-- 补充明细：key-value 行 (与税务展开相同的排版语言) -->
+    <div style="margin-top:6px">
+      <div class="kv-row"><span>储蓄率</span><span class="kv-val green">58%</span></div>
+      <div class="kv-row"><span>房价</span><span class="kv-val">$5,410/m²</span></div>
+      <div class="kv-row"><span>购房年限</span><span class="kv-val">10.5 年</span></div>
+      <div class="kv-row" style="border-top:1px solid var(--divider); padding-top:4px; margin-top:4px">
+        <span>生活压力指数</span>
+        <span><span class="kv-val green">38.2</span> <span style="font-size:13px; font-weight:600" class="green">#47 / 150</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 工作与环境 (合并: 工时+时薪+假期+AQI+网速+直飞+VPN+语言) ── -->
+  <div class="row">
+    <div class="row-header">
+      <span class="section-title">工作与环境</span>
+    </div>
+    <div class="vals">
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">1,386 h</div><div class="lbl">年工时</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">$44.6</div><div class="lbl">时薪</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">30 天</div><div class="lbl">带薪假</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">AQI 25</div><div class="lbl">空气质量</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">95 Mbps</div><div class="lbl">网速</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">156</div><div class="lbl">直飞城市</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">无限制</div><div class="lbl">VPN</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">德语</div><div class="lbl">官方语言</div></div>
+    </div>
+  </div>
+
+  <div class="row" style="text-align:center; border:none; padding:20px 0">
+    <div class="sub">↓ 气候 · 游牧 · 相似城市 ↓</div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       ▼  旧方案 — 对比参照  ▼
+       ═══════════════════════════════════ -->
+  <div class="compare-label">▼ 旧方案（当前线上）</div>
+
+  <!-- Old Row 3: Housing -->
+  <div class="row">
+    <div class="row-header"><span class="section-title">房价</span></div>
+    <div class="vals">
+      <div class="val-group"><div class="mid-val" style="color:var(--text)">$5,410/m²</div><div class="lbl">房价</div></div>
+    </div>
+    <div class="sub">购房年限: 10.5 年</div>
+  </div>
+
+  <!-- Old Row 4: Life Pressure -->
+  <div class="row">
+    <div class="row-header">
+      <span class="section-title">生活压力指数</span>
+      <span class="section-rank green ml-auto">#47 / 150</span>
+    </div>
+    <div class="vals">
+      <div class="val-group"><div class="mid-val green">38.2</div></div>
+    </div>
+  </div>
+
+  <!-- Old Row 5: Living Cost -->
+  <div class="row">
+    <div class="row-header"><span class="section-title">月消费</span></div>
+    <div class="vals">
+      <div class="val-group"><div class="mid-val green">$2,150</div><div class="lbl">月消费（适中）</div></div>
+      <div class="val-group"><div class="mid-val" style="color:var(--text)">$1,280</div><div class="lbl">月租（一居室）</div></div>
+      <div class="val-group"><div class="mid-val green">$36,032</div><div class="lbl">年储蓄</div></div>
+    </div>
+    <div class="sub">储蓄率 58%</div>
+  </div>
+
+  <!-- Old Row 6: Work -->
+  <div class="row">
+    <div class="row-header"><span class="section-title">年工时</span></div>
+    <div class="vals">
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">1,386 h</div><div class="lbl">年工时</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">$44.6</div><div class="lbl">时薪</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">30 天</div><div class="lbl">带薪假</div></div>
+    </div>
+  </div>
+
+  <!-- Old Row 7: Environment -->
+  <div class="row">
+    <div class="row-header"><span class="section-title">气候与环境</span></div>
+    <div class="vals">
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">AQI 25</div><div class="lbl">空气质量</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">95 Mbps</div><div class="lbl">网速</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">156</div><div class="lbl">直飞城市</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">无限制</div><div class="lbl">VPN</div></div>
+      <div class="val-group"><div class="sm-val" style="color:var(--text)">德语</div><div class="lbl">官方语言</div></div>
+    </div>
+  </div>
+
+  <div style="padding:40px 0; text-align:center"><div class="sub">— 预览结束 —</div></div>
+
+</div>
+
+<script>
+function toggle(mode) {
+  document.documentElement.classList.toggle('dark', mode === 'dark');
+  document.getElementById('btn-dark').classList.toggle('active', mode === 'dark');
+  document.getElementById('btn-light').classList.toggle('active', mode === 'light');
+}
+</script>
+</body>
+</html>

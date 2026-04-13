@@ -284,7 +284,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
       housePrice: city.housePrice, monthlyRent: city.monthlyRent,
       annualWorkHours: city.annualWorkHours, paidLeaveDays: city.paidLeaveDays,
       airQuality: city.airQuality, internetSpeedMbps: city.internetSpeedMbps, directFlightCities: city.directFlightCities,
-      lifePressure: lp.value, lifePressureConf: lp.confidence,
+      lifePressure: lp.value, lifePressureConf: lp.confidence === "high" ? 100 : lp.confidence === "medium" ? 80 : 50,
       safetyIndex: city.safetyIndex, safetyConf: city.safetyConfidence,
       healthcareIndex: city.healthcareIndex, healthcareConf: city.healthcareConfidence,
       governanceIndex: city.governanceIndex, governanceConf: city.governanceConfidence,
@@ -483,7 +483,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
       ranks[i] = same ? ranks[i - 1] : i + 1;
     }
     return ranks;
-  }, [filtered, tab, subSort, rows]);
+  }, [filtered, tab, subSort]);
 
   /* ── Rendering helpers ── */
   const getCityLabel = (c: City) => CITY_NAME_TRANSLATIONS[c.id]?.[locale] || c.name;
@@ -511,7 +511,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
 
   /* ── Tier-colored cell ── */
   const TC = ({ val, formatted, vals, higher, conf, active }: {
-    val: number | null; formatted: string; vals: number[]; higher: boolean; conf?: string; active?: boolean;
+    val: number | null; formatted: string; vals: number[]; higher: boolean; conf?: number; active?: boolean;
   }) => {
     const bg = active ? sortColBg : "";
     if (val === null || (typeof val === "number" && !isFinite(val)))
@@ -519,7 +519,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
     const tier = higher ? tierHigh(vals, val) : tierLow(vals, val);
     return (
       <td className={`${tdBase} ${bg} font-semibold ${tierCls(tier)}`}>
-        {formatted}{conf === "low" && <span className={`ml-1 text-xs font-normal ${darkMode ? "text-amber-400" : "text-amber-600"}`}>*</span>}
+        {formatted}{conf !== undefined && conf < 80 && <span className={`ml-1 text-xs font-normal ${darkMode ? "text-amber-400" : "text-amber-600"}`}>*</span>}
       </td>
     );
   };
@@ -624,7 +624,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
   };
 
   /* ── JSX ── */
-  useEffect(() => { document.title = `${t("navRanking")} | WhichCity`; }, [locale]);
+  useEffect(() => { document.title = `${t("navRanking")} | WhichCity`; }, [locale, t]);
 
   if (!s.ready) return (
     <div className={`min-h-screen transition-colors ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-900"}`}>

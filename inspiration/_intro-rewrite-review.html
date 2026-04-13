@@ -1,0 +1,206 @@
+<!--
+  城市介绍重写审稿 — 10 座代表城市
+  写作原则：
+  1. 只回答一个问题：这座城市的移居定位是什么？
+  2. 每条 2-3 句话（中文 50-80 字，en/ja/es 不超过 200 字符）
+  3. 内容聚焦：产业优势 + 核心取舍 + 独特条件
+  4. 不写：景点、历史、天气描述、交通攻略、签证申请建议
+-->
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>城市介绍重写审稿 — 10 城</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #fff; --text: #0f172a; --sub: #64748b; --label: #94a3b8; --div: #f1f5f9; --green: #16a34a; --red: #e11d48; --accent: #2563eb; }
+  .dark { --bg: #020617; --text: #f1f5f9; --sub: #64748b; --label: #94a3b8; --div: #1e293b; --green: #4ade80; --red: #fb7185; --accent: #60a5fa; }
+  body { font-family: Inter, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+  .container { max-width: 672px; margin: 0 auto; padding: 24px 16px; }
+  .controls { position: fixed; top: 12px; right: 16px; z-index: 100; display: flex; gap: 8px; }
+  .controls button { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--div); background: var(--bg); color: var(--text); }
+  .controls button.active { background: var(--text); color: var(--bg); }
+
+  h1 { font-size: 18px; font-weight: 800; margin: 40px 0 8px; color: var(--text); }
+  h1:first-of-type { margin-top: 0; }
+
+  .city { border-bottom: 1px solid var(--div); padding: 16px 0; }
+  .city-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .flag { font-size: 28px; }
+  .name { font-size: 20px; font-weight: 900; }
+  .meta { font-size: 13px; color: var(--sub); }
+
+  .old { font-size: 14px; color: var(--sub); line-height: 1.6; margin-bottom: 8px; padding: 8px; border-left: 3px solid var(--div); }
+  .old::before { content: "旧 "; font-weight: 700; color: var(--red); }
+
+  .new { font-size: 15px; color: var(--sub); line-height: 1.6; }
+  .new::before { content: "新 "; font-weight: 700; color: var(--green); }
+
+  .translations { margin-top: 8px; font-size: 13px; color: var(--label); }
+  .translations details { margin-top: 4px; }
+  .translations summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+  .translations .lang { margin: 4px 0 4px 12px; }
+  .translations .lang::before { font-weight: 700; margin-right: 4px; }
+  .lang-en::before { content: "EN"; }
+  .lang-ja::before { content: "JA"; }
+  .lang-es::before { content: "ES"; }
+
+  .stats { font-size: 11px; color: var(--label); margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="controls">
+  <button onclick="toggle('dark')" id="btn-dark">Dark</button>
+  <button onclick="toggle('light')" id="btn-light" class="active">Light</button>
+</div>
+<div class="container">
+
+<h1>城市介绍重写审稿 — 10 座代表城市</h1>
+<p style="font-size:13px;color:var(--sub);margin-bottom:24px">
+  原则：每条 2-3 句话，聚焦移居定位（产业、取舍、独特条件）。不写景点、天气描述、交通攻略。<br>
+  旧 = 当前线上版本 · 新 = 重写提案 · 点击可展开 en/ja/es 翻译
+</p>
+
+<!-- ═══ 1. 纽约 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇺🇸</span><span class="name">纽约</span></div>
+  <div class="old">纽约是一座永不停歇的国际都市，地铁 24 小时运营，曼哈顿、布鲁克林各区风格迥异。这里汇聚了全球最多元的饮食和文化，几乎能找到任何国家的社区。租房竞争激烈，建议提前准备好信用记录和收入证明。冬季寒冷多雪，夏季闷热潮湿，春秋是最宜人的季节。医疗资源丰富但费用高昂，务必确保有保险覆盖。治安因区域差异较大，选择居住地前建议实地走访。</div>
+  <div class="new">全球金融与科技双引擎，软件工程师薪资居世界前列。生活成本极高但储蓄率可观，适合高收入职业积累财富。无法定带薪假、医保依赖雇主，选择雇主时需格外关注福利条款。</div>
+  <div class="stats">zh: 73字 (旧164字, -56%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">A global finance and tech powerhouse with top-tier software salaries. Cost of living is steep but saving potential is strong for high earners. No statutory paid leave and health insurance depends on your employer—benefits packages matter as much as salary here.</div>
+    <div class="lang lang-ja">金融とIT両輪のグローバル拠点。エンジニア年収は世界トップクラスだが生活費も高い。法定有給休暇ゼロ・医療保険は雇用主次第のため、オファー比較では福利厚生の確認が不可欠。</div>
+    <div class="lang lang-es">Potencia mundial en finanzas y tecnología con salarios de ingeniería entre los más altos del mundo. El coste de vida es elevado, pero el potencial de ahorro es sólido para altos ingresos. Sin vacaciones legales y seguro médico ligado al empleador: el paquete de beneficios importa tanto como el salario.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 2. 伦敦 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇬🇧</span><span class="name">伦敦</span></div>
+  <div class="old">伦敦融合了历史底蕴与现代活力，地铁（Tube）网络发达但高峰期拥挤。这座城市以多元文化著称，各族裔社区特色鲜明，从东伦敦的创意街区到西区的传统优雅各有魅力。英国全民医疗（NHS）免费提供基本医疗服务。天气多阴雨，夏季温和宜人，冬季日照短暂。租房需提前准备推荐信和押金，建议优先办理 Oyster 卡方便出行。</div>
+  <div class="new">欧洲金融与科技双中心，英语环境、28 天带薪假和 NHS 免费医疗是核心吸引力。租房竞争激烈且房价全球前列，储蓄率低于纽约，但工作与生活的法定保障远优于美国。</div>
+  <div class="stats">zh: 74字 (旧154字, -52%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">Europe's finance and tech hub with the advantage of English environment, 28 days statutory leave, and free NHS healthcare. Rent competition is intense and property prices are among the world's highest—saving rates trail New York, but legal work-life protections far exceed the US.</div>
+    <div class="lang lang-ja">欧州の金融・テック中心地。英語環境に加え年28日の有給休暇とNHS無料医療が強み。家賃競争は激しく不動産価格も世界トップ級だが、労働者保護は米国を大きく上回る。</div>
+    <div class="lang lang-es">Centro financiero y tecnológico de Europa con la ventaja del inglés, 28 días de vacaciones legales y sanidad pública gratuita (NHS). Los alquileres son muy competitivos y los precios inmobiliarios de los más altos del mundo, pero las protecciones laborales superan ampliamente a las de EE.UU.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 3. 东京 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇯🇵</span><span class="name">东京</span></div>
+  <div class="old">东京是全球最安全、最有秩序的大城市之一，电车和地铁网络极其精密准时。便利店文化深入日常，24 小时能解决大部分生活需求。饮食水平世界顶级，从路边拉面到米其林名店选择丰富。租房需注意「礼金」「敷金」等初期费用较高，且许多房东要求担保人。夏季高温多湿，冬季干燥寒冷，春季赏樱和秋季红叶是最美的时节。日语能力对日常生活至关重要。</div>
+  <div class="new">安全指数近 90 分居全球前列，医疗和治理评分同样优秀。工程师收入可观且租金远低于同级别城市，储蓄率接近六成。需要日语能力才能融入日常生活，已开放数字游民签证。</div>
+  <div class="stats">zh: 74字 (旧161字, -54%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">Safety score near 90—among the world's highest—with excellent healthcare and governance ratings. Engineer salaries are solid and rent is far below peer cities, enabling nearly 60% saving rates. Japanese proficiency is essential for daily life; a digital nomad visa is now available.</div>
+    <div class="lang lang-ja">安全指数は約90で世界最高水準、医療・ガバナンスも優秀。エンジニア収入は堅実で家賃は同レベル都市より大幅に安く、貯蓄率は約6割。日常生活には日本語力が不可欠。デジタルノマドビザが新設済み。</div>
+    <div class="lang lang-es">Índice de seguridad cercano a 90, de los más altos del mundo, con excelentes puntuaciones en sanidad y gobernanza. Los salarios de ingeniería son sólidos y los alquileres mucho más bajos que en ciudades comparables, permitiendo tasas de ahorro cercanas al 60%. Se requiere japonés para la vida diaria; ya existe un visado para nómadas digitales.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 4. 北京 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇨🇳</span><span class="name">北京</span></div>
+  <div class="old">北京是中国的政治和文化中心，拥有故宫、长城等世界级文化遗产。地铁线路不断扩展，覆盖面广但早晚高峰拥挤。四季分明，春季多风沙，夏季炎热多雨，秋天（特别是十月）是一年中最舒适的时节。互联网服务丰富但需适应防火墙环境，建议提前做好准备。整体治安良好，外卖和电商极为便利。医疗资源集中于三甲医院，建议提前预约挂号。</div>
+  <div class="new">中国科技与互联网产业核心城市，生活成本在超大城市中偏低。工时偏长、法定假期少，但整体治安和生活便利度优秀。需适应 VPN 环境与空气质量波动。</div>
+  <div class="stats">zh: 64字 (旧153字, -58%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">China's tech and internet industry hub with relatively low living costs for a megacity. Work hours tend to be long with limited statutory leave, but safety and daily convenience are excellent. Expect a VPN-dependent internet environment and fluctuating air quality.</div>
+    <div class="lang lang-ja">中国のテック・インターネット産業の中核都市。メガシティとしては生活費が低め。労働時間は長く法定休日も少ないが、治安と生活の利便性は優秀。VPN環境と大気質の変動への適応が必要。</div>
+    <div class="lang lang-es">Centro tecnológico y de Internet de China con un coste de vida relativamente bajo para una megaciudad. Las jornadas laborales son largas con pocas vacaciones legales, pero la seguridad y la comodidad diaria son excelentes. Se necesita VPN y la calidad del aire fluctúa.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 5. 新加坡 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇸🇬</span><span class="name">新加坡</span></div>
+  <div class="old">新加坡是热带花园城市，全年高温多雨但公共空间空调覆盖率极高。地铁（MRT）高效整洁，城市虽小但规划精密，日常生活极为便利。饮食选择丰富，小贩中心提供物美价廉的本地餐食。多元种族社会和谐的英语环境使移居者容易融入。医疗水平一流但需自费比例较高，建议购买商业保险。对口香糖进口有限制，公共行为规范严格但确保了极高的城市秩序。</div>
+  <div class="new">安全指数超 90 且英语通用，亚洲最高效的商业环境之一。收入高、个税低，但住房成本全球顶级。工时长、法定假少，适合高强度职业发展期的积累阶段。</div>
+  <div class="stats">zh: 64字 (旧175字, -63%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">Safety above 90 with English as a working language—one of Asia's most efficient business environments. High income and low personal tax, but housing costs are among the world's highest. Long work hours and limited statutory leave suit a high-intensity wealth-building phase.</div>
+    <div class="lang lang-ja">安全指数90超で英語が通じるアジア屈指のビジネス環境。高収入・低税率だが住居費は世界トップクラス。長時間労働・少ない法定休暇は、キャリア集中期の資産形成に向く。</div>
+    <div class="lang lang-es">Seguridad superior a 90 con inglés como idioma de trabajo: uno de los entornos empresariales más eficientes de Asia. Ingresos altos e impuestos bajos, pero el coste de la vivienda es de los más elevados del mundo. Jornadas largas y pocas vacaciones legales, ideal para una fase intensiva de acumulación profesional.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 6. 迪拜 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇦🇪</span><span class="name">迪拜</span></div>
+  <div class="old">迪拜是中东最具现代感的城市，摩天大楼和人工岛屿彰显雄心。全年炎热，夏季户外活动需避开高温时段，室内空调覆盖全面。购物中心是社交娱乐的核心场所，国际化社区多元但社交圈相对割裂。零个人所得税是最大亮点，吸引了大量外籍专业人士。驾车为主要出行方式，地铁覆盖有限但在扩展中。饮酒需在持牌场所，公共行为需遵守当地文化规范。</div>
+  <div class="new">零个税是最大卖点，安全指数超 90 且已开放远程工作签证。30 天带薪假高于多数亚洲城市，但工时偏长、英语环境一般。适合中短期高效存钱，空气质量需关注。</div>
+  <div class="stats">zh: 70字 (旧160字, -56%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">Zero income tax is the headline draw, paired with a safety score above 90 and an available remote-work visa. 30 days of paid leave exceed most Asian cities, though work hours are long and the English environment is limited. Ideal for short-to-mid-term high-efficiency saving; air quality deserves attention.</div>
+    <div class="lang lang-ja">所得税ゼロが最大の魅力。安全指数90超でリモートワークビザも開放済み。有給30日はアジア大半の都市を上回るが、長時間労働で英語環境は限定的。中短期の効率的な貯蓄に向く。大気質には要注意。</div>
+    <div class="lang lang-es">Cero impuesto sobre la renta es el mayor atractivo, con seguridad superior a 90 y visado de trabajo remoto disponible. 30 días de vacaciones pagadas superan a la mayoría de ciudades asiáticas, aunque las jornadas son largas y el entorno de inglés es limitado. Ideal para ahorro eficiente a corto-medio plazo; atención a la calidad del aire.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 7. 柏林 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇩🇪</span><span class="name">柏林</span></div>
+  <div class="old">柏林是欧洲最具创意和包容性的城市之一，艺术、音乐和夜生活文化丰富多元。生活成本在西欧首都中相对友好，尤其是房租和饮食方面。科技创业生态蓬勃，吸引了大量国际人才。地铁和有轨电车网络覆盖全面。德语是日常主要语言，但国际社区中英语使用广泛。冬季漫长寒冷，夏季则温暖宜人，有丰富的户外活动。医疗保险为强制性，选择公立或私立都能获得优质服务。</div>
+  <div class="new">欧洲性价比最高的科技城市之一，储蓄率在西欧名列前茅。德国法定 20 天假期、1,341 小时年工时和全民强制医保构成稳健的生活保障框架。虽以德语为主，但国际科技社区英语通用度极高。</div>
+  <div class="stats">zh: 80字 (旧162字, -51%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">One of Europe's best value-for-money tech cities with leading saving rates in Western Europe. Germany's 20-day statutory leave, 1,341 annual work hours, and mandatory universal health insurance form a robust safety net. German-speaking, but English is widely used in the international tech community.</div>
+    <div class="lang lang-ja">欧州で最もコスパの高いテック都市の一つ。西欧トップクラスの貯蓄率を誇る。ドイツの法定有給20日・年間労働1,341時間・全員加入の医療保険が堅実な生活基盤を作る。ドイツ語圏だが国際テックコミュニティでは英語が広く通用。</div>
+    <div class="lang lang-es">Una de las ciudades tecnológicas con mejor relación calidad-precio de Europa, con tasas de ahorro líderes en Europa Occidental. Los 20 días de vacaciones legales de Alemania, 1.341 horas de trabajo anuales y seguro médico universal obligatorio forman una red de protección sólida. Germanoparlante, pero el inglés es ampliamente usado en la comunidad tech internacional.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 8. 曼谷 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇹🇭</span><span class="name">曼谷</span></div>
+  <div class="old">曼谷是东南亚最具活力的城市之一，传统寺庙与摩天大楼共存。街头美食是全球闻名的体验，冬阴功汤和芒果糯米饭不容错过。生活成本低廉，尤其在饮食和交通方面。BTS 轻轨和 MRT 地铁覆盖主要商业区，但交通拥堵严重。全年高温潮湿，空调几乎是生存必需品。医疗旅游发达，国际医院性价比高。泰语是主要语言，旅游区英语尚可但日常需基本泰语。夜生活丰富但需注意合法经营场所。</div>
+  <div class="new">东南亚数字游民首选目的地，月消费仅 $1,300 且已开放 DTV 签证。本地薪资偏低，更适合远程工作者和自由职业者用汇率差实现低成本生活。英语环境有限，空气质量需关注。</div>
+  <div class="stats">zh: 75字 (旧162字, -54%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">Southeast Asia's top digital nomad destination at just $1,300/month with the DTV visa now available. Local salaries are modest—best suited for remote workers leveraging exchange-rate advantages for low-cost living. English environment is limited; air quality needs attention.</div>
+    <div class="lang lang-ja">東南アジア随一のデジタルノマド先。月$1,300の生活費でDTVビザも開放済み。現地給与は控えめで、為替差を活かしたリモートワーカー・フリーランス向き。英語環境は限定的、大気質にも要注意。</div>
+    <div class="lang lang-es">Principal destino nómada digital del sudeste asiático con solo $1.300/mes y el visado DTV ya disponible. Los salarios locales son modestos: ideal para trabajadores remotos que aprovechen la ventaja cambiaria para vivir a bajo coste. El entorno de inglés es limitado; atención a la calidad del aire.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 9. 悉尼 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇦🇺</span><span class="name">悉尼</span></div>
+  <div class="old">悉尼依山傍海，歌剧院和海港大桥标志性地标让人印象深刻。阳光充沛，气候温暖宜人，户外文化深入日常生活——冲浪、徒步和海滩烧烤是周末常态。生活成本在发达国家中偏高，尤其房租是主要开支。公共交通以火车和公交为主，Opal 卡是必备。多元文化社区丰富，亚洲餐饮选择多样。医疗采用公私双轨制（Medicare 提供基本保障），建议额外购买私立保险缩短等待时间。工作签证体系相对透明。</div>
+  <div class="new">英语世界中综合评分最均衡的城市之一——安全、医疗、治理三项均达优秀水平。工程师收入高且储蓄率近六成，20 天带薪假加 Medicare 免费医疗。签证体系对技术人才相对透明友好。</div>
+  <div class="stats">zh: 78字 (旧163字, -52%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">One of the most balanced cities in the English-speaking world—safety, healthcare, and governance all rate excellent. Engineer salaries are high with nearly 60% saving rates, 20 days statutory leave, and free Medicare coverage. The visa system is relatively transparent for skilled workers.</div>
+    <div class="lang lang-ja">英語圏で最もバランスの良い都市の一つ。安全・医療・ガバナンスすべて優秀。エンジニア収入は高く貯蓄率は約6割、有給20日にMedicare無料医療付き。技術人材向けのビザ制度も比較的透明。</div>
+    <div class="lang lang-es">Una de las ciudades más equilibradas del mundo anglófono: seguridad, sanidad y gobernanza puntúan excelente. Salarios de ingeniería altos con tasas de ahorro cercanas al 60%, 20 días de vacaciones legales y cobertura médica gratuita (Medicare). El sistema de visados es relativamente transparente para profesionales cualificados.</div>
+  </details></div>
+</div>
+
+<!-- ═══ 10. 阿姆斯特丹 ═══ -->
+<div class="city">
+  <div class="city-head"><span class="flag">🇳🇱</span><span class="name">阿姆斯特丹</span></div>
+  <div class="old">阿姆斯特丹是一座以自行车为主要出行方式的紧凑型城市，运河纵横交错风景如画。国际化程度极高，英语几乎可以替代荷兰语用于日常沟通。科技和创意产业蓬勃发展，吸引了大量国际人才。生活节奏适中，工作与生活平衡在欧洲名列前茅。租房市场紧张，建议通过正规渠道寻找房源。全民医疗保险体系完善但需自行购买基础保险。冬季阴冷多风，夏季凉爽宜人。大麻合法但有规范限制。</div>
+  <div class="new">欧洲英语通用度最高的非英语城市，年工时仅 1,417 小时。荷兰 30% ruling 允许外籍员工前五年享受 30% 免税，是欧洲最具吸引力的税务优惠之一。治理指数全球前列，但租房市场极为紧张。</div>
+  <div class="stats">zh: 80字 (旧155字, -48%)</div>
+  <div class="translations"><details><summary>展开 en / ja / es</summary>
+    <div class="lang lang-en">Europe's most English-friendly non-English city with just 1,417 annual work hours. The Dutch 30% ruling lets expat employees enjoy 30% tax-free income for the first five years—one of Europe's most attractive tax schemes. Governance ranks among the world's best, but the rental market is extremely tight.</div>
+    <div class="lang lang-ja">欧州で最も英語が通じる非英語圏都市。年間労働時間はわずか1,417時間。オランダの30%ルーリングにより外国人社員は最初の5年間30%非課税──欧州屈指の税制優遇。ガバナンスは世界トップ水準だが賃貸市場は極めて逼迫。</div>
+    <div class="lang lang-es">La ciudad no anglófona con mejor nivel de inglés de Europa, con solo 1.417 horas de trabajo anuales. La regla holandesa del 30% permite a empleados expatriados disfrutar de un 30% de ingresos libres de impuestos durante cinco años, uno de los incentivos fiscales más atractivos de Europa. La gobernanza es de las mejores del mundo, pero el mercado de alquiler es extremadamente competido.</div>
+  </details></div>
+</div>
+
+</div>
+
+<script>
+function toggle(mode) {
+  document.documentElement.classList.toggle('dark', mode === 'dark');
+  document.getElementById('btn-dark').classList.toggle('active', mode === 'dark');
+  document.getElementById('btn-light').classList.toggle('active', mode === 'light');
+}
+</script>
+</body>
+</html>

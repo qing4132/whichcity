@@ -80,6 +80,9 @@ const GROUP_I18N: Record<string, string> = {
   nomad: "nomadSection",
 };
 
+const ENG_RANK: Record<string, number> = { Great: 4, Good: 3, Okay: 2, Bad: 1 };
+const VPN_RANK: Record<string, number> = { false: 3, partial: 2, true: 1 };
+
 /* ════════════════════════════════════════════ */
 export default function CompareContent({ initialCities, initialSlugs, allCities, locale: urlLocale, nomadDataMap }: Props) {
   const router = useRouter();
@@ -184,9 +187,6 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
   }, [visibleSlots, rowCtx]);
 
   /* ── Win counts per slot (exclude climate) ── */
-  const ENG_RANK: Record<string, number> = { Great: 4, Good: 3, Okay: 2, Bad: 1 };
-  const VPN_RANK: Record<string, number> = { false: 3, partial: 2, true: 1 };
-
   const nomadItems = useMemo(() => {
     if (!nomadDataMap) return null;
     return visibleSlots.map(c => {
@@ -307,7 +307,7 @@ export default function CompareContent({ initialCities, initialSlugs, allCities,
       : cityNames.length === 1
         ? `${cityNames[0]} | WhichCity`
         : `${t("navCompare")} | WhichCity`;
-  }, [slugs, locale]);
+  }, [slugs, locale, t]);
 
   /* ── Style tokens ── */
   const selectCls = `text-xs rounded px-1.5 py-1 h-7 border ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200" : "bg-white border-slate-300 text-slate-700"}`;

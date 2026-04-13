@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { Inter, Noto_Sans_SC } from "next/font/google";
 import { LOCALES } from "@/lib/i18nRouting";
 import type { Locale } from "@/lib/types";
@@ -61,14 +62,12 @@ export default async function LocaleLayout({ children, params }: Props) {
             url: "https://whichcity.run",
           }) }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WW9GZ4ZF2C" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WW9GZ4ZF2C');`
-          }}
-        />
       </head>
-        <body className={`${inter.className} ${notoSC.variable}`} suppressHydrationWarning>
+      <body className={`${inter.className} ${notoSC.variable}`} suppressHydrationWarning>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-WW9GZ4ZF2C" strategy="afterInteractive" />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WW9GZ4ZF2C');`}
+        </Script>
         {/* Theme bootstrap — sets .dark/.light on <html> before content paints */}
         <script
           dangerouslySetInnerHTML={{

@@ -1,8 +1,7 @@
-import { forwardRef } from "react";
-import Link from "next/link";
+import { forwardRef, useState, useEffect } from "react";
 import type { City } from "@/lib/types";
 import { CITY_INTROS } from "@/lib/cityIntros";
-import { CONTINENT_TRANSLATIONS } from "@/lib/i18n";
+import { CITY_LANGUAGES, LANGUAGE_NAME_TRANSLATIONS } from "@/lib/cityLanguages";
 import type { Locale } from "@/lib/types";
 
 interface Props {
@@ -16,11 +15,32 @@ interface Props {
     t: (k: string) => string;
 }
 
+function formatTz(tz: string, locale: string, now: Date): string {
+    const localeTag = locale === "zh" ? "zh-CN" : locale === "ja" ? "ja-JP" : locale === "es" ? "es-ES" : "en-US";
+    const fmt = new Intl.DateTimeFormat(localeTag, { timeZone: tz, hour: "2-digit", minute: "2-digit", hour12: false });
+    const offsetMin = (() => { const parts = new Intl.DateTimeFormat("en-US", { timeZone: tz, timeZoneName: "shortOffset" }).formatToParts(now); const o = parts.find(p => p.type === "timeZoneName")?.value || ""; const m = o.match(/GMT([+-]?)(\d{1,2})(?::(\d{2}))?/); if (!m) return 0; const sign = m[1] === "-" ? -1 : 1; return sign * (parseInt(m[2]) * 60 + parseInt(m[3] || "0")); })();
+    const h = Math.floor(Math.abs(offsetMin) / 60);
+    const m = Math.abs(offsetMin) % 60;
+    const utcLabel = `UTC${offsetMin >= 0 ? "+" : "-"}${h}${m ? ":" + String(m).padStart(2, "0") : ""}`;
+    return `${utcLabel} · ${fmt.format(now)}`;
+}
+
 /** Feed-style profile header */
 const HeroSection = forwardRef<HTMLDivElement, Props>(function HeroSection({ city, cityName, countryName, flag, slug, locale, darkMode, t }, ref) {
     const headCls = darkMode ? "text-slate-100" : "text-slate-900";
     const subCls = darkMode ? "text-slate-400" : "text-slate-500";
     const divider = darkMode ? "border-slate-800" : "border-slate-100";
+
+    const [now, setNow] = useState(() => new Date());
+    useEffect(() => {
+        const tick = () => setNow(new Date());
+        const msToNextMin = (60 - new Date().getSeconds()) * 1000;
+        const timeout = setTimeout(() => { tick(); const id = setInterval(tick, 60_000); cleanup = () => clearInterval(id); }, msToNextMin);
+        let cleanup = () => clearTimeout(timeout);
+        return () => cleanup();
+    }, []);
+
+    const tzInfo = city.timezone ? formatTz(city.timezone, locale, now) : null;
 
     return (
         <div className={`pb-4 border-b ${divider}`}>
@@ -35,16 +55,18 @@ const HeroSection = forwardRef<HTMLDivElement, Props>(function HeroSection({ cit
                     <span>{city.safetyWarning === "active_conflict" ? t("safetyWarningConflict") : city.safetyWarning === "extreme_instability" ? t("safetyWarningInstability") : t("safetyWarningBlocked")}</span>
                 </div>
             )}
-            <div ref={ref} className="flex items-center gap-2.5">
-                <span className="text-[32px]">{flag}</span>
-                <div className="flex-1 min-w-0">
-                    <h1 className={`text-[24px] font-black ${headCls}`}>{cityName}</h1>
-                    <p className={`text-[13px] ${subCls}`}>@{slug} · {countryName} · {CONTINENT_TRANSLATIONS[city.continent]?.[locale as Locale] || city.continent}</p>
+            <div ref={ref}>
+                <div className="flex items-baseline justify-between">
+                    <h1 className={`text-[24px] font-black ${headCls}`}>{flag} {cityName}</h1>
+                    {tzInfo && <span className={`text-[15px] font-semibold shrink-0 ${headCls}`}>{tzInfo}</span>}
                 </div>
-                <Link href={`/${locale}/compare/${slug}`}
-                    className={`text-[13px] px-3 py-1 rounded-md font-semibold shrink-0 ${darkMode ? "bg-slate-800 text-slate-200" : "bg-slate-900 text-white"}`}>
-                    + {t("navCompare")}
-                </Link>
+                {(() => {
+                    const langs = CITY_LANGUAGES[city.id] || [];
+                    const localized = langs.map(l => LANGUAGE_NAME_TRANSLATIONS[l]?.[locale as Locale] || l);
+                    const show = localized.slice(0, 3);
+                    const more = localized.length - 3;
+                    return show.length > 0 ? <p className={`text-[13px] ${subCls}`}>{show.join(" · ")}{more > 0 && ` +${more}`}</p> : null;
+                })()}
             </div>
             {CITY_INTROS[city.id] && (
                 <p className={`mt-3 text-[15px] leading-relaxed ${subCls}`}>

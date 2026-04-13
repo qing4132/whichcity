@@ -8,7 +8,7 @@ import NavBar from "./NavBar";
 export default function MethodologyContent({ locale: urlLocale }: { locale: string }) {
   const s = useSettings(urlLocale);
   const { locale, darkMode, t } = s;
-  useEffect(() => { document.title = `${t("navMethodology")} | WhichCity`; }, [locale]);
+  useEffect(() => { document.title = `${t("navMethodology")} | WhichCity`; }, [locale, t]);
 
   if (!s.mounted) return null;
 
