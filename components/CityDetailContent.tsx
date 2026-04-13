@@ -288,7 +288,6 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
               const warnCls = darkMode ? "text-amber-400" : "text-amber-600";
               const greenCls = darkMode ? "text-green-400" : "text-green-600";
               const redCls = darkMode ? "text-rose-400" : "text-rose-500";
-              const rowBdr = darkMode ? "border-slate-800" : "border-slate-50";
 
               // Cache sorted values for percentile computation
               const cache: Record<string, number[]> = {};
@@ -334,19 +333,17 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
               ];
 
               return (
-                <div className={`text-[13px] ${subCls}`}>
+                <div className={`text-[13px] ${subCls} space-y-0.5`}>
                   {groups.map((g, gi) => {
                     const present = g.subs.filter(s => s.val != null).length;
                     const total = g.subs.length;
                     return (
                       <div key={gi}>
-                        {gi > 0 && <div className={`border-t ${divider} my-1.5`} />}
-                        <div className="flex justify-between font-semibold mb-0.5">
+                        {gi > 0 && <div className={`border-t ${divider} mt-0.5`} />}
+                        <div className="flex justify-between font-bold">
                           <span className={headCls}>
                             {g.name}
-                            <span className={`ml-2 text-[11px] font-normal ${present < total ? warnCls : subCls}`}>
-                              {present}/{total}{present < total && ` · ${t("confidenceMedium")}`}
-                            </span>
+                            {present < total && <span className={`ml-2 font-normal ${warnCls}`}>{present}/{total}</span>}
                           </span>
                           <span className={headCls}>{g.score.toFixed(1)}</span>
                         </div>
@@ -354,11 +351,9 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
                           const missing = s.val == null;
                           const j = judge(s.val, s.field, !s.inv);
                           return (
-                            <div key={s.field} className={`flex items-center py-0.5 pl-2 border-b ${rowBdr} ${missing ? "opacity-40" : ""}`}>
-                              <span className="flex-1 min-w-0 truncate">{s.label}</span>
-                              <span className={`w-11 text-right font-semibold shrink-0 ${missing ? "" : headCls}`}>{missing ? "—" : s.fmt(s.val!)}</span>
-                              <span className="w-[50px] text-right text-[11px] shrink-0">{s.range}</span>
-                              <span className="w-6 text-right shrink-0">{sym(j)}</span>
+                            <div key={s.field} className={`flex justify-between pl-3 ${missing ? "opacity-40" : "opacity-60"}`}>
+                              <span>{s.label}</span>
+                              <span>{missing ? "—" : <>{s.fmt(s.val!)} <span className="text-[11px]">{s.range}</span> {sym(j)}</>}</span>
                             </div>
                           );
                         })}
