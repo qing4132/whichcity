@@ -277,48 +277,89 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
             </div>
           </div>
           <div className={`text-[14px] ${subCls}`}>{t(shfOpen ? "shfTapToCollapse" : "shfTapForDetails")}</div>
-          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${shfOpen ? "max-h-[600px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
+          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${shfOpen ? "max-h-[800px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
             {(() => {
               const warnCls = darkMode ? "text-amber-400" : "text-amber-600";
-              const confBadge = (conf: "high" | "medium" | "low") => conf === "high" ? null : (
-                <span className={`ml-2 text-[12px] font-normal ${conf === "low" ? warnCls : ""}`}>{t(conf === "low" ? "confidenceLow" : "confidenceMedium")}</span>
-              );
-              const sub = (label: string, val: number | null | undefined, suffix = "") => (
-                <div className="flex justify-between pl-3 opacity-60">
-                  <span>{label}</span><span>{val != null ? `${val}${suffix}` : "—"}</span>
-                </div>
-              );
+              const greenCls = darkMode ? "text-green-400" : "text-green-600";
+              const redCls = darkMode ? "text-rose-400" : "text-rose-500";
+              const rowBdr = darkMode ? "border-slate-800" : "border-slate-50";
+              const dashBdr = darkMode ? "border-amber-600" : "border-amber-400";
+
+              // Cache sorted values for percentile computation
+              const cache: Record<string, number[]> = {};
+              const getSorted = (field: string) => cache[field] ??= allCities.map(c => (c as unknown as Record<string, unknown>)[field]).filter((v): v is number => typeof v === "number").sort((a, b) => a - b);
+
+              // Judgment: percentile rank → ⬆ top 30% / ⬇ bottom 30% / — middle
+              const judge = (val: number | null | undefined, field: string, higherBetter: boolean) => {
+                if (val == null) return null;
+                const s = getSorted(field);
+                if (s.length < 3) return null;
+                const pct = s.filter(v => v <= val).length / s.length;
+                return higherBetter ? (pct >= 0.7 ? "up" : pct <= 0.3 ? "down" : "mid") : (pct <= 0.3 ? "up" : pct >= 0.7 ? "down" : "mid");
+              };
+              const sym = (j: string | null) => {
+                if (j === "up") return <span className={`font-bold ${greenCls}`}>⬆</span>;
+                if (j === "down") return <span className={`font-bold ${redCls}`}>⬇</span>;
+                return <span className={headCls}>—</span>;
+              };
+
+              type Sub = { label: string; val: number | null | undefined; range: string; field: string; inv?: boolean; fmt: (v: number) => string };
+              const groups: { name: string; score: number; subs: Sub[] }[] = [
+                { name: t("safetyShort"), score: city.safetyIndex, subs: [
+                  { label: `${t("safetyNumbeo")} (30%)`, val: city.numbeoSafetyIndex, range: "20–90", field: "numbeoSafetyIndex", fmt: v => String(Math.round(v)) },
+                  { label: `${t("safetyHomicide")} (25%)`, val: city.homicideRate, range: "0.2–41", field: "homicideRate", inv: true, fmt: v => v.toFixed(1) },
+                  { label: `${t("safetyGpi")} (20%)`, val: city.gpiScore, range: "1.2–3.7", field: "gpiScore", inv: true, fmt: v => v.toFixed(2) },
+                  { label: `${t("safetyGallup")} (15%)`, val: city.gallupLawOrder, range: "45–97", field: "gallupLawOrder", fmt: v => String(Math.round(v)) },
+                  { label: `WPS (10%)`, val: city.wpsIndex, range: "0.4–0.9", field: "wpsIndex", fmt: v => v.toFixed(2) },
+                ]},
+                { name: t("healthcareShort"), score: city.healthcareIndex, subs: [
+                  { label: `${t("doctorsPerThousand")} (25%)`, val: city.doctorsPerThousand, range: "0.2–7.0", field: "doctorsPerThousand", fmt: v => v.toFixed(1) },
+                  { label: `${t("hospitalBeds")} (20%)`, val: city.hospitalBedsPerThousand, range: "0.3–13", field: "hospitalBedsPerThousand", fmt: v => v.toFixed(1) },
+                  { label: `${t("uhcCoverage")} (25%)`, val: city.uhcCoverageIndex, range: "40–92", field: "uhcCoverageIndex", fmt: v => String(Math.round(v)) },
+                  { label: `${t("lifeExpectancy")} (15%)`, val: city.lifeExpectancy, range: "54–85", field: "lifeExpectancy", fmt: v => v.toFixed(1) },
+                  { label: `${t("outOfPocket")} (15%)`, val: city.outOfPocketPct, range: "7–71%", field: "outOfPocketPct", inv: true, fmt: v => `${Math.round(v)}%` },
+                ]},
+                { name: t("governanceShort"), score: city.governanceIndex, subs: [
+                  { label: `${t("corruptionIdx")} (25%)`, val: city.corruptionPerceptionIndex, range: "22–90", field: "corruptionPerceptionIndex", fmt: v => String(Math.round(v)) },
+                  { label: `${t("govEffect")} (25%)`, val: city.govEffectiveness, range: "21–96", field: "govEffectiveness", fmt: v => v.toFixed(1) },
+                  { label: `${t("ruleLaw")} (20%)`, val: city.wjpRuleLaw, range: "0.3–0.9", field: "wjpRuleLaw", fmt: v => v.toFixed(2) },
+                  { label: `${t("pressFreedom")} (15%)`, val: city.pressFreedomScore, range: "8–92", field: "pressFreedomScore", fmt: v => String(Math.round(v)) },
+                  { label: `MIPEX (15%)`, val: city.mipexScore, range: "10–86", field: "mipexScore", fmt: v => String(Math.round(v)) },
+                ]},
+              ];
+
               return (
-                <div className={`text-[13px] ${subCls} space-y-0.5`}>
-                  <div className="flex justify-between font-semibold">
-                    <span className={headCls}>{t("safetyShort")}{confBadge(city.safetyConfidence)}</span>
-                    <span className={headCls}>{city.safetyIndex.toFixed(1)}</span>
-                  </div>
-                  {sub(`${t("safetyNumbeo")} (30%)`, city.numbeoSafetyIndex)}
-                  {sub(`${t("safetyHomicide")} (25%)`, city.homicideRate, city.homicideRate != null ? t("per100k") : "")}
-                  {sub(`${t("safetyGpi")} (20%)`, city.gpiScore)}
-                  {sub(`${t("safetyGallup")} (15%)`, city.gallupLawOrder)}
-                  {sub(`WPS (10%)`, city.wpsIndex)}
-                  <div className={`border-t ${divider} my-1`} />
-                  <div className="flex justify-between font-semibold">
-                    <span className={headCls}>{t("healthcareShort")}{confBadge(city.healthcareConfidence)}</span>
-                    <span className={headCls}>{city.healthcareIndex.toFixed(1)}</span>
-                  </div>
-                  {sub(`${t("doctorsPerThousand")} (25%)`, city.doctorsPerThousand)}
-                  {sub(`${t("hospitalBeds")} (20%)`, city.hospitalBedsPerThousand)}
-                  {sub(`${t("uhcCoverage")} (25%)`, city.uhcCoverageIndex)}
-                  {sub(`${t("lifeExpectancy")} (15%)`, city.lifeExpectancy, city.lifeExpectancy != null ? ` ${t("lifeExpectancyUnit")}` : "")}
-                  {sub(`${t("outOfPocket")} (15%)`, city.outOfPocketPct, city.outOfPocketPct != null ? "%" : "")}
-                  <div className={`border-t ${divider} my-1`} />
-                  <div className="flex justify-between font-semibold">
-                    <span className={headCls}>{t("governanceShort")}{confBadge(city.governanceConfidence)}</span>
-                    <span className={headCls}>{city.governanceIndex.toFixed(1)}</span>
-                  </div>
-                  {sub(`${t("corruptionIdx")} (25%)`, city.corruptionPerceptionIndex)}
-                  {sub(`${t("govEffect")} (25%)`, city.govEffectiveness)}
-                  {sub(`${t("ruleLaw")} (20%)`, city.wjpRuleLaw)}
-                  {sub(`${t("pressFreedom")} (15%)`, city.pressFreedomScore)}
-                  {sub("MIPEX (15%)", city.mipexScore)}
+                <div className={`text-[13px] ${subCls}`}>
+                  {groups.map((g, gi) => {
+                    const present = g.subs.filter(s => s.val != null).length;
+                    const total = g.subs.length;
+                    return (
+                      <div key={gi}>
+                        {gi > 0 && <div className={`border-t ${divider} my-1.5`} />}
+                        <div className="flex justify-between font-semibold mb-0.5">
+                          <span className={headCls}>
+                            {g.name}
+                            <span className={`ml-2 text-[11px] font-normal ${present < total ? warnCls : subCls}`}>
+                              {present}/{total}{present < total && ` · ${t("confidenceMedium")}`}
+                            </span>
+                          </span>
+                          <span className={headCls}>{g.score.toFixed(1)}</span>
+                        </div>
+                        {g.subs.map(s => {
+                          const missing = s.val == null;
+                          const j = judge(s.val, s.field, !s.inv);
+                          return (
+                            <div key={s.field} className={`flex items-center py-0.5 pl-2 ${missing ? `border-l-2 border-dashed ${dashBdr} opacity-50` : `border-b ${rowBdr}`}`}>
+                              <span className="flex-1 min-w-0 truncate">{s.label}</span>
+                              <span className={`w-11 text-right font-semibold shrink-0 ${missing ? "" : headCls}`}>{missing ? "—" : s.fmt(s.val!)}</span>
+                              <span className="w-[50px] text-right text-[11px] shrink-0">{s.range}</span>
+                              <span className="w-6 text-right shrink-0">{sym(j)}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })()}
