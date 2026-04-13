@@ -298,8 +298,8 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
                 return higherBetter ? (pct >= 0.7 ? "up" : pct <= 0.3 ? "down" : "mid") : (pct <= 0.3 ? "up" : pct >= 0.7 ? "down" : "mid");
               };
               const sym = (j: string | null) => {
-                if (j === "up") return <span className={`font-bold ${greenCls}`}>⬆</span>;
-                if (j === "down") return <span className={`font-bold ${redCls}`}>⬇</span>;
+                if (j === "up") return <span className={`font-bold ${greenCls}`}>⬆︎</span>;
+                if (j === "down") return <span className={`font-bold ${redCls}`}>⬇︎</span>;
                 return <span className={headCls}>—</span>;
               };
 

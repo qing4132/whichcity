@@ -134,6 +134,10 @@ City overrides for US state tax, Canadian provincial tax, HK foreign worker rule
 
 Missing sub-indicator weights redistributed proportionally. Confidence: all=high, 1 missing=medium, 2+=low.
 
+**Color thresholds** (intentionally different by context):
+- Big numbers (45px): **top/bottom 20%** → green/red. Glanceable; color is scarce signal for extremes only.
+- Sub-indicator arrows (⬆︎/⬇︎): **top/bottom 30%** → green/red. Per-row reading aid; wider band so ~60% of rows get directional guidance instead of all "—".
+
 ### Settings (`hooks/useSettings.ts`)
 
 | Setting | Default | Storage |
