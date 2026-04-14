@@ -25,7 +25,7 @@ if (existsSync(OUTPUT)) {
 // Fields to keep in SOT (raw data only — no computed/derived fields)
 const RAW_FIELDS = [
   "id", "name", "country", "continent", "currency", "description",
-  "averageIncome", "professions",
+  "professions",
   "costModerate", "costBudget", "bigMacPrice",
   "housePrice", "monthlyRent",
   "annualWorkHours", "paidLeaveDays", "internetSpeedMbps",

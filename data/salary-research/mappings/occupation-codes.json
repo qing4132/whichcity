@@ -1,0 +1,284 @@
+{
+  "$schema": "Profession → Standard Occupation Code mapping for WhichCity salary data collection",
+  "notes": {
+    "SOC": "US Bureau of Labor Statistics Standard Occupational Classification (2018)",
+    "ISCO": "International Standard Classification of Occupations (ISCO-08, used by ILO/Eurostat)",
+    "NOC": "Canada National Occupational Classification (2021)",
+    "ANZSCO": "Australian and New Zealand Standard Classification of Occupations",
+    "searchTerms": "Fallback keywords for crowdsourced platforms (Glassdoor, Indeed, etc.)"
+  },
+  "professions": {
+    "软件工程师": {
+      "en": "Software Developer",
+      "SOC": ["15-1252"],
+      "SOC_label": "Software Developers",
+      "ISCO": ["2512"],
+      "ISCO_label": "Software developers",
+      "NOC": ["21232"],
+      "ANZSCO": ["261312"],
+      "searchTerms": ["software engineer", "software developer", "programmer"],
+      "notes": "Core tech profession. BLS 15-1252 covers both 'software developer' and 'software engineer' titles."
+    },
+    "医生/医学博士": {
+      "en": "Physician",
+      "SOC": ["29-1228", "29-1211", "29-1216"],
+      "SOC_label": "Physicians, All Other / General Internal Medicine / General Practitioners",
+      "ISCO": ["2211", "2212"],
+      "ISCO_label": "Generalist / Specialist medical practitioners",
+      "NOC": ["31100", "31102"],
+      "ANZSCO": ["253111"],
+      "searchTerms": ["doctor", "physician", "medical doctor", "general practitioner"],
+      "notes": "Use generalist/all-physician median. Excludes surgeons (too specialized)."
+    },
+    "财务分析师": {
+      "en": "Financial Analyst",
+      "SOC": ["13-2051"],
+      "SOC_label": "Financial and Investment Analysts",
+      "ISCO": ["2413"],
+      "ISCO_label": "Financial analysts",
+      "NOC": ["11101"],
+      "ANZSCO": ["222311"],
+      "searchTerms": ["financial analyst", "investment analyst", "finance analyst"],
+      "notes": ""
+    },
+    "市场经理": {
+      "en": "Marketing Manager",
+      "SOC": ["11-2021"],
+      "SOC_label": "Marketing Managers",
+      "ISCO": ["1221"],
+      "ISCO_label": "Sales and marketing managers",
+      "NOC": ["10022"],
+      "ANZSCO": ["131112"],
+      "searchTerms": ["marketing manager", "marketing director"],
+      "notes": ""
+    },
+    "平面设计师": {
+      "en": "Graphic Designer",
+      "SOC": ["27-1024"],
+      "SOC_label": "Graphic Designers",
+      "ISCO": ["2166"],
+      "ISCO_label": "Graphic and multimedia designers",
+      "NOC": ["52120"],
+      "ANZSCO": ["232411"],
+      "searchTerms": ["graphic designer", "visual designer"],
+      "notes": ""
+    },
+    "数据科学家": {
+      "en": "Data Scientist",
+      "SOC": ["15-2051"],
+      "SOC_label": "Data Scientists",
+      "ISCO": ["2120"],
+      "ISCO_label": "Mathematicians, actuaries and statisticians",
+      "NOC": ["21211"],
+      "ANZSCO": ["224112"],
+      "searchTerms": ["data scientist", "machine learning engineer", "data analyst senior"],
+      "notes": "BLS added 15-2051 in 2018 SOC. For countries without this category, fall back to statistician/analyst."
+    },
+    "销售经理": {
+      "en": "Sales Manager",
+      "SOC": ["11-2022"],
+      "SOC_label": "Sales Managers",
+      "ISCO": ["1221"],
+      "ISCO_label": "Sales and marketing managers",
+      "NOC": ["10020"],
+      "ANZSCO": ["131112"],
+      "searchTerms": ["sales manager", "sales director"],
+      "notes": "ISCO 1221 is shared with marketing manager. Use combined if not separable."
+    },
+    "人力资源经理": {
+      "en": "Human Resources Manager",
+      "SOC": ["11-3121"],
+      "SOC_label": "Human Resources Managers",
+      "ISCO": ["1212"],
+      "ISCO_label": "Human resource managers",
+      "NOC": ["10011"],
+      "ANZSCO": ["132311"],
+      "searchTerms": ["HR manager", "human resources manager"],
+      "notes": ""
+    },
+    "教师": {
+      "en": "Secondary School Teacher",
+      "SOC": ["25-2031"],
+      "SOC_label": "Secondary School Teachers, Except Special and Career/Technical Education",
+      "ISCO": ["2330"],
+      "ISCO_label": "Secondary education teachers",
+      "NOC": ["41220"],
+      "ANZSCO": ["241411"],
+      "searchTerms": ["secondary school teacher", "high school teacher", "teacher"],
+      "notes": "Use secondary (high school) teachers as the representative category."
+    },
+    "护士": {
+      "en": "Registered Nurse",
+      "SOC": ["29-1141"],
+      "SOC_label": "Registered Nurses",
+      "ISCO": ["2221"],
+      "ISCO_label": "Nursing professionals",
+      "NOC": ["31301"],
+      "ANZSCO": ["254411"],
+      "searchTerms": ["registered nurse", "nurse", "RN"],
+      "notes": ""
+    },
+    "律师": {
+      "en": "Lawyer",
+      "SOC": ["23-1011"],
+      "SOC_label": "Lawyers",
+      "ISCO": ["2611"],
+      "ISCO_label": "Lawyers",
+      "NOC": ["41101"],
+      "ANZSCO": ["271311"],
+      "searchTerms": ["lawyer", "attorney", "solicitor", "barrister"],
+      "notes": ""
+    },
+    "建筑师": {
+      "en": "Architect",
+      "SOC": ["17-1011"],
+      "SOC_label": "Architects, Except Landscape and Naval",
+      "ISCO": ["2161"],
+      "ISCO_label": "Building architects",
+      "NOC": ["21200"],
+      "ANZSCO": ["232111"],
+      "searchTerms": ["architect", "building architect"],
+      "notes": ""
+    },
+    "厨师": {
+      "en": "Chef / Head Cook",
+      "SOC": ["35-1011"],
+      "SOC_label": "Chefs and Head Cooks",
+      "ISCO": ["3434"],
+      "ISCO_label": "Chefs",
+      "NOC": ["62200"],
+      "ANZSCO": ["351311"],
+      "searchTerms": ["chef", "head cook", "executive chef"],
+      "notes": "Chefs and head cooks, not line cooks. Represents skilled kitchen management."
+    },
+    "记者": {
+      "en": "Journalist / Reporter",
+      "SOC": ["27-3023"],
+      "SOC_label": "News Analysts, Reporters, and Journalists",
+      "ISCO": ["2642"],
+      "ISCO_label": "Journalists",
+      "NOC": ["51111"],
+      "ANZSCO": ["212416"],
+      "searchTerms": ["journalist", "reporter", "news reporter"],
+      "notes": ""
+    },
+    "机械工程师": {
+      "en": "Mechanical Engineer",
+      "SOC": ["17-2141"],
+      "SOC_label": "Mechanical Engineers",
+      "ISCO": ["2144"],
+      "ISCO_label": "Mechanical engineers",
+      "NOC": ["21301"],
+      "ANZSCO": ["233512"],
+      "searchTerms": ["mechanical engineer"],
+      "notes": ""
+    },
+    "药剂师": {
+      "en": "Pharmacist",
+      "SOC": ["29-1051"],
+      "SOC_label": "Pharmacists",
+      "ISCO": ["2262"],
+      "ISCO_label": "Pharmacists",
+      "NOC": ["31120"],
+      "ANZSCO": ["251511"],
+      "searchTerms": ["pharmacist"],
+      "notes": ""
+    },
+    "会计师": {
+      "en": "Accountant",
+      "SOC": ["13-2011"],
+      "SOC_label": "Accountants and Auditors",
+      "ISCO": ["2411"],
+      "ISCO_label": "Accountants",
+      "NOC": ["11100"],
+      "ANZSCO": ["221111"],
+      "searchTerms": ["accountant", "auditor", "CPA"],
+      "notes": ""
+    },
+    "产品经理": {
+      "en": "Product Manager",
+      "SOC": ["11-2021", "15-1299"],
+      "SOC_label": "Marketing Managers / Computer Occupations All Other (no direct BLS match)",
+      "ISCO": ["2529", "1330"],
+      "ISCO_label": "No direct ISCO match — use ICT service managers or marketing managers",
+      "NOC": ["20012"],
+      "ANZSCO": ["135112"],
+      "searchTerms": ["product manager", "PM", "product owner"],
+      "notes": "No standard occupation code worldwide. In BLS, closest is 11-2021 (Marketing Managers). For salary platforms, search directly by title. High variance by industry."
+    },
+    "UI/UX设计师": {
+      "en": "UI/UX Designer",
+      "SOC": ["15-1255"],
+      "SOC_label": "Web and Digital Interface Designers",
+      "ISCO": ["2513"],
+      "ISCO_label": "Web and multimedia developers",
+      "NOC": ["21233"],
+      "ANZSCO": ["232414"],
+      "searchTerms": ["UX designer", "UI designer", "UI/UX designer", "web designer"],
+      "notes": "BLS 15-1255 added in 2018 SOC. Distinct from graphic designers."
+    },
+    "大学教授": {
+      "en": "University Professor",
+      "SOC": ["25-1099"],
+      "SOC_label": "Postsecondary Teachers, All Other",
+      "ISCO": ["2310"],
+      "ISCO_label": "University and higher education teachers",
+      "NOC": ["41200"],
+      "ANZSCO": ["242111"],
+      "searchTerms": ["university professor", "college professor", "lecturer"],
+      "notes": "BLS 25-1099 is broad. Some metros have detail by subject (25-1022 math, 25-1032 engineering, etc.). Use 25-1099 for consistency."
+    },
+    "牙医": {
+      "en": "Dentist",
+      "SOC": ["29-1021"],
+      "SOC_label": "Dentists, General",
+      "ISCO": ["2261"],
+      "ISCO_label": "Dentists",
+      "NOC": ["31110"],
+      "ANZSCO": ["252312"],
+      "searchTerms": ["dentist", "dental surgeon"],
+      "notes": ""
+    },
+    "公交司机": {
+      "en": "Bus Driver",
+      "SOC": ["53-3052"],
+      "SOC_label": "Bus Drivers, Transit and Intercity",
+      "ISCO": ["8331"],
+      "ISCO_label": "Bus and tram drivers",
+      "NOC": ["73301"],
+      "ANZSCO": ["731211"],
+      "searchTerms": ["bus driver", "transit driver", "public bus driver"],
+      "notes": "Transit and intercity bus drivers, not school bus (53-3051)."
+    },
+    "电工": {
+      "en": "Electrician",
+      "SOC": ["47-2111"],
+      "SOC_label": "Electricians",
+      "ISCO": ["7411"],
+      "ISCO_label": "Building and related electricians",
+      "NOC": ["72200"],
+      "ANZSCO": ["341111"],
+      "searchTerms": ["electrician", "electrical technician"],
+      "notes": ""
+    },
+    "政府/NGO行政": {
+      "en": "Government / NGO Administrator",
+      "SOC": ["13-1111", "11-9199"],
+      "SOC_label": "Management Analysts (government sector) / Managers All Other",
+      "ISCO": ["1112", "3343"],
+      "ISCO_label": "Senior government officials / Administrative and executive secretaries (government)",
+      "NOC": ["40020"],
+      "ANZSCO": ["511111"],
+      "searchTerms": ["government officer", "public administration", "civil servant", "government administrator"],
+      "notes": "Hard to map. Was '公务员' (civil servant). BLS best proxy: 13-1111 in government sector, or use overall government employee median. Many countries publish civil servant pay scales directly."
+    },
+    "数字游民": {
+      "en": "Digital Nomad",
+      "SOC": null,
+      "ISCO": null,
+      "searchTerms": null,
+      "fixedSalary": 85000,
+      "notes": "Fixed at $85,000 USD globally. Source: Nomads.com 2026 survey. Not location-dependent."
+    }
+  }
+}

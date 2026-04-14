@@ -1,0 +1,40 @@
+
+════════════════════════════════════════════════════════════
+[2026-04-14T09:59:54.526Z] 薪资采集脚本启动
+[09:59:54.582] 🔀 节点池: 112 节点, 7 地区
+[09:59:54.582] Phase A: BLS data already exists, skipping
+[09:59:54.582] 
+══════════════════════════════════════════════════
+[09:59:54.582] Phase B: Numbeo average salary data
+[09:59:54.582] ══════════════════════════════════════════════════
+[09:59:54.582] Progress: 0/150 cities already collected
+[09:59:54.582]   [1/150] 纽约 (New-York)
+[09:59:57.323] WARN   429 for Numbeo New-York, switching node...
+[10:00:14.362]   🔀 切换到 日本 A06 (IP: 104.251.229.181)
+[10:00:18.050] WARN   429 for Numbeo New-York, switching node...
+[10:00:27.878]   🔀 切换到 香港 A06 (IP: 103.167.134.47)
+[10:00:29.881] WARN   429 for Numbeo New-York, switching node...
+[10:00:32.136]   🔀 切换到 台湾 A07 (IP: 103.167.134.47)
+[10:00:32.136]     ✗ Failed to fetch
+[10:00:34.639]   [1/150] 伦敦 (London)
+[10:00:39.858] WARN   Retry 1 for Numbeo London: fetch failed
+[10:00:46.923] WARN   Retry 2 for Numbeo London: fetch failed
+[10:00:56.074] ERROR   Failed after 3 retries: Numbeo London
+[10:00:56.075]     ✗ Failed to fetch
+[10:00:58.578]   [1/150] 东京 (Tokyo)
+[10:01:03.717] WARN   Retry 1 for Numbeo Tokyo: fetch failed
+[10:01:10.783] WARN   Retry 2 for Numbeo Tokyo: fetch failed
+[10:01:19.812] ERROR   Failed after 3 retries: Numbeo Tokyo
+[10:01:19.812]     ✗ Failed to fetch
+[10:01:22.315]   [1/150] 北京 (Beijing)
+[10:01:27.368] WARN   Retry 1 for Numbeo Beijing: fetch failed
+[10:01:34.396] WARN   Retry 2 for Numbeo Beijing: fetch failed
+[10:01:43.444] ERROR   Failed after 3 retries: Numbeo Beijing
+[10:01:43.445]     ✗ Failed to fetch
+[10:01:45.947]   [1/150] 上海 (Shanghai)
+[10:01:50.973] WARN   Retry 1 for Numbeo Shanghai: fetch failed
+[10:01:58.002] WARN   Retry 2 for Numbeo Shanghai: fetch failed
+[10:02:07.200] ERROR   Failed after 3 retries: Numbeo Shanghai
+[10:02:07.200]     ✗ Failed to fetch
+[10:02:09.704]   [1/150] 悉尼 (Sydney)
+[10:02:14.735] WARN   Retry 1 for Numbeo Sydney: fetch failed

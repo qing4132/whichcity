@@ -1,0 +1,1797 @@
+{
+  "source": "Numbeo Cost of Living pages (cached HTML)",
+  "cacheDate": "2025-2026",
+  "dataType": "Average Monthly Net Salary After Tax (USD)",
+  "totalCities": 150,
+  "citiesWithSalary": 148,
+  "data": {
+    "1": {
+      "slug": "new-york",
+      "netMonthlySalary_USD": 5201.75,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 25.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.0,
+        "Imported Beer (0.33 Liter Bottle)": 10.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.28,
+        "Milk (Regular, 1 Liter)": 1.31
+      }
+    },
+    "2": {
+      "slug": "london",
+      "netMonthlySalary_USD": 4970.21,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 27.01,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.48,
+        "Imported Beer (0.33 Liter Bottle)": 8.1,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.05,
+        "Milk (Regular, 1 Liter)": 1.81
+      }
+    },
+    "3": {
+      "slug": "tokyo",
+      "netMonthlySalary_USD": 2640.92,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 7.53,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.02,
+        "Imported Beer (0.33 Liter Bottle)": 5.65,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.43,
+        "Milk (Regular, 1 Liter)": 1.5
+      }
+    },
+    "4": {
+      "slug": "beijing",
+      "netMonthlySalary_USD": 1609.3,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 4.39,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.12,
+        "Imported Beer (0.33 Liter Bottle)": 2.12,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.57,
+        "Milk (Regular, 1 Liter)": 1.95
+      }
+    },
+    "5": {
+      "slug": "shanghai",
+      "netMonthlySalary_USD": 1673.78,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 4.39,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.12,
+        "Imported Beer (0.33 Liter Bottle)": 2.93,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.54,
+        "Milk (Regular, 1 Liter)": 2.07
+      }
+    },
+    "6": {
+      "slug": "sydney",
+      "netMonthlySalary_USD": 4160.58,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 21.28,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.35,
+        "Imported Beer (0.33 Liter Bottle)": 7.09,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.78,
+        "Milk (Regular, 1 Liter)": 1.9
+      }
+    },
+    "7": {
+      "slug": "singapore",
+      "netMonthlySalary_USD": 4258.19,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 9.82,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.86,
+        "Imported Beer (0.33 Liter Bottle)": 9.43,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.64,
+        "Milk (Regular, 1 Liter)": 3.02
+      }
+    },
+    "8": {
+      "slug": "paris",
+      "netMonthlySalary_USD": 3918.5,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.11,
+        "Imported Beer (0.33 Liter Bottle)": 7.05,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 4.64,
+        "Milk (Regular, 1 Liter)": 1.61
+      }
+    },
+    "9": {
+      "slug": "toronto",
+      "netMonthlySalary_USD": 3643.5,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 18.13,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.6,
+        "Imported Beer (0.33 Liter Bottle)": 7.25,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.11,
+        "Milk (Regular, 1 Liter)": 2.74
+      }
+    },
+    "10": {
+      "slug": "hong-kong",
+      "netMonthlySalary_USD": 3381.36,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 7.98,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 6.38,
+        "Imported Beer (0.33 Liter Bottle)": 6.38,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.28,
+        "Milk (Regular, 1 Liter)": 2.91
+      }
+    },
+    "11": {
+      "slug": "los-angeles",
+      "netMonthlySalary_USD": 3961.88,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 25.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 13.0,
+        "Imported Beer (0.33 Liter Bottle)": 9.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.37,
+        "Milk (Regular, 1 Liter)": 1.32
+      }
+    },
+    "12": {
+      "slug": "san-francisco",
+      "netMonthlySalary_USD": 7287.96,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 25.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 15.0,
+        "Imported Beer (0.33 Liter Bottle)": 9.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.27,
+        "Milk (Regular, 1 Liter)": 1.61
+      }
+    },
+    "13": {
+      "slug": "chicago",
+      "netMonthlySalary_USD": 4775.28,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 20.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 13.0,
+        "Imported Beer (0.33 Liter Bottle)": 9.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.11,
+        "Milk (Regular, 1 Liter)": 1.33
+      }
+    },
+    "14": {
+      "slug": "dubai",
+      "netMonthlySalary_USD": 3958.97,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 12.8,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.53,
+        "Imported Beer (0.33 Liter Bottle)": 13.61,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.71,
+        "Milk (Regular, 1 Liter)": 1.86
+      }
+    },
+    "15": {
+      "slug": "amsterdam",
+      "netMonthlySalary_USD": 5189.87,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 23.51,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 15.87,
+        "Imported Beer (0.33 Liter Bottle)": 5.88,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 4.03,
+        "Milk (Regular, 1 Liter)": 1.86
+      }
+    },
+    "16": {
+      "slug": "zurich",
+      "netMonthlySalary_USD": 8578.31,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 35.72,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 19.14,
+        "Imported Beer (0.33 Liter Bottle)": 8.93,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 6.3,
+        "Milk (Regular, 1 Liter)": 2.27
+      }
+    },
+    "17": {
+      "slug": "geneva",
+      "netMonthlySalary_USD": 7766.13,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 38.27,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 19.14,
+        "Imported Beer (0.33 Liter Bottle)": 8.93,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 5.17,
+        "Milk (Regular, 1 Liter)": 2.33
+      }
+    },
+    "18": {
+      "slug": "munich",
+      "netMonthlySalary_USD": 4701.43,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 21.75,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.11,
+        "Imported Beer (0.33 Liter Bottle)": 5.88,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.74,
+        "Milk (Regular, 1 Liter)": 1.38
+      }
+    },
+    "19": {
+      "slug": "berlin",
+      "netMonthlySalary_USD": 3614.67,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.11,
+        "Imported Beer (0.33 Liter Bottle)": 4.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.8,
+        "Milk (Regular, 1 Liter)": 1.33
+      }
+    },
+    "20": {
+      "slug": "barcelona",
+      "netMonthlySalary_USD": 2432.7,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.11,
+        "Imported Beer (0.33 Liter Bottle)": 4.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.65,
+        "Milk (Regular, 1 Liter)": 1.26
+      }
+    },
+    "21": {
+      "slug": "madrid",
+      "netMonthlySalary_USD": 2610.93,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.35,
+        "Imported Beer (0.33 Liter Bottle)": 4.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.25,
+        "Milk (Regular, 1 Liter)": 1.28
+      }
+    },
+    "22": {
+      "slug": "milan",
+      "netMonthlySalary_USD": 2260.43,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 23.51,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.11,
+        "Imported Beer (0.33 Liter Bottle)": 7.05,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.57,
+        "Milk (Regular, 1 Liter)": 1.8
+      }
+    },
+    "23": {
+      "slug": "rome",
+      "netMonthlySalary_USD": 2121.5,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.76,
+        "Imported Beer (0.33 Liter Bottle)": 7.05,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.91,
+        "Milk (Regular, 1 Liter)": 1.88
+      }
+    },
+    "24": {
+      "slug": "brussels",
+      "netMonthlySalary_USD": 3590.48,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 23.51,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.46,
+        "Imported Beer (0.33 Liter Bottle)": 5.88,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.34,
+        "Milk (Regular, 1 Liter)": 1.39
+      }
+    },
+    "25": {
+      "slug": "vienna",
+      "netMonthlySalary_USD": 3500.49,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 21.46,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 13.58,
+        "Imported Beer (0.33 Liter Bottle)": 5.88,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.73,
+        "Milk (Regular, 1 Liter)": 1.74
+      }
+    },
+    "26": {
+      "slug": "prague",
+      "netMonthlySalary_USD": 2362.14,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 12.07,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.62,
+        "Imported Beer (0.33 Liter Bottle)": 3.38,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.02,
+        "Milk (Regular, 1 Liter)": 1.27
+      }
+    },
+    "27": {
+      "slug": "warsaw",
+      "netMonthlySalary_USD": 2300.06,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.76,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.69,
+        "Imported Beer (0.33 Liter Bottle)": 4.98,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.56,
+        "Milk (Regular, 1 Liter)": 1.15
+      }
+    },
+    "28": {
+      "slug": "lisbon",
+      "netMonthlySalary_USD": 1608.43,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 15.28,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.76,
+        "Imported Beer (0.33 Liter Bottle)": 3.53,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.56,
+        "Milk (Regular, 1 Liter)": 1.24
+      }
+    },
+    "29": {
+      "slug": "athens",
+      "netMonthlySalary_USD": 1356.9,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.58,
+        "Imported Beer (0.33 Liter Bottle)": 5.88,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.65,
+        "Milk (Regular, 1 Liter)": 1.77
+      }
+    },
+    "30": {
+      "slug": "istanbul",
+      "netMonthlySalary_USD": 1191.39,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.19,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.51,
+        "Imported Beer (0.33 Liter Bottle)": 5.59,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.65,
+        "Milk (Regular, 1 Liter)": 1.21
+      }
+    },
+    "31": {
+      "slug": "mexico-city",
+      "netMonthlySalary_USD": 1081.5,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.55,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.11,
+        "Imported Beer (0.33 Liter Bottle)": 5.78,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.66,
+        "Milk (Regular, 1 Liter)": 1.84
+      }
+    },
+    "32": {
+      "slug": "sao-paulo",
+      "netMonthlySalary_USD": 882.33,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 9.01,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.01,
+        "Imported Beer (0.33 Liter Bottle)": 3.5,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.34,
+        "Milk (Regular, 1 Liter)": 1.2
+      }
+    },
+    "33": {
+      "slug": "rio-de-janeiro",
+      "netMonthlySalary_USD": 540.65,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 8.01,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.61,
+        "Imported Beer (0.33 Liter Bottle)": 3.6,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.52,
+        "Milk (Regular, 1 Liter)": 1.2
+      }
+    },
+    "34": {
+      "slug": "miami",
+      "netMonthlySalary_USD": 4166.71,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 30.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.0,
+        "Imported Beer (0.33 Liter Bottle)": 9.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.28,
+        "Milk (Regular, 1 Liter)": 1.25
+      }
+    },
+    "35": {
+      "slug": "washington",
+      "netMonthlySalary_USD": 6162.59,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 29.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 10.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.4,
+        "Milk (Regular, 1 Liter)": 1.12
+      }
+    },
+    "36": {
+      "slug": "boston",
+      "netMonthlySalary_USD": 6654.5,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 27.5,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 9.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.87,
+        "Milk (Regular, 1 Liter)": 1.28
+      }
+    },
+    "37": {
+      "slug": "seattle",
+      "netMonthlySalary_USD": 6475.55,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 25.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 15.0,
+        "Imported Beer (0.33 Liter Bottle)": 8.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.04,
+        "Milk (Regular, 1 Liter)": 1.4
+      }
+    },
+    "38": {
+      "slug": "denver",
+      "netMonthlySalary_USD": 4518.24,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 20.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.5,
+        "Imported Beer (0.33 Liter Bottle)": 8.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.02,
+        "Milk (Regular, 1 Liter)": 1.05
+      }
+    },
+    "39": {
+      "slug": "austin",
+      "netMonthlySalary_USD": 4973.35,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 20.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 8.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.03,
+        "Milk (Regular, 1 Liter)": 0.98
+      }
+    },
+    "40": {
+      "slug": "vancouver",
+      "netMonthlySalary_USD": 3542.6,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 21.75,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.88,
+        "Imported Beer (0.33 Liter Bottle)": 6.89,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.23,
+        "Milk (Regular, 1 Liter)": 2.14
+      }
+    },
+    "41": {
+      "slug": "montreal",
+      "netMonthlySalary_USD": 2993.88,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 18.13,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.16,
+        "Imported Beer (0.33 Liter Bottle)": 7.25,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.94,
+        "Milk (Regular, 1 Liter)": 2.27
+      }
+    },
+    "42": {
+      "slug": "melbourne",
+      "netMonthlySalary_USD": 4281.51,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.73,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.35,
+        "Imported Beer (0.33 Liter Bottle)": 8.51,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.03,
+        "Milk (Regular, 1 Liter)": 1.86
+      }
+    },
+    "43": {
+      "slug": "brisbane",
+      "netMonthlySalary_USD": 4289.55,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.73,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.7,
+        "Imported Beer (0.33 Liter Bottle)": 8.51,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.97,
+        "Milk (Regular, 1 Liter)": 1.68
+      }
+    },
+    "44": {
+      "slug": "auckland",
+      "netMonthlySalary_USD": 3209.75,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 14.68,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.86,
+        "Imported Beer (0.33 Liter Bottle)": 7.05,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.11,
+        "Milk (Regular, 1 Liter)": 1.84
+      }
+    },
+    "45": {
+      "slug": "bangkok",
+      "netMonthlySalary_USD": 777.43,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 3.74,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.79,
+        "Imported Beer (0.33 Liter Bottle)": 4.67,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.72,
+        "Milk (Regular, 1 Liter)": 1.87
+      }
+    },
+    "46": {
+      "slug": "kuala-lumpur",
+      "netMonthlySalary_USD": 1603.08,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.03,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.03,
+        "Imported Beer (0.33 Liter Bottle)": 6.29,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.83,
+        "Milk (Regular, 1 Liter)": 2.24
+      }
+    },
+    "47": {
+      "slug": "ho-chi-minh-city",
+      "netMonthlySalary_USD": 484.15,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 1.9,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.56,
+        "Imported Beer (0.33 Liter Bottle)": 1.9,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.56,
+        "Milk (Regular, 1 Liter)": 1.54
+      }
+    },
+    "48": {
+      "slug": "hanoi",
+      "netMonthlySalary_USD": 496.61,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.09,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.52,
+        "Imported Beer (0.33 Liter Bottle)": 1.9,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.46,
+        "Milk (Regular, 1 Liter)": 1.43
+      }
+    },
+    "49": {
+      "slug": "bengaluru",
+      "netMonthlySalary_USD": 859.58,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.76,
+        "Imported Beer (0.33 Liter Bottle)": 3.96,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.45,
+        "Milk (Regular, 1 Liter)": 0.6
+      }
+    },
+    "50": {
+      "slug": "mumbai",
+      "netMonthlySalary_USD": 716.57,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.29,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.23,
+        "Imported Beer (0.33 Liter Bottle)": 4.23,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.48,
+        "Milk (Regular, 1 Liter)": 0.68
+      }
+    },
+    "51": {
+      "slug": "new-delhi",
+      "netMonthlySalary_USD": 530.07,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.29,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 3.7,
+        "Imported Beer (0.33 Liter Bottle)": 3.17,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.44,
+        "Milk (Regular, 1 Liter)": 0.7
+      }
+    },
+    "52": {
+      "slug": "nairobi",
+      "netMonthlySalary_USD": 405.08,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.6,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 6.64,
+        "Imported Beer (0.33 Liter Bottle)": 2.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.66,
+        "Milk (Regular, 1 Liter)": 0.82
+      }
+    },
+    "53": {
+      "slug": "cairo",
+      "netMonthlySalary_USD": 168.71,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 4.7,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.64,
+        "Imported Beer (0.33 Liter Bottle)": 2.82,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.35,
+        "Milk (Regular, 1 Liter)": 0.9
+      }
+    },
+    "54": {
+      "slug": "tehran",
+      "netMonthlySalary_USD": 208.29,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 3.5,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.0,
+        "Imported Non-Alcoholic Beer (0.33 Liter Bottle)": 1.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.48,
+        "Milk (Regular, 1 Liter)": 0.64
+      }
+    },
+    "55": {
+      "slug": "karachi",
+      "netMonthlySalary_USD": 168.82,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 1.79,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.38,
+        "Imported Non-Alcoholic Beer (0.33 Liter Bottle)": 7.17,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.36,
+        "Milk (Regular, 1 Liter)": 0.86
+      }
+    },
+    "56": {
+      "slug": "islamabad",
+      "netMonthlySalary_USD": 304.24,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.87,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.38,
+        "Imported Non-Alcoholic Beer (0.33 Liter Bottle)": 4.3,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.37,
+        "Milk (Regular, 1 Liter)": 0.91
+      }
+    },
+    "57": {
+      "slug": "jakarta",
+      "netMonthlySalary_USD": 472.59,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 1.75,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 3.39,
+        "Imported Beer (0.33 Liter Bottle)": 4.09,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.48,
+        "Milk (Regular, 1 Liter)": 1.41
+      }
+    },
+    "58": {
+      "slug": "manila",
+      "netMonthlySalary_USD": 454.06,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.84,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.17,
+        "Imported Beer (0.33 Liter Bottle)": 3.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.4,
+        "Milk (Regular, 1 Liter)": 1.93
+      }
+    },
+    "59": {
+      "slug": "seoul",
+      "netMonthlySalary_USD": 2982.9,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 8.79,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 6.76,
+        "Imported Beer (0.33 Liter Bottle)": 5.41,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.55,
+        "Milk (Regular, 1 Liter)": 1.99
+      }
+    },
+    "60": {
+      "slug": "busan",
+      "netMonthlySalary_USD": 2494.28,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 6.76,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 6.02,
+        "Imported Beer (0.33 Liter Bottle)": 5.07,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.72,
+        "Milk (Regular, 1 Liter)": 2.14
+      }
+    },
+    "61": {
+      "slug": "taipei",
+      "netMonthlySalary_USD": 1684.31,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.05,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.53,
+        "Imported Beer (0.33 Liter Bottle)": 3.79,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.96,
+        "Milk (Regular, 1 Liter)": 2.99
+      }
+    },
+    "62": {
+      "slug": "buenos-aires",
+      "netMonthlySalary_USD": 796.09,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 19.5,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 4.65,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.97,
+        "Milk (Regular, 1 Liter)": 1.52
+      }
+    },
+    "63": {
+      "slug": "santiago",
+      "netMonthlySalary_USD": 845.92,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.17,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 8.67,
+        "Imported Beer (0.33 Liter Bottle)": 5.03,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.81,
+        "Milk (Regular, 1 Liter)": 1.28
+      }
+    },
+    "64": {
+      "slug": "bogota",
+      "netMonthlySalary_USD": 529.2,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 6.9,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 8.28,
+        "Imported Beer (0.33 Liter Bottle)": 2.76,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.13,
+        "Milk (Regular, 1 Liter)": 1.38
+      }
+    },
+    "65": {
+      "slug": "lima",
+      "netMonthlySalary_USD": 640.84,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 4.44,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.07,
+        "Imported Beer (0.33 Liter Bottle)": 4.44,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.06,
+        "Milk (Regular, 1 Liter)": 1.61
+      }
+    },
+    "67": {
+      "slug": "johannesburg",
+      "netMonthlySalary_USD": 1610.1,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 12.15,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.92,
+        "Imported Beer (0.33 Liter Bottle)": 2.73,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.16,
+        "Milk (Regular, 1 Liter)": 1.35
+      }
+    },
+    "68": {
+      "slug": "cape-town",
+      "netMonthlySalary_USD": 1677.02,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 12.15,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.65,
+        "Imported Beer (0.33 Liter Bottle)": 3.65,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.46,
+        "Milk (Regular, 1 Liter)": 1.34
+      }
+    },
+    "69": {
+      "slug": "guadalajara",
+      "netMonthlySalary_USD": 767.93,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.55,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.82,
+        "Imported Beer (0.33 Liter Bottle)": 4.77,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.57,
+        "Milk (Regular, 1 Liter)": 1.68
+      }
+    },
+    "70": {
+      "slug": "san-jose",
+      "netMonthlySalary_USD": 5639.24,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 25.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 10.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.44,
+        "Milk (Regular, 1 Liter)": 1.64
+      }
+    },
+    "71": {
+      "slug": "panama-city",
+      "netMonthlySalary_USD": 964.76,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 10.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.0,
+        "Imported Beer (0.33 Liter Bottle)": 4.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.82,
+        "Milk (Regular, 1 Liter)": 1.88
+      }
+    },
+    "73": {
+      "slug": "san-juan",
+      "netMonthlySalary_USD": 2616.87,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 19.13,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.0,
+        "Imported Beer (0.33 Liter Bottle)": 5.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.99,
+        "Milk (Regular, 1 Liter)": 2.17
+      }
+    },
+    "75": {
+      "slug": "abu-dhabi",
+      "netMonthlySalary_USD": 2620.35,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 8.17,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.53,
+        "Imported Beer (0.33 Liter Bottle)": 10.89,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.12,
+        "Milk (Regular, 1 Liter)": 1.85
+      }
+    },
+    "76": {
+      "slug": "doha",
+      "netMonthlySalary_USD": 2970.33,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 10.97,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.41,
+        "Imported Non-Alcoholic Beer (0.33 Liter Bottle)": 13.44,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.91,
+        "Milk (Regular, 1 Liter)": 2.06
+      }
+    },
+    "77": {
+      "slug": "manama",
+      "netMonthlySalary_USD": 2329.54,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.96,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.68,
+        "Imported Beer (0.33 Liter Bottle)": 9.27,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.79,
+        "Milk (Regular, 1 Liter)": 1.52
+      }
+    },
+    "78": {
+      "slug": "riyadh",
+      "netMonthlySalary_USD": 2327.82,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 7.99,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.99,
+        "Imported Non-Alcoholic Beer (0.33 Liter Bottle)": 2.33,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.79,
+        "Milk (Regular, 1 Liter)": 1.64
+      }
+    },
+    "79": {
+      "slug": "muscat",
+      "netMonthlySalary_USD": 1753.89,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.2,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.8,
+        "Imported Beer (0.33 Liter Bottle)": 13.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.1,
+        "Milk (Regular, 1 Liter)": 2.07
+      }
+    },
+    "80": {
+      "slug": "beirut",
+      "netMonthlySalary_USD": 642.33,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 10.82,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.0,
+        "Imported Beer (0.33 Liter Bottle)": 5.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.06,
+        "Milk (Regular, 1 Liter)": 1.81
+      }
+    },
+    "81": {
+      "slug": "amman",
+      "netMonthlySalary_USD": 697.76,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 7.05,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.05,
+        "Imported Beer (0.33 Liter Bottle)": 9.87,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.56,
+        "Milk (Regular, 1 Liter)": 1.53
+      }
+    },
+    "82": {
+      "slug": "tel-aviv",
+      "netMonthlySalary_USD": 4230.31,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 26.27,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 19.7,
+        "Imported Beer (0.33 Liter Bottle)": 10.51,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.81,
+        "Milk (Regular, 1 Liter)": 2.47
+      }
+    },
+    "83": {
+      "slug": "hyderabad",
+      "netMonthlySalary_USD": 1208.05,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.76,
+        "Imported Beer (0.33 Liter Bottle)": 5.29,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.5,
+        "Milk (Regular, 1 Liter)": 0.77
+      }
+    },
+    "84": {
+      "slug": "pune",
+      "netMonthlySalary_USD": 1163.24,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 4.23,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.28,
+        "Imported Beer (0.33 Liter Bottle)": 4.23,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.51,
+        "Milk (Regular, 1 Liter)": 0.71
+      }
+    },
+    "85": {
+      "slug": "kyiv",
+      "netMonthlySalary_USD": 757.78,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 9.79,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 6.91,
+        "Imported Beer (0.33 Liter Bottle)": 1.84,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.73,
+        "Milk (Regular, 1 Liter)": 1.27
+      }
+    },
+    "86": {
+      "slug": "bucharest",
+      "netMonthlySalary_USD": 1502.3,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 13.86,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.97,
+        "Imported Beer (0.33 Liter Bottle)": 3.47,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.33,
+        "Milk (Regular, 1 Liter)": 1.69
+      }
+    },
+    "87": {
+      "slug": "sofia",
+      "netMonthlySalary_USD": 1690.16,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 12.78,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.3,
+        "Imported Beer (0.33 Liter Bottle)": 3.61,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.22,
+        "Milk (Regular, 1 Liter)": 1.99
+      }
+    },
+    "88": {
+      "slug": "zagreb",
+      "netMonthlySalary_USD": 1930.28,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 14.11,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.41,
+        "Imported Beer (0.33 Liter Bottle)": 4.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.99,
+        "Milk (Regular, 1 Liter)": 1.43
+      }
+    },
+    "89": {
+      "slug": "belgrade",
+      "netMonthlySalary_USD": 1263.35,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 13.47,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.02,
+        "Imported Beer (0.33 Liter Bottle)": 4.01,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.95,
+        "Milk (Regular, 1 Liter)": 1.45
+      }
+    },
+    "90": {
+      "slug": "budapest",
+      "netMonthlySalary_USD": 1750.02,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 12.95,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.36,
+        "Imported Beer (0.33 Liter Bottle)": 3.24,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.91,
+        "Milk (Regular, 1 Liter)": 1.28
+      }
+    },
+    "91": {
+      "slug": "bratislava",
+      "netMonthlySalary_USD": 1737.1,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.76,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.76,
+        "Imported Beer (0.33 Liter Bottle)": 3.53,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.42,
+        "Milk (Regular, 1 Liter)": 1.3
+      }
+    },
+    "92": {
+      "slug": "ljubljana",
+      "netMonthlySalary_USD": 1954.31,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.58,
+        "Imported Beer (0.33 Liter Bottle)": 4.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.19,
+        "Milk (Regular, 1 Liter)": 1.53
+      }
+    },
+    "93": {
+      "slug": "dublin",
+      "netMonthlySalary_USD": 4234.16,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 23.51,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.11,
+        "Imported Beer (0.33 Liter Bottle)": 7.64,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.12,
+        "Milk (Regular, 1 Liter)": 1.77
+      }
+    },
+    "94": {
+      "slug": "belfast",
+      "netMonthlySalary_USD": 2873.93,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 20.26,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.8,
+        "Imported Beer (0.33 Liter Bottle)": 7.06,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.72,
+        "Milk (Regular, 1 Liter)": 1.72
+      }
+    },
+    "95": {
+      "slug": "atlanta",
+      "netMonthlySalary_USD": 5168.23,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 25.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 8.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.61,
+        "Milk (Regular, 1 Liter)": 1.02
+      }
+    },
+    "96": {
+      "slug": "phoenix",
+      "netMonthlySalary_USD": 4012.89,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 20.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.49,
+        "Imported Beer (0.33 Liter Bottle)": 8.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.84,
+        "Milk (Regular, 1 Liter)": 0.88
+      }
+    },
+    "97": {
+      "slug": "portland",
+      "netMonthlySalary_USD": 4751.08,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 22.5,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 7.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.46,
+        "Milk (Regular, 1 Liter)": 1.1
+      }
+    },
+    "98": {
+      "slug": "san-diego",
+      "netMonthlySalary_USD": 5331.73,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 24.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 15.0,
+        "Imported Beer (0.33 Liter Bottle)": 10.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.04,
+        "Milk (Regular, 1 Liter)": 1.23
+      }
+    },
+    "99": {
+      "slug": "las-vegas",
+      "netMonthlySalary_USD": 3793.53,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 25.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 10.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.89,
+        "Milk (Regular, 1 Liter)": 0.96
+      }
+    },
+    "100": {
+      "slug": "tampa",
+      "netMonthlySalary_USD": 4450.52,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 20.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.5,
+        "Imported Beer (0.33 Liter Bottle)": 9.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.31,
+        "Milk (Regular, 1 Liter)": 1.29
+      }
+    },
+    "101": {
+      "slug": "guangzhou",
+      "netMonthlySalary_USD": 1383.07,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.93,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.12,
+        "Imported Beer (0.33 Liter Bottle)": 2.2,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.51,
+        "Milk (Regular, 1 Liter)": 1.92
+      }
+    },
+    "102": {
+      "slug": "shenzhen",
+      "netMonthlySalary_USD": 1629.66,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 3.66,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.12,
+        "Imported Beer (0.33 Liter Bottle)": 2.2,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.52,
+        "Milk (Regular, 1 Liter)": 1.82
+      }
+    },
+    "103": {
+      "slug": "chengdu",
+      "netMonthlySalary_USD": 1173.92,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.93,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.12,
+        "Imported Beer (0.33 Liter Bottle)": 2.2,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.49,
+        "Milk (Regular, 1 Liter)": 1.83
+      }
+    },
+    "104": {
+      "slug": "hangzhou",
+      "netMonthlySalary_USD": 1361.34,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 3.66,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.12,
+        "Imported Beer (0.33 Liter Bottle)": 2.2,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.54,
+        "Milk (Regular, 1 Liter)": 2.14
+      }
+    },
+    "105": {
+      "slug": "chongqing",
+      "netMonthlySalary_USD": 1055.09,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.93,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.9,
+        "Imported Beer (0.33 Liter Bottle)": 2.2,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.45,
+        "Milk (Regular, 1 Liter)": 1.61
+      }
+    },
+    "106": {
+      "slug": "osaka",
+      "netMonthlySalary_USD": 1999.22,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 6.28,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.39,
+        "Imported Beer (0.33 Liter Bottle)": 3.77,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.24,
+        "Milk (Regular, 1 Liter)": 1.49
+      }
+    },
+    "107": {
+      "slug": "nagoya",
+      "netMonthlySalary_USD": 1820.75,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 8.47,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.33,
+        "Imported Beer (0.33 Liter Bottle)": 2.82,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.02,
+        "Milk (Regular, 1 Liter)": 1.5
+      }
+    },
+    "108": {
+      "slug": "incheon",
+      "netMonthlySalary_USD": 2219.39,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 6.4,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 6.09,
+        "Imported Beer (0.33 Liter Bottle)": 4.32,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.41,
+        "Milk (Regular, 1 Liter)": 1.99
+      }
+    },
+    "109": {
+      "slug": "phnom-penh",
+      "netMonthlySalary_USD": 348.97,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.0,
+        "Imported Beer (0.33 Liter Bottle)": 2.75,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.4,
+        "Milk (Regular, 1 Liter)": 2.17
+      }
+    },
+    "110": {
+      "slug": "yangon",
+      "netMonthlySalary_USD": 278.82,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.56,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 3.0,
+        "Imported Beer (0.33 Liter Bottle)": 2.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.74,
+        "Milk (Regular, 1 Liter)": 1.86
+      }
+    },
+    "112": {
+      "slug": "chiang-mai",
+      "netMonthlySalary_USD": 635.45,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.18,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.79,
+        "Imported Beer (0.33 Liter Bottle)": 3.82,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.78,
+        "Milk (Regular, 1 Liter)": 1.91
+      }
+    },
+    "114": {
+      "slug": "dhaka",
+      "netMonthlySalary_USD": 311.75,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 2.44,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 6.51,
+        "Imported Non-Alcoholic Beer (0.33 Liter Bottle)": 4.68,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.33,
+        "Milk (Regular, 1 Liter)": 0.82
+      }
+    },
+    "115": {
+      "slug": "colombo",
+      "netMonthlySalary_USD": 246.96,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 4.44,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.93,
+        "Imported Beer (0.33 Liter Bottle)": 3.17,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.75,
+        "Milk (Regular, 1 Liter)": 1.7
+      }
+    },
+    "116": {
+      "slug": "kathmandu",
+      "netMonthlySalary_USD": 242.88,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 1.68,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 6.04,
+        "Imported Beer (0.33 Liter Bottle)": 3.35,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.52,
+        "Milk (Regular, 1 Liter)": 0.82
+      }
+    },
+    "117": {
+      "slug": "almaty",
+      "netMonthlySalary_USD": 811.92,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.58,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 8.0,
+        "Imported Beer (0.33 Liter Bottle)": 3.79,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.17,
+        "Milk (Regular, 1 Liter)": 1.57
+      }
+    },
+    "118": {
+      "slug": "tashkent",
+      "netMonthlySalary_USD": 574.96,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.78,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.33,
+        "Imported Beer (0.33 Liter Bottle)": 3.3,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.66,
+        "Milk (Regular, 1 Liter)": 1.22
+      }
+    },
+    "119": {
+      "slug": "baku",
+      "netMonthlySalary_USD": 532.69,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 10.59,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.65,
+        "Imported Beer (0.33 Liter Bottle)": 3.53,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.13,
+        "Milk (Regular, 1 Liter)": 1.56
+      }
+    },
+    "120": {
+      "slug": "ulaanbaatar",
+      "netMonthlySalary_USD": 590.22,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.6,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.6,
+        "Imported Beer (0.33 Liter Bottle)": 3.36,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.8,
+        "Milk (Regular, 1 Liter)": 1.43
+      }
+    },
+    "121": {
+      "slug": "stockholm",
+      "netMonthlySalary_USD": 3902.59,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 18.38,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.97,
+        "Imported Beer (0.33 Liter Bottle)": 8.16,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.83,
+        "Milk (Regular, 1 Liter)": 1.86
+      }
+    },
+    "122": {
+      "slug": "copenhagen",
+      "netMonthlySalary_USD": 5034.28,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 23.6,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 14.16,
+        "Imported Beer (0.33 Liter Bottle)": 8.65,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 4.92,
+        "Milk (Regular, 1 Liter)": 2.3
+      }
+    },
+    "123": {
+      "slug": "helsinki",
+      "netMonthlySalary_USD": 3195.93,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 15.28,
+        "Imported Beer (0.33 Liter Bottle)": 8.23,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.5,
+        "Milk (Regular, 1 Liter)": 1.46
+      }
+    },
+    "124": {
+      "slug": "oslo",
+      "netMonthlySalary_USD": 4362.26,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 26.45,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 15.87,
+        "Imported Beer (0.33 Liter Bottle)": 12.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 4.22,
+        "Milk (Regular, 1 Liter)": 2.54
+      }
+    },
+    "125": {
+      "slug": "houston",
+      "netMonthlySalary_USD": 4577.19,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 20.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.0,
+        "Imported Beer (0.33 Liter Bottle)": 7.5,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.82,
+        "Milk (Regular, 1 Liter)": 0.87
+      }
+    },
+    "126": {
+      "slug": "philadelphia",
+      "netMonthlySalary_USD": 4376.24,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 20.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.88,
+        "Imported Beer (0.33 Liter Bottle)": 7.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.95,
+        "Milk (Regular, 1 Liter)": 1.45
+      }
+    },
+    "127": {
+      "slug": "calgary",
+      "netMonthlySalary_USD": 3142.46,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 18.13,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.88,
+        "Imported Beer (0.33 Liter Bottle)": 6.16,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.03,
+        "Milk (Regular, 1 Liter)": 1.82
+      }
+    },
+    "128": {
+      "slug": "perth",
+      "netMonthlySalary_USD": 4146.26,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.73,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.35,
+        "Imported Beer (0.33 Liter Bottle)": 8.01,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.89,
+        "Milk (Regular, 1 Liter)": 1.64
+      }
+    },
+    "129": {
+      "slug": "medellin",
+      "netMonthlySalary_USD": 532.89,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 6.9,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 8.28,
+        "Imported Beer (0.33 Liter Bottle)": 3.73,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.33,
+        "Milk (Regular, 1 Liter)": 1.23
+      }
+    },
+    "130": {
+      "slug": "tbilisi",
+      "netMonthlySalary_USD": 644.95,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.15,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 8.73,
+        "Imported Beer (0.33 Liter Bottle)": 3.72,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.92,
+        "Milk (Regular, 1 Liter)": 2.0
+      }
+    },
+    "131": {
+      "slug": "lagos",
+      "netMonthlySalary_USD": 128.98,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 3.56,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.24,
+        "Imported Beer (0.33 Liter Bottle)": 2.0,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.47,
+        "Milk (Regular, 1 Liter)": 2.92
+      }
+    },
+    "132": {
+      "slug": "moscow",
+      "netMonthlySalary_USD": 1841.32,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 15.75,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.22,
+        "Imported Beer (0.33 Liter Bottle)": 3.94,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.57,
+        "Milk (Regular, 1 Liter)": 1.38
+      }
+    },
+    "133": {
+      "slug": "san-jose-us",
+      "netMonthlySalary_USD": null,
+      "totalPriceItems": 0,
+      "sampleItems": {}
+    },
+    "134": {
+      "slug": "irvine",
+      "netMonthlySalary_USD": 5835.22,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 25.0,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.5,
+        "Imported Beer (0.33 Liter Bottle)": 8.85,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.75,
+        "Milk (Regular, 1 Liter)": 1.17
+      }
+    },
+    "135": {
+      "slug": "ottawa",
+      "netMonthlySalary_USD": 3952.64,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 18.13,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.88,
+        "Imported Beer (0.33 Liter Bottle)": 6.71,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.0,
+        "Milk (Regular, 1 Liter)": 2.23
+      }
+    },
+    "136": {
+      "slug": "luxembourg-city",
+      "netMonthlySalary_USD": 5385.3,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 27.04,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 15.28,
+        "Imported Beer (0.33 Liter Bottle)": 5.88,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.78,
+        "Milk (Regular, 1 Liter)": 1.85
+      }
+    },
+    "137": {
+      "slug": "tallinn",
+      "netMonthlySalary_USD": 2195.62,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.76,
+        "Imported Beer (0.33 Liter Bottle)": 7.05,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.33,
+        "Milk (Regular, 1 Liter)": 1.19
+      }
+    },
+    "138": {
+      "slug": "fukuoka",
+      "netMonthlySalary_USD": 1565.0,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 7.84,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.33,
+        "Imported Beer (0.33 Liter Bottle)": 2.82,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.99,
+        "Milk (Regular, 1 Liter)": 1.57
+      }
+    },
+    "139": {
+      "slug": "yokohama",
+      "netMonthlySalary_USD": 2664.89,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 6.28,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.02,
+        "Imported Beer (0.33 Liter Bottle)": 3.14,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.08,
+        "Milk (Regular, 1 Liter)": 1.34
+      }
+    },
+    "140": {
+      "slug": "bali",
+      "netMonthlySalary_USD": 219.68,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 3.21,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.24,
+        "Imported Beer (0.33 Liter Bottle)": 3.14,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.21,
+        "Milk (Regular, 1 Liter)": 1.42
+      }
+    },
+    "141": {
+      "slug": "da-nang",
+      "netMonthlySalary_USD": 330.39,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 1.9,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.56,
+        "Imported Beer (0.33 Liter Bottle)": 2.14,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.54,
+        "Milk (Regular, 1 Liter)": 1.45
+      }
+    },
+    "142": {
+      "slug": "playa-del-carmen",
+      "netMonthlySalary_USD": null,
+      "totalPriceItems": 0,
+      "sampleItems": {}
+    },
+    "143": {
+      "slug": "porto",
+      "netMonthlySalary_USD": 1544.33,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 13.23,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.41,
+        "Imported Beer (0.33 Liter Bottle)": 4.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.5,
+        "Milk (Regular, 1 Liter)": 1.14
+      }
+    },
+    "144": {
+      "slug": "valencia",
+      "netMonthlySalary_USD": 2062.75,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.76,
+        "Imported Beer (0.33 Liter Bottle)": 4.7,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.63,
+        "Milk (Regular, 1 Liter)": 1.29
+      }
+    },
+    "146": {
+      "slug": "split",
+      "netMonthlySalary_USD": 1681.55,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.64,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.76,
+        "Imported Beer (0.33 Liter Bottle)": 5.29,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 3.88,
+        "Milk (Regular, 1 Liter)": 1.41
+      }
+    },
+    "147": {
+      "slug": "phuket",
+      "netMonthlySalary_USD": 525.99,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 6.23,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.04,
+        "Imported Beer (0.33 Liter Bottle)": 3.74,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.72,
+        "Milk (Regular, 1 Liter)": 2.0
+      }
+    },
+    "148": {
+      "slug": "montevideo",
+      "netMonthlySalary_USD": 1251.18,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 17.2,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 13.29,
+        "Imported Beer (0.33 Liter Bottle)": 3.73,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.29,
+        "Milk (Regular, 1 Liter)": 1.3
+      }
+    },
+    "149": {
+      "slug": "las-palmas",
+      "netMonthlySalary_USD": 1816.7,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 12.93,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 10.58,
+        "Imported Beer (0.33 Liter Bottle)": 3.82,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.25,
+        "Milk (Regular, 1 Liter)": 1.18
+      }
+    },
+    "150": {
+      "slug": "penang",
+      "netMonthlySalary_USD": 951.02,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 3.77,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 4.78,
+        "Imported Beer (0.33 Liter Bottle)": 4.78,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.78,
+        "Milk (Regular, 1 Liter)": 2.01
+      }
+    },
+    "152": {
+      "slug": "florianopolis",
+      "netMonthlySalary_USD": 903.24,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 8.01,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 7.41,
+        "Imported Beer (0.33 Liter Bottle)": 3.4,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.37,
+        "Milk (Regular, 1 Liter)": 1.03
+      }
+    },
+    "157": {
+      "slug": "cancun",
+      "netMonthlySalary_USD": 797.38,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.55,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 12.0,
+        "Imported Beer (0.33 Liter Bottle)": 4.48,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.42,
+        "Milk (Regular, 1 Liter)": 1.73
+      }
+    },
+    "158": {
+      "slug": "puerto-vallarta",
+      "netMonthlySalary_USD": 1015.45,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 11.55,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 11.55,
+        "Imported Beer (0.33 Liter Bottle)": 4.48,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 1.99,
+        "Milk (Regular, 1 Liter)": 1.94
+      }
+    },
+    "159": {
+      "slug": "kyoto",
+      "netMonthlySalary_USD": 1882.78,
+      "totalPriceItems": 26,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 9.41,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 5.02,
+        "Imported Beer (0.33 Liter Bottle)": 5.65,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.85,
+        "Milk (Regular, 1 Liter)": 1.57
+      }
+    },
+    "160": {
+      "slug": "casablanca",
+      "netMonthlySalary_USD": 555.48,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 5.4,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 8.1,
+        "Imported Beer (0.33 Liter Bottle)": 5.4,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 0.76,
+        "Milk (Regular, 1 Liter)": 1.0
+      }
+    },
+    "161": {
+      "slug": "wellington",
+      "netMonthlySalary_USD": 3074.49,
+      "totalPriceItems": 28,
+      "sampleItems": {
+        "Meal at an Inexpensive Restaurant": 14.68,
+        "Combo Meal at McDonald's (or Equivalent Fast-Food Meal)": 9.45,
+        "Imported Beer (0.33 Liter Bottle)": 7.05,
+        "Soft Drink (Coca-Cola or Pepsi, 0.33 Liter Bottle)": 2.53,
+        "Milk (Regular, 1 Liter)": 2.05
+      }
+    }
+  }
+}

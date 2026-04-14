@@ -1,0 +1,6226 @@
+{
+  "Afghanistan": {
+    "year": 2020,
+    "totalMonthly_local": 13202.245,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 13202.245,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 18338.642,
+        "ratioToTotal": 1.389
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 12435.43,
+        "ratioToTotal": 0.942
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 12796.383,
+        "ratioToTotal": 0.969
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 16089.26,
+        "ratioToTotal": 1.219
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 11059.446,
+        "ratioToTotal": 0.838
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 10631.834,
+        "ratioToTotal": 0.805
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 8627.887,
+        "ratioToTotal": 0.654
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 12834.882,
+        "ratioToTotal": 0.972
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 8590.348,
+        "ratioToTotal": 0.651
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 15355.744,
+        "ratioToTotal": 1.163
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 23319.087,
+        "ratioToTotal": 1.766
+      }
+    }
+  },
+  "Angola": {
+    "year": 2024,
+    "totalMonthly_local": 111867.158,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 111867.158,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 192813.719,
+        "ratioToTotal": 1.724
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 193625.935,
+        "ratioToTotal": 1.731
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 212795.417,
+        "ratioToTotal": 1.902
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 113310.834,
+        "ratioToTotal": 1.013
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 73301.188,
+        "ratioToTotal": 0.655
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 45762.988,
+        "ratioToTotal": 0.409
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 77263.028,
+        "ratioToTotal": 0.691
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 84783.289,
+        "ratioToTotal": 0.758
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 40787.778,
+        "ratioToTotal": 0.365
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 186065.205,
+        "ratioToTotal": 1.663
+      }
+    }
+  },
+  "Albania": {
+    "year": 2022,
+    "totalMonthly_local": 61898,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 61898,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 103730,
+        "ratioToTotal": 1.676
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 81801,
+        "ratioToTotal": 1.322
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 68865,
+        "ratioToTotal": 1.113
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 64638,
+        "ratioToTotal": 1.044
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 46850,
+        "ratioToTotal": 0.757
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 40329,
+        "ratioToTotal": 0.652
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 44316,
+        "ratioToTotal": 0.716
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 45948,
+        "ratioToTotal": 0.742
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 39125,
+        "ratioToTotal": 0.632
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 71721,
+        "ratioToTotal": 1.159
+      }
+    }
+  },
+  "Argentina": {
+    "year": 2024,
+    "totalMonthly_local": 592570.714,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 592570.714,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1688223.884,
+        "ratioToTotal": 2.849
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 767947.048,
+        "ratioToTotal": 1.296
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 785961.733,
+        "ratioToTotal": 1.326
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 715033.05,
+        "ratioToTotal": 1.207
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 455799.693,
+        "ratioToTotal": 0.769
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 478309.026,
+        "ratioToTotal": 0.807
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 491709.516,
+        "ratioToTotal": 0.83
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 664405.391,
+        "ratioToTotal": 1.121
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 275334.751,
+        "ratioToTotal": 0.465
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 803939.657,
+        "ratioToTotal": 1.357
+      }
+    }
+  },
+  "Austria": {
+    "year": 2024,
+    "totalMonthly_local": 4922.564,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4922.564,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 7827.93,
+        "ratioToTotal": 1.59
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6141.586,
+        "ratioToTotal": 1.248
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 5325.259,
+        "ratioToTotal": 1.082
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4064.737,
+        "ratioToTotal": 0.826
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3311.314,
+        "ratioToTotal": 0.673
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3406.026,
+        "ratioToTotal": 0.692
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4575.315,
+        "ratioToTotal": 0.929
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4547.75,
+        "ratioToTotal": 0.924
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2984.079,
+        "ratioToTotal": 0.606
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 6237.959,
+        "ratioToTotal": 1.267
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 3943.612,
+        "ratioToTotal": 0.801
+      }
+    }
+  },
+  "Burundi": {
+    "year": 2020,
+    "totalMonthly_local": 96843.791,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 96843.791,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 337983.146,
+        "ratioToTotal": 3.49
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 241885.669,
+        "ratioToTotal": 2.498
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 258442.183,
+        "ratioToTotal": 2.669
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 268106.331,
+        "ratioToTotal": 2.768
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 90017.145,
+        "ratioToTotal": 0.93
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 36747.904,
+        "ratioToTotal": 0.379
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 132095.938,
+        "ratioToTotal": 1.364
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 134715.712,
+        "ratioToTotal": 1.391
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 45953.502,
+        "ratioToTotal": 0.475
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 273868.887,
+        "ratioToTotal": 2.828
+      }
+    }
+  },
+  "Belgium": {
+    "year": 2024,
+    "totalMonthly_local": 6240.786,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 6240.786,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 10112.021,
+        "ratioToTotal": 1.62
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 7126.034,
+        "ratioToTotal": 1.142
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 6523.947,
+        "ratioToTotal": 1.045
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 5704.734,
+        "ratioToTotal": 0.914
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 4334.168,
+        "ratioToTotal": 0.694
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 5653.2,
+        "ratioToTotal": 0.906
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 5688.319,
+        "ratioToTotal": 0.911
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 5458.872,
+        "ratioToTotal": 0.875
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3676.626,
+        "ratioToTotal": 0.589
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 7155.516,
+        "ratioToTotal": 1.147
+      }
+    }
+  },
+  "Benin": {
+    "year": 2022,
+    "totalMonthly_local": 84524.927,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 84524.927,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 318143.081,
+        "ratioToTotal": 3.764
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 136061.043,
+        "ratioToTotal": 1.61
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 101337.375,
+        "ratioToTotal": 1.199
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 128542.179,
+        "ratioToTotal": 1.521
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 48192.148,
+        "ratioToTotal": 0.57
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 33549.456,
+        "ratioToTotal": 0.397
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 57711.139,
+        "ratioToTotal": 0.683
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 73925.834,
+        "ratioToTotal": 0.875
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 39138.227,
+        "ratioToTotal": 0.463
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 138828.983,
+        "ratioToTotal": 1.642
+      }
+    }
+  },
+  "Burkina Faso": {
+    "year": 2024,
+    "totalMonthly_local": 102930.888,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 102930.888,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 147480.515,
+        "ratioToTotal": 1.433
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 187714.625,
+        "ratioToTotal": 1.824
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 117549.142,
+        "ratioToTotal": 1.142
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 166352.396,
+        "ratioToTotal": 1.616
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 68703.96,
+        "ratioToTotal": 0.667
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 63041.599,
+        "ratioToTotal": 0.612
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 55988.184,
+        "ratioToTotal": 0.544
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 113589.543,
+        "ratioToTotal": 1.104
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 54060.494,
+        "ratioToTotal": 0.525
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 144865.168,
+        "ratioToTotal": 1.407
+      }
+    }
+  },
+  "Bangladesh": {
+    "year": 2024,
+    "totalMonthly_local": 15516.525,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 15516.525,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 37690.279,
+        "ratioToTotal": 2.429
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 23052.79,
+        "ratioToTotal": 1.486
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 22516.854,
+        "ratioToTotal": 1.451
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 22677.55,
+        "ratioToTotal": 1.462
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 14455.173,
+        "ratioToTotal": 0.932
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 12943.573,
+        "ratioToTotal": 0.834
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 14625.06,
+        "ratioToTotal": 0.943
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 15503.69,
+        "ratioToTotal": 0.999
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 10647.292,
+        "ratioToTotal": 0.686
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 28908.242,
+        "ratioToTotal": 1.863
+      }
+    }
+  },
+  "Bulgaria": {
+    "year": 2024,
+    "totalMonthly_local": 1199.781,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1199.781,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1827.089,
+        "ratioToTotal": 1.523
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1845.193,
+        "ratioToTotal": 1.538
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1416.531,
+        "ratioToTotal": 1.181
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1202.723,
+        "ratioToTotal": 1.002
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 875.272,
+        "ratioToTotal": 0.73
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 749.309,
+        "ratioToTotal": 0.625
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1019.157,
+        "ratioToTotal": 0.849
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 994.854,
+        "ratioToTotal": 0.829
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 739.79,
+        "ratioToTotal": 0.617
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1580.608,
+        "ratioToTotal": 1.317
+      }
+    }
+  },
+  "Bahamas": {
+    "year": 2019,
+    "totalMonthly_local": 4585.317,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4585.317,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 5639.809,
+        "ratioToTotal": 1.23
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 5733.554,
+        "ratioToTotal": 1.25
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 5176.388,
+        "ratioToTotal": 1.129
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4046.402,
+        "ratioToTotal": 0.882
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 4207.472,
+        "ratioToTotal": 0.918
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3284.258,
+        "ratioToTotal": 0.716
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4707.86,
+        "ratioToTotal": 1.027
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4825.001,
+        "ratioToTotal": 1.052
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 4054.492,
+        "ratioToTotal": 0.884
+      }
+    }
+  },
+  "Bosnia and Herzegovina": {
+    "year": 2024,
+    "totalMonthly_local": 1671.398,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1671.398,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2182.213,
+        "ratioToTotal": 1.306
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1987.439,
+        "ratioToTotal": 1.189
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1851.438,
+        "ratioToTotal": 1.108
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1763.568,
+        "ratioToTotal": 1.055
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1448.69,
+        "ratioToTotal": 0.867
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1446.425,
+        "ratioToTotal": 0.865
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1629.463,
+        "ratioToTotal": 0.975
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1716.934,
+        "ratioToTotal": 1.027
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1418.819,
+        "ratioToTotal": 0.849
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1934.116,
+        "ratioToTotal": 1.157
+      }
+    }
+  },
+  "Belarus": {
+    "year": 2021,
+    "totalMonthly_local": 1385.7,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1385.7,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2098.3,
+        "ratioToTotal": 1.514
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1826.2,
+        "ratioToTotal": 1.318
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1359.5,
+        "ratioToTotal": 0.981
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1070.2,
+        "ratioToTotal": 0.772
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 839.9,
+        "ratioToTotal": 0.606
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 966.5,
+        "ratioToTotal": 0.697
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1392.2,
+        "ratioToTotal": 1.005
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1347.5,
+        "ratioToTotal": 0.972
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 751.9,
+        "ratioToTotal": 0.543
+      }
+    }
+  },
+  "Belize": {
+    "year": 2020,
+    "totalMonthly_local": 1020,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1020,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3420,
+        "ratioToTotal": 3.353
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2460,
+        "ratioToTotal": 2.412
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1980,
+        "ratioToTotal": 1.941
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1140,
+        "ratioToTotal": 1.118
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 780,
+        "ratioToTotal": 0.765
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 780,
+        "ratioToTotal": 0.765
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1020,
+        "ratioToTotal": 1.0
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1020,
+        "ratioToTotal": 1.0
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 660,
+        "ratioToTotal": 0.647
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1500,
+        "ratioToTotal": 1.471
+      }
+    }
+  },
+  "Bolivia (Plurinational State of)": {
+    "year": 2024,
+    "totalMonthly_local": 3229.208,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3229.208,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 8340.379,
+        "ratioToTotal": 2.583
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 4946.019,
+        "ratioToTotal": 1.532
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3806.533,
+        "ratioToTotal": 1.179
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3059.93,
+        "ratioToTotal": 0.948
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2095.161,
+        "ratioToTotal": 0.649
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2420.931,
+        "ratioToTotal": 0.75
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2805.26,
+        "ratioToTotal": 0.869
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3522.352,
+        "ratioToTotal": 1.091
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2080.311,
+        "ratioToTotal": 0.644
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 6098.369,
+        "ratioToTotal": 1.889
+      }
+    }
+  },
+  "Brazil": {
+    "year": 2025,
+    "totalMonthly_local": 3393.154,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3393.154,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 8000.588,
+        "ratioToTotal": 2.358
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6551.792,
+        "ratioToTotal": 1.931
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 4332.045,
+        "ratioToTotal": 1.277
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2762.833,
+        "ratioToTotal": 0.814
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2302.446,
+        "ratioToTotal": 0.679
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1981.89,
+        "ratioToTotal": 0.584
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2642.699,
+        "ratioToTotal": 0.779
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2809.373,
+        "ratioToTotal": 0.828
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1624.751,
+        "ratioToTotal": 0.479
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 7313.901,
+        "ratioToTotal": 2.155
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 1970.998,
+        "ratioToTotal": 0.581
+      }
+    }
+  },
+  "Bhutan": {
+    "year": 2024,
+    "totalMonthly_local": 28210.114,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 28210.114,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 40070.024,
+        "ratioToTotal": 1.42
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 43565.967,
+        "ratioToTotal": 1.544
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 28884.613,
+        "ratioToTotal": 1.024
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 23184.387,
+        "ratioToTotal": 0.822
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 22223.355,
+        "ratioToTotal": 0.788
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 15222.587,
+        "ratioToTotal": 0.54
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 21562.336,
+        "ratioToTotal": 0.764
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 22199.56,
+        "ratioToTotal": 0.787
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 17285.731,
+        "ratioToTotal": 0.613
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 33513.193,
+        "ratioToTotal": 1.188
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 16581.233,
+        "ratioToTotal": 0.588
+      }
+    }
+  },
+  "Botswana": {
+    "year": 2024,
+    "totalMonthly_local": 6545.615,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 6545.615,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 18840.34,
+        "ratioToTotal": 2.878
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 20833.443,
+        "ratioToTotal": 3.183
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 12648.959,
+        "ratioToTotal": 1.932
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4701.612,
+        "ratioToTotal": 0.718
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3662.277,
+        "ratioToTotal": 0.56
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4743.589,
+        "ratioToTotal": 0.725
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4678.87,
+        "ratioToTotal": 0.715
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1445.005,
+        "ratioToTotal": 0.221
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 17018.171,
+        "ratioToTotal": 2.6
+      }
+    }
+  },
+  "Switzerland": {
+    "year": 2024,
+    "totalMonthly_local": 6374.793,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 6374.793,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 11088.618,
+        "ratioToTotal": 1.739
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 7886.245,
+        "ratioToTotal": 1.237
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 6464.19,
+        "ratioToTotal": 1.014
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 5538.268,
+        "ratioToTotal": 0.869
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3748.345,
+        "ratioToTotal": 0.588
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3877.492,
+        "ratioToTotal": 0.608
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 5250.817,
+        "ratioToTotal": 0.824
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 5612.895,
+        "ratioToTotal": 0.88
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3609.39,
+        "ratioToTotal": 0.566
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 9243.896,
+        "ratioToTotal": 1.45
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 3993.013,
+        "ratioToTotal": 0.626
+      }
+    }
+  },
+  "Chile": {
+    "year": 2024,
+    "totalMonthly_local": 966377.602,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 966377.602,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2363310.334,
+        "ratioToTotal": 2.446
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1518474.18,
+        "ratioToTotal": 1.571
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 996524.286,
+        "ratioToTotal": 1.031
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 783678.99,
+        "ratioToTotal": 0.811
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 639436.722,
+        "ratioToTotal": 0.662
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 603983.097,
+        "ratioToTotal": 0.625
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 749356.603,
+        "ratioToTotal": 0.775
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 796012.584,
+        "ratioToTotal": 0.824
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 500382.708,
+        "ratioToTotal": 0.518
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 1089801.998,
+        "ratioToTotal": 1.128
+      }
+    }
+  },
+  "Côte d'Ivoire": {
+    "year": 2022,
+    "totalMonthly_local": 128952.459,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 128952.459,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 368274.358,
+        "ratioToTotal": 2.856
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 296338.085,
+        "ratioToTotal": 2.298
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 230595.36,
+        "ratioToTotal": 1.788
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 175990.196,
+        "ratioToTotal": 1.365
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 92659.941,
+        "ratioToTotal": 0.719
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 74521.469,
+        "ratioToTotal": 0.578
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 112034.018,
+        "ratioToTotal": 0.869
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 134438.111,
+        "ratioToTotal": 1.043
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 73518.167,
+        "ratioToTotal": 0.57
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 168484.561,
+        "ratioToTotal": 1.307
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 104318.987,
+        "ratioToTotal": 0.809
+      }
+    }
+  },
+  "Cook Islands": {
+    "year": 2023,
+    "totalMonthly_local": 10125.126,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 10125.126,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 11368.086,
+        "ratioToTotal": 1.123
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 8314.771,
+        "ratioToTotal": 0.821
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 12250.97,
+        "ratioToTotal": 1.21
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 9212.081,
+        "ratioToTotal": 0.91
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 8191.394,
+        "ratioToTotal": 0.809
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1112.143,
+        "ratioToTotal": 0.11
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 13877.99,
+        "ratioToTotal": 1.371
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 13097.563,
+        "ratioToTotal": 1.294
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 7986.772,
+        "ratioToTotal": 0.789
+      }
+    }
+  },
+  "Colombia": {
+    "year": 2025,
+    "totalMonthly_local": 2022657.14,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2022657.14,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3527583.622,
+        "ratioToTotal": 1.744
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3858795.811,
+        "ratioToTotal": 1.908
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2513615.361,
+        "ratioToTotal": 1.243
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1878418.171,
+        "ratioToTotal": 0.929
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1537543.204,
+        "ratioToTotal": 0.76
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1358444.865,
+        "ratioToTotal": 0.672
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1584285.62,
+        "ratioToTotal": 0.783
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1684184.942,
+        "ratioToTotal": 0.833
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1260127.889,
+        "ratioToTotal": 0.623
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 3712469.047,
+        "ratioToTotal": 1.835
+      }
+    }
+  },
+  "Comoros": {
+    "year": 2021,
+    "totalMonthly_local": 105355.189,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 105355.189,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 181889.79,
+        "ratioToTotal": 1.726
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 120168.387,
+        "ratioToTotal": 1.141
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 88037.341,
+        "ratioToTotal": 0.836
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 128738.292,
+        "ratioToTotal": 1.222
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 72294.429,
+        "ratioToTotal": 0.686
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 128537.012,
+        "ratioToTotal": 1.22
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 86123.777,
+        "ratioToTotal": 0.817
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 105911.723,
+        "ratioToTotal": 1.005
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 83482.544,
+        "ratioToTotal": 0.792
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 77082.959,
+        "ratioToTotal": 0.732
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 101315.694,
+        "ratioToTotal": 0.962
+      }
+    }
+  },
+  "Costa Rica": {
+    "year": 2025,
+    "totalMonthly_local": 606508.073,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 606508.073,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1803048.97,
+        "ratioToTotal": 2.973
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1230852.894,
+        "ratioToTotal": 2.029
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 719254.351,
+        "ratioToTotal": 1.186
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 521903.993,
+        "ratioToTotal": 0.861
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 425785.574,
+        "ratioToTotal": 0.702
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 468454.759,
+        "ratioToTotal": 0.772
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 485060.324,
+        "ratioToTotal": 0.8
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 454895.079,
+        "ratioToTotal": 0.75
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 339711.238,
+        "ratioToTotal": 0.56
+      }
+    }
+  },
+  "Cyprus": {
+    "year": 2024,
+    "totalMonthly_local": 2697.7,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2697.7,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 6657.822,
+        "ratioToTotal": 2.468
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3665.228,
+        "ratioToTotal": 1.359
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3270.986,
+        "ratioToTotal": 1.213
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1987.072,
+        "ratioToTotal": 0.737
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1974.91,
+        "ratioToTotal": 0.732
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2891.669,
+        "ratioToTotal": 1.072
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2138.971,
+        "ratioToTotal": 0.793
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2339.816,
+        "ratioToTotal": 0.867
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1220.911,
+        "ratioToTotal": 0.453
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2985.9,
+        "ratioToTotal": 1.107
+      }
+    }
+  },
+  "Czechia": {
+    "year": 2024,
+    "totalMonthly_local": 2378.254,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2378.254,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3960.153,
+        "ratioToTotal": 1.665
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3019.338,
+        "ratioToTotal": 1.27
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2520.966,
+        "ratioToTotal": 1.06
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2058.473,
+        "ratioToTotal": 0.866
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1788.4,
+        "ratioToTotal": 0.752
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1759.06,
+        "ratioToTotal": 0.74
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2157.398,
+        "ratioToTotal": 0.907
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2093.969,
+        "ratioToTotal": 0.88
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1545.519,
+        "ratioToTotal": 0.65
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 3070.467,
+        "ratioToTotal": 1.291
+      }
+    }
+  },
+  "Germany": {
+    "year": 2022,
+    "totalMonthly_local": 4412.67,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4412.67,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 8800.16,
+        "ratioToTotal": 1.994
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6012.28,
+        "ratioToTotal": 1.363
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 4532.114,
+        "ratioToTotal": 1.027
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3803.978,
+        "ratioToTotal": 0.862
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2769.428,
+        "ratioToTotal": 0.628
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3149.852,
+        "ratioToTotal": 0.714
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 3933.744,
+        "ratioToTotal": 0.891
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3678.863,
+        "ratioToTotal": 0.834
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2354.425,
+        "ratioToTotal": 0.534
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 4677.989,
+        "ratioToTotal": 1.06
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 4591.995,
+        "ratioToTotal": 1.041
+      }
+    }
+  },
+  "Denmark": {
+    "year": 2024,
+    "totalMonthly_local": 5853.421,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 5853.421,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 10170.048,
+        "ratioToTotal": 1.737
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6843.42,
+        "ratioToTotal": 1.169
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 6491.945,
+        "ratioToTotal": 1.109
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 5210.476,
+        "ratioToTotal": 0.89
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3828.505,
+        "ratioToTotal": 0.654
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3742.852,
+        "ratioToTotal": 0.639
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 5413.573,
+        "ratioToTotal": 0.925
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 5289.938,
+        "ratioToTotal": 0.904
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3919.459,
+        "ratioToTotal": 0.67
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 3562.566,
+        "ratioToTotal": 0.609
+      }
+    }
+  },
+  "Dominican Republic": {
+    "year": 2025,
+    "totalMonthly_local": 30072.139,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 30072.139,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 75768.404,
+        "ratioToTotal": 2.52
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 56010.683,
+        "ratioToTotal": 1.863
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 33951.092,
+        "ratioToTotal": 1.129
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 25425.432,
+        "ratioToTotal": 0.845
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 24510.235,
+        "ratioToTotal": 0.815
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 20101.763,
+        "ratioToTotal": 0.668
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 27690.501,
+        "ratioToTotal": 0.921
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 26551.419,
+        "ratioToTotal": 0.883
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 17945.072,
+        "ratioToTotal": 0.597
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 38996.805,
+        "ratioToTotal": 1.297
+      }
+    }
+  },
+  "Ecuador": {
+    "year": 2025,
+    "totalMonthly_local": 538.453,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 538.453,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1402.395,
+        "ratioToTotal": 2.604
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 948.946,
+        "ratioToTotal": 1.762
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 756.04,
+        "ratioToTotal": 1.404
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 636.307,
+        "ratioToTotal": 1.182
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 502.465,
+        "ratioToTotal": 0.933
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 319.523,
+        "ratioToTotal": 0.593
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 466.48,
+        "ratioToTotal": 0.866
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 594.528,
+        "ratioToTotal": 1.104
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 381.633,
+        "ratioToTotal": 0.709
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1220.584,
+        "ratioToTotal": 2.267
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 1415.587,
+        "ratioToTotal": 2.629
+      }
+    }
+  },
+  "Egypt": {
+    "year": 2024,
+    "totalMonthly_local": 4953.561,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4953.561,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 6400.476,
+        "ratioToTotal": 1.292
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 5304.179,
+        "ratioToTotal": 1.071
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 5088.294,
+        "ratioToTotal": 1.027
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 5003.017,
+        "ratioToTotal": 1.01
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 4179.866,
+        "ratioToTotal": 0.844
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 4762.349,
+        "ratioToTotal": 0.961
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 5260.37,
+        "ratioToTotal": 1.062
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 5033.513,
+        "ratioToTotal": 1.016
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 4381.214,
+        "ratioToTotal": 0.884
+      }
+    }
+  },
+  "Spain": {
+    "year": 2024,
+    "totalMonthly_local": 3039.886,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3039.886,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 6285.514,
+        "ratioToTotal": 2.068
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 4314.196,
+        "ratioToTotal": 1.419
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3291.492,
+        "ratioToTotal": 1.083
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2882.58,
+        "ratioToTotal": 0.948
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2158.35,
+        "ratioToTotal": 0.71
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1962.398,
+        "ratioToTotal": 0.646
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2656.741,
+        "ratioToTotal": 0.874
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2710.957,
+        "ratioToTotal": 0.892
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1879.804,
+        "ratioToTotal": 0.618
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 3536.6,
+        "ratioToTotal": 1.163
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 2588.158,
+        "ratioToTotal": 0.851
+      }
+    }
+  },
+  "Estonia": {
+    "year": 2024,
+    "totalMonthly_local": 2626.26,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2626.26,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 4771.388,
+        "ratioToTotal": 1.817
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3561.789,
+        "ratioToTotal": 1.356
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2796.683,
+        "ratioToTotal": 1.065
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2036.315,
+        "ratioToTotal": 0.775
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1650.036,
+        "ratioToTotal": 0.628
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1518.275,
+        "ratioToTotal": 0.578
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2083.986,
+        "ratioToTotal": 0.794
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1900.71,
+        "ratioToTotal": 0.724
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1119.97,
+        "ratioToTotal": 0.426
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2433.996,
+        "ratioToTotal": 0.927
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 2412.88,
+        "ratioToTotal": 0.919
+      }
+    }
+  },
+  "Ethiopia": {
+    "year": 2021,
+    "totalMonthly_local": 4195.965,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4195.965,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 8009.96,
+        "ratioToTotal": 1.909
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 7889.02,
+        "ratioToTotal": 1.88
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 5650.086,
+        "ratioToTotal": 1.347
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4245.095,
+        "ratioToTotal": 1.012
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2223.081,
+        "ratioToTotal": 0.53
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2951.902,
+        "ratioToTotal": 0.704
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 3100.245,
+        "ratioToTotal": 0.739
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4494.448,
+        "ratioToTotal": 1.071
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2102.054,
+        "ratioToTotal": 0.501
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 3910.671,
+        "ratioToTotal": 0.932
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 4636.635,
+        "ratioToTotal": 1.105
+      }
+    }
+  },
+  "Finland": {
+    "year": 2024,
+    "totalMonthly_local": 4928.678,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4928.678,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 10287.298,
+        "ratioToTotal": 2.087
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6035.196,
+        "ratioToTotal": 1.225
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 4996.672,
+        "ratioToTotal": 1.014
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3946.812,
+        "ratioToTotal": 0.801
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3597.38,
+        "ratioToTotal": 0.73
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3295.865,
+        "ratioToTotal": 0.669
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4266.766,
+        "ratioToTotal": 0.866
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4090.833,
+        "ratioToTotal": 0.83
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3191.487,
+        "ratioToTotal": 0.648
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 6566.907,
+        "ratioToTotal": 1.332
+      }
+    }
+  },
+  "Fiji": {
+    "year": 2024,
+    "totalMonthly_local": 1392.11,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1392.11,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2233.391,
+        "ratioToTotal": 1.604
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1873.485,
+        "ratioToTotal": 1.346
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1789.981,
+        "ratioToTotal": 1.286
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1367.692,
+        "ratioToTotal": 0.982
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1144.603,
+        "ratioToTotal": 0.822
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 977.556,
+        "ratioToTotal": 0.702
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1231.688,
+        "ratioToTotal": 0.885
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1072.625,
+        "ratioToTotal": 0.771
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 966.001,
+        "ratioToTotal": 0.694
+      }
+    }
+  },
+  "France": {
+    "year": 2024,
+    "totalMonthly_local": 2196.954,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2196.954,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3692.75,
+        "ratioToTotal": 1.681
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2913.402,
+        "ratioToTotal": 1.326
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2167.007,
+        "ratioToTotal": 0.986
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1807.493,
+        "ratioToTotal": 0.823
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1585.524,
+        "ratioToTotal": 0.722
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1483.197,
+        "ratioToTotal": 0.675
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1991.229,
+        "ratioToTotal": 0.906
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1921.785,
+        "ratioToTotal": 0.875
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1303.92,
+        "ratioToTotal": 0.594
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2712.276,
+        "ratioToTotal": 1.235
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 2002.504,
+        "ratioToTotal": 0.911
+      }
+    }
+  },
+  "United Kingdom of Great Britain and Northern Ireland": {
+    "year": 2025,
+    "totalMonthly_local": 3156.794,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3156.794,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 4576.209,
+        "ratioToTotal": 1.45
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3870.987,
+        "ratioToTotal": 1.226
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3167.988,
+        "ratioToTotal": 1.004
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2280.333,
+        "ratioToTotal": 0.722
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1953.373,
+        "ratioToTotal": 0.619
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2151.672,
+        "ratioToTotal": 0.682
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2973.693,
+        "ratioToTotal": 0.942
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2732.589,
+        "ratioToTotal": 0.866
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1503.748,
+        "ratioToTotal": 0.476
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 4977.911,
+        "ratioToTotal": 1.577
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 2719.183,
+        "ratioToTotal": 0.861
+      }
+    }
+  },
+  "Georgia": {
+    "year": 2021,
+    "totalMonthly_local": 1304.52,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1304.52,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2414.719,
+        "ratioToTotal": 1.851
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1333.716,
+        "ratioToTotal": 1.022
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1193.656,
+        "ratioToTotal": 0.915
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1144.552,
+        "ratioToTotal": 0.877
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 911.644,
+        "ratioToTotal": 0.699
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 791.509,
+        "ratioToTotal": 0.607
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1178.581,
+        "ratioToTotal": 0.903
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1112.133,
+        "ratioToTotal": 0.853
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 674.095,
+        "ratioToTotal": 0.517
+      }
+    }
+  },
+  "Ghana": {
+    "year": 2024,
+    "totalMonthly_local": 2578.889,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2578.889,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3929.227,
+        "ratioToTotal": 1.524
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2969.798,
+        "ratioToTotal": 1.152
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2755.78,
+        "ratioToTotal": 1.069
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2212.795,
+        "ratioToTotal": 0.858
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2031.514,
+        "ratioToTotal": 0.788
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2281.832,
+        "ratioToTotal": 0.885
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2944.734,
+        "ratioToTotal": 1.142
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2594.554,
+        "ratioToTotal": 1.006
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2490.373,
+        "ratioToTotal": 0.966
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 4193.769,
+        "ratioToTotal": 1.626
+      }
+    }
+  },
+  "Guinea": {
+    "year": 2019,
+    "totalMonthly_local": 1765988.126,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1765988.126,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2305321.631,
+        "ratioToTotal": 1.305
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1768427.528,
+        "ratioToTotal": 1.001
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2179270.753,
+        "ratioToTotal": 1.234
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1812720.719,
+        "ratioToTotal": 1.026
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2123124.118,
+        "ratioToTotal": 1.202
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1156684.868,
+        "ratioToTotal": 0.655
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1063903.487,
+        "ratioToTotal": 0.602
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1849322.387,
+        "ratioToTotal": 1.047
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 994976.067,
+        "ratioToTotal": 0.563
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2018949.841,
+        "ratioToTotal": 1.143
+      }
+    }
+  },
+  "Guinea-Bissau": {
+    "year": 2022,
+    "totalMonthly_local": 87940.423,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 87940.423,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 191145.081,
+        "ratioToTotal": 2.174
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 120440.402,
+        "ratioToTotal": 1.37
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 101183.81,
+        "ratioToTotal": 1.151
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 119222.219,
+        "ratioToTotal": 1.356
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 67047.14,
+        "ratioToTotal": 0.762
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 83403.674,
+        "ratioToTotal": 0.948
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 74509.166,
+        "ratioToTotal": 0.847
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 76850.169,
+        "ratioToTotal": 0.874
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 50941.107,
+        "ratioToTotal": 0.579
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 141431.807,
+        "ratioToTotal": 1.608
+      }
+    }
+  },
+  "Greece": {
+    "year": 2024,
+    "totalMonthly_local": 1977.876,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1977.876,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 4205.588,
+        "ratioToTotal": 2.126
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2357.676,
+        "ratioToTotal": 1.192
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2060.895,
+        "ratioToTotal": 1.042
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1873.249,
+        "ratioToTotal": 0.947
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1712.458,
+        "ratioToTotal": 0.866
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1392.003,
+        "ratioToTotal": 0.704
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1945.374,
+        "ratioToTotal": 0.984
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1995.733,
+        "ratioToTotal": 1.009
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1523.494,
+        "ratioToTotal": 0.77
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2228.339,
+        "ratioToTotal": 1.127
+      }
+    }
+  },
+  "Guatemala": {
+    "year": 2024,
+    "totalMonthly_local": 3604.843,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3604.843,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 9996.65,
+        "ratioToTotal": 2.773
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 7386.289,
+        "ratioToTotal": 2.049
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 6004.67,
+        "ratioToTotal": 1.666
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4991.967,
+        "ratioToTotal": 1.385
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3403.182,
+        "ratioToTotal": 0.944
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2168.125,
+        "ratioToTotal": 0.601
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 3046.836,
+        "ratioToTotal": 0.845
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4051.68,
+        "ratioToTotal": 1.124
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2015.649,
+        "ratioToTotal": 0.559
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 4891.805,
+        "ratioToTotal": 1.357
+      }
+    }
+  },
+  "Guyana": {
+    "year": 2019,
+    "totalMonthly_local": 81920.778,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 81920.778,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 129227.507,
+        "ratioToTotal": 1.577
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 100628.051,
+        "ratioToTotal": 1.228
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 101057.789,
+        "ratioToTotal": 1.234
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 82249.72,
+        "ratioToTotal": 1.004
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 67596.328,
+        "ratioToTotal": 0.825
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 71491.668,
+        "ratioToTotal": 0.873
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 86149.064,
+        "ratioToTotal": 1.052
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 100431.023,
+        "ratioToTotal": 1.226
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 65455.449,
+        "ratioToTotal": 0.799
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 94515.364,
+        "ratioToTotal": 1.154
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 69948.464,
+        "ratioToTotal": 0.854
+      }
+    }
+  },
+  "Honduras": {
+    "year": 2025,
+    "totalMonthly_local": 11248.067,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 11248.067,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 24284.189,
+        "ratioToTotal": 2.159
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 25137.216,
+        "ratioToTotal": 2.235
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 18549.034,
+        "ratioToTotal": 1.649
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 16593.476,
+        "ratioToTotal": 1.475
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 10502,
+        "ratioToTotal": 0.934
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 8693.988,
+        "ratioToTotal": 0.773
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 11384.503,
+        "ratioToTotal": 1.012
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 12467.732,
+        "ratioToTotal": 1.108
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 6150.262,
+        "ratioToTotal": 0.547
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 14667.656,
+        "ratioToTotal": 1.304
+      }
+    }
+  },
+  "Croatia": {
+    "year": 2024,
+    "totalMonthly_local": 2283.342,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2283.342,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 4079.087,
+        "ratioToTotal": 1.786
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3043.979,
+        "ratioToTotal": 1.333
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2726.854,
+        "ratioToTotal": 1.194
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2099.476,
+        "ratioToTotal": 0.919
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1633.315,
+        "ratioToTotal": 0.715
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1726.548,
+        "ratioToTotal": 0.756
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2041.342,
+        "ratioToTotal": 0.894
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1996.846,
+        "ratioToTotal": 0.875
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1537.139,
+        "ratioToTotal": 0.673
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2949.54,
+        "ratioToTotal": 1.292
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 2644.888,
+        "ratioToTotal": 1.158
+      }
+    }
+  },
+  "Hungary": {
+    "year": 2024,
+    "totalMonthly_local": 1105.324,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1105.324,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1528.425,
+        "ratioToTotal": 1.383
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1346.023,
+        "ratioToTotal": 1.218
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1136.599,
+        "ratioToTotal": 1.028
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1036.363,
+        "ratioToTotal": 0.938
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 958.181,
+        "ratioToTotal": 0.867
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 901.675,
+        "ratioToTotal": 0.816
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1018.464,
+        "ratioToTotal": 0.921
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1035.99,
+        "ratioToTotal": 0.937
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 848.233,
+        "ratioToTotal": 0.767
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1176.637,
+        "ratioToTotal": 1.065
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 1025.352,
+        "ratioToTotal": 0.928
+      }
+    }
+  },
+  "Indonesia": {
+    "year": 2023,
+    "totalMonthly_local": 2776803.875,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2776803.875,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 7207748.358,
+        "ratioToTotal": 2.596
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3435056.252,
+        "ratioToTotal": 1.237
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 4612193.609,
+        "ratioToTotal": 1.661
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3596094.342,
+        "ratioToTotal": 1.295
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2461448.636,
+        "ratioToTotal": 0.886
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1715659.428,
+        "ratioToTotal": 0.618
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2511833.086,
+        "ratioToTotal": 0.905
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3210028.878,
+        "ratioToTotal": 1.156
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1899582.285,
+        "ratioToTotal": 0.684
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 5913193.076,
+        "ratioToTotal": 2.129
+      }
+    }
+  },
+  "India": {
+    "year": 2024,
+    "totalMonthly_local": 20811.6,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 20811.6,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 44669.172,
+        "ratioToTotal": 2.146
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 36140.715,
+        "ratioToTotal": 1.737
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 26037.321,
+        "ratioToTotal": 1.251
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 24388.406,
+        "ratioToTotal": 1.172
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 14849.184,
+        "ratioToTotal": 0.714
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 11954.235,
+        "ratioToTotal": 0.574
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 15860.405,
+        "ratioToTotal": 0.762
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 16421.779,
+        "ratioToTotal": 0.789
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 10237.291,
+        "ratioToTotal": 0.492
+      }
+    }
+  },
+  "Ireland": {
+    "year": 2024,
+    "totalMonthly_local": 4799.091,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4799.091,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 7918.623,
+        "ratioToTotal": 1.65
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6785.328,
+        "ratioToTotal": 1.414
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 4754.742,
+        "ratioToTotal": 0.991
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3456.203,
+        "ratioToTotal": 0.72
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2765.786,
+        "ratioToTotal": 0.576
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2322.378,
+        "ratioToTotal": 0.484
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4153.105,
+        "ratioToTotal": 0.865
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3842.27,
+        "ratioToTotal": 0.801
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2601.104,
+        "ratioToTotal": 0.542
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 5808.762,
+        "ratioToTotal": 1.21
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 4704.307,
+        "ratioToTotal": 0.98
+      }
+    }
+  },
+  "Iceland": {
+    "year": 2020,
+    "totalMonthly_local": 5558.226,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 5558.226,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 8351.903,
+        "ratioToTotal": 1.503
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6472.953,
+        "ratioToTotal": 1.165
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 5614.924,
+        "ratioToTotal": 1.01
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4857.429,
+        "ratioToTotal": 0.874
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3665.764,
+        "ratioToTotal": 0.66
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 8493.654,
+        "ratioToTotal": 1.528
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 5368.396,
+        "ratioToTotal": 0.966
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4838.203,
+        "ratioToTotal": 0.87
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3772.174,
+        "ratioToTotal": 0.679
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 4951.169,
+        "ratioToTotal": 0.891
+      }
+    }
+  },
+  "Israel": {
+    "year": 2021,
+    "totalMonthly_local": 10928,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 10928,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 20464,
+        "ratioToTotal": 1.873
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 15500,
+        "ratioToTotal": 1.418
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 11029,
+        "ratioToTotal": 1.009
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 7398,
+        "ratioToTotal": 0.677
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 5875,
+        "ratioToTotal": 0.538
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 8185,
+        "ratioToTotal": 0.749
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 9487,
+        "ratioToTotal": 0.868
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 9285,
+        "ratioToTotal": 0.85
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 5128,
+        "ratioToTotal": 0.469
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 4177,
+        "ratioToTotal": 0.382
+      }
+    }
+  },
+  "Italy": {
+    "year": 2024,
+    "totalMonthly_local": 3329.878,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3329.878,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 9989.477,
+        "ratioToTotal": 3.0
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 4125.948,
+        "ratioToTotal": 1.239
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3908.384,
+        "ratioToTotal": 1.174
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3266.772,
+        "ratioToTotal": 0.981
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2419.606,
+        "ratioToTotal": 0.727
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2319.329,
+        "ratioToTotal": 0.697
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2913.678,
+        "ratioToTotal": 0.875
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3353.065,
+        "ratioToTotal": 1.007
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2131.244,
+        "ratioToTotal": 0.64
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 4896.289,
+        "ratioToTotal": 1.47
+      }
+    }
+  },
+  "Jordan": {
+    "year": 2023,
+    "totalMonthly_local": 341.397,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 341.397,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 707.337,
+        "ratioToTotal": 2.072
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 501.732,
+        "ratioToTotal": 1.47
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 414.362,
+        "ratioToTotal": 1.214
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 402.38,
+        "ratioToTotal": 1.179
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 298.685,
+        "ratioToTotal": 0.875
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 284.571,
+        "ratioToTotal": 0.834
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 321.124,
+        "ratioToTotal": 0.941
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 338.648,
+        "ratioToTotal": 0.992
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 252.064,
+        "ratioToTotal": 0.738
+      }
+    }
+  },
+  "Kenya": {
+    "year": 2019,
+    "totalMonthly_local": 13932.869,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 13932.869,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 58574.726,
+        "ratioToTotal": 4.204
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 31413.665,
+        "ratioToTotal": 2.255
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 27864.767,
+        "ratioToTotal": 2.0
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 25365.609,
+        "ratioToTotal": 1.821
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 12299.033,
+        "ratioToTotal": 0.883
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 4461.003,
+        "ratioToTotal": 0.32
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 8422.325,
+        "ratioToTotal": 0.604
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 13334.306,
+        "ratioToTotal": 0.957
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 4808.743,
+        "ratioToTotal": 0.345
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 72032.658,
+        "ratioToTotal": 5.17
+      }
+    }
+  },
+  "Cambodia": {
+    "year": 2023,
+    "totalMonthly_local": 1146160.576,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1146160.576,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1878423.114,
+        "ratioToTotal": 1.639
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1698899.917,
+        "ratioToTotal": 1.482
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1521840.26,
+        "ratioToTotal": 1.328
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1506925.828,
+        "ratioToTotal": 1.315
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1081731.652,
+        "ratioToTotal": 0.944
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 867687.862,
+        "ratioToTotal": 0.757
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1112592.59,
+        "ratioToTotal": 0.971
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1165791.269,
+        "ratioToTotal": 1.017
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 807634.876,
+        "ratioToTotal": 0.705
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1591933.69,
+        "ratioToTotal": 1.389
+      }
+    }
+  },
+  "Kiribati": {
+    "year": 2023,
+    "totalMonthly_local": 538.458,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 538.458,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1089.387,
+        "ratioToTotal": 2.023
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 642.021,
+        "ratioToTotal": 1.192
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 651.086,
+        "ratioToTotal": 1.209
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 568.942,
+        "ratioToTotal": 1.057
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 387.842,
+        "ratioToTotal": 0.72
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 628.104,
+        "ratioToTotal": 1.166
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 452.779,
+        "ratioToTotal": 0.841
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 519.492,
+        "ratioToTotal": 0.965
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 442.856,
+        "ratioToTotal": 0.822
+      }
+    }
+  },
+  "Republic of Korea": {
+    "year": 2022,
+    "totalMonthly_local": 4091000,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4091000,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 11902000,
+        "ratioToTotal": 2.909
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 4639000,
+        "ratioToTotal": 1.134
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4556000,
+        "ratioToTotal": 1.114
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2787000,
+        "ratioToTotal": 0.681
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2793000,
+        "ratioToTotal": 0.683
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 3709000,
+        "ratioToTotal": 0.907
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3793000,
+        "ratioToTotal": 0.927
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2389000,
+        "ratioToTotal": 0.584
+      }
+    }
+  },
+  "Lao People's Democratic Republic": {
+    "year": 2022,
+    "totalMonthly_local": 2503995.654,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2503995.654,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2797391.737,
+        "ratioToTotal": 1.117
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2362985.857,
+        "ratioToTotal": 0.944
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2570739.736,
+        "ratioToTotal": 1.027
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2844900.575,
+        "ratioToTotal": 1.136
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1973327.556,
+        "ratioToTotal": 0.788
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2521221.319,
+        "ratioToTotal": 1.007
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2458153.648,
+        "ratioToTotal": 0.982
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3113134.68,
+        "ratioToTotal": 1.243
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2699120.29,
+        "ratioToTotal": 1.078
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1988469.357,
+        "ratioToTotal": 0.794
+      }
+    }
+  },
+  "Lebanon": {
+    "year": 2019,
+    "totalMonthly_local": 1175959.958,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1175959.958,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2562857.928,
+        "ratioToTotal": 2.179
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1662049.459,
+        "ratioToTotal": 1.413
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1434626.337,
+        "ratioToTotal": 1.22
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1288219.106,
+        "ratioToTotal": 1.095
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1013197.437,
+        "ratioToTotal": 0.862
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 647912.074,
+        "ratioToTotal": 0.551
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 867309.067,
+        "ratioToTotal": 0.738
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 952337.598,
+        "ratioToTotal": 0.81
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 642627.784,
+        "ratioToTotal": 0.546
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1519865.625,
+        "ratioToTotal": 1.292
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 1974459.283,
+        "ratioToTotal": 1.679
+      }
+    }
+  },
+  "Sri Lanka": {
+    "year": 2024,
+    "totalMonthly_local": 48842.945,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 48842.945,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 112163.225,
+        "ratioToTotal": 2.296
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 83217.031,
+        "ratioToTotal": 1.704
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 59070.749,
+        "ratioToTotal": 1.209
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 50304.577,
+        "ratioToTotal": 1.03
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 43485.084,
+        "ratioToTotal": 0.89
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 40435.512,
+        "ratioToTotal": 0.828
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 41320.698,
+        "ratioToTotal": 0.846
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 45223.315,
+        "ratioToTotal": 0.926
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 31654.182,
+        "ratioToTotal": 0.648
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 74049.891,
+        "ratioToTotal": 1.516
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 28196.314,
+        "ratioToTotal": 0.577
+      }
+    }
+  },
+  "Lesotho": {
+    "year": 2024,
+    "totalMonthly_local": 2494.242,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2494.242,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 6370.552,
+        "ratioToTotal": 2.554
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6795.819,
+        "ratioToTotal": 2.725
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 5557.181,
+        "ratioToTotal": 2.228
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3145.755,
+        "ratioToTotal": 1.261
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2260.072,
+        "ratioToTotal": 0.906
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1526.592,
+        "ratioToTotal": 0.612
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2208.177,
+        "ratioToTotal": 0.885
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3093.63,
+        "ratioToTotal": 1.24
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1308.246,
+        "ratioToTotal": 0.525
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 6365.304,
+        "ratioToTotal": 2.552
+      }
+    }
+  },
+  "Lithuania": {
+    "year": 2024,
+    "totalMonthly_local": 2106.441,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2106.441,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3306.249,
+        "ratioToTotal": 1.57
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2637.156,
+        "ratioToTotal": 1.252
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2247.969,
+        "ratioToTotal": 1.067
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2005.473,
+        "ratioToTotal": 0.952
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1331.271,
+        "ratioToTotal": 0.632
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2086.235,
+        "ratioToTotal": 0.99
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1687.304,
+        "ratioToTotal": 0.801
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1651.543,
+        "ratioToTotal": 0.784
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1192.813,
+        "ratioToTotal": 0.566
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2361.136,
+        "ratioToTotal": 1.121
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 2822.161,
+        "ratioToTotal": 1.34
+      }
+    }
+  },
+  "Luxembourg": {
+    "year": 2024,
+    "totalMonthly_local": 7864.731,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 7864.731,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 12772.041,
+        "ratioToTotal": 1.624
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 9434.081,
+        "ratioToTotal": 1.2
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 8438.961,
+        "ratioToTotal": 1.073
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 7049.034,
+        "ratioToTotal": 0.896
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 4802.824,
+        "ratioToTotal": 0.611
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 4682.882,
+        "ratioToTotal": 0.595
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4586.645,
+        "ratioToTotal": 0.583
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4973.331,
+        "ratioToTotal": 0.632
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3571.766,
+        "ratioToTotal": 0.454
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 5571.716,
+        "ratioToTotal": 0.708
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 7654.388,
+        "ratioToTotal": 0.973
+      }
+    }
+  },
+  "Latvia": {
+    "year": 2024,
+    "totalMonthly_local": 2138.123,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2138.123,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3725.482,
+        "ratioToTotal": 1.742
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2743.266,
+        "ratioToTotal": 1.283
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2353.698,
+        "ratioToTotal": 1.101
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1791.862,
+        "ratioToTotal": 0.838
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1308.527,
+        "ratioToTotal": 0.612
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1277.109,
+        "ratioToTotal": 0.597
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1773.938,
+        "ratioToTotal": 0.83
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1801.475,
+        "ratioToTotal": 0.843
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1204.595,
+        "ratioToTotal": 0.563
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2864.365,
+        "ratioToTotal": 1.34
+      }
+    }
+  },
+  "Republic of Moldova": {
+    "year": 2025,
+    "totalMonthly_local": 8708.951,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 8708.951,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 13384.117,
+        "ratioToTotal": 1.537
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 11666.925,
+        "ratioToTotal": 1.34
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 9610.484,
+        "ratioToTotal": 1.104
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 9674.118,
+        "ratioToTotal": 1.111
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 7041.173,
+        "ratioToTotal": 0.808
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 5764.881,
+        "ratioToTotal": 0.662
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 8859.092,
+        "ratioToTotal": 1.017
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 8534.402,
+        "ratioToTotal": 0.98
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 5998.202,
+        "ratioToTotal": 0.689
+      }
+    }
+  },
+  "Maldives": {
+    "year": 2019,
+    "totalMonthly_local": 11551.156,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 11551.156,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 19872.949,
+        "ratioToTotal": 1.72
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 14526.278,
+        "ratioToTotal": 1.258
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 13078.801,
+        "ratioToTotal": 1.132
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 9423.546,
+        "ratioToTotal": 0.816
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 8534.819,
+        "ratioToTotal": 0.739
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 9696.081,
+        "ratioToTotal": 0.839
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 10405.447,
+        "ratioToTotal": 0.901
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 9709.292,
+        "ratioToTotal": 0.841
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 6868.848,
+        "ratioToTotal": 0.595
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 18059.78,
+        "ratioToTotal": 1.563
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 10633.638,
+        "ratioToTotal": 0.921
+      }
+    }
+  },
+  "Mexico": {
+    "year": 2025,
+    "totalMonthly_local": 10608.909,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 10608.909,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 22174.039,
+        "ratioToTotal": 2.09
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 17339.477,
+        "ratioToTotal": 1.634
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 13745.681,
+        "ratioToTotal": 1.296
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 11659.072,
+        "ratioToTotal": 1.099
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 8861.928,
+        "ratioToTotal": 0.835
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 7611.663,
+        "ratioToTotal": 0.717
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 11075.979,
+        "ratioToTotal": 1.044
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 11185.456,
+        "ratioToTotal": 1.054
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 7057.241,
+        "ratioToTotal": 0.665
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 17633.157,
+        "ratioToTotal": 1.662
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 11935.534,
+        "ratioToTotal": 1.125
+      }
+    }
+  },
+  "Marshall Islands": {
+    "year": 2019,
+    "totalMonthly_local": 798.347,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 798.347,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1531.499,
+        "ratioToTotal": 1.918
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 968.089,
+        "ratioToTotal": 1.213
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 890.066,
+        "ratioToTotal": 1.115
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 561.134,
+        "ratioToTotal": 0.703
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 606.365,
+        "ratioToTotal": 0.76
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 408.62,
+        "ratioToTotal": 0.512
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 683.076,
+        "ratioToTotal": 0.856
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 648.959,
+        "ratioToTotal": 0.813
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 620.251,
+        "ratioToTotal": 0.777
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 454.362,
+        "ratioToTotal": 0.569
+      }
+    }
+  },
+  "Mali": {
+    "year": 2024,
+    "totalMonthly_local": 106709.88,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 106709.88,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 243430.177,
+        "ratioToTotal": 2.281
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 178684.404,
+        "ratioToTotal": 1.674
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 144753.791,
+        "ratioToTotal": 1.357
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 109268.733,
+        "ratioToTotal": 1.024
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 89152.105,
+        "ratioToTotal": 0.835
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 155861.54,
+        "ratioToTotal": 1.461
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 61694.003,
+        "ratioToTotal": 0.578
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 87754.363,
+        "ratioToTotal": 0.822
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 39924.008,
+        "ratioToTotal": 0.374
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 226008.306,
+        "ratioToTotal": 2.118
+      }
+    }
+  },
+  "Myanmar": {
+    "year": 2020,
+    "totalMonthly_local": 187872.518,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 187872.518,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 433715.884,
+        "ratioToTotal": 2.309
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 223274.802,
+        "ratioToTotal": 1.188
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 310920.294,
+        "ratioToTotal": 1.655
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 260250.145,
+        "ratioToTotal": 1.385
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 194358.059,
+        "ratioToTotal": 1.035
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 133170.811,
+        "ratioToTotal": 0.709
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 193944.608,
+        "ratioToTotal": 1.032
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 235347.457,
+        "ratioToTotal": 1.253
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 143015.72,
+        "ratioToTotal": 0.761
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 230139.661,
+        "ratioToTotal": 1.225
+      }
+    }
+  },
+  "Mongolia": {
+    "year": 2024,
+    "totalMonthly_local": 1655390.417,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1655390.417,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2104147.052,
+        "ratioToTotal": 1.271
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1751645.242,
+        "ratioToTotal": 1.058
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1665329.758,
+        "ratioToTotal": 1.006
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1400681.415,
+        "ratioToTotal": 0.846
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1311769.75,
+        "ratioToTotal": 0.792
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 794930.752,
+        "ratioToTotal": 0.48
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1689678.177,
+        "ratioToTotal": 1.021
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2064324.29,
+        "ratioToTotal": 1.247
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1173761.995,
+        "ratioToTotal": 0.709
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1545173.425,
+        "ratioToTotal": 0.933
+      }
+    }
+  },
+  "Mozambique": {
+    "year": 2022,
+    "totalMonthly_local": 13571.38,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 13571.38,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 52725.984,
+        "ratioToTotal": 3.885
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 25713.321,
+        "ratioToTotal": 1.895
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 17170.133,
+        "ratioToTotal": 1.265
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 14336.558,
+        "ratioToTotal": 1.056
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 8951.483,
+        "ratioToTotal": 0.66
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 5888.84,
+        "ratioToTotal": 0.434
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 11803.251,
+        "ratioToTotal": 0.87
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 12599.562,
+        "ratioToTotal": 0.928
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 5030.683,
+        "ratioToTotal": 0.371
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 16777.44,
+        "ratioToTotal": 1.236
+      }
+    }
+  },
+  "Mauritius": {
+    "year": 2024,
+    "totalMonthly_local": 32444.135,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 32444.135,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 87839.847,
+        "ratioToTotal": 2.707
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 47548.777,
+        "ratioToTotal": 1.466
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 39035.642,
+        "ratioToTotal": 1.203
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 28006.803,
+        "ratioToTotal": 0.863
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 26230.302,
+        "ratioToTotal": 0.808
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 18787.482,
+        "ratioToTotal": 0.579
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 23393.956,
+        "ratioToTotal": 0.721
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 25980.143,
+        "ratioToTotal": 0.801
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 17981.667,
+        "ratioToTotal": 0.554
+      }
+    }
+  },
+  "Malaysia": {
+    "year": 2020,
+    "totalMonthly_local": 2933,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2933,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 6479,
+        "ratioToTotal": 2.209
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 5301,
+        "ratioToTotal": 1.807
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3313,
+        "ratioToTotal": 1.13
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2370,
+        "ratioToTotal": 0.808
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1926,
+        "ratioToTotal": 0.657
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1547,
+        "ratioToTotal": 0.527
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1891,
+        "ratioToTotal": 0.645
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1918,
+        "ratioToTotal": 0.654
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1727,
+        "ratioToTotal": 0.589
+      }
+    }
+  },
+  "Niger": {
+    "year": 2022,
+    "totalMonthly_local": 75078.919,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 75078.919,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 357060.176,
+        "ratioToTotal": 4.756
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 167457.82,
+        "ratioToTotal": 2.23
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 103094.763,
+        "ratioToTotal": 1.373
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 157719.218,
+        "ratioToTotal": 2.101
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 63031.221,
+        "ratioToTotal": 0.84
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 23870.561,
+        "ratioToTotal": 0.318
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 66061.114,
+        "ratioToTotal": 0.88
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 119074.217,
+        "ratioToTotal": 1.586
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 39548.628,
+        "ratioToTotal": 0.527
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 159761.501,
+        "ratioToTotal": 2.128
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 72733.847,
+        "ratioToTotal": 0.969
+      }
+    }
+  },
+  "Nigeria": {
+    "year": 2024,
+    "totalMonthly_local": 76488.787,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 76488.787,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 106454.159,
+        "ratioToTotal": 1.392
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 75811.155,
+        "ratioToTotal": 0.991
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 93785.341,
+        "ratioToTotal": 1.226
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 73343.306,
+        "ratioToTotal": 0.959
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 58952.129,
+        "ratioToTotal": 0.771
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 53935.022,
+        "ratioToTotal": 0.705
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 72955.37,
+        "ratioToTotal": 0.954
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 91001.195,
+        "ratioToTotal": 1.19
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 56609.818,
+        "ratioToTotal": 0.74
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 42097.215,
+        "ratioToTotal": 0.55
+      }
+    }
+  },
+  "Netherlands": {
+    "year": 2024,
+    "totalMonthly_local": 5366.945,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 5366.945,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 9919.773,
+        "ratioToTotal": 1.848
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6342.778,
+        "ratioToTotal": 1.182
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 5226.163,
+        "ratioToTotal": 0.974
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3980.206,
+        "ratioToTotal": 0.742
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3271.954,
+        "ratioToTotal": 0.61
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3296.32,
+        "ratioToTotal": 0.614
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4509.183,
+        "ratioToTotal": 0.84
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4316.649,
+        "ratioToTotal": 0.804
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2438.95,
+        "ratioToTotal": 0.454
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 5206.466,
+        "ratioToTotal": 0.97
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 5677.882,
+        "ratioToTotal": 1.058
+      }
+    }
+  },
+  "Norway": {
+    "year": 2024,
+    "totalMonthly_local": 5535.188,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 5535.188,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 8816.52,
+        "ratioToTotal": 1.593
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6180.189,
+        "ratioToTotal": 1.117
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 6278.129,
+        "ratioToTotal": 1.134
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4464.454,
+        "ratioToTotal": 0.807
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3367.854,
+        "ratioToTotal": 0.608
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3297.425,
+        "ratioToTotal": 0.596
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4890.894,
+        "ratioToTotal": 0.884
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4914.935,
+        "ratioToTotal": 0.888
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3318.175,
+        "ratioToTotal": 0.599
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 8220.869,
+        "ratioToTotal": 1.485
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 4758.396,
+        "ratioToTotal": 0.86
+      }
+    }
+  },
+  "Pakistan": {
+    "year": 2025,
+    "totalMonthly_local": 26628.502,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 26628.502,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 37894.119,
+        "ratioToTotal": 1.423
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 35824.322,
+        "ratioToTotal": 1.345
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 39413.13,
+        "ratioToTotal": 1.48
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 26533.37,
+        "ratioToTotal": 0.996
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 32527.581,
+        "ratioToTotal": 1.222
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 27153.452,
+        "ratioToTotal": 1.02
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 28884.63,
+        "ratioToTotal": 1.085
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 28884.288,
+        "ratioToTotal": 1.085
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 25157.888,
+        "ratioToTotal": 0.945
+      }
+    }
+  },
+  "Panama": {
+    "year": 2024,
+    "totalMonthly_local": 882.816,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 882.816,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1672.156,
+        "ratioToTotal": 1.894
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1628.576,
+        "ratioToTotal": 1.845
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1065.763,
+        "ratioToTotal": 1.207
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 815.298,
+        "ratioToTotal": 0.924
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 659.181,
+        "ratioToTotal": 0.747
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 506.69,
+        "ratioToTotal": 0.574
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 718.532,
+        "ratioToTotal": 0.814
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 738.849,
+        "ratioToTotal": 0.837
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 431.026,
+        "ratioToTotal": 0.488
+      }
+    }
+  },
+  "Peru": {
+    "year": 2025,
+    "totalMonthly_local": 2008.014,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2008.014,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 6814.715,
+        "ratioToTotal": 3.394
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3772.262,
+        "ratioToTotal": 1.879
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2341.866,
+        "ratioToTotal": 1.166
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2086.722,
+        "ratioToTotal": 1.039
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1265.176,
+        "ratioToTotal": 0.63
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1948.357,
+        "ratioToTotal": 0.97
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1664.143,
+        "ratioToTotal": 0.829
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2061.39,
+        "ratioToTotal": 1.027
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1261.036,
+        "ratioToTotal": 0.628
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 3499.536,
+        "ratioToTotal": 1.743
+      }
+    }
+  },
+  "Philippines": {
+    "year": 2023,
+    "totalMonthly_local": 17604.959,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 17604.959,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 36496.141,
+        "ratioToTotal": 2.073
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 33501.018,
+        "ratioToTotal": 1.903
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 23482.746,
+        "ratioToTotal": 1.334
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 20817.056,
+        "ratioToTotal": 1.182
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 14767.365,
+        "ratioToTotal": 0.839
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 11696.35,
+        "ratioToTotal": 0.664
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 15471.949,
+        "ratioToTotal": 0.879
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 15942.953,
+        "ratioToTotal": 0.906
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 11534.272,
+        "ratioToTotal": 0.655
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 34552.01,
+        "ratioToTotal": 1.963
+      }
+    }
+  },
+  "Palau": {
+    "year": 2023,
+    "totalMonthly_local": 1042.366,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1042.366,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1494.985,
+        "ratioToTotal": 1.434
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1358.166,
+        "ratioToTotal": 1.303
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1330.715,
+        "ratioToTotal": 1.277
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1080.474,
+        "ratioToTotal": 1.037
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 805.216,
+        "ratioToTotal": 0.772
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 458.648,
+        "ratioToTotal": 0.44
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 841.729,
+        "ratioToTotal": 0.808
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 943.629,
+        "ratioToTotal": 0.905
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 654.443,
+        "ratioToTotal": 0.628
+      }
+    }
+  },
+  "Poland": {
+    "year": 2024,
+    "totalMonthly_local": 1682.769,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1682.769,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2534.501,
+        "ratioToTotal": 1.506
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2106.897,
+        "ratioToTotal": 1.252
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1790.162,
+        "ratioToTotal": 1.064
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1431.009,
+        "ratioToTotal": 0.85
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1182.308,
+        "ratioToTotal": 0.703
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1127.836,
+        "ratioToTotal": 0.67
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1456.736,
+        "ratioToTotal": 0.866
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1606.427,
+        "ratioToTotal": 0.955
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1079.805,
+        "ratioToTotal": 0.642
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2345.94,
+        "ratioToTotal": 1.394
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 1614.931,
+        "ratioToTotal": 0.96
+      }
+    }
+  },
+  "Puerto Rico": {
+    "year": 2020,
+    "totalMonthly_local": 2232.785,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 2232.785,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 4700.568,
+        "ratioToTotal": 2.105
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3290.045,
+        "ratioToTotal": 1.474
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 2495.766,
+        "ratioToTotal": 1.118
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1533.144,
+        "ratioToTotal": 0.687
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1732.183,
+        "ratioToTotal": 0.776
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 964.028,
+        "ratioToTotal": 0.432
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1569.741,
+        "ratioToTotal": 0.703
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1938.71,
+        "ratioToTotal": 0.868
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1249.303,
+        "ratioToTotal": 0.56
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 3569.253,
+        "ratioToTotal": 1.599
+      }
+    }
+  },
+  "Portugal": {
+    "year": 2025,
+    "totalMonthly_local": 1262.156,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1262.156,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1932.267,
+        "ratioToTotal": 1.531
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1702.689,
+        "ratioToTotal": 1.349
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1349.555,
+        "ratioToTotal": 1.069
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1067.611,
+        "ratioToTotal": 0.846
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 974.925,
+        "ratioToTotal": 0.772
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 930.068,
+        "ratioToTotal": 0.737
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1054.464,
+        "ratioToTotal": 0.835
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1104.597,
+        "ratioToTotal": 0.875
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 789.816,
+        "ratioToTotal": 0.626
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1731.552,
+        "ratioToTotal": 1.372
+      }
+    }
+  },
+  "Paraguay": {
+    "year": 2025,
+    "totalMonthly_local": 3385364.286,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3385364.286,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 7269253.797,
+        "ratioToTotal": 2.147
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 5476155.448,
+        "ratioToTotal": 1.618
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 4007959.857,
+        "ratioToTotal": 1.184
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3261144.858,
+        "ratioToTotal": 0.963
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2850929.8,
+        "ratioToTotal": 0.842
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2438943.429,
+        "ratioToTotal": 0.72
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2951471.386,
+        "ratioToTotal": 0.872
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3351850.132,
+        "ratioToTotal": 0.99
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2151432.3,
+        "ratioToTotal": 0.636
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 6216769.748,
+        "ratioToTotal": 1.836
+      }
+    }
+  },
+  "Palestine (State of)": {
+    "year": 2025,
+    "totalMonthly_local": 3195.099,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3195.099,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 4340.7,
+        "ratioToTotal": 1.359
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3099.461,
+        "ratioToTotal": 0.97
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3046.539,
+        "ratioToTotal": 0.954
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2577.963,
+        "ratioToTotal": 0.807
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2575.907,
+        "ratioToTotal": 0.806
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2236.272,
+        "ratioToTotal": 0.7
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4020.579,
+        "ratioToTotal": 1.258
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3590.122,
+        "ratioToTotal": 1.124
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2801.176,
+        "ratioToTotal": 0.877
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 2993.2,
+        "ratioToTotal": 0.937
+      }
+    }
+  },
+  "Qatar": {
+    "year": 2022,
+    "totalMonthly_local": 11963,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 11963,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 42687,
+        "ratioToTotal": 3.568
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 26993,
+        "ratioToTotal": 2.256
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 18540,
+        "ratioToTotal": 1.55
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 19156,
+        "ratioToTotal": 1.601
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 6490,
+        "ratioToTotal": 0.543
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3736,
+        "ratioToTotal": 0.312
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4199,
+        "ratioToTotal": 0.351
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4150,
+        "ratioToTotal": 0.347
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3244,
+        "ratioToTotal": 0.271
+      }
+    }
+  },
+  "Romania": {
+    "year": 2024,
+    "totalMonthly_local": 1413.135,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1413.135,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2135.266,
+        "ratioToTotal": 1.511
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1885.402,
+        "ratioToTotal": 1.334
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1543.279,
+        "ratioToTotal": 1.092
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1305.951,
+        "ratioToTotal": 0.924
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1088.751,
+        "ratioToTotal": 0.77
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1008.869,
+        "ratioToTotal": 0.714
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1285.091,
+        "ratioToTotal": 0.909
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1343.489,
+        "ratioToTotal": 0.951
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1065.782,
+        "ratioToTotal": 0.754
+      }
+    }
+  },
+  "Russian Federation": {
+    "year": 2021,
+    "totalMonthly_local": 57240,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 57240,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 112269,
+        "ratioToTotal": 1.961
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 63573,
+        "ratioToTotal": 1.111
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 53596,
+        "ratioToTotal": 0.936
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 37276,
+        "ratioToTotal": 0.651
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 35399,
+        "ratioToTotal": 0.618
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 37134,
+        "ratioToTotal": 0.649
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 51733,
+        "ratioToTotal": 0.904
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 52965,
+        "ratioToTotal": 0.925
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 28664,
+        "ratioToTotal": 0.501
+      }
+    }
+  },
+  "Rwanda": {
+    "year": 2024,
+    "totalMonthly_local": 69850.796,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 69850.796,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 351638.284,
+        "ratioToTotal": 5.034
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 191362.164,
+        "ratioToTotal": 2.74
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 240085.696,
+        "ratioToTotal": 3.437
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 176129.722,
+        "ratioToTotal": 2.522
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 70713.327,
+        "ratioToTotal": 1.012
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 38794.785,
+        "ratioToTotal": 0.555
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 128462.744,
+        "ratioToTotal": 1.839
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 157982.489,
+        "ratioToTotal": 2.262
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 35745.405,
+        "ratioToTotal": 0.512
+      }
+    }
+  },
+  "Saudi Arabia": {
+    "year": 2022,
+    "totalMonthly_local": 6748,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 6748,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 15654,
+        "ratioToTotal": 2.32
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 11696,
+        "ratioToTotal": 1.733
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 8205,
+        "ratioToTotal": 1.216
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 6456,
+        "ratioToTotal": 0.957
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3826,
+        "ratioToTotal": 0.567
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1840,
+        "ratioToTotal": 0.273
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2818,
+        "ratioToTotal": 0.418
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2506,
+        "ratioToTotal": 0.371
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2291,
+        "ratioToTotal": 0.34
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 6842,
+        "ratioToTotal": 1.014
+      }
+    }
+  },
+  "Sudan": {
+    "year": 2022,
+    "totalMonthly_local": 155379.238,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 155379.238,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 69490.145,
+        "ratioToTotal": 0.447
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 109929.74,
+        "ratioToTotal": 0.707
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 113806.827,
+        "ratioToTotal": 0.732
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 65986.206,
+        "ratioToTotal": 0.425
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 220135.551,
+        "ratioToTotal": 1.417
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 90946.564,
+        "ratioToTotal": 0.585
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 112671.523,
+        "ratioToTotal": 0.725
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 230836.004,
+        "ratioToTotal": 1.486
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 182851.978,
+        "ratioToTotal": 1.177
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 142324.112,
+        "ratioToTotal": 0.916
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 196080.882,
+        "ratioToTotal": 1.262
+      }
+    }
+  },
+  "Senegal": {
+    "year": 2024,
+    "totalMonthly_local": 169275.655,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 169275.655,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 434209.354,
+        "ratioToTotal": 2.565
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 344908.053,
+        "ratioToTotal": 2.038
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 313533.621,
+        "ratioToTotal": 1.852
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 263034.237,
+        "ratioToTotal": 1.554
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 155280.089,
+        "ratioToTotal": 0.917
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 110447.122,
+        "ratioToTotal": 0.652
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 132062.147,
+        "ratioToTotal": 0.78
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 161531.841,
+        "ratioToTotal": 0.954
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 79809.006,
+        "ratioToTotal": 0.471
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 169710.739,
+        "ratioToTotal": 1.003
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 230082.07,
+        "ratioToTotal": 1.359
+      }
+    }
+  },
+  "Singapore": {
+    "year": 2021,
+    "totalMonthly_local": 4680,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4680,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 9620,
+        "ratioToTotal": 2.056
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 6971,
+        "ratioToTotal": 1.49
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 4120,
+        "ratioToTotal": 0.88
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3042,
+        "ratioToTotal": 0.65
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2598,
+        "ratioToTotal": 0.555
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2819,
+        "ratioToTotal": 0.602
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2155,
+        "ratioToTotal": 0.46
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1638,
+        "ratioToTotal": 0.35
+      }
+    }
+  },
+  "El Salvador": {
+    "year": 2024,
+    "totalMonthly_local": 484.409,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 484.409,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 923.933,
+        "ratioToTotal": 1.907
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 839.659,
+        "ratioToTotal": 1.733
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 640.686,
+        "ratioToTotal": 1.323
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 600.555,
+        "ratioToTotal": 1.24
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 422.038,
+        "ratioToTotal": 0.871
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 349.164,
+        "ratioToTotal": 0.721
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 450.681,
+        "ratioToTotal": 0.93
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 475.31,
+        "ratioToTotal": 0.981
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 317.799,
+        "ratioToTotal": 0.656
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 665.164,
+        "ratioToTotal": 1.373
+      }
+    }
+  },
+  "Serbia": {
+    "year": 2024,
+    "totalMonthly_local": 1073.296,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1073.296,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1766.321,
+        "ratioToTotal": 1.646
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1464.466,
+        "ratioToTotal": 1.364
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1177.788,
+        "ratioToTotal": 1.097
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 991.136,
+        "ratioToTotal": 0.923
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 827.733,
+        "ratioToTotal": 0.771
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 818.236,
+        "ratioToTotal": 0.762
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 952.226,
+        "ratioToTotal": 0.887
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1044.507,
+        "ratioToTotal": 0.973
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 764.405,
+        "ratioToTotal": 0.712
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1307.488,
+        "ratioToTotal": 1.218
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 844.396,
+        "ratioToTotal": 0.787
+      }
+    }
+  },
+  "Slovakia": {
+    "year": 2024,
+    "totalMonthly_local": 1336.415,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1336.415,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2058.278,
+        "ratioToTotal": 1.54
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1578.277,
+        "ratioToTotal": 1.181
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1440.307,
+        "ratioToTotal": 1.078
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1171.41,
+        "ratioToTotal": 0.877
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1170.371,
+        "ratioToTotal": 0.876
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 999.7,
+        "ratioToTotal": 0.748
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1241.156,
+        "ratioToTotal": 0.929
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1206.441,
+        "ratioToTotal": 0.903
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1006.776,
+        "ratioToTotal": 0.753
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 974.073,
+        "ratioToTotal": 0.729
+      }
+    }
+  },
+  "Slovenia": {
+    "year": 2024,
+    "totalMonthly_local": 3053.058,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3053.058,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 4870.94,
+        "ratioToTotal": 1.595
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 3834.291,
+        "ratioToTotal": 1.256
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3163.198,
+        "ratioToTotal": 1.036
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 2582.207,
+        "ratioToTotal": 0.846
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2207.672,
+        "ratioToTotal": 0.723
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2227.258,
+        "ratioToTotal": 0.73
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 2594.041,
+        "ratioToTotal": 0.85
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 2535.523,
+        "ratioToTotal": 0.83
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1989.147,
+        "ratioToTotal": 0.652
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 4316.938,
+        "ratioToTotal": 1.414
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 2999.136,
+        "ratioToTotal": 0.982
+      }
+    }
+  },
+  "Sweden": {
+    "year": 2024,
+    "totalMonthly_local": 3987.2,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 3987.2,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 6633.412,
+        "ratioToTotal": 1.664
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 4534.08,
+        "ratioToTotal": 1.137
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 4269.202,
+        "ratioToTotal": 1.071
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3321.125,
+        "ratioToTotal": 0.833
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 2875.669,
+        "ratioToTotal": 0.721
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2740.058,
+        "ratioToTotal": 0.687
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 3437.954,
+        "ratioToTotal": 0.862
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3469.762,
+        "ratioToTotal": 0.87
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 2371.116,
+        "ratioToTotal": 0.595
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 4917.332,
+        "ratioToTotal": 1.233
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 4372.473,
+        "ratioToTotal": 1.097
+      }
+    }
+  },
+  "Eswatini": {
+    "year": 2023,
+    "totalMonthly_local": 7094.844,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 7094.844,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 30642.884,
+        "ratioToTotal": 4.319
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 12428.745,
+        "ratioToTotal": 1.752
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 8401.684,
+        "ratioToTotal": 1.184
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 10174.795,
+        "ratioToTotal": 1.434
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 4559.004,
+        "ratioToTotal": 0.643
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 4769.172,
+        "ratioToTotal": 0.672
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 5211.835,
+        "ratioToTotal": 0.735
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3984.886,
+        "ratioToTotal": 0.562
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3468.596,
+        "ratioToTotal": 0.489
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 11073.612,
+        "ratioToTotal": 1.561
+      }
+    }
+  },
+  "Chad": {
+    "year": 2022,
+    "totalMonthly_local": 128464.351,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 128464.351,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 284686.096,
+        "ratioToTotal": 2.216
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 216046.011,
+        "ratioToTotal": 1.682
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 144836.11,
+        "ratioToTotal": 1.127
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 201268.73,
+        "ratioToTotal": 1.567
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 96783.016,
+        "ratioToTotal": 0.753
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 29900.021,
+        "ratioToTotal": 0.233
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 84697.328,
+        "ratioToTotal": 0.659
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 120489.076,
+        "ratioToTotal": 0.938
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 61796.132,
+        "ratioToTotal": 0.481
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 167419.396,
+        "ratioToTotal": 1.303
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 80542.215,
+        "ratioToTotal": 0.627
+      }
+    }
+  },
+  "Togo": {
+    "year": 2022,
+    "totalMonthly_local": 85868.237,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 85868.237,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 138580.635,
+        "ratioToTotal": 1.614
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 136183.805,
+        "ratioToTotal": 1.586
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 89214.114,
+        "ratioToTotal": 1.039
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 113625.005,
+        "ratioToTotal": 1.323
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 51700.272,
+        "ratioToTotal": 0.602
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 27401.304,
+        "ratioToTotal": 0.319
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 63460.5,
+        "ratioToTotal": 0.739
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 68344.284,
+        "ratioToTotal": 0.796
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 51443.8,
+        "ratioToTotal": 0.599
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 238358.091,
+        "ratioToTotal": 2.776
+      }
+    }
+  },
+  "Thailand": {
+    "year": 2024,
+    "totalMonthly_local": 16519.035,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 16519.035,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 31437.346,
+        "ratioToTotal": 1.903
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 29691.738,
+        "ratioToTotal": 1.797
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 24134.706,
+        "ratioToTotal": 1.461
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 16779.222,
+        "ratioToTotal": 1.016
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 13572.548,
+        "ratioToTotal": 0.822
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 8178.136,
+        "ratioToTotal": 0.495
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 13440.782,
+        "ratioToTotal": 0.814
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 14436.923,
+        "ratioToTotal": 0.874
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 9701.784,
+        "ratioToTotal": 0.587
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 29231.408,
+        "ratioToTotal": 1.77
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 22011.92,
+        "ratioToTotal": 1.333
+      }
+    }
+  },
+  "Timor-Leste": {
+    "year": 2021,
+    "totalMonthly_local": 257.594,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 257.594,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 196.827,
+        "ratioToTotal": 0.764
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 299.541,
+        "ratioToTotal": 1.163
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 317.705,
+        "ratioToTotal": 1.233
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 249.054,
+        "ratioToTotal": 0.967
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 193.198,
+        "ratioToTotal": 0.75
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 238.985,
+        "ratioToTotal": 0.928
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 294.926,
+        "ratioToTotal": 1.145
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 212.542,
+        "ratioToTotal": 0.825
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 186.424,
+        "ratioToTotal": 0.724
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 250.286,
+        "ratioToTotal": 0.972
+      }
+    }
+  },
+  "Tonga": {
+    "year": 2023,
+    "totalMonthly_local": 1566.627,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1566.627,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 2597.369,
+        "ratioToTotal": 1.658
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1500.016,
+        "ratioToTotal": 0.957
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1558.958,
+        "ratioToTotal": 0.995
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1185.875,
+        "ratioToTotal": 0.757
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1154.282,
+        "ratioToTotal": 0.737
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1720.657,
+        "ratioToTotal": 1.098
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1730.952,
+        "ratioToTotal": 1.105
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1872.644,
+        "ratioToTotal": 1.195
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1686.846,
+        "ratioToTotal": 1.077
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1027.967,
+        "ratioToTotal": 0.656
+      }
+    }
+  },
+  "Tunisia": {
+    "year": 2019,
+    "totalMonthly_local": 739.678,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 739.678,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1335.412,
+        "ratioToTotal": 1.805
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1165.574,
+        "ratioToTotal": 1.576
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 878.634,
+        "ratioToTotal": 1.188
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 783.616,
+        "ratioToTotal": 1.059
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 656.096,
+        "ratioToTotal": 0.887
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 500.126,
+        "ratioToTotal": 0.676
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 605.411,
+        "ratioToTotal": 0.818
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 564.376,
+        "ratioToTotal": 0.763
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 501.078,
+        "ratioToTotal": 0.677
+      }
+    }
+  },
+  "Türkiye": {
+    "year": 2024,
+    "totalMonthly_local": 28173.303,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 28173.303,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 50302.03,
+        "ratioToTotal": 1.785
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 44834.738,
+        "ratioToTotal": 1.591
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 33117.345,
+        "ratioToTotal": 1.175
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 26586.459,
+        "ratioToTotal": 0.944
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 21139.645,
+        "ratioToTotal": 0.75
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 18404.845,
+        "ratioToTotal": 0.653
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 22380.195,
+        "ratioToTotal": 0.794
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 23445.211,
+        "ratioToTotal": 0.832
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 19885.567,
+        "ratioToTotal": 0.706
+      }
+    }
+  },
+  "Tanzania, United Republic of": {
+    "year": 2024,
+    "totalMonthly_local": 549783.131,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 549783.131,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 1454911.193,
+        "ratioToTotal": 2.646
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1567333.344,
+        "ratioToTotal": 2.851
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1013538.825,
+        "ratioToTotal": 1.844
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 834459.625,
+        "ratioToTotal": 1.518
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 359458.527,
+        "ratioToTotal": 0.654
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 246000.56,
+        "ratioToTotal": 0.447
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 336925.235,
+        "ratioToTotal": 0.613
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 461670.679,
+        "ratioToTotal": 0.84
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 272010.998,
+        "ratioToTotal": 0.495
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 1060137.548,
+        "ratioToTotal": 1.928
+      }
+    }
+  },
+  "Uganda": {
+    "year": 2021,
+    "totalMonthly_local": 577677.938,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 577677.938,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3024542.23,
+        "ratioToTotal": 5.236
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 1262784.021,
+        "ratioToTotal": 2.186
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1157987.238,
+        "ratioToTotal": 2.005
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 615525.506,
+        "ratioToTotal": 1.066
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 340073.39,
+        "ratioToTotal": 0.589
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 183079.662,
+        "ratioToTotal": 0.317
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 368707.374,
+        "ratioToTotal": 0.638
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 507952.832,
+        "ratioToTotal": 0.879
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 156353.46,
+        "ratioToTotal": 0.271
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 598253.32,
+        "ratioToTotal": 1.036
+      }
+    }
+  },
+  "Uruguay": {
+    "year": 2024,
+    "totalMonthly_local": 47938.864,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 47938.864,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 134790.484,
+        "ratioToTotal": 2.812
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 75179.973,
+        "ratioToTotal": 1.568
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 63527.57,
+        "ratioToTotal": 1.325
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 49809.075,
+        "ratioToTotal": 1.039
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 34031.595,
+        "ratioToTotal": 0.71
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 38063.591,
+        "ratioToTotal": 0.794
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 48178.761,
+        "ratioToTotal": 1.005
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 48136.403,
+        "ratioToTotal": 1.004
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 26341.788,
+        "ratioToTotal": 0.549
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 45459.71,
+        "ratioToTotal": 0.948
+      }
+    }
+  },
+  "United States of America": {
+    "year": 2025,
+    "totalMonthly_local": 6272.925,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 6272.925,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 10342.447,
+        "ratioToTotal": 1.649
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 8638.146,
+        "ratioToTotal": 1.377
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 6509.175,
+        "ratioToTotal": 1.038
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 4486.98,
+        "ratioToTotal": 0.715
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3698.803,
+        "ratioToTotal": 0.59
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 3565.182,
+        "ratioToTotal": 0.568
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 5381.995,
+        "ratioToTotal": 0.858
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4735.723,
+        "ratioToTotal": 0.755
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3623.476,
+        "ratioToTotal": 0.578
+      }
+    }
+  },
+  "Uzbekistan": {
+    "year": 2022,
+    "totalMonthly_local": 4229433.809,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4229433.809,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 6338452.734,
+        "ratioToTotal": 1.499
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 4135145.382,
+        "ratioToTotal": 0.978
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 3357746.798,
+        "ratioToTotal": 0.794
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 3296560.684,
+        "ratioToTotal": 0.779
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1839520.361,
+        "ratioToTotal": 0.435
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2051737.946,
+        "ratioToTotal": 0.485
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 3224240.217,
+        "ratioToTotal": 0.762
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 3248672.632,
+        "ratioToTotal": 0.768
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1833853.286,
+        "ratioToTotal": 0.434
+      }
+    }
+  },
+  "Viet Nam": {
+    "year": 2024,
+    "totalMonthly_local": 8579562.366,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 8579562.366,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 13968720.858,
+        "ratioToTotal": 1.628
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 11938148.526,
+        "ratioToTotal": 1.391
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 10018383.175,
+        "ratioToTotal": 1.168
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 9085475.621,
+        "ratioToTotal": 1.059
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 7256172.847,
+        "ratioToTotal": 0.846
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 6222393.522,
+        "ratioToTotal": 0.725
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 8147159.304,
+        "ratioToTotal": 0.95
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 8689595.27,
+        "ratioToTotal": 1.013
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 6351259.622,
+        "ratioToTotal": 0.74
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 13696709.507,
+        "ratioToTotal": 1.596
+      }
+    }
+  },
+  "Wallis and Futuna": {
+    "year": 2019,
+    "totalMonthly_local": 234174.38,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 234174.38,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 326041.971,
+        "ratioToTotal": 1.392
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 443645.091,
+        "ratioToTotal": 1.895
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 249079.187,
+        "ratioToTotal": 1.064
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 220599.468,
+        "ratioToTotal": 0.942
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 180112.369,
+        "ratioToTotal": 0.769
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 133249.014,
+        "ratioToTotal": 0.569
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 149041.051,
+        "ratioToTotal": 0.636
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 187786.727,
+        "ratioToTotal": 0.802
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 145420.397,
+        "ratioToTotal": 0.621
+      }
+    }
+  },
+  "Samoa": {
+    "year": 2022,
+    "totalMonthly_local": 1648.438,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 1648.438,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 3553.619,
+        "ratioToTotal": 2.156
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 2404.84,
+        "ratioToTotal": 1.459
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 1770.22,
+        "ratioToTotal": 1.074
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 1605.844,
+        "ratioToTotal": 0.974
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 1106.76,
+        "ratioToTotal": 0.671
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1643.347,
+        "ratioToTotal": 0.997
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 1199.392,
+        "ratioToTotal": 0.728
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 1450.994,
+        "ratioToTotal": 0.88
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1037.97,
+        "ratioToTotal": 0.63
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 1425.631,
+        "ratioToTotal": 0.865
+      }
+    }
+  },
+  "South Africa": {
+    "year": 2020,
+    "totalMonthly_local": 10020.473,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 10020.473,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 14527.995,
+        "ratioToTotal": 1.45
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 18131.616,
+        "ratioToTotal": 1.809
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 10456.504,
+        "ratioToTotal": 1.044
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 6232.399,
+        "ratioToTotal": 0.622
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 5914.542,
+        "ratioToTotal": 0.59
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 2213.156,
+        "ratioToTotal": 0.221
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 6896.002,
+        "ratioToTotal": 0.688
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 9411.259,
+        "ratioToTotal": 0.939
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 3417.734,
+        "ratioToTotal": 0.341
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 22467.109,
+        "ratioToTotal": 2.242
+      }
+    }
+  },
+  "Zambia": {
+    "year": 2024,
+    "totalMonthly_local": 4458.154,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 4458.154,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 13318.444,
+        "ratioToTotal": 2.987
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 8148.024,
+        "ratioToTotal": 1.828
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 8648.888,
+        "ratioToTotal": 1.94
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 5717.759,
+        "ratioToTotal": 1.283
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 3778.735,
+        "ratioToTotal": 0.848
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 1632.762,
+        "ratioToTotal": 0.366
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 4184.533,
+        "ratioToTotal": 0.939
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 4343.876,
+        "ratioToTotal": 0.974
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 1779.151,
+        "ratioToTotal": 0.399
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 11749.151,
+        "ratioToTotal": 2.635
+      }
+    }
+  },
+  "Zimbabwe": {
+    "year": 2023,
+    "totalMonthly_local": 406978.727,
+    "groups": {
+      "Total": {
+        "monthlyEarnings_local": 406978.727,
+        "ratioToTotal": 1.0
+      },
+      "1. Managers": {
+        "monthlyEarnings_local": 643666.978,
+        "ratioToTotal": 1.582
+      },
+      "2. Professionals": {
+        "monthlyEarnings_local": 434986.176,
+        "ratioToTotal": 1.069
+      },
+      "3. Technicians and associate professionals": {
+        "monthlyEarnings_local": 593995.236,
+        "ratioToTotal": 1.46
+      },
+      "4. Clerical support workers": {
+        "monthlyEarnings_local": 489239.873,
+        "ratioToTotal": 1.202
+      },
+      "5. Service and sales workers": {
+        "monthlyEarnings_local": 280909.375,
+        "ratioToTotal": 0.69
+      },
+      "6. Skilled agricultural, forestry and fishery workers": {
+        "monthlyEarnings_local": 502041.387,
+        "ratioToTotal": 1.234
+      },
+      "7. Craft and related trades workers": {
+        "monthlyEarnings_local": 528635.936,
+        "ratioToTotal": 1.299
+      },
+      "8. Plant and machine operators, and assemblers": {
+        "monthlyEarnings_local": 414200.589,
+        "ratioToTotal": 1.018
+      },
+      "9. Elementary occupations": {
+        "monthlyEarnings_local": 259551.716,
+        "ratioToTotal": 0.638
+      },
+      "0. Armed forces occupations": {
+        "monthlyEarnings_local": 335953.51,
+        "ratioToTotal": 0.825
+      },
+      "X. Not elsewhere classified": {
+        "monthlyEarnings_local": 332239.853,
+        "ratioToTotal": 0.816
+      }
+    }
+  }
+}

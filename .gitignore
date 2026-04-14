@@ -40,3 +40,10 @@ yarn-error.log*
 *.swo
 tsconfig.tsbuildinfo
 2026-04-10_16-32-26-957-debug.log
+data/salary-research/raw/oesm24ma.zip
+data/salary-research/raw/oews-temp.zip
+data/salary-research/raw/bls-msa-2024.csv
+data/salary-research/raw/ilo-earnings-activity.json
+data/salary-research/raw/ilo-ilo-wages-by-occupation-sdg.json
+data/salary-research/raw/eurostat-ses-earnings.json
+data/salary-research/raw/numbeo-new-cities-html/

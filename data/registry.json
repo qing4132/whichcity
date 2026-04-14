@@ -47,21 +47,15 @@
       "frontendUsage": ["SEO metadata"]
     },
     "averageIncome": {
-      "type": "raw",
+      "type": "computed",
       "dataType": "number",
       "nullable": false,
       "unit": "USD/year (gross)",
-      "range": [2581, 122000],
-      "description": "City average gross annual income in USD. Independently sourced, should approximate profession median.",
-      "source": {
-        "name": "Multiple (BLS, Eurostat, doda, Glassdoor, etc.)",
-        "method": "manual_research",
-        "publishDate": "2024-2025"
-      },
-      "coverage": "150/150",
-      "automatable": false,
-      "updateFrequency": "annual",
-      "frontendUsage": ["CityDetailContent", "CompareContent", "RankingContent"]
+      "formula": "median(professions values)",
+      "dependencies": ["professions"],
+      "computeScript": "data/scripts/export.mjs",
+      "description": "Professions median gross annual income. Auto-computed by export pipeline, not stored in SOT.",
+      "frontendUsage": ["OG images (fallback income)", "SEO metadata (JSON-LD, meta description)"]
     },
     "professions": {
       "type": "raw",

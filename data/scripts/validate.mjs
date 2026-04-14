@@ -47,13 +47,12 @@ for (const c of cities) {
   if (n !== 25) fail(`${c.name}(${c.id}): has ${n} professions, expected 25`);
 }
 
-// 1b. averageIncome within 0.2x–5x of profession median
+// 1b. averageIncome must equal professions median (auto-computed by export)
 for (const c of cities) {
   const vals = Object.values(c.professions).sort((a, b) => a - b);
   const median = vals[Math.floor(vals.length / 2)];
-  if (median > 0) {
-    const ratio = c.averageIncome / median;
-    if (ratio < 0.2 || ratio > 5.0) fail(`${c.name}(${c.id}): avg/median ratio ${ratio.toFixed(2)} out of [0.2, 5.0]`);
+  if (c.averageIncome !== median) {
+    fail(`${c.name}(${c.id}): averageIncome=${c.averageIncome} != professions median=${median}`);
   }
 }
 
@@ -182,7 +181,7 @@ if (!EXPORT_ONLY && existsSync(SOURCE_PATH)) {
   const srcCities = sourceData.cities;
 
   // 2a. SOT should not contain computed fields
-  const COMPUTED = ["homicideRateInv", "gpiScoreInv", "safetyIndex", "healthcareIndex",
+  const COMPUTED = ["averageIncome", "homicideRateInv", "gpiScoreInv", "safetyIndex", "healthcareIndex",
     "governanceIndex", "freedomIndex", "safetyConfidence", "healthcareConfidence",
     "governanceConfidence", "freedomConfidence", "securityConfidence"];
   for (const c of srcCities) {

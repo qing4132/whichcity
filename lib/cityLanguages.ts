@@ -93,6 +93,12 @@ export const LANGUAGE_NAME_TRANSLATIONS: Record<string, Record<Locale, string>> 
   "Vietnamese":       { zh: "越南语",     en: "Vietnamese",       ja: "ベトナム語",       es: "Vietnamita" },
   "Xhosa":            { zh: "科萨语",     en: "Xhosa",            ja: "コサ語",           es: "Xhosa" },
   "Zulu":             { zh: "祖鲁语",     en: "Zulu",             ja: "ズールー語",       es: "Zulú" },
+  "Akan":            { zh: "阿坎语",     en: "Akan",            ja: "アカン語",         es: "Acano" },
+  "Amharic":         { zh: "阿姆哈拉语", en: "Amharic",         ja: "アムハラ語",       es: "Amárico" },
+  "Latvian":         { zh: "拉脱维亚语", en: "Latvian",         ja: "ラトビア語",       es: "Letón" },
+  "Lithuanian":      { zh: "立陶宛语",   en: "Lithuanian",      ja: "リトアニア語",     es: "Lituano" },
+  "Oromo":           { zh: "奥罗莫语",   en: "Oromo",           ja: "オロモ語",         es: "Oromo" },
+  "Twi":             { zh: "契维语",     en: "Twi",             ja: "チュイ語",         es: "Twi" },
 };
 
 export const CITY_LANGUAGES: Record<number, string[]> = {
@@ -117,8 +123,6 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   100: ["English"],  // Tampa
   125: ["English"],  // Houston
   126: ["English"],  // Philadelphia
-  133: ["English"],  // San Jose (US)
-  134: ["English"],  // Irvine
 
   /* ────────────────────── UK (2) ────────────────────── */
   2:   ["English"],  // London
@@ -130,7 +134,8 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   40:  ["English", "French"],  // Vancouver — English dominant
   41:  ["French", "English"],  // Montreal — French dominant (Charter of the French Language)
   127: ["English", "French"],  // Calgary — English dominant
-  135: ["English", "French"],  // Ottawa — bilingual national capital
+    133: ["English", "Spanish"],  // San Jose CA
+135: ["English", "French"],  // Ottawa — bilingual national capital
 
   /* ────────────────────── Australia (4) ──────────────────────
      No constitutional official language; English is de facto. */
@@ -170,14 +175,12 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   106: ["Japanese"],  // Osaka
   107: ["Japanese"],  // Nagoya
   138: ["Japanese"],  // Fukuoka
-  139: ["Japanese"],  // Yokohama
   159: ["Japanese"],  // Kyoto
 
   /* ────────────────────── South Korea (3) ──────────────────────
      Korean is the official language (Framework Act on the National Language). */
   59:  ["Korean"],   // Seoul
   60:  ["Korean"],   // Busan
-  108: ["Korean"],   // Incheon
 
   /* ────────────────────── Singapore (1) ──────────────────────
      Constitution Art. 153A: 4 official languages. Malay is the national language.
@@ -317,9 +320,6 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
   /* ────────────────────── Latin America & Caribbean ────────────────────── */
   31:  ["Spanish"],  // Mexico City
   69:  ["Spanish"],  // Guadalajara
-  142: ["Spanish"],  // Playa del Carmen
-  157: ["Spanish"],  // Cancún
-  158: ["Spanish"],  // Puerto Vallarta
   32:  ["Portuguese"],  // São Paulo
   33:  ["Portuguese"],  // Rio de Janeiro
   152: ["Portuguese"],  // Florianópolis
@@ -343,4 +343,11 @@ export const CITY_LANGUAGES: Record<number, string[]> = {
 
   /* ────────────────────── New Zealand (additional) ────────────────────── */
   161: ["English", "Māori"],  // Wellington — same official languages as Auckland
+  162: ["Lithuanian", "Russian", "Polish"],  // Vilnius
+  163: ["Latvian", "Russian"],              // Riga
+  164: ["Greek", "Turkish", "English"],     // Nicosia
+  165: ["Spanish"],                         // Santo Domingo
+  166: ["Spanish", "Quechua"],              // Quito
+  167: ["English", "Akan", "Twi"],          // Accra
+  168: ["Amharic", "Oromo", "English"],     // Addis Ababa
 };

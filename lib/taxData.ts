@@ -1249,6 +1249,115 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     usdToLocal: 10,
     confidence: "medium",
   },
+
+  // ── New countries (2026-04 batch) ──
+
+  "立陶宛": {
+    brackets: [{ upTo: INF, rate: 0.20 }], // flat 20% (>90k EUR: 32%)
+    standardDeduction: 5856, // EUR 488/month basic exemption
+    social: [
+      { name: "pension", rate: 0.0252 },
+      { name: "health", rate: 0.0698 },
+    ],
+    usdToLocal: 0.92,
+    confidence: "high",
+  },
+  "拉脱维亚": {
+    brackets: [
+      { upTo: 62800, rate: 0.20 },
+      { upTo: INF, rate: 0.23 },
+    ],
+    standardDeduction: 6000, // differentiated, simplified
+    social: [
+      { name: "employee_social", rate: 0.105 },
+    ],
+    usdToLocal: 0.92,
+    confidence: "high",
+  },
+  "塞浦路斯": {
+    brackets: [
+      { upTo: 19500, rate: 0 },
+      { upTo: 28000, rate: 0.20 },
+      { upTo: 36300, rate: 0.25 },
+      { upTo: 60000, rate: 0.30 },
+      { upTo: INF, rate: 0.35 },
+    ],
+    standardDeduction: 0,
+    social: [
+      { name: "social_insurance", rate: 0.083 },
+      { name: "GESY_health", rate: 0.028 },
+    ],
+    usdToLocal: 0.92,
+    confidence: "high",
+  },
+  "多米尼加": {
+    brackets: [
+      { upTo: 416220, rate: 0 },
+      { upTo: 624329, rate: 0.15 },
+      { upTo: 867123, rate: 0.20 },
+      { upTo: INF, rate: 0.25 },
+    ],
+    standardDeduction: 0,
+    social: [
+      { name: "SFS", rate: 0.0304 },
+      { name: "AFP_pension", rate: 0.0287 },
+    ],
+    usdToLocal: 57,
+    confidence: "medium",
+  },
+  "厄瓜多尔": {
+    brackets: [
+      { upTo: 11902, rate: 0 },
+      { upTo: 15159, rate: 0.05 },
+      { upTo: 19682, rate: 0.10 },
+      { upTo: 26031, rate: 0.12 },
+      { upTo: 34255, rate: 0.15 },
+      { upTo: 45407, rate: 0.20 },
+      { upTo: 60450, rate: 0.25 },
+      { upTo: 80605, rate: 0.30 },
+      { upTo: 107199, rate: 0.35 },
+      { upTo: INF, rate: 0.37 },
+    ],
+    standardDeduction: 0,
+    social: [
+      { name: "IESS", rate: 0.0945 },
+    ],
+    usdToLocal: 1, // Ecuador uses USD
+    confidence: "high",
+  },
+  "加纳": {
+    brackets: [
+      { upTo: 4824, rate: 0 },
+      { upTo: 6024, rate: 0.05 },
+      { upTo: 7224, rate: 0.10 },
+      { upTo: 44016, rate: 0.175 },
+      { upTo: 240000, rate: 0.25 },
+      { upTo: INF, rate: 0.30 },
+    ],
+    standardDeduction: 0,
+    social: [
+      { name: "SSNIT", rate: 0.055 },
+    ],
+    usdToLocal: 15.5,
+    confidence: "medium",
+  },
+  "埃塞俄比亚": {
+    brackets: [
+      { upTo: 7200, rate: 0 },
+      { upTo: 19800, rate: 0.10 },
+      { upTo: 38400, rate: 0.15 },
+      { upTo: 63000, rate: 0.20 },
+      { upTo: 93600, rate: 0.25 },
+      { upTo: 130800, rate: 0.30 },
+      { upTo: INF, rate: 0.35 },
+    ],
+    standardDeduction: 0,
+    social: [
+      { name: "pension", rate: 0.07 },
+    ],
+    usdToLocal: 57,
+    confidence: "low",
+  },
 };
 
 /* ── City-level Tax Overrides ─────────────────────────── */
@@ -1270,11 +1379,9 @@ export const CITY_TAX_OVERRIDES: Record<number, CityTaxOverride> = {
       { upTo: INF, rate: 0.109 },
     ],
   },
-  // LA, SF, San Jose, Irvine, San Diego — CA state 1-13.3%
+  // LA, SF, San Diego — CA state 1-13.3%
   11: { localBrackets: [{ upTo: 10412, rate: 0.01 }, { upTo: 24684, rate: 0.02 }, { upTo: 38959, rate: 0.04 }, { upTo: 54081, rate: 0.06 }, { upTo: 68350, rate: 0.08 }, { upTo: 349137, rate: 0.093 }, { upTo: 418961, rate: 0.103 }, { upTo: 698271, rate: 0.113 }, { upTo: 1000000, rate: 0.123 }, { upTo: INF, rate: 0.133 }] },
   12: { localBrackets: [{ upTo: 10412, rate: 0.01 }, { upTo: 24684, rate: 0.02 }, { upTo: 38959, rate: 0.04 }, { upTo: 54081, rate: 0.06 }, { upTo: 68350, rate: 0.08 }, { upTo: 349137, rate: 0.093 }, { upTo: 418961, rate: 0.103 }, { upTo: 698271, rate: 0.113 }, { upTo: 1000000, rate: 0.123 }, { upTo: INF, rate: 0.133 }] },
-  133: { localBrackets: [{ upTo: 10412, rate: 0.01 }, { upTo: 24684, rate: 0.02 }, { upTo: 38959, rate: 0.04 }, { upTo: 54081, rate: 0.06 }, { upTo: 68350, rate: 0.08 }, { upTo: 349137, rate: 0.093 }, { upTo: 418961, rate: 0.103 }, { upTo: 698271, rate: 0.113 }, { upTo: 1000000, rate: 0.123 }, { upTo: INF, rate: 0.133 }] },
-  134: { localBrackets: [{ upTo: 10412, rate: 0.01 }, { upTo: 24684, rate: 0.02 }, { upTo: 38959, rate: 0.04 }, { upTo: 54081, rate: 0.06 }, { upTo: 68350, rate: 0.08 }, { upTo: 349137, rate: 0.093 }, { upTo: 418961, rate: 0.103 }, { upTo: 698271, rate: 0.113 }, { upTo: 1000000, rate: 0.123 }, { upTo: INF, rate: 0.133 }] },
   98: { localBrackets: [{ upTo: 10412, rate: 0.01 }, { upTo: 24684, rate: 0.02 }, { upTo: 38959, rate: 0.04 }, { upTo: 54081, rate: 0.06 }, { upTo: 68350, rate: 0.08 }, { upTo: 349137, rate: 0.093 }, { upTo: 418961, rate: 0.103 }, { upTo: 698271, rate: 0.113 }, { upTo: 1000000, rate: 0.123 }, { upTo: INF, rate: 0.133 }] },
   // Chicago — IL flat 4.95%
   13: { localFlatRate: 0.0495 },
@@ -1400,6 +1507,8 @@ export const COUNTRY_CURRENCY_CODE: Record<string, string> = {
   "澳大利亚": "AUD", "新西兰": "NZD",
   "南非": "ZAR", "肯尼亚": "KES", "尼日利亚": "NGN", "埃及": "EGP",
   "乌拉圭": "UYU", "摩洛哥": "MAD",
+  "立陶宛": "EUR", "拉脱维亚": "EUR", "塞浦路斯": "EUR",
+  "多米尼加": "DOP", "厄瓜多尔": "USD", "加纳": "GHS", "埃塞俄比亚": "ETB",
   "以色列": "ILS", "土耳其": "TRY", "黎巴嫩": "LBP", "约旦": "JOD",
   "伊朗": "IRR",
 };

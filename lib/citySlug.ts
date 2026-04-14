@@ -31,8 +31,6 @@ export const CITY_SLUGS: Record<number, string> = {
   140: "bali", 141: "da-nang", 142: "playa-del-carmen", 143: "porto", 144: "valencia",
   146: "split", 147: "phuket", 148: "montevideo", 149: "las-palmas",
   150: "penang", 152: "florianopolis",
-  157: "cancun",
-  158: "puerto-vallarta", 159: "kyoto",
   160: "casablanca", 161: "wellington",
 };
 
