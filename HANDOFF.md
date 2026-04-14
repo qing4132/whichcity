@@ -228,7 +228,31 @@ See [REDESIGN.md](REDESIGN.md) for full plan. Key progress:
 - [x] Sub-indicator row dividers removed in 基本保障 expanded view
 - [x] Confidence `*` grade display changed from `*B` to `* B` (space after asterisk)
 
+**Data quality audit (in progress)**:
+- [x] Numbeo data audit script created: `scripts/verify-numbeo-data.mjs`
+  - Fetches 5 ranking pages (crime/cost/property/healthcare/pollution) + 150 city cost-of-living pages + property pages as needed
+  - Auto-matches Numbeo cities to our 150 cities via slug/override/ranking discovery
+  - Compares: numbeoSafetyIndex, costModerate (single person + 1BR rent), monthlyRent, housePrice, costBudget
+  - Cross-validates: average salary (Numbeo vs our averageIncome), CoL/Rent/Healthcare/Pollution indices
+  - Features: checkpoint resume, 429/403 exponential backoff, raw HTML archive for traceability
+  - Output: `scripts/numbeo-audit/report.md` (human report), `fetched-data.json`, `comparisons.json`, `raw/` (HTML)
+  - Usage: `node scripts/verify-numbeo-data.mjs` (full) / `--rankings-only` / `--parse-only` / `--delay=5`
+- [x] Phase A done: 5/5 ranking pages fetched and cached
+- [ ] Phase B in progress: 88/150 city cost pages fetched (up to id=91 bratislava), interrupted by network switch
+  - **To resume**: run `node scripts/verify-numbeo-data.mjs` again — checkpoint auto-continues from city 92
+- [ ] Phase C (property pages), Phase D (comparison report) pending
+
+**Data quality findings so far** (from earlier manual audit):
+- `costModerate`, `costBudget`, `monthlyRent`, `housePrice` are all hardcoded values with no verified Numbeo sourcing
+- `costModerate` vs `costBudget`: Spearman ρ=0.986 → nearly identical ranking, `costBudget ≈ costModerate × 0.48`
+- `monthlyRent` vs `costModerate`: ρ=0.943, rent ratio 17%-77% → rent cannot substitute for total cost
+- Only `numbeoSafetyIndex` has a real source script (static 2024-2025 snapshot)
+- Numbeo API: $260/month minimum (Basic tier, 200K queries). One-month subscription sufficient for full re-source.
+- Teleport API: confirmed dead (HTTP timeout)
+
 Pending:
+- [ ] Complete Numbeo data verification (resume script on accessible network)
+- [ ] Apply verified data corrections to cities.json based on audit report
 - [ ] SEO meta optimization
 - [ ] GA4 key event configuration
 - [ ] Compare page Phase 2 restyling
