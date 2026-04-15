@@ -300,7 +300,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
       politicalStability: city.politicalStability, ruleLawWGI: city.ruleLawWGI,
       doctors: city.doctorsPerThousand, beds: city.hospitalBedsPerThousand,
       uhc: city.uhcCoverageIndex, lifeExpectancy: city.lifeExpectancy,
-      pressFreedom: city.pressFreedomScore, democracy: city.democracyIndex,
+      democracy: city.democracyIndex,
       cpi: city.corruptionPerceptionIndex,
     };
   }), [cities, allIncomes, costField]);
@@ -333,7 +333,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
     beds: nn(rows.map(r => r.beds)),
     uhc: nn(rows.map(r => r.uhc)),
     lifeExp: nn(rows.map(r => r.lifeExpectancy)),
-    press: nn(rows.map(r => r.pressFreedom)),
+    press: nn(rows.map(r => r.cpi)),
     demo: nn(rows.map(r => r.democracy)),
     cpi: nn(rows.map(r => r.cpi)),
   }), [rows]);
@@ -378,7 +378,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
         case "beds": return nullLast(a.beds, b.beds, false);
         case "uhc": return nullLast(a.uhc, b.uhc, false);
         case "lifeExp": return nullLast(a.lifeExpectancy, b.lifeExpectancy, false);
-        case "press": return nullLast(a.pressFreedom, b.pressFreedom, false);
+        case "press": return nullLast(a.cpi, b.cpi, false);
         case "democracy": return nullLast(a.democracy, b.democracy, false);
         case "cpi": return nullLast(a.cpi, b.cpi, false);
         default: return 0;
@@ -476,7 +476,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
           case "beds": return r.beds !== null ? Math.round(r.beds * 10) : null;
           case "uhc": return r.uhc;
           case "lifeExp": return r.lifeExpectancy !== null ? Math.round(r.lifeExpectancy * 10) : null;
-          case "press": return r.pressFreedom;
+          case "press": return r.cpi;
           case "democracy": return r.democracy !== null ? Math.round(r.democracy * 10) : null;
           case "cpi": return r.cpi;
           default: return null;
@@ -555,9 +555,8 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
         </>);
         case "freedom": return (<>
           <SubTh sk={null} label={t("institutionalFreedom")} />
-          <SubTh sk="press" label={t("pressFreedom")} weight="35%" />
-          <SubTh sk="democracy" label={t("democracyIdx")} weight="35%" />
-          <SubTh sk="cpi" label={t("corruptionIdx")} weight="30%" />
+          <SubTh sk="democracy" label={t("democracyIdx")} weight="55%" />
+          <SubTh sk="cpi" label={t("corruptionIdx")} weight="45%" />
         </>);
       }
     }
@@ -596,9 +595,8 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
         </>);
         case "freedom": return (<>
           <TC val={r.governanceIndex} formatted={r.governanceIndex.toFixed(1)} vals={V.freedom} higher={true} conf={r.governanceConf} active={sortKey === "freedom"} />
-          <TC val={r.cpi} formatted={fmtN(r.cpi)} vals={V.cpi} higher={true} active={sortKey === "cpi"} />
-          <TC val={r.pressFreedom} formatted={fmtN(r.pressFreedom)} vals={V.press} higher={true} active={sortKey === "press"} />
           <TC val={r.democracy} formatted={fmtN(r.democracy, "", 1)} vals={V.demo} higher={true} active={sortKey === "democracy"} />
+          <TC val={r.cpi} formatted={fmtN(r.cpi)} vals={V.cpi} higher={true} active={sortKey === "cpi"} />
         </>);
       }
     }

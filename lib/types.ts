@@ -24,7 +24,6 @@ export interface City {
   politicalStability: number | null;    // WB WGI Political Stability score (0-100)
   ruleLawWGI: number | null;           // WB WGI Rule of Law score (0-100)
   controlOfCorruption: number | null;   // WB WGI Control of Corruption score (0-100)
-  wpsIndex: number | null;             // Georgetown WPS Index (0-1)
   safetyWarning?: "active_conflict" | "extreme_instability" | "data_blocked";
   // Healthcare Index (pre-computed)
   healthcareIndex: number;
@@ -34,9 +33,6 @@ export interface City {
   governanceIndex: number;
   governanceConfidence: number;  // weighted confidence 0-100
   govEffectiveness: number | null;     // WGI Government Effectiveness (0-100 percentile)
-  wjpRuleLaw: number | null;          // WJP Rule of Law Index (0-1)
-  internetFreedomScore: number | null; // Freedom on the Net (0-100)
-  mipexScore: number | null;          // MIPEX migrant integration (0-100)
   // Legacy: keep freedomIndex for backwards compat during transition
   freedomIndex: number;
   freedomConfidence: number;  // legacy, kept for compat
@@ -48,7 +44,6 @@ export interface City {
   hospitalBedsPerThousand: number | null;
   uhcCoverageIndex: number | null;
   lifeExpectancy: number | null;
-  pressFreedomScore: number | null;
   democracyIndex: number | null;
   corruptionPerceptionIndex: number | null;
   timezone?: string;

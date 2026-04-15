@@ -27,11 +27,10 @@ const SHOW_DIFF = process.argv.includes("--diff");
 // Composite index weights (authoritative definition)
 // ═══════════════════════════════════════════════════════════════
 const SAFETY_WEIGHTS = [
-  { field: "homicideRateInv",     rawField: "homicideRate",         weight: 30 },
+  { field: "homicideRateInv",     rawField: "homicideRate",         weight: 35 },
   { field: "politicalStability",  rawField: "politicalStability",   weight: 25 },
   { field: "ruleLawWGI",          rawField: "ruleLawWGI",           weight: 20 },
-  { field: "controlOfCorruption", rawField: "controlOfCorruption",  weight: 15 },
-  { field: "wpsIndexNorm",        rawField: "wpsIndex",             weight: 10 },
+  { field: "controlOfCorruption", rawField: "controlOfCorruption",  weight: 20 },
 ];
 
 const HEALTHCARE_WEIGHTS = [
@@ -43,17 +42,13 @@ const HEALTHCARE_WEIGHTS = [
 ];
 
 const GOVERNANCE_WEIGHTS = [
-  { field: "corruptionPerceptionIndex", rawField: "corruptionPerceptionIndex", weight: 25 },
-  { field: "govEffectiveness",          rawField: "govEffectiveness",          weight: 25 },
-  { field: "wjpNorm",                   rawField: "wjpRuleLaw",               weight: 20 },
-  { field: "pressFreedomScore",         rawField: "pressFreedomScore",         weight: 15 },
-  { field: "mipexScore",               rawField: "mipexScore",               weight: 15 },
+  { field: "corruptionPerceptionIndex", rawField: "corruptionPerceptionIndex", weight: 50 },
+  { field: "govEffectiveness",          rawField: "govEffectiveness",          weight: 50 },
 ];
 
 const FREEDOM_WEIGHTS = [
-  { field: "pressFreedomScore",         rawField: "pressFreedomScore",         weight: 35 },
-  { field: "democracyNorm",             rawField: "democracyIndex",            weight: 35 },
-  { field: "corruptionPerceptionIndex", rawField: "corruptionPerceptionIndex", weight: 30 },
+  { field: "democracyNorm",             rawField: "democracyIndex",            weight: 55 },
+  { field: "corruptionPerceptionIndex", rawField: "corruptionPerceptionIndex", weight: 45 },
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -101,10 +96,10 @@ const RAW_FIELDS = [
   "airQuality", "aqiSource",
   "doctorsPerThousand", "hospitalBedsPerThousand", "uhcCoverageIndex",
   "lifeExpectancy", "outOfPocketPct",
-  "homicideRate", "politicalStability", "ruleLawWGI", "controlOfCorruption", "wpsIndex",
+  "homicideRate", "politicalStability", "ruleLawWGI", "controlOfCorruption",
   "safetyWarning",
-  "pressFreedomScore", "democracyIndex", "corruptionPerceptionIndex",
-  "govEffectiveness", "wjpRuleLaw", "internetFreedomScore", "mipexScore",
+  "democracyIndex", "corruptionPerceptionIndex",
+  "govEffectiveness",
   "directFlightCities",
   "climate", "timezone",
 ];
@@ -177,14 +172,12 @@ for (const src of cities) {
     ? roundTo1(100 - minMaxNorm(src.homicideRate, homicideMin, homicideMax))
     : null;
 
-  // ── Safety Index (new: all WB CC BY 4.0 sources) ──
-  const wpsNorm = src.wpsIndex != null ? src.wpsIndex * 100 : null;
+  // ── Safety Index (100% WB CC BY 4.0) ──
   const safetySubs = [
-    { val: city.homicideRateInv,     weight: 30 },
+    { val: city.homicideRateInv,     weight: 35 },
     { val: src.politicalStability,   weight: 25 },
     { val: src.ruleLawWGI,           weight: 20 },
-    { val: src.controlOfCorruption,  weight: 15 },
-    { val: wpsNorm,                  weight: 10 },
+    { val: src.controlOfCorruption,  weight: 20 },
   ];
   city.safetyIndex = roundTo1(computeWeightedAvg(safetySubs));
   city.safetyConfidence = computeConfidence(src, SAFETY_WEIGHTS);
@@ -206,24 +199,19 @@ for (const src of cities) {
   city.healthcareIndex = roundTo1(computeWeightedAvg(healthSubs));
   city.healthcareConfidence = computeConfidence(src, HEALTHCARE_WEIGHTS);
 
-  // ── Governance Index ──
-  const wjpNorm = src.wjpRuleLaw != null ? src.wjpRuleLaw * 100 : null;
+  // ── Governance Index (TI CC BY 4.0 + WB CC BY 4.0) ──
   const govSubs = [
-    { val: src.corruptionPerceptionIndex, weight: 25 },
-    { val: src.govEffectiveness,          weight: 25 },
-    { val: wjpNorm,                       weight: 20 },
-    { val: src.pressFreedomScore,          weight: 15 },
-    { val: src.mipexScore,                weight: 15 },
+    { val: src.corruptionPerceptionIndex, weight: 50 },
+    { val: src.govEffectiveness,          weight: 50 },
   ];
   city.governanceIndex = roundTo1(computeWeightedAvg(govSubs));
   city.governanceConfidence = computeConfidence(src, GOVERNANCE_WEIGHTS);
 
-  // ── Freedom Index (legacy) ──
+  // ── Freedom Index (WB CC BY 4.0 + TI CC BY 4.0) ──
   const democracyNorm = src.democracyIndex != null ? src.democracyIndex * 10 : null;
   const freedomSubs = [
-    { val: src.pressFreedomScore,         weight: 35 },
-    { val: democracyNorm,                  weight: 35 },
-    { val: src.corruptionPerceptionIndex, weight: 30 },
+    { val: democracyNorm,                  weight: 55 },
+    { val: src.corruptionPerceptionIndex, weight: 45 },
   ];
   city.freedomIndex = roundTo1(computeWeightedAvg(freedomSubs)) ?? 0;
   city.freedomConfidence = computeConfidence(src, FREEDOM_WEIGHTS);

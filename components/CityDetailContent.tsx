@@ -197,11 +197,10 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
     type Sub = { label: string; val: number | null | undefined; range: string; field: string; inv?: boolean; fmt: (v: number) => string };
     const groups: { name: string; score: number; rank: number; all: number[]; conf: number; subs: Sub[] }[] = [
       { name: t("safetyShort"), score: city.safetyIndex, rank: rankHigher(allSafety, city.safetyIndex), all: allSafety, conf: city.safetyConfidence, subs: [
-        { label: `${t("safetyHomicide")} (30%)`, val: city.homicideRate, range: "0.1–46", field: "homicideRate", inv: true, fmt: v => v.toFixed(1) },
+        { label: `${t("safetyHomicide")} (35%)`, val: city.homicideRate, range: "0.1–46", field: "homicideRate", inv: true, fmt: v => v.toFixed(1) },
         { label: `${t("politicalStability")} (25%)`, val: city.politicalStability, range: "0–100", field: "politicalStability", fmt: v => v.toFixed(1) },
         { label: `${t("ruleLaw")} (20%)`, val: city.ruleLawWGI, range: "0–100", field: "ruleLawWGI", fmt: v => v.toFixed(1) },
-        { label: `${t("controlOfCorruption")} (15%)`, val: city.controlOfCorruption, range: "0–100", field: "controlOfCorruption", fmt: v => v.toFixed(1) },
-        { label: `${t("wpsIndex")} (10%)`, val: city.wpsIndex, range: "0.4–0.9", field: "wpsIndex", fmt: v => v.toFixed(2) },
+        { label: `${t("controlOfCorruption")} (20%)`, val: city.controlOfCorruption, range: "0–100", field: "controlOfCorruption", fmt: v => v.toFixed(1) },
       ]},
       { name: t("healthcareShort"), score: city.healthcareIndex, rank: rankHigher(allHealth, city.healthcareIndex), all: allHealth, conf: city.healthcareConfidence, subs: [
         { label: `${t("doctorsPerThousand")} (25%)`, val: city.doctorsPerThousand, range: "0.2–7.0", field: "doctorsPerThousand", fmt: v => v.toFixed(1) },
@@ -211,16 +210,13 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
         { label: `${t("outOfPocket")} (15%)`, val: city.outOfPocketPct, range: "7–71%", field: "outOfPocketPct", inv: true, fmt: v => `${Math.round(v)}%` },
       ]},
       { name: t("governanceShort"), score: city.governanceIndex, rank: rankHigher(allGovernance, city.governanceIndex), all: allGovernance, conf: city.governanceConfidence, subs: [
-        { label: `${t("corruptionIdx")} (25%)`, val: city.corruptionPerceptionIndex, range: "22–90", field: "corruptionPerceptionIndex", fmt: v => String(Math.round(v)) },
-        { label: `${t("govEffect")} (25%)`, val: city.govEffectiveness, range: "21–96", field: "govEffectiveness", fmt: v => v.toFixed(1) },
-        { label: `${t("ruleLaw")} (20%)`, val: city.wjpRuleLaw, range: "0.3–0.9", field: "wjpRuleLaw", fmt: v => v.toFixed(2) },
-        { label: `${t("pressFreedom")} (15%)`, val: city.pressFreedomScore, range: "8–92", field: "pressFreedomScore", fmt: v => String(Math.round(v)) },
-        { label: `${t("mipexIndex")} (15%)`, val: city.mipexScore, range: "10–86", field: "mipexScore", fmt: v => String(Math.round(v)) },
+        { label: `${t("corruptionIdx")} (50%)`, val: city.corruptionPerceptionIndex, range: "22–90", field: "corruptionPerceptionIndex", fmt: v => String(Math.round(v)) },
+        { label: `${t("govEffect")} (50%)`, val: city.govEffectiveness, range: "21–96", field: "govEffectiveness", fmt: v => v.toFixed(1) },
       ]},
     ];
-    const allSubs = [city.homicideRate, city.politicalStability, city.ruleLawWGI, city.controlOfCorruption, city.wpsIndex,
+    const allSubs = [city.homicideRate, city.politicalStability, city.ruleLawWGI, city.controlOfCorruption,
       city.doctorsPerThousand, city.hospitalBedsPerThousand, city.uhcCoverageIndex, city.lifeExpectancy, city.outOfPocketPct,
-      city.corruptionPerceptionIndex, city.govEffectiveness, city.wjpRuleLaw, city.pressFreedomScore, city.mipexScore];
+      city.corruptionPerceptionIndex, city.govEffectiveness];
     return (
       <div>
         <div className={`text-[13px] ${subCls} space-y-0.5`}>

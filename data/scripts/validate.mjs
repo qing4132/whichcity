@@ -74,13 +74,11 @@ for (const f of ["safetyConfidence", "healthcareConfidence", "governanceConfiden
 
 // 1e. Safety index recomputation check (within tolerance of 3)
 for (const c of cities) {
-  const wpsNorm = c.wpsIndex != null ? c.wpsIndex * 100 : null;
   const subs = [
-    { val: c.homicideRateInv, w: 0.30 },
+    { val: c.homicideRateInv, w: 0.35 },
     { val: c.politicalStability, w: 0.25 },
     { val: c.ruleLawWGI, w: 0.20 },
-    { val: c.controlOfCorruption, w: 0.15 },
-    { val: wpsNorm, w: 0.10 },
+    { val: c.controlOfCorruption, w: 0.20 },
   ];
   const avail = subs.filter(s => s.val != null);
   if (avail.length > 0) {
@@ -121,10 +119,10 @@ for (const c of cities) {
 }
 
 // 1h. Confidence matches sub-indicator presence (numeric weights)
-const SAFETY_SUBS = [["homicideRate", 30], ["politicalStability", 25], ["ruleLawWGI", 20], ["controlOfCorruption", 15], ["wpsIndex", 10]];
+const SAFETY_SUBS = [["homicideRate", 35], ["politicalStability", 25], ["ruleLawWGI", 20], ["controlOfCorruption", 20]];
 const HEALTH_SUBS = [["doctorsPerThousand", 25], ["hospitalBedsPerThousand", 20], ["uhcCoverageIndex", 25], ["lifeExpectancy", 15], ["outOfPocketPct", 15]];
-const GOV_SUBS = [["corruptionPerceptionIndex", 25], ["govEffectiveness", 25], ["wjpRuleLaw", 20], ["pressFreedomScore", 15], ["mipexScore", 15]];
-const FREE_SUBS = [["pressFreedomScore", 35], ["democracyIndex", 35], ["corruptionPerceptionIndex", 30]];
+const GOV_SUBS = [["corruptionPerceptionIndex", 50], ["govEffectiveness", 50]];
+const FREE_SUBS = [["democracyIndex", 55], ["corruptionPerceptionIndex", 45]];
 
 function expectedConf(city, subs) {
   let avail = 0;
