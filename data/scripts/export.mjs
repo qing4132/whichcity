@@ -104,6 +104,7 @@ const RAW_FIELDS = [
   "pm25", "broadbandPer100", "regulatoryQuality",
   "netMigration", "nursesPerThousand", "healthExpPerCapita",
   "tertiaryEnrollment", "hdi", "gii",
+  "inflationForecast", "gdpGrowthForecast", "gniPerCapita",
   "directFlightCities",
   "climate", "timezone",
 ];
