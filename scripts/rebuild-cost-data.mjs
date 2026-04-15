@@ -66,7 +66,7 @@ function main_sync(consumptionData) {
   const sourceData = JSON.parse(readFileSync(SOURCE_PATH, "utf-8"));
   const cities = sourceData.cities;
 
-  const CITY_PREMIUM = 1.15; // Capital/primary city premium over national average
+  const CITY_PREMIUM = 1.05; // Reduced from 1.15 after cross-validation: salary/cost ratio check
   let stats = { costMod: 0, rent: 0, house: 0 };
 
   for (const city of cities) {
@@ -133,7 +133,7 @@ function main_sync(consumptionData) {
     if (c) console.log(`  ${name}: cost=$${c.costModerate}/mo  rent=$${c.monthlyRent}/mo  house=$${c.housePrice}/m²`);
   }
 
-  console.log(`\n⚠️  Method: WB GDP PPP per capita × consumption share × 1.15 city premium`);
+  console.log(`\n⚠️  Method: WB GDP PPP per capita × consumption share × 1.05 city premium`);
   console.log(`   These are open-data estimates. Source: WB CC BY 4.0`);
 }
 
