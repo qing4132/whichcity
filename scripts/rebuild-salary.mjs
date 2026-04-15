@@ -1,18 +1,20 @@
 #!/usr/bin/env node
 /**
- * rebuild-salary.mjs — Rebuild professions salaries from ILO open data
+ * rebuild-salary.mjs — Rebuild professions from ILO + city premium factors
  *
- * Replaces Numbeo-based salary anchors with ILO PPP monthly earnings.
- * Preserves BLS Tier 1 (21 US cities) and doda.jp (6 Japan cities).
+ * Method: ILO national PPP monthly earnings × 12 × ISCO ratio × subRatio × cityPremium
  *
- * Pipeline:
- *   1. Load ILO PPP monthly earnings (166 countries) → annual gross USD
- *   2. Load ILO ISCO occupation ratios (164 countries)
- *   3. Map 25 WhichCity professions → ISCO major groups
- *   4. For each non-BLS city: salary = ILO_annual × ISCO_ratio × profession_subRatio
- *   5. Keep BLS cities untouched
+ * City premium is derived from the city's economic position within its country:
+ *   - Capital / global financial center: 1.25-1.40
+ *   - Major economic hub: 1.10-1.20
+ *   - Secondary city: 0.85-1.00
+ *   - These are well-documented urbanization economics patterns
  *
- * License: All inputs CC BY 4.0 (ILO) or Public Domain (BLS)
+ * The city premium table is manually curated based on public knowledge
+ * (no proprietary data), similar to how we assign safetyWarning.
+ *
+ * Preserves: BLS (21 US cities), doda.jp (6 Japan cities)
+ * License: ILO CC BY 4.0 + editorial city premiums
  */
 import { readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -23,7 +25,7 @@ const ROOT = join(__dirname, "..");
 const SOURCE_PATH = join(ROOT, "data/cities-source.json");
 const ILO_DIR = join(ROOT, "data/sources/ilo");
 
-// ── Country name mapping ──
+// ── Country → ILO name ──
 const COUNTRY_TO_ILO = {
   "美国":"United States of America","中国":"China","中国香港":"China, Hong Kong SAR",
   "台湾":"Taiwan, China","日本":"Japan","韩国":"Korea, Republic of",
@@ -51,35 +53,109 @@ const COUNTRY_TO_ILO = {
   "巴拿马":"Panama","厄瓜多尔":"Ecuador","多米尼加":"Dominican Republic","波多黎各":"Puerto Rico",
 };
 
-// ── 25 professions → ISCO-08 major group mapping ──
-// ISCO-08: 1=Managers, 2=Professionals, 3=Technicians, 4=Clerical, 5=Service/Sales,
-//          6=Agriculture, 7=Craft, 8=Operators, 9=Elementary
+// ── City premium factors (editorial, public knowledge) ──
+// Based on each city's role in its national economy
+// Sources: general knowledge of urbanization economics, city GDP shares
+// 1.0 = national average; >1.0 = more expensive/higher wages; <1.0 = below average
+const CITY_PREMIUM = {
+  // China (huge internal variation)
+  "北京": 1.35, "上海": 1.40, "广州": 1.20, "深圳": 1.35, "成都": 1.00, "杭州": 1.15, "重庆": 0.90,
+  // Hong Kong, Singapore, Luxembourg (city-states, no adjustment needed)
+  "香港": 1.00, "新加坡": 1.00, "卢森堡": 1.00,
+  // UK
+  "伦敦": 1.30, "曼彻斯特": 0.90, "爱丁堡": 0.95,
+  // Germany
+  "柏林": 1.00, "慕尼黑": 1.20, "法兰克福": 1.15, "汉堡": 1.05,
+  // France
+  "巴黎": 1.30, "里昂": 0.90, "马赛": 0.85,
+  // South Korea
+  "首尔": 1.25, "釜山": 0.90,
+  // India (massive gap)
+  "孟买": 1.40, "班加罗尔": 1.30, "新德里": 1.20, "海得拉巴": 1.10, "钦奈": 1.05, "加尔各答": 0.90, "浦那": 1.00,
+  // Brazil
+  "圣保罗": 1.25, "里约热内卢": 1.10, "巴西利亚": 1.15, "库里蒂巴": 0.95, "贝洛奥里藏特": 0.90, "累西腓": 0.85,
+  // Mexico
+  "墨西哥城": 1.20, "蒙特雷": 1.10, "瓜达拉哈拉": 0.95,
+  // Australia
+  "悉尼": 1.20, "墨尔本": 1.10, "布里斯班": 0.95, "珀斯": 1.00,
+  // Canada
+  "多伦多": 1.15, "温哥华": 1.15, "蒙特利尔": 1.00, "渥太华": 1.05, "卡尔加里": 1.05,
+  // Turkey
+  "伊斯坦布尔": 1.25, "安卡拉": 1.00, "伊兹密尔": 0.90,
+  // Russia
+  "莫斯科": 1.40, "圣彼得堡": 1.10,
+  // UAE
+  "迪拜": 1.10, "阿布扎比": 1.15,
+  // Thailand
+  "曼谷": 1.30, "清迈": 0.75, "普吉岛": 0.80,
+  // Indonesia
+  "雅加达": 1.25, "巴厘岛": 0.80,
+  // Vietnam
+  "胡志明市": 1.20, "河内": 1.10, "岘港": 0.80,
+  // Philippines
+  "马尼拉": 1.20, "宿务": 0.85,
+  // Colombia
+  "波哥大": 1.20, "麦德林": 0.95,
+  // Argentina
+  "布宜诺斯艾利斯": 1.25,
+  // Egypt
+  "开罗": 1.20,
+  // South Africa
+  "约翰内斯堡": 1.15, "开普敦": 1.10,
+  // Nigeria
+  "拉各斯": 1.30, "阿布贾": 1.10,
+  // Kenya
+  "内罗毕": 1.15,
+  // Poland
+  "华沙": 1.20, "克拉科夫": 0.95,
+  // Czech
+  "布拉格": 1.20,
+  // Romania
+  "布加勒斯特": 1.25,
+  // Spain
+  "马德里": 1.15, "巴塞罗那": 1.15,
+  // Italy
+  "罗马": 1.10, "米兰": 1.20,
+  // Netherlands
+  "阿姆斯特丹": 1.15,
+  // Switzerland
+  "苏黎世": 1.15, "日内瓦": 1.15,
+  // Israel
+  "特拉维夫": 1.20,
+  // Taiwan
+  "台北": 1.20,
+  // Pakistan
+  "卡拉奇": 1.10, "伊斯兰堡": 1.15, "拉合尔": 0.95,
+};
+const DEFAULT_PREMIUM = 1.10; // Most cities in our list are capitals/primary cities
+
+// ── 25 professions → ISCO mapping ──
 const PROF_TO_ISCO = {
-  "软件工程师": { isco: 2, subRatio: 1.15 },      // Professional, high-demand
-  "医生/医学博士": { isco: 2, subRatio: 1.40 },    // Professional, medical specialist
-  "财务分析师": { isco: 2, subRatio: 1.05 },       // Professional
-  "市场经理": { isco: 1, subRatio: 1.00 },         // Manager
-  "平面设计师": { isco: 3, subRatio: 0.95 },       // Technician
-  "数据科学家": { isco: 2, subRatio: 1.10 },       // Professional
-  "销售经理": { isco: 1, subRatio: 1.10 },         // Manager, senior
-  "人力资源经理": { isco: 1, subRatio: 0.95 },     // Manager
-  "教师": { isco: 2, subRatio: 0.75 },             // Professional, education
-  "护士": { isco: 2, subRatio: 0.70 },             // Professional, healthcare
-  "律师": { isco: 2, subRatio: 1.30 },             // Professional, legal
-  "建筑师": { isco: 2, subRatio: 0.95 },           // Professional
-  "厨师": { isco: 5, subRatio: 1.05 },             // Service
-  "记者": { isco: 2, subRatio: 0.80 },             // Professional, media
-  "机械工程师": { isco: 2, subRatio: 1.00 },       // Professional, engineering
-  "药剂师": { isco: 2, subRatio: 1.10 },           // Professional, health
-  "会计师": { isco: 2, subRatio: 0.90 },           // Professional
-  "产品经理": { isco: 1, subRatio: 1.00 },         // Manager
-  "UI/UX设计师": { isco: 2, subRatio: 1.00 },      // Professional
-  "大学教授": { isco: 2, subRatio: 1.00 },         // Professional, academic
-  "牙医": { isco: 2, subRatio: 1.20 },             // Professional, dental
-  "公交司机": { isco: 8, subRatio: 1.00 },         // Operator
-  "电工": { isco: 7, subRatio: 1.00 },             // Craft
-  "政府/NGO行政": { isco: 4, subRatio: 1.05 },     // Clerical/admin
-  "数字游民": { isco: -1, subRatio: 0 },           // Fixed $85,000
+  "软件工程师": { isco: 2, sub: 1.15 },
+  "医生/医学博士": { isco: 2, sub: 1.40 },
+  "财务分析师": { isco: 2, sub: 1.05 },
+  "市场经理": { isco: 1, sub: 1.00 },
+  "平面设计师": { isco: 3, sub: 0.95 },
+  "数据科学家": { isco: 2, sub: 1.10 },
+  "销售经理": { isco: 1, sub: 1.10 },
+  "人力资源经理": { isco: 1, sub: 0.95 },
+  "教师": { isco: 2, sub: 0.75 },
+  "护士": { isco: 2, sub: 0.70 },
+  "律师": { isco: 2, sub: 1.30 },
+  "建筑师": { isco: 2, sub: 0.95 },
+  "厨师": { isco: 5, sub: 1.05 },
+  "记者": { isco: 2, sub: 0.80 },
+  "机械工程师": { isco: 2, sub: 1.00 },
+  "药剂师": { isco: 2, sub: 1.10 },
+  "会计师": { isco: 2, sub: 0.90 },
+  "产品经理": { isco: 1, sub: 1.00 },
+  "UI/UX设计师": { isco: 2, sub: 1.00 },
+  "大学教授": { isco: 2, sub: 1.00 },
+  "牙医": { isco: 2, sub: 1.20 },
+  "公交司机": { isco: 8, sub: 1.00 },
+  "电工": { isco: 7, sub: 1.00 },
+  "政府/NGO行政": { isco: 4, sub: 1.05 },
+  "数字游民": { isco: -1, sub: 0 },
 };
 
 const ISCO_LABELS = {
@@ -92,9 +168,7 @@ const ISCO_LABELS = {
   8: "Occupation (ISCO-08): 8. Plant and machine operators, and assemblers",
 };
 
-// BLS cities (keep untouched)
 const BLS_COUNTRIES = new Set(["美国", "波多黎各"]);
-// Japan doda cities (keep untouched)
 const DODA_COUNTRIES = new Set(["日本"]);
 
 function parseCSV(text) {
@@ -109,62 +183,65 @@ function parseCSV(text) {
 }
 
 function main() {
-  console.log("═══ Rebuild Salaries from ILO Open Data ═══\n");
+  console.log("═══ Rebuild Salaries (ILO + City Premiums) ═══\n");
 
-  // 1. Load ILO PPP monthly earnings
+  // Load ILO PPP monthly earnings
   const earnFile = readdirSync(ILO_DIR).find(f => f.startsWith("ilo-earnings-by-currency"));
   const earnRows = parseCSV(readFileSync(join(ILO_DIR, earnFile), "utf-8"));
-  const pppEarnings = {}; // country → { monthly PPP$ }
+  const pppEarnings = {};
   for (let i = 1; i < earnRows.length; i++) {
     const [country, , , sex, currency, year, val] = earnRows[i];
     if (sex !== "Total" || !currency?.includes("PPP")) continue;
     const v = parseFloat(val), y = parseInt(year);
     if (isNaN(v)) continue;
-    if (!pppEarnings[country] || y > pppEarnings[country].year) {
-      pppEarnings[country] = { monthly: v, year: y };
-    }
+    if (!pppEarnings[country] || y > pppEarnings[country].year) pppEarnings[country] = { monthly: v, year: y };
   }
-  console.log(`ILO PPP earnings: ${Object.keys(pppEarnings).length} countries`);
 
-  // 2. Load ILO ISCO occupation ratios
+  // Load ILO ISCO ratios
   const occFile = readdirSync(ILO_DIR).find(f => f.startsWith("ilo-earnings-by-occupation"));
   const occRows = parseCSV(readFileSync(join(ILO_DIR, occFile), "utf-8"));
-  const iscoData = {}; // country → { iscoLabel → val }
+  const iscoData = {};
   for (let i = 1; i < occRows.length; i++) {
     const [country, , , sex, occ, year, val] = occRows[i];
     if (sex !== "Total") continue;
     const v = parseFloat(val), y = parseInt(year);
     if (isNaN(v)) continue;
     if (!iscoData[country]) iscoData[country] = {};
-    if (!iscoData[country][occ] || y > iscoData[country][occ].year) {
-      iscoData[country][occ] = { val: v, year: y };
-    }
+    if (!iscoData[country][occ] || y > iscoData[country][occ].year) iscoData[country][occ] = { val: v, year: y };
   }
-  console.log(`ILO ISCO data: ${Object.keys(iscoData).length} countries`);
 
-  // 3. Load SOT
+  console.log(`ILO PPP: ${Object.keys(pppEarnings).length} countries`);
+  console.log(`ILO ISCO: ${Object.keys(iscoData).length} countries`);
+  console.log(`City premiums: ${Object.keys(CITY_PREMIUM).length} cities defined\n`);
+
   const sourceData = JSON.parse(readFileSync(SOURCE_PATH, "utf-8"));
   const cities = sourceData.cities;
-
-  let rebuilt = 0, kept = 0, failed = 0;
+  let rebuilt = 0, kept = 0, fallback = 0;
 
   for (const city of cities) {
-    // Skip BLS cities (already accurate)
     if (BLS_COUNTRIES.has(city.country)) { kept++; continue; }
-    // Skip Japan doda cities
     if (DODA_COUNTRIES.has(city.country)) { kept++; continue; }
 
     const iloName = COUNTRY_TO_ILO[city.country];
-    if (!iloName) { failed++; continue; }
+    const countryEarnings = iloName ? pppEarnings[iloName] : null;
 
-    const countryEarnings = pppEarnings[iloName];
-    if (!countryEarnings) { failed++; continue; }
+    // Get base annual salary
+    let annualBase;
+    if (countryEarnings) {
+      annualBase = countryEarnings.monthly * 12;
+    } else if (city.gniPerCapita) {
+      // Fallback: use GNI per capita as very rough proxy (WB CC BY 4.0)
+      annualBase = city.gniPerCapita;
+      fallback++;
+    } else {
+      continue; // Can't rebuild
+    }
 
-    // Annual gross from ILO PPP monthly
-    const annualBase = countryEarnings.monthly * 12;
+    // City premium
+    const premium = CITY_PREMIUM[city.name] ?? DEFAULT_PREMIUM;
 
-    // Get ISCO ratios for this country
-    const countryISCO = iscoData[iloName];
+    // ISCO ratios
+    const countryISCO = iloName ? iscoData[iloName] : null;
     let totalVal = null;
     if (countryISCO) {
       totalVal = countryISCO["Occupation (ISCO-08): Total"]?.val
@@ -172,57 +249,55 @@ function main() {
         || countryISCO["Occupation (Skill level): Total"]?.val;
     }
 
-    // Compute each profession
     for (const [prof, mapping] of Object.entries(PROF_TO_ISCO)) {
-      // Digital nomad: fixed
-      if (mapping.isco === -1) {
-        city.professions[prof] = 85000;
-        continue;
-      }
+      if (mapping.isco === -1) { city.professions[prof] = 85000; continue; }
 
       let salary;
       if (countryISCO && totalVal) {
-        // Use ISCO ratio
         const iscoLabel = ISCO_LABELS[mapping.isco];
         const iscoVal = countryISCO[iscoLabel]?.val;
-        if (iscoVal && totalVal > 0) {
-          const iscoRatio = iscoVal / totalVal;
-          salary = annualBase * iscoRatio * mapping.subRatio;
-        } else {
-          // ISCO group not available, use base × subRatio
-          salary = annualBase * mapping.subRatio;
-        }
+        const iscoRatio = (iscoVal && totalVal > 0) ? iscoVal / totalVal : 1.0;
+        salary = annualBase * iscoRatio * mapping.sub * premium;
       } else {
-        // No ISCO data, use base × subRatio only
-        salary = annualBase * mapping.subRatio;
+        salary = annualBase * mapping.sub * premium;
       }
 
       city.professions[prof] = Math.round(salary);
     }
-
     rebuilt++;
   }
 
   writeFileSync(SOURCE_PATH, JSON.stringify(sourceData, null, 2) + "\n", "utf-8");
 
-  console.log(`\n═══ Results ═══`);
-  console.log(`  Rebuilt (ILO): ${rebuilt} cities`);
-  console.log(`  Kept (BLS/doda): ${kept} cities`);
-  console.log(`  Failed (no ILO data): ${failed} cities`);
+  console.log(`═══ Results ═══`);
+  console.log(`  Rebuilt: ${rebuilt} (ILO: ${rebuilt - fallback}, GNI fallback: ${fallback})`);
+  console.log(`  Kept: ${kept} (BLS + doda)`);
+  console.log(`  Total: ${rebuilt + kept}/${cities.length}\n`);
 
-  // Sanity check
-  console.log(`\n═══ Samples ═══`);
-  for (const name of ["纽约", "伦敦", "东京", "曼谷", "柏林", "拉各斯", "台北"]) {
+  // Show same-country different-city comparison
+  console.log("═══ Same-Country City Comparison ═══");
+  const pairs = [
+    ["北京", "成都"], ["上海", "重庆"],
+    ["伦敦", "曼彻斯特"], ["慕尼黑", "柏林"],
+    ["孟买", "加尔各答"], ["圣保罗", "累西腓"],
+    ["首尔", "釜山"], ["曼谷", "清迈"],
+  ];
+  for (const [a, b] of pairs) {
+    const ca = cities.find(c => c.name === a), cb = cities.find(c => c.name === b);
+    if (!ca || !cb) continue;
+    const swA = ca.professions["软件工程师"], swB = cb.professions["软件工程师"];
+    console.log(`  ${a} vs ${b}: $${swA?.toLocaleString()} vs $${swB?.toLocaleString()} (${(swA/swB).toFixed(2)}x)`);
+  }
+
+  console.log("\n═══ Global Samples ═══");
+  for (const name of ["纽约","旧金山","伦敦","东京","新加坡","柏林","曼谷","拉各斯","台北","首尔"]) {
     const c = cities.find(x => x.name === name);
     if (!c) continue;
     const sw = c.professions["软件工程师"];
-    const nurse = c.professions["护士"];
-    const cook = c.professions["厨师"];
-    const med = Object.values(c.professions).sort((a,b) => a-b)[12];
-    console.log(`  ${name}: SW=$${sw} 护士=$${nurse} 厨师=$${cook} 中位=$${med}`);
+    const med = Object.values(c.professions).sort((a,b)=>a-b)[12];
+    console.log(`  ${name}: SW=$${sw?.toLocaleString()} med=$${med?.toLocaleString()} premium=${CITY_PREMIUM[name] ?? DEFAULT_PREMIUM}`);
   }
-
-  console.log(`\n✅ Done`);
+  console.log("\n✅ Done");
 }
 
 main();
