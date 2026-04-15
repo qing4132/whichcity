@@ -31,6 +31,11 @@ type SubSort =
 
 /* ── Config ── */
 
+const INDEX_TABS = new Set<Tab>(["lifePressure", "safety", "healthcare", "freedom"]);
+
+// Tabs hidden until their data sources are rebuilt (cost/rent/housePrice/speed all null)
+const HIDDEN_TABS = new Set<Tab>(["expense", "savings", "housePrice", "housing", "rent", "hourlyWage", "internet", "lifePressure"]);
+
 const GROUPS: { labelKey: string; tabs: Tab[] }[] = [
   { labelKey: "rankGroup_income", tabs: ["income", "expense", "savings"] },
   { labelKey: "rankGroup_housing", tabs: ["housePrice", "housing", "rent"] },
@@ -39,7 +44,10 @@ const GROUPS: { labelKey: string; tabs: Tab[] }[] = [
   { labelKey: "rankGroup_index", tabs: ["lifePressure", "safety", "healthcare", "freedom"] },
 ];
 
-const INDEX_TABS = new Set<Tab>(["lifePressure", "safety", "healthcare", "freedom"]);
+// Filter out hidden tabs; remove empty groups
+const VISIBLE_GROUPS = GROUPS
+  .map(g => ({ ...g, tabs: g.tabs.filter(tb => !HIDDEN_TABS.has(tb)) }))
+  .filter(g => g.tabs.length > 0);
 
 const TAB_I18N: Record<Tab, string> = {
   income: "rankTab_income", expense: "rankTab_expense", savings: "rankTab_savings",
@@ -50,7 +58,7 @@ const TAB_I18N: Record<Tab, string> = {
   healthcare: "rankTab_healthcare", freedom: "rankTab_freedom",
 };
 
-const tabGroupIdx = (tab: Tab) => GROUPS.findIndex(g => g.tabs.includes(tab));
+const tabGroupIdx = (tab: Tab) => VISIBLE_GROUPS.findIndex(g => g.tabs.includes(tab));
 
 /* ── Climate filter config ── */
 const CLIMATE_TYPES: ClimateType[] = ["tropical", "temperate", "continental", "arid", "mediterranean", "oceanic"];
@@ -159,7 +167,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
   const CLIM_DIMS = useMemo(() => buildClimDims(cities), [cities]);
 
   /* ── URL ↔ State sync ── */
-  const validTab = (v: string | null): v is Tab => v !== null && Object.keys(TAB_I18N).includes(v);
+  const validTab = (v: string | null): v is Tab => v !== null && Object.keys(TAB_I18N).includes(v) && !HIDDEN_TABS.has(v as Tab);
   const validClimType = (v: string): v is ClimateType => CLIMATE_TYPES.includes(v as ClimateType);
   const validDimKey = (k: string) => CLIM_DIMS.some(d => d.key === k);
   const urlTab = searchParams.get("tab");
@@ -553,7 +561,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
         </>);
       }
     }
-    const group = GROUPS[activeGroup];
+    const group = VISIBLE_GROUPS[activeGroup];
     return group.tabs.map(gTab => (
       <th key={gTab} className={`${thBase} cursor-pointer hover:underline ${sortKey === gTab ? sortColBg : ""}`}
         onClick={() => handleTab(gTab)}>
@@ -740,7 +748,7 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
             <span className="flex-1 min-w-0 truncate text-center">
               {INDEX_TABS.has(tab)
                 ? <span className="font-bold text-blue-500">{t(TAB_I18N[tab])}</span>
-                : GROUPS[tabGroupIdx(tab)].tabs.map((gt, i) => (
+                : VISIBLE_GROUPS[tabGroupIdx(tab)].tabs.map((gt, i) => (
                   <span key={gt}>
                     {i > 0 && <span className="opacity-40">/</span>}
                     <span className={gt === tab ? "font-bold text-blue-500" : "opacity-60"}>{t(TAB_I18N[gt])}</span>
@@ -756,18 +764,50 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
           <div className="order-4 sm:col-span-2 grid transition-[grid-template-rows] duration-300 ease-in-out" style={{ gridTemplateRows: tabsExpanded ? "1fr" : "0fr" }}>
             <div className="overflow-hidden">
               <div className="space-y-1.5 pt-1.5">
-                {/* Tab grids */}
-                {[[0, 1], [2, 3]].map((pair, ri) => (
-                  <div key={ri} className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {pair.map(gi => (
-                      <div key={GROUPS[gi].labelKey} className="grid grid-cols-3 gap-1">
-                        {GROUPS[gi].tabs.map(gTab => {
+                {/* Tab grids — non-index groups */}
+                {(() => {
+                  const nonIndex = VISIBLE_GROUPS.filter(g => !g.tabs.every(tb => INDEX_TABS.has(tb)));
+                  const indexGroup = VISIBLE_GROUPS.find(g => g.tabs.some(tb => INDEX_TABS.has(tb)));
+                  // Pair non-index groups into rows of 2
+                  const pairs: typeof nonIndex[] = [];
+                  for (let i = 0; i < nonIndex.length; i += 2) pairs.push(nonIndex.slice(i, i + 2));
+                  return (<>
+                    {pairs.map((pair, ri) => (
+                      <div key={ri} className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {pair.map(g => {
+                          const gi = VISIBLE_GROUPS.indexOf(g);
+                          return (
+                            <div key={g.labelKey} className={`grid grid-cols-${g.tabs.length} gap-1`}>
+                              {g.tabs.map(gTab => {
+                                const selected = tab === gTab;
+                                return (
+                                  <button key={gTab} onClick={() => handleTab(gTab)}
+                                    className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${selected
+                                      ? "bg-blue-600 text-white shadow-sm"
+                                      : gi === activeGroup
+                                        ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-blue-700")
+                                        : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100/70 text-slate-600")
+                                      }`}>
+                                    {t(TAB_I18N[gTab])}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                    {/* Index group */}
+                    {indexGroup && (
+                      <div className={`grid grid-cols-${indexGroup.tabs.length} gap-1`}>
+                        {indexGroup.tabs.map(gTab => {
                           const selected = tab === gTab;
+                          const idxGi = VISIBLE_GROUPS.indexOf(indexGroup);
                           return (
                             <button key={gTab} onClick={() => handleTab(gTab)}
                               className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${selected
                                 ? "bg-blue-600 text-white shadow-sm"
-                                : gi === activeGroup
+                                : idxGi === activeGroup
                                   ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-blue-700")
                                   : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100/70 text-slate-600")
                                 }`}>
@@ -776,26 +816,9 @@ export default function RankingContent({ cities, locale: urlLocale }: Props) {
                           );
                         })}
                       </div>
-                    ))}
-                  </div>
-                ))}
-                {/* Row 3: Indexes */}
-                <div className="grid grid-cols-4 gap-1">
-                  {GROUPS[4].tabs.map(gTab => {
-                    const selected = tab === gTab;
-                    return (
-                      <button key={gTab} onClick={() => handleTab(gTab)}
-                        className={`py-2 rounded-lg font-medium text-xs transition text-center truncate ${selected
-                          ? "bg-blue-600 text-white shadow-sm"
-                          : activeGroup === 4
-                            ? (darkMode ? "bg-slate-700 text-slate-200" : "bg-blue-50 text-blue-700")
-                            : (darkMode ? "bg-slate-800 text-slate-400" : "bg-slate-100/70 text-slate-600")
-                          }`}>
-                        {t(TAB_I18N[gTab])}
-                      </button>
-                    );
-                  })}
-                </div>
+                    )}
+                  </>);
+                })()}
               </div>
             </div>
           </div>
