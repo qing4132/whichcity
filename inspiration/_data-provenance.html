@@ -132,7 +132,7 @@
 
 <h1>WhichCity 数据溯源文档</h1>
 <p class="subtitle">
-  最后更新：2026-04-16 · 数据库版本：151 城市 · 48 字段 · 25 职业 · 88 国税制 · 10 气候维度<br>
+  最后更新：2026-04-16 · 数据库版本：151 城市 · 46 字段 · 25 职业 · 88 国税制 · 10 气候维度<br>
   合规目标：<strong>100% 开放许可 + 自有 IP，零付费数据，零法律风险</strong>
 </p>
 
@@ -200,13 +200,6 @@
     <td>CSV 下载 (HDR 2025)</td>
   </tr>
   <tr>
-    <td>IMF WEO</td>
-    <td>国际货币基金组织</td>
-    <td><span class="badge badge-open">Open + Attribution</span></td>
-    <td>2</td>
-    <td>WEO Database Oct 2024</td>
-  </tr>
-  <tr>
     <td>Transparency International CPI</td>
     <td>透明国际</td>
     <td><span class="badge badge-cc">CC BY 4.0</span></td>
@@ -252,7 +245,6 @@
   <li>✅ World Bank: <a href="https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets">Terms</a> — CC BY 4.0，允许商业使用，需注明出处</li>
   <li>✅ ILO: <a href="https://ilostat.ilo.org/resources/concepts-and-definitions/">ILOSTAT</a> — CC BY 4.0，数据免费开放</li>
   <li>✅ UNDP: <a href="https://hdr.undp.org/data-center/documentation-and-downloads">HDR</a> — CC BY 3.0 IGO，需注明 "UNDP HDR"</li>
-  <li>✅ IMF: <a href="https://www.imf.org/external/terms.htm">Terms</a> — 免费使用需注明出处，不得暗示 IMF 背书</li>
   <li>✅ TI CPI: <a href="https://www.transparency.org/en/cpi/2024">CPI 2024</a> — CC BY 4.0</li>
   <li>✅ BLS: 美国联邦政府数据，Public Domain，无版权限制</li>
   <li>✅ 各国税法: 法律条文属公共领域</li>
@@ -675,7 +667,7 @@
 </table>
 
 <!-- ═══ 11. Macro ═══ -->
-<h2 id="macro">11. 宏观经济 (10 字段)</h2>
+<h2 id="macro">11. 宏观经济 (8 字段)</h2>
 
 <table>
   <tr><th>字段</th><th>覆盖</th><th>WB ID / 来源</th><th>许可</th><th>说明</th></tr>
@@ -706,20 +698,6 @@
     <td><code>SL.UEM.TOTL.ZS</code></td>
     <td><span class="badge badge-cc">WB CC BY 4.0</span></td>
     <td>失业率 (% 劳动力, ILO 模型估算)</td>
-  </tr>
-  <tr>
-    <td class="field-name">inflationForecast</td>
-    <td class="coverage coverage-high">149/151</td>
-    <td>IMF WEO Oct 2024</td>
-    <td><span class="badge badge-open">IMF Open</span></td>
-    <td>2025 年通胀预测 (年%)</td>
-  </tr>
-  <tr>
-    <td class="field-name">gdpGrowthForecast</td>
-    <td class="coverage coverage-high">149/151</td>
-    <td>IMF WEO Oct 2024</td>
-    <td><span class="badge badge-open">IMF Open</span></td>
-    <td>2025 年 GDP 增长预测 (年%)</td>
   </tr>
   <tr>
     <td class="field-name">hdi</td>
@@ -1208,7 +1186,7 @@ node validate.mjs    ✅ 独立数据验证
 
   <!-- Footer -->
   <div style="padding: 16px; text-align:center; font-size:11px; color:#a1a1aa; border-top: 1px solid #f1f1f1;">
-    数据来源: World Bank · ILO · UNDP · IMF · 各国统计局<br>
+    数据来源: World Bank · ILO · UNDP · 各国统计局<br>
     <a href="#" style="color:#a1a1aa;">方法论</a> · <a href="#" style="color:#a1a1aa;">GitHub</a> · <a href="#" style="color:#a1a1aa;">反馈</a>
   </div>
 

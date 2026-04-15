@@ -59,8 +59,6 @@ export interface City {
   tertiaryEnrollment: number | null;   // School enrollment, tertiary (% gross)
   hdi: number | null;                  // UNDP Human Development Index (0-1)
   gii: number | null;                  // UNDP Gender Inequality Index (0-1, lower=better)
-  inflationForecast: number | null;     // IMF WEO inflation forecast 2025 (annual %)
-  gdpGrowthForecast: number | null;     // IMF WEO GDP growth forecast 2025 (annual %)
   gniPerCapita: number | null;          // WB GNI per capita Atlas method (current US$)
   minimumWagePPP: number | null;         // ILO statutory monthly minimum wage (2021 PPP $)
   weeklyHoursEmp: number | null;         // ILO mean weekly hours per employee (Sex=Total)
