@@ -70,9 +70,12 @@ function calcSocial(grossLocal: number, components: SocialComponent[], overrides
     const rate = override?.rate ?? comp.rate;
     const baseCap = override?.annualBaseCap ?? comp.annualBaseCap;
     const absCap = override?.annualAbsCap ?? comp.annualAbsCap;
+    const floor = override?.annualFloor ?? comp.annualFloor;
 
     let base = grossLocal;
-    if (baseCap !== undefined) base = Math.min(base, baseCap);
+    if (floor !== undefined) base = Math.max(0, base - floor);
+    if (baseCap !== undefined) base = Math.min(base, baseCap - (floor ?? 0));
+    if (base < 0) base = 0;
     let deduction = base * rate;
     if (absCap !== undefined) deduction = Math.min(deduction, absCap);
     total += deduction;
@@ -111,6 +114,11 @@ export function computeNetIncome(
   // Resolve exchange rate: prefer daily rate, fall back to taxData static rate
   const currencyCode = COUNTRY_CURRENCY_CODE[country];
   const fxRate = (currencyCode && dailyRates?.[currencyCode]) || tax.usdToLocal;
+
+  // Guard: fxRate must be positive to avoid division by zero
+  if (fxRate <= 0) {
+    return { netUSD: grossUSD, effectiveRate: 0, confidence: "low", hasExpatScheme: false };
+  }
 
   const grossLocal = grossUSD * fxRate;
 
@@ -196,7 +204,7 @@ export function computeNetIncome(
 
   // 5. Net income
   const netLocal = grossLocal - socialDeductions - incomeTax - localTax - residentTax;
-  const netUSD = netLocal / fxRate;
+  const netUSD = Math.max(0, netLocal / fxRate);
   const effectiveRate = grossUSD > 0 ? 1 - (netUSD / grossUSD) : 0;
 
   const expatResult: NetIncomeResult = {

@@ -17,6 +17,7 @@ export interface SocialComponent {
   rate: number;
   annualBaseCap?: number; // monthly base cap × 12 (local currency)
   annualAbsCap?: number;  // absolute annual deduction cap
+  annualFloor?: number;   // exempt threshold: no contribution below this amount
 }
 
 export interface ExpatScheme {
@@ -438,8 +439,8 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     ],
     standardDeduction: 12570,
     social: [
-      { name: "NI_main", rate: 0.08, annualBaseCap: 50270 },
-      { name: "NI_upper", rate: 0.02 },
+      { name: "NI_main", rate: 0.08, annualFloor: 12570, annualBaseCap: 50270 },
+      { name: "NI_upper", rate: 0.02, annualFloor: 50270 },
     ],
     usdToLocal: 0.79,
     confidence: "high",
@@ -675,7 +676,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
     ],
     standardDeduction: 48000,
     social: [{ name: "AM_bidrag", rate: 0.08 }],
-    employeeDeduction: { rate: 0.1065, max: 44800 }, // beskæftigelsesfradrag
+    employeeDeduction: { rate: 0.1065, max: 44800, afterSocial: true }, // beskæftigelsesfradrag (base = post-AM income)
     usdToLocal: 6.88,
     confidence: "high",
   },
@@ -742,7 +743,7 @@ export const COUNTRY_TAX: Record<string, CountryTax> = {
       { upTo: 50400, rate: 0.20 },
       { upTo: INF, rate: 0.30 },
     ],
-    standardDeduction: 5400 * 12, // 560 EUR/month
+    standardDeduction: 7200, // 600 EUR/month × 12 (PwC 2025)
     social: [{ name: "pension", rate: 0.20 }],
     usdToLocal: 0.92,  // EUR
     confidence: "high",
