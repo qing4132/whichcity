@@ -13,7 +13,11 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return Object.values(CITY_SLUGS).map((slug) => ({ slug }));
+  const cities = loadCities();
+  const visibleIds = new Set(cities.map(c => c.id));
+  return Object.entries(CITY_SLUGS)
+    .filter(([id]) => visibleIds.has(Number(id)))
+    .map(([, slug]) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

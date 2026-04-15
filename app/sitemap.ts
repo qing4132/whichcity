@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CITY_SLUGS, SITEMAP_PAIRS } from "@/lib/citySlug";
+import { loadCities } from "@/lib/dataLoader";
 import { LOCALES } from "@/lib/i18nRouting";
 
 const BASE_URL = "https://whichcity.run";
@@ -32,8 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // City pages
-  for (const slug of Object.values(CITY_SLUGS)) {
+  // City pages (visible only)
+  const visibleIds = new Set(loadCities().map(c => c.id));
+  const visibleSlugs = Object.entries(CITY_SLUGS)
+    .filter(([id]) => visibleIds.has(Number(id)))
+    .map(([, slug]) => slug);
+  for (const slug of visibleSlugs) {
     const path = `/city/${slug}`;
     for (const loc of LOCALES) {
       routes.push({

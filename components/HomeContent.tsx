@@ -4,7 +4,7 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CITY_NAME_TRANSLATIONS, COUNTRY_TRANSLATIONS } from "@/lib/i18n";
-import { CITY_FLAG_EMOJIS, CITY_COUNTRY } from "@/lib/constants";
+import { CITY_FLAG_EMOJIS, CITY_COUNTRY, HIDDEN_CITY_IDS } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
 import { useSettings } from "@/hooks/useSettings";
 import { trackEvent } from "@/lib/analytics";
@@ -13,7 +13,7 @@ import NavBar from "./NavBar";
 const CITY_LIST = Object.entries(CITY_SLUGS).map(([idStr, slug]) => {
   const id = Number(idStr);
   return { id, slug, flag: CITY_FLAG_EMOJIS[id] || "🏙️" };
-});
+}).filter(c => !HIDDEN_CITY_IDS.has(c.id));
 
 const POPULAR_HOME = ["new-york", "london", "tokyo", "singapore", "paris", "sydney",
   "berlin", "amsterdam", "dubai", "toronto", "zurich", "bangkok"]

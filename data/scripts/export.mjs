@@ -94,7 +94,7 @@ function roundTo1(val) {
 // ═══════════════════════════════════════════════════════════════
 const RAW_FIELDS = [
   "id", "name", "country", "continent", "currency", "description",
-  "professions",
+  "professions", "hidden",
   "costModerate", "costBudget", "bigMacPrice",
   "housePrice", "monthlyRent",
   "annualWorkHours", "paidLeaveDays", "internetSpeedMbps",
@@ -163,6 +163,7 @@ for (const src of cities) {
     else if (f === "aqiSource") continue; // optional
     else if (f === "timezone") continue; // optional
     else if (f === "climate") continue; // optional
+    else if (f === "hidden") continue; // optional, defaults to false
   }
 
   // ── averageIncome (auto-computed from professions median) ──

@@ -7,6 +7,7 @@ import type { CostTier } from "@/lib/types";
 import { LANGUAGE_LABELS, PROFESSION_TRANSLATIONS } from "@/lib/i18n";
 import { POPULAR_CURRENCIES } from "@/lib/constants";
 import { CITY_SLUGS } from "@/lib/citySlug";
+import { HIDDEN_CITY_IDS } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import type { useSettings } from "@/hooks/useSettings";
 
@@ -57,7 +58,7 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(function NavBar(
     const shareBtnCls = `text-xs h-7 px-2.5 inline-flex items-center gap-1.5 rounded border transition ${darkMode ? "bg-slate-800 border-slate-600 text-slate-200 [@media(hover:hover)]:hover:bg-slate-700" : "bg-white border-slate-300 text-slate-700 [@media(hover:hover)]:hover:bg-slate-50"}`;
 
     const randomCity = () => {
-        const slugs = Object.values(CITY_SLUGS).filter(sl => sl !== excludeSlug);
+        const slugs = Object.entries(CITY_SLUGS).filter(([id, sl]) => sl !== excludeSlug && !HIDDEN_CITY_IDS.has(Number(id))).map(([, sl]) => sl);
         const slug = slugs[Math.floor(Math.random() * slugs.length)];
         trackEvent("random_city", { city_slug: slug });
         router.push(`/${locale}/city/${slug}`);

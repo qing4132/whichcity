@@ -5,17 +5,27 @@
 
 ---
 
+## ⚠️ 已知数据问题
+
+**城市隐藏机制（2026-04-15 生效）**：151 个城市中 31 个被标记为 `hidden: true`，前端不展示、不参与排名计算。数据照常存储和更新。详见 `data/README.md` "城市隐藏" 部分。可见城市 120 个。
+
+**ID 70 圣何塞（哥斯达黎加）**：costModerate/costBudget/monthlyRent/housePrice 为历史手工录入数据，未经过 2026-04 Numbeo 刷新。原因：Numbeo URL `San-Jose` 默认指向美国加州 San Jose 页面，哥斯达黎加的正确 URL 为 `San-Jose-Costa-Rica`，采集脚本的 fallback 顺序导致抓取到了错误页面。`apply-numbeo-update.mjs` 的 `SKIP_IDS` 已阻止错误数据写入，但正确数据尚未采集。下次 Numbeo 解封后需使用正确 URL 重新采集。`verify-numbeo-data.mjs` 的 `NUMBEO_NAME_OVERRIDES[70]` 已修正为 `["San-Jose-Costa-Rica"]`。
+
+**costModerate 缺失（9 城市）**：ID 138(福冈)、159(京都)、162(维尔纽斯)、163(里加)、164(尼科西亚)、165(圣多明各)、166(基多)、167(阿克拉)、168(亚的斯亚贝巴)。其中福冈/京都是 Numbeo 页面存在但无月成本摘要（数据贡献者不足），其余 7 个是新增城市未纳入采集范围。下次 Numbeo 解封后需补采。
+
+---
+
 ## 收入与成本
 
 | 字段 | 数据源 | 粒度 | 更新频率 | 可自动化 |
 |------|--------|------|----------|---------|
 | averageIncome | BLS, Eurostat, doda, Glassdoor, SalaryExpert | 城市级 | 年度 | ✗ |
 | professions | 同上（25 职业 × 150 城） | 城市级 | 年度 | ✗ |
-| costModerate | Numbeo, Expatistan, Mercer | 城市级 | 半年 | ✓ (web scraping) |
-| costBudget | Numbeo + 城市级系数 | 城市级 | 半年 | ✓ |
+| costModerate | Numbeo (singlePersonMonthlyCost + rent1BRCenter) | 城市级 | 半年 | ✓ (web scraping) |
+| costBudget | Numbeo (singlePersonMonthlyCost×0.7 + rent1BROutside) | 城市级 | 半年 | ✓ |
 | bigMacPrice | The Economist Big Mac Index | 国家级 | 半年 | ✓ (public CSV) |
 | housePrice | Global Property Guide, Numbeo Property | 城市级 | 半年 | ✓ (web scraping) |
-| monthlyRent | Numbeo Rent Index | 城市级 | 半年 | ✓ (web scraping) |
+| monthlyRent | Numbeo rent1BRCenter (市中心1居室) | 城市级 | 半年 | ✓ (web scraping) |
 
 ## 安全指数子指标
 

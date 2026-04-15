@@ -1,3 +1,9 @@
+/** City IDs hidden from frontend display (data retained, not shown in rankings/search/navigation) */
+export const HIDDEN_CITY_IDS: ReadonlySet<number> = new Set([
+  38, 54, 56, 77, 79, 80, 81, 83, 84, 91, 92, 94, 95, 96, 97, 99, 100,
+  105, 107, 109, 110, 114, 115, 116, 118, 119, 120, 127, 128, 131, 135,
+]);
+
 /** Geographic regions with city IDs — single source of truth, used by CityComparison & CityLinks */
 export const REGIONS = [
   { key: "northAmerica", ids: [1, 11, 12, 13, 34, 35, 36, 37, 38, 39, 95, 96, 97, 98, 99, 100, 125, 126, 9, 40, 41, 127, 133, 135, 165] },

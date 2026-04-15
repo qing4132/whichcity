@@ -56,7 +56,23 @@ public/data/cities.json  (前端子集: 原始 + 计算字段)
 
 **规则**: 永远只编辑 SOT → 运行导出 → 前端数据自动更新。绝不直接编辑 `public/data/cities.json`。
 
-### 2. 字段分类
+### 2. 城市隐藏机制
+
+SOT 中每个城市可设 `"hidden": true` 标记。隐藏城市的完整行为：
+
+- **数据保留**：SOT 和 `public/data/cities.json` 中保留完整数据，照常更新
+- **前端不可见**：`loadCities()` 返回 `hidden !== true` 的城市（120 个）
+- **排名重算**：排行榜、标红标绿、基本保障评级、子指标排名均只在 120 个可见城市中计算
+- **URL 404**：隐藏城市的详情页 (`/city/slug`)、对比页返回 404
+- **站点地图排除**：`sitemap.ts` 和 `generateStaticParams` 仅包含可见城市
+- **搜索不可达**：首页搜索、随机城市按钮、对比页选择器均过滤隐藏城市
+- **恢复方式**：删除 SOT 中 `"hidden": true` → `node data/scripts/export.mjs` → 城市重新出现
+
+隐藏 ID 列表同步维护于 `lib/constants.ts` 的 `HIDDEN_CITY_IDS`（客户端组件过滤用）和 SOT 的 `hidden` 字段（服务端/数据层过滤用）。
+
+当前隐藏 31 个城市，可见 120 个。详见 `SOURCES.md` "已知数据问题" 部分。
+
+### 3. 字段分类
 
 | 类型 | 数量 | 说明 |
 |------|------|------|
@@ -66,7 +82,7 @@ public/data/cities.json  (前端子集: 原始 + 计算字段)
 
 计算字段: `homicideRateInv`, `gpiScoreInv`, `safetyIndex`, `healthcareIndex`, `governanceIndex`, `freedomIndex`, `safetyConfidence`, `healthcareConfidence`, `governanceConfidence`, `freedomConfidence`, `securityConfidence`
 
-### 3. 置信度 (Confidence)
+### 4. 置信度 (Confidence)
 
 所有置信度字段均为 **数值型 (0-100)**，表示可用子指标权重之和。
 
@@ -80,7 +96,7 @@ public/data/cities.json  (前端子集: 原始 + 计算字段)
 
 **展示阈值**: ≥90 高可信度 (无标记), 70-89 中等 (* + 警告), <70 低 (* + 醒目警告)
 
-### 4. 复合指数权重
+### 5. 复合指数权重
 
 详见 `registry.json` 的 `compositeWeights` 部分。缺失子指标的权重按比例重新分配给可用子指标。
 

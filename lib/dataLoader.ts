@@ -6,10 +6,19 @@ import type { City } from "./types";
 export { getCityEnName, getCountryEnName, getCityLocaleName, getCountryLocaleName } from "./clientUtils";
 
 let _cities: City[] | null = null;
+let _allCities: City[] | null = null;
 
-/** Load cities data from JSON file (server-side only, cached per process) */
+/** Load visible cities (hidden=false) from JSON file (server-side only, cached per process) */
 export function loadCities(): City[] {
   if (_cities) return _cities;
+  const all = loadAllCities();
+  _cities = all.filter(c => !c.hidden);
+  return _cities;
+}
+
+/** Load ALL cities including hidden ones (for data processing only) */
+export function loadAllCities(): City[] {
+  if (_allCities) return _allCities;
   try {
     const filePath = join(process.cwd(), "public", "data", "cities.json");
     const raw = readFileSync(filePath, "utf-8");
@@ -17,8 +26,8 @@ export function loadCities(): City[] {
     if (!parsed.cities || !Array.isArray(parsed.cities)) {
       throw new Error("Invalid cities.json: missing or non-array 'cities' field");
     }
-    _cities = parsed.cities as City[];
-    return _cities;
+    _allCities = parsed.cities as City[];
+    return _allCities;
   } catch (err) {
     console.error("Failed to load cities.json:", err);
     return [];

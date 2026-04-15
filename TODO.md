@@ -39,10 +39,12 @@
 - [x] A3.4 `scripts/validate-data.mjs` 的 profession count 校验已对齐到 25
 - [x] A3.5 `npx tsc --noEmit && npm test` 验证通过
 
-### A4. 6 座游牧城市已处理（直接删除，150 为最终结果）
-- [x] A4.1 数据层：帕岸岛、苏梅岛、暹粒、班斯科、库斯科、马拉喀什已从当前运行时数据中移除
-- [x] A4.2 当前无需新增 `HIDDEN_CITIES` 或在 `dataLoader.ts` 中做展示层过滤
-- [x] A4.3 当前 150 座城市就是最终结果，URL、sitemap、搜索、排行榜均以现有数据集为准
+### A4. 城市优化（120/31 隐藏机制）
+- [x] A4.1 151 城市中 31 城市标记 hidden，前端展示 120 城市 ✅ 2026-04-15
+- [x] A4.2 `loadCities()` 自动过滤 hidden，排名/评级基于 120 城重算 ✅ 2026-04-15
+- [x] A4.3 隐藏城市 URL 返回 404，sitemap/搜索/随机按钮均过滤 ✅ 2026-04-15
+- [x] A4.4 `HIDDEN_CITY_IDS` in constants.ts + `hidden` field in SOT ✅ 2026-04-15
+- [x] A4.5 文档: data/README.md 第2节 "城市隐藏机制" ✅ 2026-04-15
 
 ---
 
@@ -52,10 +54,14 @@
 > 核心变化：建立 L1→L4 数据层级，让用户 3 秒看到安全/消费/收入。
 
 ### B1. Hero 区重构
-- [ ] B1.1 安全指数提至 Hero 区最醒目位置（当前在 Row4 IndexCard，需提至 Hero）
-- [ ] B1.2 英语水平从游牧板块（~L722）移至 Hero 区（当前藏在 Nomad Section 底部）
-- [ ] B1.3 Hero 区信息：城市名 + 国旗 + 时区 + 当地时间 + 英语水平 + 安全分数 + 一句简介
-- [ ] B1.4 确保 SSR 友好（安全/英语是静态数据，无需 mounted 门控）
+- [x] B1.1 基本保障评级从 Hero 右侧移到独立行（与税后年薪格式一致）✅ 2026-04-15
+- [x] B1.2 评级警告注释移到展开外层 ✅ 2026-04-15
+- [x] B1.3 城市描述替换为短 description（151 城 × 4 语言）✅ 2026-04-15
+- [x] B1.4 描述移到分割线上方 ✅ 2026-04-15
+- [x] B1.5 展开/收起文字统一为"展开明细/收起"（4 语言）✅ 2026-04-15
+- [ ] B1.6 安全指数提至 Hero 区最醒目位置
+- [ ] B1.7 英语水平从游牧板块移至 Hero 区
+- [ ] B1.8 确保 SSR 友好
 
 ### B2. L1 核心数据条（首屏 5 格一行）
 - [ ] B2.1 设计核心数据条组件：税后年收入 | 月消费 | 月租 | 年储蓄 | 医疗指数
@@ -150,6 +156,30 @@
   - cities.json / constants.ts / citySlug.ts / cityIntros.ts / cityLanguages.ts / i18n.ts / taxData.ts（如需新增国家税制）
 - [x] D2.4 安全指数按 5-sub 权重计算（30/25/20/15/10），置信度标签匹配 ✅ 2025-04
 - [x] D2.5 运行 `node scripts/validate-data.mjs` 验证 ✅ 2025-04
+
+---
+
+## E0. 数据合规 (新增 2026-04-15)
+
+> 完整审计: `data/LICENSING.md` | 交接: `data/HANDOFF-LICENSING.md`
+
+### E0.1 立即可执行的零成本替代
+- [ ] E0.1.1 homicideRate → World Bank API `VC.IHR.PSRC.P5` (CC BY 4.0)
+- [ ] E0.1.2 gpiScore → World Bank `PV.EST` Political Stability (CC BY 4.0)
+- [ ] E0.1.3 gallupLawOrder → World Bank `RL.EST` Rule of Law (CC BY 4.0)
+- [ ] E0.1.4 internetSpeedMbps → M-Lab NDT BigQuery (CC0)
+- [ ] E0.1.5 democracyIndex → V-Dem `v2x_libdem` (CC BY-SA 4.0)
+- [ ] E0.1.6 安全指数公式重设计 (4 子指标, 全部 CC BY 4.0)
+- [ ] E0.1.7 更新 export.mjs 和测试
+
+### E0.2 决定整体合规方案
+- [ ] E0.2.1 选择方案: A(非商业) / B(保留基期88%) / C(零风险72%) / E(谈attribution)
+- [ ] E0.2.2 如需发邮件确认: Freedom House / RSF / MIPEX / WJP
+
+### E0.3 补齐缺失数据
+- [ ] E0.3.1 verify-numbeo-data.mjs SLUG_TO_ID 补充 ID 162-168
+- [ ] E0.3.2 采集 9 城市 costModerate (等 Numbeo 解封或用替代方案)
+- [ ] E0.3.3 哥斯达黎加圣何塞重新采集 (URL 已修正为 San-Jose-Costa-Rica)
 
 ---
 

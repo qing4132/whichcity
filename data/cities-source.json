@@ -4371,7 +4371,8 @@
           15
         ]
       },
-      "timezone": "America/Denver"
+      "timezone": "America/Denver",
+      "hidden": true
     },
     {
       "id": 39,
@@ -6211,7 +6212,8 @@
           31
         ]
       },
-      "timezone": "Asia/Tehran"
+      "timezone": "Asia/Tehran",
+      "hidden": true
     },
     {
       "id": 55,
@@ -6441,7 +6443,8 @@
           23
         ]
       },
-      "timezone": "Asia/Karachi"
+      "timezone": "Asia/Karachi",
+      "hidden": true
     },
     {
       "id": 57,
@@ -8511,7 +8514,8 @@
           13
         ]
       },
-      "timezone": "Asia/Bahrain"
+      "timezone": "Asia/Bahrain",
+      "hidden": true
     },
     {
       "id": 78,
@@ -8741,7 +8745,8 @@
           14
         ]
       },
-      "timezone": "Asia/Muscat"
+      "timezone": "Asia/Muscat",
+      "hidden": true
     },
     {
       "id": 80,
@@ -8856,7 +8861,8 @@
           156
         ]
       },
-      "timezone": "Asia/Beirut"
+      "timezone": "Asia/Beirut",
+      "hidden": true
     },
     {
       "id": 81,
@@ -8971,7 +8977,8 @@
           40
         ]
       },
-      "timezone": "Asia/Amman"
+      "timezone": "Asia/Amman",
+      "hidden": true
     },
     {
       "id": 82,
@@ -9201,7 +9208,8 @@
           5
         ]
       },
-      "timezone": "Asia/Kolkata"
+      "timezone": "Asia/Kolkata",
+      "hidden": true
     },
     {
       "id": 84,
@@ -9316,7 +9324,8 @@
           6
         ]
       },
-      "timezone": "Asia/Kolkata"
+      "timezone": "Asia/Kolkata",
+      "hidden": true
     },
     {
       "id": 85,
@@ -10122,7 +10131,8 @@
           43
         ]
       },
-      "timezone": "Europe/Bratislava"
+      "timezone": "Europe/Bratislava",
+      "hidden": true
     },
     {
       "id": 92,
@@ -10237,7 +10247,8 @@
           91
         ]
       },
-      "timezone": "Europe/Ljubljana"
+      "timezone": "Europe/Ljubljana",
+      "hidden": true
     },
     {
       "id": 93,
@@ -10467,7 +10478,8 @@
           72
         ]
       },
-      "timezone": "Europe/London"
+      "timezone": "Europe/London",
+      "hidden": true
     },
     {
       "id": 95,
@@ -10582,7 +10594,8 @@
           101
         ]
       },
-      "timezone": "America/New_York"
+      "timezone": "America/New_York",
+      "hidden": true
     },
     {
       "id": 96,
@@ -10697,7 +10710,8 @@
           17
         ]
       },
-      "timezone": "America/Phoenix"
+      "timezone": "America/Phoenix",
+      "hidden": true
     },
     {
       "id": 97,
@@ -10812,7 +10826,8 @@
           157
         ]
       },
-      "timezone": "America/Los_Angeles"
+      "timezone": "America/Los_Angeles",
+      "hidden": true
     },
     {
       "id": 98,
@@ -11042,7 +11057,8 @@
           11
         ]
       },
-      "timezone": "America/Los_Angeles"
+      "timezone": "America/Los_Angeles",
+      "hidden": true
     },
     {
       "id": 100,
@@ -11157,7 +11173,8 @@
           57
         ]
       },
-      "timezone": "America/New_York"
+      "timezone": "America/New_York",
+      "hidden": true
     },
     {
       "id": 101,
@@ -11732,7 +11749,8 @@
           20
         ]
       },
-      "timezone": "Asia/Shanghai"
+      "timezone": "Asia/Shanghai",
+      "hidden": true
     },
     {
       "id": 106,
@@ -11962,7 +11980,8 @@
           52
         ]
       },
-      "timezone": "Asia/Tokyo"
+      "timezone": "Asia/Tokyo",
+      "hidden": true
     },
     {
       "id": 109,
@@ -12077,7 +12096,8 @@
           36
         ]
       },
-      "timezone": "Asia/Phnom_Penh"
+      "timezone": "Asia/Phnom_Penh",
+      "hidden": true
     },
     {
       "id": 110,
@@ -12192,7 +12212,8 @@
           7
         ]
       },
-      "timezone": "Asia/Yangon"
+      "timezone": "Asia/Yangon",
+      "hidden": true
     },
     {
       "id": 112,
@@ -12422,7 +12443,8 @@
           7
         ]
       },
-      "timezone": "Asia/Dhaka"
+      "timezone": "Asia/Dhaka",
+      "hidden": true
     },
     {
       "id": 115,
@@ -12537,7 +12559,8 @@
           168
         ]
       },
-      "timezone": "Asia/Colombo"
+      "timezone": "Asia/Colombo",
+      "hidden": true
     },
     {
       "id": 116,
@@ -12652,7 +12675,8 @@
           7
         ]
       },
-      "timezone": "Asia/Kathmandu"
+      "timezone": "Asia/Kathmandu",
+      "hidden": true
     },
     {
       "id": 117,
@@ -12882,7 +12906,8 @@
           47
         ]
       },
-      "timezone": "Asia/Tashkent"
+      "timezone": "Asia/Tashkent",
+      "hidden": true
     },
     {
       "id": 119,
@@ -12997,7 +13022,8 @@
           18
         ]
       },
-      "timezone": "Asia/Baku"
+      "timezone": "Asia/Baku",
+      "hidden": true
     },
     {
       "id": 120,
@@ -13112,7 +13138,8 @@
           3
         ]
       },
-      "timezone": "Asia/Ulaanbaatar"
+      "timezone": "Asia/Ulaanbaatar",
+      "hidden": true
     },
     {
       "id": 121,
@@ -13917,7 +13944,8 @@
           12
         ]
       },
-      "timezone": "America/Edmonton"
+      "timezone": "America/Edmonton",
+      "hidden": true
     },
     {
       "id": 128,
@@ -14032,7 +14060,8 @@
           8
         ]
       },
-      "timezone": "Australia/Perth"
+      "timezone": "Australia/Perth",
+      "hidden": true
     },
     {
       "id": 129,
@@ -14377,7 +14406,8 @@
           25
         ]
       },
-      "timezone": "Africa/Lagos"
+      "timezone": "Africa/Lagos",
+      "hidden": true
     },
     {
       "id": 132,
@@ -14528,8 +14558,8 @@
         "政府/NGO行政": 141150,
         "数字游民": 85000
       },
-      "costModerate": null,
-      "costBudget": null,
+      "costModerate": 4699,
+      "costBudget": 3817,
       "bigMacPrice": 5.58,
       "housePrice": 9246,
       "monthlyRent": 3177,
@@ -14722,7 +14752,8 @@
           69
         ]
       },
-      "timezone": "America/Toronto"
+      "timezone": "America/Toronto",
+      "hidden": true
     },
     {
       "id": 136,
@@ -16611,7 +16642,7 @@
       "doctorsPerThousand": 4.6,
       "hospitalBedsPerThousand": 6.4,
       "uhcCoverageIndex": 75,
-      "lifeExpectancy": 76.0,
+      "lifeExpectancy": 76,
       "outOfPocketPct": 31.2,
       "numbeoSafetyIndex": 69.8,
       "homicideRate": 3.5,
@@ -16744,11 +16775,11 @@
       "timezone": "Europe/Riga",
       "climate": {
         "type": "continental",
-        "avgTempC": 6.0,
+        "avgTempC": 6,
         "annualRainMm": 641,
         "sunshineHours": 1730,
-        "summerAvgC": 17.0,
-        "winterAvgC": -5.0,
+        "summerAvgC": 17,
+        "winterAvgC": -5,
         "humidityPct": 80,
         "monthlyHighC": [
           -2,
@@ -16838,10 +16869,10 @@
       "internetSpeedMbps": 80,
       "airQuality": 40,
       "aqiSource": "EPA",
-      "doctorsPerThousand": 2.0,
+      "doctorsPerThousand": 2,
       "hospitalBedsPerThousand": 3.4,
       "uhcCoverageIndex": 74,
-      "lifeExpectancy": 81.0,
+      "lifeExpectancy": 81,
       "outOfPocketPct": 26.5,
       "numbeoSafetyIndex": 67.8,
       "homicideRate": 0.8,
@@ -16862,7 +16893,7 @@
         "avgTempC": 19.5,
         "annualRainMm": 315,
         "sunshineHours": 3400,
-        "summerAvgC": 29.0,
+        "summerAvgC": 29,
         "winterAvgC": 10.5,
         "humidityPct": 55,
         "monthlyHighC": [
@@ -16956,10 +16987,10 @@
       "doctorsPerThousand": 1.6,
       "hospitalBedsPerThousand": 1.6,
       "uhcCoverageIndex": 60,
-      "lifeExpectancy": 74.0,
-      "outOfPocketPct": 42.0,
+      "lifeExpectancy": 74,
+      "outOfPocketPct": 42,
       "numbeoSafetyIndex": 33.1,
-      "homicideRate": 11.0,
+      "homicideRate": 11,
       "gpiScore": 2.1,
       "gallupLawOrder": 55,
       "wpsIndex": 0.64,
@@ -16974,11 +17005,11 @@
       "timezone": "America/Santo_Domingo",
       "climate": {
         "type": "tropical",
-        "avgTempC": 26.0,
+        "avgTempC": 26,
         "annualRainMm": 1450,
         "sunshineHours": 2600,
-        "summerAvgC": 28.0,
-        "winterAvgC": 24.0,
+        "summerAvgC": 28,
+        "winterAvgC": 24,
         "humidityPct": 75,
         "monthlyHighC": [
           30,
@@ -17071,8 +17102,8 @@
       "doctorsPerThousand": 2.3,
       "hospitalBedsPerThousand": 1.5,
       "uhcCoverageIndex": 65,
-      "lifeExpectancy": 77.0,
-      "outOfPocketPct": 33.0,
+      "lifeExpectancy": 77,
+      "outOfPocketPct": 33,
       "numbeoSafetyIndex": 36.7,
       "homicideRate": 7.5,
       "gpiScore": 2.15,
@@ -17089,11 +17120,11 @@
       "timezone": "America/Guayaquil",
       "climate": {
         "type": "temperate",
-        "avgTempC": 14.0,
+        "avgTempC": 14,
         "annualRainMm": 1100,
         "sunshineHours": 1600,
-        "summerAvgC": 15.0,
-        "winterAvgC": 13.0,
+        "summerAvgC": 15,
+        "winterAvgC": 13,
         "humidityPct": 70,
         "monthlyHighC": [
           19,
@@ -17187,9 +17218,9 @@
       "hospitalBedsPerThousand": 0.9,
       "uhcCoverageIndex": 47,
       "lifeExpectancy": 64.1,
-      "outOfPocketPct": 37.0,
+      "outOfPocketPct": 37,
       "numbeoSafetyIndex": 54.8,
-      "homicideRate": 2.0,
+      "homicideRate": 2,
       "gpiScore": 1.8,
       "gallupLawOrder": 60,
       "wpsIndex": 0.62,
@@ -17204,7 +17235,7 @@
       "timezone": "Africa/Accra",
       "climate": {
         "type": "tropical",
-        "avgTempC": 27.0,
+        "avgTempC": 27,
         "annualRainMm": 810,
         "sunshineHours": 2500,
         "summerAvgC": 26.5,
@@ -17302,7 +17333,7 @@
       "hospitalBedsPerThousand": 0.3,
       "uhcCoverageIndex": 34,
       "lifeExpectancy": 66.6,
-      "outOfPocketPct": 32.0,
+      "outOfPocketPct": 32,
       "numbeoSafetyIndex": 50.4,
       "homicideRate": 7.6,
       "gpiScore": 2.8,
@@ -17319,11 +17350,11 @@
       "timezone": "Africa/Addis_Ababa",
       "climate": {
         "type": "temperate",
-        "avgTempC": 16.0,
+        "avgTempC": 16,
         "annualRainMm": 1089,
         "sunshineHours": 2500,
-        "summerAvgC": 16.0,
-        "winterAvgC": 16.0,
+        "summerAvgC": 16,
+        "winterAvgC": 16,
         "humidityPct": 55,
         "monthlyHighC": [
           23,

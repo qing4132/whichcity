@@ -253,24 +253,7 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
         {allSubs.some(v => v == null) && (
           <>
             <div className={`border-t ${divider} mt-2`} />
-            {(heroGrade.hasSafetyWarn || heroGrade.confLevel !== "high") && (
-              <div className={`text-[13px] mt-1.5 opacity-60 ${heroGrade.hasSafetyWarn ? heroGrade.warnRedCls : heroGrade.warnAmberCls}`}>
-                * {heroGrade.hasSafetyWarn
-                  ? (heroGrade.safetyWarning === "active_conflict" ? t("safetyWarningConflict") : heroGrade.safetyWarning === "extreme_instability" ? t("safetyWarningInstability") : t("safetyWarningBlocked"))
-                  : heroGrade.confLevel === "medium" ? t("confMedium") : t("confLow")}
-              </div>
-            )}
             <div className={`text-[13px] ${subCls} mt-1.5 opacity-60`}>† {t("shfWeightNote")}</div>
-          </>
-        )}
-        {!allSubs.some(v => v == null) && (heroGrade.hasSafetyWarn || heroGrade.confLevel !== "high") && (
-          <>
-            <div className={`border-t ${divider} mt-2`} />
-            <div className={`text-[13px] mt-1.5 opacity-60 ${heroGrade.hasSafetyWarn ? heroGrade.warnRedCls : heroGrade.warnAmberCls}`}>
-              * {heroGrade.hasSafetyWarn
-                ? (heroGrade.safetyWarning === "active_conflict" ? t("safetyWarningConflict") : heroGrade.safetyWarning === "extreme_instability" ? t("safetyWarningInstability") : t("safetyWarningBlocked"))
-                : heroGrade.confLevel === "medium" ? t("confMedium") : t("confLow")}
-            </div>
           </>
         )}
       </div>
@@ -288,6 +271,34 @@ export default function CityDetailContent({ city, slug, allCities, locale: urlLo
         <HeroSection ref={heroRef} city={city} cityName={cityName} countryName={countryName} flag={flag} slug={slug} locale={locale} darkMode={darkMode} t={t}
           gradeInfo={heroGrade} shfOpen={shfOpen} onShfToggle={() => { setShfOpen(!shfOpen); setShfLabel(!shfOpen); }} shfLabel={shfLabel} shfExpandContent={heroShfContent}
           englishLabel={nomadData?.english?.cityRating ? t(`nomadEnglish${nomadData.english.cityRating}`) : undefined} />
+
+        {/* Row 0: Basic Security Grade */}
+        {heroGrade && (
+          <div className={`py-3.5 border-b ${divider} cursor-pointer select-none active:${darkMode ? "bg-slate-900" : "bg-slate-50"}`} onClick={() => { setShfOpen(!shfOpen); setShfLabel(!shfOpen); }}
+            role="button" aria-expanded={shfOpen} tabIndex={0} onKeyDown={e => e.key === "Enter" && (setShfOpen(!shfOpen), setShfLabel(!shfOpen))}>
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <span className={`text-[15px] font-extrabold ${headCls}`}>{t("basicSecurityTitle")}</span>
+              <span className={`ml-auto text-[14px] ${subCls}`}>{t(shfLabel ? "tapToCollapse" : "tapForDetails")}</span>
+            </div>
+            <div className="flex gap-4 mb-1 flex-wrap">
+              <div>
+                <div className={`text-[45px] font-black leading-none ${heroGrade.gradeCls}`}>
+                  {heroGrade.gradeDisplay}
+                </div>
+                {(heroGrade.hasSafetyWarn || heroGrade.confLevel !== "high") && (
+                  <div className={`text-[12px] ${heroGrade.hasSafetyWarn ? heroGrade.warnRedCls : heroGrade.warnAmberCls}`}>
+                    * {heroGrade.hasSafetyWarn
+                      ? (heroGrade.safetyWarning === "active_conflict" ? t("safetyWarningConflict") : heroGrade.safetyWarning === "extreme_instability" ? t("safetyWarningInstability") : t("safetyWarningBlocked"))
+                      : heroGrade.confLevel === "medium" ? t("confMedium") : t("confLow")}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${shfOpen ? "max-h-[800px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
+              {heroShfContent}
+            </div>
+          </div>
+        )}
 
         {/* Row 1: Income (大) */}
         <div className={`py-3.5 border-b ${divider} cursor-pointer select-none active:${darkMode ? "bg-slate-900" : "bg-slate-50"}`} onClick={() => setIncomeOpen(!incomeOpen)}

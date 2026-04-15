@@ -1,4 +1,4 @@
-/** URL-safe slug ↔ city ID mapping for all 148 cities */
+/** URL-safe slug ↔ city ID mapping for all 151 cities */
 export const CITY_SLUGS: Record<number, string> = {
   1: "new-york", 2: "london", 3: "tokyo", 4: "beijing", 5: "shanghai",
   6: "sydney", 7: "singapore", 8: "paris", 9: "toronto", 10: "hong-kong",
@@ -21,17 +21,19 @@ export const CITY_SLUGS: Record<number, string> = {
   91: "bratislava", 92: "ljubljana", 93: "dublin", 94: "belfast", 95: "atlanta",
   96: "phoenix", 97: "portland", 98: "san-diego", 99: "las-vegas", 100: "tampa",
   101: "guangzhou", 102: "shenzhen", 103: "chengdu", 104: "hangzhou", 105: "chongqing",
-  106: "osaka", 107: "nagoya", 108: "incheon", 109: "phnom-penh", 110: "yangon",
+  106: "osaka", 107: "nagoya", 109: "phnom-penh", 110: "yangon",
   112: "chiang-mai", 114: "dhaka", 115: "colombo",
   116: "kathmandu", 117: "almaty", 118: "tashkent", 119: "baku", 120: "ulaanbaatar",
   121: "stockholm", 122: "copenhagen", 123: "helsinki", 124: "oslo", 125: "houston",
   126: "philadelphia", 127: "calgary", 128: "perth", 129: "medellin", 130: "tbilisi",
-  131: "lagos", 132: "moscow", 133: "san-jose-us", 134: "irvine", 135: "ottawa",
-  136: "luxembourg-city", 137: "tallinn", 138: "fukuoka", 139: "yokohama",
-  140: "bali", 141: "da-nang", 142: "playa-del-carmen", 143: "porto", 144: "valencia",
+  131: "lagos", 132: "moscow", 133: "san-jose-us", 135: "ottawa",
+  136: "luxembourg-city", 137: "tallinn", 138: "fukuoka",
+  140: "bali", 141: "da-nang", 143: "porto", 144: "valencia",
   146: "split", 147: "phuket", 148: "montevideo", 149: "las-palmas",
   150: "penang", 152: "florianopolis",
-  160: "casablanca", 161: "wellington",
+  159: "kyoto", 160: "casablanca", 161: "wellington",
+  162: "vilnius", 163: "riga", 164: "nicosia",
+  165: "santo-domingo", 166: "quito", 167: "accra", 168: "addis-ababa",
 };
 
 /** Reverse lookup: slug → city ID */

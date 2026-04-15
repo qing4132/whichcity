@@ -3,6 +3,7 @@ export interface City {
   name: string;
   country: string;
   continent: string;
+  hidden?: boolean;
   averageIncome: number;
   costModerate: number;
   costBudget: number;

@@ -2,6 +2,37 @@
   "$schema": "WhichCity data version changelog",
   "versions": [
     {
+      "version": "1.1.0",
+      "date": "2026-04-15",
+      "description": "City optimization, data compliance audit, UI improvements",
+      "changes": [
+        "Added hidden field to SOT — 31 cities marked hidden, 120 visible in frontend",
+        "loadCities() now filters hidden cities; added loadAllCities() for data processing",
+        "HIDDEN_CITY_IDS added to lib/constants.ts for client-side filtering",
+        "generateStaticParams, sitemap, NavBar random, HomeContent search all filter hidden",
+        "Fixed citySlug.ts: added 8 missing slugs (159,162-168), removed 4 orphans (108,134,139,142)",
+        "Fixed San Jose US (ID 133): costModerate=4699, costBudget=3817 from verified Numbeo HTML",
+        "Fixed verify-numbeo-data.mjs: ID 70 URL corrected to San-Jose-Costa-Rica",
+        "City descriptions replaced with short descriptions (151 cities × 4 languages)",
+        "Hero section: grade module moved to independent row, warnings moved outside expand",
+        "Expand/collapse text unified to '展开明细/收起' across all locales",
+        "Created data/LICENSING.md — full licensing audit of 23 data sources",
+        "Created data/HANDOFF-LICENSING.md — handoff document for compliance work",
+        "Updated data/SOURCES.md with known data issues and corrected field source descriptions"
+      ],
+      "dataSnapshot": {
+        "cities": 151,
+        "visibleCities": 120,
+        "hiddenCities": 31,
+        "rawFields": 40,
+        "computedFields": 11,
+        "professions": 25,
+        "taxSystems": 81,
+        "currencies": 10,
+        "locales": 4
+      }
+    },
+    {
       "version": "1.0.0",
       "date": "2026-04-14",
       "description": "Baseline — data governance system established",

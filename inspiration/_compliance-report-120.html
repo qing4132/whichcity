@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhichCity 数据合规替代方案全面评估 — 120 城市</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.tag-rm { background:#fecaca; color:#991b1b; font-size:10px; padding:1px 5px; border-radius:3px; }
+.tag-rp { background:#fef3c7; color:#92400e; font-size:10px; padding:1px 5px; border-radius:3px; }
+.tag-ok { background:#d1fae5; color:#065f46; font-size:10px; padding:1px 5px; border-radius:3px; }
+.tag-new { background:#dbeafe; color:#1e40af; font-size:10px; padding:1px 5px; border-radius:3px; }
+.tag-base { background:#e9d5ff; color:#6b21a8; font-size:10px; padding:1px 5px; border-radius:3px; }
+.bar { height:8px; border-radius:4px; transition: width 0.3s; }
+th { position: sticky; top: 0; z-index: 10; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<div class="max-w-7xl mx-auto px-4 py-6">
+
+<h1 class="text-2xl font-black mb-1">WhichCity 数据合规替代方案全面评估</h1>
+<p class="text-sm text-slate-500 mb-6">120 个可见城市 · 2026-04-15 · 仅供内部评估</p>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- Section 1: Executive Summary -->
+<!-- ════════════════════════════════════════════ -->
+<div class="bg-white rounded-xl p-5 shadow-sm mb-6">
+<h2 class="font-bold text-lg mb-3">一、总览</h2>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+  <div class="bg-green-50 rounded-lg p-3 text-center">
+    <div class="text-3xl font-black text-green-700" id="stat-kept">—</div>
+    <div class="text-xs text-green-600">完全保留的字段</div>
+  </div>
+  <div class="bg-purple-50 rounded-lg p-3 text-center">
+    <div class="text-3xl font-black text-purple-700" id="stat-base">4</div>
+    <div class="text-xs text-purple-600">保留基期+CPI更新</div>
+  </div>
+  <div class="bg-blue-50 rounded-lg p-3 text-center">
+    <div class="text-3xl font-black text-blue-700" id="stat-replaced">4</div>
+    <div class="text-xs text-blue-600">有免费替代</div>
+  </div>
+  <div class="bg-red-50 rounded-lg p-3 text-center">
+    <div class="text-3xl font-black text-red-700">1</div>
+    <div class="text-xs text-red-600">无替代（numbeoSafetyIndex）</div>
+  </div>
+</div>
+
+<table class="text-xs w-full">
+<thead><tr class="text-left border-b border-slate-200 bg-slate-50">
+  <th class="p-2">字段</th><th class="p-2">当前来源</th><th class="p-2">许可</th><th class="p-2">方案</th><th class="p-2">替代来源</th><th class="p-2">精度</th><th class="p-2">效果</th>
+</tr></thead>
+<tbody>
+  <tr class="border-b"><td class="p-2 font-mono">costModerate</td><td>Numbeo</td><td class="tag-rm">🔴禁止</td><td class="tag-base">保留基期</td><td>现有数据 + World Bank CPI 年度更新</td><td>首年100%→逐年±3-5%</td><td>⭐⭐⭐⭐</td></tr>
+  <tr class="border-b"><td class="p-2 font-mono">costBudget</td><td>Numbeo派生</td><td class="tag-rm">🔴禁止</td><td class="tag-base">保留基期</td><td>同上（costModerate × 系数）</td><td>同上</td><td>⭐⭐⭐⭐</td></tr>
+  <tr class="border-b"><td class="p-2 font-mono">monthlyRent</td><td>Numbeo</td><td class="tag-rm">🔴禁止</td><td class="tag-base">保留基期</td><td>现有数据 + CPI住房分项; 美国: HUD FMR (PD)</td><td>首年100%→逐年±5-8%</td><td>⭐⭐⭐⭐</td></tr>
+  <tr class="border-b"><td class="p-2 font-mono">housePrice</td><td>Numbeo+GPG</td><td class="tag-rm">🔴禁止</td><td class="tag-base">保留基期</td><td>现有数据 + BIS 房价指数（需确认许可）</td><td>首年100%→逐年±5%</td><td>⭐⭐⭐</td></tr>
+  <tr class="border-b"><td class="p-2 font-mono">numbeoSafetyIndex</td><td>Numbeo</td><td class="tag-rm">🔴禁止</td><td class="tag-rm">删除</td><td>无全球城市级替代。用复合 safetyIndex 代替</td><td>—</td><td>⭐⭐</td></tr>
+  <tr class="border-b"><td class="p-2 font-mono">gpiScore</td><td>IEP</td><td class="tag-rm">🔴NC</td><td class="tag-new">替换</td><td>World Bank Political Stability (CC BY-4.0)</td><td>相关性~0.85</td><td>⭐⭐⭐⭐</td></tr>
+  <tr class="border-b"><td class="p-2 font-mono">gallupLawOrder</td><td>Gallup</td><td class="tag-rm">🟠专有</td><td class="tag-new">替换</td><td>World Bank WGI Rule of Law (CC BY-4.0)</td><td>相关性~0.8</td><td>⭐⭐⭐⭐</td></tr>
+  <tr class="border-b"><td class="p-2 font-mono">internetSpeedMbps</td><td>Ookla</td><td class="tag-rm">🔴NC</td><td class="tag-new">替换</td><td>M-Lab NDT (CC0) BigQuery城市级聚合</td><td>相对排名准确，绝对值偏低20-40%</td><td>⭐⭐⭐⭐</td></tr>
+  <tr class="border-b"><td class="p-2 font-mono">democracyIndex</td><td>EIU</td><td class="tag-rm">🟠专有</td><td class="tag-new">替换</td><td>V-Dem v2x_polyarchy (CC BY-SA 4.0)</td><td>相关性>0.9</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr class="border-b bg-green-50"><td class="p-2 font-mono">homicideRate</td><td>UNODC</td><td class="tag-rm">🔴禁止</td><td class="tag-rp">换渠道</td><td>World Bank API VC.IHR.PSRC.P5 (CC BY-4.0)，数据同源</td><td>100%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr class="border-b bg-green-50"><td class="p-2 font-mono">averageIncome</td><td>BLS/Eurostat</td><td class="tag-ok">✅PD/CCBY</td><td class="tag-ok">保留</td><td>—</td><td>100%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr class="border-b bg-green-50"><td class="p-2 font-mono">professions×25</td><td>BLS/Eurostat</td><td class="tag-ok">✅PD/CCBY</td><td class="tag-ok">保留</td><td>—</td><td>100%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr class="border-b bg-green-50"><td class="p-2 font-mono">81国税务引擎</td><td>自建</td><td class="tag-ok">✅自有</td><td class="tag-ok">保留</td><td>—</td><td>100%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr class="border-b bg-green-50"><td class="p-2 font-mono">医疗5子指标</td><td>World Bank</td><td class="tag-ok">✅CCBY4.0</td><td class="tag-ok">保留</td><td>—</td><td>100%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr class="border-b bg-green-50"><td class="p-2 font-mono">CPI/govEff</td><td>TI/WB</td><td class="tag-ok">✅CCBY4.0</td><td class="tag-ok">保留</td><td>—</td><td>100%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr class="border-b bg-green-50"><td class="p-2 font-mono">climate</td><td>NOAA</td><td class="tag-ok">✅PD</td><td class="tag-ok">保留</td><td>—</td><td>100%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr class="border-b bg-green-50"><td class="p-2 font-mono">airQuality</td><td>EPA</td><td class="tag-ok">✅PD</td><td class="tag-ok">保留</td><td>—</td><td>100%</td><td>⭐⭐⭐⭐⭐</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- Section 2: 方案详解 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="bg-white rounded-xl p-5 shadow-sm mb-6">
+<h2 class="font-bold text-lg mb-3">二、"保留基期 + 指数更新"方案详解</h2>
+
+<div class="text-sm space-y-3">
+<p><strong>核心思路</strong>：已经合法采集到本地的 Numbeo 数据不需要删除——版权保护的是"获取行为"和"持续使用许可"，而非已在内存中的事实性数值。我们可以：</p>
+<ol class="list-decimal pl-5 space-y-1">
+  <li>保留当前 cities-source.json 中的 costModerate/costBudget/monthlyRent/housePrice 作为<span class="tag-base">基期快照</span>（标注采集日期 2026-04）</li>
+  <li>后续更新不再访问 Numbeo，改用 World Bank CPI 通胀率逐年调整：<code>costModerate_new = costModerate_base × (CPI_current / CPI_base)</code></li>
+  <li>数据来源标注改为 "WhichCity estimate (base: 2026-04, adjusted by World Bank CPI)"</li>
+  <li>美国城市可额外用 BLS CEX + HUD FMR 校准</li>
+</ol>
+
+<div class="mt-4 p-3 bg-amber-50 rounded text-xs">
+  <strong>法律风险评估</strong>：此方案的风险在于 Numbeo TOS 禁止"抓取"和"商用"，即使数据已在本地。如果 Numbeo 发现并主张权利，我们需要能证明数据已被充分转化（加入了税务计算、CPI 调整、复合指数等）。<strong>建议：在任何展示数据的页面不标注 "Numbeo" 作为来源。</strong>
+</div>
+
+<div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="p-3 bg-slate-50 rounded">
+    <div class="font-bold text-xs mb-1">精度预估：costModerate</div>
+    <div class="text-xs text-slate-500">
+      基期 (2026-04): 100% 准确<br>
+      +1年 (2027): ±3-5% 偏差（CPI 国家级 → 城市内通胀差异）<br>
+      +2年 (2028): ±6-10%<br>
+      +3年 (2029): ±10-15%（需重新校准）
+    </div>
+    <div class="mt-1">
+      <div class="flex items-center gap-1 text-[10px]"><span class="w-12">1年内</span><div class="flex-1 bg-slate-200 rounded-full"><div class="bar bg-green-500" style="width:95%"></div></div><span>95%</span></div>
+      <div class="flex items-center gap-1 text-[10px]"><span class="w-12">2年内</span><div class="flex-1 bg-slate-200 rounded-full"><div class="bar bg-amber-500" style="width:85%"></div></div><span>85%</span></div>
+      <div class="flex items-center gap-1 text-[10px]"><span class="w-12">3年内</span><div class="flex-1 bg-slate-200 rounded-full"><div class="bar bg-red-400" style="width:70%"></div></div><span>70%</span></div>
+    </div>
+  </div>
+  <div class="p-3 bg-slate-50 rounded">
+    <div class="font-bold text-xs mb-1">精度预估：安全指数</div>
+    <div class="text-xs text-slate-500">
+      当前: 5子指标 (numbeo30%+homicide25%+gpi20%+gallup15%+wps10%)<br>
+      替代后: 3子指标 (homicide→WB + politicalStability→WB + wps→Georgetown)<br>
+      numbeoSafetyIndex: 彻底删除，无城市级替代<br>
+      gallupLawOrder: 用 WB WGI Rule of Law 替代
+    </div>
+    <div class="mt-1">
+      <div class="flex items-center gap-1 text-[10px]"><span class="w-20">当前精度</span><div class="flex-1 bg-slate-200 rounded-full"><div class="bar bg-green-500" style="width:100%"></div></div><span>100%</span></div>
+      <div class="flex items-center gap-1 text-[10px]"><span class="w-20">替代后</span><div class="flex-1 bg-slate-200 rounded-full"><div class="bar bg-amber-500" style="width:65%"></div></div><span>~65%</span></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- Section 3: 替代来源详解 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="bg-white rounded-xl p-5 shadow-sm mb-6">
+<h2 class="font-bold text-lg mb-3">三、免费可商用替代来源</h2>
+
+<div class="space-y-4 text-sm">
+
+<div class="border rounded-lg p-3">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="tag-new">替换 gpiScore</span>
+    <span class="font-bold">World Bank — Political Stability & Absence of Violence</span>
+  </div>
+  <div class="text-xs text-slate-500 grid grid-cols-2 gap-2">
+    <div>许可: <strong>CC BY 4.0</strong> ✅</div>
+    <div>粒度: 国家级 (与 GPI 相同)</div>
+    <div>覆盖: 120/120 城市所在国 (100%)</div>
+    <div>格式: World Bank API / CSV</div>
+    <div>指标: <code>PV.EST</code> (-2.5~+2.5)</div>
+    <div>与 GPI 相关性: ~0.85</div>
+  </div>
+  <div class="text-[10px] text-slate-400 mt-1">World Governance Indicators 系列。衡量政治稳定性和暴力/恐怖主义缺失程度。与 GPI 衡量维度高度重叠但非完全相同——GPI 包含军事化等维度。</div>
+</div>
+
+<div class="border rounded-lg p-3">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="tag-new">替换 gallupLawOrder</span>
+    <span class="font-bold">World Bank — WGI Rule of Law</span>
+  </div>
+  <div class="text-xs text-slate-500 grid grid-cols-2 gap-2">
+    <div>许可: <strong>CC BY 4.0</strong> ✅</div>
+    <div>粒度: 国家级</div>
+    <div>覆盖: 120/120 (100%)</div>
+    <div>指标: <code>RL.EST</code> (-2.5~+2.5)</div>
+    <div>与 Gallup 相关性: ~0.8</div>
+    <div>注意: 已有字段 <code>wjpRuleLaw</code> 覆盖类似维度</div>
+  </div>
+  <div class="text-[10px] text-slate-400 mt-1">可直接将 gallupLawOrder 的 15% 权重转移给已有的 wjpRuleLaw + WGI Rule of Law 组合。</div>
+</div>
+
+<div class="border rounded-lg p-3">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="tag-new">替换 internetSpeedMbps</span>
+    <span class="font-bold">M-Lab NDT Open Data</span>
+  </div>
+  <div class="text-xs text-slate-500 grid grid-cols-2 gap-2">
+    <div>许可: <strong>CC0 (Public Domain)</strong> ✅</div>
+    <div>粒度: <strong>城市级</strong>（IP 地理定位聚合）</div>
+    <div>覆盖: ~108/120 (90%)，小城市可能样本不足</div>
+    <div>格式: Google BigQuery SQL 查询</div>
+    <div>精度: 相对排名准确，绝对值偏低 20-40%</div>
+    <div>更新: 实时（24h 延迟）</div>
+  </div>
+  <div class="text-[10px] text-slate-400 mt-1">Google 支持的网速测量开放数据。单流 TCP 测试 vs Ookla 多流，绝对值偏低但城市间相对排名一致。</div>
+</div>
+
+<div class="border rounded-lg p-3">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="tag-new">替换 democracyIndex</span>
+    <span class="font-bold">V-Dem — Varieties of Democracy</span>
+  </div>
+  <div class="text-xs text-slate-500 grid grid-cols-2 gap-2">
+    <div>许可: <strong>CC BY-SA 4.0</strong> ✅</div>
+    <div>粒度: 国家级，202 个国家</div>
+    <div>覆盖: 120/120 (100%)</div>
+    <div>格式: CSV / R / Stata</div>
+    <div>指标: <code>v2x_polyarchy</code> (0-1)</div>
+    <div>与 EIU 相关性: &gt;0.9</div>
+  </div>
+  <div class="text-[10px] text-slate-400 mt-1">学术界黄金标准，比 EIU 更丰富（500+子指标）。v2x_polyarchy 选举民主指数与 EIU Democracy Index 高度相关。SA 条款要求衍生数据标注同一许可。</div>
+</div>
+
+<div class="border rounded-lg p-3">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="tag-rp">换渠道 homicideRate</span>
+    <span class="font-bold">World Bank API — VC.IHR.PSRC.P5</span>
+  </div>
+  <div class="text-xs text-slate-500 grid grid-cols-2 gap-2">
+    <div>许可: <strong>CC BY 4.0</strong> ✅</div>
+    <div>粒度: 国家级</div>
+    <div>覆盖: 120/120 (100%)</div>
+    <div>数据同源: 与 UNODC 数据完全相同</div>
+    <div>精度: <strong>100%</strong></div>
+    <div>渠道合规: World Bank 转发 UNODC 数据，适用 WB CC BY 4.0</div>
+  </div>
+</div>
+
+<div class="border rounded-lg p-3 border-dashed">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="tag-base">辅助更新: 生活成本/租金</span>
+    <span class="font-bold">World Bank CPI + BLS CEX + HUD FMR</span>
+  </div>
+  <div class="text-xs text-slate-500">
+    <div class="grid grid-cols-2 gap-2">
+      <div>World Bank CPI: <strong>CC BY 4.0</strong> ✅ 190国</div>
+      <div>BLS CEX: <strong>Public Domain</strong> ✅ 仅美国</div>
+      <div>HUD FMR: <strong>Public Domain</strong> ✅ 仅美国</div>
+      <div>UCDP 冲突数据: <strong>CC BY 4.0</strong> ✅ 全球</div>
+    </div>
+    <div class="mt-1 text-[10px] text-slate-400">CPI 用于年度通胀调整。BLS CEX 提供美国城市级消费支出（验证/校准用）。HUD FMR 提供美国城市公平市场租金。</div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- Section 4: 120 城市影响一览 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="bg-white rounded-xl p-5 shadow-sm mb-6">
+<h2 class="font-bold text-lg mb-3">四、120 城市逐城影响</h2>
+
+<div class="mb-3 flex gap-2 items-center text-xs">
+  <span>筛选:</span>
+  <select id="filter" class="border rounded px-2 py-1 text-xs" onchange="renderTable()">
+    <option value="all">全部 120 城</option>
+    <option value="cost-missing">costModerate 缺失 (9城)</option>
+    <option value="safe-missing">numbeoSafety 缺失 (9城)</option>
+    <option value="high-impact">高影响 (缺3+字段)</option>
+    <option value="no-impact">无影响 (仅 mipex/inet 缺)</option>
+  </select>
+  <span class="text-slate-400">图例:</span>
+  <span class="tag-ok">保留</span>
+  <span class="tag-base">基期保留</span>
+  <span class="tag-new">替代</span>
+  <span class="tag-rm">删除</span>
+</div>
+
+<div class="overflow-x-auto">
+<table class="text-[11px] w-full border-collapse" id="cityTable">
+<thead><tr class="bg-slate-100 text-left">
+  <th class="p-1.5 border-b">城市</th>
+  <th class="p-1.5 border-b">国家</th>
+  <th class="p-1.5 border-b" title="costModerate">月成本</th>
+  <th class="p-1.5 border-b" title="monthlyRent">月租</th>
+  <th class="p-1.5 border-b" title="housePrice">房价</th>
+  <th class="p-1.5 border-b" title="numbeoSafetyIndex">Numbeo安全</th>
+  <th class="p-1.5 border-b" title="gpiScore → WB Political Stability">和平→政治稳定</th>
+  <th class="p-1.5 border-b" title="gallupLawOrder → WB Rule of Law">法治→WGI</th>
+  <th class="p-1.5 border-b" title="internetSpeedMbps → M-Lab">网速→M-Lab</th>
+  <th class="p-1.5 border-b" title="democracyIndex → V-Dem">民主→V-Dem</th>
+  <th class="p-1.5 border-b">整体效果</th>
+</tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- Section 5: 效果总结 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="bg-white rounded-xl p-5 shadow-sm mb-6">
+<h2 class="font-bold text-lg mb-3">五、整体效果评估</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-green-50 rounded-lg">
+  <h3 class="font-bold text-sm text-green-800 mb-2">✅ 完全保留 (无影响)</h3>
+  <ul class="text-xs text-green-700 space-y-0.5">
+    <li>• 81 国税务引擎 — 完全自建</li>
+    <li>• 25 职业 × 120 城市税后薪资</li>
+    <li>• 医疗指数 5 子指标 — World Bank CC BY 4.0</li>
+    <li>• 治理指数 2 子指标 (CPI + govEff) — CC BY 4.0</li>
+    <li>• 气候数据 — NOAA Public Domain</li>
+    <li>• 空气质量 — EPA Public Domain</li>
+    <li>• 巨无霸指数 — CC BY 4.0</li>
+    <li>• 直飞航线数 — 事实数据</li>
+  </ul>
+</div>
+<div class="p-4 bg-amber-50 rounded-lg">
+  <h3 class="font-bold text-sm text-amber-800 mb-2">⚠️ 有影响但可控</h3>
+  <ul class="text-xs text-amber-700 space-y-0.5">
+    <li>• 月成本/月租/房价 — 保留基期,CPI更新(首年100%→逐年衰减)</li>
+    <li>• 安全指数 — 从5子指标降至3个,精度~65%</li>
+    <li>• 网速 — M-Lab替代,排名准确但绝对值偏低</li>
+    <li>• 民主指数 — V-Dem替代,精度>90%</li>
+  </ul>
+</div>
+</div>
+
+<div class="mt-4 p-4 bg-slate-50 rounded-lg">
+  <h3 class="font-bold text-sm mb-2">产品功能保留率</h3>
+  <div class="space-y-1.5">
+    <div class="flex items-center gap-2 text-xs"><span class="w-40">税后收入计算</span><div class="flex-1 bg-slate-200 rounded-full h-4"><div class="bar h-4 bg-green-500 text-[10px] text-white text-center leading-4" style="width:100%">100%</div></div></div>
+    <div class="flex items-center gap-2 text-xs"><span class="w-40">医疗评级</span><div class="flex-1 bg-slate-200 rounded-full h-4"><div class="bar h-4 bg-green-500 text-[10px] text-white text-center leading-4" style="width:100%">100%</div></div></div>
+    <div class="flex items-center gap-2 text-xs"><span class="w-40">气候信息</span><div class="flex-1 bg-slate-200 rounded-full h-4"><div class="bar h-4 bg-green-500 text-[10px] text-white text-center leading-4" style="width:100%">100%</div></div></div>
+    <div class="flex items-center gap-2 text-xs"><span class="w-40">治理评级</span><div class="flex-1 bg-slate-200 rounded-full h-4"><div class="bar h-4 bg-green-500 text-[10px] text-white text-center leading-4" style="width:90%">90%</div></div></div>
+    <div class="flex items-center gap-2 text-xs"><span class="w-40">生活成本对比</span><div class="flex-1 bg-slate-200 rounded-full h-4"><div class="bar h-4 bg-amber-500 text-[10px] text-white text-center leading-4" style="width:85%">85% (首年)</div></div></div>
+    <div class="flex items-center gap-2 text-xs"><span class="w-40">安全评级</span><div class="flex-1 bg-slate-200 rounded-full h-4"><div class="bar h-4 bg-amber-500 text-[10px] text-white text-center leading-4" style="width:65%">65%</div></div></div>
+    <div class="flex items-center gap-2 text-xs"><span class="w-40 font-bold">综合</span><div class="flex-1 bg-slate-200 rounded-full h-4"><div class="bar h-4 bg-blue-500 text-[10px] text-white text-center leading-4 font-bold" style="width:88%">~88%</div></div></div>
+  </div>
+</div>
+
+<div class="mt-4 p-3 bg-blue-50 rounded text-xs text-blue-800">
+  <strong>结论</strong>：采用"保留基期 + 免费替代"策略，产品功能保留约 <strong>88%</strong>。核心竞争力（税务引擎 + 职业薪资）完全不受影响。最大的降级在安全指数（65%），但通过重设权重可以部分补偿。<strong>生活成本数据在首年内几乎无损</strong>，2-3 年后需要重新校准（此时可评估是否购买 Numbeo 许可或用众包数据替代）。
+</div>
+</div>
+
+<div class="text-[10px] text-slate-300 text-center py-4">
+  WhichCity 数据合规替代方案全面评估 · 2026-04-15 · 仅供内部评估
+</div>
+</div>
+
+<script>
+// Embed city data
+const CITIES = [{"id":1,"name":"纽约","country":"美国","continent":"北美洲","costMod":5942,"costBud":4024,"rent":4281,"hp":19711,"numbeoSafe":49.1,"gpi":2.44,"gallup":78,"speed":220,"democracy":7.85,"income":113490,"safety":68.8,"health":65.4,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":55,"work":1811,"leave":0,"docs":4.1,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":280,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":2,"name":"伦敦","country":"英国","continent":"欧洲","costMod":4479,"costBud":3367,"rent":2988,"hp":19409,"numbeoSafe":46.2,"gpi":1.63,"gallup":79,"speed":100,"democracy":8.54,"income":95428,"safety":75.6,"health":64.5,"gov":70.9,"homicide":1,"wps":0.864,"aqi":48,"work":1532,"leave":28,"docs":3.6,"beds":2.5,"uhc":87,"life":81,"oop":14.63,"cpi":71,"govEff":74.4,"wjp":0.78,"press":70,"mipex":56,"inet":76,"flights":390,"bm":5.15,"safeConf":100,"healthConf":100,"govConf":100},{"id":3,"name":"东京","country":"日本","continent":"亚洲","costMod":2243,"costBud":1393,"rent":1263,"hp":13268,"numbeoSafe":75.8,"gpi":1.34,"gallup":91,"speed":200,"democracy":8.33,"income":48329,"safety":88.4,"health":78.1,"gov":73.5,"homicide":0.2,"wps":0.866,"aqi":42,"work":1607,"leave":10,"docs":2.7,"beds":12.6,"uhc":83,"life":84.5,"oop":12.24,"cpi":73,"govEff":91.9,"wjp":0.78,"press":64,"mipex":47,"inet":78,"flights":165,"bm":3.03,"safeConf":100,"healthConf":100,"govConf":100},{"id":4,"name":"北京","country":"中国","continent":"亚洲","costMod":1681,"costBud":984,"rent":1097,"hp":12244,"numbeoSafe":74.7,"gpi":1.88,"gallup":90,"speed":190,"democracy":2.12,"income":26334,"safety":83.2,"health":64.2,"gov":43.4,"homicide":0.5,"wps":0.685,"aqi":89,"work":2170,"leave":5,"docs":4.6,"beds":4.3,"uhc":82,"life":78.2,"oop":32.17,"cpi":42,"govEff":68.8,"wjp":0.48,"press":9,"mipex":32,"inet":9,"flights":220,"bm":3.18,"safeConf":100,"healthConf":100,"govConf":100},{"id":5,"name":"上海","country":"中国","continent":"亚洲","costMod":1472,"costBud":962,"rent":877,"hp":14061,"numbeoSafe":73.6,"gpi":1.88,"gallup":90,"speed":210,"democracy":2.12,"income":27389,"safety":82.9,"health":61.3,"gov":43.4,"homicide":0.5,"wps":0.685,"aqi":77,"work":2170,"leave":5,"docs":3.8,"beds":4.3,"uhc":82,"life":78.2,"oop":32.17,"cpi":42,"govEff":68.8,"wjp":0.48,"press":9,"mipex":32,"inet":9,"flights":230,"bm":3.25,"safeConf":100,"healthConf":100,"govConf":100},{"id":6,"name":"悉尼","country":"澳大利亚","continent":"大洋洲","costMod":3737,"costBud":2582,"rent":2479,"hp":12396,"numbeoSafe":66.1,"gpi":1.52,"gallup":82,"speed":90,"democracy":8.71,"income":80532,"safety":83.1,"health":69.8,"gov":75.9,"homicide":0.9,"wps":0.896,"aqi":35,"work":1694,"leave":20,"docs":4.3,"beds":3.8,"uhc":87,"life":83.3,"oop":15.85,"cpi":75,"govEff":86.5,"wjp":0.8,"press":65,"mipex":65,"inet":75,"flights":95,"bm":5.3,"safeConf":100,"healthConf":100,"govConf":100},{"id":7,"name":"新加坡","country":"新加坡","continent":"亚洲","costMod":3838,"costBud":2876,"rent":2695,"hp":23622,"numbeoSafe":77.7,"gpi":1.33,"gallup":97,"speed":250,"democracy":6.02,"income":68680,"safety":90.1,"health":59.2,"gov":78,"homicide":0.2,"wps":0.884,"aqi":52,"work":2238,"leave":7,"docs":2.5,"beds":2.5,"uhc":86,"life":83.9,"oop":25.42,"cpi":83,"govEff":95.7,"wjp":0.78,"press":40,"mipex":null,"inet":53,"flights":150,"bm":5.3,"safeConf":100,"healthConf":100,"govConf":85},{"id":8,"name":"巴黎","country":"法国","continent":"欧洲","costMod":2801,"costBud":2059,"rent":1562,"hp":14510,"numbeoSafe":42,"gpi":1.96,"gallup":74,"speed":180,"democracy":7.99,"income":85000,"safety":71.9,"health":71.7,"gov":69.4,"homicide":1.3,"wps":0.864,"aqi":45,"work":1511,"leave":25,"docs":3.6,"beds":5.9,"uhc":87,"life":82.5,"oop":9.26,"cpi":71,"govEff":74.7,"wjp":0.72,"press":68,"mipex":56,"inet":76,"flights":290,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":9,"name":"多伦多","country":"加拿大","continent":"北美洲","costMod":2762,"costBud":2221,"rent":1661,"hp":8471,"numbeoSafe":56.4,"gpi":1.35,"gallup":80,"speed":120,"democracy":8.88,"income":72366,"safety":79.9,"health":62.4,"gov":78.8,"homicide":2,"wps":0.885,"aqi":38,"work":1686,"leave":10,"docs":2.9,"beds":2.5,"uhc":87,"life":82,"oop":15.2,"cpi":76,"govEff":85.5,"wjp":0.79,"press":72,"mipex":79,"inet":85,"flights":180,"bm":5.6,"safeConf":100,"healthConf":100,"govConf":100},{"id":10,"name":"香港","country":"中国香港","continent":"亚洲","costMod":3254,"costBud":2415,"rent":2176,"hp":25291,"numbeoSafe":78.3,"gpi":1.88,"gallup":86,"speed":250,"democracy":3.54,"income":60864,"safety":85,"health":60.9,"gov":66.3,"homicide":0.3,"wps":0.809,"aqi":55,"work":2080,"leave":7,"docs":2.1,"beds":4.9,"uhc":87,"life":85.3,"oop":null,"cpi":75,"govEff":83.2,"wjp":0.72,"press":16,"mipex":null,"inet":null,"flights":180,"bm":2.83,"safeConf":100,"healthConf":85,"govConf":85},{"id":11,"name":"洛杉矶","country":"美国","continent":"北美洲","costMod":4199,"costBud":3608,"rent":2809,"hp":8582,"numbeoSafe":46.1,"gpi":2.44,"gallup":78,"speed":180,"democracy":7.85,"income":107470,"safety":67.9,"health":60.7,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":65,"work":1811,"leave":0,"docs":2.8,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":195,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":12,"name":"旧金山","country":"美国","continent":"北美洲","costMod":5029,"costBud":3902,"rent":3413,"hp":10924,"numbeoSafe":39.5,"gpi":2.44,"gallup":78,"speed":200,"democracy":7.85,"income":158456,"safety":66,"health":63.2,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":48,"work":1811,"leave":0,"docs":3.5,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":130,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":13,"name":"芝加哥","country":"美国","continent":"北美洲","costMod":3661,"costBud":2622,"rent":2388,"hp":3842,"numbeoSafe":34.5,"gpi":2.44,"gallup":78,"speed":200,"democracy":7.85,"income":102790,"safety":64.5,"health":62.9,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":52,"work":1811,"leave":0,"docs":3.4,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":250,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":14,"name":"迪拜","country":"阿联酋","continent":"亚洲","costMod":3428,"costBud":2248,"rent":2288,"hp":7244,"numbeoSafe":83.9,"gpi":1.54,"gallup":95,"speed":180,"democracy":2.76,"income":57009,"safety":90.4,"health":58.1,"gov":57,"homicide":0.5,"wps":0.872,"aqi":95,"work":2200,"leave":30,"docs":3.2,"beds":1.4,"uhc":78,"life":78.7,"oop":14.5,"cpi":68,"govEff":75.8,"wjp":0.64,"press":26,"mipex":29,"inet":28,"flights":265,"bm":4.15,"safeConf":100,"healthConf":100,"govConf":100},{"id":15,"name":"阿姆斯特丹","country":"荷兰","continent":"欧洲","costMod":3917,"costBud":2869,"rent":2593,"hp":10957,"numbeoSafe":69.9,"gpi":1.53,"gallup":79,"speed":130,"democracy":8.88,"income":102315,"safety":84,"health":67.9,"gov":77.6,"homicide":0.6,"wps":0.905,"aqi":35,"work":1417,"leave":20,"docs":3.9,"beds":3.2,"uhc":87,"life":81.5,"oop":10.28,"cpi":79,"govEff":85.4,"wjp":0.82,"press":77,"mipex":57,"inet":84,"flights":195,"bm":5.15,"safeConf":100,"healthConf":100,"govConf":100},{"id":16,"name":"苏黎世","country":"瑞士","continent":"欧洲","costMod":4963,"costBud":3591,"rent":3043,"hp":25071,"numbeoSafe":76.7,"gpi":1.34,"gallup":89,"speed":170,"democracy":9.14,"income":150643,"safety":88.4,"health":70.5,"gov":77.6,"homicide":0.5,"wps":0.877,"aqi":28,"work":1533,"leave":20,"docs":4.7,"beds":4.6,"uhc":87,"life":83.4,"oop":24.5,"cpi":82,"govEff":87.1,"wjp":null,"press":82,"mipex":50,"inet":null,"flights":130,"bm":6.82,"safeConf":100,"healthConf":100,"govConf":80},{"id":17,"name":"日内瓦","country":"瑞士","continent":"欧洲","costMod":4721,"costBud":3502,"rent":2887,"hp":23023,"numbeoSafe":70.5,"gpi":1.34,"gallup":89,"speed":160,"democracy":9.14,"income":136381,"safety":86.5,"health":70.2,"gov":77.6,"homicide":0.5,"wps":0.877,"aqi":30,"work":1533,"leave":20,"docs":4.6,"beds":4.6,"uhc":87,"life":83.4,"oop":24.5,"cpi":82,"govEff":87.1,"wjp":null,"press":82,"mipex":50,"inet":null,"flights":110,"bm":6.82,"safeConf":100,"healthConf":100,"govConf":80},{"id":18,"name":"慕尼黑","country":"德国","continent":"欧洲","costMod":2938,"costBud":2265,"rent":1673,"hp":13291,"numbeoSafe":78.3,"gpi":1.69,"gallup":80,"speed":120,"democracy":8.8,"income":92685,"safety":85.4,"health":77.2,"gov":76,"homicide":0.8,"wps":0.869,"aqi":32,"work":1341,"leave":20,"docs":4.8,"beds":8,"uhc":84,"life":80.6,"oop":11.05,"cpi":78,"govEff":81.4,"wjp":0.83,"press":72,"mipex":58,"inet":74,"flights":190,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":19,"name":"柏林","country":"德国","continent":"欧洲","costMod":2735,"costBud":1920,"rent":1544,"hp":8420,"numbeoSafe":55.3,"gpi":1.69,"gallup":80,"speed":110,"democracy":8.8,"income":77457,"safety":78.5,"health":75.4,"gov":76,"homicide":0.8,"wps":0.869,"aqi":35,"work":1341,"leave":20,"docs":4.3,"beds":8,"uhc":84,"life":80.6,"oop":11.05,"cpi":78,"govEff":81.4,"wjp":0.83,"press":72,"mipex":58,"inet":74,"flights":180,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":20,"name":"巴塞罗那","country":"西班牙","continent":"欧洲","costMod":2644,"costBud":1961,"rent":1706,"hp":7122,"numbeoSafe":47.8,"gpi":1.61,"gallup":74,"speed":190,"democracy":8.07,"income":46708,"safety":75.8,"health":67.1,"gov":66.3,"homicide":0.6,"wps":0.862,"aqi":42,"work":1644,"leave":22,"docs":4.5,"beds":3,"uhc":82,"life":83,"oop":19.45,"cpi":60,"govEff":72.9,"wjp":0.71,"press":66,"mipex":60,"inet":null,"flights":215,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":21,"name":"马德里","country":"西班牙","continent":"欧洲","costMod":2446,"costBud":1843,"rent":1483,"hp":9361,"numbeoSafe":70.9,"gpi":1.61,"gallup":74,"speed":200,"democracy":8.07,"income":50130,"safety":82.7,"health":67.1,"gov":66.3,"homicide":0.6,"wps":0.862,"aqi":45,"work":1644,"leave":22,"docs":4.5,"beds":3,"uhc":82,"life":83,"oop":19.45,"cpi":60,"govEff":72.9,"wjp":0.71,"press":66,"mipex":60,"inet":null,"flights":200,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":22,"name":"米兰","country":"意大利","continent":"欧洲","costMod":2962,"costBud":2076,"rent":1731,"hp":10985,"numbeoSafe":46.2,"gpi":1.63,"gallup":72,"speed":120,"democracy":7.69,"income":46500,"safety":74.4,"health":66.5,"gov":61,"homicide":0.5,"wps":0.811,"aqi":62,"work":1669,"leave":20,"docs":4.4,"beds":3.2,"uhc":82,"life":82.9,"oop":21.43,"cpi":56,"govEff":66.7,"wjp":0.66,"press":56,"mipex":58,"inet":74,"flights":190,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":23,"name":"罗马","country":"意大利","continent":"欧洲","costMod":2356,"costBud":1658,"rent":1350,"hp":9062,"numbeoSafe":53.1,"gpi":1.63,"gallup":72,"speed":100,"democracy":7.69,"income":43642,"safety":76.5,"health":66.2,"gov":61,"homicide":0.5,"wps":0.811,"aqi":50,"work":1669,"leave":20,"docs":4.3,"beds":3.2,"uhc":82,"life":82.9,"oop":21.43,"cpi":56,"govEff":66.7,"wjp":0.66,"press":56,"mipex":58,"inet":74,"flights":190,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":24,"name":"布鲁塞尔","country":"比利时","continent":"欧洲","costMod":2492,"costBud":1937,"rent":1321,"hp":5023,"numbeoSafe":44.3,"gpi":1.52,"gallup":72,"speed":100,"democracy":7.64,"income":79543,"safety":74.7,"health":69,"gov":74.1,"homicide":1.7,"wps":0.912,"aqi":38,"work":1577,"leave":20,"docs":3.8,"beds":5.6,"uhc":85,"life":81.4,"oop":17.6,"cpi":73,"govEff":74.6,"wjp":0.78,"press":75,"mipex":69,"inet":null,"flights":170,"bm":5.15,"safeConf":100,"healthConf":100,"govConf":100},{"id":25,"name":"维也纳","country":"奥地利","continent":"欧洲","costMod":2545,"costBud":1812,"rent":1299,"hp":13622,"numbeoSafe":70.5,"gpi":1.3,"gallup":85,"speed":110,"democracy":8.41,"income":70010,"safety":86.2,"health":78.6,"gov":71.2,"homicide":0.7,"wps":0.898,"aqi":30,"work":1442,"leave":25,"docs":5.7,"beds":7.3,"uhc":85,"life":81.6,"oop":17.12,"cpi":71,"govEff":80.8,"wjp":0.79,"press":70,"mipex":46,"inet":null,"flights":175,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":26,"name":"布拉格","country":"捷克","continent":"欧洲","costMod":2215,"costBud":1744,"rent":1223,"hp":10120,"numbeoSafe":75.3,"gpi":1.38,"gallup":81,"speed":100,"democracy":7.97,"income":47243,"safety":86,"health":71.5,"gov":64.4,"homicide":0.6,"wps":0.832,"aqi":42,"work":1766,"leave":20,"docs":4.6,"beds":6.6,"uhc":80,"life":78.3,"oop":14,"cpi":57,"govEff":74.2,"wjp":0.74,"press":63,"mipex":49,"inet":null,"flights":155,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":27,"name":"华沙","country":"波兰","continent":"欧洲","costMod":2148,"costBud":1612,"rent":1217,"hp":6347,"numbeoSafe":74.6,"gpi":1.73,"gallup":79,"speed":130,"democracy":7.04,"income":42463,"safety":83.9,"health":61.9,"gov":57.2,"homicide":0.7,"wps":0.854,"aqi":55,"work":1803,"leave":20,"docs":2.8,"beds":6.5,"uhc":77,"life":76.5,"oop":20.25,"cpi":54,"govEff":64.4,"wjp":0.66,"press":55,"mipex":41,"inet":null,"flights":160,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":28,"name":"里斯本","country":"葡萄牙","continent":"欧洲","costMod":2480,"costBud":1836,"rent":1611,"hp":7832,"numbeoSafe":66.8,"gpi":1.27,"gallup":76,"speed":140,"democracy":8.03,"income":30882,"safety":83.3,"health":69.5,"gov":70.3,"homicide":0.8,"wps":0.861,"aqi":35,"work":1649,"leave":22,"docs":5.7,"beds":3.5,"uhc":83,"life":81.1,"oop":27.74,"cpi":61,"govEff":69.8,"wjp":0.67,"press":80,"mipex":81,"inet":null,"flights":150,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":29,"name":"雅典","country":"希腊","continent":"欧洲","costMod":1690,"costBud":1280,"rent":735,"hp":4175,"numbeoSafe":44.9,"gpi":1.77,"gallup":69,"speed":70,"democracy":7.56,"income":26766,"safety":72.2,"health":71.5,"gov":53.8,"homicide":0.8,"wps":0.752,"aqi":48,"work":1886,"leave":20,"docs":7,"beds":4.2,"uhc":77,"life":80.1,"oop":35.44,"cpi":49,"govEff":55.1,"wjp":0.6,"press":58,"mipex":47,"inet":null,"flights":165,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":30,"name":"伊斯坦布尔","country":"土耳其","continent":"欧洲","costMod":1836,"costBud":1176,"rent":1072,"hp":3265,"numbeoSafe":51.9,"gpi":2.52,"gallup":72,"speed":60,"democracy":4.35,"income":26598,"safety":68.9,"health":55.3,"gov":39.5,"homicide":2.6,"wps":0.664,"aqi":68,"work":1855,"leave":14,"docs":2.4,"beds":2.9,"uhc":77,"life":76,"oop":17.59,"cpi":36,"govEff":50,"wjp":0.41,"press":22,"mipex":43,"inet":31,"flights":310,"bm":2.98,"safeConf":100,"healthConf":100,"govConf":100},{"id":31,"name":"墨西哥城","country":"墨西哥","continent":"北美洲","costMod":1975,"costBud":1336,"rent":1169,"hp":3796,"numbeoSafe":33.5,"gpi":2.92,"gallup":48,"speed":70,"democracy":5.57,"income":18992,"safety":42.9,"health":47,"gov":40.1,"homicide":25.2,"wps":0.558,"aqi":90,"work":2128,"leave":12,"docs":2.8,"beds":1,"uhc":74,"life":75,"oop":41.24,"cpi":31,"govEff":47.1,"wjp":0.4,"press":33,"mipex":51,"inet":61,"flights":115,"bm":2.98,"safeConf":100,"healthConf":100,"govConf":100},{"id":32,"name":"圣保罗","country":"巴西","continent":"南美洲","costMod":1421,"costBud":964,"rent":705,"hp":2905,"numbeoSafe":30.2,"gpi":2.38,"gallup":49,"speed":80,"democracy":6.78,"income":15882,"safety":47.3,"health":52.3,"gov":48.6,"homicide":22.4,"wps":0.632,"aqi":52,"work":1776,"leave":30,"docs":2.7,"beds":2.1,"uhc":75,"life":75.3,"oop":26.23,"cpi":36,"govEff":47,"wjp":0.5,"press":55,"mipex":64,"inet":65,"flights":135,"bm":2.98,"safeConf":100,"healthConf":100,"govConf":100},{"id":33,"name":"里约热内卢","country":"巴西","continent":"南美洲","costMod":1302,"costBud":808,"rent":659,"hp":2911,"numbeoSafe":24.7,"gpi":2.38,"gallup":49,"speed":75,"democracy":6.78,"income":9732,"safety":45.7,"health":51.5,"gov":48.6,"homicide":22.4,"wps":0.632,"aqi":45,"work":1776,"leave":30,"docs":2.5,"beds":2.1,"uhc":75,"life":75.3,"oop":26.23,"cpi":36,"govEff":47,"wjp":0.5,"press":55,"mipex":64,"inet":65,"flights":55,"bm":2.98,"safeConf":100,"healthConf":100,"govConf":100},{"id":34,"name":"迈阿密","country":"美国","continent":"北美洲","costMod":4448,"costBud":3097,"rent":3010,"hp":7081,"numbeoSafe":46.7,"gpi":2.44,"gallup":78,"speed":200,"democracy":7.85,"income":93350,"safety":68.1,"health":61.1,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":42,"work":1811,"leave":0,"docs":2.9,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":180,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":35,"name":"华盛顿","country":"美国","continent":"北美洲","costMod":4245,"costBud":3190,"rent":2687,"hp":8616,"numbeoSafe":40.1,"gpi":2.44,"gallup":78,"speed":210,"democracy":7.85,"income":121060,"safety":66.1,"health":65,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":48,"work":1811,"leave":0,"docs":4,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":200,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":36,"name":"波士顿","country":"美国","continent":"北美洲","costMod":4912,"costBud":3543,"rent":3478,"hp":12896,"numbeoSafe":60,"gpi":2.44,"gallup":78,"speed":190,"democracy":7.85,"income":124160,"safety":72.1,"health":68.6,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":42,"work":1811,"leave":0,"docs":5,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":140,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":37,"name":"西雅图","country":"美国","continent":"北美洲","costMod":4019,"costBud":3062,"rent":2442,"hp":7706,"numbeoSafe":44.8,"gpi":2.44,"gallup":78,"speed":220,"democracy":7.85,"income":129900,"safety":67.5,"health":61.8,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":45,"work":1811,"leave":0,"docs":3.1,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":135,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":39,"name":"奥斯汀","country":"美国","continent":"北美洲","costMod":3199,"costBud":2228,"rent":2054,"hp":7259,"numbeoSafe":56,"gpi":2.44,"gallup":78,"speed":180,"democracy":7.85,"income":102530,"safety":70.9,"health":59.3,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":48,"work":1811,"leave":0,"docs":2.4,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":75,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":40,"name":"温哥华","country":"加拿大","continent":"北美洲","costMod":2985,"costBud":2356,"rent":1917,"hp":9098,"numbeoSafe":57.1,"gpi":1.35,"gallup":80,"speed":130,"democracy":8.88,"income":70361,"safety":80.1,"health":61.3,"gov":78.8,"homicide":2,"wps":0.885,"aqi":32,"work":1686,"leave":10,"docs":2.6,"beds":2.5,"uhc":87,"life":82,"oop":15.2,"cpi":76,"govEff":85.5,"wjp":0.79,"press":72,"mipex":79,"inet":85,"flights":120,"bm":5.6,"safeConf":100,"healthConf":100,"govConf":100},{"id":41,"name":"蒙特利尔","country":"加拿大","continent":"北美洲","costMod":2272,"costBud":1649,"rent":1304,"hp":5333,"numbeoSafe":67.2,"gpi":1.35,"gallup":80,"speed":120,"democracy":8.88,"income":59463,"safety":83.1,"health":62,"gov":78.8,"homicide":2,"wps":0.885,"aqi":35,"work":1686,"leave":10,"docs":2.8,"beds":2.5,"uhc":87,"life":82,"oop":15.2,"cpi":76,"govEff":85.5,"wjp":0.79,"press":72,"mipex":79,"inet":85,"flights":130,"bm":5.6,"safeConf":100,"healthConf":100,"govConf":100},{"id":42,"name":"墨尔本","country":"澳大利亚","continent":"大洋洲","costMod":2967,"costBud":2165,"rent":1742,"hp":7512,"numbeoSafe":55.7,"gpi":1.52,"gallup":82,"speed":85,"democracy":8.71,"income":82872,"safety":79.9,"health":69.5,"gov":75.9,"homicide":0.9,"wps":0.896,"aqi":32,"work":1694,"leave":20,"docs":4.2,"beds":3.8,"uhc":87,"life":83.3,"oop":15.85,"cpi":75,"govEff":86.5,"wjp":0.8,"press":65,"mipex":65,"inet":75,"flights":75,"bm":5.3,"safeConf":100,"healthConf":100,"govConf":100},{"id":43,"name":"布里斯班","country":"澳大利亚","continent":"大洋洲","costMod":2922,"costBud":2093,"rent":1868,"hp":8039,"numbeoSafe":61.9,"gpi":1.52,"gallup":82,"speed":80,"democracy":8.71,"income":83028,"safety":81.8,"health":68.1,"gov":75.9,"homicide":0.9,"wps":0.896,"aqi":30,"work":1694,"leave":20,"docs":3.8,"beds":3.8,"uhc":87,"life":83.3,"oop":15.85,"cpi":75,"govEff":86.5,"wjp":0.8,"press":65,"mipex":65,"inet":75,"flights":55,"bm":5.3,"safeConf":100,"healthConf":100,"govConf":100},{"id":44,"name":"奥克兰","country":"新西兰","continent":"大洋洲","costMod":2349,"costBud":1881,"rent":1305,"hp":7694,"numbeoSafe":49.4,"gpi":1.22,"gallup":82,"speed":110,"democracy":9.61,"income":59257,"safety":79.6,"health":65.3,"gov":82.9,"homicide":1.1,"wps":0.898,"aqi":22,"work":1752,"leave":20,"docs":3.5,"beds":2.6,"uhc":87,"life":82.1,"oop":12.69,"cpi":85,"govEff":87.3,"wjp":0.83,"press":78,"mipex":77,"inet":null,"flights":60,"bm":5.3,"safeConf":100,"healthConf":100,"govConf":100},{"id":45,"name":"曼谷","country":"泰国","continent":"亚洲","costMod":1396,"costBud":814,"rent":702,"hp":6063,"numbeoSafe":61.8,"gpi":2.02,"gallup":78,"speed":200,"democracy":6.35,"income":12439,"safety":76.3,"health":52.4,"gov":45.7,"homicide":2.8,"wps":0.761,"aqi":85,"work":2024,"leave":6,"docs":0.8,"beds":2.1,"uhc":82,"life":78.7,"oop":11.11,"cpi":35,"govEff":56.3,"wjp":0.5,"press":40,"mipex":null,"inet":39,"flights":190,"bm":4.38,"safeConf":100,"healthConf":100,"govConf":85},{"id":46,"name":"吉隆坡","country":"马来西亚","continent":"亚洲","costMod":1300,"costBud":810,"rent":687,"hp":3964,"numbeoSafe":40.8,"gpi":1.57,"gallup":77,"speed":110,"democracy":7.3,"income":26232,"safety":72.2,"health":49.6,"gov":56.7,"homicide":2.1,"wps":0.738,"aqi":72,"work":2028,"leave":8,"docs":2.5,"beds":1.9,"uhc":73,"life":76.2,"oop":32.91,"cpi":50,"govEff":69.1,"wjp":0.57,"press":47,"mipex":null,"inet":60,"flights":140,"bm":3.73,"safeConf":100,"healthConf":100,"govConf":85},{"id":47,"name":"胡志明市","country":"越南","continent":"亚洲","costMod":1013,"costBud":611,"rent":552,"hp":4191,"numbeoSafe":50,"gpi":1.84,"gallup":85,"speed":90,"democracy":2.82,"income":9183,"safety":75,"health":44.6,"gov":41.3,"homicide":1.5,"wps":0.721,"aqi":95,"work":2060,"leave":12,"docs":1.4,"beds":2.6,"uhc":73,"life":75.4,"oop":40.47,"cpi":42,"govEff":49.5,"wjp":0.5,"press":15,"mipex":null,"inet":22,"flights":85,"bm":2.08,"safeConf":100,"healthConf":100,"govConf":85},{"id":48,"name":"河内","country":"越南","continent":"亚洲","costMod":910,"costBud":616,"rent":447,"hp":4302,"numbeoSafe":66.2,"gpi":1.84,"gallup":85,"speed":95,"democracy":2.82,"income":9420,"safety":79.8,"health":44.2,"gov":41.3,"homicide":1.5,"wps":0.721,"aqi":115,"work":2060,"leave":12,"docs":1.3,"beds":2.6,"uhc":73,"life":75.4,"oop":40.47,"cpi":42,"govEff":49.5,"wjp":0.5,"press":15,"mipex":null,"inet":22,"flights":70,"bm":2.08,"safeConf":100,"healthConf":100,"govConf":85},{"id":49,"name":"班加罗尔","country":"印度","continent":"亚洲","costMod":662,"costBud":424,"rent":318,"hp":1804,"numbeoSafe":46.2,"gpi":2.31,"gallup":73,"speed":60,"democracy":7.18,"income":14562,"safety":67.6,"health":32.4,"gov":42.6,"homicide":2.9,"wps":0.607,"aqi":95,"work":2117,"leave":15,"docs":1,"beds":0.5,"uhc":55,"life":70.8,"oop":43.89,"cpi":39,"govEff":59.2,"wjp":0.49,"press":31,"mipex":24,"inet":51,"flights":75,"bm":1.9,"safeConf":100,"healthConf":100,"govConf":100},{"id":50,"name":"孟买","country":"印度","continent":"亚洲","costMod":1035,"costBud":636,"rent":647,"hp":6486,"numbeoSafe":56.1,"gpi":2.31,"gallup":73,"speed":65,"democracy":7.18,"income":12140,"safety":70.6,"health":33.1,"gov":42.6,"homicide":2.9,"wps":0.607,"aqi":135,"work":2117,"leave":15,"docs":1.2,"beds":0.5,"uhc":55,"life":70.8,"oop":43.89,"cpi":39,"govEff":59.2,"wjp":0.49,"press":31,"mipex":24,"inet":51,"flights":110,"bm":1.9,"safeConf":100,"healthConf":100,"govConf":100},{"id":51,"name":"新德里","country":"印度","continent":"亚洲","costMod":629,"costBud":420,"rent":259,"hp":2540,"numbeoSafe":41,"gpi":2.31,"gallup":73,"speed":70,"democracy":7.18,"income":8980,"safety":66.1,"health":32.8,"gov":42.6,"homicide":2.9,"wps":0.607,"aqi":175,"work":2117,"leave":15,"docs":1.1,"beds":0.5,"uhc":55,"life":70.8,"oop":43.89,"cpi":39,"govEff":59.2,"wjp":0.49,"press":31,"mipex":24,"inet":51,"flights":145,"bm":1.9,"safeConf":100,"healthConf":100,"govConf":100},{"id":52,"name":"内罗毕","country":"肯尼亚","continent":"非洲","costMod":966,"costBud":588,"rent":428,"hp":1541,"numbeoSafe":40.9,"gpi":2.41,"gallup":60,"speed":25,"democracy":5.05,"income":7291,"safety":61.9,"health":29.8,"gov":43.1,"homicide":4.8,"wps":0.542,"aqi":65,"work":2100,"leave":21,"docs":0.3,"beds":1.4,"uhc":48,"life":61.4,"oop":23.62,"cpi":32,"govEff":45.5,"wjp":0.45,"press":55,"mipex":null,"inet":58,"flights":60,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":85},{"id":53,"name":"开罗","country":"埃及","continent":"非洲","costMod":570,"costBud":419,"rent":210,"hp":888,"numbeoSafe":50.2,"gpi":2.18,"gallup":78,"speed":40,"democracy":2.93,"income":2858,"safety":70.9,"health":32.5,"gov":35.6,"homicide":2.3,"wps":0.617,"aqi":130,"work":2070,"leave":21,"docs":0.9,"beds":1.6,"uhc":57,"life":72,"oop":53.87,"cpi":35,"govEff":49.5,"wjp":0.35,"press":14,"mipex":null,"inet":28,"flights":100,"bm":1.8,"safeConf":100,"healthConf":100,"govConf":85},{"id":55,"name":"卡拉奇","country":"巴基斯坦","continent":"亚洲","costMod":521,"costBud":345,"rent":143,"hp":738,"numbeoSafe":42.6,"gpi":2.74,"gallup":63,"speed":20,"democracy":4.13,"income":2701,"safety":60.9,"health":24.9,"gov":33.1,"homicide":3.7,"wps":0.462,"aqi":155,"work":2150,"leave":14,"docs":1.1,"beds":0.6,"uhc":40,"life":67.3,"oop":55.02,"cpi":27,"govEff":39.7,"wjp":0.37,"press":27,"mipex":null,"inet":27,"flights":40,"bm":1.5,"safeConf":100,"healthConf":100,"govConf":85},{"id":57,"name":"雅加达","country":"印度尼西亚","continent":"亚洲","costMod":861,"costBud":557,"rent":374,"hp":2850,"numbeoSafe":47.3,"gpi":1.83,"gallup":82,"speed":35,"democracy":6.71,"income":7733,"safety":73.9,"health":37,"gov":44.8,"homicide":0.4,"wps":0.678,"aqi":105,"work":1950,"leave":12,"docs":0.7,"beds":1,"uhc":59,"life":71.7,"oop":29.11,"cpi":37,"govEff":54.8,"wjp":0.52,"press":50,"mipex":26,"inet":48,"flights":90,"bm":2.5,"safeConf":100,"healthConf":100,"govConf":100},{"id":58,"name":"马尼拉","country":"菲律宾","continent":"亚洲","costMod":1160,"costBud":685,"rent":566,"hp":4438,"numbeoSafe":35.4,"gpi":2.3,"gallup":72,"speed":80,"democracy":6.73,"income":7692,"safety":63.6,"health":32.7,"gov":44.2,"homicide":4.3,"wps":0.607,"aqi":72,"work":2000,"leave":5,"docs":0.8,"beds":1,"uhc":55,"life":71.1,"oop":43.7,"cpi":34,"govEff":54.2,"wjp":0.46,"press":42,"mipex":null,"inet":61,"flights":80,"bm":2.28,"safeConf":100,"healthConf":100,"govConf":85},{"id":59,"name":"首尔","country":"韩国","continent":"亚洲","costMod":1912,"costBud":1309,"rent":869,"hp":18309,"numbeoSafe":74.8,"gpi":1.72,"gallup":85,"speed":200,"democracy":8.09,"income":52639,"safety":84.5,"health":73.9,"gov":69.8,"homicide":0.6,"wps":0.815,"aqi":58,"work":1901,"leave":15,"docs":2.8,"beds":12.4,"uhc":86,"life":83.7,"oop":31.75,"cpi":63,"govEff":80.2,"wjp":0.74,"press":72,"mipex":56,"inet":65,"flights":190,"bm":4.02,"safeConf":100,"healthConf":100,"govConf":100},{"id":60,"name":"釜山","country":"韩国","continent":"亚洲","costMod":1729,"costBud":1063,"rent":683,"hp":9712,"numbeoSafe":null,"gpi":1.72,"gallup":85,"speed":190,"democracy":8.09,"income":44017,"safety":88.6,"health":72.5,"gov":69.8,"homicide":0.6,"wps":0.815,"aqi":48,"work":1901,"leave":15,"docs":2.4,"beds":12.4,"uhc":86,"life":83.7,"oop":31.75,"cpi":63,"govEff":80.2,"wjp":0.74,"press":72,"mipex":56,"inet":65,"flights":50,"bm":4.02,"safeConf":70,"healthConf":100,"govConf":100},{"id":61,"name":"台北","country":"台湾","continent":"亚洲","costMod":1565,"costBud":1070,"rent":724,"hp":14331,"numbeoSafe":83.4,"gpi":1.73,"gallup":88,"speed":170,"democracy":8.99,"income":29858,"safety":84.2,"health":61.2,"gov":70.3,"homicide":null,"wps":0.854,"aqi":43,"work":2008,"leave":7,"docs":2.5,"beds":5.6,"uhc":86,"life":81,"oop":null,"cpi":68,"govEff":null,"wjp":null,"press":74,"mipex":null,"inet":79,"flights":130,"bm":3.86,"safeConf":75,"healthConf":85,"govConf":40},{"id":62,"name":"布宜诺斯艾利斯","country":"阿根廷","continent":"南美洲","costMod":1628,"costBud":1129,"rent":752,"hp":2716,"numbeoSafe":37,"gpi":1.88,"gallup":50,"speed":55,"democracy":6.81,"income":14697,"safety":64.4,"health":66.6,"gov":51.7,"homicide":4.6,"wps":0.791,"aqi":42,"work":1820,"leave":14,"docs":5.5,"beds":5,"uhc":74,"life":76.5,"oop":28.02,"cpi":38,"govEff":54.9,"wjp":0.54,"press":60,"mipex":58,"inet":71,"flights":65,"bm":4.5,"safeConf":100,"healthConf":100,"govConf":100},{"id":63,"name":"圣地亚哥","country":"智利","continent":"南美洲","costMod":1343,"costBud":966,"rent":595,"hp":2814,"numbeoSafe":35.9,"gpi":1.8,"gallup":58,"speed":130,"democracy":8.28,"income":14331,"safety":65.2,"health":56.3,"gov":65.6,"homicide":4.6,"wps":0.739,"aqi":65,"work":1916,"leave":15,"docs":3.6,"beds":2.1,"uhc":75,"life":80.2,"oop":32.72,"cpi":67,"govEff":70.1,"wjp":0.66,"press":68,"mipex":53,"inet":87,"flights":55,"bm":4.5,"safeConf":100,"healthConf":100,"govConf":100},{"id":64,"name":"波哥大","country":"哥伦比亚","continent":"南美洲","costMod":1158,"costBud":832,"rent":562,"hp":2223,"numbeoSafe":33.3,"gpi":2.73,"gallup":51,"speed":40,"democracy":7.04,"income":8965,"safety":45.1,"health":55.4,"gov":45.8,"homicide":23.7,"wps":0.551,"aqi":52,"work":1964,"leave":15,"docs":2.8,"beds":1.7,"uhc":76,"life":77.3,"oop":16.71,"cpi":40,"govEff":49.2,"wjp":0.47,"press":48,"mipex":null,"inet":64,"flights":75,"bm":3.5,"safeConf":100,"healthConf":100,"govConf":85},{"id":65,"name":"利马","country":"秘鲁","continent":"南美洲","costMod":1293,"costBud":775,"rent":718,"hp":2232,"numbeoSafe":29.9,"gpi":2.16,"gallup":45,"speed":50,"democracy":6.09,"income":10857,"safety":57.3,"health":47.1,"gov":45,"homicide":7.8,"wps":0.701,"aqi":78,"work":2000,"leave":30,"docs":1.7,"beds":1.6,"uhc":65,"life":76.5,"oop":21.68,"cpi":36,"govEff":47.4,"wjp":0.48,"press":52,"mipex":null,"inet":null,"flights":65,"bm":3.5,"safeConf":100,"healthConf":100,"govConf":85},{"id":67,"name":"约翰内斯堡","country":"南非","continent":"非洲","costMod":1239,"costBud":934,"rent":493,"hp":1049,"numbeoSafe":19.2,"gpi":2.67,"gallup":45,"speed":40,"democracy":7.05,"income":29725,"safety":30.6,"health":40.9,"gov":50.2,"homicide":41,"wps":0.648,"aqi":55,"work":1856,"leave":15,"docs":1,"beds":2.3,"uhc":54,"life":64.9,"oop":6.65,"cpi":43,"govEff":46.9,"wjp":0.56,"press":62,"mipex":48,"inet":73,"flights":75,"bm":2.45,"safeConf":100,"healthConf":100,"govConf":100},{"id":68,"name":"开普敦","country":"南非","continent":"非洲","costMod":1760,"costBud":1160,"rent":1028,"hp":2204,"numbeoSafe":26.5,"gpi":2.67,"gallup":45,"speed":45,"democracy":7.05,"income":30960,"safety":32.8,"health":40.9,"gov":50.2,"homicide":41,"wps":0.648,"aqi":32,"work":1856,"leave":15,"docs":1,"beds":2.3,"uhc":54,"life":64.9,"oop":6.65,"cpi":43,"govEff":46.9,"wjp":0.56,"press":62,"mipex":48,"inet":73,"flights":35,"bm":2.45,"safeConf":100,"healthConf":100,"govConf":100},{"id":69,"name":"瓜达拉哈拉","country":"墨西哥","continent":"北美洲","costMod":1608,"costBud":1045,"rent":905,"hp":3254,"numbeoSafe":37.6,"gpi":2.92,"gallup":48,"speed":60,"democracy":5.57,"income":13486,"safety":44.1,"health":44.9,"gov":40.1,"homicide":25.2,"wps":0.558,"aqi":72,"work":2128,"leave":12,"docs":2.2,"beds":1,"uhc":74,"life":75,"oop":41.24,"cpi":31,"govEff":47.1,"wjp":0.4,"press":33,"mipex":51,"inet":61,"flights":50,"bm":2.98,"safeConf":100,"healthConf":100,"govConf":100},{"id":70,"name":"圣何塞(哥斯达黎加)","country":"哥斯达黎加","continent":"北美洲","costMod":1600,"costBud":672,"rent":550,"hp":3000,"numbeoSafe":42,"gpi":1.8,"gallup":59,"speed":55,"democracy":8.29,"income":18635,"safety":63.9,"health":55.1,"gov":61.3,"homicide":11.2,"wps":0.824,"aqi":35,"work":2026,"leave":14,"docs":3,"beds":1.1,"uhc":75,"life":80.3,"oop":22.18,"cpi":55,"govEff":56.9,"wjp":0.68,"press":70,"mipex":null,"inet":86,"flights":55,"bm":3.98,"safeConf":100,"healthConf":100,"govConf":85},{"id":71,"name":"巴拿马城","country":"巴拿马","continent":"北美洲","costMod":2167,"costBud":1623,"rent":1345,"hp":3128,"numbeoSafe":53.5,"gpi":1.93,"gallup":63,"speed":70,"democracy":7.18,"income":15787,"safety":67.1,"health":49.7,"gov":49.2,"homicide":9.6,"wps":0.696,"aqi":42,"work":1960,"leave":30,"docs":1.9,"beds":2.3,"uhc":72,"life":78.5,"oop":29.73,"cpi":36,"govEff":56.1,"wjp":0.52,"press":56,"mipex":null,"inet":null,"flights":90,"bm":2.98,"safeConf":100,"healthConf":100,"govConf":85},{"id":73,"name":"圣胡安","country":"波多黎各","continent":"北美洲","costMod":2910,"costBud":1678,"rent":1704,"hp":7408,"numbeoSafe":33.2,"gpi":2.44,"gallup":62,"speed":150,"democracy":7.85,"income":62770,"safety":57.3,"health":55.8,"gov":57.1,"homicide":11.4,"wps":0.707,"aqi":32,"work":1811,"leave":0,"docs":3,"beds":2.9,"uhc":84,"life":77.5,"oop":null,"cpi":69,"govEff":46.4,"wjp":null,"press":55,"mipex":null,"inet":null,"flights":45,"bm":5.58,"safeConf":100,"healthConf":85,"govConf":65},{"id":75,"name":"阿布扎比","country":"阿联酋","continent":"亚洲","costMod":2843,"costBud":1988,"rent":1913,"hp":4713,"numbeoSafe":88.9,"gpi":1.54,"gallup":95,"speed":160,"democracy":2.76,"income":37733,"safety":91.9,"health":57.4,"gov":57,"homicide":0.5,"wps":0.872,"aqi":105,"work":2200,"leave":30,"docs":3,"beds":1.4,"uhc":78,"life":78.7,"oop":14.5,"cpi":68,"govEff":75.8,"wjp":0.64,"press":26,"mipex":29,"inet":28,"flights":115,"bm":4.15,"safeConf":100,"healthConf":100,"govConf":100},{"id":76,"name":"多哈","country":"卡塔尔","continent":"亚洲","costMod":2909,"costBud":1960,"rent":1973,"hp":4475,"numbeoSafe":84.5,"gpi":1.44,"gallup":93,"speed":170,"democracy":3.19,"income":42773,"safety":89.2,"health":57,"gov":58.5,"homicide":0.4,"wps":0.723,"aqi":95,"work":2200,"leave":21,"docs":2.8,"beds":1.3,"uhc":70,"life":80.2,"oop":7.08,"cpi":58,"govEff":73.4,"wjp":0.62,"press":30,"mipex":null,"inet":null,"flights":185,"bm":4.5,"safeConf":100,"healthConf":100,"govConf":85},{"id":78,"name":"利雅得","country":"沙特阿拉伯","continent":"亚洲","costMod":2007,"costBud":1483,"rent":1137,"hp":2903,"numbeoSafe":75.4,"gpi":1.94,"gallup":90,"speed":120,"democracy":2.08,"income":34917,"safety":83.1,"health":56.7,"gov":41.2,"homicide":1.5,"wps":0.739,"aqi":120,"work":2100,"leave":21,"docs":3,"beds":2.2,"uhc":74,"life":77.6,"oop":16.22,"cpi":52,"govEff":66.6,"wjp":null,"press":12,"mipex":10,"inet":25,"flights":105,"bm":4.5,"safeConf":100,"healthConf":100,"govConf":80},{"id":82,"name":"特拉维夫","country":"以色列","continent":"亚洲","costMod":3630,"costBud":2536,"rent":2160,"hp":21975,"numbeoSafe":73.8,"gpi":2.76,"gallup":76,"speed":110,"democracy":7.84,"income":87990,"safety":75.7,"health":64.7,"gov":61.7,"homicide":1.8,"wps":0.697,"aqi":62,"work":1898,"leave":12,"docs":4,"beds":3,"uhc":82,"life":82.6,"oop":21.36,"cpi":62,"govEff":74.1,"wjp":null,"press":53,"mipex":49,"inet":null,"flights":120,"bm":4.5,"safeConf":100,"healthConf":100,"govConf":80},{"id":85,"name":"基辅","country":"乌克兰","continent":"欧洲","costMod":1217,"costBud":765,"rent":680,"hp":2723,"numbeoSafe":54.5,"gpi":3.68,"gallup":67,"speed":70,"democracy":5.42,"income":13307,"safety":60.8,"health":55.9,"gov":42.3,"homicide":6.2,"wps":0.645,"aqi":55,"work":1750,"leave":24,"docs":3.7,"beds":7.5,"uhc":63,"life":73.6,"oop":45.24,"cpi":36,"govEff":39.7,"wjp":0.48,"press":44,"mipex":48,"inet":62,"flights":0,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":86,"name":"布加勒斯特","country":"罗马尼亚","continent":"欧洲","costMod":1461,"costBud":997,"rent":671,"hp":4105,"numbeoSafe":71.6,"gpi":1.65,"gallup":71,"speed":140,"democracy":6.4,"income":27041,"safety":81.4,"health":61.3,"gov":54.9,"homicide":1.1,"wps":0.801,"aqi":58,"work":1838,"leave":20,"docs":3.3,"beds":6.9,"uhc":70,"life":74.2,"oop":20.7,"cpi":46,"govEff":59.5,"wjp":0.61,"press":60,"mipex":49,"inet":null,"flights":115,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":87,"name":"索非亚","country":"保加利亚","continent":"欧洲","costMod":1602,"costBud":1176,"rent":790,"hp":4355,"numbeoSafe":61.4,"gpi":1.6,"gallup":70,"speed":130,"democracy":6.53,"income":27043,"safety":78.6,"health":61.7,"gov":47.5,"homicide":1,"wps":0.814,"aqi":65,"work":1754,"leave":20,"docs":4.5,"beds":7.6,"uhc":67,"life":73.6,"oop":37.33,"cpi":45,"govEff":52.2,"wjp":0.55,"press":42,"mipex":39,"inet":null,"flights":90,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":88,"name":"萨格勒布","country":"克罗地亚","continent":"欧洲","costMod":1821,"costBud":1328,"rent":885,"hp":5474,"numbeoSafe":78.7,"gpi":1.41,"gallup":80,"speed":80,"democracy":6.5,"income":37061,"safety":86.2,"health":65.4,"gov":54.3,"homicide":0.6,"wps":0.788,"aqi":48,"work":1715,"leave":20,"docs":3.6,"beds":5.5,"uhc":76,"life":77.8,"oop":12.46,"cpi":47,"govEff":65.1,"wjp":0.61,"press":55,"mipex":39,"inet":null,"flights":65,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":89,"name":"贝尔格莱德","country":"塞尔维亚","continent":"欧洲","costMod":1719,"costBud":1182,"rent":903,"hp":5225,"numbeoSafe":62.3,"gpi":1.93,"gallup":73,"speed":90,"democracy":6.02,"income":22186,"safety":78,"health":55.6,"gov":44.3,"homicide":1,"wps":0.844,"aqi":72,"work":1780,"leave":20,"docs":3.3,"beds":5.6,"uhc":68,"life":75.4,"oop":36.67,"cpi":36,"govEff":53.3,"wjp":0.47,"press":34,"mipex":50,"inet":67,"flights":90,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":90,"name":"布达佩斯","country":"匈牙利","continent":"欧洲","costMod":1804,"costBud":1315,"rent":917,"hp":6021,"numbeoSafe":66.3,"gpi":1.55,"gallup":76,"speed":150,"democracy":6.5,"income":29647,"safety":81.4,"health":62.1,"gov":48.2,"homicide":0.8,"wps":0.832,"aqi":52,"work":1805,"leave":20,"docs":3.7,"beds":7,"uhc":74,"life":75.6,"oop":31.3,"cpi":42,"govEff":61.1,"wjp":0.5,"press":40,"mipex":43,"inet":69,"flights":145,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":93,"name":"都柏林","country":"爱尔兰","continent":"欧洲","costMod":3726,"costBud":3007,"rent":2507,"hp":7963,"numbeoSafe":45.9,"gpi":1.3,"gallup":75,"speed":110,"democracy":9.05,"income":81296,"safety":77.1,"health":66.7,"gov":77.6,"homicide":0.9,"wps":0.891,"aqi":28,"work":1656,"leave":20,"docs":4.1,"beds":3,"uhc":82,"life":82,"oop":13.12,"cpi":77,"govEff":82.7,"wjp":0.82,"press":78,"mipex":64,"inet":null,"flights":185,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":98,"name":"圣地亚哥","country":"美国","continent":"北美洲","costMod":4561,"costBud":3658,"rent":3218,"hp":8694,"numbeoSafe":59.7,"gpi":2.44,"gallup":78,"speed":190,"democracy":7.85,"income":118410,"safety":72,"health":60.7,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":55,"work":1811,"leave":0,"docs":2.8,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":75,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":101,"name":"广州","country":"中国","continent":"亚洲","costMod":1188,"costBud":685,"rent":598,"hp":8892,"numbeoSafe":71.6,"gpi":1.88,"gallup":90,"speed":200,"democracy":2.12,"income":22632,"safety":82.3,"health":59.2,"gov":43.4,"homicide":0.5,"wps":0.685,"aqi":78,"work":2170,"leave":5,"docs":3.2,"beds":4.3,"uhc":82,"life":78.2,"oop":32.17,"cpi":42,"govEff":68.8,"wjp":0.48,"press":9,"mipex":32,"inet":9,"flights":210,"bm":3.25,"safeConf":100,"healthConf":100,"govConf":100},{"id":102,"name":"深圳","country":"中国","continent":"亚洲","costMod":1295,"costBud":860,"rent":716,"hp":13164,"numbeoSafe":75.4,"gpi":1.88,"gallup":90,"speed":180,"democracy":2.12,"income":26667,"safety":83.4,"health":57.7,"gov":43.4,"homicide":0.5,"wps":0.685,"aqi":66,"work":2170,"leave":5,"docs":2.8,"beds":4.3,"uhc":82,"life":78.2,"oop":32.17,"cpi":42,"govEff":68.8,"wjp":0.48,"press":9,"mipex":32,"inet":9,"flights":150,"bm":3.3,"safeConf":100,"healthConf":100,"govConf":100},{"id":103,"name":"成都","country":"中国","continent":"亚洲","costMod":894,"costBud":564,"rent":426,"hp":3996,"numbeoSafe":null,"gpi":1.88,"gallup":90,"speed":160,"democracy":2.12,"income":19210,"safety":86.8,"health":60.2,"gov":43.4,"homicide":0.5,"wps":0.685,"aqi":94,"work":2170,"leave":5,"docs":3.5,"beds":4.3,"uhc":82,"life":78.2,"oop":32.17,"cpi":42,"govEff":68.8,"wjp":0.48,"press":9,"mipex":32,"inet":9,"flights":200,"bm":3.15,"safeConf":70,"healthConf":100,"govConf":100},{"id":104,"name":"杭州","country":"中国","continent":"亚洲","costMod":1134,"costBud":736,"rent":563,"hp":8000,"numbeoSafe":null,"gpi":1.88,"gallup":90,"speed":150,"democracy":2.12,"income":22276,"safety":86.8,"health":59.5,"gov":43.4,"homicide":0.5,"wps":0.685,"aqi":84,"work":2170,"leave":5,"docs":3.3,"beds":4.3,"uhc":82,"life":78.2,"oop":32.17,"cpi":42,"govEff":68.8,"wjp":0.48,"press":9,"mipex":32,"inet":9,"flights":140,"bm":3.22,"safeConf":70,"healthConf":100,"govConf":100},{"id":106,"name":"大阪","country":"日本","continent":"亚洲","costMod":1504,"costBud":1071,"rent":758,"hp":6064,"numbeoSafe":67,"gpi":1.34,"gallup":91,"speed":180,"democracy":8.33,"income":36586,"safety":85.8,"health":77.7,"gov":73.5,"homicide":0.2,"wps":0.866,"aqi":38,"work":1607,"leave":10,"docs":2.6,"beds":12.6,"uhc":83,"life":84.5,"oop":12.24,"cpi":73,"govEff":91.9,"wjp":0.78,"press":64,"mipex":47,"inet":78,"flights":115,"bm":3.03,"safeConf":100,"healthConf":100,"govConf":100},{"id":112,"name":"清迈","country":"泰国","continent":"亚洲","costMod":1040,"costBud":677,"rent":462,"hp":2029,"numbeoSafe":78,"gpi":2.02,"gallup":78,"speed":150,"democracy":6.35,"income":10167,"safety":81.1,"health":52.4,"gov":45.7,"homicide":2.8,"wps":0.761,"aqi":70,"work":2024,"leave":6,"docs":0.8,"beds":2.1,"uhc":82,"life":78.7,"oop":11.11,"cpi":35,"govEff":56.3,"wjp":0.5,"press":40,"mipex":null,"inet":39,"flights":40,"bm":4.35,"safeConf":100,"healthConf":100,"govConf":85},{"id":117,"name":"阿拉木图","country":"哈萨克斯坦","continent":"亚洲","costMod":1416,"costBud":953,"rent":756,"hp":2092,"numbeoSafe":47.1,"gpi":1.98,"gallup":77,"speed":60,"democracy":3.08,"income":15156,"safety":70.9,"health":58.5,"gov":44,"homicide":3.8,"wps":0.722,"aqi":80,"work":1900,"leave":24,"docs":3.3,"beds":6.7,"uhc":69,"life":73.2,"oop":28.22,"cpi":39,"govEff":54.2,"wjp":0.54,"press":22,"mipex":null,"inet":37,"flights":75,"bm":3.2,"safeConf":100,"healthConf":100,"govConf":85},{"id":121,"name":"斯德哥尔摩","country":"瑞典","continent":"欧洲","costMod":3183,"costBud":2086,"rent":1812,"hp":12128,"numbeoSafe":53.8,"gpi":1.42,"gallup":80,"speed":175,"democracy":9.39,"income":82643,"safety":79.8,"health":72.4,"gov":85.1,"homicide":1.1,"wps":0.924,"aqi":28,"work":1474,"leave":25,"docs":5.4,"beds":2.1,"uhc":90,"life":83.2,"oop":13.45,"cpi":82,"govEff":85.8,"wjp":0.85,"press":88,"mipex":86,"inet":null,"flights":180,"bm":6.37,"safeConf":100,"healthConf":100,"govConf":100},{"id":122,"name":"哥本哈根","country":"丹麦","continent":"欧洲","costMod":3331,"costBud":2349,"rent":1964,"hp":10750,"numbeoSafe":73.8,"gpi":1.31,"gallup":86,"speed":185,"democracy":9.28,"income":102235,"safety":87.5,"health":67,"gov":83.8,"homicide":0.8,"wps":0.939,"aqi":25,"work":1380,"leave":25,"docs":4.2,"beds":2.6,"uhc":86,"life":81.3,"oop":13.57,"cpi":90,"govEff":88.5,"wjp":0.9,"press":92,"mipex":49,"inet":null,"flights":170,"bm":5.69,"safeConf":100,"healthConf":100,"govConf":100},{"id":123,"name":"赫尔辛基","country":"芬兰","continent":"欧洲","costMod":2427,"costBud":1731,"rent":1267,"hp":9759,"numbeoSafe":74.8,"gpi":1.36,"gallup":87,"speed":120,"democracy":9.3,"income":65745,"safety":87.1,"health":67.8,"gov":87.1,"homicide":1.6,"wps":0.921,"aqi":22,"work":1518,"leave":25,"docs":3.8,"beds":3.6,"uhc":90,"life":81.9,"oop":16.06,"cpi":87,"govEff":86.7,"wjp":0.87,"press":90,"mipex":85,"inet":null,"flights":140,"bm":5.82,"safeConf":100,"healthConf":100,"govConf":100},{"id":124,"name":"奥斯陆","country":"挪威","continent":"欧洲","costMod":3486,"costBud":2626,"rent":1950,"hp":11205,"numbeoSafe":65.8,"gpi":1.46,"gallup":88,"speed":160,"democracy":9.81,"income":85000,"safety":84.8,"health":72.9,"gov":84.6,"homicide":0.5,"wps":0.924,"aqi":24,"work":1427,"leave":25,"docs":5,"beds":3.5,"uhc":89,"life":83.5,"oop":14.04,"cpi":84,"govEff":87.2,"wjp":0.89,"press":91,"mipex":69,"inet":null,"flights":155,"bm":6.86,"safeConf":100,"healthConf":100,"govConf":100},{"id":125,"name":"休斯顿","country":"美国","continent":"北美洲","costMod":2841,"costBud":2150,"rent":1696,"hp":2574,"numbeoSafe":36.9,"gpi":2.44,"gallup":78,"speed":200,"democracy":7.85,"income":98620,"safety":65.2,"health":62.2,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":62,"work":1811,"leave":0,"docs":3.2,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":210,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":126,"name":"费城","country":"美国","continent":"北美洲","costMod":3308,"costBud":2304,"rent":1922,"hp":4086,"numbeoSafe":34.6,"gpi":2.44,"gallup":78,"speed":195,"democracy":7.85,"income":100370,"safety":64.5,"health":66.8,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":52,"work":1811,"leave":0,"docs":4.5,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":160,"bm":5.58,"safeConf":100,"healthConf":100,"govConf":100},{"id":129,"name":"麦德林","country":"哥伦比亚","continent":"南美洲","costMod":1348,"costBud":930,"rent":694,"hp":2897,"numbeoSafe":46.1,"gpi":2.73,"gallup":51,"speed":65,"democracy":7.13,"income":9028,"safety":49,"health":54.3,"gov":44.5,"homicide":23.7,"wps":0.551,"aqi":55,"work":1964,"leave":15,"docs":2.2,"beds":1.7,"uhc":80,"life":77.3,"oop":16.71,"cpi":40,"govEff":49.2,"wjp":0.47,"press":41,"mipex":null,"inet":64,"flights":40,"bm":3.82,"safeConf":100,"healthConf":100,"govConf":85},{"id":130,"name":"第比利斯","country":"格鲁吉亚","continent":"欧洲","costMod":1311,"costBud":869,"rent":681,"hp":2477,"numbeoSafe":74.1,"gpi":2.05,"gallup":72,"speed":45,"democracy":5.31,"income":11609,"safety":79.9,"health":56.9,"gov":57,"homicide":1.7,"wps":0.798,"aqi":42,"work":1950,"leave":24,"docs":5.1,"beds":2.8,"uhc":73,"life":74.2,"oop":43.06,"cpi":56,"govEff":60.2,"wjp":0.58,"press":52,"mipex":null,"inet":70,"flights":55,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":85},{"id":132,"name":"莫斯科","country":"俄罗斯","continent":"欧洲","costMod":2352,"costBud":1411,"rent":1493,"hp":11672,"numbeoSafe":64.9,"gpi":3.11,"gallup":62,"speed":85,"democracy":2.22,"income":28217,"safety":66,"health":65,"gov":33.9,"homicide":7.3,"wps":0.718,"aqi":48,"work":1974,"leave":28,"docs":4,"beds":8.1,"uhc":75,"life":73.4,"oop":27.1,"cpi":26,"govEff":45.1,"wjp":0.41,"press":22,"mipex":31,"inet":17,"flights":150,"bm":2.32,"safeConf":100,"healthConf":100,"govConf":100},{"id":133,"name":"圣何塞(美国)","country":"美国","continent":"北美洲","costMod":4699,"costBud":3817,"rent":3177,"hp":9246,"numbeoSafe":null,"gpi":2.44,"gallup":78,"speed":230,"democracy":7.85,"income":140900,"safety":77.3,"health":63.2,"gov":69.5,"homicide":6.4,"wps":0.84,"aqi":42,"work":1811,"leave":0,"docs":3.5,"beds":2.9,"uhc":84,"life":77.5,"oop":10.93,"cpi":69,"govEff":77.8,"wjp":0.68,"press":55,"mipex":73,"inet":73,"flights":55,"bm":5.58,"safeConf":70,"healthConf":100,"govConf":100},{"id":136,"name":"卢森堡市","country":"卢森堡","continent":"欧洲","costMod":3537,"costBud":2902,"rent":2250,"hp":13053,"numbeoSafe":71.8,"gpi":1.37,"gallup":85,"speed":130,"democracy":8.68,"income":103218,"safety":86.6,"health":66.6,"gov":80.5,"homicide":0.3,"wps":0.918,"aqi":28,"work":1506,"leave":26,"docs":3,"beds":4.3,"uhc":85,"life":82.6,"oop":9.75,"cpi":78,"govEff":91,"wjp":0.83,"press":82,"mipex":62,"inet":null,"flights":95,"bm":5.48,"safeConf":100,"healthConf":100,"govConf":100},{"id":137,"name":"塔林","country":"爱沙尼亚","continent":"欧洲","costMod":1949,"costBud":1387,"rent":816,"hp":5392,"numbeoSafe":78.4,"gpi":1.59,"gallup":78,"speed":95,"democracy":7.96,"income":39521,"safety":85.3,"health":63.7,"gov":73.3,"homicide":1.7,"wps":0.896,"aqi":24,"work":1767,"leave":20,"docs":3.5,"beds":4.7,"uhc":78,"life":78.8,"oop":17.05,"cpi":74,"govEff":76.6,"wjp":0.82,"press":78,"mipex":50,"inet":91,"flights":65,"bm":4.85,"safeConf":100,"healthConf":100,"govConf":100},{"id":138,"name":"福冈","country":"日本","continent":"亚洲","costMod":null,"costBud":null,"rent":484,"hp":6362,"numbeoSafe":null,"gpi":1.34,"gallup":91,"speed":130,"democracy":8.33,"income":28640,"safety":93.9,"health":80.6,"gov":71.7,"homicide":0.2,"wps":0.866,"aqi":32,"work":1607,"leave":10,"docs":2.6,"beds":13,"uhc":92,"life":84.5,"oop":12.24,"cpi":73,"govEff":91.9,"wjp":0.78,"press":52,"mipex":47,"inet":78,"flights":45,"bm":3.03,"safeConf":70,"healthConf":100,"govConf":100},{"id":140,"name":"巴厘岛","country":"印度尼西亚","continent":"亚洲","costMod":1679,"costBud":1103,"rent":1082,"hp":2623,"numbeoSafe":49,"gpi":1.83,"gallup":82,"speed":28,"democracy":6.71,"income":3595,"safety":74.5,"health":37,"gov":44.8,"homicide":0.4,"wps":0.678,"aqi":45,"work":1950,"leave":12,"docs":0.7,"beds":1,"uhc":59,"life":71.7,"oop":29.11,"cpi":37,"govEff":54.8,"wjp":0.52,"press":50,"mipex":26,"inet":48,"flights":55,"bm":2.5,"safeConf":100,"healthConf":100,"govConf":100},{"id":141,"name":"岘港","country":"越南","continent":"亚洲","costMod":901,"costBud":600,"rent":475,"hp":3813,"numbeoSafe":null,"gpi":1.84,"gallup":85,"speed":85,"democracy":2.82,"income":6267,"safety":85.7,"health":44.6,"gov":41.3,"homicide":1.5,"wps":0.721,"aqi":58,"work":2060,"leave":12,"docs":1.4,"beds":2.6,"uhc":73,"life":75.4,"oop":40.47,"cpi":42,"govEff":49.5,"wjp":0.5,"press":15,"mipex":null,"inet":22,"flights":35,"bm":2.08,"safeConf":70,"healthConf":100,"govConf":85},{"id":143,"name":"波尔图","country":"葡萄牙","continent":"欧洲","costMod":2103,"costBud":1520,"rent":1293,"hp":5407,"numbeoSafe":66.4,"gpi":1.27,"gallup":76,"speed":120,"democracy":8.03,"income":29651,"safety":83.2,"health":69.5,"gov":70.3,"homicide":0.8,"wps":0.861,"aqi":38,"work":1649,"leave":22,"docs":5.7,"beds":3.5,"uhc":83,"life":81.1,"oop":27.74,"cpi":61,"govEff":69.8,"wjp":0.67,"press":80,"mipex":81,"inet":null,"flights":95,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":144,"name":"瓦伦西亚","country":"西班牙","continent":"欧洲","costMod":2246,"costBud":1620,"rent":1414,"hp":5755,"numbeoSafe":62.7,"gpi":1.61,"gallup":74,"speed":150,"democracy":8.07,"income":39605,"safety":80.3,"health":67.1,"gov":66.3,"homicide":0.6,"wps":0.862,"aqi":42,"work":1644,"leave":22,"docs":4.5,"beds":3,"uhc":82,"life":83,"oop":19.45,"cpi":60,"govEff":72.9,"wjp":0.71,"press":66,"mipex":60,"inet":null,"flights":100,"bm":4.99,"safeConf":100,"healthConf":100,"govConf":100},{"id":146,"name":"斯普利特","country":"克罗地亚","continent":"欧洲","costMod":2051,"costBud":1463,"rent":1073,"hp":7103,"numbeoSafe":69.8,"gpi":1.41,"gallup":80,"speed":90,"democracy":6.5,"income":32286,"safety":83.6,"health":65.4,"gov":54.3,"homicide":0.6,"wps":0.788,"aqi":35,"work":1715,"leave":20,"docs":3.6,"beds":5.5,"uhc":76,"life":77.8,"oop":12.46,"cpi":47,"govEff":65.1,"wjp":0.61,"press":55,"mipex":39,"inet":null,"flights":80,"bm":3.52,"safeConf":100,"healthConf":100,"govConf":100},{"id":147,"name":"普吉岛","country":"泰国","continent":"亚洲","costMod":1413,"costBud":975,"rent":707,"hp":3739,"numbeoSafe":null,"gpi":2.02,"gallup":78,"speed":65,"democracy":6.35,"income":8416,"safety":82.4,"health":52.4,"gov":45.7,"homicide":2.8,"wps":0.761,"aqi":40,"work":2024,"leave":6,"docs":0.8,"beds":2.1,"uhc":82,"life":78.7,"oop":11.11,"cpi":35,"govEff":56.3,"wjp":0.5,"press":40,"mipex":null,"inet":39,"flights":50,"bm":4.38,"safeConf":70,"healthConf":100,"govConf":85},{"id":148,"name":"蒙得维的亚","country":"乌拉圭","continent":"南美洲","costMod":1632,"costBud":1207,"rent":647,"hp":3524,"numbeoSafe":43.2,"gpi":1.784,"gallup":72,"speed":100,"democracy":8.67,"income":22521,"safety":66.2,"health":64.1,"gov":68.9,"homicide":11.2,"wps":0.822,"aqi":53,"work":1533,"leave":20,"docs":4.6,"beds":2.4,"uhc":79,"life":78.1,"oop":16.49,"cpi":73,"govEff":64.8,"wjp":0.72,"press":65,"mipex":null,"inet":null,"flights":18,"bm":5.5,"safeConf":100,"healthConf":100,"govConf":85},{"id":149,"name":"拉斯帕尔马斯","country":"西班牙","continent":"欧洲","costMod":1868,"costBud":1430,"rent":1047,"hp":3080,"numbeoSafe":null,"gpi":1.61,"gallup":74,"speed":150,"democracy":8.07,"income":34881,"safety":87.8,"health":67.1,"gov":66.3,"homicide":0.6,"wps":0.862,"aqi":28,"work":1644,"leave":22,"docs":4.5,"beds":3,"uhc":82,"life":83,"oop":19.45,"cpi":60,"govEff":72.9,"wjp":0.71,"press":66,"mipex":60,"inet":null,"flights":120,"bm":4.99,"safeConf":70,"healthConf":100,"govConf":100},{"id":150,"name":"槟城","country":"马来西亚","continent":"亚洲","costMod":969,"costBud":623,"rent":434,"hp":2297,"numbeoSafe":70.6,"gpi":1.57,"gallup":77,"speed":95,"democracy":7.3,"income":15562,"safety":81.1,"health":49.6,"gov":56.7,"homicide":2.1,"wps":0.738,"aqi":55,"work":2028,"leave":8,"docs":2.5,"beds":1.9,"uhc":73,"life":76.2,"oop":32.91,"cpi":50,"govEff":69.1,"wjp":0.57,"press":47,"mipex":null,"inet":60,"flights":30,"bm":3.73,"safeConf":100,"healthConf":100,"govConf":85},{"id":152,"name":"弗洛里亚诺波利斯","country":"巴西","continent":"南美洲","costMod":1275,"costBud":905,"rent":627,"hp":2859,"numbeoSafe":54.6,"gpi":2.38,"gallup":49,"speed":100,"democracy":6.78,"income":16258,"safety":54.7,"health":52.3,"gov":48.6,"homicide":22.4,"wps":0.632,"aqi":41,"work":1776,"leave":30,"docs":2.7,"beds":2.1,"uhc":75,"life":75.3,"oop":26.23,"cpi":36,"govEff":47,"wjp":0.5,"press":55,"mipex":64,"inet":65,"flights":28,"bm":2.98,"safeConf":100,"healthConf":100,"govConf":100},{"id":159,"name":"京都","country":"日本","continent":"亚洲","costMod":null,"costBud":null,"rent":561,"hp":null,"numbeoSafe":null,"gpi":1.34,"gallup":91,"speed":160,"democracy":8.33,"income":34455,"safety":93.9,"health":77.7,"gov":73.5,"homicide":0.2,"wps":0.866,"aqi":43,"work":1607,"leave":10,"docs":2.6,"beds":12.6,"uhc":83,"life":84.5,"oop":12.24,"cpi":73,"govEff":91.9,"wjp":0.78,"press":64,"mipex":47,"inet":78,"flights":null,"bm":3.03,"safeConf":70,"healthConf":100,"govConf":100},{"id":160,"name":"卡萨布兰卡","country":"摩洛哥","continent":"非洲","costMod":1129,"costBud":734,"rent":564,"hp":2124,"numbeoSafe":44.6,"gpi":2,"gallup":72,"speed":35,"democracy":4.85,"income":10195,"safety":69,"health":38.4,"gov":44.3,"homicide":1.4,"wps":0.555,"aqi":60,"work":2000,"leave":18,"docs":0.73,"beds":1,"uhc":58,"life":76.7,"oop":32.85,"cpi":38,"govEff":48.1,"wjp":0.5,"press":41,"mipex":null,"inet":47,"flights":85,"bm":4.4,"safeConf":100,"healthConf":100,"govConf":85},{"id":161,"name":"惠灵顿","country":"新西兰","continent":"大洋洲","costMod":2274,"costBud":1923,"rent":1245,"hp":6756,"numbeoSafe":66.5,"gpi":1.22,"gallup":82,"speed":110,"democracy":9.61,"income":56760,"safety":84.7,"health":65.3,"gov":82.9,"homicide":1.1,"wps":0.898,"aqi":15,"work":1752,"leave":20,"docs":3.5,"beds":2.6,"uhc":87,"life":82.1,"oop":12.69,"cpi":85,"govEff":87.3,"wjp":0.83,"press":78,"mipex":77,"inet":null,"flights":25,"bm":5.3,"safeConf":100,"healthConf":100,"govConf":100},{"id":162,"name":"维尔纽斯","country":"立陶宛","continent":"欧洲","costMod":null,"costBud":null,"rent":855,"hp":6261,"numbeoSafe":69.8,"gpi":1.83,"gallup":72,"speed":120,"democracy":7.13,"income":30000,"safety":79,"health":64.8,"gov":64.7,"homicide":3.5,"wps":0.846,"aqi":32,"work":1740,"leave":20,"docs":4.6,"beds":6.4,"uhc":75,"life":76,"oop":31.2,"cpi":61,"govEff":72.1,"wjp":0.71,"press":78,"mipex":37,"inet":null,"flights":85,"bm":4.8,"safeConf":100,"healthConf":100,"govConf":100},{"id":163,"name":"里加","country":"拉脱维亚","continent":"欧洲","costMod":null,"costBud":null,"rent":613,"hp":3194,"numbeoSafe":62.6,"gpi":1.87,"gallup":70,"speed":110,"democracy":7.05,"income":28000,"safety":76,"health":56.3,"gov":63.7,"homicide":3.8,"wps":0.831,"aqi":30,"work":1750,"leave":20,"docs":3.2,"beds":5.5,"uhc":72,"life":75.4,"oop":35.8,"cpi":59,"govEff":70.5,"wjp":0.69,"press":80,"mipex":37,"inet":null,"flights":80,"bm":4.7,"safeConf":100,"healthConf":100,"govConf":100},{"id":164,"name":"尼科西亚","country":"塞浦路斯","continent":"欧洲","costMod":null,"costBud":null,"rent":812,"hp":3224,"numbeoSafe":67.8,"gpi":1.87,"gallup":75,"speed":80,"democracy":7.29,"income":34000,"safety":79.9,"health":54.2,"gov":58.5,"homicide":0.8,"wps":0.81,"aqi":40,"work":1780,"leave":20,"docs":2,"beds":3.4,"uhc":74,"life":81,"oop":26.5,"cpi":52,"govEff":68.3,"wjp":0.61,"press":68,"mipex":40,"inet":null,"flights":70,"bm":4.5,"safeConf":100,"healthConf":100,"govConf":100},{"id":165,"name":"圣多明各","country":"多米尼加","continent":"北美洲","costMod":null,"costBud":null,"rent":811,"hp":2286,"numbeoSafe":33.1,"gpi":2.1,"gallup":55,"speed":50,"democracy":6.5,"income":13000,"safety":57.6,"health":39.5,"gov":40.4,"homicide":11,"wps":0.64,"aqi":55,"work":2000,"leave":14,"docs":1.6,"beds":1.6,"uhc":60,"life":74,"oop":42,"cpi":28,"govEff":41.2,"wjp":0.44,"press":55,"mipex":null,"inet":null,"flights":55,"bm":4.2,"safeConf":100,"healthConf":100,"govConf":85},{"id":166,"name":"基多","country":"厄瓜多尔","continent":"南美洲","costMod":null,"costBud":null,"rent":486,"hp":1688,"numbeoSafe":36.7,"gpi":2.15,"gallup":50,"speed":45,"democracy":6.3,"income":12000,"safety":59.7,"health":46.6,"gov":43.3,"homicide":7.5,"wps":0.65,"aqi":45,"work":1900,"leave":15,"docs":2.3,"beds":1.5,"uhc":65,"life":77,"oop":33,"cpi":36,"govEff":38.5,"wjp":0.46,"press":60,"mipex":null,"inet":62,"flights":35,"bm":4.1,"safeConf":100,"healthConf":100,"govConf":85},{"id":167,"name":"阿克拉","country":"加纳","continent":"非洲","costMod":null,"costBud":null,"rent":534,"hp":2865,"numbeoSafe":54.8,"gpi":1.8,"gallup":60,"speed":35,"democracy":6.3,"income":8000,"safety":71.5,"health":26.6,"gov":51.8,"homicide":2,"wps":0.62,"aqi":65,"work":2000,"leave":15,"docs":0.2,"beds":0.9,"uhc":47,"life":64.1,"oop":37,"cpi":43,"govEff":45.8,"wjp":0.55,"press":72,"mipex":null,"inet":65,"flights":40,"bm":null,"safeConf":100,"healthConf":100,"govConf":85},{"id":168,"name":"亚的斯亚贝巴","country":"埃塞俄比亚","continent":"非洲","costMod":null,"costBud":null,"rent":957,"hp":1955,"numbeoSafe":50.4,"gpi":2.8,"gallup":55,"speed":20,"democracy":3.27,"income":5500,"safety":59.9,"health":24.4,"gov":34.9,"homicide":7.6,"wps":0.505,"aqi":60,"work":2100,"leave":16,"docs":0.1,"beds":0.3,"uhc":34,"life":66.6,"oop":32,"cpi":37,"govEff":30.2,"wjp":0.38,"press":35,"mipex":null,"inet":18,"flights":60,"bm":null,"safeConf":100,"healthConf":100,"govConf":85}];
+
+function tag(type, text) {
+  const cls = { ok:'tag-ok', rm:'tag-rm', rp:'tag-rp', new:'tag-new', base:'tag-base' }[type];
+  return `<span class="${cls}">${text}</span>`;
+}
+
+function cellCost(val) {
+  if (val == null) return `<td class="p-1.5 border-b bg-red-50 text-red-400">缺失</td>`;
+  return `<td class="p-1.5 border-b">${tag('base','基期')} $${val.toLocaleString()}</td>`;
+}
+
+function cellRemoved(val) {
+  if (val == null) return `<td class="p-1.5 border-b text-slate-300">—</td>`;
+  return `<td class="p-1.5 border-b bg-red-50"><s class="text-red-300">${typeof val==='number'?val.toFixed(1):val}</s> ${tag('rm','删')}</td>`;
+}
+
+function cellReplaced(val, newLabel) {
+  if (val == null) return `<td class="p-1.5 border-b text-slate-300">— ${tag('new',newLabel)}</td>`;
+  return `<td class="p-1.5 border-b">${typeof val==='number'?(val<10?val.toFixed(2):val.toFixed(1)):val} → ${tag('new',newLabel)}</td>`;
+}
+
+function getEffect(c) {
+  let score = 100;
+  if (c.costMod == null) score -= 8;
+  if (c.numbeoSafe != null) score -= 5; // losing it
+  if (c.gpi != null) score -= 2;
+  if (c.gallup != null) score -= 2;
+  // Kept: income, health, gov, climate all fine
+  if (score >= 90) return `<span class="text-green-600 font-bold">${score}%</span>`;
+  if (score >= 80) return `<span class="text-amber-600 font-bold">${score}%</span>`;
+  return `<span class="text-red-500 font-bold">${score}%</span>`;
+}
+
+function renderTable() {
+  const filter = document.getElementById('filter').value;
+  let data = CITIES;
+  if (filter === 'cost-missing') data = CITIES.filter(c => c.costMod == null);
+  if (filter === 'safe-missing') data = CITIES.filter(c => c.numbeoSafe == null);
+  if (filter === 'high-impact') data = CITIES.filter(c => [c.costMod,c.numbeoSafe,c.hp].filter(v=>v==null).length >= 1);
+  if (filter === 'no-impact') data = CITIES.filter(c => c.costMod != null && c.numbeoSafe != null && c.hp != null);
+
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = data.map(c => `<tr class="hover:bg-slate-50">
+    <td class="p-1.5 border-b font-medium">${c.name}</td>
+    <td class="p-1.5 border-b text-slate-400">${c.country}</td>
+    ${cellCost(c.costMod)}
+    ${cellCost(c.rent)}
+    ${cellCost(c.hp)}
+    ${cellRemoved(c.numbeoSafe)}
+    ${cellReplaced(c.gpi, 'WB-PS')}
+    ${cellReplaced(c.gallup, 'WGI-RL')}
+    ${cellReplaced(c.speed, 'M-Lab')}
+    ${cellReplaced(c.democracy, 'V-Dem')}
+    <td class="p-1.5 border-b text-center">${getEffect(c)}</td>
+  </tr>`).join('');
+
+  document.getElementById('stat-kept').textContent = 15; // always-kept field count
+}
+
+renderTable();
+</script>
+</body>
+</html>

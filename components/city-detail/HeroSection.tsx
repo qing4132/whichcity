@@ -63,7 +63,7 @@ const HeroSection = forwardRef<HTMLDivElement, Props>(function HeroSection({ cit
         <>
         <div className={`pb-4 border-b ${divider}`}>
 
-            <div ref={ref} className="flex items-stretch gap-3">
+            <div ref={ref}>
                 <div className="flex-1 min-w-0">
                     <h1 className={`text-[24px] font-black ${headCls}`}>{flag} {cityName}</h1>
                 {(() => {
@@ -80,35 +80,13 @@ const HeroSection = forwardRef<HTMLDivElement, Props>(function HeroSection({ cit
                     );
                 })()}
                 </div>
-                {gradeInfo && (
-                    <div
-                        className="flex flex-col items-end justify-center cursor-pointer select-none"
-                        onClick={onShfToggle}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={e => e.key === "Enter" && onShfToggle?.()}
-                        title={t("basicSecurityTitle")}
-                    >
-                        <span className={`text-[45px] font-black leading-none ${gradeInfo.gradeCls}`}>
-                            {gradeInfo.gradeDisplay}
-                        </span>
-                        <span className={`text-[11px] mt-0.5 max-w-[90px] text-right leading-tight ${subCls}`}>
-                            {t("basicSecurityTitle")} {shfOpen ? "▲" : "▼"}
-                        </span>
-                    </div>
-                )}
             </div>
-            {gradeInfo && shfExpandContent && (
-                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${shfOpen ? "max-h-[800px] opacity-100 mt-3" : "max-h-0 opacity-0"}`}>
-                    {shfExpandContent}
-                </div>
+            {CITY_INTROS[city.id] && (
+                <p className={`mt-2 text-[13px] leading-relaxed ${subCls}`}>
+                    {CITY_INTROS[city.id][locale] || CITY_INTROS[city.id].zh}
+                </p>
             )}
         </div>
-        {CITY_INTROS[city.id] && (
-            <p className={`mt-3 text-[15px] leading-relaxed ${subCls}`}>
-                {CITY_INTROS[city.id][locale] || CITY_INTROS[city.id].zh}
-            </p>
-        )}
         </>
     );
 });

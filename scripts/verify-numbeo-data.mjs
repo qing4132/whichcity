@@ -334,7 +334,7 @@ const NUMBEO_NAME_OVERRIDES = {
   35:  ["Washington-DC", "Washington"],          // slug: washington
   49:  ["Bangalore", "Bengaluru"],               // slug: bengaluru (Numbeo 用旧名)
   51:  ["Delhi", "New-Delhi"],                   // slug: new-delhi
-  70:  ["San-Jose", "San-Jose--Costa-Rica"],     // slug: san-jose (哥斯达黎加)
+  70:  ["San-Jose-Costa-Rica"],                  // slug: san-jose (哥斯达黎加) — 必须用全名，San-Jose 会匹配到美国加州
   71:  ["Panama-City", "Panama"],                // slug: panama-city
   73:  ["San-Juan--Puerto-Rico", "San-Juan"],    // slug: san-juan
   82:  ["Tel-Aviv", "Tel-Aviv-Yafo"],            // slug: tel-aviv

@@ -4733,6 +4733,7 @@
         "政府/NGO行政": 104660,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 3377,
       "costBudget": 2573,
       "bigMacPrice": 5.58,
@@ -6765,6 +6766,7 @@
         "政府/NGO行政": 2777,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 750,
       "costBudget": 488,
       "bigMacPrice": null,
@@ -7019,6 +7021,7 @@
         "政府/NGO行政": 3651,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 631,
       "costBudget": 403,
       "bigMacPrice": 1.5,
@@ -9305,6 +9308,7 @@
         "政府/NGO行政": 33545,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1675,
       "costBudget": 1171,
       "bigMacPrice": 3.98,
@@ -9559,6 +9563,7 @@
         "政府/NGO行政": 25256,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1442,
       "costBudget": 982,
       "bigMacPrice": 3.98,
@@ -9686,6 +9691,7 @@
         "政府/NGO行政": 7708,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1710,
       "costBudget": 1089,
       "bigMacPrice": 4.5,
@@ -9813,6 +9819,7 @@
         "政府/NGO行政": 8373,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1200,
       "costBudget": 813,
       "bigMacPrice": 3.98,
@@ -10067,6 +10074,7 @@
         "政府/NGO行政": 15349,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 554,
       "costBudget": 358,
       "bigMacPrice": 1.9,
@@ -10194,6 +10202,7 @@
         "政府/NGO行政": 14780,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 620,
       "costBudget": 425,
       "bigMacPrice": 1.9,
@@ -11084,6 +11093,7 @@
         "政府/NGO行政": 28061,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 2000,
       "costBudget": 1452,
       "bigMacPrice": 3.52,
@@ -11211,6 +11221,7 @@
         "政府/NGO行政": 34200,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 2122,
       "costBudget": 1601,
       "bigMacPrice": 3.52,
@@ -11465,6 +11476,7 @@
         "政府/NGO行政": 45983,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 2309,
       "costBudget": 1739,
       "bigMacPrice": 5.15,
@@ -11592,6 +11604,7 @@
         "政府/NGO行政": 106894,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 3256,
       "costBudget": 2412,
       "bigMacPrice": 5.58,
@@ -11719,6 +11732,7 @@
         "政府/NGO行政": 90810,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 3079,
       "costBudget": 2306,
       "bigMacPrice": 5.58,
@@ -11846,6 +11860,7 @@
         "政府/NGO行政": 105380,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 3407,
       "costBudget": 2614,
       "bigMacPrice": 5.58,
@@ -12100,6 +12115,7 @@
         "政府/NGO行政": 99470,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 2780,
       "costBudget": 2201,
       "bigMacPrice": 5.58,
@@ -12227,6 +12243,7 @@
         "政府/NGO行政": 92250,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 3423,
       "costBudget": 2456,
       "bigMacPrice": 5.58,
@@ -12862,6 +12879,7 @@
         "政府/NGO行政": 14014,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 849,
       "costBudget": 527,
       "bigMacPrice": 3.12,
@@ -13116,6 +13134,7 @@
         "政府/NGO行政": 26492,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1445,
       "costBudget": 998,
       "bigMacPrice": 3.03,
@@ -13243,6 +13262,7 @@
         "政府/NGO行政": 4188,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1245,
       "costBudget": 784,
       "bigMacPrice": null,
@@ -13370,6 +13390,7 @@
         "政府/NGO行政": 3273,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 842,
       "costBudget": 516,
       "bigMacPrice": null,
@@ -13624,6 +13645,7 @@
         "政府/NGO行政": 3741,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 557,
       "costBudget": 359,
       "bigMacPrice": null,
@@ -13751,6 +13773,7 @@
         "政府/NGO行政": 3031,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 974,
       "costBudget": 580,
       "bigMacPrice": 3,
@@ -13878,6 +13901,7 @@
         "政府/NGO行政": 2591,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 516,
       "costBudget": 323,
       "bigMacPrice": null,
@@ -14132,6 +14156,7 @@
         "政府/NGO行政": 7056,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1155,
       "costBudget": 736,
       "bigMacPrice": 2.5,
@@ -14259,6 +14284,7 @@
         "政府/NGO行政": 6318,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1108,
       "costBudget": 721,
       "bigMacPrice": 3,
@@ -14386,6 +14412,7 @@
         "政府/NGO行政": 7083,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1175,
       "costBudget": 869,
       "bigMacPrice": null,
@@ -15275,6 +15302,7 @@
         "政府/NGO行政": 46267,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 2459,
       "costBudget": 1863,
       "bigMacPrice": 5.25,
@@ -15402,6 +15430,7 @@
         "政府/NGO行政": 65586,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 2932,
       "costBudget": 2257,
       "bigMacPrice": 5.48,
@@ -15783,6 +15812,7 @@
         "政府/NGO行政": 1583,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 1213,
       "costBudget": 779,
       "bigMacPrice": 2.45,
@@ -16037,8 +16067,8 @@
         "政府/NGO行政": 141150,
         "数字游民": 85000
       },
-      "costModerate": null,
-      "costBudget": null,
+      "costModerate": 4699,
+      "costBudget": 3817,
       "bigMacPrice": 5.58,
       "housePrice": 9246,
       "monthlyRent": 3177,
@@ -16164,6 +16194,7 @@
         "政府/NGO行政": 58195,
         "数字游民": 85000
       },
+      "hidden": true,
       "costModerate": 2549,
       "costBudget": 1979,
       "bigMacPrice": 5.25,

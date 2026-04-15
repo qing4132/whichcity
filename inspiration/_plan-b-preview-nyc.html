@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案B预览 — 纽约 (仅免费可商用数据)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  .removed { opacity: 0.15; position: relative; }
+  .removed::after {
+    content: '⛔ 数据源不可商用，已移除';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: #ef4444; color: white; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; white-space: nowrap; opacity: 1;
+  }
+  .replaced { border-left: 3px solid #f59e0b; padding-left: 8px; }
+  .replaced-tag { background: #fef3c7; color: #92400e; font-size: 10px; padding: 1px 4px; border-radius: 3px; }
+  .kept-tag { background: #d1fae5; color: #065f46; font-size: 10px; padding: 1px 4px; border-radius: 3px; }
+  .new-section { border: 2px dashed #3b82f6; border-radius: 8px; padding: 12px; margin: 8px 0; }
+  .new-tag { background: #dbeafe; color: #1e40af; font-size: 10px; padding: 1px 4px; border-radius: 3px; }
+</style>
+</head>
+<body class="bg-white text-slate-900 min-h-screen">
+<div class="max-w-2xl mx-auto px-4 py-6">
+
+  <!-- Header -->
+  <div class="mb-4 p-3 bg-blue-50 rounded-lg text-sm text-blue-800">
+    <strong>方案 B 预览</strong> — 仅使用免费可商用数据源。<span class="removed-tag">红色</span> = 被移除 | <span class="replaced-tag">黄色</span> = 已替换 | <span class="kept-tag">绿色</span> = 保留 | <span class="new-tag">蓝色</span> = 新增补偿
+  </div>
+
+  <!-- Hero -->
+  <div class="pb-4 border-b border-slate-100">
+    <h1 class="text-2xl font-black">🇺🇸 纽约</h1>
+    <p class="text-sm text-slate-400">美国 · UTC-5 · 14:30</p>
+    <p class="text-xs text-slate-400 mt-2">美国金融和商业中心，高薪职位集中。生活成本极高，尤其是住房费用。全球经济影响力最大的城市之一。</p>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Row 0: 基本保障评级 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="py-3.5 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1.5">
+      <span class="text-sm font-extrabold">基本保障评级</span>
+      <span class="replaced-tag">⚠️ 安全指数精度下降：移除3个子指标，仅保留2个</span>
+    </div>
+    <div class="text-5xl font-black leading-none text-amber-600">* B</div>
+    <div class="text-xs text-amber-600 mt-1">* 数据置信度中等（仅 35/100 权重可用）</div>
+
+    <!-- 子指标对比 -->
+    <div class="mt-3 text-xs text-slate-500 space-y-1">
+      <div class="font-bold flex justify-between"><span>安全</span><span class="text-amber-600">52.3 (原 68.8)</span></div>
+      <div class="removed pl-3">numbeoSafetyIndex (30%) — Numbeo 🔴</div>
+      <div class="pl-3 replaced">homicideRate (25%) → <span class="replaced-tag">World Bank API</span> 6.4 / 10万</div>
+      <div class="removed pl-3">gpiScore (20%) — IEP CC BY-NC-SA 🔴</div>
+      <div class="removed pl-3">gallupLawOrder (15%) — Gallup 专有 🔴</div>
+      <div class="pl-3"><span class="kept-tag">✓</span> wpsIndex (10%) — Georgetown WPS — 0.84</div>
+
+      <div class="border-t border-slate-100 my-1"></div>
+      <div class="font-bold flex justify-between"><span>医疗</span><span class="text-green-600">65.4 (不变)</span></div>
+      <div class="pl-3"><span class="kept-tag">✓</span> doctorsPerThousand (25%) — World Bank — 4.1</div>
+      <div class="pl-3"><span class="kept-tag">✓</span> uhcCoverageIndex (25%) — World Bank — 84</div>
+      <div class="pl-3"><span class="kept-tag">✓</span> hospitalBeds (20%) — World Bank — 2.9</div>
+      <div class="pl-3"><span class="kept-tag">✓</span> lifeExpectancy (15%) — World Bank — 77.5</div>
+      <div class="pl-3"><span class="kept-tag">✓</span> outOfPocketPct (15%) — World Bank — 10.93%</div>
+
+      <div class="border-t border-slate-100 my-1"></div>
+      <div class="font-bold flex justify-between"><span>治理</span><span class="text-slate-700">69.5 → 约 72 (移除2子指标后重分配)</span></div>
+      <div class="pl-3"><span class="kept-tag">✓</span> corruptionPerception (25%) — TI CC BY 4.0 — 69</div>
+      <div class="pl-3"><span class="kept-tag">✓</span> govEffectiveness (25%) — World Bank CC BY 4.0 — 77.8</div>
+      <div class="pl-3 text-slate-300 line-through">wjpRuleLaw (20%) — 🟡 待确认许可 — 0.68</div>
+      <div class="pl-3"><span class="kept-tag">✓</span> pressFreedomScore (15%) — 🟡 RSF 待确认 — 55</div>
+      <div class="pl-3 text-slate-300 line-through">mipexScore (15%) — 🟡 待确认许可 — 73</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Row 1: 税后年薪 ✅ 完全保留 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="py-3.5 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1.5">
+      <span class="text-sm font-extrabold">税后年薪</span>
+      <span class="kept-tag">✓ 完全保留</span>
+    </div>
+    <div class="text-5xl font-black leading-none text-green-600">$71k</div>
+    <div class="text-xs text-slate-400">软件工程师 · 基准薪资</div>
+    <div class="text-xs text-slate-400 mt-1">
+      数据来源: BLS (Public Domain) + 自建81国税务引擎<br>
+      25个职业全部可用，税务计算完全自建无许可问题
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Row 2: 月生活成本 ⛔ 被移除 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="py-3.5 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1.5">
+      <span class="text-sm font-extrabold">月生活成本</span>
+    </div>
+    
+    <!-- 旧版: Numbeo 数据被移除 -->
+    <div class="removed rounded-lg p-3 mb-3">
+      <div class="flex gap-4">
+        <div>
+          <div class="text-3xl font-black">$5,942</div>
+          <div class="text-xs">月生活成本（均衡）</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black">$4,281</div>
+          <div class="text-xs">平均月租（1居）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新版: 替代方案 -->
+    <div class="new-section">
+      <div class="text-xs mb-2"><span class="new-tag">替代方案</span> 基于免费数据源的生活成本估算</div>
+      <div class="flex gap-4">
+        <div>
+          <div class="text-3xl font-black text-slate-700">~$5,800</div>
+          <div class="text-xs text-slate-400">月生活成本（估算）</div>
+          <div class="text-[10px] text-blue-600">World Bank PPP × BLS CPI 城市调整</div>
+        </div>
+      </div>
+      <div class="text-[10px] text-slate-400 mt-2">
+        估算方法: 美国全国平均消费支出 (BLS Consumer Expenditure Survey, Public Domain) 
+        × 纽约 CPI 地区调整系数 (BLS, Public Domain)<br>
+        精度: ±15-20%（vs Numbeo 的 ±5-10%）<br>
+        月租数据不可用（需 Numbeo 或 HUD Fair Market Rent 替代）
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Row 3: 房价 ⛔ 被移除 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="py-3.5 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1.5">
+      <span class="text-sm font-extrabold">房价</span>
+    </div>
+    <div class="removed rounded-lg p-3">
+      <div class="text-3xl font-black">$19,711/m²</div>
+      <div class="text-xs">市中心每平米购房价</div>
+    </div>
+    <div class="text-xs text-slate-400 mt-2">
+      Numbeo + Global Property Guide 数据均不可商用。<br>
+      替代: OECD Housing Prices (国家级, 非城市级) 或 完全移除此指标。<br>
+      美国城市可用 Zillow ZORI/ZHVI (部分数据可商用), 但非美国城市无替代。
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Row 4: 生活压力指数 ⚠️ 部分受影响 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="py-3.5 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1.5">
+      <span class="text-sm font-extrabold">生活压力指数</span>
+      <span class="replaced-tag">⚠️ costModerate 为估算值，精度下降</span>
+    </div>
+    <div class="text-3xl font-black leading-none text-amber-600">~62</div>
+    <div class="text-xs text-slate-400">原值 60.2，因成本估算误差约 ±5</div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Row 5: 工作 ✅ 完全保留 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="py-3.5 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1.5">
+      <span class="text-sm font-extrabold">工作</span>
+      <span class="kept-tag">✓ 保留</span>
+    </div>
+    <div class="flex gap-4">
+      <div>
+        <div class="text-xl font-black">1,811 h</div>
+        <div class="text-xs text-slate-400">年工时 (ILO CC BY 4.0)</div>
+      </div>
+      <div>
+        <div class="text-xl font-black">0 天</div>
+        <div class="text-xs text-slate-400">带薪假 (公开法律信息)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Row 6: 环境 ✅ 大部分保留 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="py-3.5 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1.5">
+      <span class="text-sm font-extrabold">环境</span>
+    </div>
+    <div class="flex gap-4 flex-wrap">
+      <div>
+        <div class="text-xl font-black">AQI 55</div>
+        <div class="text-xs text-slate-400">空气质量 <span class="kept-tag">EPA Public Domain</span></div>
+      </div>
+      <div>
+        <div class="text-xl font-black">280</div>
+        <div class="text-xs text-slate-400">直飞城市 <span class="kept-tag">事实数据</span></div>
+      </div>
+      <div class="removed">
+        <div class="text-xl font-black">220 Mbps</div>
+        <div class="text-xs text-slate-400">网速</div>
+      </div>
+    </div>
+    <div class="text-xs text-slate-400 mt-1">
+      网速: Ookla CC BY-NC-SA 不可商用 → 替换为 M-Lab NDT (Apache 2.0)
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- Row 7: 气候图 ✅ 完全保留 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="py-3.5 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1.5">
+      <span class="text-sm font-extrabold">气候</span>
+      <span class="kept-tag">✓ NOAA Public Domain</span>
+    </div>
+    <div class="text-sm text-slate-400">月度气候图完全保留（NOAA 公共领域数据）</div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 综合评估 -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="mt-6 p-4 bg-slate-50 rounded-lg">
+    <h2 class="font-bold text-sm mb-3">方案 B 影响评估 — 纽约</h2>
+    <table class="text-xs w-full">
+      <thead>
+        <tr class="text-left border-b">
+          <th class="pb-1">模块</th>
+          <th class="pb-1">当前</th>
+          <th class="pb-1">方案B</th>
+          <th class="pb-1">影响</th>
+        </tr>
+      </thead>
+      <tbody class="text-slate-600">
+        <tr class="border-b border-slate-100">
+          <td class="py-1">税后年薪 + 税务明细</td>
+          <td class="text-green-600">✅ 完整</td>
+          <td class="text-green-600">✅ 完整</td>
+          <td>无影响（BLS + 自建税务引擎）</td>
+        </tr>
+        <tr class="border-b border-slate-100">
+          <td class="py-1">月生活成本</td>
+          <td class="text-green-600">✅ $5,942</td>
+          <td class="text-amber-600">⚠️ ~$5,800 估算</td>
+          <td>精度从 ±5% 降至 ±15-20%</td>
+        </tr>
+        <tr class="border-b border-slate-100">
+          <td class="py-1">月租</td>
+          <td class="text-green-600">✅ $4,281</td>
+          <td class="text-red-500">❌ 不可用</td>
+          <td>无免费城市级数据源（美国可用 HUD FMR）</td>
+        </tr>
+        <tr class="border-b border-slate-100">
+          <td class="py-1">房价</td>
+          <td class="text-green-600">✅ $19,711/m²</td>
+          <td class="text-red-500">❌ 不可用</td>
+          <td>无免费全球城市级数据源</td>
+        </tr>
+        <tr class="border-b border-slate-100">
+          <td class="py-1">安全评级</td>
+          <td class="text-green-600">✅ 5子指标</td>
+          <td class="text-amber-600">⚠️ 2子指标</td>
+          <td>置信度从 100 降至 35，评级可信度大幅下降</td>
+        </tr>
+        <tr class="border-b border-slate-100">
+          <td class="py-1">医疗评级</td>
+          <td class="text-green-600">✅ 完整</td>
+          <td class="text-green-600">✅ 完整</td>
+          <td>无影响（全部 World Bank）</td>
+        </tr>
+        <tr class="border-b border-slate-100">
+          <td class="py-1">治理评级</td>
+          <td class="text-green-600">✅ 5子指标</td>
+          <td class="text-amber-600">⚠️ 2-3子指标</td>
+          <td>待确认 RSF/WJP/MIPEX 许可</td>
+        </tr>
+        <tr class="border-b border-slate-100">
+          <td class="py-1">气候</td>
+          <td class="text-green-600">✅ 完整</td>
+          <td class="text-green-600">✅ 完整</td>
+          <td>无影响（NOAA Public Domain）</td>
+        </tr>
+        <tr>
+          <td class="py-1">网速</td>
+          <td class="text-green-600">✅ 220 Mbps</td>
+          <td class="text-green-600">✅ 替换为 M-Lab</td>
+          <td>无影响（Apache 2.0）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="mt-4 text-xs text-slate-500">
+      <strong>核心竞争力保留情况:</strong><br>
+      ✅ 81 国税务引擎 — 完全自建，无许可问题<br>
+      ✅ 25 职业 × 120 城市薪资 — BLS/Eurostat 为主<br>
+      ⚠️ 生活成本 — 精度明显下降<br>
+      ❌ 月租/房价 — 丢失<br>
+      ⚠️ 安全评级 — 可信度大幅下降
+    </div>
+
+    <div class="mt-4 p-3 bg-red-50 rounded text-xs text-red-800">
+      <strong>结论:</strong> 方案 B 保留了税务引擎（核心竞争力）和医疗/气候数据，
+      但丢失了月租、房价，且安全评级精度大幅下降。
+      产品从"全维度移居决策引擎"降级为"税后收入计算器 + 医疗/治理参考"。
+      <strong>用户最关心的生活成本对比功能被严重削弱。</strong>
+    </div>
+  </div>
+
+  <div class="mt-4 text-[10px] text-slate-300 text-center">
+    WhichCity 方案B预览 — 2026-04-15 — 仅供内部评估
+  </div>
+</div>
+</body>
+</html>
