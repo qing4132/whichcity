@@ -1,383 +1,1303 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhichCity 数据溯源全景</title>
+<title>WhichCity — 数据溯源文档 + 城市详情页重设计</title>
 <style>
-  :root { --bg: #fafbfc; --fg: #1a1a2e; --card: #ffffff; --border: #e2e8f0; --green: #16a34a; --red: #dc2626; --blue: #2563eb; --amber: #d97706; --muted: #64748b; --purple: #7c3aed; --teal: #0d9488; }
+  :root {
+    --bg: #fafafa; --fg: #18181b; --muted: #71717a; --border: #e4e4e7;
+    --accent: #2563eb; --green: #16a34a; --red: #dc2626; --amber: #d97706;
+    --card: #ffffff; --code-bg: #f4f4f5; --badge-bg: #dbeafe; --badge-fg: #1e40af;
+    --warn-bg: #fef3c7; --warn-fg: #92400e;
+  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font: 14px/1.8 -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--fg); padding: 32px; max-width: 1100px; margin: auto; }
-  h1 { font-size: 26px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.5px; }
-  h2 { font-size: 18px; font-weight: 700; margin-top: 40px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--blue); color: var(--blue); }
-  h3 { font-size: 15px; font-weight: 600; margin-top: 18px; margin-bottom: 6px; color: var(--fg); }
-  .sub { color: var(--muted); font-size: 13px; margin-bottom: 28px; line-height: 1.7; }
-  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-  .tg { background: #dcfce7; color: #166534; } .tr { background: #fee2e2; color: #991b1b; } .tb { background: #dbeafe; color: #1e40af; } .tp { background: #f3e8ff; color: #5b21b6; } .to { background: #fef3c7; color: #92400e; } .tt { background: #ccfbf1; color: #115e59; }
-  table { width: 100%; border-collapse: collapse; margin: 8px 0 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border-radius: 8px; overflow: hidden; }
-  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13px; }
-  th { background: #f1f5f9; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-  td { background: var(--card); }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #f8fafc; }
-  code { background: #f1f5f9; padding: 1px 5px; border-radius: 3px; font-size: 12px; font-family: 'SF Mono', 'Fira Code', monospace; }
-  .box { border-radius: 8px; padding: 14px 18px; margin: 12px 0; font-size: 13px; line-height: 1.7; }
-  .box-ok { background: #f0fdf4; border: 1px solid #86efac; }
-  .box-warn { background: #fffbeb; border: 1px solid #fcd34d; }
-  .box-info { background: #eff6ff; border: 1px solid #93c5fd; }
-  .formula { background: #f8fafc; border: 1px solid var(--border); padding: 10px 16px; border-radius: 6px; margin: 8px 0; font: 13px/1.8 'SF Mono', monospace; }
-  a { color: var(--blue); text-decoration: none; } a:hover { text-decoration: underline; }
-  .n { font-size: 12px; color: var(--muted); margin: 4px 0 14px; line-height: 1.6; }
-  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
-  .chip { padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
-  .cg { background: #dcfce7; color: #166534; } .cr { background: #fee2e2; color: #991b1b; } .cb { background: #dbeafe; color: #1e40af; }
-  .sep { border: none; height: 1px; background: var(--border); margin: 32px 0; }
-  .range { color: var(--muted); font-size: 11px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h2 { font-size: 22px; font-weight: 800; margin-top: 48px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--fg); }
+  h3 { font-size: 17px; font-weight: 700; margin-top: 28px; margin-bottom: 10px; color: var(--accent); }
+  h4 { font-size: 15px; font-weight: 700; margin-top: 20px; margin-bottom: 6px; }
+  p, li { font-size: 14px; }
+  p { margin-bottom: 10px; }
+  ul, ol { padding-left: 20px; margin-bottom: 12px; }
+  li { margin-bottom: 4px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { background: var(--code-bg); padding: 1px 5px; border-radius: 3px; font-size: 13px; font-family: "SF Mono", Menlo, monospace; }
+  .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .badge-cc { background: #dcfce7; color: #166534; }
+  .badge-pd { background: #dbeafe; color: #1e40af; }
+  .badge-open { background: #fef3c7; color: #92400e; }
+  .badge-self { background: #f3e8ff; color: #6b21a8; }
+  .badge-est { background: #fce7f3; color: #9d174d; }
+  .badge-tier { background: #e0e7ff; color: #3730a3; font-size: 10px; }
+  .warn-box { background: var(--warn-bg); color: var(--warn-fg); padding: 12px 16px; border-radius: 8px; margin: 16px 0; font-size: 13px; border-left: 4px solid var(--amber); }
+  .removed-box { background: #fef2f2; color: #991b1b; padding: 12px 16px; border-radius: 8px; margin: 16px 0; font-size: 13px; border-left: 4px solid var(--red); }
+  .principle-box { background: #f0fdf4; color: #166534; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 13px; border-left: 4px solid var(--green); }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13px; }
+  th { text-align: left; padding: 8px 10px; background: var(--fg); color: #fff; font-weight: 700; }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: #f8f8fa; }
+  .field-name { font-family: "SF Mono", Menlo, monospace; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .coverage { font-family: "SF Mono", Menlo, monospace; font-size: 12px; text-align: center; white-space: nowrap; }
+  .coverage-full { color: var(--green); font-weight: 700; }
+  .coverage-high { color: var(--accent); }
+  .coverage-mid { color: var(--amber); }
+  .coverage-low { color: var(--red); }
+  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin: 24px 0 32px; }
+  .toc-title { font-weight: 800; font-size: 15px; margin-bottom: 10px; }
+  .toc ol { columns: 2; column-gap: 24px; }
+  .toc li { font-size: 13px; break-inside: avoid; }
+  .section-divider { margin: 48px 0 0; border: none; border-top: 3px solid var(--fg); }
+
+  /* ═══ City Detail Redesign ═══ */
+  .phone-frame { width: 393px; min-height: 800px; border: 3px solid #27272a; border-radius: 40px; overflow: hidden; background: #fff; margin: 24px auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,.15); }
+  .phone-screen { padding: 0; }
+  .phone-status { height: 54px; background: #fff; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; font-size: 12px; font-weight: 600; }
+  .mock-nav { display: flex; align-items: center; padding: 10px 16px; border-bottom: 1px solid #f1f1f1; font-size: 14px; font-weight: 700; }
+  .mock-nav .back { font-size: 20px; margin-right: 8px; cursor: pointer; }
+  .city-hero { padding: 20px 16px 16px; }
+  .city-hero h1 { font-size: 22px; font-weight: 900; margin-bottom: 2px; }
+  .city-hero .meta { font-size: 12px; color: #71717a; }
+  .city-hero .intro { font-size: 13px; color: #71717a; line-height: 1.6; margin-top: 8px; }
+
+  .verdict-card { margin: 0 16px 16px; padding: 16px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-radius: 14px; border: 1px solid #bbf7d0; }
+  .verdict-card.warn { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-color: #fde68a; }
+  .verdict-card .verdict-label { font-size: 11px; font-weight: 700; color: #16a34a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .verdict-card.warn .verdict-label { color: #d97706; }
+  .verdict-card .verdict-text { font-size: 15px; font-weight: 700; color: #14532d; line-height: 1.5; }
+  .verdict-card.warn .verdict-text { color: #78350f; }
+  .verdict-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .verdict-tag { font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight: 600; }
+  .verdict-tag.green { background: #dcfce7; color: #166534; }
+  .verdict-tag.amber { background: #fef3c7; color: #92400e; }
+  .verdict-tag.red { background: #fee2e2; color: #991b1b; }
+  .verdict-tag.blue { background: #dbeafe; color: #1e40af; }
+
+  .section-block { padding: 16px; border-bottom: 1px solid #f1f1f1; }
+  .section-title { font-size: 13px; font-weight: 800; color: #18181b; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .section-title .icon { font-size: 15px; }
+
+  .metric-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+  .metric-label { font-size: 13px; color: #52525b; }
+  .metric-value { font-size: 14px; font-weight: 700; color: #18181b; }
+  .metric-value.good { color: #16a34a; }
+  .metric-value.bad { color: #dc2626; }
+  .metric-value.warn { color: #d97706; }
+
+  .big-number { font-size: 36px; font-weight: 900; line-height: 1; margin-bottom: 2px; }
+  .big-label { font-size: 11px; color: #a1a1aa; }
+
+  .bar-chart { margin: 8px 0; }
+  .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .bar-row .bar-label { font-size: 11px; color: #71717a; width: 55px; text-align: right; flex-shrink: 0; }
+  .bar-row .bar-track { flex: 1; height: 6px; background: #f4f4f5; border-radius: 3px; overflow: hidden; }
+  .bar-row .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-row .bar-val { font-size: 11px; font-weight: 700; width: 36px; flex-shrink: 0; }
+
+  .insight-box { background: #f8fafc; border-radius: 10px; padding: 12px; margin-top: 10px; }
+  .insight-text { font-size: 12px; color: #475569; line-height: 1.5; }
+  .insight-text strong { color: #18181b; }
+
+  .expand-hint { font-size: 11px; color: #a1a1aa; text-align: center; padding: 4px 0; cursor: pointer; }
+
+  .comparison-strip { display: flex; gap: 10px; padding: 16px; overflow-x: auto; }
+  .comp-city { flex-shrink: 0; width: 130px; background: #f8fafc; border-radius: 10px; padding: 10px; text-align: center; }
+  .comp-city .flag { font-size: 24px; }
+  .comp-city .name { font-size: 12px; font-weight: 700; margin: 4px 0 2px; }
+  .comp-city .comp-val { font-size: 11px; color: #16a34a; font-weight: 600; }
+
+  .design-note { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-size: 13px; color: #1e3a5f; }
+  .design-note strong { color: #1e40af; }
+
+  .crit { color: var(--red); font-weight: 700; }
+  .safe { color: var(--green); font-weight: 700; }
+  .dim { color: var(--muted); }
+  .mono { font-family: "SF Mono", Menlo, monospace; font-size: 12px; }
+
+  @media (max-width: 500px) {
+    .phone-frame { width: 100%; border-radius: 0; border: none; }
+    .toc ol { columns: 1; }
+  }
 </style>
 </head>
 <body>
+<div class="container">
 
-<h1>🌍 WhichCity 数据溯源全景</h1>
-<div class="sub">
-  最后更新：<strong>2026-04-15</strong> · 城市 <strong>151</strong>（可见 120 / 隐藏 31）· 职业 <strong>25</strong> · 税制 <strong>88 国</strong><br>
-  SOT 字段：<strong>43 数据字段</strong> + professions (25×151) + climate (12 月度值×151)<br>
-  原则：<strong>零污点 · 零付费 · 零灰色地带 · 完全透明 · 100% 合规</strong>
+<!-- ═════════════════════════════════════════════════════════════ -->
+<!-- PART 1: DATA PROVENANCE -->
+<!-- ═════════════════════════════════════════════════════════════ -->
+
+<h1>WhichCity 数据溯源文档</h1>
+<p class="subtitle">
+  最后更新：2026-04-16 (v4.1: doda 移除) · 数据库版本：151 城市 · 48 字段 · 25 职业 · 88 国税制 · 10 气候维度<br>
+  合规目标：<strong>100% 开放许可 + 自有 IP，零付费数据，零法律风险</strong>
+</p>
+
+<div class="principle-box">
+  <strong>🛡️ 六项不可妥协原则</strong>
+  <ol style="margin-top:8px">
+    <li><strong>零法律污点</strong> — 每条数据都能追溯到一个开放许可的权威源</li>
+    <li><strong>零付费数据</strong> — 不使用任何需要订阅、API Key、或限制性协议的数据源</li>
+    <li><strong>零灰色地带</strong> — 如果许可条款有歧义，视为不可用</li>
+    <li><strong>完全透明</strong> — 方法论、计算公式、数据来源全部公开，用户可自行验证</li>
+    <li><strong>绝不捏造</strong> — 数据要么来自权威源，要么是公开方法论的估算；绝不填充猜测值</li>
+    <li><strong>缺失即缺失</strong> — 源头无数据 → null，不做"相似城市插值"或"同国平均"</li>
+  </ol>
 </div>
 
-<div class="box box-ok">
-  <strong>✅ 合规状态：100% 无疑义</strong><br>
-  每一个活跃数据字段均可追溯至以下许可之一：
-  <span class="tag tg">World Bank CC BY 4.0</span>
-  <span class="tag tp">UNDP CC BY 3.0 IGO</span>
-  <span class="tag tt">ILO CC BY 4.0</span>
-  <span class="tag to">IMF 开放+署名</span>
-  <span class="tag tg">Public Domain</span>
-  <span class="tag tb">自有 IP / 公开法律</span>
-</div>
+<nav class="toc">
+  <div class="toc-title">目录</div>
+  <ol>
+    <li><a href="#sources">数据源总览与许可证</a></li>
+    <li><a href="#removed">已移除的不合规数据源</a></li>
+    <li><a href="#identity">身份与基础字段</a></li>
+    <li><a href="#salary">薪资系统 (25 职业)</a></li>
+    <li><a href="#cost">生活成本 (3 字段)</a></li>
+    <li><a href="#tax">税务引擎 (88 国)</a></li>
+    <li><a href="#safety">安全指数 (4 子指标)</a></li>
+    <li><a href="#healthcare">医疗指数 (5 子指标)</a></li>
+    <li><a href="#governance">治理指数 (2 子指标)</a></li>
+    <li><a href="#freedom">自由指数 (2 子指标)</a></li>
+    <li><a href="#macro">宏观经济 (10 字段)</a></li>
+    <li><a href="#labor">劳动力市场 (5 字段)</a></li>
+    <li><a href="#env">环境与基础设施</a></li>
+    <li><a href="#climate">气候数据 (10 维度)</a></li>
+    <li><a href="#nomad">数字游民数据</a></li>
+    <li><a href="#pipeline">数据管道与验证</a></li>
+    <li><a href="#redesign">城市详情页重设计</a></li>
+  </ol>
+</nav>
 
-<div class="chips">
-  <span class="chip cg">✅ 活跃有数据 41</span>
-  <span class="chip cr">🔴 null (待重建) 2</span>
-  <span class="chip cb">🔧 自有 IP 5+</span>
-</div>
-
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§1. 安全指数（Safety Index）</h2>
-
-<div class="formula">
-  <strong>safetyIndex</strong> = 35% × homicideRateInv + 25% × politicalStability + 20% × ruleLawWGI + 20% × controlOfCorruption<br>
-  缺失子指标的权重按比例重分配。<strong>safetyConfidence</strong> = 可用子指标权重之和 (0-100)。
-</div>
+<!-- ═══ 1. Sources Overview ═══ -->
+<h2 id="sources">1. 数据源总览与许可证</h2>
 
 <table>
-<tr><th>字段</th><th>含义</th><th>来源</th><th>指标代码</th><th>许可</th><th>获取方式</th><th>获取日期</th><th>覆盖</th><th>范围</th><th>权重</th></tr>
-<tr>
-  <td><code>homicideRate</code></td>
-  <td>故意凶杀率 (每10万人)</td>
-  <td>World Bank</td>
-  <td><code>VC.IHR.PSRC.P5</code> <a href="https://data.worldbank.org/indicator/VC.IHR.PSRC.P5">↗</a></td>
-  <td><span class="tag tg">CC BY 4.0</span></td>
-  <td>API 批量获取</td>
-  <td>2026-04-15</td>
-  <td>140/151</td>
-  <td class="range">0.07 – 45.72</td>
-  <td>35%</td>
-</tr>
-<tr>
-  <td><code>politicalStability</code></td>
-  <td>政治稳定 (WGI 0-100)</td>
-  <td>World Bank WGI</td>
-  <td><code>GOV_WGI_PV.SC</code> (source=3)</td>
-  <td><span class="tag tg">CC BY 4.0</span></td>
-  <td>API 批量获取</td>
-  <td>2026-04-15</td>
-  <td>150/151</td>
-  <td class="range">30.19 – 87.72</td>
-  <td>25%</td>
-</tr>
-<tr>
-  <td><code>ruleLawWGI</code></td>
-  <td>法治 (WGI 0-100)</td>
-  <td>World Bank WGI</td>
-  <td><code>GOV_WGI_RL.SC</code> (source=3)</td>
-  <td><span class="tag tg">CC BY 4.0</span></td>
-  <td>API 批量获取</td>
-  <td>2026-04-15</td>
-  <td>150/151</td>
-  <td class="range">25.79 – 91.75</td>
-  <td>20%</td>
-</tr>
-<tr>
-  <td><code>controlOfCorruption</code></td>
-  <td>腐败控制 (WGI 0-100)</td>
-  <td>World Bank WGI</td>
-  <td><code>GOV_WGI_CC.SC</code> (source=3)</td>
-  <td><span class="tag tg">CC BY 4.0</span></td>
-  <td>API 批量获取</td>
-  <td>2026-04-15</td>
-  <td>150/151</td>
-  <td class="range">21.46 – 94.16</td>
-  <td>20%</td>
-</tr>
+  <tr>
+    <th>数据源</th><th>机构</th><th>许可证</th><th>覆盖字段数</th><th>验证方式</th>
+  </tr>
+  <tr>
+    <td>World Bank Open Data</td>
+    <td>世界银行</td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>22</td>
+    <td>API 直取 + JSON 校验</td>
+  </tr>
+  <tr>
+    <td>ILOSTAT (ILO)</td>
+    <td>国际劳工组织</td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>6</td>
+    <td>CSV 批量下载 + 手工核对</td>
+  </tr>
+  <tr>
+    <td>UNDP HDR Data</td>
+    <td>联合国开发计划署</td>
+    <td><span class="badge badge-cc">CC BY 3.0 IGO</span></td>
+    <td>2</td>
+    <td>CSV 下载 (HDR 2025)</td>
+  </tr>
+  <tr>
+    <td>IMF WEO</td>
+    <td>国际货币基金组织</td>
+    <td><span class="badge badge-open">Open + Attribution</span></td>
+    <td>2</td>
+    <td>WEO Database Oct 2024</td>
+  </tr>
+  <tr>
+    <td>Transparency International CPI</td>
+    <td>透明国际</td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>1</td>
+    <td>年度报告 PDF + CSV</td>
+  </tr>
+  <tr>
+    <td>BLS OEWS</td>
+    <td>美国劳工统计局</td>
+    <td><span class="badge badge-pd">Public Domain</span></td>
+    <td>薪资 (20 城市)</td>
+    <td>MSA-level 年度数据</td>
+  </tr>
+  <tr>
+    <td>各国统计局</td>
+    <td>80 国政府统计机构</td>
+    <td><span class="badge badge-pd">Public Domain / Open</span></td>
+    <td>职业薪资比率</td>
+    <td>
+      Quality A: 10 国 (JP/CA/UK/DE/FR/SG/CH/KR/CZ/NZ)<br>
+      Quality B: 30+ 国<br>
+      Quality C/D: 剩余
+    </td>
+  </tr>
+  <tr>
+    <td>各国税务机关</td>
+    <td>88 国税务局</td>
+    <td><span class="badge badge-pd">Public Law</span></td>
+    <td>税率表 + 社保费率</td>
+    <td>OECD/KPMG/PwC 交叉验证</td>
+  </tr>
+  <tr>
+    <td>WhichCity 自有 IP</td>
+    <td>项目自有</td>
+    <td><span class="badge badge-self">Self-owned</span></td>
+    <td>城市简介、气候、<br>AQI、航线、汇率</td>
+    <td>编辑审核</td>
+  </tr>
 </table>
-<div class="n">
-  <strong>脚本：</strong><code>scripts/fetch-wb-safety-data.mjs</code><br>
-  <strong>缺失说明：</strong>台湾非 WB 成员，4 项 WGI 全部 null。homicideRate 缺 11 城（泰国4/越南3/埃及/伊朗/台湾/柬埔寨/埃塞俄比亚）。<br>
-  <strong>safetyWarning</strong>（编辑判断）：基辅/仰光 = active_conflict；卡拉奇/伊斯兰堡/贝鲁特/拉各斯/亚的斯亚贝巴 = extreme_instability
-</div>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§2. 医疗指数（Healthcare Index）</h2>
+<p><strong>许可合规检查清单：</strong></p>
+<ul>
+  <li>✅ World Bank: <a href="https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets">Terms</a> — CC BY 4.0，允许商业使用，需注明出处</li>
+  <li>✅ ILO: <a href="https://ilostat.ilo.org/resources/concepts-and-definitions/">ILOSTAT</a> — CC BY 4.0，数据免费开放</li>
+  <li>✅ UNDP: <a href="https://hdr.undp.org/data-center/documentation-and-downloads">HDR</a> — CC BY 3.0 IGO，需注明 "UNDP HDR"</li>
+  <li>✅ IMF: <a href="https://www.imf.org/external/terms.htm">Terms</a> — 免费使用需注明出处，不得暗示 IMF 背书</li>
+  <li>✅ TI CPI: <a href="https://www.transparency.org/en/cpi/2024">CPI 2024</a> — CC BY 4.0</li>
+  <li>✅ BLS: 美国联邦政府数据，Public Domain，无版权限制</li>
+  <li>✅ 各国税法: 法律条文属公共领域</li>
+  <li>⛔ doda: 已移除（见§2），利用规约 §13/§14 禁止个人目的以外使用</li>
+</ul>
 
-<div class="formula">
-  <strong>healthcareIndex</strong> = 25% × doctorsNorm + 25% × uhcNorm + 20% × bedsNorm + 15% × lifeNorm + 15% × oopInvNorm<br>
-  doctors/beds: minMaxNorm(0, globalMax)　life: minMaxNorm(min, max)　oop: 反向归一化
-</div>
+<!-- ═══ 2. Removed Sources ═══ -->
+<h2 id="removed">2. 已移除的不合规数据源</h2>
 
-<table>
-<tr><th>字段</th><th>含义</th><th>WB 代码</th><th>覆盖</th><th>范围</th><th>权重</th></tr>
-<tr><td><code>doctorsPerThousand</code></td><td>医师/千人</td><td><code>SH.MED.PHYS.ZS</code></td><td>151/151</td><td class="range">0.1 – 7.0</td><td>25%</td></tr>
-<tr><td><code>uhcCoverageIndex</code></td><td>UHC 覆盖 (0-100)</td><td>WHO/WB</td><td>151/151</td><td class="range">34 – 92</td><td>25%</td></tr>
-<tr><td><code>hospitalBedsPerThousand</code></td><td>病床/千人</td><td><code>SH.MED.BEDS.ZS</code></td><td>151/151</td><td class="range">0.3 – 13.0</td><td>20%</td></tr>
-<tr><td><code>lifeExpectancy</code></td><td>预期寿命 (年)</td><td><code>SP.DYN.LE00.IN</code></td><td>151/151</td><td class="range">53.9 – 85.3</td><td>15%</td></tr>
-<tr><td><code>outOfPocketPct</code></td><td>医疗自付 (%，反向)</td><td><code>SH.XPD.OOPC.CH.ZS</code></td><td>148/151</td><td class="range">6.65 – 70.59</td><td>15%</td></tr>
-</table>
-
-<h3>医疗补充指标（不参与指数计算）</h3>
-<table>
-<tr><th>字段</th><th>含义</th><th>WB 代码</th><th>覆盖</th><th>范围</th></tr>
-<tr><td><code>nursesPerThousand</code></td><td>护士/千人</td><td><code>SH.MED.NUMW.P3</code></td><td>149/151</td><td class="range">0.2 – 18.8</td></tr>
-<tr><td><code>healthExpPerCapita</code></td><td>人均医疗支出 ($)</td><td><code>SH.XPD.CHEX.PC.CD</code></td><td>148/151</td><td class="range">$30 – $13,473</td></tr>
-</table>
-<div class="n">全部来源 World Bank CC BY 4.0。获取日期 2026-04-15。脚本 <code>scripts/fetch-wb-new-indicators.mjs</code></div>
-
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§3. 治理指数 + 自由指数</h2>
-
-<div class="formula">
-  <strong>governanceIndex</strong> = 50% × corruptionPerceptionIndex + 50% × govEffectiveness<br>
-  <strong>freedomIndex</strong> = 55% × democracyIndex × 10 + 45% × corruptionPerceptionIndex
-</div>
-
-<table>
-<tr><th>字段</th><th>含义</th><th>来源</th><th>许可</th><th>覆盖</th><th>范围</th></tr>
-<tr><td><code>corruptionPerceptionIndex</code></td><td>清廉指数 (0-100)</td><td>Transparency International CPI <a href="https://www.transparency.org/cpi2024">↗</a></td><td><span class="tag tg">CC BY 4.0</span></td><td>151/151</td><td class="range">22 – 90</td></tr>
-<tr><td><code>govEffectiveness</code></td><td>政府效能 (WGI 0-100)</td><td>World Bank WGI</td><td><span class="tag tg">CC BY 4.0</span></td><td>150/151</td><td class="range">21.0 – 95.7</td></tr>
-<tr><td><code>democracyIndex</code></td><td>民主 (0-10, WGI VA÷10)</td><td>World Bank WGI <code>GOV_WGI_VA.SC</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>150/151</td><td class="range">2.0 – 9.1</td></tr>
-<tr><td><code>regulatoryQuality</code></td><td>监管质量 (WGI 0-100)</td><td>World Bank WGI <code>GOV_WGI_RQ.SC</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>150/151</td><td class="range">31.0 – 88.5</td></tr>
-</table>
-<div class="n">regulatoryQuality 不参与指数计算，作为独立营商环境指标展示。</div>
-
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§4. 经济指标</h2>
-
-<table>
-<tr><th>字段</th><th>含义</th><th>来源</th><th>指标代码</th><th>许可</th><th>获取方式</th><th>覆盖</th><th>范围</th></tr>
-<tr><td><code>gdpPppPerCapita</code></td><td>人均 GDP PPP ($)</td><td>World Bank</td><td><code>NY.GDP.PCAP.PP.CD</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>API</td><td>150/151</td><td class="range">$3,288 – $155,941</td></tr>
-<tr><td><code>gniPerCapita</code></td><td>人均 GNI ($)</td><td>World Bank</td><td><code>NY.GNP.PCAP.CD</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>API</td><td>150/151</td><td class="range">$1,100 – $98,170</td></tr>
-<tr><td><code>inflationRate</code></td><td>通胀率 (年%)</td><td>World Bank</td><td><code>FP.CPI.TOTL.ZG</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>API (分页)</td><td>148/151</td><td class="range">-0.4% – 219.9%</td></tr>
-<tr><td><code>inflationForecast</code></td><td>通胀预测 2025 (%)</td><td>IMF WEO</td><td><code>PCPIPCH</code></td><td><span class="tag to">开放+署名</span></td><td><a href="https://www.imf.org/external/datamapper/api/v1/PCPIPCH">API</a></td><td>149/151</td><td class="range">-0.1% – 50.9%</td></tr>
-<tr><td><code>gdpGrowthForecast</code></td><td>GDP 增长预测 2025 (%)</td><td>IMF WEO</td><td><code>NGDP_RPCH</code></td><td><span class="tag to">开放+署名</span></td><td>API</td><td>149/151</td><td class="range">-2.0% – 12.3%</td></tr>
-<tr><td><code>unemploymentRate</code></td><td>失业率 (%)</td><td>World Bank</td><td><code>SL.UEM.TOTL.ZS</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>API</td><td>150/151</td><td class="range">0.1% – 32.3%</td></tr>
-<tr><td><code>netMigration</code></td><td>净迁移 (5年)</td><td>World Bank</td><td><code>SM.POP.NETM</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>API</td><td>150/151</td><td class="range">-1.4M – +1.3M</td></tr>
-<tr><td><code>bigMacPrice</code></td><td>巨无霸价格 ($)</td><td>The Economist</td><td>—</td><td><span class="tag tg">CC BY 4.0</span></td><td><a href="https://github.com/TheEconomist/big-mac-data">GitHub CSV</a></td><td>143/151</td><td class="range">$1.50 – $6.86</td></tr>
-<tr><td><code>minimumWagePPP</code></td><td>最低月薪 (PPP$)</td><td>ILO ILOSTAT</td><td><code>EAR_INEE_CUR_NB_A</code></td><td><span class="tag tt">CC BY 4.0</span></td><td>手动下载 CSV → 脚本提取</td><td>128/151</td><td class="range">$0 – $3,804</td></tr>
-</table>
-<div class="n">
-  <strong>脚本：</strong><code>scripts/fetch-wb-new-indicators.mjs</code>（WB 10 项）、<code>scripts/fetch-extended-sources.mjs</code>（IMF + GNI）、<code>scripts/extract-ilo-to-sot.mjs</code>（ILO 4 项）<br>
-  <strong>全部获取日期：</strong>2026-04-15
-</div>
-
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§5. 生活成本（重建自 WB 开放数据）</h2>
-
-<div class="box box-info">
-  <strong>ℹ️ 估算方法</strong>（100% WB CC BY 4.0 可追溯）<br>
-  <code>costModerate = gdpPppPerCapita × WB消费占比(NE.CON.TOTL.ZS) × 1.15城市溢价 ÷ 12</code><br>
-  <code>monthlyRent = costModerate × 收入层级租金比 (22-38%)</code><br>
-  <code>housePrice = gniPerCapita × 区域房价收入比 ÷ 60m²</code><br>
-  <strong>这些是基于公开宏观数据的估算值，非实地调查。</strong>原始调查数据（Numbeo）因合规原因已清除。
+<div class="removed-box">
+  <strong>⛔ 以下数据源已于 2026-03-08 至 2026-04-16 期间完全移除。</strong><br>
+  代码中不存在任何对这些数据的引用、读取或计算。旧数据归档于 <code>_archive/</code>，仅作历史参考。
 </div>
 
 <table>
-<tr><th>字段</th><th>含义</th><th>计算输入</th><th>覆盖</th><th>范围</th><th>状态</th></tr>
-<tr>
-  <td><code>costModerate</code></td>
-  <td>单人月消费（适中）</td>
-  <td>gdpPppPerCapita + WB NE.CON.TOTL.ZS + 1.15 城市溢价</td>
-  <td>151/151</td>
-  <td class="range">$270 – $7,825/月</td>
-  <td><span class="tag to">WB 估算</span></td>
-</tr>
-<tr>
-  <td><code>monthlyRent</code></td>
-  <td>市中心一居室月租</td>
-  <td>costModerate × 收入层级租金比</td>
-  <td>151/151</td>
-  <td class="range">$59 – $2,974/月</td>
-  <td><span class="tag to">WB 估算</span></td>
-</tr>
-<tr>
-  <td><code>housePrice</code></td>
-  <td>市中心房价/m²</td>
-  <td>gniPerCapita × 区域房价收入比 ÷ 60m²</td>
-  <td>151/151</td>
-  <td class="range">$110 – $22,425/m²</td>
-  <td><span class="tag to">WB 估算</span></td>
-</tr>
-<tr>
-  <td><code>costBudget</code></td>
-  <td>单人月消费（节俭）</td>
-  <td>—</td>
-  <td>0/151</td>
-  <td>—</td>
-  <td><span class="tag tr">待定</span></td>
-</tr>
+  <tr><th>已移除来源</th><th>原字段</th><th>移除原因</th><th>替代方案</th></tr>
+  <tr>
+    <td class="crit">Numbeo</td>
+    <td><code>costModerate</code> <code>costBudget</code> <code>monthlyRent</code> <code>housePrice</code> <code>numbeoSafetyIndex</code></td>
+    <td>禁止抓取/API (ToS §2)；数据来自爬虫，构成侵权风险</td>
+    <td>WB GDP PPP 模型估算 (costModerate/monthlyRent/housePrice)；numbeoSafetyIndex → 4子指标复合安全指数</td>
+  </tr>
+  <tr>
+    <td class="crit">IEP (GPI)</td>
+    <td><code>gpiScore</code> <code>gpiScoreInv</code></td>
+    <td>商业数据，需付费订阅；免费版仅限非商业</td>
+    <td>WB WGI Political Stability (CC BY 4.0)</td>
+  </tr>
+  <tr>
+    <td class="crit">Gallup (Law & Order)</td>
+    <td><code>gallupLawOrder</code></td>
+    <td>Gallup 所有调查数据需付费许可</td>
+    <td>WB WGI Rule of Law (CC BY 4.0)</td>
+  </tr>
+  <tr>
+    <td class="crit">UNODC (Homicide)</td>
+    <td>原始凶杀率</td>
+    <td>UNODC 数据政策要求逐案审批</td>
+    <td>WB VC.IHR.PSRC.P5 (CC BY 4.0，源自 UNODC 但经 WB 再发布)</td>
+  </tr>
+  <tr>
+    <td class="crit">Ookla Speedtest</td>
+    <td><code>internetSpeedMbps</code></td>
+    <td>CC BY-NC-SA 4.0 — 禁止商业使用</td>
+    <td>WB broadbandPer100 作为连接质量代理；internetSpeedMbps 字段置 null</td>
+  </tr>
+  <tr>
+    <td class="crit">EIU (Democracy Index)</td>
+    <td>原始民主指数</td>
+    <td>EIU 商业数据，免费版为摘要级</td>
+    <td>WB WGI Voice & Accountability (CC BY 4.0) 归一化为 democracyIndex</td>
+  </tr>
+  <tr>
+    <td class="crit">RSF (Press Freedom)</td>
+    <td><code>pressFreedomScore</code></td>
+    <td>许可条款存疑，无明确 CC 声明</td>
+    <td>已移除，不替代（信息不在产品核心路径上）</td>
+  </tr>
+  <tr>
+    <td class="crit">WJP (Rule of Law Index)</td>
+    <td><code>wjpRuleLaw</code></td>
+    <td>需要签署数据使用协议</td>
+    <td>WB WGI Rule of Law (CC BY 4.0)</td>
+  </tr>
+  <tr>
+    <td class="crit">MIPEX</td>
+    <td><code>mipexScore</code></td>
+    <td>学术项目，商业使用需授权</td>
+    <td>已移除，不替代</td>
+  </tr>
+  <tr>
+    <td class="crit">Georgetown WPS</td>
+    <td><code>wpsIndex</code></td>
+    <td>学术出版物，商业使用需授权</td>
+    <td>已移除，GII 部分替代其性别维度</td>
+  </tr>
+  <tr>
+    <td class="crit">Freedom House</td>
+    <td><code>internetFreedomScore</code></td>
+    <td>数据政策不允许批量再发布</td>
+    <td>已移除，VPN 限制信息保留为编辑内容</td>
+  </tr>
+  <tr>
+    <td class="crit">M-Lab NDT</td>
+    <td>(未入库)</td>
+    <td>CC BY-NC-SA 4.0 — 禁止商业使用</td>
+    <td>研究后放弃，与 Ookla 同一许可问题</td>
+  </tr>
+  <tr>
+    <td class="crit">doda 平均年収</td>
+    <td>日本 5 城市薪资 (Tier 2)</td>
+    <td>利用規約 §13「著作物等の全部または一部の複製、転載等を行うことはできない」<br>免責事項「書面による許可なく、個人的な目的以外で利用することは禁止」<br>§14(3)「私的利用の範囲を超えて利用し、または第三者に開示、提供する行為」禁止</td>
+    <td>ILO PPP × 厚労省 Quality A 职业比率 × 城市溢价（日本城市升级为 Tier 2）</td>
+  </tr>
 </table>
-<div class="n"><strong>脚本：</strong><code>scripts/rebuild-cost-data.mjs</code>　台北手动补充（台湾 DGBAS 公开数据）</div>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§6. 劳动市场</h2>
+<!-- ═══ 3. Identity Fields ═══ -->
+<h2 id="identity">3. 身份与基础字段</h2>
 
 <table>
-<tr><th>字段</th><th>含义</th><th>来源</th><th>许可</th><th>获取方式</th><th>覆盖</th><th>范围</th></tr>
-<tr><td><code>annualWorkHours</code></td><td>年均工时</td><td>ILO ILOSTAT</td><td><span class="tag tt">CC BY 4.0</span></td><td>历史数据（ILO/OECD 混合）</td><td>151/151</td><td class="range">1,341 – 2,238 h</td></tr>
-<tr><td><code>weeklyHoursEmp</code></td><td>员工周均工时</td><td>ILO <code>HOW_XEES</code></td><td><span class="tag tt">CC BY 4.0</span></td><td>手动 CSV → 脚本提取</td><td>116/151</td><td class="range">29.5 – 56.2 h</td></tr>
-<tr><td><code>paidLeaveDays</code></td><td>法定带薪年假</td><td>ILO / 各国劳动法</td><td><span class="tag tb">公开法律</span></td><td>手动研究</td><td>151/151</td><td class="range">0 – 30 天</td></tr>
-<tr><td><code>earningsGini</code></td><td>时薪基尼系数</td><td>ILO <code>EAR_EHRG</code></td><td><span class="tag tt">CC BY 4.0</span></td><td>手动 CSV → 脚本提取</td><td>82/151</td><td class="range">0.248 – 0.775</td></tr>
-<tr><td><code>genderWageGap</code></td><td>性别工资差 (%)</td><td>ILO <code>EAR_GGAP</code></td><td><span class="tag tt">CC BY 4.0</span></td><td>手动 CSV → 脚本提取</td><td>98/151</td><td class="range">-35.8% – 38.3%</td></tr>
+  <tr><th>字段</th><th>类型</th><th>覆盖</th><th>来源</th><th>说明</th></tr>
+  <tr><td class="field-name">id</td><td>number</td><td class="coverage coverage-full">151/151</td><td><span class="badge badge-self">自有</span></td><td>唯一 ID，从 1 开始，不可变</td></tr>
+  <tr><td class="field-name">name</td><td>string</td><td class="coverage coverage-full">151/151</td><td><span class="badge badge-self">自有</span></td><td>中文城市名</td></tr>
+  <tr><td class="field-name">country</td><td>string</td><td class="coverage coverage-full">151/151</td><td><span class="badge badge-self">自有</span></td><td>中文国家/地区名</td></tr>
+  <tr><td class="field-name">continent</td><td>string</td><td class="coverage coverage-full">151/151</td><td><span class="badge badge-self">自有</span></td><td>亚洲 / 欧洲 / 北美洲 / 南美洲 / 非洲 / 大洋洲</td></tr>
+  <tr><td class="field-name">currency</td><td>string</td><td class="coverage coverage-full">151/151</td><td><span class="badge badge-self">自有</span></td><td>当地货币 ISO 代码 (USD, EUR, JPY, …)</td></tr>
+  <tr><td class="field-name">description</td><td>string</td><td class="coverage coverage-full">151/151</td><td><span class="badge badge-self">自有</span></td><td>城市描述（已弃用，由 cityIntros 替代）</td></tr>
+  <tr><td class="field-name">hidden</td><td>boolean?</td><td class="coverage dim">31/151</td><td><span class="badge badge-self">自有</span></td><td>true = 不显示在排行榜（数据不完整城市）</td></tr>
+  <tr><td class="field-name">timezone</td><td>string</td><td class="coverage coverage-full">151/151</td><td><span class="badge badge-self">自有</span></td><td>IANA timezone ID (Asia/Shanghai 等)</td></tr>
 </table>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§7. 发展与平等</h2>
+<!-- ═══ 4. Salary System ═══ -->
+<h2 id="salary">4. 薪资系统 (25 职业 × 151 城市)</h2>
 
-<table>
-<tr><th>字段</th><th>含义</th><th>来源</th><th>许可</th><th>获取方式</th><th>覆盖</th><th>范围</th></tr>
-<tr><td><code>hdi</code></td><td>人类发展指数 (0-1)</td><td>UNDP HDR 2025</td><td><span class="tag tp">CC BY 3.0 IGO</span></td><td>CSV 下载 → 脚本解析</td><td>149/151</td><td class="range">0.497 – 0.970</td></tr>
-<tr><td><code>gii</code></td><td>性别不平等 (0-1, 低=好)</td><td>UNDP HDR 2025</td><td><span class="tag tp">CC BY 3.0 IGO</span></td><td>同上</td><td>147/151</td><td class="range">0.003 – 0.677</td></tr>
-<tr><td><code>tertiaryEnrollment</code></td><td>高等教育入学率 (%)</td><td>World Bank <code>SE.TER.ENRR</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>API</td><td>148/151</td><td class="range">10.4% – 165.1%</td></tr>
-</table>
-<div class="n">UNDP HDR 数据来源 <a href="https://hdr.undp.org/data-center/documentation-and-downloads">hdr.undp.org</a>。脚本 <code>scripts/fetch-remaining-replacements.mjs</code></div>
+<h3>4.1 总体架构</h3>
+<p>薪资存储在 <code>professions</code> 对象中，键为中文职业名，值为 <strong>年税前收入（PPP 美元）</strong>。</p>
+<p>25 个职业：软件工程师、医生/医学博士、财务分析师、市场经理、平面设计师、数据科学家、销售经理、人力资源经理、教师、护士、律师、建筑师、厨师、记者、机械工程师、药剂师、会计师、产品经理、UI/UX设计师、大学教授、牙医、公交司机、电工、政府/NGO行政、数字游民。</p>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§8. 环境与基础设施</h2>
-
-<table>
-<tr><th>字段</th><th>含义</th><th>来源</th><th>许可</th><th>覆盖</th><th>范围</th></tr>
-<tr><td><code>airQuality</code></td><td>年均 AQI</td><td>US EPA / IQAir</td><td><span class="tag tg">Public Domain</span></td><td>151/151</td><td class="range">15 – 175</td></tr>
-<tr><td><code>pm25</code></td><td>PM2.5 年均 (μg/m³)</td><td>WB <code>EN.ATM.PM25.MC.M3</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>149/151</td><td class="range">4.9 – 75.7</td></tr>
-<tr><td><code>broadbandPer100</code></td><td>固定宽带/100人</td><td>WB <code>IT.NET.BBND.P2</code></td><td><span class="tag tg">CC BY 4.0</span></td><td>150/151</td><td class="range">0.1 – 48.9</td></tr>
-<tr><td><code>directFlightCities</code></td><td>直飞目的地数</td><td>OAG / FlightConnections</td><td><span class="tag tg">事实数据</span></td><td>150/151</td><td class="range">0 – 390</td></tr>
-<tr><td><code>climate.*</code></td><td>气候 (12 个月度值 + 年均)</td><td>NOAA 1991-2020 / 各国气象局</td><td><span class="tag tg">Public Domain</span></td><td>151/151</td><td>—</td></tr>
-<tr><td><code>internetSpeedMbps</code></td><td>固定宽带下载速度</td><td>—</td><td>—</td><td><strong class="range" style="color:var(--red)">0/151 null</strong></td><td>—</td></tr>
-</table>
-<div class="n"><code>internetSpeedMbps</code>：Ookla (CC BY-NC-SA) 已清除，M-Lab 网站许可也是 CC BY-NC-SA。<code>broadbandPer100</code> 作为网络基础设施代理指标。</div>
-
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§9. 薪资系统</h2>
-
-<div class="box box-warn">
-  <strong>⚠️ 87% 薪资数据的锚点仍基于 Numbeo 计算结果</strong>（已归档，不在活跃代码中）<br>
-  BLS Tier 1（21 美国城市）完全合规。重建原料：ILO PPP 月薪 (166 国) + ISCO 职业比率 (164 国) + GNI (150 国)
+<h3>4.2 分层选优策略（无全局校正）</h3>
+<p>每个城市使用能获得的 <strong>最高精度来源</strong>，不混合、不融合、不做全局校正因子。</p>
+<div class="warn-box">
+  <strong>为什么不用全局校正？</strong> 交叉验证发现 ILO PPP 的系统误差因国而异——美国 BLS 比 ILO 高 60-96%，其他国家偏差各不相同。任何单一全局乘数都会让某些国家过度修正、另一些不足。因此采用分层选优：有精确数据就用精确数据，没有就用次精确的，逐级回退。
 </div>
 
 <table>
-<tr><th>层级</th><th>城市数</th><th>来源</th><th>许可</th><th>置信度</th></tr>
-<tr><td><strong>Tier 1: BLS 直接值</strong></td><td>21</td><td>BLS OEWS May 2024 <a href="https://www.bls.gov/oes/">↗</a></td><td><span class="tag tg">Public Domain</span></td><td>80-100</td></tr>
-<tr><td><strong>Tier 2-3: Numbeo 锚点 × 比率</strong></td><td>~130</td><td>锚点: <span style="color:var(--red)">Numbeo (归档)</span><br>比率: 政府统计局 (合规)</td><td><span class="tag tr">锚点待重建</span></td><td>30-64</td></tr>
+  <tr><th>层级</th><th>来源</th><th>许可</th><th>城市数</th><th>方法</th></tr>
+  <tr>
+    <td><span class="badge badge-tier">Tier 1</span></td>
+    <td>BLS OEWS</td>
+    <td><span class="badge badge-pd">Public Domain</span></td>
+    <td>20</td>
+    <td>美国劳工统计局 MSA 级年薪中位数，直接使用。<br>来源：<a href="https://www.bls.gov/oes/">bls.gov/oes</a>，按 SOC 职业代码 → 25 职业映射。</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-tier">Tier 2</span></td>
+    <td>ILO PPP × Gov-A ratio × 城市溢价</td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>21</td>
+    <td>ILO ILOSTAT 全国 PPP 月收入 × 12 × 政府统计局职业比率 (Quality A) × 城市溢价系数。<br>
+    Quality A 国家 (10): 日本(厚労省)、加拿大(StatCan)、英国(ONS)、德国(Destatis)、法国(INSEE)、新加坡(MOM)、瑞士(BFS)、韩国(KOSIS)、捷克(CZSO)、新西兰(StatsNZ)。<br>
+    职业比率来源：<code>data/salary-research/raw/country-specific-ratios.json</code><br>
+    <em>注：日本城市原使用 doda 直取 (Tier 2)，因 doda 利用规约 §13/§14 禁止非个人用途，于 2026-04-16 移除并回退至本层。</em></td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-tier">Tier 3</span></td>
+    <td>ILO PPP × Gov-B ratio × 城市溢价</td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>38</td>
+    <td>同 Tier 2，但政府数据为 Quality B（30+ 国，来源明确但可能非最新或覆盖不全）。</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-tier">Tier 4</span></td>
+    <td>ILO PPP × Gov-C/D ratio × 城市溢价</td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>58</td>
+    <td>同上，Quality C/D（来源较粗或数据较旧）。</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-tier">Tier 5</span></td>
+    <td>ILO PPP × ISCO 大类 × 子比率 × 城市溢价</td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>7</td>
+    <td>无政府职业比率时，使用 ILO ISCO-08 大类收入相对 Total 的比率。<br>ISCO 大类映射：Managers(1)、Professionals(2)、Technicians(3)、Clerical(4)、Service&Sales(5)、Craft(7)、Operators(8)。<br>子比率(sub)为编辑团队基于职业特性设定的细分修正(0.70-1.40)。</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-tier">Tier 6</span></td>
+    <td>GNI per capita fallback</td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>6</td>
+    <td>无 ILO 收入数据时，使用 WB GNI per capita (Atlas method) 作为国民收入基准，× 职业子比率 × 城市溢价。精度最低。</td>
+  </tr>
 </table>
 
-<h3>ILO 原始数据 (data/sources/ilo/，22 个 CSV)</h3>
+<h3>4.3 城市溢价系数</h3>
+<p>94 个城市有手工设定的溢价系数（0.75–1.40），反映城市相对全国平均的收入差异。</p>
+<p>例：上海 1.40、北京 1.35、东京 1.25、伦敦 1.30、清迈 0.75、巴厘岛 0.80。无溢价数据的城市使用默认 1.10。</p>
+<p>溢价系数是编辑判断(<span class="badge badge-self">自有 IP</span>)，基于：(a) 各国统计局城市/全国比值；(b) 该城市在国内经济体系中的定位。</p>
+
+<h3>4.4 ILO 数据细节</h3>
+<ul>
+  <li><strong>源文件</strong>：<code>data/sources/ilo/ilo-earnings-by-currency.csv</code> — 166 国月均收入（PPP$, Sex=Total）</li>
+  <li><strong>ISCO 文件</strong>：<code>data/sources/ilo/ilo-earnings-by-occupation.csv</code> — 164 国各 ISCO-08 大类收入</li>
+  <li><strong>下载方式</strong>：从 ILOSTAT 手动批量下载（API 在 2026-03 不可用），snapshot 时间 2025-Q4</li>
+  <li><strong>选取规则</strong>：每国取最新年份，PPP 币种优先；Sex=Total</li>
+  <li><strong>已知局限</strong>：ILO PPP 收入为全国平均，不区分城市；PPP 折算可能与实际薪资水平有偏差（美国偏低 ~70%）</li>
+</ul>
+
+<h3>4.5 数字游民</h3>
+<p><code>"数字游民"</code> 固定为 $85,000/年 (<span class="badge badge-self">编辑设定</span>)，代表远程工作者的典型收入假设，不与城市挂钩。</p>
+
+<!-- ═══ 5. Cost ═══ -->
+<h2 id="cost">5. 生活成本 (3 字段)</h2>
+
 <table>
-<tr><th>类别</th><th>文件</th><th>用途</th></tr>
-<tr><td>月均工资</td><td><code>ilo-earnings-by-currency.csv</code> (166 国, PPP$)</td><td>薪资重建核心锚点</td></tr>
-<tr><td>职业工资</td><td><code>ilo-earnings-by-occupation.csv</code> (164 国, ISCO)</td><td>25 职业比率系数</td></tr>
-<tr><td>最低工资</td><td><code>EAR_INEE_CUR_NB_A</code> + <code>NOC</code></td><td>minimumWagePPP</td></tr>
-<tr><td>CPI</td><td>14 个 CPI 表 (年/季/月)</td><td>消费水平重建参考</td></tr>
-<tr><td>工时</td><td><code>HOW_TEMP</code> (按行业) + <code>HOW_XEES</code> (员工)</td><td>weeklyHoursEmp</td></tr>
-<tr><td>不平等</td><td><code>EAR_EHRG</code> (Gini) + <code>EAR_GGAP</code> (性别差)</td><td>earningsGini, genderWageGap</td></tr>
+  <tr><th>字段</th><th>覆盖</th><th>来源</th><th>计算公式</th><th>说明</th></tr>
+  <tr>
+    <td class="field-name">costModerate</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td><span class="badge badge-cc">WB CC BY 4.0</span> + <span class="badge badge-est">公式估算</span></td>
+    <td><code>gdpPppPerCapita × consumptionShare × 1.05 / 12</code></td>
+    <td>
+      <strong>gdpPppPerCapita</strong>: WB NY.GDP.PCAP.PP.CD — GDP per capita, PPP (current int'l $)<br>
+      <strong>consumptionShare</strong>: WB NE.CON.TOTL.ZS — 家庭+政府最终消费占 GDP 比 (API 实时取)<br>
+      <strong>1.05</strong>: 城市生活成本溢价（交叉验证后从 1.15 降至 1.05）<br>
+      <strong>/12</strong>: 年化→月<br>
+      单位：PPP 美元/月。台湾无 WB ISO 代码，使用 consumptionShare=0.55 默认值。
+    </td>
+  </tr>
+  <tr>
+    <td class="field-name">monthlyRent</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td><span class="badge badge-est">公式估算</span></td>
+    <td><code>costModerate × rentShare</code></td>
+    <td>
+      rentShare 按收入层级：<br>
+      GDP PPP &gt;$40k → 38% | $20k-$40k → 33% | $10k-$20k → 28% | &lt;$10k → 22%<br>
+      这些比率基于 WB 住房支出占比的公开研究。单位：PPP 美元/月。
+    </td>
+  </tr>
+  <tr>
+    <td class="field-name">housePrice</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td><span class="badge badge-cc">WB CC BY 4.0</span> + <span class="badge badge-est">区域比率</span></td>
+    <td><code>gniPerCapita × priceToIncomeRatio × 60</code></td>
+    <td>
+      <strong>gniPerCapita</strong>: WB NY.GNP.PCAP.CD — GNI per capita, Atlas method (current US$)<br>
+      <strong>priceToIncomeRatio</strong>: 按区域的中位房价收入比（公开知识，编辑审核）<br>
+      <strong>×60</strong>: 假设 60m² 标准住房。结果为名义美元/m²。
+    </td>
+  </tr>
+  <tr>
+    <td class="field-name">costBudget</td>
+    <td class="coverage coverage-low">0/151</td>
+    <td>—</td>
+    <td>—</td>
+    <td>暂未实现。字段保留，值为 null。</td>
+  </tr>
 </table>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§10. 税制引擎 — 100% 自有 IP</h2>
-
-<div class="box box-ok">
-  <strong>项目最有价值且完全不受任何合规风险影响的资产。</strong><br>
-  税制规则来自各国公开税法（法律信息不可版权化），算法完全自研。
+<div class="warn-box">
+  <strong>⚠️ 重要声明</strong>：costModerate / monthlyRent / housePrice 均为基于世界银行宏观数据的 <strong>结构化估算</strong>，不是实际调查数据。它们代表"以该国经济水平在该城市生活的大致消费"，精确到城市级需打折理解。计算方法完全公开。
 </div>
 
+<!-- ═══ 6. Tax ═══ -->
+<h2 id="tax">6. 税务引擎 (88 国/地区)</h2>
+
+<h3>6.1 架构</h3>
+<p>税务引擎是 WhichCity 的核心自有 IP，实现在 <code>lib/taxData.ts</code> 和 <code>lib/taxUtils.ts</code>。</p>
+<p>每个国家/地区的税制定义包含：</p>
+<ul>
+  <li><strong>个人所得税累进表</strong> (<code>brackets</code>): 当地货币年收入阈值 + 边际税率</li>
+  <li><strong>标准扣除</strong> (<code>standardDeduction</code>): 免税额/基本扣除</li>
+  <li><strong>社会保险</strong> (<code>social</code>): 各项社保费率 + 封顶额</li>
+  <li><strong>汇率</strong> (<code>usdToLocal</code>): 1 USD = X 当地货币</li>
+  <li><strong>员工扣除</strong> (<code>employeeDeduction</code>): 如法国 10% frais professionnels, 德国 Werbungskosten</li>
+  <li><strong>外籍优惠</strong> (<code>expatScheme</code>): 荷兰 30% ruling, 西班牙 Beckham Law 等</li>
+  <li><strong>置信度</strong> (<code>confidence</code>): high / medium / low</li>
+</ul>
+
+<h3>6.2 数据来源</h3>
+<ul>
+  <li><strong>一级来源</strong>: 各国税务局官网法定税率表 (<span class="badge badge-pd">Public Law</span>)</li>
+  <li><strong>交叉验证</strong>: OECD Tax Database, KPMG Tax Rates Online, PwC Worldwide Tax Summaries</li>
+  <li><strong>更新频率</strong>: 2025-01 批次更新</li>
+</ul>
+
+<h3>6.3 计算模式</h3>
 <table>
-<tr><th>组件</th><th>覆盖</th><th>来源</th><th>存储</th></tr>
-<tr><td>累进税率表 + 社保 (62 组件) + 标准扣除</td><td>88 国</td><td>各国税法/财政部</td><td><code>lib/taxData.ts</code></td></tr>
-<tr><td>城市级覆盖</td><td>US 50 州 · CN 7 城社保 · CA 各省</td><td>各地税法</td><td>同上</td></tr>
-<tr><td>外派方案 (6 个)</td><td>NL 30% · ES Beckham · IT Impatriati · PT NHR · KR 19% · SG CPF</td><td>各国外派税法</td><td>同上</td></tr>
-<tr><td>计算引擎</td><td>gross → net / expatNet 完整分解</td><td>自研算法</td><td><code>lib/taxUtils.ts</code></td></tr>
+  <tr><th>模式</th><th>说明</th></tr>
+  <tr><td><code>gross</code></td><td>税前年薪，不做任何扣除</td></tr>
+  <tr><td><code>net</code></td><td>标准居民纳税：个税 + 社保 + 员工扣除</td></tr>
+  <tr><td><code>expatNet</code></td><td>外籍优惠税制（如有）；无优惠时回退到 net</td></tr>
 </table>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§11. 游牧 + 元数据 + i18n</h2>
+<h3>6.4 城市级覆写</h3>
+<p>部分城市有地方税附加（如美国州税+市税、日本住民税），定义在 <code>cityTaxOverrides</code>。</p>
+
+<!-- ═══ 7. Safety ═══ -->
+<h2 id="safety">7. 安全指数 (safetyIndex)</h2>
+
+<h3>7.1 公式</h3>
+<p><code>safetyIndex = 35% × homicideRateInv + 25% × politicalStability + 20% × ruleLawWGI + 20% × controlOfCorruption</code></p>
+<p>所有子指标均归一化至 0–100。缺失子指标时，剩余指标的权重按比例重分配。</p>
 
 <table>
-<tr><th>资产</th><th>来源</th><th>许可</th></tr>
-<tr><td>签证类型/时长/条件 · VPN 限制 · 英语水平 · 免签矩阵 · 时区</td><td>各国政府 + IANA + 自有研究</td><td><span class="tag tg">公开</span> + <span class="tag tb">自有</span></td></tr>
-<tr><td>城市简介 (151×4 语言) · i18n (~2300 行×4) · slug 映射 · 城市语言</td><td>自有撰写</td><td><span class="tag tb">自有 IP</span></td></tr>
-<tr><td>汇率</td><td>CI 自动更新</td><td><span class="tag tg">公开市场数据</span></td></tr>
+  <tr><th>子指标</th><th>字段</th><th>覆盖</th><th>WB 指标 ID</th><th>说明</th></tr>
+  <tr>
+    <td>凶杀率逆</td>
+    <td class="field-name">homicideRateInv</td>
+    <td class="coverage coverage-high">140/151</td>
+    <td><code>VC.IHR.PSRC.P5</code></td>
+    <td>每 10 万人故意杀人率，min-max 归一化后取反 (100 - norm)。原始值存于 <code>homicideRate</code>。</td>
+  </tr>
+  <tr>
+    <td>政治稳定</td>
+    <td class="field-name">politicalStability</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td><code>PV.PER.RNK</code></td>
+    <td>WGI Political Stability and Absence of Violence/Terrorism — 百分位排名 (0-100)。</td>
+  </tr>
+  <tr>
+    <td>法治</td>
+    <td class="field-name">ruleLawWGI</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td><code>RL.PER.RNK</code></td>
+    <td>WGI Rule of Law — 百分位排名 (0-100)。</td>
+  </tr>
+  <tr>
+    <td>腐败控制</td>
+    <td class="field-name">controlOfCorruption</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td><code>CC.PER.RNK</code></td>
+    <td>WGI Control of Corruption — 百分位排名 (0-100)。</td>
+  </tr>
 </table>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§12. 已移除数据（不再使用）</h2>
+<h3>7.2 安全预警</h3>
+<p><code>safetyWarning</code> 字段 (<span class="badge badge-self">编辑设定</span>) 标记高风险城市：</p>
+<ul>
+  <li><code>active_conflict</code> — 活跃武装冲突区 (如基辅)</li>
+  <li><code>extreme_instability</code> — 极端不稳定 (如仰光、喀布尔)</li>
+  <li><code>data_blocked</code> — 数据获取受阻</li>
+</ul>
+<p>设有安全预警的城市，评级显示时会附带红色警告标记。</p>
+
+<h3>7.3 置信度</h3>
+<p><code>safetyConfidence</code> = 所有可用子指标的权重之和 (0-100)。如 4 项全有则 100，只有 politicalStability + ruleLawWGI + controlOfCorruption 则 65。</p>
+
+<!-- ═══ 8. Healthcare ═══ -->
+<h2 id="healthcare">8. 医疗指数 (healthcareIndex)</h2>
+
+<h3>8.1 公式</h3>
+<p><code>healthcareIndex = 25% × doctorsNorm + 25% × uhcCoverageIndex + 20% × bedsNorm + 15% × lifeNorm + 15% × oopInvNorm</code></p>
 
 <table>
-<tr><th>字段</th><th>原来源</th><th>移除原因</th><th>替代</th></tr>
-<tr><td><del>numbeoSafetyIndex</del></td><td>Numbeo</td><td>TOS 禁止爬取和商用</td><td>WB WGI 4 子指标</td></tr>
-<tr><td><del>gpiScore</del></td><td>IEP</td><td>CC BY-NC-SA</td><td>WB politicalStability</td></tr>
-<tr><td><del>gallupLawOrder</del></td><td>Gallup</td><td>专有数据</td><td>WB ruleLawWGI</td></tr>
-<tr><td><del>pressFreedomScore</del></td><td>RSF</td><td>TOS 页面 404</td><td>已移除</td></tr>
-<tr><td><del>wjpRuleLaw</del></td><td>WJP</td><td>条款不明</td><td>已有 WB RL</td></tr>
-<tr><td><del>mipexScore</del></td><td>MIPEX</td><td>条款不明</td><td>已移除</td></tr>
-<tr><td><del>wpsIndex</del></td><td>Georgetown</td><td>许可未确认</td><td>已移除</td></tr>
-<tr><td><del>internetFreedomScore</del></td><td>Freedom House</td><td>商用需审批</td><td>已移除</td></tr>
-<tr><td><del>costModerate/Rent/House</del> (原值)</td><td>Numbeo + GPG</td><td>TOS 禁止爬取</td><td>WB 估算重建</td></tr>
-<tr><td><del>internetSpeedMbps</del> (原值)</td><td>Ookla</td><td>CC BY-NC-SA</td><td>broadbandPer100</td></tr>
+  <tr><th>子指标</th><th>字段</th><th>覆盖</th><th>WB 指标 ID</th><th>归一化</th></tr>
+  <tr>
+    <td>医生密度</td>
+    <td class="field-name">doctorsPerThousand</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td><code>SH.MED.PHYS.ZS</code></td>
+    <td>min-max [0, max] → 0-100</td>
+  </tr>
+  <tr>
+    <td>全民健康覆盖</td>
+    <td class="field-name">uhcCoverageIndex</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td><code>SH.UHC.SRVS.CV.XD</code></td>
+    <td>原始值已是 0-100 指数，直接使用</td>
+  </tr>
+  <tr>
+    <td>病床密度</td>
+    <td class="field-name">hospitalBedsPerThousand</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td><code>SH.MED.BEDS.ZS</code></td>
+    <td>min-max [0, max] → 0-100</td>
+  </tr>
+  <tr>
+    <td>预期寿命</td>
+    <td class="field-name">lifeExpectancy</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td><code>SP.DYN.LE00.IN</code></td>
+    <td>min-max [min, max] → 0-100</td>
+  </tr>
+  <tr>
+    <td>自费医疗占比（逆）</td>
+    <td class="field-name">outOfPocketPct</td>
+    <td class="coverage coverage-high">148/151</td>
+    <td><code>SH.XPD.OOPC.CH.ZS</code></td>
+    <td>min-max 后取反 (100 - norm)；自费越低越好</td>
+  </tr>
 </table>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§13. 计算字段（export.mjs 生成，不存在于 SOT）</h2>
+<!-- ═══ 9. Governance ═══ -->
+<h2 id="governance">9. 治理指数 (governanceIndex)</h2>
+
+<h3>9.1 公式</h3>
+<p><code>governanceIndex = 50% × corruptionPerceptionIndex + 50% × govEffectiveness</code></p>
 
 <table>
-<tr><th>字段</th><th>公式</th><th>依赖</th></tr>
-<tr><td><code>averageIncome</code></td><td>professions 25 个值的中位数</td><td>professions</td></tr>
-<tr><td><code>homicideRateInv</code></td><td>100 - minMaxNorm(homicideRate, min, max)</td><td>homicideRate</td></tr>
-<tr><td><code>safetyIndex</code></td><td>§1 公式</td><td>4 个安全子指标</td></tr>
-<tr><td><code>healthcareIndex</code></td><td>§2 公式</td><td>5 个医疗子指标</td></tr>
-<tr><td><code>governanceIndex</code></td><td>§3 公式</td><td>CPI + govEff</td></tr>
-<tr><td><code>freedomIndex</code></td><td>§3 公式</td><td>democracy + CPI</td></tr>
-<tr><td><code>*Confidence</code> (×5)</td><td>可用子指标权重之和 (0-100)</td><td>各子指标 null 状态</td></tr>
+  <tr><th>子指标</th><th>字段</th><th>覆盖</th><th>来源</th><th>说明</th></tr>
+  <tr>
+    <td>清廉感知</td>
+    <td class="field-name">corruptionPerceptionIndex</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td>TI CPI 2024 <span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>Transparency International CPI，0-100 (100=最清廉)</td>
+  </tr>
+  <tr>
+    <td>政府效能</td>
+    <td class="field-name">govEffectiveness</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td>WB <code>GE.PER.RNK</code> <span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>WGI Government Effectiveness — 百分位排名 (0-100)</td>
+  </tr>
 </table>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<h2>§14. 数据管道与脚本</h2>
+<!-- ═══ 10. Freedom ═══ -->
+<h2 id="freedom">10. 自由指数 (freedomIndex)</h2>
+
+<h3>10.1 公式</h3>
+<p><code>freedomIndex = 55% × democracyNorm + 45% × corruptionPerceptionIndex</code></p>
+<p>其中 <code>democracyNorm = democracyIndex × 10</code> (将 0-10 归一化至 0-100)</p>
 
 <table>
-<tr><th>脚本</th><th>用途</th><th>输入</th><th>输出</th></tr>
-<tr><td><code>data/scripts/export.mjs</code></td><td>SOT → cities.json（计算复合指数）</td><td>cities-source.json</td><td>public/data/cities.json</td></tr>
-<tr><td><code>data/scripts/validate.mjs</code></td><td>数据完整性验证</td><td>cities-source.json + cities.json</td><td>PASS/FAIL</td></tr>
-<tr><td><code>scripts/fetch-wb-safety-data.mjs</code></td><td>WB 安全指数 4 子指标</td><td>WB API (bulk)</td><td>SOT</td></tr>
-<tr><td><code>scripts/fetch-wb-new-indicators.mjs</code></td><td>WB 10 项新指标</td><td>WB API (bulk + 分页)</td><td>SOT</td></tr>
-<tr><td><code>scripts/fetch-remaining-replacements.mjs</code></td><td>WGI VA (democracy) + UNDP HDI/GII</td><td>WB API + UNDP CSV</td><td>SOT</td></tr>
-<tr><td><code>scripts/fetch-extended-sources.mjs</code></td><td>IMF 预测 + GNI + 冲突警告</td><td>IMF API + WB API</td><td>SOT</td></tr>
-<tr><td><code>scripts/extract-ilo-to-sot.mjs</code></td><td>ILO CSV → 4 个 SOT 字段</td><td>data/sources/ilo/*.csv</td><td>SOT</td></tr>
-<tr><td><code>scripts/rebuild-cost-data.mjs</code></td><td>成本数据重建</td><td>WB API + SOT (gdpPPP, GNI)</td><td>SOT</td></tr>
-<tr><td><code>scripts/update-rates.mjs</code></td><td>汇率自动更新</td><td>外部汇率 API</td><td>public/data/exchange-rates.json</td></tr>
-<tr><td><code>data/salary-research/scripts/collect-bls.mjs</code></td><td>BLS OEWS 美国薪资</td><td>BLS API</td><td>salary-research/raw/</td></tr>
+  <tr><th>子指标</th><th>字段</th><th>覆盖</th><th>来源</th><th>说明</th></tr>
+  <tr>
+    <td>民主指数</td>
+    <td class="field-name">democracyIndex</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td>WB <code>VA.PER.RNK</code> <span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>WGI Voice & Accountability 百分位排名，归一化为 0-10 scale。<br>注：替代了已移除的 EIU Democracy Index。</td>
+  </tr>
+  <tr>
+    <td>清廉感知</td>
+    <td class="field-name">corruptionPerceptionIndex</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td>TI CPI 2024 <span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>与治理指数共享同一字段</td>
+  </tr>
 </table>
 
-<hr class="sep">
+<!-- ═══ 11. Macro ═══ -->
+<h2 id="macro">11. 宏观经济 (10 字段)</h2>
 
-<div style="color:var(--muted);font-size:12px;text-align:center;">
-  WhichCity 数据溯源文档 · 2026-04-15 · <code>inspiration/_data-provenance.html</code><br>
-  每次数据来源变更时必须同步更新本文档。
+<table>
+  <tr><th>字段</th><th>覆盖</th><th>WB ID / 来源</th><th>许可</th><th>说明</th></tr>
+  <tr>
+    <td class="field-name">gdpPppPerCapita</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td><code>NY.GDP.PCAP.PP.CD</code></td>
+    <td><span class="badge badge-cc">WB CC BY 4.0</span></td>
+    <td>人均 GDP (PPP, 当前国际美元)</td>
+  </tr>
+  <tr>
+    <td class="field-name">gniPerCapita</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td><code>NY.GNP.PCAP.CD</code></td>
+    <td><span class="badge badge-cc">WB CC BY 4.0</span></td>
+    <td>人均 GNI (Atlas method, 当前美元)</td>
+  </tr>
+  <tr>
+    <td class="field-name">inflationRate</td>
+    <td class="coverage coverage-high">148/151</td>
+    <td><code>FP.CPI.TOTL.ZG</code></td>
+    <td><span class="badge badge-cc">WB CC BY 4.0</span></td>
+    <td>消费者价格通胀率 (年%)</td>
+  </tr>
+  <tr>
+    <td class="field-name">unemploymentRate</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td><code>SL.UEM.TOTL.ZS</code></td>
+    <td><span class="badge badge-cc">WB CC BY 4.0</span></td>
+    <td>失业率 (% 劳动力, ILO 模型估算)</td>
+  </tr>
+  <tr>
+    <td class="field-name">inflationForecast</td>
+    <td class="coverage coverage-high">149/151</td>
+    <td>IMF WEO Oct 2024</td>
+    <td><span class="badge badge-open">IMF Open</span></td>
+    <td>2025 年通胀预测 (年%)</td>
+  </tr>
+  <tr>
+    <td class="field-name">gdpGrowthForecast</td>
+    <td class="coverage coverage-high">149/151</td>
+    <td>IMF WEO Oct 2024</td>
+    <td><span class="badge badge-open">IMF Open</span></td>
+    <td>2025 年 GDP 增长预测 (年%)</td>
+  </tr>
+  <tr>
+    <td class="field-name">hdi</td>
+    <td class="coverage coverage-high">149/151</td>
+    <td>UNDP HDR 2025</td>
+    <td><span class="badge badge-cc">CC BY 3.0 IGO</span></td>
+    <td>人类发展指数 (0-1)。综合寿命、教育、收入。</td>
+  </tr>
+  <tr>
+    <td class="field-name">gii</td>
+    <td class="coverage coverage-high">147/151</td>
+    <td>UNDP HDR 2025</td>
+    <td><span class="badge badge-cc">CC BY 3.0 IGO</span></td>
+    <td>性别不平等指数 (0-1, 越低越好)。综合生殖健康、赋权、劳动参与。</td>
+  </tr>
+  <tr>
+    <td class="field-name">netMigration</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td><code>SM.POP.NETM</code></td>
+    <td><span class="badge badge-cc">WB CC BY 4.0</span></td>
+    <td>净迁移人数 (5 年估算)。正=净流入。</td>
+  </tr>
+  <tr>
+    <td class="field-name">regulatoryQuality</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td><code>RQ.PER.RNK</code></td>
+    <td><span class="badge badge-cc">WB CC BY 4.0</span></td>
+    <td>WGI 监管质量百分位排名 (0-100)</td>
+  </tr>
+</table>
+
+<!-- ═══ 12. Labor ═══ -->
+<h2 id="labor">12. 劳动力市场 (5 字段)</h2>
+
+<table>
+  <tr><th>字段</th><th>覆盖</th><th>来源</th><th>许可</th><th>说明</th></tr>
+  <tr>
+    <td class="field-name">annualWorkHours</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td>OECD / 各国统计局</td>
+    <td><span class="badge badge-pd">Public</span></td>
+    <td>年均工作小时数</td>
+  </tr>
+  <tr>
+    <td class="field-name">paidLeaveDays</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td>各国劳动法</td>
+    <td><span class="badge badge-pd">Public Law</span></td>
+    <td>法定带薪年假天数（年假+公共假期）</td>
+  </tr>
+  <tr>
+    <td class="field-name">minimumWagePPP</td>
+    <td class="coverage coverage-mid">128/151</td>
+    <td><code>data/sources/ilo/ilo-min-wage-*.csv</code></td>
+    <td><span class="badge badge-cc">ILO CC BY 4.0</span></td>
+    <td>法定月最低工资 (2021 PPP $)</td>
+  </tr>
+  <tr>
+    <td class="field-name">weeklyHoursEmp</td>
+    <td class="coverage coverage-mid">116/151</td>
+    <td><code>data/sources/ilo/ilo-hours-*.csv</code></td>
+    <td><span class="badge badge-cc">ILO CC BY 4.0</span></td>
+    <td>雇员周均工作时数 (Sex=Total)</td>
+  </tr>
+  <tr>
+    <td class="field-name">earningsGini</td>
+    <td class="coverage coverage-mid">82/151</td>
+    <td><code>data/sources/ilo/ilo-earnings-inequality-*.csv</code></td>
+    <td><span class="badge badge-cc">ILO CC BY 4.0</span></td>
+    <td>时薪基尼系数 (0-1)。衡量收入分配不均。</td>
+  </tr>
+  <tr>
+    <td class="field-name">genderWageGap</td>
+    <td class="coverage coverage-mid">98/151</td>
+    <td><code>data/sources/ilo/ilo-wage-gap-*.csv</code></td>
+    <td><span class="badge badge-cc">ILO CC BY 4.0</span></td>
+    <td>性别工资差距 (%)。正=女性收入低于男性。</td>
+  </tr>
+</table>
+
+<p>ILO 数据共 22 个 CSV 文件，存于 <code>data/sources/ilo/</code>。提取脚本：<code>scripts/extract-ilo-to-sot.mjs</code>。</p>
+
+<!-- ═══ 13. Environment ═══ -->
+<h2 id="env">13. 环境与基础设施</h2>
+
+<table>
+  <tr><th>字段</th><th>覆盖</th><th>来源</th><th>许可</th><th>说明</th></tr>
+  <tr>
+    <td class="field-name">airQuality</td>
+    <td class="coverage coverage-full">151/151</td>
+    <td>EPA AQI + AQICN</td>
+    <td><span class="badge badge-self">编辑整理</span></td>
+    <td>AQI (US EPA 标准)。aqiSource 标记来源 ("EPA" 或 "AQICN")</td>
+  </tr>
+  <tr>
+    <td class="field-name">pm25</td>
+    <td class="coverage coverage-high">149/151</td>
+    <td>WB <code>EN.ATM.PM25.MC.M3</code></td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>PM2.5 年均暴露浓度 (μg/m³)</td>
+  </tr>
+  <tr>
+    <td class="field-name">broadbandPer100</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td>WB <code>IT.NET.BBND.P2</code></td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>每 100 人固定宽带订阅数。作为网络基础设施质量代理指标（替代已移除的 Ookla 网速数据）。</td>
+  </tr>
+  <tr>
+    <td class="field-name">internetSpeedMbps</td>
+    <td class="coverage coverage-low">0/151</td>
+    <td>—</td>
+    <td>—</td>
+    <td>⛔ 已清空。Ookla (CC BY-NC-SA) 和 M-Lab (CC BY-NC-SA) 均禁止商业使用。字段保留，值为 null。</td>
+  </tr>
+  <tr>
+    <td class="field-name">directFlightCities</td>
+    <td class="coverage coverage-high">150/151</td>
+    <td>公开航线数据</td>
+    <td><span class="badge badge-self">编辑整理</span></td>
+    <td>该城市机场直飞目的地数量</td>
+  </tr>
+  <tr>
+    <td class="field-name">bigMacPrice</td>
+    <td class="coverage coverage-high">143/151</td>
+    <td>The Economist 公开数据</td>
+    <td><span class="badge badge-open">Open + Attribution</span></td>
+    <td>巨无霸价格 (USD)。购买力直觉参考。</td>
+  </tr>
+  <tr>
+    <td class="field-name">tertiaryEnrollment</td>
+    <td class="coverage coverage-high">148/151</td>
+    <td>WB <code>SE.TER.ENRR</code></td>
+    <td><span class="badge badge-cc">CC BY 4.0</span></td>
+    <td>高等教育毛入学率 (%)</td>
+  </tr>
+</table>
+
+<!-- ═══ 14. Healthcare Extra ═══ -->
+<h3>补充医疗字段</h3>
+<table>
+  <tr><th>字段</th><th>覆盖</th><th>WB ID</th><th>说明</th></tr>
+  <tr>
+    <td class="field-name">nursesPerThousand</td>
+    <td class="coverage coverage-high">149/151</td>
+    <td><code>SH.MED.NUMW.P3</code></td>
+    <td>每千人护士/助产士数</td>
+  </tr>
+  <tr>
+    <td class="field-name">healthExpPerCapita</td>
+    <td class="coverage coverage-high">148/151</td>
+    <td><code>SH.XPD.CHEX.PC.CD</code></td>
+    <td>人均医疗支出 (当前美元)</td>
+  </tr>
+</table>
+
+<!-- ═══ 15. Climate ═══ -->
+<h2 id="climate">14. 气候数据 (10 维度)</h2>
+
+<p>每个城市的 <code>climate</code> 对象包含 10 个维度：</p>
+
+<table>
+  <tr><th>字段</th><th>类型</th><th>说明</th></tr>
+  <tr><td class="field-name">type</td><td>ClimateType</td><td>气候类型：tropical / temperate / continental / arid / mediterranean / oceanic</td></tr>
+  <tr><td class="field-name">avgTempC</td><td>number</td><td>年均温度 (°C)</td></tr>
+  <tr><td class="field-name">annualRainMm</td><td>number</td><td>年降水量 (mm)</td></tr>
+  <tr><td class="field-name">sunshineHours</td><td>number</td><td>年日照时数 (h)</td></tr>
+  <tr><td class="field-name">summerAvgC</td><td>number</td><td>夏季均温 (°C)</td></tr>
+  <tr><td class="field-name">winterAvgC</td><td>number</td><td>冬季均温 (°C)</td></tr>
+  <tr><td class="field-name">humidityPct</td><td>number</td><td>年均相对湿度 (%)</td></tr>
+  <tr><td class="field-name">monthlyHighC</td><td>number[12]</td><td>每月平均最高温 (°C), 1月-12月</td></tr>
+  <tr><td class="field-name">monthlyLowC</td><td>number[12]</td><td>每月平均最低温 (°C)</td></tr>
+  <tr><td class="field-name">monthlyRainMm</td><td>number[12]</td><td>每月降水量 (mm)</td></tr>
+</table>
+
+<p>来源：<span class="badge badge-self">编辑整理</span> — 综合自 Wikipedia 气候数据框（通常引用各国气象局 30 年平均值）、World Meteorological Organization、Climate-Data.org (CC BY-SA)。</p>
+<p>验证：export 管道检查月降水总和 vs 年降水量（允许 20% 偏差），检查月最高温 ≥ 月最低温。</p>
+
+<!-- ═══ 16. Nomad ═══ -->
+<h2 id="nomad">15. 数字游民数据</h2>
+
+<p>数字游民专用数据存于 <code>public/data/nomad-*.json</code>，不在 SOT 中。</p>
+
+<table>
+  <tr><th>数据</th><th>来源</th><th>说明</th></tr>
+  <tr><td>签证类型/要求</td><td><span class="badge badge-self">编辑整理</span></td><td>各国移民局官网</td></tr>
+  <tr><td>VPN 限制</td><td><span class="badge badge-self">编辑整理</span></td><td>true / false / "partial"</td></tr>
+  <tr><td>英语水平</td><td><span class="badge badge-self">编辑整理</span></td><td>A/B/C/D 评级 (编辑判断)</td></tr>
+  <tr><td>时区重叠</td><td><span class="badge badge-self">自有算法</span></td><td>基于 IANA timezone 计算工作时间重叠</td></tr>
+  <tr><td>免签矩阵</td><td><span class="badge badge-self">编辑整理</span></td><td>护照→目的地免签天数</td></tr>
+</table>
+
+<!-- ═══ 17. Pipeline ═══ -->
+<h2 id="pipeline">16. 数据管道与验证</h2>
+
+<h3>16.1 数据流</h3>
+<pre style="background: var(--code-bg); padding: 16px; border-radius: 8px; font-size: 13px; overflow-x: auto;">
+┌─────────────────────┐     ┌──────────────┐     ┌─────────────────┐
+│ data/cities-source   │ ──→ │ export.mjs   │ ──→ │ public/data/    │
+│     .json  (SOT)     │     │ (compute +   │     │  cities.json    │
+│   48 raw fields      │     │  validate)   │     │ (frontend JSON) │
+│   25 professions     │     └──────────────┘     └─────────────────┘
+│   10 climate dims    │
+└─────────────────────┘
+         ↑
+   ┌─────┴─────────────────────────────────────────┐
+   │ Scripts (run manually, write to SOT):          │
+   │  • rebuild-salary.mjs — 薪资分层选优           │
+   │  • rebuild-cost-data.mjs — 生活成本估算        │
+   │  • fetch-wb-new-indicators.mjs — WB 指标       │
+   │  • extract-ilo-to-sot.mjs — ILO CSV 提取      │
+   │  • update-rates.mjs — 汇率更新                 │
+   │  • add-monthly-climate.mjs — 气候数据          │
+   │  • add-timezone.mjs — 时区                      │
+   │  • validate-data.mjs — 独立验证                 │
+   │  • validate-salary-quality.mjs — 薪资交叉验证   │
+   └─────────────────────────────────────────────────┘
+</pre>
+
+<h3>16.2 Export 管道验证项</h3>
+<ul>
+  <li>每城市必须有 25 个职业</li>
+  <li>四大指数 (safety/healthcare/governance/freedom) 在 [0, 100] 范围内</li>
+  <li>所有 confidence 分数为 number 且 ∈ [0, 100]</li>
+  <li>气候月降水 vs 年降水一致性 (±20%)</li>
+  <li>月最高温 ≥ 月最低温</li>
+  <li>averageIncome / profession median 比率 ∈ [0.2, 5.0]</li>
+</ul>
+
+<h3>16.3 提交门槛</h3>
+<pre style="background: var(--code-bg); padding: 16px; border-radius: 8px; font-size: 13px;">
+npx tsc --noEmit     ✅ 类型检查
+npm test             ✅ 单元测试 (税务引擎 + 复合指数)
+node export.mjs      ✅ 导出 + 验证 (0 errors)
+node validate.mjs    ✅ 独立数据验证
+</pre>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PART 2: CITY DETAIL PAGE REDESIGN -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<hr class="section-divider">
+
+<h2 id="redesign">17. 城市详情页重设计</h2>
+
+<h3>设计理念</h3>
+
+<div class="design-note">
+  <strong>核心假设：用户看不懂数据，也不想看数据。</strong><br><br>
+  用户来到城市详情页，心里的问题是：<br>
+  "这个城市<strong>适不适合我去</strong>？去了之后<strong>生活品质怎么样</strong>？有没有<strong>什么坑</strong>？"<br><br>
+  他们不需要 48 个字段的数字轰炸。他们需要：<br>
+  ① 一个<strong>可信的结论</strong>（结论 = 数据 + 解读，而不是数据本身）<br>
+  ② 支撑结论的<strong>关键证据</strong>（3-5 个一眼能懂的指标）<br>
+  ③ 想深挖时有<strong>展开详情</strong>的通道<br><br>
+  设计原则：<strong>结论先行 → 证据支撑 → 细节可选</strong>
 </div>
 
+<h3>信息架构：什么该展示 / 什么不该展示</h3>
+
+<table>
+  <tr><th>层级</th><th>展示内容</th><th>展示方式</th><th>为什么</th></tr>
+  <tr>
+    <td><strong>🔴 必看</strong><br>(首屏)</td>
+    <td>
+      结论卡片（一句话总结）<br>
+      安全评级 (S/A/B/C/D)<br>
+      税后收入 (选定职业)<br>
+      生活成本
+    </td>
+    <td>大字 + 色彩 + 自然语言</td>
+    <td>用户最关心：安全吗？赚多少？花多少？</td>
+  </tr>
+  <tr>
+    <td><strong>🟡 应看</strong><br>(滚动可见)</td>
+    <td>
+      每月结余 + 存钱年限<br>
+      医疗水平<br>
+      气候概况<br>
+      工作强度
+    </td>
+    <td>卡片 + 关键数字 + 一句解读</td>
+    <td>决策第二层：生活质量和长期可行性</td>
+  </tr>
+  <tr>
+    <td><strong>🟢 可选</strong><br>(点击展开)</td>
+    <td>
+      税务明细<br>
+      安全/医疗/治理子指标<br>
+      成本拆分<br>
+      宏观经济指标<br>
+      劳动力市场
+    </td>
+    <td>折叠区域，点击展开</td>
+    <td>给较真的用户验证数据的通道</td>
+  </tr>
+  <tr>
+    <td><strong>⚪ 不展示</strong></td>
+    <td>
+      原始 WB 指标代码<br>
+      归一化前的百分位值<br>
+      覆盖率/置信度数字<br>
+      earningsGini, genderWageGap<br>
+      tertiaryEnrollment, regulatoryQuality<br>
+      netMigration 原始值
+    </td>
+    <td>仅用于后端计算</td>
+    <td>
+      用户不关心 "WGI RL.PER.RNK = 89.3"，<br>
+      关心的是 "法治环境很好"。<br>
+      冷门指标只在排行榜筛选/对比页出现。
+    </td>
+  </tr>
+</table>
+
+<h3>重设计页面原型</h3>
+
+<p>以东京为例（安全评级 A，中等收入，中等成本）：</p>
+
+<div class="phone-frame">
+<div class="phone-screen">
+
+  <!-- Status Bar -->
+  <div class="phone-status">9:41</div>
+
+  <!-- Nav -->
+  <div class="mock-nav">
+    <span class="back">‹</span>
+    <span>WhichCity</span>
+    <span style="margin-left:auto; font-size:12px; color:#71717a;">⇅ 对比 · ↗ 分享</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="city-hero">
+    <h1>🇯🇵 东京</h1>
+    <div class="meta">日本 · UTC+9 · 14:30 · 温带海洋性</div>
+    <div class="intro">全球最安全的超级城市之一，公共交通极度发达，生活便利但居住空间紧凑。税后收入在亚洲发达城市中处于中上水平。</div>
+  </div>
+
+  <!-- ★ Verdict Card — 最核心的改变 -->
+  <div class="verdict-card">
+    <div class="verdict-label">✦ WhichCity 评估</div>
+    <div class="verdict-text">
+      安全评级 <strong>A</strong>，医疗水平全球前列。<br>
+      软件工程师税后月入约 <strong>¥33 万</strong>，扣除生活成本后每月可存约 <strong>¥8 万</strong>。
+    </div>
+    <div class="verdict-tags">
+      <span class="verdict-tag green">极低犯罪</span>
+      <span class="verdict-tag green">顶级医疗</span>
+      <span class="verdict-tag blue">中等税负</span>
+      <span class="verdict-tag amber">居住空间小</span>
+    </div>
+  </div>
+
+  <!-- Section: Money -->
+  <div class="section-block">
+    <div class="section-title"><span class="icon">💰</span> 收入与开支</div>
+
+    <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+      <div>
+        <div class="big-number" style="color: #18181b;">¥33<span style="font-size:20px">万</span></div>
+        <div class="big-label">税后月收入</div>
+      </div>
+      <div>
+        <div class="big-number" style="color: #d97706;">¥25<span style="font-size:20px">万</span></div>
+        <div class="big-label">月生活成本</div>
+      </div>
+      <div>
+        <div class="big-number" style="color: #16a34a;">¥8<span style="font-size:20px">万</span></div>
+        <div class="big-label">月结余</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-text">
+        💡 软件工程师在东京的存钱率约 <strong>24%</strong>，买一套 60m² 的房子大约需要 <strong>8.2 年</strong>。在全球 120 城市中排名第 <strong>45</strong>。
+      </div>
+    </div>
+
+    <div class="expand-hint">▾ 展开查看税务明细</div>
+  </div>
+
+  <!-- Section: Safety & Society -->
+  <div class="section-block">
+    <div class="section-title"><span class="icon">🛡️</span> 安全与社会保障</div>
+
+    <div style="display: flex; gap: 20px; margin-bottom: 10px;">
+      <div>
+        <div class="big-number" style="color: #16a34a;">A</div>
+        <div class="big-label">综合评级</div>
+      </div>
+      <div style="flex:1;">
+        <div class="bar-chart">
+          <div class="bar-row">
+            <span class="bar-label">治安</span>
+            <span class="bar-track"><span class="bar-fill" style="width:95%;background:#16a34a;"></span></span>
+            <span class="bar-val" style="color:#16a34a;">95</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">医疗</span>
+            <span class="bar-track"><span class="bar-fill" style="width:88%;background:#16a34a;"></span></span>
+            <span class="bar-val" style="color:#16a34a;">88</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">治理</span>
+            <span class="bar-track"><span class="bar-fill" style="width:82%;background:#2563eb;"></span></span>
+            <span class="bar-val" style="color:#2563eb;">82</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-text">
+        🏥 每千人 2.5 名医生，全民健康覆盖指数 <strong>83</strong>/100，预期寿命 <strong>84.8</strong> 岁。医疗水平全球前 15%。
+      </div>
+    </div>
+
+    <div class="expand-hint">▾ 展开查看 11 项子指标</div>
+  </div>
+
+  <!-- Section: Lifestyle -->
+  <div class="section-block">
+    <div class="section-title"><span class="icon">🌤️</span> 生活与环境</div>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+      <div style="text-align:center; min-width: 70px;">
+        <div style="font-size:20px; font-weight:900;">16°C</div>
+        <div style="font-size:10px; color:#71717a;">年均温</div>
+      </div>
+      <div style="text-align:center; min-width: 70px;">
+        <div style="font-size:20px; font-weight:900;">AQI 42</div>
+        <div style="font-size:10px; color:#71717a;">空气质量</div>
+      </div>
+      <div style="text-align:center; min-width: 70px;">
+        <div style="font-size:20px; font-weight:900;">1,780h</div>
+        <div style="font-size:10px; color:#71717a;">年工时</div>
+      </div>
+      <div style="text-align:center; min-width: 70px;">
+        <div style="font-size:20px; font-weight:900;">20天</div>
+        <div style="font-size:10px; color:#71717a;">带薪假期</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-text">
+        🗣️ 官方语言日语。日常英语水平 <strong>中等偏低</strong>，工作交流可能需要日语能力。直飞城市 <strong>145+</strong> 个。
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Climate Chart Placeholder -->
+  <div class="section-block">
+    <div class="section-title"><span class="icon">📊</span> 月度气候</div>
+    <div style="height:140px; background: linear-gradient(180deg, #fef3c7 0%, #dbeafe 50%, #f1f5f9 100%); border-radius: 10px; display:flex; align-items:center; justify-content:center; color:#71717a; font-size:12px;">
+      [温度 + 降水 双轴图]
+    </div>
+  </div>
+
+  <!-- Section: Similar Cities -->
+  <div class="section-block" style="border-bottom:none;">
+    <div class="section-title"><span class="icon">🔄</span> 相似城市</div>
+    <div class="comparison-strip" style="margin: 0 -16px; padding: 0 16px;">
+      <div class="comp-city">
+        <div class="flag">🇰🇷</div>
+        <div class="name">首尔</div>
+        <div class="comp-val">存钱率 +3%</div>
+      </div>
+      <div class="comp-city">
+        <div class="flag">🇹🇼</div>
+        <div class="name">台北</div>
+        <div class="comp-val">成本 -22%</div>
+      </div>
+      <div class="comp-city">
+        <div class="flag">🇸🇬</div>
+        <div class="name">新加坡</div>
+        <div class="comp-val">收入 +35%</div>
+      </div>
+      <div class="comp-city">
+        <div class="flag">🇩🇪</div>
+        <div class="name">慕尼黑</div>
+        <div class="comp-val">安全 ≈</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="padding: 16px; text-align:center; font-size:11px; color:#a1a1aa; border-top: 1px solid #f1f1f1;">
+    数据来源: World Bank · ILO · UNDP · IMF · 各国统计局<br>
+    <a href="#" style="color:#a1a1aa;">方法论</a> · <a href="#" style="color:#a1a1aa;">GitHub</a> · <a href="#" style="color:#a1a1aa;">反馈</a>
+  </div>
+
+</div>
+</div>
+
+<h3>设计决策详解</h3>
+
+<h4>① 结论卡片 (Verdict Card) — 最重要的新增</h4>
+<div class="design-note">
+  <strong>为什么需要它？</strong> 当前页面一上来就甩数字，用户要自己做判读。结论卡片替用户完成"这些数字意味着什么"的翻译工作。<br><br>
+  <strong>生成规则：</strong><br>
+  • 安全评级 S/A → 绿色卡片，C/D → 琥珀色卡片，有 safetyWarning → 红色卡片<br>
+  • 文案模板化："{安全评级} + {医疗水平描述} + {税后收入} + {月结余}"<br>
+  • 标签(tags)从数据自动派生：安全>85 → "极低犯罪"；HDI>0.9 → "极高人类发展"；存钱率<10% → "存钱困难"<br>
+  • 不需要 AI 生成，纯规则引擎即可。<br><br>
+  <strong>绝对不写的内容：</strong> 主观推荐（"建议你去"）、承诺（"安全无忧"）、排名（"第X名"是对比页的事）
+</div>
+
+<h4>② 收入与开支合并为一个区块</h4>
+<p>当前设计把"收入"和"成本"分成两个独立的 FeedPost。用户真正关心的不是收入多少、也不是成本多少，而是 <strong>"剩多少"</strong>。新设计把三个数字并排，一眼看出结余和存钱率。</p>
+<p>税务明细仍然保留，但默认折叠。点击展开后显示完整的累进税率拆分。</p>
+
+<h4>③ 安全/医疗/治理用 bar chart 而非裸数字</h4>
+<p>用户看到 "safetyIndex: 89.3" 无感，但看到一根填满 95% 的绿色进度条会立即理解"很安全"。配合 A/B/C/D 评级，信息密度不变，认知负担大幅降低。</p>
+
+<h4>④ 每个区块附带 insight 文案</h4>
+<p>每个数据区块下方有一个浅色背景的 insight box，用自然语言解读数据含义。例如"买一套 60m² 的房子大约需要 8.2 年"比 "housePrice: $8,500/m²" 有用一万倍。</p>
+
+<h4>⑤ 不展示的字段</h4>
+<p>以下字段 <strong>不在城市详情页展示</strong>，但参与后端计算或在对比页/排行榜筛选中使用：</p>
+<ul>
+  <li><code>earningsGini</code> — 收入基尼系数。太学术，用户不关心。用于全站分析。</li>
+  <li><code>genderWageGap</code> — 性别工资差距。重要议题但不属于"选城市"的核心决策路径。可在专题报告中出现。</li>
+  <li><code>tertiaryEnrollment</code> — 高等教育入学率。已被 HDI 综合反映。</li>
+  <li><code>regulatoryQuality</code> — 监管质量。太专业。</li>
+  <li><code>netMigration</code> — 净迁移人数。作为"用脚投票"信号在排行榜算法中有价值，但裸数字对用户无意义。</li>
+  <li><code>broadbandPer100</code> — 每百人宽带订阅。代理指标，直接展示不如展示网速（但网速数据因许可问题已清空）。</li>
+  <li>所有 <code>*Confidence</code> 字段 — 置信度只在低置信时以警告形式出现。</li>
+  <li>所有原始 WGI 百分位值 — 只通过复合指数和 bar chart 间接呈现。</li>
+</ul>
+
+<h4>⑥ 安全警告的处理</h4>
+<p>如果城市有 <code>safetyWarning</code>：</p>
+<ul>
+  <li>结论卡片变为红色/琥珀色背景</li>
+  <li>开头第一句话就是警告内容（"该城市处于活跃冲突区"）</li>
+  <li>安全评级旁显示警告符号</li>
+  <li>这不是藏在折叠区域里的注脚——它是首屏最醒目的信息</li>
+</ul>
+
+<h3>与当前实现的主要差异</h3>
+<table>
+  <tr><th>维度</th><th>当前实现</th><th>新设计</th></tr>
+  <tr>
+    <td>首屏</td>
+    <td>Hero + 安全评级 (数字/字母)</td>
+    <td>Hero + <strong>Verdict Card (自然语言结论)</strong></td>
+  </tr>
+  <tr>
+    <td>收入/成本</td>
+    <td>分成 2-3 个独立 FeedPost</td>
+    <td><strong>合并为一个"收入与开支"区块</strong>，结余前置</td>
+  </tr>
+  <tr>
+    <td>安全/医疗</td>
+    <td>数字 + 可展开子指标列表</td>
+    <td><strong>Bar chart + 自然语言 insight</strong>，子指标仍可展开</td>
+  </tr>
+  <tr>
+    <td>数据密度</td>
+    <td>约 20+ 个数字直接展示</td>
+    <td><strong>约 10 个数字 + 4 段解读文案</strong>，其余折叠</td>
+  </tr>
+  <tr>
+    <td>数据出处</td>
+    <td>Footer 一句话</td>
+    <td>Footer 列出具体来源机构名 + <strong>方法论页链接</strong></td>
+  </tr>
+</table>
+
+<!-- ═══ End ═══ -->
+
+<div style="margin-top: 60px; padding-top: 20px; border-top: 2px solid var(--border); color: var(--muted); font-size: 12px; text-align: center;">
+  WhichCity Data Provenance Document · v4 · 2026-04-16<br>
+  此文档随代码一同版本管理，每次数据变更时同步更新。
+</div>
+
+</div>
 </body>
 </html>

@@ -4,13 +4,15 @@
  *
  * Strategy: Use the BEST available source per city. Never blend.
  *
- * Tier 1: BLS OEWS direct (21 US cities) — Public Domain, city-level
- * Tier 2: doda.jp direct (6 Japan cities) — Public survey, city-level
- * Tier 3: ILO PPP × Gov Quality A ratios × city premium — nation-level
- * Tier 4: ILO PPP × Gov Quality B ratios × city premium — nation-level
- * Tier 5: ILO PPP × Gov Quality C/D ratios × city premium — nation-level
- * Tier 6: ILO PPP × ISCO major group × sub-ratio × city premium — coarse
- * Tier 7: GNI per capita fallback — last resort
+ * Tier 1: BLS OEWS direct (20 US cities) — Public Domain, city-level
+ * Tier 2: ILO PPP × Gov Quality A ratios × city premium — nation-level
+ * Tier 3: ILO PPP × Gov Quality B ratios × city premium — nation-level
+ * Tier 4: ILO PPP × Gov Quality C/D ratios × city premium — nation-level
+ * Tier 5: ILO PPP × ISCO major group × sub-ratio × city premium — coarse
+ * Tier 6: GNI per capita fallback — last resort
+ *
+ * doda.jp REMOVED (2026-04-16): ToS §13 著作権 + §14 禁止事項 prohibit
+ * non-personal use. Japan cities now use Tier 2 (ILO × 厚労省 Quality A).
  *
  * NO global correction factor. ILO PPP values used as-is.
  * The PPP denomination means values represent purchasing-power-equivalent
@@ -108,6 +110,7 @@ const ISCO_LABELS = {
 
 const CITY_PREMIUM = {
   "北京":1.35,"上海":1.40,"广州":1.20,"深圳":1.35,"成都":1.00,"杭州":1.15,"重庆":0.90,
+  "东京":1.25,"大阪":1.05,"名古屋":0.95,"福冈":0.90,"京都":0.95,
   "香港":1.00,"新加坡":1.00,"卢森堡":1.00,
   "伦敦":1.30,"曼彻斯特":0.90,"爱丁堡":0.95,
   "柏林":1.00,"慕尼黑":1.20,"法兰克福":1.15,"汉堡":1.05,
@@ -188,15 +191,12 @@ function main() {
   const sourceData = JSON.parse(readFileSync(SOURCE_PATH, "utf-8"));
   const cities = sourceData.cities;
   const BLS = new Set(["美国", "波多黎各"]);
-  const DODA = new Set(["日本"]);
 
-  const tiers = { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0, t6: 0, t7: 0, fail: 0 };
+  const tiers = { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0, t6: 0, fail: 0 };
 
   for (const city of cities) {
     // Tier 1: BLS
     if (BLS.has(city.country)) { tiers.t1++; continue; }
-    // Tier 2: doda
-    if (DODA.has(city.country)) { tiers.t2++; continue; }
 
     const premium = CITY_PREMIUM[city.name] ?? DEFAULT_PREMIUM;
     const iloName = COUNTRY_TO_ILO[city.country];
@@ -217,11 +217,11 @@ function main() {
 
     // Determine tier
     let tier;
-    if (annualBase && countryGovRatios && quality === "A") tier = "t3";
-    else if (annualBase && countryGovRatios && quality === "B") tier = "t4";
-    else if (annualBase && countryGovRatios) tier = "t5";
-    else if (annualBase && countryISCO && iscoTotal) tier = "t6";
-    else if (city.gniPerCapita) { annualBase = city.gniPerCapita; tier = "t7"; }
+    if (annualBase && countryGovRatios && quality === "A") tier = "t2";
+    else if (annualBase && countryGovRatios && quality === "B") tier = "t3";
+    else if (annualBase && countryGovRatios) tier = "t4";
+    else if (annualBase && countryISCO && iscoTotal) tier = "t5";
+    else if (city.gniPerCapita) { annualBase = city.gniPerCapita; tier = "t6"; }
     else { tiers.fail++; continue; }
 
     tiers[tier]++;
@@ -230,10 +230,10 @@ function main() {
       if (mapping.isco === -1) { city.professions[prof] = 85000; continue; }
 
       let salary;
-      if (tier <= "t5" && countryGovRatios?.[prof]) {
+      if (tier <= "t4" && countryGovRatios?.[prof]) {
         // Tier 3/4/5: Use government profession ratio directly
         salary = annualBase * countryGovRatios[prof] * premium;
-      } else if (tier === "t6" && countryISCO && iscoTotal) {
+      } else if (tier === "t5" && countryISCO && iscoTotal) {
         // Tier 6: Use ISCO major group
         const iscoLabel = ISCO_LABELS[mapping.isco];
         const iscoVal = countryISCO[iscoLabel]?.val;
@@ -255,17 +255,16 @@ function main() {
 
   console.log("═══ Results ═══");
   console.log(`  Tier 1 (BLS direct):        ${tiers.t1}`);
-  console.log(`  Tier 2 (doda direct):        ${tiers.t2}`);
-  console.log(`  Tier 3 (ILO × Gov A):        ${tiers.t3}`);
-  console.log(`  Tier 4 (ILO × Gov B):        ${tiers.t4}`);
-  console.log(`  Tier 5 (ILO × Gov C/D):      ${tiers.t5}`);
-  console.log(`  Tier 6 (ILO × ISCO):         ${tiers.t6}`);
-  console.log(`  Tier 7 (GNI fallback):        ${tiers.t7}`);
+  console.log(`  Tier 2 (ILO × Gov A):        ${tiers.t2}`);
+  console.log(`  Tier 3 (ILO × Gov B):        ${tiers.t3}`);
+  console.log(`  Tier 4 (ILO × Gov C/D):      ${tiers.t4}`);
+  console.log(`  Tier 5 (ILO × ISCO):         ${tiers.t5}`);
+  console.log(`  Tier 6 (GNI fallback):        ${tiers.t6}`);
   console.log(`  Failed:                       ${tiers.fail}`);
   console.log(`  Total: ${Object.values(tiers).reduce((a,b)=>a+b, 0)}/${cities.length}`);
 
   console.log("\n═══ Same-Country Comparison ═══");
-  const pairs = [["北京","成都"],["上海","重庆"],["伦敦","曼彻斯特"],["慕尼黑","柏林"],["首尔","釜山"],["曼谷","清迈"]];
+  const pairs = [["北京","成都"],["上海","重庆"],["东京","福冈"],["伦敦","曼彻斯特"],["慕尼黑","柏林"],["首尔","釜山"],["曼谷","清迈"]];
   for (const [a, b] of pairs) {
     const ca = cities.find(c => c.name === a), cb = cities.find(c => c.name === b);
     if (!ca || !cb) continue;
