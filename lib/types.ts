@@ -46,6 +46,19 @@ export interface City {
   lifeExpectancy: number | null;
   democracyIndex: number | null;
   corruptionPerceptionIndex: number | null;
+  // New indicators (WB CC BY 4.0 + UNDP CC BY 3.0 IGO)
+  inflationRate: number | null;        // Consumer price inflation (annual %)
+  unemploymentRate: number | null;     // Unemployment (% labor force, ILO modeled)
+  gdpPppPerCapita: number | null;      // GDP per capita PPP (current int'l $)
+  pm25: number | null;                 // PM2.5 mean annual exposure (μg/m³)
+  broadbandPer100: number | null;      // Fixed broadband subscriptions per 100 people
+  regulatoryQuality: number | null;    // WGI Regulatory Quality (0-100)
+  netMigration: number | null;         // Net migration (5-year estimate)
+  nursesPerThousand: number | null;    // Nurses & midwives per 1,000 people
+  healthExpPerCapita: number | null;   // Health expenditure per capita (current US$)
+  tertiaryEnrollment: number | null;   // School enrollment, tertiary (% gross)
+  hdi: number | null;                  // UNDP Human Development Index (0-1)
+  gii: number | null;                  // UNDP Gender Inequality Index (0-1, lower=better)
   timezone?: string;
   climate?: ClimateInfo;
 }

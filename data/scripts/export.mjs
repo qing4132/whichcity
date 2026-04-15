@@ -100,6 +100,10 @@ const RAW_FIELDS = [
   "safetyWarning",
   "democracyIndex", "corruptionPerceptionIndex",
   "govEffectiveness",
+  "inflationRate", "unemploymentRate", "gdpPppPerCapita",
+  "pm25", "broadbandPer100", "regulatoryQuality",
+  "netMigration", "nursesPerThousand", "healthExpPerCapita",
+  "tertiaryEnrollment", "hdi", "gii",
   "directFlightCities",
   "climate", "timezone",
 ];
