@@ -132,7 +132,7 @@
 
 <h1>WhichCity 数据溯源文档</h1>
 <p class="subtitle">
-  最后更新：2026-04-16 (v4.1: doda 移除) · 数据库版本：151 城市 · 48 字段 · 25 职业 · 88 国税制 · 10 气候维度<br>
+  最后更新：2026-04-16 · 数据库版本：151 城市 · 48 字段 · 25 职业 · 88 国税制 · 10 气候维度<br>
   合规目标：<strong>100% 开放许可 + 自有 IP，零付费数据，零法律风险</strong>
 </p>
 
@@ -345,7 +345,7 @@
     <td class="crit">doda 平均年収</td>
     <td>日本 5 城市薪资 (Tier 2)</td>
     <td>利用規約 §13「著作物等の全部または一部の複製、転載等を行うことはできない」<br>免責事項「書面による許可なく、個人的な目的以外で利用することは禁止」<br>§14(3)「私的利用の範囲を超えて利用し、または第三者に開示、提供する行為」禁止</td>
-    <td>ILO PPP × 厚労省 Quality A 职业比率 × 城市溢价（日本城市升级为 Tier 2）</td>
+    <td>ILO PPP × 厚労省 Quality A 职业比率 × 城市溢价</td>
   </tr>
 </table>
 
@@ -393,8 +393,7 @@
     <td>21</td>
     <td>ILO ILOSTAT 全国 PPP 月收入 × 12 × 政府统计局职业比率 (Quality A) × 城市溢价系数。<br>
     Quality A 国家 (10): 日本(厚労省)、加拿大(StatCan)、英国(ONS)、德国(Destatis)、法国(INSEE)、新加坡(MOM)、瑞士(BFS)、韩国(KOSIS)、捷克(CZSO)、新西兰(StatsNZ)。<br>
-    职业比率来源：<code>data/salary-research/raw/country-specific-ratios.json</code><br>
-    <em>注：日本城市原使用 doda 直取 (Tier 2)，因 doda 利用规约 §13/§14 禁止非个人用途，于 2026-04-16 移除并回退至本层。</em></td>
+    职业比率来源：<code>data/salary-research/raw/country-specific-ratios.json</code></td>
   </tr>
   <tr>
     <td><span class="badge badge-tier">Tier 3</span></td>
