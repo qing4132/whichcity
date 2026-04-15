@@ -64,6 +64,10 @@ function makeCity(overrides: Partial<City> = {}): City {
         inflationForecast: null,
         gdpGrowthForecast: null,
         gniPerCapita: null,
+        minimumWagePPP: null,
+        weeklyHoursEmp: null,
+        earningsGini: null,
+        genderWageGap: null,
         ...overrides,
     };
 }

@@ -105,6 +105,7 @@ const RAW_FIELDS = [
   "netMigration", "nursesPerThousand", "healthExpPerCapita",
   "tertiaryEnrollment", "hdi", "gii",
   "inflationForecast", "gdpGrowthForecast", "gniPerCapita",
+  "minimumWagePPP", "weeklyHoursEmp", "earningsGini", "genderWageGap",
   "directFlightCities",
   "climate", "timezone",
 ];
