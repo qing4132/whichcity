@@ -1,0 +1,1512 @@
+{
+  "1": {
+    "id": 1,
+    "name": "纽约",
+    "country": "美国",
+    "lat": 40.7127281,
+    "lon": -74.0060152,
+    "source": "nominatim",
+    "displayName": "New York, United States",
+    "query": "New York, USA"
+  },
+  "2": {
+    "id": 2,
+    "name": "伦敦",
+    "country": "英国",
+    "lat": 51.5074456,
+    "lon": -0.1277653,
+    "source": "nominatim",
+    "displayName": "Greater London, England, United Kingdom",
+    "query": "London, United Kingdom"
+  },
+  "3": {
+    "id": 3,
+    "name": "东京",
+    "country": "日本",
+    "lat": 35.6768601,
+    "lon": 139.7638947,
+    "source": "nominatim",
+    "displayName": "東京都, 日本",
+    "query": "Tokyo, Japan"
+  },
+  "4": {
+    "id": 4,
+    "name": "北京",
+    "country": "中国",
+    "lat": 39.9057136,
+    "lon": 116.3912972,
+    "source": "nominatim",
+    "displayName": "北京市, 中国",
+    "query": "Beijing, China"
+  },
+  "5": {
+    "id": 5,
+    "name": "上海",
+    "country": "中国",
+    "lat": 31.2312707,
+    "lon": 121.4700152,
+    "source": "nominatim",
+    "displayName": "上海市, 中国",
+    "query": "Shanghai, China"
+  },
+  "6": {
+    "id": 6,
+    "name": "悉尼",
+    "country": "澳大利亚",
+    "lat": -33.8698439,
+    "lon": 151.2082848,
+    "source": "nominatim",
+    "displayName": "Sydney, New South Wales, Australia",
+    "query": "Sydney, Australia"
+  },
+  "7": {
+    "id": 7,
+    "name": "新加坡",
+    "country": "新加坡",
+    "lat": 1.357107,
+    "lon": 103.8194992,
+    "source": "nominatim",
+    "displayName": "Singapore",
+    "query": "Singapore, Singapore"
+  },
+  "8": {
+    "id": 8,
+    "name": "巴黎",
+    "country": "法国",
+    "lat": 48.8534951,
+    "lon": 2.3483915,
+    "source": "nominatim",
+    "displayName": "Paris, Île-de-France, France métropolitaine, France",
+    "query": "Paris, France"
+  },
+  "9": {
+    "id": 9,
+    "name": "多伦多",
+    "country": "加拿大",
+    "lat": 43.6534817,
+    "lon": -79.3839347,
+    "source": "nominatim",
+    "displayName": "Toronto, Golden Horseshoe, Ontario, Canada",
+    "query": "Toronto, Canada"
+  },
+  "10": {
+    "id": 10,
+    "name": "香港",
+    "country": "中国香港",
+    "lat": 22.2850161,
+    "lon": 114.1583655,
+    "source": "nominatim",
+    "displayName": "香港 Hong Kong, 民祥街 Man Cheung Street, 國際金融中心 International Finance Centre, 中環 Central, 中西區 Central and Western District, 香港島 Hong Kong Island, 香港 Hong Kong, 中国",
+    "query": "Hong Kong, 中国香港"
+  },
+  "11": {
+    "id": 11,
+    "name": "洛杉矶",
+    "country": "美国",
+    "lat": 34.0536909,
+    "lon": -118.242766,
+    "source": "nominatim",
+    "displayName": "Los Angeles, Los Angeles County, California, United States",
+    "query": "Los Angeles, USA"
+  },
+  "12": {
+    "id": 12,
+    "name": "旧金山",
+    "country": "美国",
+    "lat": 37.7879363,
+    "lon": -122.4075201,
+    "source": "nominatim",
+    "displayName": "San Francisco, California, United States",
+    "query": "San Francisco, USA"
+  },
+  "13": {
+    "id": 13,
+    "name": "芝加哥",
+    "country": "美国",
+    "lat": 41.8755616,
+    "lon": -87.6244212,
+    "source": "nominatim",
+    "displayName": "Chicago, South Chicago Township, Cook County, Illinois, United States",
+    "query": "Chicago, USA"
+  },
+  "14": {
+    "id": 14,
+    "name": "迪拜",
+    "country": "阿联酋",
+    "lat": 25.1972,
+    "lon": 55.2744,
+    "source": "manual",
+    "displayName": "迪拜 (manual: Downtown Dubai / Burj Khalifa)",
+    "query": "Dubai, UAE"
+  },
+  "15": {
+    "id": 15,
+    "name": "阿姆斯特丹",
+    "country": "荷兰",
+    "lat": 52.3730796,
+    "lon": 4.8924534,
+    "source": "nominatim",
+    "displayName": "Amsterdam, Noord-Holland, Nederland",
+    "query": "Amsterdam, Netherlands"
+  },
+  "16": {
+    "id": 16,
+    "name": "苏黎世",
+    "country": "瑞士",
+    "lat": 47.3744489,
+    "lon": 8.5410422,
+    "source": "nominatim",
+    "displayName": "Zürich, Bezirk Zürich, Zürich, Schweiz/Suisse/Svizzera/Svizra",
+    "query": "Zurich, Switzerland"
+  },
+  "17": {
+    "id": 17,
+    "name": "日内瓦",
+    "country": "瑞士",
+    "lat": 46.2017559,
+    "lon": 6.1466014,
+    "source": "nominatim",
+    "displayName": "Genève, Schweiz/Suisse/Svizzera/Svizra",
+    "query": "Geneva, Switzerland"
+  },
+  "18": {
+    "id": 18,
+    "name": "慕尼黑",
+    "country": "德国",
+    "lat": 48.1371079,
+    "lon": 11.5753822,
+    "source": "nominatim",
+    "displayName": "München, Bayern, Deutschland",
+    "query": "Munich, Germany"
+  },
+  "19": {
+    "id": 19,
+    "name": "柏林",
+    "country": "德国",
+    "lat": 52.5173885,
+    "lon": 13.3951309,
+    "source": "nominatim",
+    "displayName": "Berlin, Deutschland",
+    "query": "Berlin, Germany"
+  },
+  "20": {
+    "id": 20,
+    "name": "巴塞罗那",
+    "country": "西班牙",
+    "lat": 41.3825802,
+    "lon": 2.177073,
+    "source": "nominatim",
+    "displayName": "Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query": "Barcelona, Spain"
+  },
+  "21": {
+    "id": 21,
+    "name": "马德里",
+    "country": "西班牙",
+    "lat": 40.416782,
+    "lon": -3.703507,
+    "source": "nominatim",
+    "displayName": "Madrid, Comunidad de Madrid, España",
+    "query": "Madrid, Spain"
+  },
+  "22": {
+    "id": 22,
+    "name": "米兰",
+    "country": "意大利",
+    "lat": 45.4641943,
+    "lon": 9.1896346,
+    "source": "nominatim",
+    "displayName": "Milano, Lombardia, Italia",
+    "query": "Milan, Italy"
+  },
+  "23": {
+    "id": 23,
+    "name": "罗马",
+    "country": "意大利",
+    "lat": 41.8933203,
+    "lon": 12.4829321,
+    "source": "nominatim",
+    "displayName": "Roma, Roma Capitale, Lazio, Italia",
+    "query": "Rome, Italy"
+  },
+  "24": {
+    "id": 24,
+    "name": "布鲁塞尔",
+    "country": "比利时",
+    "lat": 50.8467372,
+    "lon": 4.352493,
+    "source": "nominatim",
+    "displayName": "Bruxelles - Brussel, Brussel-Hoofdstad - Bruxelles-Capitale, Région de Bruxelles-Capitale - Brussels Hoofdstedelijk Gewest, België / Belgique / Belgien",
+    "query": "Brussels, Belgium"
+  },
+  "25": {
+    "id": 25,
+    "name": "维也纳",
+    "country": "奥地利",
+    "lat": 48.2083537,
+    "lon": 16.3725042,
+    "source": "nominatim",
+    "displayName": "Wien, Österreich",
+    "query": "Vienna, Austria"
+  },
+  "26": {
+    "id": 26,
+    "name": "布拉格",
+    "country": "捷克",
+    "lat": 50.0874654,
+    "lon": 14.4212535,
+    "source": "nominatim",
+    "displayName": "Praha, Česko",
+    "query": "Prague, Czech Republic"
+  },
+  "27": {
+    "id": 27,
+    "name": "华沙",
+    "country": "波兰",
+    "lat": 52.2333742,
+    "lon": 21.0711489,
+    "source": "nominatim",
+    "displayName": "Warszawa, województwo mazowieckie, Polska",
+    "query": "Warsaw, Poland"
+  },
+  "28": {
+    "id": 28,
+    "name": "里斯本",
+    "country": "葡萄牙",
+    "lat": 38.7077507,
+    "lon": -9.1365919,
+    "source": "nominatim",
+    "displayName": "Lisboa, Portugal",
+    "query": "Lisbon, Portugal"
+  },
+  "29": {
+    "id": 29,
+    "name": "雅典",
+    "country": "希腊",
+    "lat": 37.9755648,
+    "lon": 23.7348324,
+    "source": "nominatim",
+    "displayName": "Αθήνα, Δήμος Αθηναίων, Περιφερειακή Ενότητα Κεντρικού Τομέα Αθηνών, Περιφέρεια Αττικής, Αποκεντρωμένη Διοίκηση Αττικής, 105 57, Ελλάς",
+    "query": "Athens, Greece"
+  },
+  "30": {
+    "id": 30,
+    "name": "伊斯坦布尔",
+    "country": "土耳其",
+    "lat": 41.006381,
+    "lon": 28.9758715,
+    "source": "nominatim",
+    "displayName": "İstanbul, Fatih, İstanbul, Marmara Bölgesi, 34122, Türkiye",
+    "query": "Istanbul, Turkey"
+  },
+  "31": {
+    "id": 31,
+    "name": "墨西哥城",
+    "country": "墨西哥",
+    "lat": 19.3207722,
+    "lon": -99.1514678,
+    "source": "nominatim",
+    "displayName": "Ciudad de México, México",
+    "query": "Mexico City, Mexico"
+  },
+  "32": {
+    "id": 32,
+    "name": "圣保罗",
+    "country": "巴西",
+    "lat": -23.5506507,
+    "lon": -46.6333824,
+    "source": "nominatim",
+    "displayName": "São Paulo, Região Geográfica Intermediária de São Paulo, São Paulo, Região Sudeste, Brasil",
+    "query": "São Paulo, Brazil"
+  },
+  "33": {
+    "id": 33,
+    "name": "里约热内卢",
+    "country": "巴西",
+    "lat": -22.9110137,
+    "lon": -43.2093727,
+    "source": "nominatim",
+    "displayName": "Rio de Janeiro, Região Sudeste, Brasil",
+    "query": "Rio de Janeiro, Brazil"
+  },
+  "34": {
+    "id": 34,
+    "name": "迈阿密",
+    "country": "美国",
+    "lat": 25.7741566,
+    "lon": -80.1935973,
+    "source": "nominatim",
+    "displayName": "Miami, Miami-Dade County, Florida, United States",
+    "query": "Miami, USA"
+  },
+  "35": {
+    "id": 35,
+    "name": "华盛顿",
+    "country": "美国",
+    "lat": 38.8950982,
+    "lon": -77.0363849,
+    "source": "nominatim",
+    "displayName": "Washington, District of Columbia, United States",
+    "query": "Washington, D.C., USA"
+  },
+  "36": {
+    "id": 36,
+    "name": "波士顿",
+    "country": "美国",
+    "lat": 42.3588336,
+    "lon": -71.0578303,
+    "source": "nominatim",
+    "displayName": "Boston, Suffolk County, Massachusetts, United States",
+    "query": "Boston, USA"
+  },
+  "37": {
+    "id": 37,
+    "name": "西雅图",
+    "country": "美国",
+    "lat": 47.6038321,
+    "lon": -122.330062,
+    "source": "nominatim",
+    "displayName": "Seattle, King County, Washington, United States",
+    "query": "Seattle, USA"
+  },
+  "38": {
+    "id": 38,
+    "name": "丹佛",
+    "country": "美国",
+    "lat": 39.7392364,
+    "lon": -104.984862,
+    "source": "nominatim",
+    "displayName": "Denver, Colorado, United States",
+    "query": "Denver, USA"
+  },
+  "39": {
+    "id": 39,
+    "name": "奥斯汀",
+    "country": "美国",
+    "lat": 30.2711286,
+    "lon": -97.7436995,
+    "source": "nominatim",
+    "displayName": "Austin, Travis County, Texas, United States",
+    "query": "Austin, USA"
+  },
+  "40": {
+    "id": 40,
+    "name": "温哥华",
+    "country": "加拿大",
+    "lat": 49.2608724,
+    "lon": -123.113952,
+    "source": "nominatim",
+    "displayName": "Vancouver, Metro Vancouver Regional District, British Columbia, Canada",
+    "query": "Vancouver, Canada"
+  },
+  "41": {
+    "id": 41,
+    "name": "蒙特利尔",
+    "country": "加拿大",
+    "lat": 45.5031824,
+    "lon": -73.5698065,
+    "source": "nominatim",
+    "displayName": "Montréal, Agglomération de Montréal, Montréal (région administrative), Québec, Canada",
+    "query": "Montreal, Canada"
+  },
+  "42": {
+    "id": 42,
+    "name": "墨尔本",
+    "country": "澳大利亚",
+    "lat": -37.8142454,
+    "lon": 144.9631732,
+    "source": "nominatim",
+    "displayName": "Melbourne, City of Melbourne, Victoria, Australia",
+    "query": "Melbourne, Australia"
+  },
+  "43": {
+    "id": 43,
+    "name": "布里斯班",
+    "country": "澳大利亚",
+    "lat": -27.4698,
+    "lon": 153.0251,
+    "source": "manual",
+    "displayName": "布里斯班 (manual: Brisbane CBD)",
+    "query": "Brisbane, Australia"
+  },
+  "44": {
+    "id": 44,
+    "name": "奥克兰",
+    "country": "新西兰",
+    "lat": -36.852095,
+    "lon": 174.7631803,
+    "source": "nominatim",
+    "displayName": "Auckland, Waitematā, Auckland, 1010, New Zealand / Aotearoa",
+    "query": "Auckland, New Zealand"
+  },
+  "45": {
+    "id": 45,
+    "name": "曼谷",
+    "country": "泰国",
+    "lat": 13.7524938,
+    "lon": 100.4935089,
+    "source": "nominatim",
+    "displayName": "กรุงเทพมหานคร, ประเทศไทย",
+    "query": "Bangkok, Thailand"
+  },
+  "46": {
+    "id": 46,
+    "name": "吉隆坡",
+    "country": "马来西亚",
+    "lat": 3.1516964,
+    "lon": 101.6942371,
+    "source": "nominatim",
+    "displayName": "Kuala Lumpur, Malaysia",
+    "query": "Kuala Lumpur, Malaysia"
+  },
+  "47": {
+    "id": 47,
+    "name": "胡志明市",
+    "country": "越南",
+    "lat": 10.7755254,
+    "lon": 106.7021047,
+    "source": "nominatim",
+    "displayName": "Thành phố Hồ Chí Minh, Việt Nam",
+    "query": "Ho Chi Minh City, Vietnam"
+  },
+  "48": {
+    "id": 48,
+    "name": "河内",
+    "country": "越南",
+    "lat": 21.0283334,
+    "lon": 105.854041,
+    "source": "nominatim",
+    "displayName": "Thành phố Hà Nội, Việt Nam",
+    "query": "Hanoi, Vietnam"
+  },
+  "49": {
+    "id": 49,
+    "name": "班加罗尔",
+    "country": "印度",
+    "lat": 12.9767936,
+    "lon": 77.590082,
+    "source": "nominatim",
+    "displayName": "Bengaluru, Bangalore North, Bengaluru Urban, Karnataka, India",
+    "query": "Bangalore, India"
+  },
+  "50": {
+    "id": 50,
+    "name": "孟买",
+    "country": "印度",
+    "lat": 19.054999,
+    "lon": 72.8692035,
+    "source": "nominatim",
+    "displayName": "Mumbai, Mumbai Suburban District, Maharashtra, 400051, India",
+    "query": "Mumbai, India"
+  },
+  "51": {
+    "id": 51,
+    "name": "新德里",
+    "country": "印度",
+    "lat": 28.6138954,
+    "lon": 77.2090057,
+    "source": "nominatim",
+    "displayName": "New Delhi, Delhi, India",
+    "query": "新德里, India"
+  },
+  "52": {
+    "id": 52,
+    "name": "内罗毕",
+    "country": "肯尼亚",
+    "lat": -1.2890006,
+    "lon": 36.8172812,
+    "source": "nominatim",
+    "displayName": "Nairobi, Kenya",
+    "query": "Nairobi, Kenya"
+  },
+  "53": {
+    "id": 53,
+    "name": "开罗",
+    "country": "埃及",
+    "lat": 30.0443879,
+    "lon": 31.2357257,
+    "source": "nominatim",
+    "displayName": "القاهرة, مصر",
+    "query": "Cairo, Egypt"
+  },
+  "54": {
+    "id": 54,
+    "name": "德黑兰",
+    "country": "伊朗",
+    "lat": 35.6892523,
+    "lon": 51.3896004,
+    "source": "nominatim",
+    "displayName": "شهر تهران, بخش مرکزی شهرستان تهران, شهرستان تهران, استان تهران, ایران",
+    "query": "Tehran, Iran"
+  },
+  "55": {
+    "id": 55,
+    "name": "卡拉奇",
+    "country": "巴基斯坦",
+    "lat": 24.8546842,
+    "lon": 67.0207055,
+    "source": "nominatim",
+    "displayName": "کراچی ڈویژن, سندھ, پاکستان",
+    "query": "Karachi, Pakistan"
+  },
+  "56": {
+    "id": 56,
+    "name": "伊斯兰堡",
+    "country": "巴基斯坦",
+    "lat": 33.6938118,
+    "lon": 73.0651511,
+    "source": "nominatim",
+    "displayName": "اسلام آباد, زون 1, وفاقی دارالحکومت اسلام آباد, 44000, پاکستان",
+    "query": "伊斯兰堡, Pakistan"
+  },
+  "57": {
+    "id": 57,
+    "name": "雅加达",
+    "country": "印度尼西亚",
+    "lat": -6.1754049,
+    "lon": 106.827168,
+    "source": "nominatim",
+    "displayName": "Daerah Khusus Ibukota Jakarta, Jawa, Indonesia",
+    "query": "Jakarta, Indonesia"
+  },
+  "58": {
+    "id": 58,
+    "name": "马尼拉",
+    "country": "菲律宾",
+    "lat": 14.5904492,
+    "lon": 120.9803621,
+    "source": "nominatim",
+    "displayName": "Manila, Capital District, Metro Manila, Philippines",
+    "query": "Manila, Philippines"
+  },
+  "59": {
+    "id": 59,
+    "name": "首尔",
+    "country": "韩国",
+    "lat": 37.5666791,
+    "lon": 126.9782914,
+    "source": "nominatim",
+    "displayName": "서울특별시, 대한민국",
+    "query": "Seoul, South Korea"
+  },
+  "60": {
+    "id": 60,
+    "name": "釜山",
+    "country": "韩国",
+    "lat": 35.1799528,
+    "lon": 129.0752365,
+    "source": "nominatim",
+    "displayName": "부산광역시, 대한민국",
+    "query": "Busan, South Korea"
+  },
+  "61": {
+    "id": 61,
+    "name": "台北",
+    "country": "台湾",
+    "lat": 25.0375198,
+    "lon": 121.5636796,
+    "source": "nominatim",
+    "displayName": "臺北市, 臺灣",
+    "query": "Taipei, 台湾"
+  },
+  "62": {
+    "id": 62,
+    "name": "布宜诺斯艾利斯",
+    "country": "阿根廷",
+    "lat": -34.6095579,
+    "lon": -58.3887904,
+    "source": "nominatim",
+    "displayName": "Buenos Aires, Comuna 1, Ciudad Autónoma de Buenos Aires, Argentina",
+    "query": "Buenos Aires, Argentina"
+  },
+  "63": {
+    "id": 63,
+    "name": "圣地亚哥",
+    "country": "智利",
+    "lat": -33.4376995,
+    "lon": -70.6510671,
+    "source": "nominatim",
+    "displayName": "Santiago, Provincia de Santiago, Región Metropolitana de Santiago, 8320000, Chile",
+    "query": "Santiago, Chile"
+  },
+  "64": {
+    "id": 64,
+    "name": "波哥大",
+    "country": "哥伦比亚",
+    "lat": 4.6533817,
+    "lon": -74.0836331,
+    "source": "nominatim",
+    "displayName": "Bogotá, Bogotá, Distrito Capital, RAP (Especial) Central, Colombia",
+    "query": "Bogotá, Colombia"
+  },
+  "65": {
+    "id": 65,
+    "name": "利马",
+    "country": "秘鲁",
+    "lat": -12.0459808,
+    "lon": -77.0305912,
+    "source": "nominatim",
+    "displayName": "Lima, Lima Metropolitana, Lima, Perú",
+    "query": "Lima, Peru"
+  },
+  "67": {
+    "id": 67,
+    "name": "约翰内斯堡",
+    "country": "南非",
+    "lat": -26.205,
+    "lon": 28.049722,
+    "source": "nominatim",
+    "displayName": "Johannesburg, City of Johannesburg Metropolitan Municipality, Gauteng, 2001, South Africa",
+    "query": "Johannesburg, South Africa"
+  },
+  "68": {
+    "id": 68,
+    "name": "开普敦",
+    "country": "南非",
+    "lat": -33.9288301,
+    "lon": 18.4172197,
+    "source": "nominatim",
+    "displayName": "Cape Town, City of Cape Town, Western Cape, 8001, South Africa",
+    "query": "Cape Town, South Africa"
+  },
+  "69": {
+    "id": 69,
+    "name": "瓜达拉哈拉",
+    "country": "墨西哥",
+    "lat": 20.6720375,
+    "lon": -103.338396,
+    "source": "nominatim",
+    "displayName": "Guadalajara, Región Centro, Jalisco, 44450, México",
+    "query": "瓜达拉哈拉, Mexico"
+  },
+  "70": {
+    "id": 70,
+    "name": "圣何塞(哥斯达黎加)",
+    "country": "哥斯达黎加",
+    "lat": -34.7537072,
+    "lon": -58.3547497,
+    "source": "nominatim",
+    "displayName": "Costa Rica & Los Recuerdos, Costa Rica, San José, Partido de Lomas de Zamora, Buenos Aires, 1844, Argentina",
+    "query": "San Jose, Costa Rica, Costa Rica"
+  },
+  "71": {
+    "id": 71,
+    "name": "巴拿马城",
+    "country": "巴拿马",
+    "lat": 8.9714493,
+    "lon": -79.5341802,
+    "source": "nominatim",
+    "displayName": "Panamá, Calidonia, Distrito de Panamá, Provincia de Panamá, 0843, Panamá",
+    "query": "巴拿马城, 巴拿马"
+  },
+  "73": {
+    "id": 73,
+    "name": "圣胡安",
+    "country": "波多黎各",
+    "lat": 18.465299,
+    "lon": -66.116666,
+    "source": "nominatim",
+    "displayName": "San Juan, Puerto Rico, United States",
+    "query": "圣胡安, 波多黎各"
+  },
+  "75": {
+    "id": 75,
+    "name": "阿布扎比",
+    "country": "阿联酋",
+    "lat": 24.4538352,
+    "lon": 54.3774014,
+    "source": "nominatim",
+    "displayName": "أبو ظبي, أبوظبي, أبو ظبي, الإمارات العربية المتحدة",
+    "query": "Abu Dhabi, UAE"
+  },
+  "76": {
+    "id": 76,
+    "name": "多哈",
+    "country": "卡塔尔",
+    "lat": 25.3108807,
+    "lon": 51.5081812,
+    "source": "nominatim",
+    "displayName": "الدوحة, قطر",
+    "query": "Doha, Qatar"
+  },
+  "77": {
+    "id": 77,
+    "name": "麦纳麦",
+    "country": "巴林",
+    "lat": 26.2235041,
+    "lon": 50.5822436,
+    "source": "nominatim",
+    "displayName": "المنامة, محافظة العاصمة, 308, البحرين",
+    "query": "Manama, Bahrain"
+  },
+  "78": {
+    "id": 78,
+    "name": "利雅得",
+    "country": "沙特阿拉伯",
+    "lat": 24.7136,
+    "lon": 46.6753,
+    "source": "manual",
+    "displayName": "利雅得 (manual: Riyadh Olaya / city centre)",
+    "query": "Riyadh, Saudi Arabia"
+  },
+  "79": {
+    "id": 79,
+    "name": "马斯喀特",
+    "country": "阿曼",
+    "lat": 23.6123628,
+    "lon": 58.5938134,
+    "source": "nominatim",
+    "displayName": "مسقط, ولاية مسقط, محافظة مسقط, عمان",
+    "query": "Muscat, Oman"
+  },
+  "80": {
+    "id": 80,
+    "name": "贝鲁特",
+    "country": "黎巴嫩",
+    "lat": 33.8892265,
+    "lon": 35.5025585,
+    "source": "nominatim",
+    "displayName": "بيروت, البسطة التحتا, باشورة, محافظة بيروت, لبنان",
+    "query": "Beirut, Lebanon"
+  },
+  "81": {
+    "id": 81,
+    "name": "安曼",
+    "country": "约旦",
+    "lat": 31.9515694,
+    "lon": 35.9239625,
+    "source": "nominatim",
+    "displayName": "عمان, ناحية عمان, لواء قصبة عمان, عمان, 11118, الأردن",
+    "query": "Amman, Jordan"
+  },
+  "82": {
+    "id": 82,
+    "name": "特拉维夫",
+    "country": "以色列",
+    "lat": 32.0852997,
+    "lon": 34.7818064,
+    "source": "nominatim",
+    "displayName": "תל־אביב–יפו, נפת תל אביב, מחוז תל אביב, ישראל",
+    "query": "Tel Aviv, Israel"
+  },
+  "83": {
+    "id": 83,
+    "name": "海得拉巴",
+    "country": "印度",
+    "lat": 17.360589,
+    "lon": 78.4740613,
+    "source": "nominatim",
+    "displayName": "Hyderabad, Bahadurpura mandal, Hyderabad, Telangana, India",
+    "query": "Hyderabad, India"
+  },
+  "84": {
+    "id": 84,
+    "name": "浦那",
+    "country": "印度",
+    "lat": 18.5213738,
+    "lon": 73.8545071,
+    "source": "nominatim",
+    "displayName": "Pune, Pune City Subdistrict, Pune, Maharashtra, 411001, India",
+    "query": "浦那, India"
+  },
+  "85": {
+    "id": 85,
+    "name": "基辅",
+    "country": "乌克兰",
+    "lat": 50.4500336,
+    "lon": 30.5241361,
+    "source": "nominatim",
+    "displayName": "Київ, Україна",
+    "query": "Kyiv, Ukraine"
+  },
+  "86": {
+    "id": 86,
+    "name": "布加勒斯特",
+    "country": "罗马尼亚",
+    "lat": 44.4361414,
+    "lon": 26.102684,
+    "source": "nominatim",
+    "displayName": "București, România",
+    "query": "Bucharest, Romania"
+  },
+  "87": {
+    "id": 87,
+    "name": "索非亚",
+    "country": "保加利亚",
+    "lat": 42.6977028,
+    "lon": 23.3217359,
+    "source": "nominatim",
+    "displayName": "София, Средец, Столична, София-град, България",
+    "query": "索非亚, Bulgaria"
+  },
+  "88": {
+    "id": 88,
+    "name": "萨格勒布",
+    "country": "克罗地亚",
+    "lat": 45.8130967,
+    "lon": 15.9772795,
+    "source": "nominatim",
+    "displayName": "Grad Zagreb, Hrvatska",
+    "query": "Zagreb, Croatia"
+  },
+  "89": {
+    "id": 89,
+    "name": "贝尔格莱德",
+    "country": "塞尔维亚",
+    "lat": 44.8153318,
+    "lon": 20.4456588,
+    "source": "nominatim",
+    "displayName": "Београд, Град Београд, Централна Србија, Србија",
+    "query": "Belgrade, Serbia"
+  },
+  "90": {
+    "id": 90,
+    "name": "布达佩斯",
+    "country": "匈牙利",
+    "lat": 47.4813896,
+    "lon": 19.1457723,
+    "source": "nominatim",
+    "displayName": "Budapest, Közép-Magyarország, Magyarország",
+    "query": "Budapest, Hungary"
+  },
+  "91": {
+    "id": 91,
+    "name": "布拉迪斯拉发",
+    "country": "斯洛伐克",
+    "lat": 48.1516988,
+    "lon": 17.1093063,
+    "source": "nominatim",
+    "displayName": "Bratislava, Bratislavský kraj, Slovensko",
+    "query": "Bratislava, Slovakia"
+  },
+  "92": {
+    "id": 92,
+    "name": "卢布尔雅那",
+    "country": "斯洛文尼亚",
+    "lat": 46.0500268,
+    "lon": 14.5069289,
+    "source": "nominatim",
+    "displayName": "Ljubljana, Upravna Enota Ljubljana, 1000, Slovenija",
+    "query": "Ljubljana, Slovenia"
+  },
+  "93": {
+    "id": 93,
+    "name": "都柏林",
+    "country": "爱尔兰",
+    "lat": 53.3493795,
+    "lon": -6.2605593,
+    "source": "nominatim",
+    "displayName": "Dublin, County Dublin, Leinster, Éire / Ireland",
+    "query": "Dublin, Ireland"
+  },
+  "94": {
+    "id": 94,
+    "name": "贝尔法斯特",
+    "country": "英国",
+    "lat": 54.5975805,
+    "lon": -5.9277097,
+    "source": "nominatim",
+    "displayName": "Belfast, Belfast City District, County Antrim, Northern Ireland / Tuaisceart Éireann, United Kingdom",
+    "query": "Belfast, United Kingdom"
+  },
+  "95": {
+    "id": 95,
+    "name": "亚特兰大",
+    "country": "美国",
+    "lat": 33.7544657,
+    "lon": -84.3898151,
+    "source": "nominatim",
+    "displayName": "Atlanta, Fulton County, Georgia, United States",
+    "query": "Atlanta, USA"
+  },
+  "96": {
+    "id": 96,
+    "name": "凤凰城",
+    "country": "美国",
+    "lat": 33.4484367,
+    "lon": -112.074141,
+    "source": "nominatim",
+    "displayName": "Phoenix, Maricopa County, Arizona, United States",
+    "query": "Phoenix, USA"
+  },
+  "97": {
+    "id": 97,
+    "name": "波特兰",
+    "country": "美国",
+    "lat": 45.5202471,
+    "lon": -122.674194,
+    "source": "nominatim",
+    "displayName": "Portland, Multnomah County, Oregon, United States",
+    "query": "Portland, Oregon, USA"
+  },
+  "98": {
+    "id": 98,
+    "name": "圣地亚哥",
+    "country": "美国",
+    "lat": 32.7157,
+    "lon": -117.1611,
+    "source": "manual",
+    "displayName": "圣地亚哥 (manual: San Diego (USA) downtown — Nominatim returned a tiny WA town)",
+    "query": "Santiago, USA"
+  },
+  "99": {
+    "id": 99,
+    "name": "拉斯维加斯",
+    "country": "美国",
+    "lat": 36.1674263,
+    "lon": -115.1484131,
+    "source": "nominatim",
+    "displayName": "Las Vegas, Clark County, Nevada, United States",
+    "query": "Las Vegas, USA"
+  },
+  "100": {
+    "id": 100,
+    "name": "坦帕",
+    "country": "美国",
+    "lat": 27.9449854,
+    "lon": -82.4583107,
+    "source": "nominatim",
+    "displayName": "Tampa, Hillsborough County, Florida, United States",
+    "query": "Tampa, USA"
+  },
+  "101": {
+    "id": 101,
+    "name": "广州",
+    "country": "中国",
+    "lat": 23.1288454,
+    "lon": 113.2590064,
+    "source": "nominatim",
+    "displayName": "广州市, 广东省, 中国",
+    "query": "Guangzhou, China"
+  },
+  "102": {
+    "id": 102,
+    "name": "深圳",
+    "country": "中国",
+    "lat": 22.5445741,
+    "lon": 114.0545429,
+    "source": "nominatim",
+    "displayName": "深圳市, 广东省, 中国",
+    "query": "Shenzhen, China"
+  },
+  "103": {
+    "id": 103,
+    "name": "成都",
+    "country": "中国",
+    "lat": 30.659867,
+    "lon": 104.063315,
+    "source": "nominatim",
+    "displayName": "成都市, 四川省, 中国",
+    "query": "Chengdu, China"
+  },
+  "104": {
+    "id": 104,
+    "name": "杭州",
+    "country": "中国",
+    "lat": 30.2489634,
+    "lon": 120.2052342,
+    "source": "nominatim",
+    "displayName": "杭州市, 浙江省, 中国",
+    "query": "Hangzhou, China"
+  },
+  "105": {
+    "id": 105,
+    "name": "重庆",
+    "country": "中国",
+    "lat": 29.563,
+    "lon": 106.5516,
+    "source": "manual",
+    "displayName": "重庆 (manual: Jiefangbei CBD (Yuzhong District))",
+    "query": "Chongqing, China"
+  },
+  "106": {
+    "id": 106,
+    "name": "大阪",
+    "country": "日本",
+    "lat": 34.6937569,
+    "lon": 135.5014539,
+    "source": "nominatim",
+    "displayName": "大阪市, 大阪府, 日本",
+    "query": "Osaka, Japan"
+  },
+  "107": {
+    "id": 107,
+    "name": "名古屋",
+    "country": "日本",
+    "lat": 35.1851045,
+    "lon": 136.8998438,
+    "source": "nominatim",
+    "displayName": "名古屋市, 愛知県, 日本",
+    "query": "Nagoya, Japan"
+  },
+  "109": {
+    "id": 109,
+    "name": "金边",
+    "country": "柬埔寨",
+    "lat": 11.5730391,
+    "lon": 104.857807,
+    "source": "nominatim",
+    "displayName": "រាជធានីភ្នំពេញ, ព្រះរាជាណាចក្រ​កម្ពុជា",
+    "query": "Phnom Penh, Cambodia"
+  },
+  "110": {
+    "id": 110,
+    "name": "仰光",
+    "country": "缅甸",
+    "lat": 16.7967129,
+    "lon": 96.1609916,
+    "source": "nominatim",
+    "displayName": "ရန်ကုန်, ရန်ကုန်တိုင်းဒေသကြီး, 11000, မြန်မာ",
+    "query": "Yangon, Myanmar"
+  },
+  "112": {
+    "id": 112,
+    "name": "清迈",
+    "country": "泰国",
+    "lat": 18.7882778,
+    "lon": 98.9858802,
+    "source": "nominatim",
+    "displayName": "เทศบาลนครเชียงใหม่, ฟ้าฮ่าม, อำเภอเมืองเชียงใหม่, จังหวัดเชียงใหม่, ประเทศไทย",
+    "query": "Chiang Mai, Thailand"
+  },
+  "114": {
+    "id": 114,
+    "name": "达卡",
+    "country": "孟加拉国",
+    "lat": 23.7643863,
+    "lon": 90.3890144,
+    "source": "nominatim",
+    "displayName": "ঢাকা, ঢাকা মহানগর, ঢাকা জেলা, ঢাকা বিভাগ, 1215, বাংলাদেশ",
+    "query": "Dhaka, Bangladesh"
+  },
+  "115": {
+    "id": 115,
+    "name": "科伦坡",
+    "country": "斯里兰卡",
+    "lat": 6.9388614,
+    "lon": 79.8542005,
+    "source": "nominatim",
+    "displayName": "Colombo, Colombo District, Western Province, Sri Lanka",
+    "query": "Colombo, Sri Lanka"
+  },
+  "116": {
+    "id": 116,
+    "name": "加德满都",
+    "country": "尼泊尔",
+    "lat": 27.708317,
+    "lon": 85.3205817,
+    "source": "nominatim",
+    "displayName": "काठमाडौँ महानगरपालिका, काठमाडौं जिल्ला, बागमती प्रदेश, नेपाल",
+    "query": "Kathmandu, Nepal"
+  },
+  "117": {
+    "id": 117,
+    "name": "阿拉木图",
+    "country": "哈萨克斯坦",
+    "lat": 43.2363924,
+    "lon": 76.9457275,
+    "source": "nominatim",
+    "displayName": "Алматы, Қазақстан",
+    "query": "Almaty, Kazakhstan"
+  },
+  "118": {
+    "id": 118,
+    "name": "塔什干",
+    "country": "乌兹别克斯坦",
+    "lat": 41.3123363,
+    "lon": 69.2787079,
+    "source": "nominatim",
+    "displayName": "Toshkent shahri, 100000, Oʻzbekiston",
+    "query": "Tashkent, Uzbekistan"
+  },
+  "119": {
+    "id": 119,
+    "name": "巴库",
+    "country": "阿塞拜疆",
+    "lat": 40.3755885,
+    "lon": 49.8328009,
+    "source": "nominatim",
+    "displayName": "Bakı İnzibati Ərazisi, Azərbaycan",
+    "query": "巴库, 阿塞拜疆"
+  },
+  "120": {
+    "id": 120,
+    "name": "乌兰巴托",
+    "country": "蒙古",
+    "lat": 47.9184676,
+    "lon": 106.9177016,
+    "source": "nominatim",
+    "displayName": "Улаанбаатар ᠤᠯᠠᠭᠠᠨ ᠪᠠᠭᠠᠲᠤᠷ, Монгол улс ᠮᠤᠩᠭᠤᠯ ᠤᠯᠤᠰ",
+    "query": "Ulaanbaatar, Mongolia"
+  },
+  "121": {
+    "id": 121,
+    "name": "斯德哥尔摩",
+    "country": "瑞典",
+    "lat": 59.3251172,
+    "lon": 18.0710935,
+    "source": "nominatim",
+    "displayName": "Stockholm, Stockholms kommun, Stockholms län, 111 29, Sverige",
+    "query": "Stockholm, Sweden"
+  },
+  "122": {
+    "id": 122,
+    "name": "哥本哈根",
+    "country": "丹麦",
+    "lat": 55.6867243,
+    "lon": 12.5700724,
+    "source": "nominatim",
+    "displayName": "København, Københavns Kommune, Region Hovedstaden, 1357, Danmark",
+    "query": "Copenhagen, Denmark"
+  },
+  "123": {
+    "id": 123,
+    "name": "赫尔辛基",
+    "country": "芬兰",
+    "lat": 60.1666204,
+    "lon": 24.9435408,
+    "source": "nominatim",
+    "displayName": "Helsinki, Helsingin seutukunta, Uusimaa, Manner-Suomi, Suomi / Finland",
+    "query": "Helsinki, Finland"
+  },
+  "124": {
+    "id": 124,
+    "name": "奥斯陆",
+    "country": "挪威",
+    "lat": 59.9133301,
+    "lon": 10.7389701,
+    "source": "nominatim",
+    "displayName": "Oslo, Norge",
+    "query": "Oslo, Norway"
+  },
+  "125": {
+    "id": 125,
+    "name": "休斯顿",
+    "country": "美国",
+    "lat": 29.7589382,
+    "lon": -95.3676974,
+    "source": "nominatim",
+    "displayName": "Houston, Harris County, Texas, United States",
+    "query": "Houston, USA"
+  },
+  "126": {
+    "id": 126,
+    "name": "费城",
+    "country": "美国",
+    "lat": 39.9527237,
+    "lon": -75.1635262,
+    "source": "nominatim",
+    "displayName": "Philadelphia, Philadelphia County, Pennsylvania, United States",
+    "query": "Philadelphia, USA"
+  },
+  "127": {
+    "id": 127,
+    "name": "卡尔加里",
+    "country": "加拿大",
+    "lat": 51.0456064,
+    "lon": -114.057541,
+    "source": "nominatim",
+    "displayName": "Calgary, Alberta, Canada",
+    "query": "卡尔加里, Canada"
+  },
+  "128": {
+    "id": 128,
+    "name": "珀斯",
+    "country": "澳大利亚",
+    "lat": -31.9558967,
+    "lon": 115.8605784,
+    "source": "nominatim",
+    "displayName": "Perth, City of Perth, Western Australia, 6000, Australia",
+    "query": "珀斯, Australia"
+  },
+  "129": {
+    "id": 129,
+    "name": "麦德林",
+    "country": "哥伦比亚",
+    "lat": 6.2443382,
+    "lon": -75.573553,
+    "source": "nominatim",
+    "displayName": "Perímetro Urbano Medellín, Medellín, Valle de Aburrá, Antioquia, RAP del Agua y la Montaña, Colombia",
+    "query": "麦德林, Colombia"
+  },
+  "130": {
+    "id": 130,
+    "name": "第比利斯",
+    "country": "格鲁吉亚",
+    "lat": 41.6934591,
+    "lon": 44.8014495,
+    "source": "nominatim",
+    "displayName": "თბილისი, საქართველო",
+    "query": "Tbilisi, Georgia"
+  },
+  "131": {
+    "id": 131,
+    "name": "拉各斯",
+    "country": "尼日利亚",
+    "lat": 6.4541,
+    "lon": 3.3947,
+    "source": "manual",
+    "displayName": "拉各斯 (manual: Lagos Island CBD (on edge — keep for re-fetch))",
+    "query": "Lagos, Nigeria"
+  },
+  "132": {
+    "id": 132,
+    "name": "莫斯科",
+    "country": "俄罗斯",
+    "lat": 55.625578,
+    "lon": 37.6063916,
+    "source": "nominatim",
+    "displayName": "Москва, Центральный федеральный округ, Россия",
+    "query": "Moscow, Russia"
+  },
+  "133": {
+    "id": 133,
+    "name": "圣何塞(美国)",
+    "country": "美国",
+    "lat": 37.3361663,
+    "lon": -121.890591,
+    "source": "nominatim",
+    "displayName": "San Jose, Santa Clara County, California, United States",
+    "query": "San Jose, California, USA"
+  },
+  "135": {
+    "id": 135,
+    "name": "渥太华",
+    "country": "加拿大",
+    "lat": 45.4208777,
+    "lon": -75.6901106,
+    "source": "nominatim",
+    "displayName": "Ottawa, Eastern Ontario, Ontario, Canada",
+    "query": "渥太华, Canada"
+  },
+  "136": {
+    "id": 136,
+    "name": "卢森堡市",
+    "country": "卢森堡",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "source": "manual",
+    "displayName": "卢森堡市 (manual: Luxembourg City centre)",
+    "query": "Luxembourg, Luxembourg"
+  },
+  "137": {
+    "id": 137,
+    "name": "塔林",
+    "country": "爱沙尼亚",
+    "lat": 59.437242,
+    "lon": 24.7572693,
+    "source": "nominatim",
+    "displayName": "Tallinn, Harju maakond, Eesti",
+    "query": "Tallinn, Estonia"
+  },
+  "138": {
+    "id": 138,
+    "name": "福冈",
+    "country": "日本",
+    "lat": 33.5904,
+    "lon": 130.4017,
+    "source": "manual",
+    "displayName": "福冈 (manual: Hakata / Fukuoka central)",
+    "query": "Fukuoka, Japan"
+  },
+  "140": {
+    "id": 140,
+    "name": "巴厘岛",
+    "country": "印度尼西亚",
+    "lat": -8.6653349,
+    "lon": 115.2176191,
+    "source": "nominatim",
+    "displayName": "Denpasar, Bali, Nusa Tenggara, Indonesia",
+    "query": "Denpasar, Indonesia"
+  },
+  "141": {
+    "id": 141,
+    "name": "岘港",
+    "country": "越南",
+    "lat": 16.068,
+    "lon": 108.212,
+    "source": "nominatim",
+    "displayName": "Thành phố Đà Nẵng, Việt Nam",
+    "query": "Da Nang, Vietnam"
+  },
+  "143": {
+    "id": 143,
+    "name": "波尔图",
+    "country": "葡萄牙",
+    "lat": 41.1502195,
+    "lon": -8.6103497,
+    "source": "nominatim",
+    "displayName": "Porto, Portugal",
+    "query": "Porto, Portugal"
+  },
+  "144": {
+    "id": 144,
+    "name": "瓦伦西亚",
+    "country": "西班牙",
+    "lat": 39.4697065,
+    "lon": -0.3763353,
+    "source": "nominatim",
+    "displayName": "València, Comarca de València, València / Valencia, Comunitat Valenciana, España",
+    "query": "Valencia, Spain"
+  },
+  "146": {
+    "id": 146,
+    "name": "斯普利特",
+    "country": "克罗地亚",
+    "lat": 43.5116383,
+    "lon": 16.4399659,
+    "source": "nominatim",
+    "displayName": "Split, Grad Split, Splitsko-dalmatinska županija, Hrvatska",
+    "query": "斯普利特, Croatia"
+  },
+  "147": {
+    "id": 147,
+    "name": "普吉岛",
+    "country": "泰国",
+    "lat": 7.8804,
+    "lon": 98.3923,
+    "source": "manual",
+    "displayName": "普吉岛 (manual: Phuket Town centre)",
+    "query": "普吉岛, Thailand"
+  },
+  "148": {
+    "id": 148,
+    "name": "蒙得维的亚",
+    "country": "乌拉圭",
+    "lat": -34.9058916,
+    "lon": -56.1913095,
+    "source": "nominatim",
+    "displayName": "Montevideo, Uruguay",
+    "query": "Montevideo, Uruguay"
+  },
+  "149": {
+    "id": 149,
+    "name": "拉斯帕尔马斯",
+    "country": "西班牙",
+    "lat": 28.1288694,
+    "lon": -15.4349015,
+    "source": "nominatim",
+    "displayName": "Las Palmas de Gran Canaria, Las Palmas, Canarias, España",
+    "query": "拉斯帕尔马斯, Spain"
+  },
+  "150": {
+    "id": 150,
+    "name": "槟城",
+    "country": "马来西亚",
+    "lat": 5.4141619,
+    "lon": 100.3287352,
+    "source": "nominatim",
+    "displayName": "George Town, Pulau Pinang, Malaysia",
+    "query": "George Town, Penang, Malaysia"
+  },
+  "152": {
+    "id": 152,
+    "name": "弗洛里亚诺波利斯",
+    "country": "巴西",
+    "lat": -27.5973002,
+    "lon": -48.5496098,
+    "source": "nominatim",
+    "displayName": "Florianópolis, Região Geográfica Imediata de Florianópolis, Região Geográfica Intermediária de Florianópolis, Santa Catarina, Região Sul, Brasil",
+    "query": "弗洛里亚诺波利斯, Brazil"
+  },
+  "159": {
+    "id": 159,
+    "name": "京都",
+    "country": "日本",
+    "lat": 35.0115754,
+    "lon": 135.7681441,
+    "source": "nominatim",
+    "displayName": "京都市, 京都府, 日本",
+    "query": "Kyoto, Japan"
+  },
+  "160": {
+    "id": 160,
+    "name": "卡萨布兰卡",
+    "country": "摩洛哥",
+    "lat": 33.5945144,
+    "lon": -7.6200284,
+    "source": "nominatim",
+    "displayName": "Casablanca ⵜⴰⴷⴷⴰⵔⵜ ⵜⵓⵎⵍⵉⵍⵜ الدار البيضاء, Pachalik de Casablanca باشوية الدار البيضاء, Préfecture de Casablanca عمالة الدار البيضاء, Casablanca-Settat ⵜⴰⴷⴷⴰⵔⵜ ⵜⵓⵎⵍⵉⵍⵜ-ⵙⵟⵟⴰⵜ الدار البيضاء-سطات, Maroc ⵍⵎⵖⵔⵉⴱ المغرب",
+    "query": "Casablanca, Morocco"
+  },
+  "161": {
+    "id": 161,
+    "name": "惠灵顿",
+    "country": "新西兰",
+    "lat": -41.2887953,
+    "lon": 174.7772114,
+    "source": "nominatim",
+    "displayName": "Wellington, Wellington City, Wellington, 6011, New Zealand / Aotearoa",
+    "query": "惠灵顿, New Zealand"
+  },
+  "162": {
+    "id": 162,
+    "name": "维尔纽斯",
+    "country": "立陶宛",
+    "lat": 54.6870458,
+    "lon": 25.2829111,
+    "source": "nominatim",
+    "displayName": "Vilnius, Vilniaus miesto savivaldybė, Vilniaus apskritis, Lietuva",
+    "query": "Vilnius, Lithuania"
+  },
+  "163": {
+    "id": 163,
+    "name": "里加",
+    "country": "拉脱维亚",
+    "lat": 56.9493977,
+    "lon": 24.1051846,
+    "source": "nominatim",
+    "displayName": "Rīga, Latvija",
+    "query": "Riga, Latvia"
+  },
+  "164": {
+    "id": 164,
+    "name": "尼科西亚",
+    "country": "塞浦路斯",
+    "lat": 35.1746503,
+    "lon": 33.3638783,
+    "source": "nominatim",
+    "displayName": "Λευκωσία, Δήμος Λευκωσίας, Επαρχία Λευκωσίας, Κύπρος, Κύπρος - Kıbrıs",
+    "query": "Nicosia, Cyprus"
+  },
+  "165": {
+    "id": 165,
+    "name": "圣多明各",
+    "country": "多米尼加",
+    "lat": 18.4713858,
+    "lon": -69.8918436,
+    "source": "nominatim",
+    "displayName": "Santo Domingo, Santo Domingo de Guzmán, Distrito Nacional, 03201, República Dominicana",
+    "query": "Santo Domingo, Dominican Republic"
+  },
+  "166": {
+    "id": 166,
+    "name": "基多",
+    "country": "厄瓜多尔",
+    "lat": -0.2201641,
+    "lon": -78.5123274,
+    "source": "nominatim",
+    "displayName": "Quito, Pichincha, 170130, Ecuador",
+    "query": "基多, 厄瓜多尔"
+  },
+  "167": {
+    "id": 167,
+    "name": "阿克拉",
+    "country": "加纳",
+    "lat": 5.5571096,
+    "lon": -0.2012376,
+    "source": "nominatim",
+    "displayName": "Accra, Korle-Klottey Municipal District, Greater Accra Region, Ghana",
+    "query": "阿克拉, 加纳"
+  },
+  "168": {
+    "id": 168,
+    "name": "亚的斯亚贝巴",
+    "country": "埃塞俄比亚",
+    "lat": 9,
+    "lon": 38.75,
+    "source": "nominatim",
+    "displayName": "አዲስ አበባ أديس أبابا, ኢትዮጵያ",
+    "query": "亚的斯亚贝巴, 埃塞俄比亚"
+  }
+}

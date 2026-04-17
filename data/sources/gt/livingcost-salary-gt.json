@@ -1,0 +1,698 @@
+{
+  "1": {
+    "name": "纽约",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 5228.62,
+    "url": "https://livingcost.org/cost/united-states/ny/new-york"
+  },
+  "2": {
+    "name": "伦敦",
+    "country": "英国",
+    "livingcostNetMonthlyUSD": 3678.24,
+    "url": "https://livingcost.org/cost/united-kingdom/eng/london"
+  },
+  "3": {
+    "name": "东京",
+    "country": "日本",
+    "livingcostNetMonthlyUSD": 2675.71,
+    "url": "https://livingcost.org/cost/japan/tokyo"
+  },
+  "4": {
+    "name": "北京",
+    "country": "中国",
+    "livingcostNetMonthlyUSD": 710.53,
+    "url": "https://livingcost.org/cost/china/beijing"
+  },
+  "5": {
+    "name": "上海",
+    "country": "中国",
+    "livingcostNetMonthlyUSD": 878.56,
+    "url": "https://livingcost.org/cost/china/shanghai"
+  },
+  "6": {
+    "name": "悉尼",
+    "country": "澳大利亚",
+    "livingcostNetMonthlyUSD": 4144.99,
+    "url": "https://livingcost.org/cost/australia/sydney"
+  },
+  "7": {
+    "name": "新加坡",
+    "country": "新加坡",
+    "livingcostNetMonthlyUSD": 4401.41,
+    "url": "https://livingcost.org/cost/singapore/singapore"
+  },
+  "8": {
+    "name": "巴黎",
+    "country": "法国",
+    "livingcostNetMonthlyUSD": 3973.88,
+    "url": "https://livingcost.org/cost/france/idf/paris"
+  },
+  "9": {
+    "name": "多伦多",
+    "country": "加拿大",
+    "livingcostNetMonthlyUSD": 3647.91,
+    "url": "https://livingcost.org/cost/canada/on/toronto"
+  },
+  "10": {
+    "name": "香港",
+    "country": "中国香港",
+    "livingcostNetMonthlyUSD": 1240.98,
+    "url": "https://livingcost.org/cost/china/hong-kong"
+  },
+  "11": {
+    "name": "洛杉矶",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 4258.35,
+    "url": "https://livingcost.org/cost/united-states/ca/los-angeles"
+  },
+  "12": {
+    "name": "旧金山",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 7450.45,
+    "url": "https://livingcost.org/cost/united-states/ca/san-francisco"
+  },
+  "13": {
+    "name": "芝加哥",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 5026.1,
+    "url": "https://livingcost.org/cost/united-states/il/chicago"
+  },
+  "14": {
+    "name": "迪拜",
+    "country": "阿联酋",
+    "livingcostNetMonthlyUSD": 4093.46,
+    "url": "https://livingcost.org/cost/united-arab-emirates/dubai"
+  },
+  "15": {
+    "name": "阿姆斯特丹",
+    "country": "荷兰",
+    "livingcostNetMonthlyUSD": 5293.8,
+    "url": "https://livingcost.org/cost/netherlands/amsterdam"
+  },
+  "16": {
+    "name": "苏黎世",
+    "country": "瑞士",
+    "livingcostNetMonthlyUSD": 6864.47,
+    "url": "https://livingcost.org/cost/switzerland/zurich"
+  },
+  "17": {
+    "name": "日内瓦",
+    "country": "瑞士",
+    "livingcostNetMonthlyUSD": 7983.62,
+    "url": "https://livingcost.org/cost/switzerland/geneva"
+  },
+  "18": {
+    "name": "慕尼黑",
+    "country": "德国",
+    "livingcostNetMonthlyUSD": 4507.34,
+    "url": "https://livingcost.org/cost/germany/by/munich"
+  },
+  "19": {
+    "name": "柏林",
+    "country": "德国",
+    "livingcostNetMonthlyUSD": 3705.57,
+    "url": "https://livingcost.org/cost/germany/bb/berlin"
+  },
+  "20": {
+    "name": "巴塞罗那",
+    "country": "西班牙",
+    "livingcostNetMonthlyUSD": 2515.8,
+    "url": "https://livingcost.org/cost/spain/barcelona"
+  },
+  "21": {
+    "name": "马德里",
+    "country": "西班牙",
+    "livingcostNetMonthlyUSD": 2681.32,
+    "url": "https://livingcost.org/cost/spain/madrid"
+  },
+  "22": {
+    "name": "米兰",
+    "country": "意大利",
+    "livingcostNetMonthlyUSD": 2285.33,
+    "url": "https://livingcost.org/cost/italy/lo/milan"
+  },
+  "23": {
+    "name": "罗马",
+    "country": "意大利",
+    "livingcostNetMonthlyUSD": 2197.21,
+    "url": "https://livingcost.org/cost/italy/lz/rome"
+  },
+  "24": {
+    "name": "布鲁塞尔",
+    "country": "比利时",
+    "livingcostNetMonthlyUSD": 3696.77,
+    "url": "https://livingcost.org/cost/belgium/brussels"
+  },
+  "25": {
+    "name": "维也纳",
+    "country": "奥地利",
+    "livingcostNetMonthlyUSD": 3704.92,
+    "url": "https://livingcost.org/cost/austria/vienna"
+  },
+  "26": {
+    "name": "布拉格",
+    "country": "捷克",
+    "livingcostNetMonthlyUSD": 2307.17,
+    "url": "https://livingcost.org/cost/czech-republic/prague"
+  },
+  "27": {
+    "name": "华沙",
+    "country": "波兰",
+    "livingcostNetMonthlyUSD": 2278.21,
+    "url": "https://livingcost.org/cost/poland/warsaw"
+  },
+  "28": {
+    "name": "里斯本",
+    "country": "葡萄牙",
+    "livingcostNetMonthlyUSD": 1561.72,
+    "url": "https://livingcost.org/cost/portugal/lisbon"
+  },
+  "29": {
+    "name": "雅典",
+    "country": "希腊",
+    "livingcostNetMonthlyUSD": 1362.94,
+    "url": "https://livingcost.org/cost/greece/athens"
+  },
+  "30": {
+    "name": "伊斯坦布尔",
+    "country": "土耳其",
+    "livingcostNetMonthlyUSD": 1095.09,
+    "url": "https://livingcost.org/cost/turkey/istanbul"
+  },
+  "31": {
+    "name": "墨西哥城",
+    "country": "墨西哥",
+    "livingcostNetMonthlyUSD": 1027.97,
+    "url": "https://livingcost.org/cost/mexico/mexico"
+  },
+  "32": {
+    "name": "圣保罗",
+    "country": "巴西",
+    "livingcostNetMonthlyUSD": 794.43,
+    "url": "https://livingcost.org/cost/brazil/sao-paulo"
+  },
+  "33": {
+    "name": "里约热内卢",
+    "country": "巴西",
+    "livingcostNetMonthlyUSD": 490.96,
+    "url": "https://livingcost.org/cost/brazil/rio-de-janeiro"
+  },
+  "34": {
+    "name": "迈阿密",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 4156.18,
+    "url": "https://livingcost.org/cost/united-states/fl/miami"
+  },
+  "35": {
+    "name": "华盛顿",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 6170.24,
+    "url": "https://livingcost.org/cost/united-states/dc/washington"
+  },
+  "36": {
+    "name": "波士顿",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 6555.53,
+    "url": "https://livingcost.org/cost/united-states/ma/boston"
+  },
+  "37": {
+    "name": "西雅图",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 6531.81,
+    "url": "https://livingcost.org/cost/united-states/wa/seattle"
+  },
+  "39": {
+    "name": "奥斯汀",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 4938.91,
+    "url": "https://livingcost.org/cost/united-states/tx/austin"
+  },
+  "40": {
+    "name": "温哥华",
+    "country": "加拿大",
+    "livingcostNetMonthlyUSD": 3629.32,
+    "url": "https://livingcost.org/cost/canada/bc/vancouver"
+  },
+  "41": {
+    "name": "蒙特利尔",
+    "country": "加拿大",
+    "livingcostNetMonthlyUSD": 3004.59,
+    "url": "https://livingcost.org/cost/canada/qc/montreal"
+  },
+  "42": {
+    "name": "墨尔本",
+    "country": "澳大利亚",
+    "livingcostNetMonthlyUSD": 4327.88,
+    "url": "https://livingcost.org/cost/australia/melbourne"
+  },
+  "43": {
+    "name": "布里斯班",
+    "country": "澳大利亚",
+    "livingcostNetMonthlyUSD": 4257.53,
+    "url": "https://livingcost.org/cost/australia/brisbane"
+  },
+  "44": {
+    "name": "奥克兰",
+    "country": "新西兰",
+    "livingcostNetMonthlyUSD": 3398.36,
+    "url": "https://livingcost.org/cost/new-zealand/auckland"
+  },
+  "45": {
+    "name": "曼谷",
+    "country": "泰国",
+    "livingcostNetMonthlyUSD": 593.72,
+    "url": "https://livingcost.org/cost/thailand/bangkok"
+  },
+  "46": {
+    "name": "吉隆坡",
+    "country": "马来西亚",
+    "livingcostNetMonthlyUSD": 1331.49,
+    "url": "https://livingcost.org/cost/malaysia/kuala-lumpur"
+  },
+  "47": {
+    "name": "胡志明市",
+    "country": "越南",
+    "livingcostNetMonthlyUSD": 340.38,
+    "url": "https://livingcost.org/cost/vietnam/ho-chi-minh"
+  },
+  "48": {
+    "name": "河内",
+    "country": "越南",
+    "livingcostNetMonthlyUSD": 369.25,
+    "url": "https://livingcost.org/cost/vietnam/hanoi"
+  },
+  "49": {
+    "name": "班加罗尔",
+    "country": "印度",
+    "livingcostNetMonthlyUSD": 265.75,
+    "url": "https://livingcost.org/cost/india/ka/bangalore"
+  },
+  "50": {
+    "name": "孟买",
+    "country": "印度",
+    "livingcostNetMonthlyUSD": 254.59,
+    "url": "https://livingcost.org/cost/india/mh/mumbai"
+  },
+  "52": {
+    "name": "内罗毕",
+    "country": "肯尼亚",
+    "livingcostNetMonthlyUSD": 208.32,
+    "url": "https://livingcost.org/cost/kenya/nairobi"
+  },
+  "53": {
+    "name": "开罗",
+    "country": "埃及",
+    "livingcostNetMonthlyUSD": 198.67,
+    "url": "https://livingcost.org/cost/egypt/cairo"
+  },
+  "57": {
+    "name": "雅加达",
+    "country": "印度尼西亚",
+    "livingcostNetMonthlyUSD": 346.28,
+    "url": "https://livingcost.org/cost/indonesia/jakarta"
+  },
+  "58": {
+    "name": "马尼拉",
+    "country": "菲律宾",
+    "livingcostNetMonthlyUSD": 347.36,
+    "url": "https://livingcost.org/cost/philippines/manila"
+  },
+  "59": {
+    "name": "首尔",
+    "country": "韩国",
+    "livingcostNetMonthlyUSD": 2255.91,
+    "url": "https://livingcost.org/cost/south-korea/seoul"
+  },
+  "60": {
+    "name": "釜山",
+    "country": "韩国",
+    "livingcostNetMonthlyUSD": 2594.82,
+    "url": "https://livingcost.org/cost/south-korea/busan"
+  },
+  "61": {
+    "name": "台北",
+    "country": "台湾",
+    "livingcostNetMonthlyUSD": 1619.32,
+    "url": "https://livingcost.org/cost/taiwan/taipei"
+  },
+  "62": {
+    "name": "布宜诺斯艾利斯",
+    "country": "阿根廷",
+    "livingcostNetMonthlyUSD": 798.51,
+    "url": "https://livingcost.org/cost/argentina/buenos-aires"
+  },
+  "63": {
+    "name": "圣地亚哥",
+    "country": "智利",
+    "livingcostNetMonthlyUSD": 880.6,
+    "url": "https://livingcost.org/cost/chile/santiago"
+  },
+  "64": {
+    "name": "波哥大",
+    "country": "哥伦比亚",
+    "livingcostNetMonthlyUSD": 488.1,
+    "url": "https://livingcost.org/cost/colombia/bogota"
+  },
+  "65": {
+    "name": "利马",
+    "country": "秘鲁",
+    "livingcostNetMonthlyUSD": 643.48,
+    "url": "https://livingcost.org/cost/peru/lima"
+  },
+  "67": {
+    "name": "约翰内斯堡",
+    "country": "南非",
+    "livingcostNetMonthlyUSD": 1761.28,
+    "url": "https://livingcost.org/cost/south-africa/johannesburg"
+  },
+  "68": {
+    "name": "开普敦",
+    "country": "南非",
+    "livingcostNetMonthlyUSD": 403.53,
+    "url": "https://livingcost.org/cost/south-africa/cape-town"
+  },
+  "69": {
+    "name": "瓜达拉哈拉",
+    "country": "墨西哥",
+    "livingcostNetMonthlyUSD": 750.49,
+    "url": "https://livingcost.org/cost/mexico/guadalajara"
+  },
+  "70": {
+    "name": "圣何塞(哥斯达黎加)",
+    "country": "哥斯达黎加",
+    "livingcostNetMonthlyUSD": 935.05,
+    "url": "https://livingcost.org/cost/costa-rica/san-jose"
+  },
+  "71": {
+    "name": "巴拿马城",
+    "country": "巴拿马",
+    "livingcostNetMonthlyUSD": 935.98,
+    "url": "https://livingcost.org/cost/panama/panama"
+  },
+  "75": {
+    "name": "阿布扎比",
+    "country": "阿联酋",
+    "livingcostNetMonthlyUSD": 2675.28,
+    "url": "https://livingcost.org/cost/united-arab-emirates/abu-dhabi"
+  },
+  "76": {
+    "name": "多哈",
+    "country": "卡塔尔",
+    "livingcostNetMonthlyUSD": 2972.16,
+    "url": "https://livingcost.org/cost/qatar/doha"
+  },
+  "78": {
+    "name": "利雅得",
+    "country": "沙特阿拉伯",
+    "livingcostNetMonthlyUSD": 2285.3,
+    "url": "https://livingcost.org/cost/saudi-arabia/riyadh"
+  },
+  "82": {
+    "name": "特拉维夫",
+    "country": "以色列",
+    "livingcostNetMonthlyUSD": 4146.11,
+    "url": "https://livingcost.org/cost/israel/tel-aviv"
+  },
+  "85": {
+    "name": "基辅",
+    "country": "乌克兰",
+    "livingcostNetMonthlyUSD": 439.56,
+    "url": "https://livingcost.org/cost/ukraine/kiev"
+  },
+  "86": {
+    "name": "布加勒斯特",
+    "country": "罗马尼亚",
+    "livingcostNetMonthlyUSD": 1466.78,
+    "url": "https://livingcost.org/cost/romania/bucharest"
+  },
+  "87": {
+    "name": "索非亚",
+    "country": "保加利亚",
+    "livingcostNetMonthlyUSD": 1228.71,
+    "url": "https://livingcost.org/cost/bulgaria/sofia"
+  },
+  "88": {
+    "name": "萨格勒布",
+    "country": "克罗地亚",
+    "livingcostNetMonthlyUSD": 1968.57,
+    "url": "https://livingcost.org/cost/croatia/zagreb"
+  },
+  "89": {
+    "name": "贝尔格莱德",
+    "country": "塞尔维亚",
+    "livingcostNetMonthlyUSD": 1225.85,
+    "url": "https://livingcost.org/cost/serbia/belgrade"
+  },
+  "90": {
+    "name": "布达佩斯",
+    "country": "匈牙利",
+    "livingcostNetMonthlyUSD": 1696.95,
+    "url": "https://livingcost.org/cost/hungary/budapest"
+  },
+  "93": {
+    "name": "都柏林",
+    "country": "爱尔兰",
+    "livingcostNetMonthlyUSD": 4313.49,
+    "url": "https://livingcost.org/cost/ireland/dublin"
+  },
+  "98": {
+    "name": "圣地亚哥",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 5553.1,
+    "url": "https://livingcost.org/cost/united-states/ca/san-diego"
+  },
+  "101": {
+    "name": "广州",
+    "country": "中国",
+    "livingcostNetMonthlyUSD": 828.65,
+    "url": "https://livingcost.org/cost/china/guangzhou"
+  },
+  "102": {
+    "name": "深圳",
+    "country": "中国",
+    "livingcostNetMonthlyUSD": 1023.92,
+    "url": "https://livingcost.org/cost/china/shenzhen"
+  },
+  "103": {
+    "name": "成都",
+    "country": "中国",
+    "livingcostNetMonthlyUSD": 1050.38,
+    "url": "https://livingcost.org/cost/china/chengdu"
+  },
+  "104": {
+    "name": "杭州",
+    "country": "中国",
+    "livingcostNetMonthlyUSD": 911.85,
+    "url": "https://livingcost.org/cost/china/hangzhou"
+  },
+  "106": {
+    "name": "大阪",
+    "country": "日本",
+    "livingcostNetMonthlyUSD": 2134.36,
+    "url": "https://livingcost.org/cost/japan/osaka"
+  },
+  "112": {
+    "name": "清迈",
+    "country": "泰国",
+    "livingcostNetMonthlyUSD": 577.47,
+    "url": "https://livingcost.org/cost/thailand/chiang-mai"
+  },
+  "117": {
+    "name": "阿拉木图",
+    "country": "哈萨克斯坦",
+    "livingcostNetMonthlyUSD": 745.2,
+    "url": "https://livingcost.org/cost/kazakhstan/almaty"
+  },
+  "121": {
+    "name": "斯德哥尔摩",
+    "country": "瑞典",
+    "livingcostNetMonthlyUSD": 3838.93,
+    "url": "https://livingcost.org/cost/sweden/stockholm"
+  },
+  "122": {
+    "name": "哥本哈根",
+    "country": "丹麦",
+    "livingcostNetMonthlyUSD": 5006.13,
+    "url": "https://livingcost.org/cost/denmark/copenhagen"
+  },
+  "123": {
+    "name": "赫尔辛基",
+    "country": "芬兰",
+    "livingcostNetMonthlyUSD": 3192.35,
+    "url": "https://livingcost.org/cost/finland/helsinki"
+  },
+  "124": {
+    "name": "奥斯陆",
+    "country": "挪威",
+    "livingcostNetMonthlyUSD": 4285.14,
+    "url": "https://livingcost.org/cost/norway/oslo"
+  },
+  "125": {
+    "name": "休斯顿",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 4605.59,
+    "url": "https://livingcost.org/cost/united-states/tx/houston"
+  },
+  "126": {
+    "name": "费城",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 4328.24,
+    "url": "https://livingcost.org/cost/united-states/pa/philadelphia"
+  },
+  "129": {
+    "name": "麦德林",
+    "country": "哥伦比亚",
+    "livingcostNetMonthlyUSD": 536.06,
+    "url": "https://livingcost.org/cost/colombia/medellin"
+  },
+  "130": {
+    "name": "第比利斯",
+    "country": "格鲁吉亚",
+    "livingcostNetMonthlyUSD": 624.83,
+    "url": "https://livingcost.org/cost/georgia/tbilisi"
+  },
+  "131": {
+    "name": "拉各斯",
+    "country": "尼日利亚",
+    "livingcostNetMonthlyUSD": 75.01,
+    "url": "https://livingcost.org/cost/nigeria/lagos"
+  },
+  "132": {
+    "name": "莫斯科",
+    "country": "俄罗斯",
+    "livingcostNetMonthlyUSD": 1019.72,
+    "url": "https://livingcost.org/cost/russia/moscow"
+  },
+  "133": {
+    "name": "圣何塞(美国)",
+    "country": "美国",
+    "livingcostNetMonthlyUSD": 5741.77,
+    "url": "https://livingcost.org/cost/united-states/ca/san-jose"
+  },
+  "136": {
+    "name": "卢森堡市",
+    "country": "卢森堡",
+    "livingcostNetMonthlyUSD": 5332.12,
+    "url": "https://livingcost.org/cost/luxembourg/luxembourg"
+  },
+  "137": {
+    "name": "塔林",
+    "country": "爱沙尼亚",
+    "livingcostNetMonthlyUSD": 2178.28,
+    "url": "https://livingcost.org/cost/estonia/tallinn"
+  },
+  "138": {
+    "name": "福冈",
+    "country": "日本",
+    "livingcostNetMonthlyUSD": 1479.96,
+    "url": "https://livingcost.org/cost/japan/fukuoka"
+  },
+  "140": {
+    "name": "巴厘岛",
+    "country": "印度尼西亚",
+    "livingcostNetMonthlyUSD": 296.46,
+    "url": "https://livingcost.org/cost/indonesia/denpasar"
+  },
+  "141": {
+    "name": "岘港",
+    "country": "越南",
+    "livingcostNetMonthlyUSD": 336.39,
+    "url": "https://livingcost.org/cost/vietnam/da-nang"
+  },
+  "143": {
+    "name": "波尔图",
+    "country": "葡萄牙",
+    "livingcostNetMonthlyUSD": 1581.93,
+    "url": "https://livingcost.org/cost/portugal/porto"
+  },
+  "144": {
+    "name": "瓦伦西亚",
+    "country": "西班牙",
+    "livingcostNetMonthlyUSD": 2219.14,
+    "url": "https://livingcost.org/cost/spain/valencia"
+  },
+  "146": {
+    "name": "斯普利特",
+    "country": "克罗地亚",
+    "livingcostNetMonthlyUSD": 1680.41,
+    "url": "https://livingcost.org/cost/croatia/split"
+  },
+  "147": {
+    "name": "普吉岛",
+    "country": "泰国",
+    "livingcostNetMonthlyUSD": 801.24,
+    "url": "https://livingcost.org/cost/thailand/phuket"
+  },
+  "148": {
+    "name": "蒙得维的亚",
+    "country": "乌拉圭",
+    "livingcostNetMonthlyUSD": 1139.56,
+    "url": "https://livingcost.org/cost/uruguay/montevideo"
+  },
+  "152": {
+    "name": "弗洛里亚诺波利斯",
+    "country": "巴西",
+    "livingcostNetMonthlyUSD": 686.91,
+    "url": "https://livingcost.org/cost/brazil/florianopolis"
+  },
+  "159": {
+    "name": "京都",
+    "country": "日本",
+    "livingcostNetMonthlyUSD": 1948.96,
+    "url": "https://livingcost.org/cost/japan/kyoto"
+  },
+  "160": {
+    "name": "卡萨布兰卡",
+    "country": "摩洛哥",
+    "livingcostNetMonthlyUSD": 513.95,
+    "url": "https://livingcost.org/cost/morocco/casablanca"
+  },
+  "161": {
+    "name": "惠灵顿",
+    "country": "新西兰",
+    "livingcostNetMonthlyUSD": 3196.78,
+    "url": "https://livingcost.org/cost/new-zealand/wellington"
+  },
+  "162": {
+    "name": "维尔纽斯",
+    "country": "立陶宛",
+    "livingcostNetMonthlyUSD": 1924.58,
+    "url": "https://livingcost.org/cost/lithuania/vilnius"
+  },
+  "163": {
+    "name": "里加",
+    "country": "拉脱维亚",
+    "livingcostNetMonthlyUSD": 1622.69,
+    "url": "https://livingcost.org/cost/latvia/riga"
+  },
+  "164": {
+    "name": "尼科西亚",
+    "country": "塞浦路斯",
+    "livingcostNetMonthlyUSD": 1785.14,
+    "url": "https://livingcost.org/cost/cyprus/nicosia"
+  },
+  "165": {
+    "name": "圣多明各",
+    "country": "多米尼加",
+    "livingcostNetMonthlyUSD": 599.75,
+    "url": "https://livingcost.org/cost/dominican-republic/santo-domingo"
+  },
+  "166": {
+    "name": "基多",
+    "country": "厄瓜多尔",
+    "livingcostNetMonthlyUSD": 499.11,
+    "url": "https://livingcost.org/cost/ecuador/quito"
+  },
+  "167": {
+    "name": "阿克拉",
+    "country": "加纳",
+    "livingcostNetMonthlyUSD": 156.27,
+    "url": "https://livingcost.org/cost/ghana/accra"
+  },
+  "168": {
+    "name": "亚的斯亚贝巴",
+    "country": "埃塞俄比亚",
+    "livingcostNetMonthlyUSD": 172.4,
+    "url": "https://livingcost.org/cost/ethiopia/addis-ababa"
+  }
+}

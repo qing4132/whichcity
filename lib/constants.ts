@@ -4,6 +4,38 @@ export const HIDDEN_CITY_IDS: ReadonlySet<number> = new Set([
   105, 107, 109, 110, 114, 115, 116, 118, 119, 120, 127, 128, 131, 135,
 ]);
 
+/**
+ * City IDs whose GT cost/rent is considered untrustworthy by independent rules:
+ *   - gt_cost / (gni_per_capita / 12) > 3.5  →  Numbeo small-sample bias in low-income countries
+ *   - Tourist-dominated cities where Numbeo mixes tourist and local prices
+ * For these cities `estimateCost()` returns `confidence: 'low'` and the UI should
+ * hide numeric estimates. See _archive/reports/cost-estimation-research-v5-followup.md §F.
+ *   52 内罗毕   — gt/月均 gni = 4.33
+ *   55 卡拉奇   — gt/月均 gni = 3.92
+ *  112 清迈     — 旅游主导
+ *  140 巴厘岛   — 旅游主导
+ *  147 普吉岛   — 旅游主导
+ */
+export const LOW_CONFIDENCE_COST_CITY_IDS: ReadonlySet<number> = new Set([52, 55, 112, 140, 147]);
+
+/**
+ * City IDs whose Numbeo-salary GT is considered untrustworthy by independent rules:
+ *   - numbeo_net_monthly / (gni_per_capita / 12) > 2.5  → Numbeo sample skewed
+ *     toward expat / IT professionals in low-income economies
+ *   - Tourist-dominated cities (sample mixes nomads / foreign residents)
+ * See _archive/reports/salary-algorithm-audit-v1.md §4.5 + §6.3. Used to mark
+ * salary estimates as `confidence: 'low'` for UI degradation.
+ *   49 班加罗尔          — numbeo/mGNI=3.89
+ *   50 孟买             — numbeo/mGNI=3.24
+ *   67 约翰内斯堡        — numbeo/mGNI=3.16
+ *   68 开普敦           — numbeo/mGNI=3.29
+ *   70 圣何塞(哥斯达黎加)  — numbeo/mGNI=4.33
+ *  112 清迈             — 旅游主导（也在 LOW_CONFIDENCE_COST）
+ *  140 巴厘岛           — 旅游主导（也在 LOW_CONFIDENCE_COST）
+ *  147 普吉岛           — 旅游主导（也在 LOW_CONFIDENCE_COST）
+ */
+export const LOW_CONFIDENCE_SALARY_CITY_IDS: ReadonlySet<number> = new Set([49, 50, 67, 68, 70, 112, 140, 147]);
+
 /** Geographic regions with city IDs — single source of truth, used by CityComparison & CityLinks */
 export const REGIONS = [
   { key: "northAmerica", ids: [1, 11, 12, 13, 34, 35, 36, 37, 38, 39, 95, 96, 97, 98, 99, 100, 125, 126, 9, 40, 41, 127, 133, 135, 165] },

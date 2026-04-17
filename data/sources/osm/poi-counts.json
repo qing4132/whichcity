@@ -1,0 +1,2569 @@
+{
+  "1": {
+    "id": 1,
+    "name": "纽约",
+    "country": "美国",
+    "lat": 40.7127281,
+    "lon": -74.0060152,
+    "r2000": {
+      "dining": 1745,
+      "culture": 169,
+      "health": 137,
+      "edu": 75,
+      "retail": 1882,
+      "finance": 297,
+      "transit": 266,
+      "tourism": 134
+    }
+  },
+  "2": {
+    "id": 2,
+    "name": "伦敦",
+    "country": "英国",
+    "lat": 51.5074456,
+    "lon": -0.1277653,
+    "r2000": {
+      "dining": 3374,
+      "culture": 280,
+      "health": 262,
+      "edu": 196,
+      "retail": 3414,
+      "finance": 1144,
+      "transit": 143,
+      "tourism": 351
+    }
+  },
+  "3": {
+    "id": 3,
+    "name": "东京",
+    "country": "日本",
+    "lat": 35.6768601,
+    "lon": 139.7638947,
+    "r2000": {
+      "dining": 2304,
+      "culture": 118,
+      "health": 204,
+      "edu": 62,
+      "retail": 1302,
+      "finance": 517,
+      "transit": 415,
+      "tourism": 186
+    }
+  },
+  "4": {
+    "id": 4,
+    "name": "北京",
+    "country": "中国",
+    "lat": 39.9057136,
+    "lon": 116.3912972,
+    "r2000": {
+      "dining": 223,
+      "culture": 39,
+      "health": 18,
+      "edu": 29,
+      "retail": 174,
+      "finance": 81,
+      "transit": 66,
+      "tourism": 109
+    }
+  },
+  "5": {
+    "id": 5,
+    "name": "上海",
+    "country": "中国",
+    "lat": 31.2312707,
+    "lon": 121.4700152,
+    "r2000": {
+      "dining": 793,
+      "culture": 81,
+      "health": 33,
+      "edu": 67,
+      "retail": 547,
+      "finance": 198,
+      "transit": 134,
+      "tourism": 213
+    }
+  },
+  "6": {
+    "id": 6,
+    "name": "悉尼",
+    "country": "澳大利亚",
+    "lat": -33.8698439,
+    "lon": 151.2082848,
+    "r2000": {
+      "dining": 1683,
+      "culture": 115,
+      "health": 104,
+      "edu": 64,
+      "retail": 1197,
+      "finance": 387,
+      "transit": 128,
+      "tourism": 207
+    }
+  },
+  "7": {
+    "id": 7,
+    "name": "新加坡",
+    "country": "新加坡",
+    "lat": 1.357107,
+    "lon": 103.8194992,
+    "r2000": {
+      "dining": 100,
+      "culture": 3,
+      "health": 13,
+      "edu": 6,
+      "retail": 98,
+      "finance": 35,
+      "transit": 11,
+      "tourism": 5
+    }
+  },
+  "8": {
+    "id": 8,
+    "name": "巴黎",
+    "country": "法国",
+    "lat": 48.8534951,
+    "lon": 2.3483915,
+    "r2000": {
+      "dining": 4793,
+      "culture": 544,
+      "health": 363,
+      "edu": 428,
+      "retail": 8729,
+      "finance": 1397,
+      "transit": 295,
+      "tourism": 626
+    }
+  },
+  "9": {
+    "id": 9,
+    "name": "多伦多",
+    "country": "加拿大",
+    "lat": 43.6534817,
+    "lon": -79.3839347,
+    "r2000": {
+      "dining": 2209,
+      "culture": 109,
+      "health": 286,
+      "edu": 109,
+      "retail": 2263,
+      "finance": 565,
+      "transit": 95,
+      "tourism": 91
+    }
+  },
+  "10": {
+    "id": 10,
+    "name": "香港",
+    "country": "中国香港",
+    "lat": 22.2850161,
+    "lon": 114.1583655,
+    "r2000": {
+      "dining": 1035,
+      "culture": 56,
+      "health": 59,
+      "edu": 54,
+      "retail": 920,
+      "finance": 292,
+      "transit": 114,
+      "tourism": 262
+    }
+  },
+  "11": {
+    "id": 11,
+    "name": "洛杉矶",
+    "country": "美国",
+    "lat": 34.0536909,
+    "lon": -118.242766,
+    "r2000": {
+      "dining": 521,
+      "culture": 73,
+      "health": 20,
+      "edu": 32,
+      "retail": 329,
+      "finance": 177,
+      "transit": 49,
+      "tourism": 51
+    }
+  },
+  "12": {
+    "id": 12,
+    "name": "旧金山",
+    "country": "美国",
+    "lat": 37.7879363,
+    "lon": -122.4075201,
+    "r2000": {
+      "dining": 1531,
+      "culture": 154,
+      "health": 81,
+      "edu": 89,
+      "retail": 1551,
+      "finance": 623,
+      "transit": 71,
+      "tourism": 281
+    }
+  },
+  "13": {
+    "id": 13,
+    "name": "芝加哥",
+    "country": "美国",
+    "lat": 41.8755616,
+    "lon": -87.6244212,
+    "r2000": {
+      "dining": 911,
+      "culture": 65,
+      "health": 49,
+      "edu": 35,
+      "retail": 472,
+      "finance": 277,
+      "transit": 182,
+      "tourism": 122
+    }
+  },
+  "14": {
+    "id": 14,
+    "name": "迪拜",
+    "country": "阿联酋",
+    "lat": 25.1972,
+    "lon": 55.2744,
+    "r2000": {
+      "dining": 282,
+      "culture": 10,
+      "health": 28,
+      "edu": 5,
+      "retail": 210,
+      "finance": 140,
+      "transit": 8,
+      "tourism": 64
+    }
+  },
+  "15": {
+    "id": 15,
+    "name": "阿姆斯特丹",
+    "country": "荷兰",
+    "lat": 52.3730796,
+    "lon": 4.8924534,
+    "r2000": {
+      "dining": 2169,
+      "culture": 228,
+      "health": 79,
+      "edu": 89,
+      "retail": 2846,
+      "finance": 486,
+      "transit": 40,
+      "tourism": 455
+    }
+  },
+  "16": {
+    "id": 16,
+    "name": "苏黎世",
+    "country": "瑞士",
+    "lat": 47.3744489,
+    "lon": 8.5410422,
+    "r2000": {
+      "dining": 1347,
+      "culture": 185,
+      "health": 175,
+      "edu": 232,
+      "retail": 2617,
+      "finance": 586,
+      "transit": 12,
+      "tourism": 114
+    }
+  },
+  "17": {
+    "id": 17,
+    "name": "日内瓦",
+    "country": "瑞士",
+    "lat": 46.2017559,
+    "lon": 6.1466014,
+    "r2000": {
+      "dining": 1170,
+      "culture": 112,
+      "health": 143,
+      "edu": 182,
+      "retail": 1622,
+      "finance": 381,
+      "transit": 4,
+      "tourism": 123
+    }
+  },
+  "18": {
+    "id": 18,
+    "name": "慕尼黑",
+    "country": "德国",
+    "lat": 48.1371079,
+    "lon": 11.5753822,
+    "r2000": {
+      "dining": 1514,
+      "culture": 263,
+      "health": 279,
+      "edu": 250,
+      "retail": 2916,
+      "finance": 834,
+      "transit": 193,
+      "tourism": 260
+    }
+  },
+  "19": {
+    "id": 19,
+    "name": "柏林",
+    "country": "德国",
+    "lat": 52.5173885,
+    "lon": 13.3951309,
+    "r2000": {
+      "dining": 1425,
+      "culture": 266,
+      "health": 141,
+      "edu": 161,
+      "retail": 1642,
+      "finance": 1004,
+      "transit": 184,
+      "tourism": 216
+    }
+  },
+  "20": {
+    "id": 20,
+    "name": "巴塞罗那",
+    "country": "西班牙",
+    "lat": 41.3825802,
+    "lon": 2.177073,
+    "r2000": {
+      "dining": 2948,
+      "culture": 172,
+      "health": 296,
+      "edu": 146,
+      "retail": 2709,
+      "finance": 582,
+      "transit": 145,
+      "tourism": 480
+    }
+  },
+  "21": {
+    "id": 21,
+    "name": "马德里",
+    "country": "西班牙",
+    "lat": 40.416782,
+    "lon": -3.703507,
+    "r2000": {
+      "dining": 3697,
+      "culture": 285,
+      "health": 398,
+      "edu": 203,
+      "retail": 4097,
+      "finance": 758,
+      "transit": 153,
+      "tourism": 615
+    }
+  },
+  "22": {
+    "id": 22,
+    "name": "米兰",
+    "country": "意大利",
+    "lat": 45.4641943,
+    "lon": 9.1896346,
+    "r2000": {
+      "dining": 2067,
+      "culture": 142,
+      "health": 171,
+      "edu": 121,
+      "retail": 3158,
+      "finance": 759,
+      "transit": 235,
+      "tourism": 240
+    }
+  },
+  "23": {
+    "id": 23,
+    "name": "罗马",
+    "country": "意大利",
+    "lat": 41.8933203,
+    "lon": 12.4829321,
+    "r2000": {
+      "dining": 1841,
+      "culture": 159,
+      "health": 99,
+      "edu": 127,
+      "retail": 1813,
+      "finance": 443,
+      "transit": 59,
+      "tourism": 689
+    }
+  },
+  "24": {
+    "id": 24,
+    "name": "布鲁塞尔",
+    "country": "比利时",
+    "lat": 50.8467372,
+    "lon": 4.352493,
+    "r2000": {
+      "dining": 1870,
+      "culture": 241,
+      "health": 171,
+      "edu": 206,
+      "retail": 2884,
+      "finance": 1092,
+      "transit": 194,
+      "tourism": 209
+    }
+  },
+  "25": {
+    "id": 25,
+    "name": "维也纳",
+    "country": "奥地利",
+    "lat": 48.2083537,
+    "lon": 16.3725042,
+    "r2000": {
+      "dining": 2046,
+      "culture": 289,
+      "health": 391,
+      "edu": 303,
+      "retail": 3467,
+      "finance": 867,
+      "transit": 149,
+      "tourism": 275
+    }
+  },
+  "26": {
+    "id": 26,
+    "name": "布拉格",
+    "country": "捷克",
+    "lat": 50.0874654,
+    "lon": 14.4212535,
+    "r2000": {
+      "dining": 2199,
+      "culture": 278,
+      "health": 139,
+      "edu": 184,
+      "retail": 2219,
+      "finance": 646,
+      "transit": 119,
+      "tourism": 506
+    }
+  },
+  "27": {
+    "id": 27,
+    "name": "华沙",
+    "country": "波兰",
+    "lat": 52.2333742,
+    "lon": 21.0711489,
+    "r2000": {
+      "dining": 292,
+      "culture": 11,
+      "health": 137,
+      "edu": 160,
+      "retail": 883,
+      "finance": 326,
+      "transit": 3,
+      "tourism": 6
+    }
+  },
+  "28": {
+    "id": 28,
+    "name": "里斯本",
+    "country": "葡萄牙",
+    "lat": 38.7077507,
+    "lon": -9.1365919,
+    "r2000": {
+      "dining": 1733,
+      "culture": 122,
+      "health": 87,
+      "edu": 76,
+      "retail": 1238,
+      "finance": 340,
+      "transit": 79,
+      "tourism": 355
+    }
+  },
+  "29": {
+    "id": 29,
+    "name": "雅典",
+    "country": "希腊",
+    "lat": 37.9755648,
+    "lon": 23.7348324,
+    "r2000": {
+      "dining": 2008,
+      "culture": 283,
+      "health": 305,
+      "edu": 120,
+      "retail": 4341,
+      "finance": 592,
+      "transit": 70,
+      "tourism": 384
+    }
+  },
+  "30": {
+    "id": 30,
+    "name": "伊斯坦布尔",
+    "country": "土耳其",
+    "lat": 41.006381,
+    "lon": 28.9758715,
+    "r2000": {
+      "dining": 1267,
+      "culture": 50,
+      "health": 77,
+      "edu": 133,
+      "retail": 2813,
+      "finance": 507,
+      "transit": 55,
+      "tourism": 929
+    }
+  },
+  "31": {
+    "id": 31,
+    "name": "墨西哥城",
+    "country": "墨西哥",
+    "lat": 19.3207722,
+    "lon": -99.1514678,
+    "r2000": {
+      "dining": 86,
+      "culture": 6,
+      "health": 34,
+      "edu": 52,
+      "retail": 217,
+      "finance": 34,
+      "transit": 13,
+      "tourism": 2
+    }
+  },
+  "32": {
+    "id": 32,
+    "name": "圣保罗",
+    "country": "巴西",
+    "lat": -23.5506507,
+    "lon": -46.6333824,
+    "r2000": {
+      "dining": 659,
+      "culture": 79,
+      "health": 105,
+      "edu": 61,
+      "retail": 1314,
+      "finance": 264,
+      "transit": 56,
+      "tourism": 189
+    }
+  },
+  "33": {
+    "id": 33,
+    "name": "里约热内卢",
+    "country": "巴西",
+    "lat": -22.9110137,
+    "lon": -43.2093727,
+    "r2000": {
+      "dining": 175,
+      "culture": 23,
+      "health": 64,
+      "edu": 103,
+      "retail": 162,
+      "finance": 65,
+      "transit": 32,
+      "tourism": 25
+    }
+  },
+  "34": {
+    "id": 34,
+    "name": "迈阿密",
+    "country": "美国",
+    "lat": 25.7741566,
+    "lon": -80.1935973,
+    "r2000": {
+      "dining": 188,
+      "culture": 22,
+      "health": 13,
+      "edu": 68,
+      "retail": 151,
+      "finance": 76,
+      "transit": 34,
+      "tourism": 54
+    }
+  },
+  "35": {
+    "id": 35,
+    "name": "华盛顿",
+    "country": "美国",
+    "lat": 38.8950982,
+    "lon": -77.0363849,
+    "r2000": {
+      "dining": 859,
+      "culture": 101,
+      "health": 41,
+      "edu": 65,
+      "retail": 393,
+      "finance": 519,
+      "transit": 62,
+      "tourism": 119
+    }
+  },
+  "36": {
+    "id": 36,
+    "name": "波士顿",
+    "country": "美国",
+    "lat": 42.3588336,
+    "lon": -71.0578303,
+    "r2000": {
+      "dining": 699,
+      "culture": 86,
+      "health": 58,
+      "edu": 90,
+      "retail": 542,
+      "finance": 302,
+      "transit": 122,
+      "tourism": 98
+    }
+  },
+  "37": {
+    "id": 37,
+    "name": "西雅图",
+    "country": "美国",
+    "lat": 47.6038321,
+    "lon": -122.330062,
+    "r2000": {
+      "dining": 1034,
+      "culture": 83,
+      "health": 88,
+      "edu": 39,
+      "retail": 920,
+      "finance": 396,
+      "transit": 48,
+      "tourism": 86
+    }
+  },
+  "38": {
+    "id": 38,
+    "name": "丹佛",
+    "country": "美国",
+    "lat": 39.7392364,
+    "lon": -104.984862,
+    "r2000": {
+      "dining": 695,
+      "culture": 72,
+      "health": 106,
+      "edu": 36,
+      "retail": 518,
+      "finance": 591,
+      "transit": 11,
+      "tourism": 44
+    }
+  },
+  "39": {
+    "id": 39,
+    "name": "奥斯汀",
+    "country": "美国",
+    "lat": 30.2711286,
+    "lon": -97.7436995,
+    "r2000": {
+      "dining": 487,
+      "culture": 64,
+      "health": 25,
+      "edu": 26,
+      "retail": 211,
+      "finance": 139,
+      "transit": 6,
+      "tourism": 56
+    }
+  },
+  "40": {
+    "id": 40,
+    "name": "温哥华",
+    "country": "加拿大",
+    "lat": 49.2608724,
+    "lon": -123.113952,
+    "r2000": {
+      "dining": 622,
+      "culture": 35,
+      "health": 154,
+      "edu": 41,
+      "retail": 955,
+      "finance": 218,
+      "transit": 17,
+      "tourism": 23
+    }
+  },
+  "41": {
+    "id": 41,
+    "name": "蒙特利尔",
+    "country": "加拿大",
+    "lat": 45.5031824,
+    "lon": -73.5698065,
+    "r2000": {
+      "dining": 1271,
+      "culture": 133,
+      "health": 92,
+      "edu": 80,
+      "retail": 1132,
+      "finance": 298,
+      "transit": 74,
+      "tourism": 155
+    }
+  },
+  "42": {
+    "id": 42,
+    "name": "墨尔本",
+    "country": "澳大利亚",
+    "lat": -37.8142454,
+    "lon": 144.9631732,
+    "r2000": {
+      "dining": 1967,
+      "culture": 111,
+      "health": 123,
+      "edu": 110,
+      "retail": 1409,
+      "finance": 500,
+      "transit": 57,
+      "tourism": 195
+    }
+  },
+  "43": {
+    "id": 43,
+    "name": "布里斯班",
+    "country": "澳大利亚",
+    "lat": -27.4698,
+    "lon": 153.0251,
+    "r2000": {
+      "dining": 794,
+      "culture": 53,
+      "health": 61,
+      "edu": 46,
+      "retail": 484,
+      "finance": 206,
+      "transit": 47,
+      "tourism": 114
+    }
+  },
+  "44": {
+    "id": 44,
+    "name": "奥克兰",
+    "country": "新西兰",
+    "lat": -36.852095,
+    "lon": 174.7631803,
+    "r2000": {
+      "dining": 1051,
+      "culture": 55,
+      "health": 56,
+      "edu": 65,
+      "retail": 935,
+      "finance": 231,
+      "transit": 27,
+      "tourism": 113
+    }
+  },
+  "45": {
+    "id": 45,
+    "name": "曼谷",
+    "country": "泰国",
+    "lat": 13.7524938,
+    "lon": 100.4935089,
+    "r2000": {
+      "dining": 851,
+      "culture": 52,
+      "health": 44,
+      "edu": 60,
+      "retail": 953,
+      "finance": 267,
+      "transit": 28,
+      "tourism": 454
+    }
+  },
+  "46": {
+    "id": 46,
+    "name": "吉隆坡",
+    "country": "马来西亚",
+    "lat": 3.1516964,
+    "lon": 101.6942371,
+    "r2000": {
+      "dining": 1240,
+      "culture": 52,
+      "health": 93,
+      "edu": 64,
+      "retail": 1596,
+      "finance": 430,
+      "transit": 84,
+      "tourism": 346
+    }
+  },
+  "47": {
+    "id": 47,
+    "name": "胡志明市",
+    "country": "越南",
+    "lat": 10.7755254,
+    "lon": 106.7021047,
+    "r2000": {
+      "dining": 1503,
+      "culture": 44,
+      "health": 88,
+      "edu": 118,
+      "retail": 909,
+      "finance": 488,
+      "transit": 27,
+      "tourism": 502
+    }
+  },
+  "48": {
+    "id": 48,
+    "name": "河内",
+    "country": "越南",
+    "lat": 21.0283334,
+    "lon": 105.854041,
+    "r2000": {
+      "dining": 1620,
+      "culture": 55,
+      "health": 101,
+      "edu": 96,
+      "retail": 1239,
+      "finance": 905,
+      "transit": 5,
+      "tourism": 618
+    }
+  },
+  "49": {
+    "id": 49,
+    "name": "班加罗尔",
+    "country": "印度",
+    "lat": 12.9767936,
+    "lon": 77.590082,
+    "r2000": {
+      "dining": 576,
+      "culture": 61,
+      "health": 109,
+      "edu": 110,
+      "retail": 827,
+      "finance": 602,
+      "transit": 39,
+      "tourism": 164
+    }
+  },
+  "50": {
+    "id": 50,
+    "name": "孟买",
+    "country": "印度",
+    "lat": 19.054999,
+    "lon": 72.8692035,
+    "r2000": {
+      "dining": 53,
+      "culture": 10,
+      "health": 40,
+      "edu": 18,
+      "retail": 46,
+      "finance": 66,
+      "transit": 21,
+      "tourism": 11
+    }
+  },
+  "51": {
+    "id": 51,
+    "name": "新德里",
+    "country": "印度",
+    "lat": 28.6138954,
+    "lon": 77.2090057,
+    "r2000": {
+      "dining": 32,
+      "culture": 18,
+      "health": 9,
+      "edu": 13,
+      "retail": 66,
+      "finance": 121,
+      "transit": 25,
+      "tourism": 19
+    }
+  },
+  "52": {
+    "id": 52,
+    "name": "内罗毕",
+    "country": "肯尼亚",
+    "lat": -1.2890006,
+    "lon": 36.8172812,
+    "r2000": {
+      "dining": 212,
+      "culture": 18,
+      "health": 61,
+      "edu": 68,
+      "retail": 191,
+      "finance": 308,
+      "transit": 51,
+      "tourism": 119
+    }
+  },
+  "53": {
+    "id": 53,
+    "name": "开罗",
+    "country": "埃及",
+    "lat": 30.0443879,
+    "lon": 31.2357257,
+    "r2000": {
+      "dining": 210,
+      "culture": 37,
+      "health": 64,
+      "edu": 28,
+      "retail": 192,
+      "finance": 139,
+      "transit": 53,
+      "tourism": 92
+    }
+  },
+  "54": {
+    "id": 54,
+    "name": "德黑兰",
+    "country": "伊朗",
+    "lat": 35.6892523,
+    "lon": 51.3896004,
+    "r2000": {
+      "dining": 208,
+      "culture": 36,
+      "health": 144,
+      "edu": 127,
+      "retail": 807,
+      "finance": 459,
+      "transit": 43,
+      "tourism": 27
+    }
+  },
+  "55": {
+    "id": 55,
+    "name": "卡拉奇",
+    "country": "巴基斯坦",
+    "lat": 24.8546842,
+    "lon": 67.0207055,
+    "r2000": {
+      "dining": 292,
+      "culture": 30,
+      "health": 169,
+      "edu": 135,
+      "retail": 2121,
+      "finance": 592,
+      "transit": 5,
+      "tourism": 77
+    }
+  },
+  "56": {
+    "id": 56,
+    "name": "伊斯兰堡",
+    "country": "巴基斯坦",
+    "lat": 33.6938118,
+    "lon": 73.0651511,
+    "r2000": {
+      "dining": 41,
+      "culture": 4,
+      "health": 21,
+      "edu": 65,
+      "retail": 32,
+      "finance": 68,
+      "transit": 3,
+      "tourism": 33
+    }
+  },
+  "57": {
+    "id": 57,
+    "name": "雅加达",
+    "country": "印度尼西亚",
+    "lat": -6.1754049,
+    "lon": 106.827168,
+    "r2000": {
+      "dining": 208,
+      "culture": 17,
+      "health": 83,
+      "edu": 117,
+      "retail": 275,
+      "finance": 616,
+      "transit": 38,
+      "tourism": 164
+    }
+  },
+  "58": {
+    "id": 58,
+    "name": "马尼拉",
+    "country": "菲律宾",
+    "lat": 14.5904492,
+    "lon": 120.9803621,
+    "r2000": {
+      "dining": 812,
+      "culture": 48,
+      "health": 133,
+      "edu": 131,
+      "retail": 1507,
+      "finance": 744,
+      "transit": 44,
+      "tourism": 180
+    }
+  },
+  "59": {
+    "id": 59,
+    "name": "首尔",
+    "country": "韩国",
+    "lat": 37.5666791,
+    "lon": 126.9782914,
+    "r2000": {
+      "dining": 2847,
+      "culture": 355,
+      "health": 79,
+      "edu": 77,
+      "retail": 1748,
+      "finance": 339,
+      "transit": 193,
+      "tourism": 286
+    }
+  },
+  "60": {
+    "id": 60,
+    "name": "釜山",
+    "country": "韩国",
+    "lat": 35.1799528,
+    "lon": 129.0752365,
+    "r2000": {
+      "dining": 99,
+      "culture": 3,
+      "health": 87,
+      "edu": 65,
+      "retail": 117,
+      "finance": 62,
+      "transit": 82,
+      "tourism": 5
+    }
+  },
+  "61": {
+    "id": 61,
+    "name": "台北",
+    "country": "台湾",
+    "lat": 25.0375198,
+    "lon": 121.5636796,
+    "r2000": {
+      "dining": 2330,
+      "culture": 28,
+      "health": 166,
+      "edu": 56,
+      "retail": 1261,
+      "finance": 574,
+      "transit": 73,
+      "tourism": 78
+    }
+  },
+  "62": {
+    "id": 62,
+    "name": "布宜诺斯艾利斯",
+    "country": "阿根廷",
+    "lat": -34.6095579,
+    "lon": -58.3887904,
+    "r2000": {
+      "dining": 1291,
+      "culture": 143,
+      "health": 269,
+      "edu": 493,
+      "retail": 2717,
+      "finance": 739,
+      "transit": 209,
+      "tourism": 392
+    }
+  },
+  "63": {
+    "id": 63,
+    "name": "圣地亚哥",
+    "country": "智利",
+    "lat": -33.4376995,
+    "lon": -70.6510671,
+    "r2000": {
+      "dining": 996,
+      "culture": 114,
+      "health": 241,
+      "edu": 304,
+      "retail": 1724,
+      "finance": 648,
+      "transit": 78,
+      "tourism": 166
+    }
+  },
+  "64": {
+    "id": 64,
+    "name": "波哥大",
+    "country": "哥伦比亚",
+    "lat": 4.6533817,
+    "lon": -74.0836331,
+    "r2000": {
+      "dining": 332,
+      "culture": 22,
+      "health": 103,
+      "edu": 58,
+      "retail": 1350,
+      "finance": 140,
+      "transit": 10,
+      "tourism": 28
+    }
+  },
+  "65": {
+    "id": 65,
+    "name": "利马",
+    "country": "秘鲁",
+    "lat": -12.0459808,
+    "lon": -77.0305912,
+    "r2000": {
+      "dining": 319,
+      "culture": 85,
+      "health": 160,
+      "edu": 324,
+      "retail": 648,
+      "finance": 254,
+      "transit": 36,
+      "tourism": 107
+    }
+  },
+  "67": {
+    "id": 67,
+    "name": "约翰内斯堡",
+    "country": "南非",
+    "lat": -26.205,
+    "lon": 28.049722,
+    "r2000": {
+      "dining": 99,
+      "culture": 25,
+      "health": 30,
+      "edu": 21,
+      "retail": 133,
+      "finance": 94,
+      "transit": 42,
+      "tourism": 31
+    }
+  },
+  "68": {
+    "id": 68,
+    "name": "开普敦",
+    "country": "南非",
+    "lat": -33.9288301,
+    "lon": 18.4172197,
+    "r2000": {
+      "dining": 382,
+      "culture": 38,
+      "health": 21,
+      "edu": 59,
+      "retail": 196,
+      "finance": 133,
+      "transit": 5,
+      "tourism": 121
+    }
+  },
+  "69": {
+    "id": 69,
+    "name": "瓜达拉哈拉",
+    "country": "墨西哥",
+    "lat": 20.6720375,
+    "lon": -103.338396,
+    "r2000": {
+      "dining": 181,
+      "culture": 41,
+      "health": 240,
+      "edu": 310,
+      "retail": 756,
+      "finance": 232,
+      "transit": 66,
+      "tourism": 52
+    }
+  },
+  "70": {
+    "id": 70,
+    "name": "圣何塞(哥斯达黎加)",
+    "country": "哥斯达黎加",
+    "lat": -34.7537072,
+    "lon": -58.3547497,
+    "r2000": {
+      "dining": 1,
+      "culture": 0,
+      "health": 26,
+      "edu": 9,
+      "retail": 18,
+      "finance": 1,
+      "transit": 0,
+      "tourism": 0
+    }
+  },
+  "71": {
+    "id": 71,
+    "name": "巴拿马城",
+    "country": "巴拿马",
+    "lat": 8.9714493,
+    "lon": -79.5341802,
+    "r2000": {
+      "dining": 457,
+      "culture": 29,
+      "health": 112,
+      "edu": 49,
+      "retail": 1014,
+      "finance": 319,
+      "transit": 26,
+      "tourism": 130
+    }
+  },
+  "73": {
+    "id": 73,
+    "name": "圣胡安",
+    "country": "波多黎各",
+    "lat": 18.465299,
+    "lon": -66.116666,
+    "r2000": {
+      "dining": 161,
+      "culture": 28,
+      "health": 9,
+      "edu": 15,
+      "retail": 166,
+      "finance": 47,
+      "transit": 5,
+      "tourism": 25
+    }
+  },
+  "75": {
+    "id": 75,
+    "name": "阿布扎比",
+    "country": "阿联酋",
+    "lat": 24.4538352,
+    "lon": 54.3774014,
+    "r2000": {
+      "dining": 199,
+      "culture": 3,
+      "health": 81,
+      "edu": 28,
+      "retail": 366,
+      "finance": 108,
+      "transit": 1,
+      "tourism": 16
+    }
+  },
+  "76": {
+    "id": 76,
+    "name": "多哈",
+    "country": "卡塔尔",
+    "lat": 25.3108807,
+    "lon": 51.5081812,
+    "r2000": {
+      "dining": 70,
+      "culture": 5,
+      "health": 27,
+      "edu": 9,
+      "retail": 114,
+      "finance": 49,
+      "transit": 11,
+      "tourism": 18
+    }
+  },
+  "77": {
+    "id": 77,
+    "name": "麦纳麦",
+    "country": "巴林",
+    "lat": 26.2235041,
+    "lon": 50.5822436,
+    "r2000": {
+      "dining": 532,
+      "culture": 3,
+      "health": 47,
+      "edu": 37,
+      "retail": 1802,
+      "finance": 362,
+      "transit": 2,
+      "tourism": 93
+    }
+  },
+  "78": {
+    "id": 78,
+    "name": "利雅得",
+    "country": "沙特阿拉伯",
+    "lat": 24.7136,
+    "lon": 46.6753,
+    "r2000": {
+      "dining": 68,
+      "culture": 1,
+      "health": 16,
+      "edu": 3,
+      "retail": 54,
+      "finance": 49,
+      "transit": 26,
+      "tourism": 17
+    }
+  },
+  "79": {
+    "id": 79,
+    "name": "马斯喀特",
+    "country": "阿曼",
+    "lat": 23.6123628,
+    "lon": 58.5938134,
+    "r2000": {
+      "dining": 18,
+      "culture": 5,
+      "health": 0,
+      "edu": 1,
+      "retail": 32,
+      "finance": 10,
+      "transit": 0,
+      "tourism": 7
+    }
+  },
+  "80": {
+    "id": 80,
+    "name": "贝鲁特",
+    "country": "黎巴嫩",
+    "lat": 33.8892265,
+    "lon": 35.5025585,
+    "r2000": {
+      "dining": 387,
+      "culture": 39,
+      "health": 194,
+      "edu": 67,
+      "retail": 738,
+      "finance": 252,
+      "transit": 10,
+      "tourism": 86
+    }
+  },
+  "81": {
+    "id": 81,
+    "name": "安曼",
+    "country": "约旦",
+    "lat": 31.9515694,
+    "lon": 35.9239625,
+    "r2000": {
+      "dining": 232,
+      "culture": 28,
+      "health": 40,
+      "edu": 20,
+      "retail": 299,
+      "finance": 147,
+      "transit": 6,
+      "tourism": 80
+    }
+  },
+  "82": {
+    "id": 82,
+    "name": "特拉维夫",
+    "country": "以色列",
+    "lat": 32.0852997,
+    "lon": 34.7818064,
+    "r2000": {
+      "dining": 544,
+      "culture": 31,
+      "health": 44,
+      "edu": 51,
+      "retail": 490,
+      "finance": 181,
+      "transit": 20,
+      "tourism": 64
+    }
+  },
+  "83": {
+    "id": 83,
+    "name": "海得拉巴",
+    "country": "印度",
+    "lat": 17.360589,
+    "lon": 78.4740613,
+    "r2000": {
+      "dining": 32,
+      "culture": 2,
+      "health": 49,
+      "edu": 8,
+      "retail": 104,
+      "finance": 16,
+      "transit": 4,
+      "tourism": 11
+    }
+  },
+  "84": {
+    "id": 84,
+    "name": "浦那",
+    "country": "印度",
+    "lat": 18.5213738,
+    "lon": 73.8545071,
+    "r2000": {
+      "dining": 141,
+      "culture": 19,
+      "health": 172,
+      "edu": 97,
+      "retail": 169,
+      "finance": 148,
+      "transit": 36,
+      "tourism": 33
+    }
+  },
+  "85": {
+    "id": 85,
+    "name": "基辅",
+    "country": "乌克兰",
+    "lat": 50.4500336,
+    "lon": 30.5241361,
+    "r2000": {
+      "dining": 1004,
+      "culture": 127,
+      "health": 227,
+      "edu": 139,
+      "retail": 1435,
+      "finance": 900,
+      "transit": 69,
+      "tourism": 115
+    }
+  },
+  "86": {
+    "id": 86,
+    "name": "布加勒斯特",
+    "country": "罗马尼亚",
+    "lat": 44.4361414,
+    "lon": 26.102684,
+    "r2000": {
+      "dining": 851,
+      "culture": 153,
+      "health": 202,
+      "edu": 152,
+      "retail": 1103,
+      "finance": 451,
+      "transit": 30,
+      "tourism": 174
+    }
+  },
+  "87": {
+    "id": 87,
+    "name": "索非亚",
+    "country": "保加利亚",
+    "lat": 42.6977028,
+    "lon": 23.3217359,
+    "r2000": {
+      "dining": 1211,
+      "culture": 194,
+      "health": 384,
+      "edu": 109,
+      "retail": 6130,
+      "finance": 1037,
+      "transit": 121,
+      "tourism": 138
+    }
+  },
+  "88": {
+    "id": 88,
+    "name": "萨格勒布",
+    "country": "克罗地亚",
+    "lat": 45.8130967,
+    "lon": 15.9772795,
+    "r2000": {
+      "dining": 734,
+      "culture": 120,
+      "health": 153,
+      "edu": 176,
+      "retail": 1632,
+      "finance": 560,
+      "transit": 8,
+      "tourism": 99
+    }
+  },
+  "89": {
+    "id": 89,
+    "name": "贝尔格莱德",
+    "country": "塞尔维亚",
+    "lat": 44.8153318,
+    "lon": 20.4456588,
+    "r2000": {
+      "dining": 985,
+      "culture": 139,
+      "health": 141,
+      "edu": 106,
+      "retail": 1753,
+      "finance": 611,
+      "transit": 1,
+      "tourism": 128
+    }
+  },
+  "90": {
+    "id": 90,
+    "name": "布达佩斯",
+    "country": "匈牙利",
+    "lat": 47.4813896,
+    "lon": 19.1457723,
+    "r2000": {
+      "dining": 63,
+      "culture": 5,
+      "health": 19,
+      "edu": 28,
+      "retail": 253,
+      "finance": 60,
+      "transit": 8,
+      "tourism": 9
+    }
+  },
+  "91": {
+    "id": 91,
+    "name": "布拉迪斯拉发",
+    "country": "斯洛伐克",
+    "lat": 48.1516988,
+    "lon": 17.1093063,
+    "r2000": {
+      "dining": 1017,
+      "culture": 142,
+      "health": 193,
+      "edu": 163,
+      "retail": 1713,
+      "finance": 764,
+      "transit": 2,
+      "tourism": 96
+    }
+  },
+  "92": {
+    "id": 92,
+    "name": "卢布尔雅那",
+    "country": "斯洛文尼亚",
+    "lat": 46.0500268,
+    "lon": 14.5069289,
+    "r2000": {
+      "dining": 457,
+      "culture": 74,
+      "health": 74,
+      "edu": 111,
+      "retail": 517,
+      "finance": 223,
+      "transit": 9,
+      "tourism": 93
+    }
+  },
+  "93": {
+    "id": 93,
+    "name": "都柏林",
+    "country": "爱尔兰",
+    "lat": 53.3493795,
+    "lon": -6.2605593,
+    "r2000": {
+      "dining": 1492,
+      "culture": 110,
+      "health": 190,
+      "edu": 125,
+      "retail": 1815,
+      "finance": 1039,
+      "transit": 7,
+      "tourism": 247
+    }
+  },
+  "94": {
+    "id": 94,
+    "name": "贝尔法斯特",
+    "country": "英国",
+    "lat": 54.5975805,
+    "lon": -5.9277097,
+    "r2000": {
+      "dining": 427,
+      "culture": 38,
+      "health": 53,
+      "edu": 51,
+      "retail": 572,
+      "finance": 271,
+      "transit": 8,
+      "tourism": 72
+    }
+  },
+  "95": {
+    "id": 95,
+    "name": "亚特兰大",
+    "country": "美国",
+    "lat": 33.7544657,
+    "lon": -84.3898151,
+    "r2000": {
+      "dining": 237,
+      "culture": 39,
+      "health": 24,
+      "edu": 30,
+      "retail": 162,
+      "finance": 112,
+      "transit": 26,
+      "tourism": 44
+    }
+  },
+  "96": {
+    "id": 96,
+    "name": "凤凰城",
+    "country": "美国",
+    "lat": 33.4484367,
+    "lon": -112.074141,
+    "r2000": {
+      "dining": 208,
+      "culture": 44,
+      "health": 19,
+      "edu": 33,
+      "retail": 146,
+      "finance": 116,
+      "transit": 20,
+      "tourism": 20
+    }
+  },
+  "97": {
+    "id": 97,
+    "name": "波特兰",
+    "country": "美国",
+    "lat": 45.5202471,
+    "lon": -122.674194,
+    "r2000": {
+      "dining": 819,
+      "culture": 79,
+      "health": 55,
+      "edu": 44,
+      "retail": 889,
+      "finance": 447,
+      "transit": 34,
+      "tourism": 66
+    }
+  },
+  "98": {
+    "id": 98,
+    "name": "圣地亚哥",
+    "country": "美国",
+    "lat": 32.7157,
+    "lon": -117.1611,
+    "r2000": {
+      "dining": 401,
+      "culture": 57,
+      "health": 9,
+      "edu": 32,
+      "retail": 223,
+      "finance": 69,
+      "transit": 19,
+      "tourism": 132
+    }
+  },
+  "99": {
+    "id": 99,
+    "name": "拉斯维加斯",
+    "country": "美国",
+    "lat": 36.1674263,
+    "lon": -115.1484131,
+    "r2000": {
+      "dining": 151,
+      "culture": 24,
+      "health": 12,
+      "edu": 16,
+      "retail": 242,
+      "finance": 36,
+      "transit": 3,
+      "tourism": 34
+    }
+  },
+  "100": {
+    "id": 100,
+    "name": "坦帕",
+    "country": "美国",
+    "lat": 27.9449854,
+    "lon": -82.4583107,
+    "r2000": {
+      "dining": 146,
+      "culture": 18,
+      "health": 13,
+      "edu": 25,
+      "retail": 63,
+      "finance": 76,
+      "transit": 8,
+      "tourism": 22
+    }
+  },
+  "101": {
+    "id": 101,
+    "name": "广州",
+    "country": "中国",
+    "lat": 23.1288454,
+    "lon": 113.2590064,
+    "r2000": {
+      "dining": 217,
+      "culture": 37,
+      "health": 43,
+      "edu": 113,
+      "retail": 208,
+      "finance": 169,
+      "transit": 78,
+      "tourism": 62
+    }
+  },
+  "102": {
+    "id": 102,
+    "name": "深圳",
+    "country": "中国",
+    "lat": 22.5445741,
+    "lon": 114.0545429,
+    "r2000": {
+      "dining": 104,
+      "culture": 14,
+      "health": 7,
+      "edu": 44,
+      "retail": 82,
+      "finance": 72,
+      "transit": 133,
+      "tourism": 22
+    }
+  },
+  "103": {
+    "id": 103,
+    "name": "成都",
+    "country": "中国",
+    "lat": 30.659867,
+    "lon": 104.063315,
+    "r2000": {
+      "dining": 322,
+      "culture": 20,
+      "health": 77,
+      "edu": 58,
+      "retail": 293,
+      "finance": 211,
+      "transit": 64,
+      "tourism": 98
+    }
+  },
+  "104": {
+    "id": 104,
+    "name": "杭州",
+    "country": "中国",
+    "lat": 30.2489634,
+    "lon": 120.2052342,
+    "r2000": {
+      "dining": 22,
+      "culture": 2,
+      "health": 5,
+      "edu": 30,
+      "retail": 22,
+      "finance": 21,
+      "transit": 82,
+      "tourism": 12
+    }
+  },
+  "105": {
+    "id": 105,
+    "name": "重庆",
+    "country": "中国",
+    "lat": 29.563,
+    "lon": 106.5516,
+    "r2000": {
+      "dining": 51,
+      "culture": 9,
+      "health": 9,
+      "edu": 30,
+      "retail": 50,
+      "finance": 15,
+      "transit": 71,
+      "tourism": 24
+    }
+  },
+  "106": {
+    "id": 106,
+    "name": "大阪",
+    "country": "日本",
+    "lat": 34.6937569,
+    "lon": 135.5014539,
+    "r2000": {
+      "dining": 3755,
+      "culture": 87,
+      "health": 393,
+      "edu": 132,
+      "retail": 1952,
+      "finance": 592,
+      "transit": 377,
+      "tourism": 185
+    }
+  },
+  "107": {
+    "id": 107,
+    "name": "名古屋",
+    "country": "日本",
+    "lat": 35.1851045,
+    "lon": 136.8998438,
+    "r2000": {
+      "dining": 776,
+      "culture": 54,
+      "health": 121,
+      "edu": 73,
+      "retail": 485,
+      "finance": 303,
+      "transit": 137,
+      "tourism": 65
+    }
+  },
+  "109": {
+    "id": 109,
+    "name": "金边",
+    "country": "柬埔寨",
+    "lat": 11.5730391,
+    "lon": 104.857807,
+    "r2000": {
+      "dining": 66,
+      "culture": 0,
+      "health": 60,
+      "edu": 31,
+      "retail": 83,
+      "finance": 64,
+      "transit": 0,
+      "tourism": 16
+    }
+  },
+  "110": {
+    "id": 110,
+    "name": "仰光",
+    "country": "缅甸",
+    "lat": 16.7967129,
+    "lon": 96.1609916,
+    "r2000": {
+      "dining": 305,
+      "culture": 13,
+      "health": 78,
+      "edu": 55,
+      "retail": 313,
+      "finance": 188,
+      "transit": 4,
+      "tourism": 96
+    }
+  },
+  "112": {
+    "id": 112,
+    "name": "清迈",
+    "country": "泰国",
+    "lat": 18.7882778,
+    "lon": 98.9858802,
+    "r2000": {
+      "dining": 1712,
+      "culture": 43,
+      "health": 195,
+      "edu": 69,
+      "retail": 1448,
+      "finance": 326,
+      "transit": 1,
+      "tourism": 995
+    }
+  },
+  "114": {
+    "id": 114,
+    "name": "达卡",
+    "country": "孟加拉国",
+    "lat": 23.7643863,
+    "lon": 90.3890144,
+    "r2000": {
+      "dining": 114,
+      "culture": 12,
+      "health": 98,
+      "edu": 70,
+      "retail": 352,
+      "finance": 420,
+      "transit": 25,
+      "tourism": 23
+    }
+  },
+  "115": {
+    "id": 115,
+    "name": "科伦坡",
+    "country": "斯里兰卡",
+    "lat": 6.9388614,
+    "lon": 79.8542005,
+    "r2000": {
+      "dining": 123,
+      "culture": 19,
+      "health": 8,
+      "edu": 46,
+      "retail": 126,
+      "finance": 200,
+      "transit": 15,
+      "tourism": 50
+    }
+  },
+  "116": {
+    "id": 116,
+    "name": "加德满都",
+    "country": "尼泊尔",
+    "lat": 27.708317,
+    "lon": 85.3205817,
+    "r2000": {
+      "dining": 1209,
+      "culture": 51,
+      "health": 276,
+      "edu": 385,
+      "retail": 3480,
+      "finance": 1577,
+      "transit": 12,
+      "tourism": 638
+    }
+  },
+  "117": {
+    "id": 117,
+    "name": "阿拉木图",
+    "country": "哈萨克斯坦",
+    "lat": 43.2363924,
+    "lon": 76.9457275,
+    "r2000": {
+      "dining": 474,
+      "culture": 26,
+      "health": 115,
+      "edu": 76,
+      "retail": 554,
+      "finance": 278,
+      "transit": 12,
+      "tourism": 62
+    }
+  },
+  "118": {
+    "id": 118,
+    "name": "塔什干",
+    "country": "乌兹别克斯坦",
+    "lat": 41.3123363,
+    "lon": 69.2787079,
+    "r2000": {
+      "dining": 367,
+      "culture": 43,
+      "health": 157,
+      "edu": 95,
+      "retail": 653,
+      "finance": 500,
+      "transit": 46,
+      "tourism": 44
+    }
+  },
+  "119": {
+    "id": 119,
+    "name": "巴库",
+    "country": "阿塞拜疆",
+    "lat": 40.3755885,
+    "lon": 49.8328009,
+    "r2000": {
+      "dining": 721,
+      "culture": 85,
+      "health": 224,
+      "edu": 98,
+      "retail": 974,
+      "finance": 472,
+      "transit": 24,
+      "tourism": 177
+    }
+  },
+  "120": {
+    "id": 120,
+    "name": "乌兰巴托",
+    "country": "蒙古",
+    "lat": 47.9184676,
+    "lon": 106.9177016,
+    "r2000": {
+      "dining": 836,
+      "culture": 44,
+      "health": 297,
+      "edu": 176,
+      "retail": 1316,
+      "finance": 534,
+      "transit": 8,
+      "tourism": 176
+    }
+  },
+  "121": {
+    "id": 121,
+    "name": "斯德哥尔摩",
+    "country": "瑞典",
+    "lat": 59.3251172,
+    "lon": 18.0710935,
+    "r2000": {
+      "dining": 1511,
+      "culture": 141,
+      "health": 91,
+      "edu": 99,
+      "retail": 2010,
+      "finance": 319,
+      "transit": 109,
+      "tourism": 181
+    }
+  },
+  "122": {
+    "id": 122,
+    "name": "哥本哈根",
+    "country": "丹麦",
+    "lat": 55.6867243,
+    "lon": 12.5700724,
+    "r2000": {
+      "dining": 1730,
+      "culture": 152,
+      "health": 39,
+      "edu": 105,
+      "retail": 1998,
+      "finance": 416,
+      "transit": 59,
+      "tourism": 154
+    }
+  },
+  "123": {
+    "id": 123,
+    "name": "赫尔辛基",
+    "country": "芬兰",
+    "lat": 60.1666204,
+    "lon": 24.9435408,
+    "r2000": {
+      "dining": 1115,
+      "culture": 136,
+      "health": 92,
+      "edu": 120,
+      "retail": 1988,
+      "finance": 1151,
+      "transit": 93,
+      "tourism": 98
+    }
+  },
+  "124": {
+    "id": 124,
+    "name": "奥斯陆",
+    "country": "挪威",
+    "lat": 59.9133301,
+    "lon": 10.7389701,
+    "r2000": {
+      "dining": 1091,
+      "culture": 101,
+      "health": 210,
+      "edu": 153,
+      "retail": 1353,
+      "finance": 288,
+      "transit": 34,
+      "tourism": 82
+    }
+  },
+  "125": {
+    "id": 125,
+    "name": "休斯顿",
+    "country": "美国",
+    "lat": 29.7589382,
+    "lon": -95.3676974,
+    "r2000": {
+      "dining": 224,
+      "culture": 36,
+      "health": 20,
+      "edu": 12,
+      "retail": 118,
+      "finance": 72,
+      "transit": 19,
+      "tourism": 33
+    }
+  },
+  "126": {
+    "id": 126,
+    "name": "费城",
+    "country": "美国",
+    "lat": 39.9527237,
+    "lon": -75.1635262,
+    "r2000": {
+      "dining": 680,
+      "culture": 110,
+      "health": 56,
+      "edu": 74,
+      "retail": 511,
+      "finance": 176,
+      "transit": 119,
+      "tourism": 75
+    }
+  },
+  "127": {
+    "id": 127,
+    "name": "卡尔加里",
+    "country": "加拿大",
+    "lat": 51.0456064,
+    "lon": -114.057541,
+    "r2000": {
+      "dining": 503,
+      "culture": 44,
+      "health": 43,
+      "edu": 25,
+      "retail": 389,
+      "finance": 151,
+      "transit": 16,
+      "tourism": 41
+    }
+  },
+  "128": {
+    "id": 128,
+    "name": "珀斯",
+    "country": "澳大利亚",
+    "lat": -31.9558967,
+    "lon": 115.8605784,
+    "r2000": {
+      "dining": 492,
+      "culture": 39,
+      "health": 46,
+      "edu": 19,
+      "retail": 380,
+      "finance": 181,
+      "transit": 22,
+      "tourism": 78
+    }
+  },
+  "129": {
+    "id": 129,
+    "name": "麦德林",
+    "country": "哥伦比亚",
+    "lat": 6.2443382,
+    "lon": -75.573553,
+    "r2000": {
+      "dining": 358,
+      "culture": 54,
+      "health": 80,
+      "edu": 125,
+      "retail": 515,
+      "finance": 162,
+      "transit": 26,
+      "tourism": 101
+    }
+  },
+  "130": {
+    "id": 130,
+    "name": "第比利斯",
+    "country": "格鲁吉亚",
+    "lat": 41.6934591,
+    "lon": 44.8014495,
+    "r2000": {
+      "dining": 982,
+      "culture": 108,
+      "health": 105,
+      "edu": 65,
+      "retail": 1508,
+      "finance": 424,
+      "transit": 17,
+      "tourism": 580
+    }
+  },
+  "131": {
+    "id": 131,
+    "name": "拉各斯",
+    "country": "尼日利亚",
+    "lat": 6.4541,
+    "lon": 3.3947,
+    "r2000": {
+      "dining": 4,
+      "culture": 3,
+      "health": 12,
+      "edu": 4,
+      "retail": 3,
+      "finance": 15,
+      "transit": 9,
+      "tourism": 3
+    }
+  },
+  "132": {
+    "id": 132,
+    "name": "莫斯科",
+    "country": "俄罗斯",
+    "lat": 55.625578,
+    "lon": 37.6063916,
+    "r2000": {
+      "dining": 99,
+      "culture": 5,
+      "health": 83,
+      "edu": 69,
+      "retail": 581,
+      "finance": 149,
+      "transit": 32,
+      "tourism": 4
+    }
+  },
+  "133": {
+    "id": 133,
+    "name": "圣何塞(美国)",
+    "country": "美国",
+    "lat": 37.3361663,
+    "lon": -121.890591,
+    "r2000": {
+      "dining": 324,
+      "culture": 46,
+      "health": 33,
+      "edu": 46,
+      "retail": 527,
+      "finance": 355,
+      "transit": 12,
+      "tourism": 15
+    }
+  },
+  "135": {
+    "id": 135,
+    "name": "渥太华",
+    "country": "加拿大",
+    "lat": 45.4208777,
+    "lon": -75.6901106,
+    "r2000": {
+      "dining": 749,
+      "culture": 36,
+      "health": 133,
+      "edu": 61,
+      "retail": 857,
+      "finance": 520,
+      "transit": 26,
+      "tourism": 58
+    }
+  },
+  "136": {
+    "id": 136,
+    "name": "卢森堡市",
+    "country": "卢森堡",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "r2000": {
+      "dining": 567,
+      "culture": 54,
+      "health": 71,
+      "edu": 62,
+      "retail": 813,
+      "finance": 584,
+      "transit": 8,
+      "tourism": 71
+    }
+  },
+  "137": {
+    "id": 137,
+    "name": "塔林",
+    "country": "爱沙尼亚",
+    "lat": 59.437242,
+    "lon": 24.7572693,
+    "r2000": {
+      "dining": 683,
+      "culture": 137,
+      "health": 85,
+      "edu": 95,
+      "retail": 1100,
+      "finance": 271,
+      "transit": 16,
+      "tourism": 115
+    }
+  },
+  "138": {
+    "id": 138,
+    "name": "福冈",
+    "country": "日本",
+    "lat": 33.5904,
+    "lon": 130.4017,
+    "r2000": {
+      "dining": 1091,
+      "culture": 33,
+      "health": 98,
+      "edu": 64,
+      "retail": 711,
+      "finance": 189,
+      "transit": 143,
+      "tourism": 183
+    }
+  },
+  "140": {
+    "id": 140,
+    "name": "巴厘岛",
+    "country": "印度尼西亚",
+    "lat": -8.6653349,
+    "lon": 115.2176191,
+    "r2000": {
+      "dining": 162,
+      "culture": 10,
+      "health": 53,
+      "edu": 134,
+      "retail": 551,
+      "finance": 378,
+      "transit": 1,
+      "tourism": 72
+    }
+  },
+  "141": {
+    "id": 141,
+    "name": "岘港",
+    "country": "越南",
+    "lat": 16.068,
+    "lon": 108.212,
+    "r2000": {
+      "dining": 749,
+      "culture": 12,
+      "health": 33,
+      "edu": 58,
+      "retail": 272,
+      "finance": 284,
+      "transit": 5,
+      "tourism": 107
+    }
+  },
+  "143": {
+    "id": 143,
+    "name": "波尔图",
+    "country": "葡萄牙",
+    "lat": 41.1502195,
+    "lon": -8.6103497,
+    "r2000": {
+      "dining": 1481,
+      "culture": 152,
+      "health": 130,
+      "edu": 154,
+      "retail": 2400,
+      "finance": 513,
+      "transit": 67,
+      "tourism": 548
+    }
+  },
+  "144": {
+    "id": 144,
+    "name": "瓦伦西亚",
+    "country": "西班牙",
+    "lat": 39.4697065,
+    "lon": -0.3763353,
+    "r2000": {
+      "dining": 1249,
+      "culture": 68,
+      "health": 206,
+      "edu": 131,
+      "retail": 1591,
+      "finance": 347,
+      "transit": 68,
+      "tourism": 117
+    }
+  },
+  "146": {
+    "id": 146,
+    "name": "斯普利特",
+    "country": "克罗地亚",
+    "lat": 43.5116383,
+    "lon": 16.4399659,
+    "r2000": {
+      "dining": 548,
+      "culture": 41,
+      "health": 137,
+      "edu": 108,
+      "retail": 869,
+      "finance": 316,
+      "transit": 36,
+      "tourism": 134
+    }
+  },
+  "147": {
+    "id": 147,
+    "name": "普吉岛",
+    "country": "泰国",
+    "lat": 7.8804,
+    "lon": 98.3923,
+    "r2000": {
+      "dining": 342,
+      "culture": 13,
+      "health": 15,
+      "edu": 21,
+      "retail": 179,
+      "finance": 84,
+      "transit": 2,
+      "tourism": 99
+    }
+  },
+  "148": {
+    "id": 148,
+    "name": "蒙得维的亚",
+    "country": "乌拉圭",
+    "lat": -34.9058916,
+    "lon": -56.1913095,
+    "r2000": {
+      "dining": 331,
+      "culture": 80,
+      "health": 92,
+      "edu": 73,
+      "retail": 1062,
+      "finance": 415,
+      "transit": 3,
+      "tourism": 81
+    }
+  },
+  "149": {
+    "id": 149,
+    "name": "拉斯帕尔马斯",
+    "country": "西班牙",
+    "lat": 28.1288694,
+    "lon": -15.4349015,
+    "r2000": {
+      "dining": 674,
+      "culture": 30,
+      "health": 131,
+      "edu": 88,
+      "retail": 1212,
+      "finance": 272,
+      "transit": 2,
+      "tourism": 81
+    }
+  },
+  "150": {
+    "id": 150,
+    "name": "槟城",
+    "country": "马来西亚",
+    "lat": 5.4141619,
+    "lon": 100.3287352,
+    "r2000": {
+      "dining": 831,
+      "culture": 46,
+      "health": 49,
+      "edu": 57,
+      "retail": 556,
+      "finance": 199,
+      "transit": 5,
+      "tourism": 230
+    }
+  },
+  "152": {
+    "id": 152,
+    "name": "弗洛里亚诺波利斯",
+    "country": "巴西",
+    "lat": -27.5973002,
+    "lon": -48.5496098,
+    "r2000": {
+      "dining": 193,
+      "culture": 20,
+      "health": 84,
+      "edu": 42,
+      "retail": 470,
+      "finance": 124,
+      "transit": 4,
+      "tourism": 33
+    }
+  },
+  "159": {
+    "id": 159,
+    "name": "京都",
+    "country": "日本",
+    "lat": 35.0115754,
+    "lon": 135.7681441,
+    "r2000": {
+      "dining": 1744,
+      "culture": 86,
+      "health": 152,
+      "edu": 126,
+      "retail": 1231,
+      "finance": 546,
+      "transit": 70,
+      "tourism": 390
+    }
+  },
+  "160": {
+    "id": 160,
+    "name": "卡萨布兰卡",
+    "country": "摩洛哥",
+    "lat": 33.5945144,
+    "lon": -7.6200284,
+    "r2000": {
+      "dining": 587,
+      "culture": 15,
+      "health": 134,
+      "edu": 59,
+      "retail": 413,
+      "finance": 368,
+      "transit": 4,
+      "tourism": 142
+    }
+  },
+  "161": {
+    "id": 161,
+    "name": "惠灵顿",
+    "country": "新西兰",
+    "lat": -41.2887953,
+    "lon": 174.7772114,
+    "r2000": {
+      "dining": 574,
+      "culture": 44,
+      "health": 33,
+      "edu": 45,
+      "retail": 634,
+      "finance": 181,
+      "transit": 19,
+      "tourism": 86
+    }
+  },
+  "162": {
+    "id": 162,
+    "name": "维尔纽斯",
+    "country": "立陶宛",
+    "lat": 54.6870458,
+    "lon": 25.2829111,
+    "r2000": {
+      "dining": 714,
+      "culture": 118,
+      "health": 114,
+      "edu": 117,
+      "retail": 700,
+      "finance": 292,
+      "transit": 2,
+      "tourism": 123
+    }
+  },
+  "163": {
+    "id": 163,
+    "name": "里加",
+    "country": "拉脱维亚",
+    "lat": 56.9493977,
+    "lon": 24.1051846,
+    "r2000": {
+      "dining": 672,
+      "culture": 110,
+      "health": 123,
+      "edu": 107,
+      "retail": 1530,
+      "finance": 585,
+      "transit": 8,
+      "tourism": 116
+    }
+  },
+  "164": {
+    "id": 164,
+    "name": "尼科西亚",
+    "country": "塞浦路斯",
+    "lat": 35.1746503,
+    "lon": 33.3638783,
+    "r2000": {
+      "dining": 462,
+      "culture": 63,
+      "health": 120,
+      "edu": 70,
+      "retail": 993,
+      "finance": 362,
+      "transit": 6,
+      "tourism": 45
+    }
+  },
+  "165": {
+    "id": 165,
+    "name": "圣多明各",
+    "country": "多米尼加",
+    "lat": 18.4713858,
+    "lon": -69.8918436,
+    "r2000": {
+      "dining": 233,
+      "culture": 41,
+      "health": 80,
+      "edu": 48,
+      "retail": 692,
+      "finance": 174,
+      "transit": 18,
+      "tourism": 92
+    }
+  },
+  "166": {
+    "id": 166,
+    "name": "基多",
+    "country": "厄瓜多尔",
+    "lat": -0.2201641,
+    "lon": -78.5123274,
+    "r2000": {
+      "dining": 414,
+      "culture": 58,
+      "health": 144,
+      "edu": 74,
+      "retail": 1296,
+      "finance": 226,
+      "transit": 6,
+      "tourism": 120
+    }
+  },
+  "167": {
+    "id": 167,
+    "name": "阿克拉",
+    "country": "加纳",
+    "lat": 5.5571096,
+    "lon": -0.2012376,
+    "r2000": {
+      "dining": 77,
+      "culture": 10,
+      "health": 59,
+      "edu": 61,
+      "retail": 149,
+      "finance": 347,
+      "transit": 17,
+      "tourism": 56
+    }
+  },
+  "168": {
+    "id": 168,
+    "name": "亚的斯亚贝巴",
+    "country": "埃塞俄比亚",
+    "lat": 9,
+    "lon": 38.75,
+    "r2000": {
+      "dining": 151,
+      "culture": 11,
+      "health": 58,
+      "edu": 45,
+      "retail": 163,
+      "finance": 273,
+      "transit": 7,
+      "tourism": 64
+    }
+  }
+}

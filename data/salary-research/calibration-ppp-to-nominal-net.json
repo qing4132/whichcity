@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-04-17T04:46:05.119Z",
+  "note": "PPP-gross → nominal-net-USD calibration factor. α = median(numbeoNetAnnualUSD / meanGrossPPP) over trusted cities. Numbeo data used ONLY offline for calibration; never at runtime.",
+  "trustedPoolSize": 102,
+  "global": {
+    "alpha": 0.5205679714921909
+  },
+  "continents": {
+    "北美洲": {
+      "alpha": 0.5186621302509052,
+      "n": 19
+    },
+    "欧洲": {
+      "alpha": 0.43752380952380954,
+      "n": 37
+    },
+    "亚洲": {
+      "alpha": 0.6124732972152256,
+      "n": 30
+    },
+    "大洋洲": {
+      "alpha": 0.7223119440459889,
+      "n": 5
+    },
+    "南美洲": {
+      "alpha": 0.42564829171790625,
+      "n": 9
+    },
+    "非洲": {
+      "alpha": 0.5034112793541408,
+      "n": 2
+    }
+  },
+  "countries": {
+    "美国": {
+      "alpha": 0.5250853072122088,
+      "n": 12,
+      "source": "country-median"
+    },
+    "日本": {
+      "alpha": 0.5299723652078822,
+      "n": 4,
+      "source": "country-median"
+    },
+    "中国": {
+      "alpha": 0.7272388758682212,
+      "n": 6,
+      "source": "country-median"
+    },
+    "澳大利亚": {
+      "alpha": 0.8108779677120506,
+      "n": 3,
+      "source": "country-median"
+    },
+    "加拿大": {
+      "alpha": 0.5103593664087129,
+      "n": 3,
+      "source": "country-median"
+    },
+    "西班牙": {
+      "alpha": 0.31799139329750425,
+      "n": 4,
+      "source": "country-median"
+    },
+    "巴西": {
+      "alpha": 0.4484457028379504,
+      "n": 3,
+      "source": "country-median"
+    },
+    "越南": {
+      "alpha": 0.28545775928172595,
+      "n": 3,
+      "source": "country-median"
+    }
+  }
+}
