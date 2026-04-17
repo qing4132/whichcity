@@ -1,0 +1,72 @@
+====================================================================================================
+RELIABILITY AUDIT — if v8 replaces prod entirely (NO Numbeo fallback)
+====================================================================================================
+
+S tier (n=19)
+  cost   : authoritative(PLI+city adj)=19  PLI-only=0  missing=0
+  rent   : official(Zillow/ONS/StatCan)=19  market(Airbnb)=0  drift(NBS)=0  formula=0  missing=0
+  salary : H1B-anchored(US)=15  ILO-country-fallback=4
+  gov(FH): 19/19
+
+A tier (n=22)
+  cost   : authoritative(PLI+city adj)=8  PLI-only=14  missing=0
+  rent   : official(Zillow/ONS/StatCan)=5  market(Airbnb)=10  drift(NBS)=7  formula=0  missing=0
+  salary : H1B-anchored(US)=0  ILO-country-fallback=22
+  gov(FH): 21/22
+
+B tier (n=54)
+  cost   : authoritative(PLI+city adj)=19  PLI-only=35  missing=0
+  rent   : official(Zillow/ONS/StatCan)=1  market(Airbnb)=12  drift(NBS)=0  formula=41  missing=0
+  salary : H1B-anchored(US)=0  ILO-country-fallback=54
+  gov(FH): 49/54
+
+C tier (n=46)
+  cost   : authoritative(PLI+city adj)=12  PLI-only=34  missing=0
+  rent   : official(Zillow/ONS/StatCan)=0  market(Airbnb)=0  drift(NBS)=0  formula=46  missing=0
+  salary : H1B-anchored(US)=0  ILO-country-fallback=46
+  gov(FH): 32/46
+
+D tier (n=10)
+  cost   : authoritative(PLI+city adj)=0  PLI-only=0  missing=10
+  rent   : official(Zillow/ONS/StatCan)=0  market(Airbnb)=0  drift(NBS)=0  formula=0  missing=10
+  salary : H1B-anchored(US)=0  ILO-country-fallback=10
+  gov(FH): 2/10
+
+====================================================================================================
+BOTTOM LINE: per-tier reliability score (0-100) if shipped standalone
+====================================================================================================
+  Formula: 40% cost + 40% rent + 15% salary + 5% gov  (weighted)
+  cost scoring: authoritative=100, pli-only=70, missing=0
+  rent scoring: official=100, market=85, drift=80, formula=50, missing=0
+  salary scoring: H1B=90, ILO country=55 (US=85)
+  gov scoring: has FH=100, no FH=50
+
+  S  n= 19  mean=97.3/100  range=[93..98]
+  A  n= 22  mean=80.2/100  range=[73..93]
+  B  n= 54  mean=68.7/100  range=[59..87]
+  C  n= 46  mean=63.7/100  range=[59..76]
+  D  n= 10  mean=11.3/100  range=[11..13]
+
+====================================================================================================
+CUMULATIVE SHIP SCENARIOS
+====================================================================================================
+
+  S only     n=19  reliability=97.3/100
+    rent breakdown: official=19  market=0  drift=0  formula=0
+    cost median |Δ vs prod|: (informational) — see city-manifest
+
+  S+A        n=41  reliability=88.1/100
+    rent breakdown: official=24  market=10  drift=7  formula=0
+    cost median |Δ vs prod|: (informational) — see city-manifest
+
+  S+A+B      n=95  reliability=77.1/100
+    rent breakdown: official=25  market=22  drift=7  formula=41
+    cost median |Δ vs prod|: (informational) — see city-manifest
+
+  S+A+B+C    n=141  reliability=72.7/100
+    rent breakdown: official=25  market=22  drift=7  formula=87
+    cost median |Δ vs prod|: (informational) — see city-manifest
+
+  All 151    n=151  reliability=68.7/100
+    rent breakdown: official=25  market=22  drift=7  formula=87
+    cost median |Δ vs prod|: (informational) — see city-manifest

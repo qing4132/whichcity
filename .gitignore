@@ -47,3 +47,6 @@ data/salary-research/raw/ilo-earnings-activity.json
 data/salary-research/raw/ilo-ilo-wages-by-occupation-sdg.json
 data/salary-research/raw/eurostat-ses-earnings.json
 data/salary-research/raw/numbeo-new-cities-html/
+
+# Archived (2026-04): clean-pipeline raw data downloads — too large for git
+/data/clean-pipeline/sources/

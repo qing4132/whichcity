@@ -1,0 +1,426 @@
+{
+  "source": "OpenStreetMap amenity density (© OSM contributors, ODbL)",
+  "radiusMeters": 5000,
+  "method": "geomean of 6 categories, each log+min-max, ×100",
+  "generated": "2026-04-17T10:03:21.884Z",
+  "cities": {
+    "北京": {
+      "raw": {
+        "food": 1548,
+        "health": 59,
+        "edu": 19,
+        "culture": 72,
+        "transit": 311,
+        "leisure": 38
+      },
+      "normalized": {
+        "food": 49,
+        "health": 27,
+        "edu": 26,
+        "culture": 40,
+        "transit": 65,
+        "leisure": 20
+      },
+      "qualityIndex": 35
+    },
+    "上海": {
+      "raw": {
+        "food": 2322,
+        "health": 67,
+        "edu": 23,
+        "culture": 120,
+        "transit": 418,
+        "leisure": 34
+      },
+      "normalized": {
+        "food": 63,
+        "health": 30,
+        "edu": 31,
+        "culture": 54,
+        "transit": 72,
+        "leisure": 16
+      },
+      "qualityIndex": 39
+    },
+    "深圳": {
+      "raw": {
+        "food": 408,
+        "health": 19,
+        "edu": 7,
+        "culture": 22,
+        "transit": 447,
+        "leisure": 20
+      },
+      "normalized": {
+        "food": 5,
+        "health": 0,
+        "edu": 0,
+        "culture": 10,
+        "transit": 74,
+        "leisure": 0
+      },
+      "qualityIndex": 4
+    },
+    "纽约": {
+      "raw": {
+        "food": 5941,
+        "health": 427,
+        "edu": 206,
+        "culture": 494,
+        "transit": 1414,
+        "leisure": 371
+      },
+      "normalized": {
+        "food": 94,
+        "health": 74,
+        "edu": 92,
+        "culture": 91,
+        "transit": 100,
+        "leisure": 91
+      },
+      "qualityIndex": 90
+    },
+    "旧金山": {
+      "raw": {
+        "food": 2729,
+        "health": 121,
+        "edu": 82,
+        "culture": 196,
+        "transit": 227,
+        "leisure": 197
+      },
+      "normalized": {
+        "food": 68,
+        "health": 44,
+        "edu": 66,
+        "culture": 66,
+        "transit": 58,
+        "leisure": 71
+      },
+      "qualityIndex": 62
+    },
+    "芝加哥": {
+      "raw": {
+        "food": 1955,
+        "health": 78,
+        "edu": 41,
+        "culture": 66,
+        "transit": 506,
+        "leisure": 79
+      },
+      "normalized": {
+        "food": 57,
+        "health": 33,
+        "edu": 47,
+        "culture": 38,
+        "transit": 76,
+        "leisure": 42
+      },
+      "qualityIndex": 47
+    },
+    "伦敦": {
+      "raw": {
+        "food": 5823,
+        "health": 465,
+        "edu": 149,
+        "culture": 386,
+        "transit": 1000,
+        "leisure": 322
+      },
+      "normalized": {
+        "food": 94,
+        "health": 76,
+        "edu": 82,
+        "culture": 84,
+        "transit": 92,
+        "leisure": 87
+      },
+      "qualityIndex": 86
+    },
+    "柏林": {
+      "raw": {
+        "food": 5451,
+        "health": 720,
+        "edu": 130,
+        "culture": 701,
+        "transit": 598,
+        "leisure": 491
+      },
+      "normalized": {
+        "food": 91,
+        "health": 87,
+        "edu": 79,
+        "culture": 100,
+        "transit": 80,
+        "leisure": 100
+      },
+      "qualityIndex": 89
+    },
+    "阿姆斯特丹": {
+      "raw": {
+        "food": 3279,
+        "health": 193,
+        "edu": 159,
+        "culture": 349,
+        "transit": 140,
+        "leisure": 338
+      },
+      "normalized": {
+        "food": 74,
+        "health": 55,
+        "edu": 84,
+        "culture": 82,
+        "transit": 47,
+        "leisure": 88
+      },
+      "qualityIndex": 70
+    },
+    "东京": {
+      "raw": {
+        "food": 4584,
+        "health": 1023,
+        "edu": 154,
+        "culture": 240,
+        "transit": 770,
+        "leisure": 136
+      },
+      "normalized": {
+        "food": 86,
+        "health": 95,
+        "edu": 83,
+        "culture": 72,
+        "transit": 86,
+        "leisure": 59
+      },
+      "qualityIndex": 79
+    },
+    "首尔": {
+      "raw": {
+        "food": 7044,
+        "health": 272,
+        "edu": 159,
+        "culture": 617,
+        "transit": 948,
+        "leisure": 97
+      },
+      "normalized": {
+        "food": 100,
+        "health": 63,
+        "edu": 84,
+        "culture": 97,
+        "transit": 91,
+        "leisure": 49
+      },
+      "qualityIndex": 78
+    },
+    "新加坡": {
+      "raw": {
+        "food": 737,
+        "health": 86,
+        "edu": 16,
+        "culture": 17,
+        "transit": 92,
+        "leisure": 124
+      },
+      "normalized": {
+        "food": 25,
+        "health": 36,
+        "edu": 21,
+        "culture": 3,
+        "transit": 38,
+        "leisure": 57
+      },
+      "qualityIndex": 22
+    },
+    "香港": {
+      "raw": {
+        "food": 3209,
+        "health": 290,
+        "edu": 61,
+        "culture": 62,
+        "transit": 367,
+        "leisure": 87
+      },
+      "normalized": {
+        "food": 74,
+        "health": 65,
+        "edu": 58,
+        "culture": 36,
+        "transit": 69,
+        "leisure": 45
+      },
+      "qualityIndex": 56
+    },
+    "多伦多": {
+      "raw": {
+        "food": 3531,
+        "health": 331,
+        "edu": 74,
+        "culture": 160,
+        "transit": 599,
+        "leisure": 209
+      },
+      "normalized": {
+        "food": 77,
+        "health": 68,
+        "edu": 63,
+        "culture": 61,
+        "transit": 80,
+        "leisure": 73
+      },
+      "qualityIndex": 70
+    },
+    "悉尼": {
+      "raw": {
+        "food": 2589,
+        "health": 169,
+        "edu": 39,
+        "culture": 138,
+        "transit": 175,
+        "leisure": 212
+      },
+      "normalized": {
+        "food": 67,
+        "health": 52,
+        "edu": 45,
+        "culture": 57,
+        "transit": 52,
+        "leisure": 73
+      },
+      "qualityIndex": 57
+    },
+    "迪拜": {
+      "raw": {
+        "food": 718,
+        "health": 119,
+        "edu": 9,
+        "culture": 15,
+        "transit": 45,
+        "leisure": 31
+      },
+      "normalized": {
+        "food": 24,
+        "health": 43,
+        "edu": 6,
+        "culture": 0,
+        "transit": 21,
+        "leisure": 13
+      },
+      "qualityIndex": 11
+    },
+    "孟买": {
+      "raw": {
+        "food": 352,
+        "health": 414,
+        "edu": 33,
+        "culture": 30,
+        "transit": 71,
+        "leisure": 36
+      },
+      "normalized": {
+        "food": 0,
+        "health": 74,
+        "edu": 41,
+        "culture": 17,
+        "transit": 32,
+        "leisure": 18
+      },
+      "qualityIndex": 18
+    },
+    "墨西哥城": {
+      "raw": {
+        "food": 2094,
+        "health": 241,
+        "edu": 112,
+        "culture": 130,
+        "transit": 475,
+        "leisure": 121
+      },
+      "normalized": {
+        "food": 59,
+        "health": 60,
+        "edu": 74,
+        "culture": 56,
+        "transit": 75,
+        "leisure": 56
+      },
+      "qualityIndex": 63
+    },
+    "开普敦": {
+      "raw": {
+        "food": 644,
+        "health": 35,
+        "edu": 14,
+        "culture": 22,
+        "transit": 17,
+        "leisure": 32
+      },
+      "normalized": {
+        "food": 20,
+        "health": 14,
+        "edu": 18,
+        "culture": 10,
+        "transit": 0,
+        "leisure": 14
+      },
+      "qualityIndex": 9
+    },
+    "伊斯坦布尔": {
+      "raw": {
+        "food": 4467,
+        "health": 754,
+        "edu": 279,
+        "culture": 110,
+        "transit": 195,
+        "leisure": 89
+      },
+      "normalized": {
+        "food": 85,
+        "health": 88,
+        "edu": 100,
+        "culture": 51,
+        "transit": 55,
+        "leisure": 46
+      },
+      "qualityIndex": 68
+    },
+    "马德里": {
+      "raw": {
+        "food": 6166,
+        "health": 1236,
+        "edu": 251,
+        "culture": 235,
+        "transit": 796,
+        "leisure": 428
+      },
+      "normalized": {
+        "food": 96,
+        "health": 100,
+        "edu": 97,
+        "culture": 71,
+        "transit": 87,
+        "leisure": 96
+      },
+      "qualityIndex": 90
+    },
+    "罗马": {
+      "raw": {
+        "food": 4094,
+        "health": 335,
+        "edu": 257,
+        "culture": 262,
+        "transit": 241,
+        "leisure": 117
+      },
+      "normalized": {
+        "food": 82,
+        "health": 68,
+        "edu": 98,
+        "culture": 74,
+        "transit": 60,
+        "leisure": 55
+      },
+      "qualityIndex": 71
+    }
+  }
+}

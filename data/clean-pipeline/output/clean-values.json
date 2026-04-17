@@ -1,0 +1,2588 @@
+{
+  "meta": {
+    "description": "Clean-pipeline cost/rent/house — zero Numbeo/Livingcost inputs",
+    "generated": "2026-04-17T08:54:56.530Z",
+    "formulaVersion": "clean-v1",
+    "sources": {
+      "hfce": "WB NE.CON.PRVT.CD / SP.POP.TOTL (CC BY 4.0)",
+      "gini": "WB SI.POV.GINI (CC BY 4.0)",
+      "gdpPPP": "WB NY.GDP.PCAP.PP.CD (CC BY 4.0)",
+      "gni": "WB NY.GNP.PCAP.CD (CC BY 4.0)",
+      "rpp": "BEA Regional Price Parities 2022 (Public Domain)",
+      "pli": "Eurostat PLI 2022 (CC BY 4.0)",
+      "usRent": "HUD FY2024 Fair Market Rent 1BR (Public Domain)",
+      "ukRent": "ONS Private rent and house prices UK Feb 2026 (OGL v3)",
+      "caRent": "StatCan Table 34-10-0133-01 2024 1BR (OGL-Canada)",
+      "imfTW": "IMF WEO April 2024 (for Taiwan, public)"
+    }
+  },
+  "cities": [
+    {
+      "id": 1,
+      "name": "纽约",
+      "country": "美国",
+      "cost": 14507,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1.2)",
+      "rent": 2451,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 2,
+      "name": "伦敦",
+      "country": "英国",
+      "cost": 6162,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1.2)",
+      "rent": 3057,
+      "rentSource": "ONS-2026",
+      "house": 5772,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 29829,
+        "gini": 32.4,
+        "gdpPPP": 62009.4907765366,
+        "gni": 49470
+      }
+    },
+    {
+      "id": 3,
+      "name": "东京",
+      "country": "日本",
+      "cost": 3148,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.2)",
+      "rent": 1196,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "houseSource": "GNI×PTI(12)/60m²",
+      "_inputs": {
+        "hfcePC": 19081,
+        "gini": 32.3,
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 4,
+      "name": "北京",
+      "country": "中国",
+      "cost": 876,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.2)",
+      "rent": 280,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2049,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5312,
+        "gini": 36,
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 5,
+      "name": "上海",
+      "country": "中国",
+      "cost": 876,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.2)",
+      "rent": 280,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2049,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5312,
+        "gini": 36,
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 6,
+      "name": "悉尼",
+      "country": "澳大利亚",
+      "cost": 5483,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.2)",
+      "rent": 2084,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7313,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 33228,
+        "gini": 33.8,
+        "gdpPPP": 72111.1844628126,
+        "gni": 62680
+      }
+    },
+    {
+      "id": 7,
+      "name": "新加坡",
+      "country": "新加坡",
+      "cost": 5710,
+      "costSource": "HFCE×Gini(2)×none×prem(1.2)",
+      "rent": 2170,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 22425,
+      "houseSource": "GNI×PTI(18)/60m²",
+      "_inputs": {
+        "hfcePC": 28552,
+        "gini": null,
+        "gdpPPP": 150689.301625826,
+        "gni": 74750
+      }
+    },
+    {
+      "id": 8,
+      "name": "巴黎",
+      "country": "法国",
+      "cost": 3381,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.2)",
+      "rent": 1285,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 5269,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 23754,
+        "gini": 31.8,
+        "gdpPPP": 62556.91810454,
+        "gni": 45160
+      }
+    },
+    {
+      "id": 9,
+      "name": "多伦多",
+      "country": "加拿大",
+      "cost": 3721,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.2)",
+      "rent": 1240,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 28625,
+        "gini": 31.5,
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 10,
+      "name": "香港",
+      "country": "中国香港",
+      "cost": 7276,
+      "costSource": "HFCE×Gini(2)×none×prem(1.2)",
+      "rent": 2765,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 17121,
+      "houseSource": "GNI×PTI(18)/60m²",
+      "_inputs": {
+        "hfcePC": 36380,
+        "gini": null,
+        "gdpPPP": 75195.9865970615,
+        "gni": 57070
+      }
+    },
+    {
+      "id": 11,
+      "name": "洛杉矶",
+      "country": "美国",
+      "cost": 13820,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1.2)",
+      "rent": 2006,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 12,
+      "name": "旧金山",
+      "country": "美国",
+      "cost": 14436,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1.2)",
+      "rent": 2818,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 13,
+      "name": "芝加哥",
+      "country": "美国",
+      "cost": 12103,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1.2)",
+      "rent": 1507,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 14,
+      "name": "迪拜",
+      "country": "阿联酋",
+      "cost": 2775,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.2)",
+      "rent": 1055,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6014,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 21345,
+        "gini": 26.4,
+        "gdpPPP": 79228.738801276,
+        "gni": 51550
+      }
+    },
+    {
+      "id": 15,
+      "name": "阿姆斯特丹",
+      "country": "荷兰",
+      "cost": 4196,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.2)",
+      "rent": 1594,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7294,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 27034,
+        "gini": 25.7,
+        "gdpPPP": 86173.6290841738,
+        "gni": 62520
+      }
+    },
+    {
+      "id": 16,
+      "name": "苏黎世",
+      "country": "瑞士",
+      "cost": 15263,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1.2)",
+      "rent": 5800,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 11109,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 50714,
+        "gini": 33.8,
+        "gdpPPP": 96497.6947971323,
+        "gni": 95220
+      }
+    },
+    {
+      "id": 17,
+      "name": "日内瓦",
+      "country": "瑞士",
+      "cost": 12719,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 4833,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 11109,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 50714,
+        "gini": 33.8,
+        "gdpPPP": 96497.6947971323,
+        "gni": 95220
+      }
+    },
+    {
+      "id": 18,
+      "name": "慕尼黑",
+      "country": "德国",
+      "cost": 4051,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 1539,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6427,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 27055,
+        "gini": 33.7,
+        "gdpPPP": 73551.9347696836,
+        "gni": 55090
+      }
+    },
+    {
+      "id": 19,
+      "name": "柏林",
+      "country": "德国",
+      "cost": 4456,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1.1)",
+      "rent": 1693,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6427,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 27055,
+        "gini": 33.7,
+        "gdpPPP": 73551.9347696836,
+        "gni": 55090
+      }
+    },
+    {
+      "id": 20,
+      "name": "巴塞罗那",
+      "country": "西班牙",
+      "cost": 2311,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 878,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3914,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 17997,
+        "gini": 33.4,
+        "gdpPPP": 57965.2948138837,
+        "gni": 33550
+      }
+    },
+    {
+      "id": 21,
+      "name": "马德里",
+      "country": "西班牙",
+      "cost": 2774,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1.2)",
+      "rent": 1054,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3914,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 17997,
+        "gini": 33.4,
+        "gdpPPP": 57965.2948138837,
+        "gni": 33550
+      }
+    },
+    {
+      "id": 22,
+      "name": "米兰",
+      "country": "意大利",
+      "cost": 3781,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1.2)",
+      "rent": 1437,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 4502,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 22778,
+        "gini": 34.3,
+        "gdpPPP": 62014.2675153689,
+        "gni": 38590
+      }
+    },
+    {
+      "id": 23,
+      "name": "罗马",
+      "country": "意大利",
+      "cost": 3466,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1.1)",
+      "rent": 1317,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 4502,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 22778,
+        "gini": 34.3,
+        "gdpPPP": 62014.2675153689,
+        "gni": 38590
+      }
+    },
+    {
+      "id": 24,
+      "name": "布鲁塞尔",
+      "country": "比利时",
+      "cost": 3899,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 1482,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6451,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 27381,
+        "gini": 26.8,
+        "gdpPPP": 73514.4831045258,
+        "gni": 55290
+      }
+    },
+    {
+      "id": 25,
+      "name": "维也纳",
+      "country": "奥地利",
+      "cost": 3992,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 1517,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6389,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 29102,
+        "gini": 31.2,
+        "gdpPPP": 73911.439663136,
+        "gni": 54760
+      }
+    },
+    {
+      "id": 26,
+      "name": "布拉格",
+      "country": "捷克",
+      "cost": 1363,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 518,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3449,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 13846,
+        "gini": 25.7,
+        "gdpPPP": 57285.4237001379,
+        "gni": 29560
+      }
+    },
+    {
+      "id": 27,
+      "name": "华沙",
+      "country": "波兰",
+      "cost": 1015,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 386,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2519,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 14405,
+        "gini": 28.5,
+        "gdpPPP": 51262.5105756884,
+        "gni": 21590
+      }
+    },
+    {
+      "id": 28,
+      "name": "里斯本",
+      "country": "葡萄牙",
+      "cost": 2165,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1.1)",
+      "rent": 823,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3140,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 16799,
+        "gini": 33.9,
+        "gdpPPP": 51679.8883807527,
+        "gni": 26910
+      }
+    },
+    {
+      "id": 29,
+      "name": "雅典",
+      "country": "希腊",
+      "cost": 1999,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1.1)",
+      "rent": 760,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2652,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 15656,
+        "gini": 33.4,
+        "gdpPPP": 44327.2097808276,
+        "gni": 22730
+      }
+    },
+    {
+      "id": 30,
+      "name": "伊斯坦布尔",
+      "country": "土耳其",
+      "cost": 781,
+      "costSource": "HFCE×Gini(3)×Eurostat-PLI×prem(1)",
+      "rent": 297,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 1570,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 8626,
+        "gini": 43.7,
+        "gdpPPP": 45639.0192735944,
+        "gni": 13460
+      }
+    },
+    {
+      "id": 31,
+      "name": "墨西哥城",
+      "country": "墨西哥",
+      "cost": 2988,
+      "costSource": "HFCE×Gini(3)×none×prem(1.2)",
+      "rent": 956,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1928,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 9961,
+        "gini": 42.6,
+        "gdpPPP": 26185.3564713253,
+        "gni": 12850
+      }
+    },
+    {
+      "id": 32,
+      "name": "圣保罗",
+      "country": "巴西",
+      "cost": 2506,
+      "costSource": "HFCE×Gini(3.8)×none×prem(1.2)",
+      "rent": 802,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1490,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 6594,
+        "gini": 50.3,
+        "gdpPPP": 22338.4765640635,
+        "gni": 9930
+      }
+    },
+    {
+      "id": 33,
+      "name": "里约热内卢",
+      "country": "巴西",
+      "cost": 2088,
+      "costSource": "HFCE×Gini(3.8)×none×prem(1)",
+      "rent": 668,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1490,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 6594,
+        "gini": 50.3,
+        "gdpPPP": 22338.4765640635,
+        "gni": 9930
+      }
+    },
+    {
+      "id": 34,
+      "name": "迈阿密",
+      "country": "美国",
+      "cost": 13323,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1.2)",
+      "rent": 1884,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 35,
+      "name": "华盛顿",
+      "country": "美国",
+      "cost": 11984,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1.1)",
+      "rent": 1803,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 36,
+      "name": "波士顿",
+      "country": "美国",
+      "cost": 11082,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 2377,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 37,
+      "name": "西雅图",
+      "country": "美国",
+      "cost": 11092,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 2269,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 38,
+      "name": "丹佛",
+      "country": "美国",
+      "cost": 10441,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1835,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 39,
+      "name": "奥斯汀",
+      "country": "美国",
+      "cost": 9928,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1635,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 40,
+      "name": "温哥华",
+      "country": "加拿大",
+      "cost": 3101,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1)",
+      "rent": 1279,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 28625,
+        "gini": 31.5,
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 41,
+      "name": "蒙特利尔",
+      "country": "加拿大",
+      "cost": 3101,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1)",
+      "rent": 760,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 28625,
+        "gini": 31.5,
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 42,
+      "name": "墨尔本",
+      "country": "澳大利亚",
+      "cost": 4569,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 1736,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7313,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 33228,
+        "gini": 33.8,
+        "gdpPPP": 72111.1844628126,
+        "gni": 62680
+      }
+    },
+    {
+      "id": 43,
+      "name": "布里斯班",
+      "country": "澳大利亚",
+      "cost": 4569,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 1736,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7313,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 33228,
+        "gini": 33.8,
+        "gdpPPP": 72111.1844628126,
+        "gni": 62680
+      }
+    },
+    {
+      "id": 44,
+      "name": "奥克兰",
+      "country": "新西兰",
+      "cost": 4523,
+      "costSource": "HFCE×Gini(2)×none×prem(1)",
+      "rent": 1719,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 5551,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 27138,
+        "gini": null,
+        "gdpPPP": 55551.143658637,
+        "gni": 47580
+      }
+    },
+    {
+      "id": 45,
+      "name": "曼谷",
+      "country": "泰国",
+      "cost": 647,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.1)",
+      "rent": 207,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1065,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 4277,
+        "gini": 33.3,
+        "gdpPPP": 24712.0658575135,
+        "gni": 7100
+      }
+    },
+    {
+      "id": 46,
+      "name": "吉隆坡",
+      "country": "马来西亚",
+      "cost": 1521,
+      "costSource": "HFCE×Gini(2.3)×none×prem(1.1)",
+      "rent": 487,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1748,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 7215,
+        "gini": 40.7,
+        "gdpPPP": 38779.2830442253,
+        "gni": 11650
+      }
+    },
+    {
+      "id": 47,
+      "name": "胡志明市",
+      "country": "越南",
+      "cost": 349,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 98,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 599,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 2541,
+        "gini": 36.1,
+        "gdpPPP": 16385.5065565458,
+        "gni": 4490
+      }
+    },
+    {
+      "id": 48,
+      "name": "河内",
+      "country": "越南",
+      "cost": 384,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.1)",
+      "rent": 108,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 599,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 2541,
+        "gini": 36.1,
+        "gdpPPP": 16385.5065565458,
+        "gni": 4490
+      }
+    },
+    {
+      "id": 49,
+      "name": "班加罗尔",
+      "country": "印度",
+      "cost": 179,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1)",
+      "rent": 50,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 1654,
+        "gini": 25.5,
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 50,
+      "name": "孟买",
+      "country": "印度",
+      "cost": 215,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.2)",
+      "rent": 60,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 1654,
+        "gini": 25.5,
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 51,
+      "name": "新德里",
+      "country": "印度",
+      "cost": 197,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.1)",
+      "rent": 55,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 1654,
+        "gini": 25.5,
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 52,
+      "name": "内罗毕",
+      "country": "肯尼亚",
+      "cost": 349,
+      "costSource": "HFCE×Gini(2.3)×none×prem(1.1)",
+      "rent": 77,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 209,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": 1655,
+        "gini": 38.5,
+        "gdpPPP": 6644.13093243895,
+        "gni": 2090
+      }
+    },
+    {
+      "id": 53,
+      "name": "开罗",
+      "country": "埃及",
+      "cost": 348,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.1)",
+      "rent": 97,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 468,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 2924,
+        "gini": 28.5,
+        "gdpPPP": 19094.1449444111,
+        "gni": 3510
+      }
+    },
+    {
+      "id": 54,
+      "name": "德黑兰",
+      "country": "伊朗",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 55,
+      "name": "卡拉奇",
+      "country": "巴基斯坦",
+      "cost": 172,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 38,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 143,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": 1253,
+        "gini": 33.5,
+        "gdpPPP": 6252.11543199559,
+        "gni": 1430
+      }
+    },
+    {
+      "id": 56,
+      "name": "伊斯兰堡",
+      "country": "巴基斯坦",
+      "cost": 190,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.1)",
+      "rent": 42,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 143,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": 1253,
+        "gini": 33.5,
+        "gdpPPP": 6252.11543199559,
+        "gni": 1430
+      }
+    },
+    {
+      "id": 57,
+      "name": "雅加达",
+      "country": "印度尼西亚",
+      "cost": 413,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.1)",
+      "rent": 116,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 655,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 2729,
+        "gini": 34.9,
+        "gdpPPP": 16448.2755179559,
+        "gni": 4910
+      }
+    },
+    {
+      "id": 58,
+      "name": "马尼拉",
+      "country": "菲律宾",
+      "cost": 640,
+      "costSource": "HFCE×Gini(2.3)×none×prem(1.1)",
+      "rent": 179,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 596,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 3034,
+        "gini": 39.3,
+        "gdpPPP": 11794.1375488492,
+        "gni": 4470
+      }
+    },
+    {
+      "id": 59,
+      "name": "首尔",
+      "country": "韩国",
+      "cost": 2899,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.2)",
+      "rent": 1102,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7350,
+      "houseSource": "GNI×PTI(12)/60m²",
+      "_inputs": {
+        "hfcePC": 17571,
+        "gini": 32.9,
+        "gdpPPP": 61051.3492502498,
+        "gni": 36750
+      }
+    },
+    {
+      "id": 60,
+      "name": "釜山",
+      "country": "韩国",
+      "cost": 2416,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 918,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7350,
+      "houseSource": "GNI×PTI(12)/60m²",
+      "_inputs": {
+        "hfcePC": 17571,
+        "gini": 32.9,
+        "gdpPPP": 61051.3492502498,
+        "gni": 36750
+      }
+    },
+    {
+      "id": 61,
+      "name": "台北",
+      "country": "台湾",
+      "cost": 2447,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 930,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3967,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 17800,
+        "gini": 0.342,
+        "gdpPPP": 73344,
+        "gni": 34000
+      }
+    },
+    {
+      "id": 62,
+      "name": "布宜诺斯艾利斯",
+      "country": "阿根廷",
+      "cost": 2562,
+      "costSource": "HFCE×Gini(3)×none×prem(1.1)",
+      "rent": 820,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2030,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 9316,
+        "gini": 42.4,
+        "gdpPPP": 30431.1931223693,
+        "gni": 13530
+      }
+    },
+    {
+      "id": 63,
+      "name": "圣地亚哥",
+      "country": "智利",
+      "cost": 2670,
+      "costSource": "HFCE×Gini(3)×none×prem(1.1)",
+      "rent": 854,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2363,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 9709,
+        "gini": 43,
+        "gdpPPP": 36181.156616977,
+        "gni": 15750
+      }
+    },
+    {
+      "id": 64,
+      "name": "波哥大",
+      "country": "哥伦比亚",
+      "cost": 2017,
+      "costSource": "HFCE×Gini(3.8)×none×prem(1.1)",
+      "rent": 645,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1056,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5790,
+        "gini": 54.4,
+        "gdpPPP": 22349.436440123,
+        "gni": 7040
+      }
+    },
+    {
+      "id": 65,
+      "name": "利马",
+      "country": "秘鲁",
+      "cost": 1097,
+      "costSource": "HFCE×Gini(2.3)×none×prem(1.1)",
+      "rent": 307,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 1000,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 5204,
+        "gini": 40.1,
+        "gdpPPP": 17802.4182498972,
+        "gni": 7500
+      }
+    },
+    {
+      "id": 67,
+      "name": "约翰内斯堡",
+      "country": "南非",
+      "cost": 1283,
+      "costSource": "HFCE×Gini(3.8)×none×prem(1)",
+      "rent": 359,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 815,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 4051,
+        "gini": 54.1,
+        "gdpPPP": 15456.1989933658,
+        "gni": 6110
+      }
+    },
+    {
+      "id": 68,
+      "name": "开普敦",
+      "country": "南非",
+      "cost": 1283,
+      "costSource": "HFCE×Gini(3.8)×none×prem(1)",
+      "rent": 359,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 815,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 4051,
+        "gini": 54.1,
+        "gdpPPP": 15456.1989933658,
+        "gni": 6110
+      }
+    },
+    {
+      "id": 69,
+      "name": "瓜达拉哈拉",
+      "country": "墨西哥",
+      "cost": 2490,
+      "costSource": "HFCE×Gini(3)×none×prem(1)",
+      "rent": 797,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1928,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 9961,
+        "gini": 42.6,
+        "gdpPPP": 26185.3564713253,
+        "gni": 12850
+      }
+    },
+    {
+      "id": 70,
+      "name": "圣何塞(哥斯达黎加)",
+      "country": "哥斯达黎加",
+      "cost": 3267,
+      "costSource": "HFCE×Gini(3)×none×prem(1.1)",
+      "rent": 1045,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2343,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 11881,
+        "gini": 45.8,
+        "gdpPPP": 31106.7643556729,
+        "gni": 15620
+      }
+    },
+    {
+      "id": 71,
+      "name": "巴拿马城",
+      "country": "巴拿马",
+      "cost": 3272,
+      "costSource": "HFCE×Gini(3.8)×none×prem(1.1)",
+      "rent": 1243,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2101,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 9393,
+        "gini": 49.7,
+        "gdpPPP": 41369.422541499,
+        "gni": 18010
+      }
+    },
+    {
+      "id": 73,
+      "name": "圣胡安",
+      "country": "波多黎各",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 75,
+      "name": "阿布扎比",
+      "country": "阿联酋",
+      "cost": 2544,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.1)",
+      "rent": 967,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6014,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 21345,
+        "gini": 26.4,
+        "gdpPPP": 79228.738801276,
+        "gni": 51550
+      }
+    },
+    {
+      "id": 76,
+      "name": "多哈",
+      "country": "卡塔尔",
+      "cost": 2432,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1.1)",
+      "rent": 924,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 9017,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 16081,
+        "gini": 35.1,
+        "gdpPPP": 126046.354855612,
+        "gni": 77290
+      }
+    },
+    {
+      "id": 77,
+      "name": "麦纳麦",
+      "country": "巴林",
+      "cost": 2171,
+      "costSource": "HFCE×Gini(2)×none×prem(1.1)",
+      "rent": 825,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3277,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 11842,
+        "gini": null,
+        "gdpPPP": 66941.2430367989,
+        "gni": 28090
+      }
+    },
+    {
+      "id": 78,
+      "name": "利雅得",
+      "country": "沙特阿拉伯",
+      "cost": 2891,
+      "costSource": "HFCE×Gini(2)×none×prem(1.1)",
+      "rent": 1099,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 4157,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 15770,
+        "gini": null,
+        "gdpPPP": 71375.3727890285,
+        "gni": 35630
+      }
+    },
+    {
+      "id": 79,
+      "name": "马斯喀特",
+      "country": "阿曼",
+      "cost": 1455,
+      "costSource": "HFCE×Gini(2)×none×prem(1.1)",
+      "rent": 553,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2277,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 7937,
+        "gini": null,
+        "gdpPPP": 41740.1658530012,
+        "gni": 19520
+      }
+    },
+    {
+      "id": 80,
+      "name": "贝鲁特",
+      "country": "黎巴嫩",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 81,
+      "name": "安曼",
+      "country": "约旦",
+      "cost": 579,
+      "costSource": "HFCE×Gini(2)×none×prem(1.1)",
+      "rent": 162,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 591,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 3160,
+        "gini": null,
+        "gdpPPP": 10821.4909765317,
+        "gni": 4430
+      }
+    },
+    {
+      "id": 82,
+      "name": "特拉维夫",
+      "country": "以色列",
+      "cost": 4720,
+      "costSource": "HFCE×Gini(2.3)×none×prem(1)",
+      "rent": 1794,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 10582,
+      "houseSource": "GNI×PTI(12)/60m²",
+      "_inputs": {
+        "hfcePC": 24626,
+        "gini": 38.3,
+        "gdpPPP": 57235.7763244136,
+        "gni": 52910
+      }
+    },
+    {
+      "id": 83,
+      "name": "海得拉巴",
+      "country": "印度",
+      "cost": 179,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1)",
+      "rent": 50,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 1654,
+        "gini": 25.5,
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 84,
+      "name": "浦那",
+      "country": "印度",
+      "cost": 179,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1)",
+      "rent": 50,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 1654,
+        "gini": 25.5,
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 85,
+      "name": "基辅",
+      "country": "乌克兰",
+      "cost": 340,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1)",
+      "rent": 95,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 695,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 3142,
+        "gini": 25.6,
+        "gdpPPP": 18550.462890625,
+        "gni": 5210
+      }
+    },
+    {
+      "id": 86,
+      "name": "布加勒斯特",
+      "country": "罗马尼亚",
+      "cost": 723,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1)",
+      "rent": 275,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2053,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 12550,
+        "gini": 29.8,
+        "gdpPPP": 49076.5399383138,
+        "gni": 17600
+      }
+    },
+    {
+      "id": 87,
+      "name": "索非亚",
+      "country": "保加利亚",
+      "cost": 1049,
+      "costSource": "HFCE×Gini(2.3)×Eurostat-PLI×prem(1)",
+      "rent": 399,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 1793,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 10082,
+        "gini": 39.5,
+        "gdpPPP": 41969.4515718999,
+        "gni": 15370
+      }
+    },
+    {
+      "id": 88,
+      "name": "萨格勒布",
+      "country": "克罗地亚",
+      "cost": 1021,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1)",
+      "rent": 388,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2596,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 13752,
+        "gini": 30.1,
+        "gdpPPP": 49550.7921506017,
+        "gni": 22250
+      }
+    },
+    {
+      "id": 89,
+      "name": "贝尔格莱德",
+      "country": "塞尔维亚",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 90,
+      "name": "布达佩斯",
+      "country": "匈牙利",
+      "cost": 811,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 308,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2423,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 10997,
+        "gini": 30.6,
+        "gdpPPP": 48552.4708092529,
+        "gni": 20770
+      }
+    },
+    {
+      "id": 91,
+      "name": "布拉迪斯拉发",
+      "country": "斯洛伐克",
+      "cost": 1243,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1)",
+      "rent": 472,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2749,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 14433,
+        "gini": 23.8,
+        "gdpPPP": 48132.356430543,
+        "gni": 23560
+      }
+    },
+    {
+      "id": 92,
+      "name": "卢布尔雅那",
+      "country": "斯洛文尼亚",
+      "cost": 1618,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1)",
+      "rent": 615,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3709,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 17007,
+        "gini": 24.7,
+        "gdpPPP": 57186.3713538174,
+        "gni": 31790
+      }
+    },
+    {
+      "id": 93,
+      "name": "都柏林",
+      "country": "爱尔兰",
+      "cost": 4628,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 1759,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 9409,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 27352,
+        "gini": 29,
+        "gdpPPP": 133437.470117019,
+        "gni": 80650
+      }
+    },
+    {
+      "id": 94,
+      "name": "贝尔法斯特",
+      "country": "英国",
+      "cost": 5135,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 1177,
+      "rentSource": "ONS-2026",
+      "house": 5772,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 29829,
+        "gini": 32.4,
+        "gdpPPP": 62009.4907765366,
+        "gni": 49470
+      }
+    },
+    {
+      "id": 95,
+      "name": "亚特兰大",
+      "country": "美国",
+      "cost": 9563,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1643,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 96,
+      "name": "凤凰城",
+      "country": "美国",
+      "cost": 9790,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1599,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 97,
+      "name": "波特兰",
+      "country": "美国",
+      "cost": 10471,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1776,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 98,
+      "name": "圣地亚哥",
+      "country": "美国",
+      "cost": 12799,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1.1)",
+      "rent": 2248,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 99,
+      "name": "拉斯维加斯",
+      "country": "美国",
+      "cost": 9622,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1377,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 100,
+      "name": "坦帕",
+      "country": "美国",
+      "cost": 9780,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1562,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 101,
+      "name": "广州",
+      "country": "中国",
+      "cost": 730,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 234,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2049,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5312,
+        "gini": 36,
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 102,
+      "name": "深圳",
+      "country": "中国",
+      "cost": 730,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 234,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2049,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5312,
+        "gini": 36,
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 103,
+      "name": "成都",
+      "country": "中国",
+      "cost": 730,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 234,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2049,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5312,
+        "gini": 36,
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 104,
+      "name": "杭州",
+      "country": "中国",
+      "cost": 730,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 234,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2049,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5312,
+        "gini": 36,
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 105,
+      "name": "重庆",
+      "country": "中国",
+      "cost": 730,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 234,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2049,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5312,
+        "gini": 36,
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 106,
+      "name": "大阪",
+      "country": "日本",
+      "cost": 2624,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 997,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "houseSource": "GNI×PTI(12)/60m²",
+      "_inputs": {
+        "hfcePC": 19081,
+        "gini": 32.3,
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 107,
+      "name": "名古屋",
+      "country": "日本",
+      "cost": 2624,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 997,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "houseSource": "GNI×PTI(12)/60m²",
+      "_inputs": {
+        "hfcePC": 19081,
+        "gini": 32.3,
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 109,
+      "name": "金边",
+      "country": "柬埔寨",
+      "cost": 288,
+      "costSource": "HFCE×Gini(2)×none×prem(1.1)",
+      "rent": 63,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 255,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": 1571,
+        "gini": null,
+        "gdpPPP": 7966.87352428705,
+        "gni": 2550
+      }
+    },
+    {
+      "id": 110,
+      "name": "仰光",
+      "country": "缅甸",
+      "cost": 415,
+      "costSource": "fallback",
+      "rent": 91,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 121,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": 30.7,
+        "gdpPPP": 5997.46516323715,
+        "gni": 1210
+      }
+    },
+    {
+      "id": 112,
+      "name": "清迈",
+      "country": "泰国",
+      "cost": 588,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 188,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1065,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 4277,
+        "gini": 33.3,
+        "gdpPPP": 24712.0658575135,
+        "gni": 7100
+      }
+    },
+    {
+      "id": 114,
+      "name": "达卡",
+      "country": "孟加拉国",
+      "cost": 217,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.1)",
+      "rent": 48,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 282,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": 1819,
+        "gini": 30.9,
+        "gdpPPP": 9646.76984383255,
+        "gni": 2820
+      }
+    },
+    {
+      "id": 115,
+      "name": "科伦坡",
+      "country": "斯里兰卡",
+      "cost": 654,
+      "costSource": "HFCE×Gini(2.3)×none×prem(1.1)",
+      "rent": 183,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 515,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 3102,
+        "gini": 37.7,
+        "gdpPPP": 15632.5924849848,
+        "gni": 3860
+      }
+    },
+    {
+      "id": 116,
+      "name": "加德满都",
+      "country": "尼泊尔",
+      "cost": 149,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.1)",
+      "rent": 33,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 147,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": 1250,
+        "gini": 30,
+        "gdpPPP": 5736.62134332704,
+        "gni": 1470
+      }
+    },
+    {
+      "id": 117,
+      "name": "阿拉木图",
+      "country": "哈萨克斯坦",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 118,
+      "name": "塔什干",
+      "country": "乌兹别克斯坦",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 119,
+      "name": "巴库",
+      "country": "阿塞拜疆",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 120,
+      "name": "乌兰巴托",
+      "country": "蒙古",
+      "cost": 361,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1)",
+      "rent": 101,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 717,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 3337,
+        "gini": 31.4,
+        "gdpPPP": 19144.7261368498,
+        "gni": 5380
+      }
+    },
+    {
+      "id": 121,
+      "name": "斯德哥尔摩",
+      "country": "瑞典",
+      "cost": 3765,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 1431,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6789,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 24226,
+        "gini": 29.3,
+        "gdpPPP": 71844.9129880579,
+        "gni": 58190
+      }
+    },
+    {
+      "id": 122,
+      "name": "哥本哈根",
+      "country": "丹麦",
+      "cost": 5414,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 2057,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 8463,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 30967,
+        "gini": 29.9,
+        "gdpPPP": 81878.2349849181,
+        "gni": 72540
+      }
+    },
+    {
+      "id": 123,
+      "name": "赫尔辛基",
+      "country": "芬兰",
+      "cost": 4305,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 1636,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6026,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 28025,
+        "gini": 27.4,
+        "gdpPPP": 65378.3841859721,
+        "gni": 51650
+      }
+    },
+    {
+      "id": 124,
+      "name": "奥斯陆",
+      "country": "挪威",
+      "cost": 5979,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1.1)",
+      "rent": 2272,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 11453,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 32688,
+        "gini": 26.5,
+        "gdpPPP": 102037.526800237,
+        "gni": 98170
+      }
+    },
+    {
+      "id": 125,
+      "name": "休斯顿",
+      "country": "美国",
+      "cost": 9405,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1135,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 126,
+      "name": "费城",
+      "country": "美国",
+      "cost": 10530,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 1451,
+      "rentSource": "HUD-FMR-2024",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 127,
+      "name": "卡尔加里",
+      "country": "加拿大",
+      "cost": 3101,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1)",
+      "rent": 1146,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 28625,
+        "gini": 31.5,
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 128,
+      "name": "珀斯",
+      "country": "澳大利亚",
+      "cost": 4569,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 1736,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7313,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 33228,
+        "gini": 33.8,
+        "gdpPPP": 72111.1844628126,
+        "gni": 62680
+      }
+    },
+    {
+      "id": 129,
+      "name": "麦德林",
+      "country": "哥伦比亚",
+      "cost": 1834,
+      "costSource": "HFCE×Gini(3.8)×none×prem(1)",
+      "rent": 587,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1056,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 5790,
+        "gini": 54.4,
+        "gdpPPP": 22349.436440123,
+        "gni": 7040
+      }
+    },
+    {
+      "id": 130,
+      "name": "第比利斯",
+      "country": "格鲁吉亚",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 131,
+      "name": "拉各斯",
+      "country": "尼日利亚",
+      "cost": 725,
+      "costSource": "fallback",
+      "rent": 160,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 170,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": 33.9,
+        "gdpPPP": 9086.87550609627,
+        "gni": 1700
+      }
+    },
+    {
+      "id": 132,
+      "name": "莫斯科",
+      "country": "俄罗斯",
+      "cost": 1028,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 391,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 1787,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 7477,
+        "gini": 33,
+        "gdpPPP": 47404.96484375,
+        "gni": 15320
+      }
+    },
+    {
+      "id": 133,
+      "name": "圣何塞(美国)",
+      "country": "美国",
+      "cost": 12375,
+      "costSource": "HFCE×Gini(2.3)×BEA-RPP×prem(1)",
+      "rent": 4703,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 9741,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 51488,
+        "gini": 41.8,
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 135,
+      "name": "渥太华",
+      "country": "加拿大",
+      "cost": 3411,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.1)",
+      "rent": 1072,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 28625,
+        "gini": 31.5,
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 136,
+      "name": "卢森堡市",
+      "country": "卢森堡",
+      "cost": 8597,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 3267,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 9876,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 40811,
+        "gini": 33.6,
+        "gdpPPP": 155941.288210791,
+        "gni": 84650
+      }
+    },
+    {
+      "id": 137,
+      "name": "塔林",
+      "country": "爱沙尼亚",
+      "cost": 1605,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1)",
+      "rent": 610,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3369,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 15727,
+        "gini": 30.7,
+        "gdpPPP": 49968.7108278373,
+        "gni": 28880
+      }
+    },
+    {
+      "id": 138,
+      "name": "福冈",
+      "country": "日本",
+      "cost": 2624,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 997,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "houseSource": "GNI×PTI(12)/60m²",
+      "_inputs": {
+        "hfcePC": 19081,
+        "gini": 32.3,
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 140,
+      "name": "巴厘岛",
+      "country": "印度尼西亚",
+      "cost": 375,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 105,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 655,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 2729,
+        "gini": 34.9,
+        "gdpPPP": 16448.2755179559,
+        "gni": 4910
+      }
+    },
+    {
+      "id": 141,
+      "name": "岘港",
+      "country": "越南",
+      "cost": 349,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 98,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 599,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 2541,
+        "gini": 36.1,
+        "gdpPPP": 16385.5065565458,
+        "gni": 4490
+      }
+    },
+    {
+      "id": 143,
+      "name": "波尔图",
+      "country": "葡萄牙",
+      "cost": 1968,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 748,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3140,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 16799,
+        "gini": 33.9,
+        "gdpPPP": 51679.8883807527,
+        "gni": 26910
+      }
+    },
+    {
+      "id": 144,
+      "name": "瓦伦西亚",
+      "country": "西班牙",
+      "cost": 2311,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 878,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3914,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 17997,
+        "gini": 33.4,
+        "gdpPPP": 57965.2948138837,
+        "gni": 33550
+      }
+    },
+    {
+      "id": 146,
+      "name": "斯普利特",
+      "country": "克罗地亚",
+      "cost": 1021,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1)",
+      "rent": 388,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2596,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 13752,
+        "gini": 30.1,
+        "gdpPPP": 49550.7921506017,
+        "gni": 22250
+      }
+    },
+    {
+      "id": 147,
+      "name": "普吉岛",
+      "country": "泰国",
+      "cost": 588,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 188,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1065,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 4277,
+        "gini": 33.3,
+        "gdpPPP": 24712.0658575135,
+        "gni": 7100
+      }
+    },
+    {
+      "id": 148,
+      "name": "蒙得维的亚",
+      "country": "乌拉圭",
+      "cost": 2400,
+      "costSource": "HFCE×Gini(2.3)×none×prem(1.1)",
+      "rent": 768,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 3248,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 11383,
+        "gini": 40,
+        "gdpPPP": 36417.874162496,
+        "gni": 21650
+      }
+    },
+    {
+      "id": 149,
+      "name": "拉斯帕尔马斯",
+      "country": "西班牙",
+      "cost": 2311,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 878,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3914,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 17997,
+        "gini": 33.4,
+        "gdpPPP": 57965.2948138837,
+        "gni": 33550
+      }
+    },
+    {
+      "id": 150,
+      "name": "槟城",
+      "country": "马来西亚",
+      "cost": 1383,
+      "costSource": "HFCE×Gini(2.3)×none×prem(1)",
+      "rent": 443,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1748,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 7215,
+        "gini": 40.7,
+        "gdpPPP": 38779.2830442253,
+        "gni": 11650
+      }
+    },
+    {
+      "id": 152,
+      "name": "弗洛里亚诺波利斯",
+      "country": "巴西",
+      "cost": 2088,
+      "costSource": "HFCE×Gini(3.8)×none×prem(1)",
+      "rent": 668,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1490,
+      "houseSource": "GNI×PTI(9)/60m²",
+      "_inputs": {
+        "hfcePC": 6594,
+        "gini": 50.3,
+        "gdpPPP": 22338.4765640635,
+        "gni": 9930
+      }
+    },
+    {
+      "id": 159,
+      "name": "京都",
+      "country": "日本",
+      "cost": 2624,
+      "costSource": "HFCE×Gini(1.65)×none×prem(1)",
+      "rent": 997,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "houseSource": "GNI×PTI(12)/60m²",
+      "_inputs": {
+        "hfcePC": 19081,
+        "gini": 32.3,
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 160,
+      "name": "卡萨布兰卡",
+      "country": "摩洛哥",
+      "cost": 423,
+      "costSource": "HFCE×Gini(2)×none×prem(1)",
+      "rent": 118,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 512,
+      "houseSource": "GNI×PTI(8)/60m²",
+      "_inputs": {
+        "hfcePC": 2537,
+        "gini": null,
+        "gdpPPP": 10415.1240234375,
+        "gni": 3840
+      }
+    },
+    {
+      "id": 161,
+      "name": "惠灵顿",
+      "country": "新西兰",
+      "cost": 4975,
+      "costSource": "HFCE×Gini(2)×none×prem(1.1)",
+      "rent": 1891,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 5551,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 27138,
+        "gini": null,
+        "gdpPPP": 55551.143658637,
+        "gni": 47580
+      }
+    },
+    {
+      "id": 162,
+      "name": "维尔纽斯",
+      "country": "立陶宛",
+      "cost": 1622,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 616,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3168,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 15836,
+        "gini": 36,
+        "gdpPPP": 55285.8991934304,
+        "gni": 27150
+      }
+    },
+    {
+      "id": 163,
+      "name": "里加",
+      "country": "拉脱维亚",
+      "cost": 1505,
+      "costSource": "HFCE×Gini(1.65)×Eurostat-PLI×prem(1)",
+      "rent": 572,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2524,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 14293,
+        "gini": 34,
+        "gdpPPP": 43394.2732822314,
+        "gni": 21630
+      }
+    },
+    {
+      "id": 164,
+      "name": "尼科西亚",
+      "country": "塞浦路斯",
+      "cost": 1640,
+      "costSource": "HFCE×Gini(1.3)×Eurostat-PLI×prem(1)",
+      "rent": 623,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3835,
+      "houseSource": "GNI×PTI(7)/60m²",
+      "_inputs": {
+        "hfcePC": 15870,
+        "gini": 31.8,
+        "gdpPPP": 63006.61328125,
+        "gni": 32870
+      }
+    },
+    {
+      "id": 165,
+      "name": "圣多明各",
+      "country": "多米尼加",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 166,
+      "name": "基多",
+      "country": "厄瓜多尔",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "houseSource": "null",
+      "_inputs": {
+        "hfcePC": null,
+        "gini": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 167,
+      "name": "阿克拉",
+      "country": "加纳",
+      "cost": 502,
+      "costSource": "HFCE×Gini(3)×none×prem(1)",
+      "rent": 110,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 231,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": 2007,
+        "gini": 43.5,
+        "gdpPPP": 8019.99702389611,
+        "gni": 2310
+      }
+    },
+    {
+      "id": 168,
+      "name": "亚的斯亚贝巴",
+      "country": "埃塞俄比亚",
+      "cost": 108,
+      "costSource": "HFCE×Gini(1.3)×none×prem(1.1)",
+      "rent": 24,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 110,
+      "houseSource": "GNI×PTI(6)/60m²",
+      "_inputs": {
+        "hfcePC": 910,
+        "gini": 31.1,
+        "gdpPPP": 3287.53492158893,
+        "gni": 1100
+      }
+    }
+  ]
+}

@@ -1,53 +1,59 @@
-# WhichCity
+# WhichCity — 已封存 (Archived 2026-04)
 
-**[whichcity.run](https://whichcity.run)** — 全球移居决策引擎 / Global Relocation Decision Engine
+> **这个项目已于 2026 年 4 月封存，不再继续开发，线上站点已下线。**
+> **This project was archived in April 2026. Development halted. Live site taken down.**
 
-用数据回答一个问题：**去哪座城市能过上更好的生活？**
+---
 
-## 核心能力
+## TL;DR
 
-- **150 座城市** × 25 职业 × 81 国税制引擎（含外派方案）
-- **税后真实收入**：不是税前数字，是你实际到手的钱
-- **多维决策**：安全、医疗、自由、气候、空气质量、工时、签证
-- **10 种货币**（每日自动更新）× 4 种语言（中/英/日/西）
-- **3 城对比** + 22 项排行榜 + 气候筛选 + 深色模式
+- ✅ 曾是 `whichcity.run` 的源代码 —— 一个"全球移居决策引擎"
+- ✅ 功能：151 城 × 25 职业 × 81 国税制引擎 × 多维生活成本 × 4 语言 10 货币
+- ❌ **核心数据质量结构性不达标**，无法在良心范围内继续 ship
+- 🌱 **继任者**：精神继承项目为 **`relocate`**（已剪切离开本仓库），定位不同 —— 签证决策引擎（visa-first），不再做"全球覆盖生活成本"
 
-## 快速开始
+完整的来龙去脉、为什么封存、学到了什么、继任项目方向 —— 全部写在 **[ARCHIVE.md](ARCHIVE.md)**。
+
+---
+
+## 如果你只想看/运行最后的代码
 
 ```bash
 git clone https://github.com/qing4132/whichcity.git
 cd whichcity
-npm install && npm run dev   # http://localhost:3000
+npm install
+npm run dev            # http://localhost:3000（前端能跑，数据按最后封存状态）
 ```
 
-```bash
-npx tsc --noEmit   # 类型检查
-npm test           # 单元测试
-npm run build      # 生产构建
+**注意**：
+- GitHub Actions workflows 已重命名为 `.archived`（禁用自动部署和汇率 cron）
+- `whichcity.run` 域名绑定已手动从 Vercel 移除（见 ARCHIVE §7）
+- `public/data/` 数据是 2a19d87 提交时的状态；**不代表真实水平**，详见 ARCHIVE §3
+
+## 目录速览
+
+```
+app/[locale]/          页面（城市详情、排行榜、对比、方法论）
+components/            前端组件
+hooks/                 useSettings
+lib/                   数据加载、i18n、税引擎、类型定义
+public/data/           cities.json 等（含已知数据缺陷）
+scripts/               活跃维护脚本（现已 frozen）
+__tests__/             单元测试
+data/clean-pipeline/   数据重建工程 v1→v9 的全部产物与审计报告
+_archive/              更早历史（v1 组件、设计稿、脚本）
 ```
 
-## 项目结构
-
-```
-app/[locale]/       Pages (city detail, ranking, compare, methodology)
-components/         Page components (Home, Ranking, Compare, CityDetail, NavBar, ...)
-hooks/              useSettings — global settings
-lib/                Data loading, i18n, tax engine, types, constants
-public/data/        cities.json, exchange-rates.json, nomad data
-scripts/            Active maintenance (exchange rates, validation, climate, timezone)
-__tests__/          Unit tests (tax engine, composite index)
-_archive/           Historical scripts, data sources, reports (reference only)
-```
-
-## 关键文档
+## 关键历史文档
 
 | 文档 | 内容 |
 |------|------|
-| [REDESIGN.md](REDESIGN.md) | Phase 2 产品方向与约束 |
-| [HANDOFF.md](HANDOFF.md) | 技术架构与交接 |
-| [DATA_OPS.md](DATA_OPS.md) | 数据更新操作指南 |
-| [RULES.md](RULES.md) | 编码规范 |
+| [ARCHIVE.md](ARCHIVE.md) | **完整封存说明**（项目起源 · 关键阶段 · 封存原因 · 继任方向 · 给后续维护者的话） |
+| [data/clean-pipeline/REPORT-CLOSURE.md](data/clean-pipeline/REPORT-CLOSURE.md) | v8 数据重建封口报告（14 独立源、tier 分层） |
+| [data/clean-pipeline/REPORT-REPLACEMENT.md](data/clean-pipeline/REPORT-REPLACEMENT.md) | v9 纯源头评级，5 种上线方案评估 |
+| [data/clean-pipeline/REPORT-100CITIES.md](data/clean-pipeline/REPORT-100CITIES.md) | 诚实常识复查 + 独立 100 城清单交叉映射 |
+| [RULES.md](RULES.md) | 编码规范（v1 时期） |
 
 ## License
 
-MIT
+MIT —— 欢迎 fork 任何部分，但**别把数据原样上线**（详见 ARCHIVE §3）。

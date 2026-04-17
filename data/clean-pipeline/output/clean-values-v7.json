@@ -1,0 +1,5278 @@
+{
+  "meta": {
+    "formulaVersion": "clean-v7-final",
+    "description": "Final: v4 PLI base + H1B US salary anchor + NBS CN rent drift + FH/UBS/OSM metadata",
+    "generated": "2026-04-17T11:08:10.266Z",
+    "anchor": "US_ANCHOR=$3200",
+    "strategy": "best-of-breed waterfall per metric per city",
+    "sources": {
+      "costBase": "v4 formula = US_ANCHOR × geomean(WB_PLI, Digital_PLI) × city_premium × city_adj",
+      "rentWaterfall": [
+        "Zillow ZORI (US)",
+        "ONS (UK)",
+        "StatCan CMHC (CA)",
+        "InsideAirbnb×K (22)",
+        "v5 baseline × NBS YoY (CN)",
+        "cost × rentShare"
+      ],
+      "salaryAnchor": "H1B LCA p50 (US 17 cities × 15 SOC)",
+      "metadata": [
+        "FH governance",
+        "UBS GREBI bubble",
+        "OSM amenity quality"
+      ]
+    }
+  },
+  "cities": [
+    {
+      "id": 1,
+      "name": "纽约",
+      "country": "美国",
+      "cost": 4669,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1.2×BEA-RPP1.23",
+      "rent": 3337,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "New York-Newark-Jersey City",
+        "socCount": 87,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 1239,
+            "p25": 139900,
+            "p50": 169000,
+            "p75": 198500
+          },
+          "dataScientist": {
+            "n": 230,
+            "p25": 128868,
+            "p50": 169541,
+            "p75": 194598
+          },
+          "itProjectManager": {
+            "n": 152,
+            "p25": 126818,
+            "p50": 151953,
+            "p75": 180000
+          },
+          "managementAnalyst": {
+            "n": 132,
+            "p25": 144500,
+            "p50": 173750,
+            "p75": 212000
+          },
+          "financialAnalyst": {
+            "n": 447,
+            "p25": 140000,
+            "p50": 179088,
+            "p75": 215000
+          },
+          "accountant": {
+            "n": 127,
+            "p25": 100250,
+            "p50": 133000,
+            "p75": 172814
+          },
+          "electricalEngineer": {
+            "n": 6,
+            "p25": 109494,
+            "p50": 128250,
+            "p75": 134275
+          },
+          "mechanicalEngineer": {
+            "n": 10,
+            "p25": 89112,
+            "p50": 99015,
+            "p75": 100901
+          },
+          "civilEngineer": {
+            "n": 25,
+            "p25": 100131,
+            "p50": 109824,
+            "p75": 126464
+          },
+          "marketResearchAnalyst": {
+            "n": 127,
+            "p25": 82139,
+            "p50": 110000,
+            "p75": 150400
+          },
+          "csMgr": {
+            "n": 144,
+            "p25": 186056,
+            "p50": 223821,
+            "p75": 262033
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 18,
+        "score": 0.26,
+        "risk": "low",
+        "realPriceChgYoY": -1.5,
+        "realPriceChg10Y": -0.5,
+        "realRentChgYoY": 4.1,
+        "realRentChg10Y": -0.8
+      },
+      "osmQuality": {
+        "score": 90,
+        "normalized": {
+          "food": 94,
+          "health": 74,
+          "edu": 92,
+          "culture": 91,
+          "transit": 100,
+          "leisure": 91
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 2,
+      "name": "伦敦",
+      "country": "英国",
+      "cost": 4459,
+      "costSource": "v4:US3200×geomean(wbPLI=0.86,digPLI=1.00)×prem1.2×Eurostat-PLI1.25",
+      "rent": 3057,
+      "rentSource": "ONS-2026",
+      "house": 5772,
+      "governance": {
+        "fhTotal": 91,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 53
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 16,
+        "score": 0.34,
+        "risk": "low",
+        "realPriceChgYoY": -2.1,
+        "realPriceChg10Y": -1.1,
+        "realRentChgYoY": 2.7,
+        "realRentChg10Y": -1.1
+      },
+      "osmQuality": {
+        "score": 86,
+        "normalized": {
+          "food": 94,
+          "health": 76,
+          "edu": 82,
+          "culture": 84,
+          "transit": 92,
+          "leisure": 87
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.8586809365423521,
+        "digitalPLI": 1.002,
+        "blendedPLI": "0.928",
+        "gdpPPP": 62009.4907765366,
+        "gni": 49470
+      }
+    },
+    {
+      "id": 3,
+      "name": "东京",
+      "country": "日本",
+      "cost": 1962,
+      "costSource": "v4:US3200×geomean(wbPLI=0.62,digPLI=0.42)×prem1.2×none1.00",
+      "rent": 1443,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 7200,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 56
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 2,
+        "score": 1.59,
+        "risk": "high",
+        "realPriceChgYoY": 5.7,
+        "realPriceChg10Y": 5.2,
+        "realRentChgYoY": 2.5,
+        "realRentChg10Y": 2.1
+      },
+      "osmQuality": {
+        "score": 79,
+        "normalized": {
+          "food": 86,
+          "health": 95,
+          "edu": 83,
+          "culture": 72,
+          "transit": 86,
+          "leisure": 59
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.6242812245366461,
+        "digitalPLI": 0.418,
+        "blendedPLI": "0.511",
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 4,
+      "name": "北京",
+      "country": "中国",
+      "cost": 1885,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1.2×none1.00",
+      "rent": 737,
+      "rentSource": "prod-USD(804)×NBS-2hand-YoY(91.7%)",
+      "house": 2049,
+      "governance": {
+        "fhTotal": 9,
+        "fhStatus": "NF",
+        "fhPR": -2,
+        "fhCL": 11
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": {
+        "period": "2026-03",
+        "newHome": {
+          "m2m": 100,
+          "yoy": 97.9,
+          "q1avg": 97.8
+        },
+        "secondHand": {
+          "m2m": 100.6,
+          "yoy": 91.7,
+          "q1avg": 91.5
+        }
+      },
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 35,
+        "normalized": {
+          "food": 49,
+          "health": 27,
+          "edu": 26,
+          "culture": 40,
+          "transit": 65,
+          "leisure": 20
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.4908028713281468,
+        "digitalPLI": null,
+        "blendedPLI": "0.491",
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 5,
+      "name": "上海",
+      "country": "中国",
+      "cost": 1885,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1.2×none1.00",
+      "rent": 773,
+      "rentSource": "prod-USD(824)×NBS-2hand-YoY(93.8%)",
+      "house": 2049,
+      "governance": {
+        "fhTotal": 9,
+        "fhStatus": "NF",
+        "fhPR": -2,
+        "fhCL": 11
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": {
+        "period": "2026-03",
+        "newHome": {
+          "m2m": 100.3,
+          "yoy": 103.7,
+          "q1avg": 104
+        },
+        "secondHand": {
+          "m2m": 100.4,
+          "yoy": 93.8,
+          "q1avg": 93.6
+        }
+      },
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 39,
+        "normalized": {
+          "food": 63,
+          "health": 30,
+          "edu": 31,
+          "culture": 54,
+          "transit": 72,
+          "leisure": 16
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.4908028713281468,
+        "digitalPLI": null,
+        "blendedPLI": "0.491",
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 6,
+      "name": "悉尼",
+      "country": "澳大利亚",
+      "cost": 2968,
+      "costSource": "v4:US3200×geomean(wbPLI=0.90,digPLI=0.67)×prem1.2×none1.00",
+      "rent": 1128,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7313,
+      "governance": {
+        "fhTotal": 95,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 9,
+        "score": 0.8,
+        "risk": "moderate",
+        "realPriceChgYoY": -0.8,
+        "realPriceChg10Y": 1.5,
+        "realRentChgYoY": -0.3,
+        "realRentChg10Y": 1.6
+      },
+      "osmQuality": {
+        "score": 57,
+        "normalized": {
+          "food": 67,
+          "health": 52,
+          "edu": 45,
+          "culture": 57,
+          "transit": 52,
+          "leisure": 73
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.8958941128496145,
+        "digitalPLI": 0.667,
+        "blendedPLI": "0.773",
+        "gdpPPP": 72111.1844628126,
+        "gni": 62680
+      }
+    },
+    {
+      "id": 7,
+      "name": "新加坡",
+      "country": "新加坡",
+      "cost": 2906,
+      "costSource": "v4:US3200×geomean(wbPLI=0.60,digPLI=0.75)×prem1.35×none1.00",
+      "rent": 1104,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 22425,
+      "governance": {
+        "fhTotal": 48,
+        "fhStatus": "PF",
+        "fhPR": 19,
+        "fhCL": 29
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 14,
+        "score": 0.55,
+        "risk": "moderate",
+        "realPriceChgYoY": 2.6,
+        "realPriceChg10Y": 2.3,
+        "realRentChgYoY": 1.2,
+        "realRentChg10Y": 2
+      },
+      "osmQuality": {
+        "score": 22,
+        "normalized": {
+          "food": 25,
+          "health": 36,
+          "edu": 21,
+          "culture": 3,
+          "transit": 38,
+          "leisure": 57
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.6017286274096566,
+        "digitalPLI": 0.752,
+        "blendedPLI": "0.673",
+        "gdpPPP": 150689.301625826,
+        "gni": 74750
+      }
+    },
+    {
+      "id": 8,
+      "name": "巴黎",
+      "country": "法国",
+      "cost": 3559,
+      "costSource": "v4:US3200×geomean(wbPLI=0.74,digPLI=0.97)×prem1.2×Eurostat-PLI1.09",
+      "rent": 1352,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 5269,
+      "governance": {
+        "fhTotal": 89,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 51
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 19,
+        "score": 0.25,
+        "risk": "low",
+        "realPriceChgYoY": 0.1,
+        "realPriceChg10Y": 0,
+        "realRentChgYoY": 0.9,
+        "realRentChg10Y": -0.9
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.7369781869456021,
+        "digitalPLI": 0.972,
+        "blendedPLI": "0.846",
+        "gdpPPP": 62556.91810454,
+        "gni": 45160
+      }
+    },
+    {
+      "id": 9,
+      "name": "多伦多",
+      "country": "加拿大",
+      "cost": 2511,
+      "costSource": "v4:US3200×geomean(wbPLI=0.84,digPLI=0.73)×prem1×none1.00",
+      "rent": 1240,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "governance": {
+        "fhTotal": 97,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 58
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 8,
+        "score": 0.8,
+        "risk": "moderate",
+        "realPriceChgYoY": -7.5,
+        "realPriceChg10Y": 4,
+        "realRentChgYoY": -6.1,
+        "realRentChg10Y": 0.8
+      },
+      "osmQuality": {
+        "score": 70,
+        "normalized": {
+          "food": 77,
+          "health": 68,
+          "edu": 63,
+          "culture": 61,
+          "transit": 80,
+          "leisure": 73
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.841046719250577,
+        "digitalPLI": 0.732,
+        "blendedPLI": "0.785",
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 10,
+      "name": "香港",
+      "country": "中国香港",
+      "cost": 2947,
+      "costSource": "v4:US3200×geomean(wbPLI=0.72,digPLI=0.65)×prem1.35×none1.00",
+      "rent": 1120,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 17121,
+      "governance": {
+        "fhTotal": 41,
+        "fhStatus": "PF",
+        "fhPR": 9,
+        "fhCL": 32
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 56,
+        "normalized": {
+          "food": 74,
+          "health": 65,
+          "edu": 58,
+          "culture": 36,
+          "transit": 69,
+          "leisure": 45
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.7191167414520101,
+        "digitalPLI": 0.647,
+        "blendedPLI": "0.682",
+        "gdpPPP": 75195.9865970615,
+        "gni": 57070
+      }
+    },
+    {
+      "id": 11,
+      "name": "洛杉矶",
+      "country": "美国",
+      "cost": 3707,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.17",
+      "rent": 2895,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Los Angeles-Long Beach-Anaheim",
+        "socCount": 44,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 170,
+            "p25": 129750,
+            "p50": 157123,
+            "p75": 182909
+          },
+          "dataScientist": {
+            "n": 21,
+            "p25": 104552,
+            "p50": 130270,
+            "p75": 143500
+          },
+          "itProjectManager": {
+            "n": 25,
+            "p25": 86403,
+            "p50": 140000,
+            "p75": 169725
+          },
+          "managementAnalyst": {
+            "n": 26,
+            "p25": 110500,
+            "p50": 157802,
+            "p75": 180250
+          },
+          "financialAnalyst": {
+            "n": 30,
+            "p25": 121250,
+            "p50": 141856,
+            "p75": 201250
+          },
+          "accountant": {
+            "n": 31,
+            "p25": 100294,
+            "p50": 105930,
+            "p75": 119093
+          },
+          "electricalEngineer": {
+            "n": 8,
+            "p25": 104804,
+            "p50": 138050,
+            "p75": 164008
+          },
+          "mechanicalEngineer": {
+            "n": 18,
+            "p25": 107183,
+            "p50": 131508,
+            "p75": 163325
+          },
+          "civilEngineer": {
+            "n": 16,
+            "p25": 101733,
+            "p50": 112000,
+            "p75": 122988
+          },
+          "marketResearchAnalyst": {
+            "n": 13,
+            "p25": 65000,
+            "p50": 72883,
+            "p75": 94994
+          },
+          "csMgr": {
+            "n": 24,
+            "p25": 172058,
+            "p50": 212245,
+            "p75": 237141
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 4,
+        "score": 1.11,
+        "risk": "elevated",
+        "realPriceChgYoY": 0.9,
+        "realPriceChg10Y": 3.6,
+        "realRentChgYoY": -2.8,
+        "realRentChg10Y": -0.2
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 12,
+      "name": "旧金山",
+      "country": "美国",
+      "cost": 4646,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1.2×BEA-RPP1.22",
+      "rent": 3161,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "San Francisco-Oakland-Berkeley",
+        "socCount": 56,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 799,
+            "p25": 180000,
+            "p50": 203836,
+            "p75": 235000
+          },
+          "dataScientist": {
+            "n": 124,
+            "p25": 155000,
+            "p50": 190347,
+            "p75": 222850
+          },
+          "itProjectManager": {
+            "n": 89,
+            "p25": 148000,
+            "p50": 177900,
+            "p75": 205000
+          },
+          "managementAnalyst": {
+            "n": 39,
+            "p25": 157500,
+            "p50": 194995,
+            "p75": 225400
+          },
+          "financialAnalyst": {
+            "n": 37,
+            "p25": 140000,
+            "p50": 160000,
+            "p75": 221400
+          },
+          "accountant": {
+            "n": 28,
+            "p25": 100000,
+            "p50": 120735,
+            "p75": 141913
+          },
+          "electricalEngineer": {
+            "n": 9,
+            "p25": 160930,
+            "p50": 162000,
+            "p75": 187803
+          },
+          "mechanicalEngineer": {
+            "n": 20,
+            "p25": 137061,
+            "p50": 158000,
+            "p75": 220424
+          },
+          "civilEngineer": {
+            "n": 19,
+            "p25": 93988,
+            "p50": 125592,
+            "p75": 136000
+          },
+          "marketResearchAnalyst": {
+            "n": 24,
+            "p25": 115800,
+            "p50": 148042,
+            "p75": 159496
+          },
+          "csMgr": {
+            "n": 132,
+            "p25": 216718,
+            "p50": 249322,
+            "p75": 285404
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 17,
+        "score": 0.28,
+        "risk": "low",
+        "realPriceChgYoY": -2.6,
+        "realPriceChg10Y": 0.7,
+        "realRentChgYoY": 2.4,
+        "realRentChg10Y": -2.1
+      },
+      "osmQuality": {
+        "score": 62,
+        "normalized": {
+          "food": 68,
+          "health": 44,
+          "edu": 66,
+          "culture": 66,
+          "transit": 58,
+          "leisure": 71
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 13,
+      "name": "芝加哥",
+      "country": "美国",
+      "cost": 3246,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.02",
+      "rent": 2180,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Chicago-Naperville-Elgin",
+        "socCount": 39,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 376,
+            "p25": 108077,
+            "p50": 130800,
+            "p75": 155000
+          },
+          "dataScientist": {
+            "n": 66,
+            "p25": 96928,
+            "p50": 126635,
+            "p75": 158319
+          },
+          "itProjectManager": {
+            "n": 44,
+            "p25": 122112,
+            "p50": 135668,
+            "p75": 165847
+          },
+          "managementAnalyst": {
+            "n": 43,
+            "p25": 138622,
+            "p50": 179401,
+            "p75": 212000
+          },
+          "financialAnalyst": {
+            "n": 45,
+            "p25": 125000,
+            "p50": 150000,
+            "p75": 250000
+          },
+          "accountant": {
+            "n": 30,
+            "p25": 96729,
+            "p50": 106174,
+            "p75": 130137
+          },
+          "electricalEngineer": {
+            "n": 6,
+            "p25": 103551,
+            "p50": 124967,
+            "p75": 133085
+          },
+          "civilEngineer": {
+            "n": 11,
+            "p25": 83750,
+            "p50": 107474,
+            "p75": 111237
+          },
+          "marketResearchAnalyst": {
+            "n": 9,
+            "p25": 99341,
+            "p50": 102191,
+            "p75": 120000
+          },
+          "csMgr": {
+            "n": 51,
+            "p25": 175420,
+            "p50": 202779,
+            "p75": 238050
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 47,
+        "normalized": {
+          "food": 57,
+          "health": 33,
+          "edu": 47,
+          "culture": 38,
+          "transit": 76,
+          "leisure": 42
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 14,
+      "name": "迪拜",
+      "country": "阿联酋",
+      "cost": 2130,
+      "costSource": "v4:US3200×geomean(wbPLI=0.63,digPLI=0.48)×prem1.2×none1.00",
+      "rent": 809,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6014,
+      "governance": {
+        "fhTotal": 18,
+        "fhStatus": "NF",
+        "fhPR": 5,
+        "fhCL": 13
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 5,
+        "score": 1.09,
+        "risk": "elevated",
+        "realPriceChgYoY": 11.1,
+        "realPriceChg10Y": 1.2,
+        "realRentChgYoY": 4.7,
+        "realRentChg10Y": 0.2
+      },
+      "osmQuality": {
+        "score": 11,
+        "normalized": {
+          "food": 24,
+          "health": 43,
+          "edu": 6,
+          "culture": 0,
+          "transit": 21,
+          "leisure": 13
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.6345362403544158,
+        "digitalPLI": 0.485,
+        "blendedPLI": "0.555",
+        "gdpPPP": 79228.738801276,
+        "gni": 51550
+      }
+    },
+    {
+      "id": 15,
+      "name": "阿姆斯特丹",
+      "country": "荷兰",
+      "cost": 4123,
+      "costSource": "v4:US3200×geomean(wbPLI=0.78,digPLI=1.03)×prem1.2×Eurostat-PLI1.19",
+      "rent": 3957,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 7294,
+      "governance": {
+        "fhTotal": 97,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 58
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 6,
+        "score": 1.06,
+        "risk": "elevated",
+        "realPriceChgYoY": 1.2,
+        "realPriceChg10Y": 5.1,
+        "realRentChgYoY": 2,
+        "realRentChg10Y": 1.6
+      },
+      "osmQuality": {
+        "score": 70,
+        "normalized": {
+          "food": 74,
+          "health": 55,
+          "edu": 84,
+          "culture": 82,
+          "transit": 47,
+          "leisure": 88
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.7835392638468855,
+        "digitalPLI": 1.032,
+        "blendedPLI": "0.899",
+        "gdpPPP": 86173.6290841738,
+        "gni": 62520
+      }
+    },
+    {
+      "id": 16,
+      "name": "苏黎世",
+      "country": "瑞士",
+      "cost": 8417,
+      "costSource": "v4:US3200×geomean(wbPLI=1.08,digPLI=1.34)×prem1.2×Eurostat-PLI1.82",
+      "rent": 2554,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 11109,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 3,
+        "score": 1.55,
+        "risk": "high",
+        "realPriceChgYoY": 5,
+        "realPriceChg10Y": 3.6,
+        "realRentChgYoY": 2.9,
+        "realRentChg10Y": 2.1
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 1.077727161298931,
+        "digitalPLI": 1.34,
+        "blendedPLI": "1.202",
+        "gdpPPP": 96497.6947971323,
+        "gni": 95220
+      }
+    },
+    {
+      "id": 17,
+      "name": "日内瓦",
+      "country": "瑞士",
+      "cost": 7014,
+      "costSource": "v4:US3200×geomean(wbPLI=1.08,digPLI=1.34)×prem1×Eurostat-PLI1.82",
+      "rent": 2226,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 11109,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 7,
+        "score": 1.05,
+        "risk": "elevated",
+        "realPriceChgYoY": 4.1,
+        "realPriceChg10Y": 1.6,
+        "realRentChgYoY": 2.4,
+        "realRentChg10Y": 0.1
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 1.077727161298931,
+        "digitalPLI": 1.34,
+        "blendedPLI": "1.202",
+        "gdpPPP": 96497.6947971323,
+        "gni": 95220
+      }
+    },
+    {
+      "id": 18,
+      "name": "慕尼黑",
+      "country": "德国",
+      "cost": 3001,
+      "costSource": "v4:US3200×geomean(wbPLI=0.76,digPLI=0.97)×prem1×Eurostat-PLI1.09",
+      "rent": 1140,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6427,
+      "governance": {
+        "fhTotal": 93,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 54
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 13,
+        "score": 0.64,
+        "risk": "moderate",
+        "realPriceChgYoY": 1.4,
+        "realPriceChg10Y": 2.7,
+        "realRentChgYoY": 0.7,
+        "realRentChg10Y": 1.7
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.7627771110839637,
+        "digitalPLI": 0.972,
+        "blendedPLI": "0.861",
+        "gdpPPP": 73551.9347696836,
+        "gni": 55090
+      }
+    },
+    {
+      "id": 19,
+      "name": "柏林",
+      "country": "德国",
+      "cost": 3301,
+      "costSource": "v4:US3200×geomean(wbPLI=0.76,digPLI=0.97)×prem1.1×Eurostat-PLI1.09",
+      "rent": 1915,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 6427,
+      "governance": {
+        "fhTotal": 93,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 54
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 89,
+        "normalized": {
+          "food": 91,
+          "health": 87,
+          "edu": 79,
+          "culture": 100,
+          "transit": 80,
+          "leisure": 100
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.7627771110839637,
+        "digitalPLI": 0.972,
+        "blendedPLI": "0.861",
+        "gdpPPP": 73551.9347696836,
+        "gni": 55090
+      }
+    },
+    {
+      "id": 20,
+      "name": "巴塞罗那",
+      "country": "西班牙",
+      "cost": 2245,
+      "costSource": "v4:US3200×geomean(wbPLI=0.61,digPLI=0.93)×prem1×Eurostat-PLI0.93",
+      "rent": 853,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3914,
+      "governance": {
+        "fhTotal": 90,
+        "fhStatus": "F",
+        "fhPR": 37,
+        "fhCL": 53
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6094468840425258,
+        "digitalPLI": 0.926,
+        "blendedPLI": "0.751",
+        "gdpPPP": 57965.2948138837,
+        "gni": 33550
+      }
+    },
+    {
+      "id": 21,
+      "name": "马德里",
+      "country": "西班牙",
+      "cost": 2694,
+      "costSource": "v4:US3200×geomean(wbPLI=0.61,digPLI=0.93)×prem1.2×Eurostat-PLI0.93",
+      "rent": 2058,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 3914,
+      "governance": {
+        "fhTotal": 90,
+        "fhStatus": "F",
+        "fhPR": 37,
+        "fhCL": 53
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 10,
+        "score": 0.77,
+        "risk": "moderate",
+        "realPriceChgYoY": 13.6,
+        "realPriceChg10Y": 3.6,
+        "realRentChgYoY": 8.5,
+        "realRentChg10Y": 4
+      },
+      "osmQuality": {
+        "score": 90,
+        "normalized": {
+          "food": 96,
+          "health": 100,
+          "edu": 97,
+          "culture": 71,
+          "transit": 87,
+          "leisure": 96
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.6094468840425258,
+        "digitalPLI": 0.926,
+        "blendedPLI": "0.751",
+        "gdpPPP": 57965.2948138837,
+        "gni": 33550
+      }
+    },
+    {
+      "id": 22,
+      "name": "米兰",
+      "country": "意大利",
+      "cost": 3000,
+      "costSource": "v4:US3200×geomean(wbPLI=0.65,digPLI=0.93)×prem1.2×Eurostat-PLI1.01",
+      "rent": 2074,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 4502,
+      "governance": {
+        "fhTotal": 90,
+        "fhStatus": "F",
+        "fhPR": 36,
+        "fhCL": 54
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 20,
+        "score": 0.01,
+        "risk": "low",
+        "realPriceChgYoY": -2.7,
+        "realPriceChg10Y": -0.5,
+        "realRentChgYoY": -0.5,
+        "realRentChg10Y": -0.3
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6512266130654251,
+        "digitalPLI": 0.926,
+        "blendedPLI": "0.777",
+        "gdpPPP": 62014.2675153689,
+        "gni": 38590
+      }
+    },
+    {
+      "id": 23,
+      "name": "罗马",
+      "country": "意大利",
+      "cost": 2750,
+      "costSource": "v4:US3200×geomean(wbPLI=0.65,digPLI=0.93)×prem1.1×Eurostat-PLI1.01",
+      "rent": 1687,
+      "rentSource": "InsideAirbnb×10.2",
+      "house": 4502,
+      "governance": {
+        "fhTotal": 90,
+        "fhStatus": "F",
+        "fhPR": 36,
+        "fhCL": 54
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 71,
+        "normalized": {
+          "food": 82,
+          "health": 68,
+          "edu": 98,
+          "culture": 74,
+          "transit": 60,
+          "leisure": 55
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.6512266130654251,
+        "digitalPLI": 0.926,
+        "blendedPLI": "0.777",
+        "gdpPPP": 62014.2675153689,
+        "gni": 38590
+      }
+    },
+    {
+      "id": 24,
+      "name": "布鲁塞尔",
+      "country": "比利时",
+      "cost": 3750,
+      "costSource": "v4:US3200×geomean(wbPLI=0.77,digPLI=1.03)×prem1.1×Eurostat-PLI1.20",
+      "rent": 1425,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6451,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.7701144802910028,
+        "digitalPLI": 1.032,
+        "blendedPLI": "0.891",
+        "gdpPPP": 73514.4831045258,
+        "gni": 55290
+      }
+    },
+    {
+      "id": 25,
+      "name": "维也纳",
+      "country": "奥地利",
+      "cost": 3547,
+      "costSource": "v4:US3200×geomean(wbPLI=0.79,digPLI=0.97)×prem1.1×Eurostat-PLI1.15",
+      "rent": 1564,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 6389,
+      "governance": {
+        "fhTotal": 93,
+        "fhStatus": "F",
+        "fhPR": 37,
+        "fhCL": 56
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.7883607602656701,
+        "digitalPLI": 0.972,
+        "blendedPLI": "0.875",
+        "gdpPPP": 73911.439663136,
+        "gni": 54760
+      }
+    },
+    {
+      "id": 26,
+      "name": "布拉格",
+      "country": "捷克",
+      "cost": 1724,
+      "costSource": "v4:US3200×geomean(wbPLI=0.56,digPLI=0.63)×prem1.1×Eurostat-PLI0.83",
+      "rent": 1480,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 3449,
+      "governance": {
+        "fhTotal": 94,
+        "fhStatus": "F",
+        "fhPR": 36,
+        "fhCL": 58
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5555219072069078,
+        "digitalPLI": 0.633,
+        "blendedPLI": "0.593",
+        "gdpPPP": 57285.4237001379,
+        "gni": 29560
+      }
+    },
+    {
+      "id": 27,
+      "name": "华沙",
+      "country": "波兰",
+      "cost": 1262,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=0.75)×prem1.1×Eurostat-PLI0.59",
+      "rent": 480,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2519,
+      "governance": {
+        "fhTotal": 80,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 47
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4897061298696623,
+        "digitalPLI": 0.751,
+        "blendedPLI": "0.606",
+        "gdpPPP": 51262.5105756884,
+        "gni": 21590
+      }
+    },
+    {
+      "id": 28,
+      "name": "里斯本",
+      "country": "葡萄牙",
+      "cost": 1916,
+      "costSource": "v4:US3200×geomean(wbPLI=0.57,digPLI=0.72)×prem1.1×Eurostat-PLI0.85",
+      "rent": 728,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3140,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5668015745107995,
+        "digitalPLI": 0.72,
+        "blendedPLI": "0.639",
+        "gdpPPP": 51679.8883807527,
+        "gni": 26910
+      }
+    },
+    {
+      "id": 29,
+      "name": "雅典",
+      "country": "希腊",
+      "cost": 1659,
+      "costSource": "v4:US3200×geomean(wbPLI=0.56,digPLI=0.56)×prem1.1×Eurostat-PLI0.84",
+      "rent": 933,
+      "rentSource": "InsideAirbnb×10.2",
+      "house": 2652,
+      "governance": {
+        "fhTotal": 85,
+        "fhStatus": "F",
+        "fhPR": 35,
+        "fhCL": 50
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5555537627488703,
+        "digitalPLI": 0.561,
+        "blendedPLI": "0.558",
+        "gdpPPP": 44327.2097808276,
+        "gni": 22730
+      }
+    },
+    {
+      "id": 30,
+      "name": "伊斯坦布尔",
+      "country": "土耳其",
+      "cost": 299,
+      "costSource": "v4:US3200×geomean(wbPLI=0.35,digPLI=0.19)×prem1×Eurostat-PLI0.36",
+      "rent": 669,
+      "rentSource": "InsideAirbnb×10.2",
+      "house": 1570,
+      "governance": {
+        "fhTotal": 33,
+        "fhStatus": "NF",
+        "fhPR": 17,
+        "fhCL": 16
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 68,
+        "normalized": {
+          "food": 85,
+          "health": 88,
+          "edu": 100,
+          "culture": 51,
+          "transit": 55,
+          "leisure": 46
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.3482264952594902,
+        "digitalPLI": 0.191,
+        "blendedPLI": "0.258",
+        "gdpPPP": 45639.0192735944,
+        "gni": 13460
+      }
+    },
+    {
+      "id": 31,
+      "name": "墨西哥城",
+      "country": "墨西哥",
+      "cost": 2117,
+      "costSource": "v4:US3200×geomean(wbPLI=0.54,digPLI=0.56)×prem1.2×none1.00",
+      "rent": 677,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1928,
+      "governance": {
+        "fhTotal": 60,
+        "fhStatus": "PF",
+        "fhPR": 27,
+        "fhCL": 33
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 63,
+        "normalized": {
+          "food": 59,
+          "health": 60,
+          "edu": 74,
+          "culture": 56,
+          "transit": 75,
+          "leisure": 56
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.5417448198724073,
+        "digitalPLI": 0.561,
+        "blendedPLI": "0.551",
+        "gdpPPP": 26185.3564713253,
+        "gni": 12850
+      }
+    },
+    {
+      "id": 32,
+      "name": "圣保罗",
+      "country": "巴西",
+      "cost": 1623,
+      "costSource": "v4:US3200×geomean(wbPLI=0.46,digPLI=0.39)×prem1.2×none1.00",
+      "rent": 519,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1490,
+      "governance": {
+        "fhTotal": 72,
+        "fhStatus": "F",
+        "fhPR": 30,
+        "fhCL": 42
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 21,
+        "score": -0.1,
+        "risk": "low",
+        "realPriceChgYoY": 0,
+        "realPriceChg10Y": -2.1,
+        "realRentChgYoY": 5.1,
+        "realRentChg10Y": -0.3
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.46156007318795644,
+        "digitalPLI": 0.387,
+        "blendedPLI": "0.423",
+        "gdpPPP": 22338.4765640635,
+        "gni": 9930
+      }
+    },
+    {
+      "id": 33,
+      "name": "里约热内卢",
+      "country": "巴西",
+      "cost": 1352,
+      "costSource": "v4:US3200×geomean(wbPLI=0.46,digPLI=0.39)×prem1×none1.00",
+      "rent": 709,
+      "rentSource": "InsideAirbnb×10.2",
+      "house": 1490,
+      "governance": {
+        "fhTotal": 72,
+        "fhStatus": "F",
+        "fhPR": 30,
+        "fhCL": 42
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.46156007318795644,
+        "digitalPLI": 0.387,
+        "blendedPLI": "0.423",
+        "gdpPPP": 22338.4765640635,
+        "gni": 9930
+      }
+    },
+    {
+      "id": 34,
+      "name": "迈阿密",
+      "country": "美国",
+      "cost": 3573,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.13",
+      "rent": 2665,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Miami-Fort Lauderdale-West Palm Beach",
+        "socCount": 15,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 39,
+            "p25": 110947,
+            "p50": 115000,
+            "p75": 139732
+          },
+          "managementAnalyst": {
+            "n": 10,
+            "p25": 103750,
+            "p50": 168637,
+            "p75": 186906
+          },
+          "financialAnalyst": {
+            "n": 16,
+            "p25": 115000,
+            "p50": 144254,
+            "p75": 250000
+          },
+          "accountant": {
+            "n": 8,
+            "p25": 72134,
+            "p50": 83567,
+            "p75": 98698
+          },
+          "civilEngineer": {
+            "n": 5,
+            "p25": 100000,
+            "p50": 110042,
+            "p75": 112000
+          },
+          "csMgr": {
+            "n": 8,
+            "p25": 166576,
+            "p50": 179099,
+            "p75": 189818
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 1,
+        "score": 1.73,
+        "risk": "high",
+        "realPriceChgYoY": 1.9,
+        "realPriceChg10Y": 6.8,
+        "realRentChgYoY": -1.9,
+        "realRentChg10Y": 1.2
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 35,
+      "name": "华盛顿",
+      "country": "美国",
+      "cost": 3857,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1.1×BEA-RPP1.10",
+      "rent": 2347,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Washington-Arlington-Alexandria",
+        "socCount": 28,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 333,
+            "p25": 126090,
+            "p50": 127000,
+            "p75": 155000
+          },
+          "dataScientist": {
+            "n": 108,
+            "p25": 109000,
+            "p50": 127300,
+            "p75": 158400
+          },
+          "itProjectManager": {
+            "n": 18,
+            "p25": 118400,
+            "p50": 133668,
+            "p75": 147717
+          },
+          "managementAnalyst": {
+            "n": 14,
+            "p25": 121953,
+            "p50": 150000,
+            "p75": 175056
+          },
+          "financialAnalyst": {
+            "n": 17,
+            "p25": 114200,
+            "p50": 147500,
+            "p75": 156000
+          },
+          "accountant": {
+            "n": 11,
+            "p25": 92500,
+            "p50": 125000,
+            "p75": 159000
+          },
+          "civilEngineer": {
+            "n": 6,
+            "p25": 97510,
+            "p50": 115389,
+            "p75": 127721
+          },
+          "csMgr": {
+            "n": 18,
+            "p25": 175087,
+            "p50": 184550,
+            "p75": 215925
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 36,
+      "name": "波士顿",
+      "country": "美国",
+      "cost": 3567,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.12",
+      "rent": 3148,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Boston-Cambridge-Newton",
+        "socCount": 44,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 225,
+            "p25": 135000,
+            "p50": 154606,
+            "p75": 178131
+          },
+          "dataScientist": {
+            "n": 51,
+            "p25": 114138,
+            "p50": 150000,
+            "p75": 176450
+          },
+          "itProjectManager": {
+            "n": 33,
+            "p25": 115627,
+            "p50": 146545,
+            "p75": 165750
+          },
+          "managementAnalyst": {
+            "n": 14,
+            "p25": 120664,
+            "p50": 167577,
+            "p75": 189300
+          },
+          "financialAnalyst": {
+            "n": 22,
+            "p25": 113000,
+            "p50": 140000,
+            "p75": 175180
+          },
+          "accountant": {
+            "n": 19,
+            "p25": 103386,
+            "p50": 106550,
+            "p75": 125564
+          },
+          "mechanicalEngineer": {
+            "n": 5,
+            "p25": 99663,
+            "p50": 103210,
+            "p75": 121909
+          },
+          "marketResearchAnalyst": {
+            "n": 7,
+            "p25": 95321,
+            "p50": 130000,
+            "p75": 171467
+          },
+          "csMgr": {
+            "n": 30,
+            "p25": 190307,
+            "p50": 203226,
+            "p75": 229718
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 37,
+      "name": "西雅图",
+      "country": "美国",
+      "cost": 3570,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.12",
+      "rent": 2192,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Seattle-Tacoma-Bellevue",
+        "socCount": 50,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 2411,
+            "p25": 152100,
+            "p50": 175000,
+            "p75": 198050
+          },
+          "dataScientist": {
+            "n": 278,
+            "p25": 132925,
+            "p50": 163322,
+            "p75": 188782
+          },
+          "itProjectManager": {
+            "n": 266,
+            "p25": 139298,
+            "p50": 167024,
+            "p75": 197900
+          },
+          "managementAnalyst": {
+            "n": 21,
+            "p25": 153600,
+            "p50": 170000,
+            "p75": 190000
+          },
+          "financialAnalyst": {
+            "n": 27,
+            "p25": 99112,
+            "p50": 105400,
+            "p75": 117499
+          },
+          "accountant": {
+            "n": 19,
+            "p25": 102600,
+            "p50": 106000,
+            "p75": 130900
+          },
+          "electricalEngineer": {
+            "n": 13,
+            "p25": 150000,
+            "p50": 187720,
+            "p75": 211000
+          },
+          "mechanicalEngineer": {
+            "n": 7,
+            "p25": 125176,
+            "p50": 150010,
+            "p75": 162650
+          },
+          "civilEngineer": {
+            "n": 13,
+            "p25": 116542,
+            "p50": 132000,
+            "p75": 140000
+          },
+          "marketResearchAnalyst": {
+            "n": 36,
+            "p25": 99779,
+            "p50": 130556,
+            "p75": 165292
+          },
+          "csMgr": {
+            "n": 200,
+            "p25": 186008,
+            "p50": 201050,
+            "p75": 236732
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 38,
+      "name": "丹佛",
+      "country": "美国",
+      "cost": 3360,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.06",
+      "rent": 1858,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Denver-Aurora-Lakewood",
+        "socCount": 9,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 70,
+            "p25": 125443,
+            "p50": 150000,
+            "p75": 167234
+          },
+          "dataScientist": {
+            "n": 7,
+            "p25": 90896,
+            "p50": 95680,
+            "p75": 117678
+          },
+          "itProjectManager": {
+            "n": 10,
+            "p25": 99736,
+            "p50": 122866,
+            "p75": 143296
+          },
+          "electricalEngineer": {
+            "n": 5,
+            "p25": 108389,
+            "p50": 124800,
+            "p75": 146067
+          },
+          "csMgr": {
+            "n": 6,
+            "p25": 172752,
+            "p50": 192343,
+            "p75": 197013
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 39,
+      "name": "奥斯汀",
+      "country": "美国",
+      "cost": 3195,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.01",
+      "rent": 1579,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Austin-Round Rock",
+        "socCount": 39,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 691,
+            "p25": 115000,
+            "p50": 141699,
+            "p75": 163550
+          },
+          "dataScientist": {
+            "n": 41,
+            "p25": 111050,
+            "p50": 127700,
+            "p75": 149700
+          },
+          "itProjectManager": {
+            "n": 78,
+            "p25": 106165,
+            "p50": 128995,
+            "p75": 165357
+          },
+          "managementAnalyst": {
+            "n": 18,
+            "p25": 120000,
+            "p50": 144678,
+            "p75": 173575
+          },
+          "financialAnalyst": {
+            "n": 21,
+            "p25": 126318,
+            "p50": 168066,
+            "p75": 247685
+          },
+          "accountant": {
+            "n": 7,
+            "p25": 111705,
+            "p50": 115360,
+            "p75": 115360
+          },
+          "electricalEngineer": {
+            "n": 45,
+            "p25": 112000,
+            "p50": 140920,
+            "p75": 174304
+          },
+          "mechanicalEngineer": {
+            "n": 28,
+            "p25": 114966,
+            "p50": 132100,
+            "p75": 165090
+          },
+          "civilEngineer": {
+            "n": 13,
+            "p25": 89320,
+            "p50": 97000,
+            "p75": 113630
+          },
+          "marketResearchAnalyst": {
+            "n": 10,
+            "p25": 101230,
+            "p50": 116000,
+            "p75": 181682
+          },
+          "csMgr": {
+            "n": 67,
+            "p25": 178300,
+            "p50": 194711,
+            "p75": 210018
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 40,
+      "name": "温哥华",
+      "country": "加拿大",
+      "cost": 2511,
+      "costSource": "v4:US3200×geomean(wbPLI=0.84,digPLI=0.73)×prem1×none1.00",
+      "rent": 1279,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "governance": {
+        "fhTotal": 97,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 58
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": {
+        "rank": 12,
+        "score": 0.76,
+        "risk": "moderate",
+        "realPriceChgYoY": -5.9,
+        "realPriceChg10Y": 3.4,
+        "realRentChgYoY": -5.3,
+        "realRentChg10Y": 2
+      },
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.841046719250577,
+        "digitalPLI": 0.732,
+        "blendedPLI": "0.785",
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 41,
+      "name": "蒙特利尔",
+      "country": "加拿大",
+      "cost": 2511,
+      "costSource": "v4:US3200×geomean(wbPLI=0.84,digPLI=0.73)×prem1×none1.00",
+      "rent": 760,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "governance": {
+        "fhTotal": 97,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 58
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.841046719250577,
+        "digitalPLI": 0.732,
+        "blendedPLI": "0.785",
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 42,
+      "name": "墨尔本",
+      "country": "澳大利亚",
+      "cost": 2474,
+      "costSource": "v4:US3200×geomean(wbPLI=0.90,digPLI=0.67)×prem1×none1.00",
+      "rent": 940,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7313,
+      "governance": {
+        "fhTotal": 95,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8958941128496145,
+        "digitalPLI": 0.667,
+        "blendedPLI": "0.773",
+        "gdpPPP": 72111.1844628126,
+        "gni": 62680
+      }
+    },
+    {
+      "id": 43,
+      "name": "布里斯班",
+      "country": "澳大利亚",
+      "cost": 2474,
+      "costSource": "v4:US3200×geomean(wbPLI=0.90,digPLI=0.67)×prem1×none1.00",
+      "rent": 940,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7313,
+      "governance": {
+        "fhTotal": 95,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8958941128496145,
+        "digitalPLI": 0.667,
+        "blendedPLI": "0.773",
+        "gdpPPP": 72111.1844628126,
+        "gni": 62680
+      }
+    },
+    {
+      "id": 44,
+      "name": "奥克兰",
+      "country": "新西兰",
+      "cost": 2463,
+      "costSource": "v4:US3200×geomean(wbPLI=0.89,digPLI=0.67)×prem1×none1.00",
+      "rent": 936,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 5551,
+      "governance": {
+        "fhTotal": 99,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 59
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8857635680202394,
+        "digitalPLI": 0.669,
+        "blendedPLI": "0.770",
+        "gdpPPP": 55551.143658637,
+        "gni": 47580
+      }
+    },
+    {
+      "id": 45,
+      "name": "曼谷",
+      "country": "泰国",
+      "cost": 1360,
+      "costSource": "v4:US3200×geomean(wbPLI=0.30,digPLI=0.50)×prem1.1×none1.00",
+      "rent": 478,
+      "rentSource": "InsideAirbnb×10.2",
+      "house": 1065,
+      "governance": {
+        "fhTotal": 36,
+        "fhStatus": "PF",
+        "fhPR": 12,
+        "fhCL": 24
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.29728879259959445,
+        "digitalPLI": 0.502,
+        "blendedPLI": "0.386",
+        "gdpPPP": 24712.0658575135,
+        "gni": 7100
+      }
+    },
+    {
+      "id": 46,
+      "name": "吉隆坡",
+      "country": "马来西亚",
+      "cost": 1294,
+      "costSource": "v4:US3200×geomean(wbPLI=0.31,digPLI=0.44)×prem1.1×none1.00",
+      "rent": 414,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1748,
+      "governance": {
+        "fhTotal": 53,
+        "fhStatus": "PF",
+        "fhPR": 22,
+        "fhCL": 31
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3062054384781295,
+        "digitalPLI": 0.441,
+        "blendedPLI": "0.367",
+        "gdpPPP": 38779.2830442253,
+        "gni": 11650
+      }
+    },
+    {
+      "id": 47,
+      "name": "胡志明市",
+      "country": "越南",
+      "cost": 827,
+      "costSource": "v4:US3200×geomean(wbPLI=0.29,digPLI=0.23)×prem1×none1.00",
+      "rent": 232,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 599,
+      "governance": {
+        "fhTotal": 19,
+        "fhStatus": "NF",
+        "fhPR": 4,
+        "fhCL": 15
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.28789407706409864,
+        "digitalPLI": 0.232,
+        "blendedPLI": "0.258",
+        "gdpPPP": 16385.5065565458,
+        "gni": 4490
+      }
+    },
+    {
+      "id": 48,
+      "name": "河内",
+      "country": "越南",
+      "cost": 910,
+      "costSource": "v4:US3200×geomean(wbPLI=0.29,digPLI=0.23)×prem1.1×none1.00",
+      "rent": 255,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 599,
+      "governance": {
+        "fhTotal": 19,
+        "fhStatus": "NF",
+        "fhPR": 4,
+        "fhCL": 15
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.28789407706409864,
+        "digitalPLI": 0.232,
+        "blendedPLI": "0.258",
+        "gdpPPP": 16385.5065565458,
+        "gni": 4490
+      }
+    },
+    {
+      "id": 49,
+      "name": "班加罗尔",
+      "country": "印度",
+      "cost": 676,
+      "costSource": "v4:US3200×geomean(wbPLI=0.24,digPLI=0.18)×prem1×none1.00",
+      "rent": 189,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "governance": {
+        "fhTotal": 66,
+        "fhStatus": "PF",
+        "fhPR": 33,
+        "fhCL": 33
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.24146427188075523,
+        "digitalPLI": 0.185,
+        "blendedPLI": "0.211",
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 50,
+      "name": "孟买",
+      "country": "印度",
+      "cost": 812,
+      "costSource": "v4:US3200×geomean(wbPLI=0.24,digPLI=0.18)×prem1.2×none1.00",
+      "rent": 227,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "governance": {
+        "fhTotal": 66,
+        "fhStatus": "PF",
+        "fhPR": 33,
+        "fhCL": 33
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 18,
+        "normalized": {
+          "food": 0,
+          "health": 74,
+          "edu": 41,
+          "culture": 17,
+          "transit": 32,
+          "leisure": 18
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.24146427188075523,
+        "digitalPLI": 0.185,
+        "blendedPLI": "0.211",
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 51,
+      "name": "新德里",
+      "country": "印度",
+      "cost": 744,
+      "costSource": "v4:US3200×geomean(wbPLI=0.24,digPLI=0.18)×prem1.1×none1.00",
+      "rent": 208,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "governance": {
+        "fhTotal": 66,
+        "fhStatus": "PF",
+        "fhPR": 33,
+        "fhCL": 33
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.24146427188075523,
+        "digitalPLI": 0.185,
+        "blendedPLI": "0.211",
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 52,
+      "name": "内罗毕",
+      "country": "肯尼亚",
+      "cost": 1218,
+      "costSource": "v4:US3200×geomean(wbPLI=0.32,digPLI=0.37)×prem1.1×none1.00",
+      "rent": 268,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 209,
+      "governance": {
+        "fhTotal": 52,
+        "fhStatus": "PF",
+        "fhPR": 22,
+        "fhCL": 30
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3209501050867594,
+        "digitalPLI": 0.373,
+        "blendedPLI": "0.346",
+        "gdpPPP": 6644.13093243895,
+        "gni": 2090
+      }
+    },
+    {
+      "id": 53,
+      "name": "开罗",
+      "country": "埃及",
+      "cost": 601,
+      "costSource": "v4:US3200×geomean(wbPLI=0.17,digPLI=0.17)×prem1.1×none1.00",
+      "rent": 168,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 468,
+      "governance": {
+        "fhTotal": 18,
+        "fhStatus": "NF",
+        "fhPR": 6,
+        "fhCL": 12
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.17484279729091137,
+        "digitalPLI": 0.167,
+        "blendedPLI": "0.171",
+        "gdpPPP": 19094.1449444111,
+        "gni": 3510
+      }
+    },
+    {
+      "id": 54,
+      "name": "德黑兰",
+      "country": "伊朗",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": {
+        "fhTotal": 11,
+        "fhStatus": "NF",
+        "fhPR": 4,
+        "fhCL": 7
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 55,
+      "name": "卡拉奇",
+      "country": "巴基斯坦",
+      "cost": 757,
+      "costSource": "v4:US3200×geomean(wbPLI=0.24,digPLI=undefined)×prem1×none1.00",
+      "rent": 167,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 143,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.2365235888339886,
+        "digitalPLI": null,
+        "blendedPLI": "0.237",
+        "gdpPPP": 6252.11543199559,
+        "gni": 1430
+      }
+    },
+    {
+      "id": 56,
+      "name": "伊斯兰堡",
+      "country": "巴基斯坦",
+      "cost": 833,
+      "costSource": "v4:US3200×geomean(wbPLI=0.24,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 183,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 143,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.2365235888339886,
+        "digitalPLI": null,
+        "blendedPLI": "0.237",
+        "gdpPPP": 6252.11543199559,
+        "gni": 1430
+      }
+    },
+    {
+      "id": 57,
+      "name": "雅加达",
+      "country": "印度尼西亚",
+      "cost": 1076,
+      "costSource": "v4:US3200×geomean(wbPLI=0.30,digPLI=0.31)×prem1.1×none1.00",
+      "rent": 301,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 655,
+      "governance": {
+        "fhTotal": 57,
+        "fhStatus": "PF",
+        "fhPR": 29,
+        "fhCL": 28
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.29944965854576805,
+        "digitalPLI": 0.312,
+        "blendedPLI": "0.306",
+        "gdpPPP": 16448.2755179559,
+        "gni": 4910
+      }
+    },
+    {
+      "id": 58,
+      "name": "马尼拉",
+      "country": "菲律宾",
+      "cost": 1195,
+      "costSource": "v4:US3200×geomean(wbPLI=0.34,digPLI=0.34)×prem1.1×none1.00",
+      "rent": 335,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 596,
+      "governance": {
+        "fhTotal": 58,
+        "fhStatus": "PF",
+        "fhPR": 25,
+        "fhCL": 33
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3378654456301822,
+        "digitalPLI": 0.341,
+        "blendedPLI": "0.339",
+        "gdpPPP": 11794.1375488492,
+        "gni": 4470
+      }
+    },
+    {
+      "id": 59,
+      "name": "首尔",
+      "country": "韩国",
+      "cost": 2341,
+      "costSource": "v4:US3200×geomean(wbPLI=0.59,digPLI=0.63)×prem1.2×none1.00",
+      "rent": 890,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7350,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 78,
+        "normalized": {
+          "food": 100,
+          "health": 63,
+          "edu": 84,
+          "culture": 97,
+          "transit": 91,
+          "leisure": 49
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.5935763968093912,
+        "digitalPLI": 0.626,
+        "blendedPLI": "0.610",
+        "gdpPPP": 61051.3492502498,
+        "gni": 36750
+      }
+    },
+    {
+      "id": 60,
+      "name": "釜山",
+      "country": "韩国",
+      "cost": 1951,
+      "costSource": "v4:US3200×geomean(wbPLI=0.59,digPLI=0.63)×prem1×none1.00",
+      "rent": 741,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7350,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5935763968093912,
+        "digitalPLI": 0.626,
+        "blendedPLI": "0.610",
+        "gdpPPP": 61051.3492502498,
+        "gni": 36750
+      }
+    },
+    {
+      "id": 61,
+      "name": "台北",
+      "country": "台湾",
+      "cost": 1790,
+      "costSource": "v4:US3200×geomean(wbPLI=0.66,digPLI=0.47)×prem1×none1.00",
+      "rent": 1053,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 3967,
+      "governance": {
+        "fhTotal": 94,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 56
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.66,
+        "digitalPLI": 0.474,
+        "blendedPLI": "0.559",
+        "gdpPPP": 73344,
+        "gni": 34000
+      }
+    },
+    {
+      "id": 62,
+      "name": "布宜诺斯艾利斯",
+      "country": "阿根廷",
+      "cost": 1560,
+      "costSource": "v4:US3200×geomean(wbPLI=0.46,digPLI=0.43)×prem1.1×none1.00",
+      "rent": 499,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2030,
+      "governance": {
+        "fhTotal": 85,
+        "fhStatus": "F",
+        "fhPR": 35,
+        "fhCL": 50
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.45906131922592347,
+        "digitalPLI": 0.428,
+        "blendedPLI": "0.443",
+        "gdpPPP": 30431.1931223693,
+        "gni": 13530
+      }
+    },
+    {
+      "id": 63,
+      "name": "圣地亚哥",
+      "country": "智利",
+      "cost": 1819,
+      "costSource": "v4:US3200×geomean(wbPLI=0.46,digPLI=0.58)×prem1.1×none1.00",
+      "rent": 582,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2363,
+      "governance": {
+        "fhTotal": 94,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 56
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.46183955847862673,
+        "digitalPLI": 0.578,
+        "blendedPLI": "0.517",
+        "gdpPPP": 36181.156616977,
+        "gni": 15750
+      }
+    },
+    {
+      "id": 64,
+      "name": "波哥大",
+      "country": "哥伦比亚",
+      "cost": 1361,
+      "costSource": "v4:US3200×geomean(wbPLI=0.35,digPLI=0.42)×prem1.1×none1.00",
+      "rent": 436,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1056,
+      "governance": {
+        "fhTotal": 70,
+        "fhStatus": "F",
+        "fhPR": 31,
+        "fhCL": 39
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3543359533682213,
+        "digitalPLI": 0.422,
+        "blendedPLI": "0.387",
+        "gdpPPP": 22349.436440123,
+        "gni": 7040
+      }
+    },
+    {
+      "id": 65,
+      "name": "利马",
+      "country": "秘鲁",
+      "cost": 1807,
+      "costSource": "v4:US3200×geomean(wbPLI=0.47,digPLI=0.56)×prem1.1×none1.00",
+      "rent": 506,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 1000,
+      "governance": {
+        "fhTotal": 66,
+        "fhStatus": "PF",
+        "fhPR": 27,
+        "fhCL": 39
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4747878379171896,
+        "digitalPLI": 0.555,
+        "blendedPLI": "0.513",
+        "gdpPPP": 17802.4182498972,
+        "gni": 7500
+      }
+    },
+    {
+      "id": 67,
+      "name": "约翰内斯堡",
+      "country": "南非",
+      "cost": 1302,
+      "costSource": "v4:US3200×geomean(wbPLI=0.41,digPLI=0.41)×prem1×none1.00",
+      "rent": 365,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 815,
+      "governance": {
+        "fhTotal": 79,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 46
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.40548046882568206,
+        "digitalPLI": 0.408,
+        "blendedPLI": "0.407",
+        "gdpPPP": 15456.1989933658,
+        "gni": 6110
+      }
+    },
+    {
+      "id": 68,
+      "name": "开普敦",
+      "country": "南非",
+      "cost": 1302,
+      "costSource": "v4:US3200×geomean(wbPLI=0.41,digPLI=0.41)×prem1×none1.00",
+      "rent": 1382,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 815,
+      "governance": {
+        "fhTotal": 79,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 46
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 9,
+        "normalized": {
+          "food": 20,
+          "health": 14,
+          "edu": 18,
+          "culture": 10,
+          "transit": 0,
+          "leisure": 14
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.40548046882568206,
+        "digitalPLI": 0.408,
+        "blendedPLI": "0.407",
+        "gdpPPP": 15456.1989933658,
+        "gni": 6110
+      }
+    },
+    {
+      "id": 69,
+      "name": "瓜达拉哈拉",
+      "country": "墨西哥",
+      "cost": 1764,
+      "costSource": "v4:US3200×geomean(wbPLI=0.54,digPLI=0.56)×prem1×none1.00",
+      "rent": 564,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1928,
+      "governance": {
+        "fhTotal": 60,
+        "fhStatus": "PF",
+        "fhPR": 27,
+        "fhCL": 33
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5417448198724073,
+        "digitalPLI": 0.561,
+        "blendedPLI": "0.551",
+        "gdpPPP": 26185.3564713253,
+        "gni": 12850
+      }
+    },
+    {
+      "id": 70,
+      "name": "圣何塞(哥斯达黎加)",
+      "country": "哥斯达黎加",
+      "cost": 2103,
+      "costSource": "v4:US3200×geomean(wbPLI=0.60,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 673,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 2343,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5975276955141907,
+        "digitalPLI": null,
+        "blendedPLI": "0.598",
+        "gdpPPP": 31106.7643556729,
+        "gni": 15620
+      }
+    },
+    {
+      "id": 71,
+      "name": "巴拿马城",
+      "country": "巴拿马",
+      "cost": 1630,
+      "costSource": "v4:US3200×geomean(wbPLI=0.46,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 619,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2101,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4631734666090242,
+        "digitalPLI": null,
+        "blendedPLI": "0.463",
+        "gdpPPP": 41369.422541499,
+        "gni": 18010
+      }
+    },
+    {
+      "id": 73,
+      "name": "圣胡安",
+      "country": "波多黎各",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 75,
+      "name": "阿布扎比",
+      "country": "阿联酋",
+      "cost": 1953,
+      "costSource": "v4:US3200×geomean(wbPLI=0.63,digPLI=0.48)×prem1.1×none1.00",
+      "rent": 742,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6014,
+      "governance": {
+        "fhTotal": 18,
+        "fhStatus": "NF",
+        "fhPR": 5,
+        "fhCL": 13
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6345362403544158,
+        "digitalPLI": 0.485,
+        "blendedPLI": "0.555",
+        "gdpPPP": 79228.738801276,
+        "gni": 51550
+      }
+    },
+    {
+      "id": 76,
+      "name": "多哈",
+      "country": "卡塔尔",
+      "cost": 2142,
+      "costSource": "v4:US3200×geomean(wbPLI=0.61,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 814,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 9017,
+      "governance": {
+        "fhTotal": 25,
+        "fhStatus": "NF",
+        "fhPR": 7,
+        "fhCL": 18
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6084165961178795,
+        "digitalPLI": null,
+        "blendedPLI": "0.608",
+        "gdpPPP": 126046.354855612,
+        "gni": 77290
+      }
+    },
+    {
+      "id": 77,
+      "name": "麦纳麦",
+      "country": "巴林",
+      "cost": 1559,
+      "costSource": "v4:US3200×geomean(wbPLI=0.44,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 592,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3277,
+      "governance": {
+        "fhTotal": 12,
+        "fhStatus": "NF",
+        "fhPR": 2,
+        "fhCL": 10
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.442979050401742,
+        "digitalPLI": null,
+        "blendedPLI": "0.443",
+        "gdpPPP": 66941.2430367989,
+        "gni": 28090
+      }
+    },
+    {
+      "id": 78,
+      "name": "利雅得",
+      "country": "沙特阿拉伯",
+      "cost": 1632,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=0.44)×prem1.1×none1.00",
+      "rent": 620,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 4157,
+      "governance": {
+        "fhTotal": 8,
+        "fhStatus": "NF",
+        "fhPR": 1,
+        "fhCL": 7
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4920697643511705,
+        "digitalPLI": 0.437,
+        "blendedPLI": "0.464",
+        "gdpPPP": 71375.3727890285,
+        "gni": 35630
+      }
+    },
+    {
+      "id": 79,
+      "name": "马斯喀特",
+      "country": "阿曼",
+      "cost": 1711,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 650,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2277,
+      "governance": {
+        "fhTotal": 24,
+        "fhStatus": "NF",
+        "fhPR": 6,
+        "fhCL": 18
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.48598818129226845,
+        "digitalPLI": null,
+        "blendedPLI": "0.486",
+        "gdpPPP": 41740.1658530012,
+        "gni": 19520
+      }
+    },
+    {
+      "id": 80,
+      "name": "贝鲁特",
+      "country": "黎巴嫩",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": {
+        "fhTotal": 42,
+        "fhStatus": "PF",
+        "fhPR": 13,
+        "fhCL": 29
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 81,
+      "name": "安曼",
+      "country": "约旦",
+      "cost": 1502,
+      "costSource": "v4:US3200×geomean(wbPLI=0.43,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 421,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 591,
+      "governance": {
+        "fhTotal": 33,
+        "fhStatus": "NF",
+        "fhPR": 11,
+        "fhCL": 22
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4267522779440301,
+        "digitalPLI": null,
+        "blendedPLI": "0.427",
+        "gdpPPP": 10821.4909765317,
+        "gni": 4430
+      }
+    },
+    {
+      "id": 82,
+      "name": "特拉维夫",
+      "country": "以色列",
+      "cost": 2453,
+      "costSource": "v4:US3200×geomean(wbPLI=0.95,digPLI=0.62)×prem1×none1.00",
+      "rent": 932,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 10582,
+      "governance": {
+        "fhTotal": 74,
+        "fhStatus": "F",
+        "fhPR": 34,
+        "fhCL": 40
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.9465528017171567,
+        "digitalPLI": 0.621,
+        "blendedPLI": "0.767",
+        "gdpPPP": 57235.7763244136,
+        "gni": 52910
+      }
+    },
+    {
+      "id": 83,
+      "name": "海得拉巴",
+      "country": "印度",
+      "cost": 676,
+      "costSource": "v4:US3200×geomean(wbPLI=0.24,digPLI=0.18)×prem1×none1.00",
+      "rent": 189,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "governance": {
+        "fhTotal": 66,
+        "fhStatus": "PF",
+        "fhPR": 33,
+        "fhCL": 33
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.24146427188075523,
+        "digitalPLI": 0.185,
+        "blendedPLI": "0.211",
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 84,
+      "name": "浦那",
+      "country": "印度",
+      "cost": 676,
+      "costSource": "v4:US3200×geomean(wbPLI=0.24,digPLI=0.18)×prem1×none1.00",
+      "rent": 189,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 353,
+      "governance": {
+        "fhTotal": 66,
+        "fhStatus": "PF",
+        "fhPR": 33,
+        "fhCL": 33
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.24146427188075523,
+        "digitalPLI": 0.185,
+        "blendedPLI": "0.211",
+        "gdpPPP": 11159.9856476091,
+        "gni": 2650
+      }
+    },
+    {
+      "id": 85,
+      "name": "基辅",
+      "country": "乌克兰",
+      "cost": 930,
+      "costSource": "v4:US3200×geomean(wbPLI=0.29,digPLI=undefined)×prem1×none1.00",
+      "rent": 260,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 695,
+      "governance": {
+        "fhTotal": 49,
+        "fhStatus": "PF",
+        "fhPR": 21,
+        "fhCL": 28
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.290530386023681,
+        "digitalPLI": null,
+        "blendedPLI": "0.291",
+        "gdpPPP": 18550.462890625,
+        "gni": 5210
+      }
+    },
+    {
+      "id": 86,
+      "name": "布加勒斯特",
+      "country": "罗马尼亚",
+      "cost": 789,
+      "costSource": "v4:US3200×geomean(wbPLI=0.41,digPLI=0.53)×prem1×Eurostat-PLI0.53",
+      "rent": 300,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2053,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 35,
+        "fhCL": 48
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4091610705807519,
+        "digitalPLI": 0.525,
+        "blendedPLI": "0.463",
+        "gdpPPP": 49076.5399383138,
+        "gni": 17600
+      }
+    },
+    {
+      "id": 87,
+      "name": "索非亚",
+      "country": "保加利亚",
+      "cost": 729,
+      "costSource": "v4:US3200×geomean(wbPLI=0.42,digPLI=undefined)×prem1×Eurostat-PLI0.54",
+      "rent": 277,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 1793,
+      "governance": {
+        "fhTotal": 78,
+        "fhStatus": "F",
+        "fhPR": 32,
+        "fhCL": 46
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.41925773883910566,
+        "digitalPLI": null,
+        "blendedPLI": "0.419",
+        "gdpPPP": 41969.4515718999,
+        "gni": 15370
+      }
+    },
+    {
+      "id": 88,
+      "name": "萨格勒布",
+      "country": "克罗地亚",
+      "cost": 1064,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1×Eurostat-PLI0.69",
+      "rent": 404,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2596,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 34,
+        "fhCL": 49
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4853694310318196,
+        "digitalPLI": null,
+        "blendedPLI": "0.485",
+        "gdpPPP": 49550.7921506017,
+        "gni": 22250
+      }
+    },
+    {
+      "id": 89,
+      "name": "贝尔格莱德",
+      "country": "塞尔维亚",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 90,
+      "name": "布达佩斯",
+      "country": "匈牙利",
+      "cost": 1166,
+      "costSource": "v4:US3200×geomean(wbPLI=0.48,digPLI=0.60)×prem1.1×Eurostat-PLI0.62",
+      "rent": 695,
+      "rentSource": "InsideAirbnb×10.2",
+      "house": 2423,
+      "governance": {
+        "fhTotal": 65,
+        "fhStatus": "PF",
+        "fhPR": 24,
+        "fhCL": 41
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4797351401488069,
+        "digitalPLI": 0.597,
+        "blendedPLI": "0.535",
+        "gdpPPP": 48552.4708092529,
+        "gni": 20770
+      }
+    },
+    {
+      "id": 91,
+      "name": "布拉迪斯拉发",
+      "country": "斯洛伐克",
+      "cost": 1374,
+      "costSource": "v4:US3200×geomean(wbPLI=0.54,digPLI=undefined)×prem1×Eurostat-PLI0.80",
+      "rent": 522,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2749,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5400249806533639,
+        "digitalPLI": null,
+        "blendedPLI": "0.540",
+        "gdpPPP": 48132.356430543,
+        "gni": 23560
+      }
+    },
+    {
+      "id": 92,
+      "name": "卢布尔雅那",
+      "country": "斯洛文尼亚",
+      "cost": 1685,
+      "costSource": "v4:US3200×geomean(wbPLI=0.60,digPLI=undefined)×prem1×Eurostat-PLI0.88",
+      "rent": 640,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3709,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5998113021796001,
+        "digitalPLI": null,
+        "blendedPLI": "0.600",
+        "gdpPPP": 57186.3713538174,
+        "gni": 31790
+      }
+    },
+    {
+      "id": 93,
+      "name": "都柏林",
+      "country": "爱尔兰",
+      "cost": 4754,
+      "costSource": "v4:US3200×geomean(wbPLI=0.85,digPLI=1.07)×prem1.1×Eurostat-PLI1.42",
+      "rent": 3303,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 9409,
+      "governance": {
+        "fhTotal": 97,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 58
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8460513612990483,
+        "digitalPLI": 1.069,
+        "blendedPLI": "0.951",
+        "gdpPPP": 133437.470117019,
+        "gni": 80650
+      }
+    },
+    {
+      "id": 94,
+      "name": "贝尔法斯特",
+      "country": "英国",
+      "cost": 3716,
+      "costSource": "v4:US3200×geomean(wbPLI=0.86,digPLI=1.00)×prem1×Eurostat-PLI1.25",
+      "rent": 1177,
+      "rentSource": "ONS-2026",
+      "house": 5772,
+      "governance": {
+        "fhTotal": 91,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 53
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8586809365423521,
+        "digitalPLI": 1.002,
+        "blendedPLI": "0.928",
+        "gdpPPP": 62009.4907765366,
+        "gni": 49470
+      }
+    },
+    {
+      "id": 95,
+      "name": "亚特兰大",
+      "country": "美国",
+      "cost": 3078,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP0.97",
+      "rent": 1811,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Atlanta-Sandy Springs-Alpharetta",
+        "socCount": 29,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 415,
+            "p25": 109283,
+            "p50": 130800,
+            "p75": 152131
+          },
+          "dataScientist": {
+            "n": 40,
+            "p25": 119500,
+            "p50": 137750,
+            "p75": 163750
+          },
+          "itProjectManager": {
+            "n": 71,
+            "p25": 111088,
+            "p50": 130562,
+            "p75": 139555
+          },
+          "managementAnalyst": {
+            "n": 13,
+            "p25": 89419,
+            "p50": 139485,
+            "p75": 190988
+          },
+          "financialAnalyst": {
+            "n": 15,
+            "p25": 87932,
+            "p50": 120000,
+            "p75": 195000
+          },
+          "accountant": {
+            "n": 25,
+            "p25": 85500,
+            "p50": 101900,
+            "p75": 117875
+          },
+          "electricalEngineer": {
+            "n": 5,
+            "p25": 127942,
+            "p50": 127942,
+            "p75": 127942
+          },
+          "registeredNurse": {
+            "n": 5,
+            "p25": 89544,
+            "p50": 99320,
+            "p75": 99320
+          },
+          "csMgr": {
+            "n": 50,
+            "p25": 175713,
+            "p50": 203448,
+            "p75": 213075
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 96,
+      "name": "凤凰城",
+      "country": "美国",
+      "cost": 3151,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP0.99",
+      "rent": 1735,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Phoenix-Mesa-Chandler",
+        "socCount": 23,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 281,
+            "p25": 111072,
+            "p50": 123328,
+            "p75": 148500
+          },
+          "dataScientist": {
+            "n": 11,
+            "p25": 91778,
+            "p50": 110000,
+            "p75": 130422
+          },
+          "itProjectManager": {
+            "n": 40,
+            "p25": 118851,
+            "p50": 130000,
+            "p75": 144300
+          },
+          "managementAnalyst": {
+            "n": 5,
+            "p25": 90230,
+            "p50": 90230,
+            "p75": 122387
+          },
+          "electricalEngineer": {
+            "n": 7,
+            "p25": 103993,
+            "p50": 106399,
+            "p75": 123760
+          },
+          "mechanicalEngineer": {
+            "n": 14,
+            "p25": 91126,
+            "p50": 103437,
+            "p75": 133625
+          },
+          "civilEngineer": {
+            "n": 11,
+            "p25": 85443,
+            "p50": 88754,
+            "p75": 114606
+          },
+          "csMgr": {
+            "n": 23,
+            "p25": 172411,
+            "p50": 197367,
+            "p75": 206311
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 97,
+      "name": "波特兰",
+      "country": "美国",
+      "cost": 3370,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.06",
+      "rent": 1780,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Portland-Vancouver-Hillsboro",
+        "socCount": 9,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 81,
+            "p25": 127878,
+            "p50": 145460,
+            "p75": 161740
+          },
+          "electricalEngineer": {
+            "n": 5,
+            "p25": 140000,
+            "p50": 160000,
+            "p75": 170034
+          },
+          "mechanicalEngineer": {
+            "n": 6,
+            "p25": 96436,
+            "p50": 104196,
+            "p75": 110086
+          },
+          "csMgr": {
+            "n": 6,
+            "p25": 166250,
+            "p50": 178850,
+            "p75": 187699
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 98,
+      "name": "圣地亚哥",
+      "country": "美国",
+      "cost": 4119,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1.1×BEA-RPP1.18",
+      "rent": 2890,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 99,
+      "name": "拉斯维加斯",
+      "country": "美国",
+      "cost": 3097,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP0.97",
+      "rent": 1727,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 100,
+      "name": "坦帕",
+      "country": "美国",
+      "cost": 3148,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP0.99",
+      "rent": 1988,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 101,
+      "name": "广州",
+      "country": "中国",
+      "cost": 1571,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1×none1.00",
+      "rent": 682,
+      "rentSource": "prod-USD(742)×NBS-2hand-YoY(91.9%)",
+      "house": 2049,
+      "governance": {
+        "fhTotal": 9,
+        "fhStatus": "NF",
+        "fhPR": -2,
+        "fhCL": 11
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": {
+        "period": "2026-03",
+        "newHome": {
+          "m2m": 100.3,
+          "yoy": 95.3,
+          "q1avg": 94.9
+        },
+        "secondHand": {
+          "m2m": 100.2,
+          "yoy": 91.9,
+          "q1avg": 91.7
+        }
+      },
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4908028713281468,
+        "digitalPLI": null,
+        "blendedPLI": "0.491",
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 102,
+      "name": "深圳",
+      "country": "中国",
+      "cost": 1571,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1×none1.00",
+      "rent": 748,
+      "rentSource": "prod-USD(804)×NBS-2hand-YoY(93%)",
+      "house": 2049,
+      "governance": {
+        "fhTotal": 9,
+        "fhStatus": "NF",
+        "fhPR": -2,
+        "fhCL": 11
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": {
+        "period": "2026-03",
+        "newHome": {
+          "m2m": 100.2,
+          "yoy": 94.5,
+          "q1avg": 94.7
+        },
+        "secondHand": {
+          "m2m": 100.4,
+          "yoy": 93,
+          "q1avg": 93.1
+        }
+      },
+      "ubsBubble": null,
+      "osmQuality": {
+        "score": 4,
+        "normalized": {
+          "food": 5,
+          "health": 0,
+          "edu": 0,
+          "culture": 10,
+          "transit": 74,
+          "leisure": 0
+        }
+      },
+      "_inputs": {
+        "wbPLI": 0.4908028713281468,
+        "digitalPLI": null,
+        "blendedPLI": "0.491",
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 103,
+      "name": "成都",
+      "country": "中国",
+      "cost": 1571,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1×none1.00",
+      "rent": 616,
+      "rentSource": "prod-USD(655)×NBS-2hand-YoY(94.1%)",
+      "house": 2049,
+      "governance": {
+        "fhTotal": 9,
+        "fhStatus": "NF",
+        "fhPR": -2,
+        "fhCL": 11
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": {
+        "period": "2026-03",
+        "newHome": {
+          "m2m": 99.7,
+          "yoy": 95.5,
+          "q1avg": 96.2
+        },
+        "secondHand": {
+          "m2m": 99.7,
+          "yoy": 94.1,
+          "q1avg": 94.5
+        }
+      },
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4908028713281468,
+        "digitalPLI": null,
+        "blendedPLI": "0.491",
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 104,
+      "name": "杭州",
+      "country": "中国",
+      "cost": 1571,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1×none1.00",
+      "rent": 684,
+      "rentSource": "prod-USD(721)×NBS-2hand-YoY(94.8%)",
+      "house": 2049,
+      "governance": {
+        "fhTotal": 9,
+        "fhStatus": "NF",
+        "fhPR": -2,
+        "fhCL": 11
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": {
+        "period": "2026-03",
+        "newHome": {
+          "m2m": 100.2,
+          "yoy": 102.4,
+          "q1avg": 102.5
+        },
+        "secondHand": {
+          "m2m": 99.9,
+          "yoy": 94.8,
+          "q1avg": 95.4
+        }
+      },
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4908028713281468,
+        "digitalPLI": null,
+        "blendedPLI": "0.491",
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 105,
+      "name": "重庆",
+      "country": "中国",
+      "cost": 1571,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1×none1.00",
+      "rent": 574,
+      "rentSource": "prod-USD(610)×NBS-2hand-YoY(94.1%)",
+      "house": 2049,
+      "governance": {
+        "fhTotal": 9,
+        "fhStatus": "NF",
+        "fhPR": -2,
+        "fhCL": 11
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": {
+        "period": "2026-03",
+        "newHome": {
+          "m2m": 99.5,
+          "yoy": 95.6,
+          "q1avg": 96.1
+        },
+        "secondHand": {
+          "m2m": 100.1,
+          "yoy": 94.1,
+          "q1avg": 94
+        }
+      },
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4908028713281468,
+        "digitalPLI": null,
+        "blendedPLI": "0.491",
+        "gdpPPP": 27104.8702677463,
+        "gni": 13660
+      }
+    },
+    {
+      "id": 106,
+      "name": "大阪",
+      "country": "日本",
+      "cost": 1635,
+      "costSource": "v4:US3200×geomean(wbPLI=0.62,digPLI=0.42)×prem1×none1.00",
+      "rent": 621,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 56
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6242812245366461,
+        "digitalPLI": 0.418,
+        "blendedPLI": "0.511",
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 107,
+      "name": "名古屋",
+      "country": "日本",
+      "cost": 1635,
+      "costSource": "v4:US3200×geomean(wbPLI=0.62,digPLI=0.42)×prem1×none1.00",
+      "rent": 621,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 56
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6242812245366461,
+        "digitalPLI": 0.418,
+        "blendedPLI": "0.511",
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 109,
+      "name": "金边",
+      "country": "柬埔寨",
+      "cost": 1161,
+      "costSource": "v4:US3200×geomean(wbPLI=0.33,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 255,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 255,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.32985081155752466,
+        "digitalPLI": null,
+        "blendedPLI": "0.330",
+        "gdpPPP": 7966.87352428705,
+        "gni": 2550
+      }
+    },
+    {
+      "id": 110,
+      "name": "仰光",
+      "country": "缅甸",
+      "cost": 798,
+      "costSource": "v4:US3200×geomean(wbPLI=0.23,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 176,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 121,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.22660406998804788,
+        "digitalPLI": null,
+        "blendedPLI": "0.227",
+        "gdpPPP": 5997.46516323715,
+        "gni": 1210
+      }
+    },
+    {
+      "id": 112,
+      "name": "清迈",
+      "country": "泰国",
+      "cost": 1236,
+      "costSource": "v4:US3200×geomean(wbPLI=0.30,digPLI=0.50)×prem1×none1.00",
+      "rent": 396,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1065,
+      "governance": {
+        "fhTotal": 36,
+        "fhStatus": "PF",
+        "fhPR": 12,
+        "fhCL": 24
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.29728879259959445,
+        "digitalPLI": 0.502,
+        "blendedPLI": "0.386",
+        "gdpPPP": 24712.0658575135,
+        "gni": 7100
+      }
+    },
+    {
+      "id": 114,
+      "name": "达卡",
+      "country": "孟加拉国",
+      "cost": 946,
+      "costSource": "v4:US3200×geomean(wbPLI=0.27,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 208,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 282,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.26883777251779084,
+        "digitalPLI": null,
+        "blendedPLI": "0.269",
+        "gdpPPP": 9646.76984383255,
+        "gni": 2820
+      }
+    },
+    {
+      "id": 115,
+      "name": "科伦坡",
+      "country": "斯里兰卡",
+      "cost": 1017,
+      "costSource": "v4:US3200×geomean(wbPLI=0.29,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 285,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 515,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.2888559832647432,
+        "digitalPLI": null,
+        "blendedPLI": "0.289",
+        "gdpPPP": 15632.5924849848,
+        "gni": 3860
+      }
+    },
+    {
+      "id": 116,
+      "name": "加德满都",
+      "country": "尼泊尔",
+      "cost": 888,
+      "costSource": "v4:US3200×geomean(wbPLI=0.25,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 195,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 147,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.2522931108687907,
+        "digitalPLI": null,
+        "blendedPLI": "0.252",
+        "gdpPPP": 5736.62134332704,
+        "gni": 1470
+      }
+    },
+    {
+      "id": 117,
+      "name": "阿拉木图",
+      "country": "哈萨克斯坦",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 118,
+      "name": "塔什干",
+      "country": "乌兹别克斯坦",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 119,
+      "name": "巴库",
+      "country": "阿塞拜疆",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 120,
+      "name": "乌兰巴托",
+      "country": "蒙古",
+      "cost": 1128,
+      "costSource": "v4:US3200×geomean(wbPLI=0.35,digPLI=undefined)×prem1×none1.00",
+      "rent": 316,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 717,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.35261043002222825,
+        "digitalPLI": null,
+        "blendedPLI": "0.353",
+        "gdpPPP": 19144.7261368498,
+        "gni": 5380
+      }
+    },
+    {
+      "id": 121,
+      "name": "斯德哥尔摩",
+      "country": "瑞典",
+      "cost": 3995,
+      "costSource": "v4:US3200×geomean(wbPLI=0.80,digPLI=0.95)×prem1.1×Eurostat-PLI1.30",
+      "rent": 2034,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 6789,
+      "governance": {
+        "fhTotal": 99,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 59
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.7950108834226816,
+        "digitalPLI": 0.953,
+        "blendedPLI": "0.870",
+        "gdpPPP": 71844.9129880579,
+        "gni": 58190
+      }
+    },
+    {
+      "id": 122,
+      "name": "哥本哈根",
+      "country": "丹麦",
+      "cost": 5182,
+      "costSource": "v4:US3200×geomean(wbPLI=0.87,digPLI=1.16)×prem1.1×Eurostat-PLI1.47",
+      "rent": 2672,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 8463,
+      "governance": {
+        "fhTotal": 97,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8674647571515521,
+        "digitalPLI": 1.161,
+        "blendedPLI": "1.004",
+        "gdpPPP": 81878.2349849181,
+        "gni": 72540
+      }
+    },
+    {
+      "id": 123,
+      "name": "赫尔辛基",
+      "country": "芬兰",
+      "cost": 4056,
+      "costSource": "v4:US3200×geomean(wbPLI=0.81,digPLI=0.98)×prem1.1×Eurostat-PLI1.29",
+      "rent": 1541,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 6026,
+      "governance": {
+        "fhTotal": 100,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 60
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8129562676590159,
+        "digitalPLI": 0.983,
+        "blendedPLI": "0.894",
+        "gdpPPP": 65378.3841859721,
+        "gni": 51650
+      }
+    },
+    {
+      "id": 124,
+      "name": "奥斯陆",
+      "country": "挪威",
+      "cost": 5094,
+      "costSource": "v4:US3200×geomean(wbPLI=0.85,digPLI=1.04)×prem1.1×Eurostat-PLI1.53",
+      "rent": 1904,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 11453,
+      "governance": {
+        "fhTotal": 98,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 59
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8505246664672788,
+        "digitalPLI": 1.045,
+        "blendedPLI": "0.943",
+        "gdpPPP": 102037.526800237,
+        "gni": 98170
+      }
+    },
+    {
+      "id": 125,
+      "name": "休斯顿",
+      "country": "美国",
+      "cost": 3027,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP0.95",
+      "rent": 1610,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Houston-The Woodlands-Sugar Land",
+        "socCount": 37,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 248,
+            "p25": 105976,
+            "p50": 110000,
+            "p75": 137583
+          },
+          "dataScientist": {
+            "n": 23,
+            "p25": 89378,
+            "p50": 108118,
+            "p75": 129064
+          },
+          "itProjectManager": {
+            "n": 33,
+            "p25": 95000,
+            "p50": 108243,
+            "p75": 135512
+          },
+          "managementAnalyst": {
+            "n": 23,
+            "p25": 88130,
+            "p50": 129862,
+            "p75": 190000
+          },
+          "financialAnalyst": {
+            "n": 23,
+            "p25": 105685,
+            "p50": 120000,
+            "p75": 206315
+          },
+          "accountant": {
+            "n": 31,
+            "p25": 77085,
+            "p50": 100000,
+            "p75": 149626
+          },
+          "electricalEngineer": {
+            "n": 22,
+            "p25": 101357,
+            "p50": 133766,
+            "p75": 152558
+          },
+          "mechanicalEngineer": {
+            "n": 21,
+            "p25": 106850,
+            "p50": 131040,
+            "p75": 160000
+          },
+          "civilEngineer": {
+            "n": 22,
+            "p25": 80000,
+            "p50": 89981,
+            "p75": 115501
+          },
+          "marketResearchAnalyst": {
+            "n": 6,
+            "p25": 57120,
+            "p50": 60000,
+            "p75": 77290
+          },
+          "csMgr": {
+            "n": 38,
+            "p25": 163746,
+            "p50": 186376,
+            "p75": 210787
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 126,
+      "name": "费城",
+      "country": "美国",
+      "cost": 3389,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.07",
+      "rent": 1869,
+      "rentSource": "Zillow-ZORI-2026-03-31",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": {
+        "msa": "Philadelphia-Camden-Wilmington",
+        "socCount": 18,
+        "professions": {
+          "softwareDeveloper": {
+            "n": 76,
+            "p25": 94854,
+            "p50": 110000,
+            "p75": 147978
+          },
+          "dataScientist": {
+            "n": 14,
+            "p25": 96013,
+            "p50": 96013,
+            "p75": 117162
+          },
+          "itProjectManager": {
+            "n": 13,
+            "p25": 92394,
+            "p50": 115500,
+            "p75": 131500
+          },
+          "managementAnalyst": {
+            "n": 14,
+            "p25": 166472,
+            "p50": 180250,
+            "p75": 180250
+          },
+          "financialAnalyst": {
+            "n": 6,
+            "p25": 91650,
+            "p50": 104000,
+            "p75": 167350
+          },
+          "civilEngineer": {
+            "n": 7,
+            "p25": 97240,
+            "p50": 108000,
+            "p75": 155810
+          },
+          "csMgr": {
+            "n": 26,
+            "p25": 163677,
+            "p50": 185782,
+            "p75": 213824
+          }
+        }
+      },
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 127,
+      "name": "卡尔加里",
+      "country": "加拿大",
+      "cost": 2511,
+      "costSource": "v4:US3200×geomean(wbPLI=0.84,digPLI=0.73)×prem1×none1.00",
+      "rent": 1146,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "governance": {
+        "fhTotal": 97,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 58
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.841046719250577,
+        "digitalPLI": 0.732,
+        "blendedPLI": "0.785",
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 128,
+      "name": "珀斯",
+      "country": "澳大利亚",
+      "cost": 2474,
+      "costSource": "v4:US3200×geomean(wbPLI=0.90,digPLI=0.67)×prem1×none1.00",
+      "rent": 940,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7313,
+      "governance": {
+        "fhTotal": 95,
+        "fhStatus": "F",
+        "fhPR": 38,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8958941128496145,
+        "digitalPLI": 0.667,
+        "blendedPLI": "0.773",
+        "gdpPPP": 72111.1844628126,
+        "gni": 62680
+      }
+    },
+    {
+      "id": 129,
+      "name": "麦德林",
+      "country": "哥伦比亚",
+      "cost": 1237,
+      "costSource": "v4:US3200×geomean(wbPLI=0.35,digPLI=0.42)×prem1×none1.00",
+      "rent": 396,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1056,
+      "governance": {
+        "fhTotal": 70,
+        "fhStatus": "F",
+        "fhPR": 31,
+        "fhCL": 39
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3543359533682213,
+        "digitalPLI": 0.422,
+        "blendedPLI": "0.387",
+        "gdpPPP": 22349.436440123,
+        "gni": 7040
+      }
+    },
+    {
+      "id": 130,
+      "name": "第比利斯",
+      "country": "格鲁吉亚",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 131,
+      "name": "拉各斯",
+      "country": "尼日利亚",
+      "cost": 520,
+      "costSource": "v4:US3200×geomean(wbPLI=0.12,digPLI=0.22)×prem1×none1.00",
+      "rent": 114,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 170,
+      "governance": {
+        "fhTotal": 44,
+        "fhStatus": "PF",
+        "fhPR": 20,
+        "fhCL": 24
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.11931058341527959,
+        "digitalPLI": 0.221,
+        "blendedPLI": "0.162",
+        "gdpPPP": 9086.87550609627,
+        "gni": 1700
+      }
+    },
+    {
+      "id": 132,
+      "name": "莫斯科",
+      "country": "俄罗斯",
+      "cost": 1005,
+      "costSource": "v4:US3200×geomean(wbPLI=0.31,digPLI=undefined)×prem1×none1.00",
+      "rent": 382,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 1787,
+      "governance": {
+        "fhTotal": 13,
+        "fhStatus": "NF",
+        "fhPR": 4,
+        "fhCL": 9
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3140814175005239,
+        "digitalPLI": null,
+        "blendedPLI": "0.314",
+        "gdpPPP": 47404.96484375,
+        "gni": 15320
+      }
+    },
+    {
+      "id": 133,
+      "name": "圣何塞(美国)",
+      "country": "美国",
+      "cost": 3983,
+      "costSource": "v4:US3200×geomean(wbPLI=0.99,digPLI=1.00)×prem1×BEA-RPP1.25",
+      "rent": 1514,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 9741,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 33,
+        "fhCL": 50
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.985131557142449,
+        "digitalPLI": 1,
+        "blendedPLI": "0.993",
+        "gdpPPP": 85809.9003846359,
+        "gni": 83490
+      }
+    },
+    {
+      "id": 135,
+      "name": "渥太华",
+      "country": "加拿大",
+      "cost": 2762,
+      "costSource": "v4:US3200×geomean(wbPLI=0.84,digPLI=0.73)×prem1.1×none1.00",
+      "rent": 1072,
+      "rentSource": "StatCan-CMHC-2024",
+      "house": 6230,
+      "governance": {
+        "fhTotal": 97,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 58
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.841046719250577,
+        "digitalPLI": 0.732,
+        "blendedPLI": "0.785",
+        "gdpPPP": 64610.3795171971,
+        "gni": 53400
+      }
+    },
+    {
+      "id": 136,
+      "name": "卢森堡市",
+      "country": "卢森堡",
+      "cost": 4332,
+      "costSource": "v4:US3200×geomean(wbPLI=0.88,digPLI=undefined)×prem1×Eurostat-PLI1.53",
+      "rent": 1646,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 9876,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8835484382614495,
+        "digitalPLI": null,
+        "blendedPLI": "0.884",
+        "gdpPPP": 155941.288210791,
+        "gni": 84650
+      }
+    },
+    {
+      "id": 137,
+      "name": "塔林",
+      "country": "爱沙尼亚",
+      "cost": 1952,
+      "costSource": "v4:US3200×geomean(wbPLI=0.63,digPLI=0.67)×prem1×Eurostat-PLI0.94",
+      "rent": 742,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3369,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6289606888177278,
+        "digitalPLI": 0.667,
+        "blendedPLI": "0.648",
+        "gdpPPP": 49968.7108278373,
+        "gni": 28880
+      }
+    },
+    {
+      "id": 138,
+      "name": "福冈",
+      "country": "日本",
+      "cost": 1635,
+      "costSource": "v4:US3200×geomean(wbPLI=0.62,digPLI=0.42)×prem1×none1.00",
+      "rent": 621,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 56
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6242812245366461,
+        "digitalPLI": 0.418,
+        "blendedPLI": "0.511",
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 140,
+      "name": "巴厘岛",
+      "country": "印度尼西亚",
+      "cost": 978,
+      "costSource": "v4:US3200×geomean(wbPLI=0.30,digPLI=0.31)×prem1×none1.00",
+      "rent": 274,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 655,
+      "governance": {
+        "fhTotal": 57,
+        "fhStatus": "PF",
+        "fhPR": 29,
+        "fhCL": 28
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.29944965854576805,
+        "digitalPLI": 0.312,
+        "blendedPLI": "0.306",
+        "gdpPPP": 16448.2755179559,
+        "gni": 4910
+      }
+    },
+    {
+      "id": 141,
+      "name": "岘港",
+      "country": "越南",
+      "cost": 827,
+      "costSource": "v4:US3200×geomean(wbPLI=0.29,digPLI=0.23)×prem1×none1.00",
+      "rent": 232,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 599,
+      "governance": {
+        "fhTotal": 19,
+        "fhStatus": "NF",
+        "fhPR": 4,
+        "fhCL": 15
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.28789407706409864,
+        "digitalPLI": 0.232,
+        "blendedPLI": "0.258",
+        "gdpPPP": 16385.5065565458,
+        "gni": 4490
+      }
+    },
+    {
+      "id": 143,
+      "name": "波尔图",
+      "country": "葡萄牙",
+      "cost": 1742,
+      "costSource": "v4:US3200×geomean(wbPLI=0.57,digPLI=0.72)×prem1×Eurostat-PLI0.85",
+      "rent": 662,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3140,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 39,
+        "fhCL": 57
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5668015745107995,
+        "digitalPLI": 0.72,
+        "blendedPLI": "0.639",
+        "gdpPPP": 51679.8883807527,
+        "gni": 26910
+      }
+    },
+    {
+      "id": 144,
+      "name": "瓦伦西亚",
+      "country": "西班牙",
+      "cost": 2245,
+      "costSource": "v4:US3200×geomean(wbPLI=0.61,digPLI=0.93)×prem1×Eurostat-PLI0.93",
+      "rent": 853,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3914,
+      "governance": {
+        "fhTotal": 90,
+        "fhStatus": "F",
+        "fhPR": 37,
+        "fhCL": 53
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6094468840425258,
+        "digitalPLI": 0.926,
+        "blendedPLI": "0.751",
+        "gdpPPP": 57965.2948138837,
+        "gni": 33550
+      }
+    },
+    {
+      "id": 146,
+      "name": "斯普利特",
+      "country": "克罗地亚",
+      "cost": 1064,
+      "costSource": "v4:US3200×geomean(wbPLI=0.49,digPLI=undefined)×prem1×Eurostat-PLI0.69",
+      "rent": 404,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 2596,
+      "governance": {
+        "fhTotal": 83,
+        "fhStatus": "F",
+        "fhPR": 34,
+        "fhCL": 49
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.4853694310318196,
+        "digitalPLI": null,
+        "blendedPLI": "0.485",
+        "gdpPPP": 49550.7921506017,
+        "gni": 22250
+      }
+    },
+    {
+      "id": 147,
+      "name": "普吉岛",
+      "country": "泰国",
+      "cost": 1236,
+      "costSource": "v4:US3200×geomean(wbPLI=0.30,digPLI=0.50)×prem1×none1.00",
+      "rent": 396,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1065,
+      "governance": {
+        "fhTotal": 36,
+        "fhStatus": "PF",
+        "fhPR": 12,
+        "fhCL": 24
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.29728879259959445,
+        "digitalPLI": 0.502,
+        "blendedPLI": "0.386",
+        "gdpPPP": 24712.0658575135,
+        "gni": 7100
+      }
+    },
+    {
+      "id": 148,
+      "name": "蒙得维的亚",
+      "country": "乌拉圭",
+      "cost": 2311,
+      "costSource": "v4:US3200×geomean(wbPLI=0.66,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 740,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 3248,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.656449994754507,
+        "digitalPLI": null,
+        "blendedPLI": "0.656",
+        "gdpPPP": 36417.874162496,
+        "gni": 21650
+      }
+    },
+    {
+      "id": 149,
+      "name": "拉斯帕尔马斯",
+      "country": "西班牙",
+      "cost": 2245,
+      "costSource": "v4:US3200×geomean(wbPLI=0.61,digPLI=0.93)×prem1×Eurostat-PLI0.93",
+      "rent": 853,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3914,
+      "governance": {
+        "fhTotal": 90,
+        "fhStatus": "F",
+        "fhPR": 37,
+        "fhCL": 53
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6094468840425258,
+        "digitalPLI": 0.926,
+        "blendedPLI": "0.751",
+        "gdpPPP": 57965.2948138837,
+        "gni": 33550
+      }
+    },
+    {
+      "id": 150,
+      "name": "槟城",
+      "country": "马来西亚",
+      "cost": 1176,
+      "costSource": "v4:US3200×geomean(wbPLI=0.31,digPLI=0.44)×prem1×none1.00",
+      "rent": 376,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1748,
+      "governance": {
+        "fhTotal": 53,
+        "fhStatus": "PF",
+        "fhPR": 22,
+        "fhCL": 31
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3062054384781295,
+        "digitalPLI": 0.441,
+        "blendedPLI": "0.367",
+        "gdpPPP": 38779.2830442253,
+        "gni": 11650
+      }
+    },
+    {
+      "id": 152,
+      "name": "弗洛里亚诺波利斯",
+      "country": "巴西",
+      "cost": 1352,
+      "costSource": "v4:US3200×geomean(wbPLI=0.46,digPLI=0.39)×prem1×none1.00",
+      "rent": 433,
+      "rentSource": "cost×rentShare(0.32)",
+      "house": 1490,
+      "governance": {
+        "fhTotal": 72,
+        "fhStatus": "F",
+        "fhPR": 30,
+        "fhCL": 42
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.46156007318795644,
+        "digitalPLI": 0.387,
+        "blendedPLI": "0.423",
+        "gdpPPP": 22338.4765640635,
+        "gni": 9930
+      }
+    },
+    {
+      "id": 159,
+      "name": "京都",
+      "country": "日本",
+      "cost": 1635,
+      "costSource": "v4:US3200×geomean(wbPLI=0.62,digPLI=0.42)×prem1×none1.00",
+      "rent": 621,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 7200,
+      "governance": {
+        "fhTotal": 96,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 56
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6242812245366461,
+        "digitalPLI": 0.418,
+        "blendedPLI": "0.511",
+        "gdpPPP": 52039.1716551611,
+        "gni": 36000
+      }
+    },
+    {
+      "id": 160,
+      "name": "卡萨布兰卡",
+      "country": "摩洛哥",
+      "cost": 1353,
+      "costSource": "v4:US3200×geomean(wbPLI=0.40,digPLI=0.45)×prem1×none1.00",
+      "rent": 379,
+      "rentSource": "cost×rentShare(0.28)",
+      "house": 512,
+      "governance": {
+        "fhTotal": 37,
+        "fhStatus": "PF",
+        "fhPR": 13,
+        "fhCL": 24
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3987657109595074,
+        "digitalPLI": 0.448,
+        "blendedPLI": "0.423",
+        "gdpPPP": 10415.1240234375,
+        "gni": 3840
+      }
+    },
+    {
+      "id": 161,
+      "name": "惠灵顿",
+      "country": "新西兰",
+      "cost": 2710,
+      "costSource": "v4:US3200×geomean(wbPLI=0.89,digPLI=0.67)×prem1.1×none1.00",
+      "rent": 1030,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 5551,
+      "governance": {
+        "fhTotal": 99,
+        "fhStatus": "F",
+        "fhPR": 40,
+        "fhCL": 59
+      },
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.8857635680202394,
+        "digitalPLI": 0.669,
+        "blendedPLI": "0.770",
+        "gdpPPP": 55551.143658637,
+        "gni": 47580
+      }
+    },
+    {
+      "id": 162,
+      "name": "维尔纽斯",
+      "country": "立陶宛",
+      "cost": 1357,
+      "costSource": "v4:US3200×geomean(wbPLI=0.53,digPLI=0.61)×prem1×Eurostat-PLI0.74",
+      "rent": 516,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3168,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5314921053749992,
+        "digitalPLI": 0.61,
+        "blendedPLI": "0.569",
+        "gdpPPP": 55285.8991934304,
+        "gni": 27150
+      }
+    },
+    {
+      "id": 163,
+      "name": "里加",
+      "country": "拉脱维亚",
+      "cost": 1406,
+      "costSource": "v4:US3200×geomean(wbPLI=0.54,digPLI=0.61)×prem1×Eurostat-PLI0.77",
+      "rent": 798,
+      "rentSource": "InsideAirbnb×13.6",
+      "house": 2524,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.5394510091971696,
+        "digitalPLI": 0.61,
+        "blendedPLI": "0.574",
+        "gdpPPP": 43394.2732822314,
+        "gni": 21630
+      }
+    },
+    {
+      "id": 164,
+      "name": "尼科西亚",
+      "country": "塞浦路斯",
+      "cost": 1874,
+      "costSource": "v4:US3200×geomean(wbPLI=0.61,digPLI=undefined)×prem1×Eurostat-PLI0.95",
+      "rent": 712,
+      "rentSource": "cost×rentShare(0.38)",
+      "house": 3835,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.6138132325271163,
+        "digitalPLI": null,
+        "blendedPLI": "0.614",
+        "gdpPPP": 63006.61328125,
+        "gni": 32870
+      }
+    },
+    {
+      "id": 165,
+      "name": "圣多明各",
+      "country": "多米尼加",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 166,
+      "name": "基多",
+      "country": "厄瓜多尔",
+      "cost": null,
+      "costSource": "null",
+      "rent": null,
+      "rentSource": "null",
+      "house": null,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": null,
+        "digitalPLI": null,
+        "gdpPPP": null,
+        "gni": null
+      }
+    },
+    {
+      "id": 167,
+      "name": "阿克拉",
+      "country": "加纳",
+      "cost": 954,
+      "costSource": "v4:US3200×geomean(wbPLI=0.30,digPLI=undefined)×prem1×none1.00",
+      "rent": 210,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 231,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.29810140445235656,
+        "digitalPLI": null,
+        "blendedPLI": "0.298",
+        "gdpPPP": 8019.99702389611,
+        "gni": 2310
+      }
+    },
+    {
+      "id": 168,
+      "name": "亚的斯亚贝巴",
+      "country": "埃塞俄比亚",
+      "cost": 1214,
+      "costSource": "v4:US3200×geomean(wbPLI=0.34,digPLI=undefined)×prem1.1×none1.00",
+      "rent": 267,
+      "rentSource": "cost×rentShare(0.22)",
+      "house": 110,
+      "governance": null,
+      "h1bAnchors": null,
+      "nbsHouseIdx": null,
+      "ubsBubble": null,
+      "osmQuality": null,
+      "_inputs": {
+        "wbPLI": 0.3449036508695586,
+        "digitalPLI": null,
+        "blendedPLI": "0.345",
+        "gdpPPP": 3287.53492158893,
+        "gni": 1100
+      }
+    }
+  ]
+}

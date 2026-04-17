@@ -1,0 +1,28 @@
+v9 per-tier reliability (standalone ship, no prod fallback):
+
+Tier   n    cost_score  rent_score  salary_score  gov_score   overall
+  S   20      90          95          82           100           91
+  A   22      85          78          45            97           77
+  B   33      83          53          46            89           65
+  C   66      70          45          45            88           57
+  D   10       0           0          45            52            9
+
+==========================================================================================
+SHIP SCENARIOS (cumulative)
+==========================================================================================
+Scope          n    reliability   rent_src breakdown
+  S only (精品美国)        20    91.3/100      zillow:18 ons:2
+  S+A (欧美核心)           42    83.9/100      zillow:18 ons:2 statcan:5 airbnb:17
+  S+A+B (主流)           75    75.8/100      zillow:18 ons:2 airbnb:22 nbs-drift:7 formula:21 statcan:5
+  S+A+B+C (宽容)        141    67.1/100      zillow:18 ons:2 airbnb:22 nbs-drift:7 formula:87 statcan:5
+  All 151             151    63.2/100      zillow:18 ons:2 airbnb:22 nbs-drift:7 formula:87 statcan:5 missing:10
+
+==========================================================================================
+RENT SOURCE × TIER MATRIX
+==========================================================================================
+Tier      zillow       ons   statcan    airbnb nbs-drift   formula   missing
+S             18         2         0         0         0         0         0
+A              0         0         5        17         0         0         0
+B              0         0         0         5         7        21         0
+C              0         0         0         0         0        66         0
+D              0         0         0         0         0         0        10
