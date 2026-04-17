@@ -1,76 +1,331 @@
 {
-  "generatedAt": "2026-04-17T04:46:05.119Z",
-  "note": "PPP-gross → nominal-net-USD calibration factor. α = median(numbeoNetAnnualUSD / meanGrossPPP) over trusted cities. Numbeo data used ONLY offline for calibration; never at runtime.",
-  "trustedPoolSize": 102,
+  "generatedAt": "2026-04-17T06:24:06.699Z",
+  "note": "PPP-gross → nominal-net-USD α. Dual-GT method: each (city, source) pair = 1 observation. α_country = exp(median log ratio) when n≥3 observations.",
+  "observations": 208,
   "global": {
-    "alpha": 0.5205679714921909
+    "alpha": 0.5063253824588765
   },
   "continents": {
     "北美洲": {
-      "alpha": 0.5186621302509052,
-      "n": 19
+      "alpha": 0.5248953738808066,
+      "n": 39
     },
     "欧洲": {
-      "alpha": 0.43752380952380954,
-      "n": 37
+      "alpha": 0.42570866614545855,
+      "n": 76
     },
     "亚洲": {
-      "alpha": 0.6124732972152256,
-      "n": 30
+      "alpha": 0.5571324337705997,
+      "n": 58
     },
     "大洋洲": {
-      "alpha": 0.7223119440459889,
-      "n": 5
+      "alpha": 0.7209573959036528,
+      "n": 10
     },
     "南美洲": {
-      "alpha": 0.42564829171790625,
-      "n": 9
+      "alpha": 0.4125719778961325,
+      "n": 19
     },
     "非洲": {
-      "alpha": 0.5034112793541408,
-      "n": 2
+      "alpha": 0.24988126335365202,
+      "n": 6
     }
   },
   "countries": {
     "美国": {
-      "alpha": 0.5250853072122088,
-      "n": 12,
-      "source": "country-median"
+      "alpha": 0.5348863633064247,
+      "n": 25,
+      "source": "dual-GT-median"
+    },
+    "英国": {
+      "alpha": 0.6354814243209427,
+      "n": 2,
+      "source": "dual-GT-median"
     },
     "日本": {
-      "alpha": 0.5299723652078822,
-      "n": 4,
-      "source": "country-median"
+      "alpha": 0.5475915869447435,
+      "n": 8,
+      "source": "dual-GT-median"
     },
     "中国": {
-      "alpha": 0.7272388758682212,
-      "n": 6,
-      "source": "country-median"
+      "alpha": 0.6735908158065486,
+      "n": 12,
+      "source": "dual-GT-median"
     },
     "澳大利亚": {
-      "alpha": 0.8108779677120506,
-      "n": 3,
-      "source": "country-median"
+      "alpha": 0.8152571648997013,
+      "n": 6,
+      "source": "dual-GT-median"
+    },
+    "新加坡": {
+      "alpha": 0.7867794058553198,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "法国": {
+      "alpha": 0.8152789619995057,
+      "n": 2,
+      "source": "dual-GT-median"
     },
     "加拿大": {
-      "alpha": 0.5103593664087129,
-      "n": 3,
-      "source": "country-median"
+      "alpha": 0.5165681928663723,
+      "n": 6,
+      "source": "dual-GT-median"
+    },
+    "中国香港": {
+      "alpha": 0.4233170328502682,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "阿联酋": {
+      "alpha": 0.8581602930480985,
+      "n": 4,
+      "source": "dual-GT-median"
+    },
+    "荷兰": {
+      "alpha": 0.5196721051936765,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "瑞士": {
+      "alpha": 1.1862104275311207,
+      "n": 4,
+      "source": "dual-GT-median"
+    },
+    "德国": {
+      "alpha": 0.4974392462123828,
+      "n": 4,
+      "source": "dual-GT-median"
     },
     "西班牙": {
-      "alpha": 0.31799139329750425,
+      "alpha": 0.337741310731169,
+      "n": 7,
+      "source": "dual-GT-median"
+    },
+    "意大利": {
+      "alpha": 0.2967479362428896,
       "n": 4,
-      "source": "country-median"
+      "source": "dual-GT-median"
+    },
+    "比利时": {
+      "alpha": 0.32921947848964617,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "奥地利": {
+      "alpha": 0.39519779200008043,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "捷克": {
+      "alpha": 0.42188746789070186,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "波兰": {
+      "alpha": 0.5062869478603088,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "葡萄牙": {
+      "alpha": 0.5674392433097871,
+      "n": 4,
+      "source": "dual-GT-median"
+    },
+    "希腊": {
+      "alpha": 0.2875490799103212,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "土耳其": {
+      "alpha": 0.336449663588315,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "墨西哥": {
+      "alpha": 0.7616683436506961,
+      "n": 4,
+      "source": "dual-GT-median"
     },
     "巴西": {
-      "alpha": 0.4484457028379504,
+      "alpha": 0.400237148901903,
+      "n": 6,
+      "source": "dual-GT-median"
+    },
+    "新西兰": {
+      "alpha": 0.5837231172324691,
+      "n": 4,
+      "source": "dual-GT-median"
+    },
+    "泰国": {
+      "alpha": 0.28576770011491737,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "马来西亚": {
+      "alpha": 0.5372422500592625,
       "n": 3,
-      "source": "country-median"
+      "source": "dual-GT-median"
     },
     "越南": {
-      "alpha": 0.28545775928172595,
-      "n": 3,
-      "source": "country-median"
+      "alpha": 0.2821444041204988,
+      "n": 6,
+      "source": "dual-GT-median"
+    },
+    "埃及": {
+      "alpha": 0.1773161327798008,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "印度尼西亚": {
+      "alpha": 0.4964303356406797,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "菲律宾": {
+      "alpha": 0.322121817330958,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "韩国": {
+      "alpha": 0.8252849785824952,
+      "n": 4,
+      "source": "dual-GT-median"
+    },
+    "台湾": {
+      "alpha": 0.666300559640888,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "阿根廷": {
+      "alpha": 0.4262947558349874,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "智利": {
+      "alpha": 0.312582015171019,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "哥伦比亚": {
+      "alpha": 0.365814782455786,
+      "n": 4,
+      "source": "dual-GT-median"
+    },
+    "秘鲁": {
+      "alpha": 0.46395952314576355,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "巴拿马": {
+      "alpha": 0.4141683898519023,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "卡塔尔": {
+      "alpha": 0.5719739239972796,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "沙特阿拉伯": {
+      "alpha": 0.5331945818610763,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "以色列": {
+      "alpha": 1.0574996905489897,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "乌克兰": {
+      "alpha": 0.27865364614672705,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "罗马尼亚": {
+      "alpha": 0.32873212958219133,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "保加利亚": {
+      "alpha": 0.4070564817598068,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "克罗地亚": {
+      "alpha": 0.3424103435197968,
+      "n": 4,
+      "source": "dual-GT-median"
+    },
+    "塞尔维亚": {
+      "alpha": 0.43098138765358956,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "匈牙利": {
+      "alpha": 0.6549969953085789,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "爱尔兰": {
+      "alpha": 0.5852355202331491,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "哈萨克斯坦": {
+      "alpha": 0.2830323959298404,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "瑞典": {
+      "alpha": 0.6584587638237338,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "丹麦": {
+      "alpha": 0.7031769401676419,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "芬兰": {
+      "alpha": 0.3943899429327433,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "挪威": {
+      "alpha": 0.5794876057333752,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "格鲁吉亚": {
+      "alpha": 0.6035226721221122,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "俄罗斯": {
+      "alpha": 0.3958663706809147,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "卢森堡": {
+      "alpha": 0.43169076591288164,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "爱沙尼亚": {
+      "alpha": 0.3984448841178675,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "乌拉圭": {
+      "alpha": 0.5494160236950296,
+      "n": 2,
+      "source": "dual-GT-median"
+    },
+    "摩洛哥": {
+      "alpha": 1.4918308650615746,
+      "n": 2,
+      "source": "dual-GT-median"
     }
   }
 }
