@@ -41,10 +41,10 @@ const exportData = JSON.parse(readFileSync(EXPORT_PATH, "utf-8"));
 const cities = exportData.cities;
 console.log(`Validating ${cities.length} cities from export...\n`);
 
-// 1a. Each city has 25 professions
+// 1a. Each city has 20 professions
 for (const c of cities) {
   const n = Object.keys(c.professions).length;
-  if (n !== 25) fail(`${c.name}(${c.id}): has ${n} professions, expected 25`);
+  if (n !== 20) fail(`${c.name}(${c.id}): has ${n} professions, expected 20`);
 }
 
 // 1b. averageIncome must equal professions median (auto-computed by export)

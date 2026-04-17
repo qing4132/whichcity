@@ -238,7 +238,7 @@ for (const c of output) {
 
   // Profession count
   const profCount = c.professions ? Object.keys(c.professions).length : 0;
-  if (profCount !== 25) fail(`${c.name}(${c.id}): ${profCount} professions, expected 25`);
+  if (profCount !== 20) fail(`${c.name}(${c.id}): ${profCount} professions, expected 20`);
 
   // Index ranges
   for (const f of ["safetyIndex", "healthcareIndex", "governanceIndex", "freedomIndex"]) {

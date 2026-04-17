@@ -1,7 +1,22 @@
-/** City IDs hidden from frontend display (data retained, not shown in rankings/search/navigation) */
+/**
+ * City IDs hidden from frontend display (data retained, not shown in rankings/search/navigation).
+ *
+ * Roster = 100 visible cities = Tier A (56) + Tier B (27) + Tier C (13) + 4 specials
+ * (133 硅谷/圣何塞, 159 京都, 138 福冈, 162 维尔纽斯).
+ * All remaining 51 cities (of 151 total) are hidden here.
+ *
+ * Selection basis: `data/sources/gt/trust-audit-v3.json` (dual-GT Numbeo + Livingcost
+ * consistency audit; model-as-arbitrator rule). See `_archive/reports/phase2-100-city-roster.md`.
+ * Newly hidden vs previous 31-set (20 cities): 49 班加罗尔, 50 孟买, 52 内罗毕, 53 开罗,
+ * 55 卡拉奇, 60 釜山, 67 约翰内斯堡, 68 开普敦, 70 圣何塞(CR), 103 成都, 112 清迈,
+ * 140 巴厘岛, 147 普吉岛, 150 槟城, 163 里加, 164 尼科西亚, 165 圣多明各, 166 基多,
+ * 167 阿克拉, 168 亚的斯亚贝巴.
+ */
 export const HIDDEN_CITY_IDS: ReadonlySet<number> = new Set([
-  38, 54, 56, 77, 79, 80, 81, 83, 84, 91, 92, 94, 95, 96, 97, 99, 100,
-  105, 107, 109, 110, 114, 115, 116, 118, 119, 120, 127, 128, 131, 135,
+  38, 49, 50, 52, 53, 54, 55, 56, 60, 67, 68, 70, 77, 79, 80, 81, 83, 84,
+  91, 92, 94, 95, 96, 97, 99, 100, 103, 105, 107, 109, 110, 112, 114, 115,
+  116, 118, 119, 120, 127, 128, 131, 135, 140, 147, 150, 163, 164, 165,
+  166, 167, 168,
 ]);
 
 /**
